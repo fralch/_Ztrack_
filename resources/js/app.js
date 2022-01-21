@@ -15,3 +15,4 @@ createInertiaApp({
 })
 
 InertiaProgress.init()
+Vue.prototype.$route = route
