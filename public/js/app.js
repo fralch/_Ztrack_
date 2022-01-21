@@ -2166,6 +2166,89 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {},
   props: {},
@@ -25168,30 +25251,240 @@ var staticRenderFns = [
           "div",
           {
             staticClass: "modal-content",
-            staticStyle: {
-              "background-color": "grey",
-              height: "100% !important",
-            },
+            staticStyle: { height: "100% !important" },
           },
           [
             _c(
               "div",
               { staticClass: "content ", staticStyle: { display: "block" } },
               [
-                _c("div", { staticClass: "row " }, [
-                  _c(
-                    "div",
-                    {
-                      staticClass: "col-3",
-                      staticStyle: { "background-color": "green" },
-                    },
-                    [_c("div", {})]
-                  ),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-9" }, [
-                    _vm._v("\n            One of three columns\n          "),
-                  ]),
-                ]),
+                _c(
+                  "div",
+                  { staticClass: "row", staticStyle: { border: "0" } },
+                  [
+                    _c("div", { staticClass: "col-2" }, [
+                      _c(
+                        "div",
+                        {
+                          staticStyle: { height: "300px" },
+                          attrs: { id: "tablaContenedor" },
+                        },
+                        [
+                          _c("table", { staticClass: "table table-striped" }, [
+                            _c("thead", [
+                              _c("tr", [
+                                _c("th", { attrs: { scope: "col" } }, [
+                                  _vm._v("CONTENEDORES"),
+                                ]),
+                              ]),
+                            ]),
+                            _vm._v(" "),
+                            _c("tbody", [
+                              _c("tr", [
+                                _c("td", [
+                                  _vm._v("Contenedor 1 - 0.00° "),
+                                  _c(
+                                    "span",
+                                    {
+                                      staticClass: "text-right",
+                                      staticStyle: {
+                                        "font-size": "10px",
+                                        color: "#BBBBBB",
+                                      },
+                                    },
+                                    [_vm._v("     Hace 35 segundos")]
+                                  ),
+                                ]),
+                              ]),
+                              _vm._v(" "),
+                              _c("tr", [
+                                _c("td", [
+                                  _vm._v("Contenedor 2 - 0.00° "),
+                                  _c(
+                                    "span",
+                                    {
+                                      staticStyle: {
+                                        "font-size": "10px",
+                                        color: "#BBBBBB",
+                                      },
+                                    },
+                                    [_vm._v("      Hace 35 segundos ")]
+                                  ),
+                                ]),
+                              ]),
+                              _vm._v(" "),
+                              _c("tr", [
+                                _c("td", [
+                                  _vm._v("Contenedor 3 - 0.00° "),
+                                  _c(
+                                    "span",
+                                    {
+                                      staticStyle: {
+                                        "font-size": "10px",
+                                        color: "#BBBBBB",
+                                      },
+                                    },
+                                    [_vm._v("     Hace 35 segundos ")]
+                                  ),
+                                ]),
+                              ]),
+                              _vm._v(" "),
+                              _c("tr", [
+                                _c("td", [
+                                  _vm._v("Contenedor 4 - 0.00° "),
+                                  _c(
+                                    "span",
+                                    {
+                                      staticStyle: {
+                                        "font-size": "10px",
+                                        color: "#BBBBBB",
+                                      },
+                                    },
+                                    [_vm._v("     Hace 35 segundos ")]
+                                  ),
+                                ]),
+                              ]),
+                              _vm._v(" "),
+                              _c("tr", [
+                                _c("td", [
+                                  _vm._v("Contenedor 5 - 0.00° "),
+                                  _c(
+                                    "span",
+                                    {
+                                      staticStyle: {
+                                        "font-size": "10px",
+                                        color: "#BBBBBB",
+                                      },
+                                    },
+                                    [_vm._v("     Hace 35 segundos ")]
+                                  ),
+                                ]),
+                              ]),
+                            ]),
+                          ]),
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c("div", { attrs: { id: "info" } }, [
+                        _c("table", { staticClass: "table" }, [
+                          _c("thead", { staticClass: "thead-dark" }, [
+                            _c("tr", [
+                              _c("th", { attrs: { scope: "col" } }, [
+                                _vm._v("INFORMACIÓN"),
+                              ]),
+                            ]),
+                          ]),
+                          _vm._v(" "),
+                          _c("tbody", [
+                            _c("tr", [
+                              _c("td", [
+                                _c(
+                                  "div",
+                                  {
+                                    staticClass: "row",
+                                    staticStyle: { "font-size": "0.8em" },
+                                  },
+                                  [
+                                    _c("div", { staticClass: "col-6" }, [
+                                      _vm._v(
+                                        "\n                              Última actualización\n                            "
+                                      ),
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("div", { staticClass: "col-6" }, [
+                                      _vm._v(
+                                        "\n                              Hace 53 segundos\n                            "
+                                      ),
+                                    ]),
+                                  ]
+                                ),
+                              ]),
+                            ]),
+                            _vm._v(" "),
+                            _c("tr", [
+                              _c("td", [
+                                _c(
+                                  "div",
+                                  {
+                                    staticClass: "row",
+                                    staticStyle: { "font-size": "0.8em" },
+                                  },
+                                  [
+                                    _c("div", { staticClass: "col-6" }, [
+                                      _vm._v(
+                                        "\n                              Última actualización\n                            "
+                                      ),
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("div", { staticClass: "col-6" }, [
+                                      _vm._v(
+                                        "\n                              Hace 53 segundos\n                            "
+                                      ),
+                                    ]),
+                                  ]
+                                ),
+                              ]),
+                            ]),
+                            _vm._v(" "),
+                            _c("tr", [
+                              _c("td", [
+                                _c(
+                                  "div",
+                                  {
+                                    staticClass: "row",
+                                    staticStyle: { "font-size": "0.8em" },
+                                  },
+                                  [
+                                    _c("div", { staticClass: "col-6" }, [
+                                      _vm._v(
+                                        "\n                              Última actualización\n                            "
+                                      ),
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("div", { staticClass: "col-6" }, [
+                                      _vm._v(
+                                        "\n                              Hace 53 segundos\n                            "
+                                      ),
+                                    ]),
+                                  ]
+                                ),
+                              ]),
+                            ]),
+                            _vm._v(" "),
+                            _c("tr", [
+                              _c("td", [
+                                _c(
+                                  "div",
+                                  {
+                                    staticClass: "row",
+                                    staticStyle: { "font-size": "0.8em" },
+                                  },
+                                  [
+                                    _c("div", { staticClass: "col-6" }, [
+                                      _vm._v(
+                                        "\n                              Última actualización\n                            "
+                                      ),
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("div", { staticClass: "col-6" }, [
+                                      _vm._v(
+                                        "\n                              Hace 53 segundos\n                            "
+                                      ),
+                                    ]),
+                                  ]
+                                ),
+                              ]),
+                            ]),
+                          ]),
+                        ]),
+                      ]),
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-10" }, [
+                      _vm._v("\n            One of three columns\n          "),
+                    ]),
+                  ]
+                ),
               ]
             ),
           ]
