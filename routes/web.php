@@ -17,3 +17,4 @@ use App\Http\Controllers\Paneles\PanelController;
 //     return view('welcome');
 // });
 Route::get('/', [PanelController::class, 'verPanel'])->name('paneles.ver_panel');
+Route::get('/board', [PanelController::class, 'board'])->name('paneles.board');

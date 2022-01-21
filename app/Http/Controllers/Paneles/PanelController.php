@@ -12,7 +12,11 @@ class PanelController extends Controller
     //
     public function verPanel()
     {
-        return Inertia::render('Paneles/panel', []);
+        return Inertia::render('principal', []);
+    }
+    public function board()
+    {
+        return Inertia::render('Panel/board', []);
     }
     
 }
