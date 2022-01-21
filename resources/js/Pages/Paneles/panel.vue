@@ -1,36 +1,38 @@
 <template>
   <div style="height: 100% !important">
-    <div class="container mw-100">
-    <nav class="navbar navbar-expand-custom navbar-mainbg">
-        <a class="navbar-brand navbar-logo" href="#">Ztrack</a>
-        <button class="navbar-toggler" type="button" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <i class="fas fa-bars text-white"></i>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav ml-auto">
-                <div class="hori-selector"><div class="left"></div><div class="right"></div></div>
-                <li class="nav-item active">
-                    <a class="nav-link" href="javascript:void(0);"><i class="fas fa-tachometer-alt"></i>Panel</a>
-                </li>   
-                <li class="nav-item">
-                    <a class="nav-link" href="javascript:void(0);"><i class="far fa-clone"></i>Contenedores</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="javascript:void(0);"><i class="far fa-calendar-alt"></i>Calendarios</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="javascript:void(0);"><i class="far fa-chart-bar"></i>Estadisticas</a>
-                </li>
-                <!-- <li class="nav-item">
-                    <a class="nav-link" href="javascript:void(0);"><i class="far fa-copy"></i>Documents</a>
-                </li> -->
-                 <li class="nav-item ">
-                    <a class="nav-link" href="javascript:void(0);"><i class="far fa-address-book"></i>Mis Datos</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-     
+    <div class="container-fluid">
+      <div class="row">
+        <nav class="col-12 navbar navbar-expand-custom navbar-mainbg" >
+            <a class="navbar-brand navbar-logo" href="#">Ztrack</a>
+            <button class="navbar-toggler" type="button" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fas fa-bars text-white"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent" style="width: 100% !important; margin:0px; ">
+                <ul class="navbar-nav ml-auto">
+                    <div class="hori-selector"><div class="left"></div><div class="right"></div></div>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="javascript:void(0);"><i class="fas fa-tachometer-alt"></i>Panel</a>
+                    </li>   
+                    <li class="nav-item">
+                        <a class="nav-link" href="javascript:void(0);"><i class="far fa-clone"></i>Contenedores</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="javascript:void(0);"><i class="far fa-calendar-alt"></i>Calendarios</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="javascript:void(0);"><i class="far fa-chart-bar"></i>Estadisticas</a>
+                    </li>
+                    <!-- <li class="nav-item">
+                        <a class="nav-link" href="javascript:void(0);"><i class="far fa-copy"></i>Documents</a>
+                    </li> -->
+                    <li class="nav-item ">
+                        <a class="nav-link" href="javascript:void(0);"><i class="far fa-address-book"></i>Mis Datos</a>
+                    </li>
+                </ul>
+            </div>
+        </nav> 
+      </div>
+      
     </div>
   </div>
 </template>
@@ -97,7 +99,7 @@ a:hover {
 	color: #fff;
 }
 .navbar-mainbg{
-	background-color: #112e8f;
+	background-color: #232C4C;
 	padding: 0px;
 }
 #navbarSupportedContent{
@@ -126,7 +128,7 @@ a:hover {
     position: relative;
 }
 #navbarSupportedContent>ul>li.active>a{
-	color: #112e8f;
+	color: #232C4C;
 	background-color: transparent;
 	transition: all 0.7s;
 }
@@ -180,7 +182,7 @@ a:hover {
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    background-color: #112e8f;
+    background-color: #232C4C;
 }
 .hori-selector .right:before{
 	bottom: 0;

@@ -2140,6 +2140,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -2251,7 +2253,7 @@ __webpack_require__.r(__webpack_exports__);
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 ___CSS_LOADER_EXPORT___.push([module.id, "@import url(https://fonts.googleapis.com/css?family=Roboto);"]);
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\nbody{\r\n\tfont-family: 'Roboto', sans-serif;\n}\n* {\r\n\tmargin: 0;\r\n\tpadding: 0;\n}\ni {\r\n\tmargin-right: 10px;\n}\na{\r\n  text-decoration: none;\r\n  color: #fff;\n}\na:link,\r\na:visited,\r\na:active {\r\n text-decoration: none;\n}\na:hover {\r\n  color: white;\r\n  text-decoration: none;\n}\r\n/*----------bootstrap-navbar-css------------*/\n.navbar-logo{\r\n\tpadding: 15px;\r\n\tcolor: #fff;\n}\n.navbar-mainbg{\r\n\tbackground-color: #112e8f;\r\n\tpadding: 0px;\n}\n#navbarSupportedContent{\r\n\toverflow: hidden;\r\n\tposition: relative;\n}\n#navbarSupportedContent ul{\r\n\tpadding: 0px;\r\n\tmargin: 0px;\n}\n#navbarSupportedContent ul li a i{\r\n\tmargin-right: 10px;\n}\n#navbarSupportedContent li {\r\n\tlist-style-type: none;\r\n\tfloat: left;\n}\n#navbarSupportedContent ul li a{\r\n\tcolor: rgba(255,255,255,0.5);\r\n    text-decoration: none;\r\n    font-size: 15px;\r\n    display: block;\r\n    padding: 20px 20px;\r\n    transition-duration:0.6s;\r\n\ttransition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);\r\n    position: relative;\n}\n#navbarSupportedContent>ul>li.active>a{\r\n\tcolor: #112e8f;\r\n\tbackground-color: transparent;\r\n\ttransition: all 0.7s;\n}\n#navbarSupportedContent a:not(:only-child):after {\r\n\tcontent: \"\\f105\";\r\n\tposition: absolute;\r\n\tright: 20px;\r\n\ttop: 10px;\r\n\tfont-size: 14px;\r\n\tfont-family: \"Font Awesome 5 Free\";\r\n\tdisplay: inline-block;\r\n\tpadding-right: 3px;\r\n\tvertical-align: middle;\r\n\tfont-weight: 900;\r\n\ttransition: 0.5s;\n}\n#navbarSupportedContent .active>a:not(:only-child):after {\r\n\ttransform: rotate(90deg);\n}\n.hori-selector{\r\n\tdisplay:inline-block;\r\n\tposition:absolute;\r\n\theight: 100%;\r\n\ttop: 0px;\r\n\tleft: 0px;\r\n\ttransition-duration:0.6s;\r\n\ttransition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);\r\n\tbackground-color: #fff;\r\n\tborder-top-left-radius: 15px;\r\n\tborder-top-right-radius: 15px;\r\n\tmargin-top: 10px;\n}\n.hori-selector .right,\r\n.hori-selector .left{\r\n\tposition: absolute;\r\n\twidth: 25px;\r\n\theight: 25px;\r\n\tbackground-color: #fff;\r\n\tbottom: 10px;\n}\n.hori-selector .right{\r\n\tright: -25px;\n}\n.hori-selector .left{\r\n\tleft: -25px;\n}\n.hori-selector .right:before,\r\n.hori-selector .left:before{\r\n\tcontent: '';\r\n    position: absolute;\r\n    width: 50px;\r\n    height: 50px;\r\n    border-radius: 50%;\r\n    background-color: #112e8f;\n}\n.hori-selector .right:before{\r\n\tbottom: 0;\r\n    right: -25px;\n}\n.hori-selector .left:before{\r\n\tbottom: 0;\r\n    left: -25px;\n}\n@media(min-width: 992px){\n.navbar-expand-custom {\r\n\t    flex-flow: row nowrap;\r\n\t    justify-content: flex-start;\n}\n.navbar-expand-custom .navbar-nav {\r\n\t    flex-direction: row;\n}\n.navbar-expand-custom .navbar-toggler {\r\n\t    display: none;\n}\n.navbar-expand-custom .navbar-collapse {\r\n\t    display: flex!important;\r\n\t    flex-basis: auto;\n}\n}\n@media (max-width: 991px){\n#navbarSupportedContent ul li a{\r\n\t\tpadding: 12px 30px;\n}\n.hori-selector{\r\n\t\tmargin-top: 0px;\r\n\t\tmargin-left: 10px;\r\n\t\tborder-radius: 0;\r\n\t\tborder-top-left-radius: 25px;\r\n\t\tborder-bottom-left-radius: 25px;\n}\n.hori-selector .left,\r\n\t.hori-selector .right{\r\n\t\tright: 10px;\n}\n.hori-selector .left{\r\n\t\ttop: -25px;\r\n\t\tleft: auto;\n}\n.hori-selector .right{\r\n\t\tbottom: -25px;\n}\n.hori-selector .left:before{\r\n\t\tleft: -25px;\r\n\t\ttop: -25px;\n}\n.hori-selector .right:before{\r\n\t\tbottom: -25px;\r\n\t\tleft: -25px;\n}\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\nbody{\r\n\tfont-family: 'Roboto', sans-serif;\n}\n* {\r\n\tmargin: 0;\r\n\tpadding: 0;\n}\ni {\r\n\tmargin-right: 10px;\n}\na{\r\n  text-decoration: none;\r\n  color: #fff;\n}\na:link,\r\na:visited,\r\na:active {\r\n text-decoration: none;\n}\na:hover {\r\n  color: white;\r\n  text-decoration: none;\n}\r\n/*----------bootstrap-navbar-css------------*/\n.navbar-logo{\r\n\tpadding: 15px;\r\n\tcolor: #fff;\n}\n.navbar-mainbg{\r\n\tbackground-color: #232C4C;\r\n\tpadding: 0px;\n}\n#navbarSupportedContent{\r\n\toverflow: hidden;\r\n\tposition: relative;\n}\n#navbarSupportedContent ul{\r\n\tpadding: 0px;\r\n\tmargin: 0px;\n}\n#navbarSupportedContent ul li a i{\r\n\tmargin-right: 10px;\n}\n#navbarSupportedContent li {\r\n\tlist-style-type: none;\r\n\tfloat: left;\n}\n#navbarSupportedContent ul li a{\r\n\tcolor: rgba(255,255,255,0.5);\r\n    text-decoration: none;\r\n    font-size: 15px;\r\n    display: block;\r\n    padding: 20px 20px;\r\n    transition-duration:0.6s;\r\n\ttransition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);\r\n    position: relative;\n}\n#navbarSupportedContent>ul>li.active>a{\r\n\tcolor: #232C4C;\r\n\tbackground-color: transparent;\r\n\ttransition: all 0.7s;\n}\n#navbarSupportedContent a:not(:only-child):after {\r\n\tcontent: \"\\f105\";\r\n\tposition: absolute;\r\n\tright: 20px;\r\n\ttop: 10px;\r\n\tfont-size: 14px;\r\n\tfont-family: \"Font Awesome 5 Free\";\r\n\tdisplay: inline-block;\r\n\tpadding-right: 3px;\r\n\tvertical-align: middle;\r\n\tfont-weight: 900;\r\n\ttransition: 0.5s;\n}\n#navbarSupportedContent .active>a:not(:only-child):after {\r\n\ttransform: rotate(90deg);\n}\n.hori-selector{\r\n\tdisplay:inline-block;\r\n\tposition:absolute;\r\n\theight: 100%;\r\n\ttop: 0px;\r\n\tleft: 0px;\r\n\ttransition-duration:0.6s;\r\n\ttransition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);\r\n\tbackground-color: #fff;\r\n\tborder-top-left-radius: 15px;\r\n\tborder-top-right-radius: 15px;\r\n\tmargin-top: 10px;\n}\n.hori-selector .right,\r\n.hori-selector .left{\r\n\tposition: absolute;\r\n\twidth: 25px;\r\n\theight: 25px;\r\n\tbackground-color: #fff;\r\n\tbottom: 10px;\n}\n.hori-selector .right{\r\n\tright: -25px;\n}\n.hori-selector .left{\r\n\tleft: -25px;\n}\n.hori-selector .right:before,\r\n.hori-selector .left:before{\r\n\tcontent: '';\r\n    position: absolute;\r\n    width: 50px;\r\n    height: 50px;\r\n    border-radius: 50%;\r\n    background-color: #232C4C;\n}\n.hori-selector .right:before{\r\n\tbottom: 0;\r\n    right: -25px;\n}\n.hori-selector .left:before{\r\n\tbottom: 0;\r\n    left: -25px;\n}\n@media(min-width: 992px){\n.navbar-expand-custom {\r\n\t    flex-flow: row nowrap;\r\n\t    justify-content: flex-start;\n}\n.navbar-expand-custom .navbar-nav {\r\n\t    flex-direction: row;\n}\n.navbar-expand-custom .navbar-toggler {\r\n\t    display: none;\n}\n.navbar-expand-custom .navbar-collapse {\r\n\t    display: flex!important;\r\n\t    flex-basis: auto;\n}\n}\n@media (max-width: 991px){\n#navbarSupportedContent ul li a{\r\n\t\tpadding: 12px 30px;\n}\n.hori-selector{\r\n\t\tmargin-top: 0px;\r\n\t\tmargin-left: 10px;\r\n\t\tborder-radius: 0;\r\n\t\tborder-top-left-radius: 25px;\r\n\t\tborder-bottom-left-radius: 25px;\n}\n.hori-selector .left,\r\n\t.hori-selector .right{\r\n\t\tright: 10px;\n}\n.hori-selector .left{\r\n\t\ttop: -25px;\r\n\t\tleft: auto;\n}\n.hori-selector .right{\r\n\t\tbottom: -25px;\n}\n.hori-selector .left:before{\r\n\t\tleft: -25px;\r\n\t\ttop: -25px;\n}\n.hori-selector .right:before{\r\n\t\tbottom: -25px;\r\n\t\tleft: -25px;\n}\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -25296,118 +25298,124 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticStyle: { height: "100% !important" } }, [
-      _c("div", { staticClass: "container mw-100" }, [
-        _c(
-          "nav",
-          { staticClass: "navbar navbar-expand-custom navbar-mainbg" },
-          [
-            _c(
-              "a",
-              { staticClass: "navbar-brand navbar-logo", attrs: { href: "#" } },
-              [_vm._v("Ztrack")]
-            ),
-            _vm._v(" "),
-            _c(
-              "button",
-              {
-                staticClass: "navbar-toggler",
-                attrs: {
-                  type: "button",
-                  "aria-controls": "navbarSupportedContent",
-                  "aria-expanded": "false",
-                  "aria-label": "Toggle navigation",
+      _c("div", { staticClass: "container-fluid" }, [
+        _c("div", { staticClass: "row" }, [
+          _c(
+            "nav",
+            { staticClass: "col-12 navbar navbar-expand-custom navbar-mainbg" },
+            [
+              _c(
+                "a",
+                {
+                  staticClass: "navbar-brand navbar-logo",
+                  attrs: { href: "#" },
                 },
-              },
-              [_c("i", { staticClass: "fas fa-bars text-white" })]
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              {
-                staticClass: "collapse navbar-collapse",
-                attrs: { id: "navbarSupportedContent" },
-              },
-              [
-                _c("ul", { staticClass: "navbar-nav ml-auto" }, [
-                  _c("div", { staticClass: "hori-selector" }, [
-                    _c("div", { staticClass: "left" }),
-                    _c("div", { staticClass: "right" }),
+                [_vm._v("Ztrack")]
+              ),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "navbar-toggler",
+                  attrs: {
+                    type: "button",
+                    "aria-controls": "navbarSupportedContent",
+                    "aria-expanded": "false",
+                    "aria-label": "Toggle navigation",
+                  },
+                },
+                [_c("i", { staticClass: "fas fa-bars text-white" })]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "collapse navbar-collapse",
+                  staticStyle: { width: "100% !important", margin: "0px" },
+                  attrs: { id: "navbarSupportedContent" },
+                },
+                [
+                  _c("ul", { staticClass: "navbar-nav ml-auto" }, [
+                    _c("div", { staticClass: "hori-selector" }, [
+                      _c("div", { staticClass: "left" }),
+                      _c("div", { staticClass: "right" }),
+                    ]),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "nav-item active" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "nav-link",
+                          attrs: { href: "javascript:void(0);" },
+                        },
+                        [
+                          _c("i", { staticClass: "fas fa-tachometer-alt" }),
+                          _vm._v("Panel"),
+                        ]
+                      ),
+                    ]),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "nav-item" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "nav-link",
+                          attrs: { href: "javascript:void(0);" },
+                        },
+                        [
+                          _c("i", { staticClass: "far fa-clone" }),
+                          _vm._v("Contenedores"),
+                        ]
+                      ),
+                    ]),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "nav-item" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "nav-link",
+                          attrs: { href: "javascript:void(0);" },
+                        },
+                        [
+                          _c("i", { staticClass: "far fa-calendar-alt" }),
+                          _vm._v("Calendarios"),
+                        ]
+                      ),
+                    ]),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "nav-item" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "nav-link",
+                          attrs: { href: "javascript:void(0);" },
+                        },
+                        [
+                          _c("i", { staticClass: "far fa-chart-bar" }),
+                          _vm._v("Estadisticas"),
+                        ]
+                      ),
+                    ]),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "nav-item " }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "nav-link",
+                          attrs: { href: "javascript:void(0);" },
+                        },
+                        [
+                          _c("i", { staticClass: "far fa-address-book" }),
+                          _vm._v("Mis Datos"),
+                        ]
+                      ),
+                    ]),
                   ]),
-                  _vm._v(" "),
-                  _c("li", { staticClass: "nav-item active" }, [
-                    _c(
-                      "a",
-                      {
-                        staticClass: "nav-link",
-                        attrs: { href: "javascript:void(0);" },
-                      },
-                      [
-                        _c("i", { staticClass: "fas fa-tachometer-alt" }),
-                        _vm._v("Panel"),
-                      ]
-                    ),
-                  ]),
-                  _vm._v(" "),
-                  _c("li", { staticClass: "nav-item" }, [
-                    _c(
-                      "a",
-                      {
-                        staticClass: "nav-link",
-                        attrs: { href: "javascript:void(0);" },
-                      },
-                      [
-                        _c("i", { staticClass: "far fa-clone" }),
-                        _vm._v("Contenedores"),
-                      ]
-                    ),
-                  ]),
-                  _vm._v(" "),
-                  _c("li", { staticClass: "nav-item" }, [
-                    _c(
-                      "a",
-                      {
-                        staticClass: "nav-link",
-                        attrs: { href: "javascript:void(0);" },
-                      },
-                      [
-                        _c("i", { staticClass: "far fa-calendar-alt" }),
-                        _vm._v("Calendarios"),
-                      ]
-                    ),
-                  ]),
-                  _vm._v(" "),
-                  _c("li", { staticClass: "nav-item" }, [
-                    _c(
-                      "a",
-                      {
-                        staticClass: "nav-link",
-                        attrs: { href: "javascript:void(0);" },
-                      },
-                      [
-                        _c("i", { staticClass: "far fa-chart-bar" }),
-                        _vm._v("Estadisticas"),
-                      ]
-                    ),
-                  ]),
-                  _vm._v(" "),
-                  _c("li", { staticClass: "nav-item " }, [
-                    _c(
-                      "a",
-                      {
-                        staticClass: "nav-link",
-                        attrs: { href: "javascript:void(0);" },
-                      },
-                      [
-                        _c("i", { staticClass: "far fa-address-book" }),
-                        _vm._v("Mis Datos"),
-                      ]
-                    ),
-                  ]),
-                ]),
-              ]
-            ),
-          ]
-        ),
+                ]
+              ),
+            ]
+          ),
+        ]),
       ]),
     ])
   },
