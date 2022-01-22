@@ -36,7 +36,7 @@
       <!-- <div class="slot-content">
         <slot name="component-view"></slot>
       </div> -->
-      <mdlBoard ref="mdlBoard"></mdlBoard>
+      <mdlBoard ref="mdlBoard" style=" height: 100% !important;  overflow-y: scroll;"></mdlBoard>
     </div>
   </div>
 </template>

@@ -2526,6 +2526,87 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {},
   props: {},
@@ -2533,8 +2614,38 @@ __webpack_require__.r(__webpack_exports__);
     return {// clave_ale: null,
     };
   },
-  mounted: function mounted() {},
-  methods: {}
+  mounted: function mounted() {
+    this.iniciarMap();
+    this.iniciarGraficos();
+  },
+  methods: {
+    iniciarMap: function iniciarMap() {
+      var map = L.map('map').setView([51.505, -0.09], 13);
+    },
+    iniciarGraficos: function iniciarGraficos() {
+      var ctx = document.getElementById('myChart').getContext('2d');
+      var myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+          datasets: [{
+            label: '# of Votes',
+            data: [12, 19, 3, 5, 2, 3],
+            backgroundColor: ['rgba(255, 99, 132, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(255, 206, 86, 0.2)', 'rgba(75, 192, 192, 0.2)', 'rgba(153, 102, 255, 0.2)', 'rgba(255, 159, 64, 0.2)'],
+            borderColor: ['rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)', 'rgba(255, 206, 86, 1)', 'rgba(75, 192, 192, 1)', 'rgba(153, 102, 255, 1)', 'rgba(255, 159, 64, 1)'],
+            borderWidth: 1
+          }]
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true
+            }
+          }
+        }
+      });
+    }
+  }
 });
 
 /***/ }),
@@ -25524,703 +25635,729 @@ var staticRenderFns = [
         attrs: { id: "mdlBoard" },
       },
       [
-        _c(
-          "div",
-          {
-            staticClass: "modal-content",
-            staticStyle: { height: "100% !important" },
-          },
-          [
-            _c(
-              "div",
-              { staticClass: "content ", staticStyle: { display: "block" } },
-              [
-                _c(
-                  "div",
-                  { staticClass: "row", staticStyle: { border: "0" } },
-                  [
-                    _c("div", { staticClass: "col-2" }, [
-                      _c("div", { attrs: { id: "tablaContenedor" } }, [
-                        _c("table", { staticClass: "table table-striped" }, [
-                          _c("thead", [
-                            _c("tr", [
-                              _c("th", { attrs: { scope: "col" } }, [
-                                _vm._v("CONTENEDORES"),
-                              ]),
-                            ]),
-                          ]),
-                          _vm._v(" "),
-                          _c("tbody", [
-                            _c("tr", [
-                              _c("td", [
-                                _vm._v("Contenedor 1 - 0.00° "),
-                                _c(
-                                  "span",
-                                  {
-                                    staticClass: "text-right",
-                                    staticStyle: {
-                                      "font-size": "10px",
-                                      color: "#BBBBBB",
-                                    },
-                                  },
-                                  [_vm._v("     Hace 35 segundos")]
-                                ),
-                              ]),
-                            ]),
-                            _vm._v(" "),
-                            _c("tr", [
-                              _c("td", [
-                                _vm._v("Contenedor 2 - 0.00° "),
-                                _c(
-                                  "span",
-                                  {
-                                    staticStyle: {
-                                      "font-size": "10px",
-                                      color: "#BBBBBB",
-                                    },
-                                  },
-                                  [_vm._v("      Hace 35 segundos ")]
-                                ),
-                              ]),
-                            ]),
-                            _vm._v(" "),
-                            _c("tr", [
-                              _c("td", [
-                                _vm._v("Contenedor 3 - 0.00° "),
-                                _c(
-                                  "span",
-                                  {
-                                    staticStyle: {
-                                      "font-size": "10px",
-                                      color: "#BBBBBB",
-                                    },
-                                  },
-                                  [_vm._v("     Hace 35 segundos ")]
-                                ),
-                              ]),
-                            ]),
-                            _vm._v(" "),
-                            _c("tr", [
-                              _c("td", [
-                                _vm._v("Contenedor 4 - 0.00° "),
-                                _c(
-                                  "span",
-                                  {
-                                    staticStyle: {
-                                      "font-size": "10px",
-                                      color: "#BBBBBB",
-                                    },
-                                  },
-                                  [_vm._v("     Hace 35 segundos ")]
-                                ),
-                              ]),
-                            ]),
-                            _vm._v(" "),
-                            _c("tr", [
-                              _c("td", [
-                                _vm._v("Contenedor 5 - 0.00° "),
-                                _c(
-                                  "span",
-                                  {
-                                    staticStyle: {
-                                      "font-size": "10px",
-                                      color: "#BBBBBB",
-                                    },
-                                  },
-                                  [_vm._v("     Hace 35 segundos ")]
-                                ),
-                              ]),
+        _c("div", { staticClass: "modal-content" }, [
+          _c(
+            "div",
+            { staticClass: "content ", staticStyle: { display: "block" } },
+            [
+              _c(
+                "div",
+                {
+                  staticClass: "row",
+                  staticStyle: {
+                    height: "100% !important,  overflow-y: scroll",
+                  },
+                },
+                [
+                  _c("div", { staticClass: "col-2" }, [
+                    _c("div", { attrs: { id: "tablaContenedor" } }, [
+                      _c("table", { staticClass: "table table-striped" }, [
+                        _c("thead", [
+                          _c("tr", [
+                            _c("th", { attrs: { scope: "col" } }, [
+                              _vm._v("CONTENEDORES"),
                             ]),
                           ]),
                         ]),
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { attrs: { id: "info" } }, [
-                        _c("table", { staticClass: "table" }, [
-                          _c("thead", { staticClass: "thead-dark" }, [
-                            _c("tr", [
-                              _c("th", { attrs: { scope: "col" } }, [
-                                _vm._v("INFORMACIÓN"),
-                              ]),
+                        _vm._v(" "),
+                        _c("tbody", [
+                          _c("tr", [
+                            _c("td", [
+                              _vm._v("Contenedor 1 - 0.00° "),
+                              _c(
+                                "span",
+                                {
+                                  staticClass: "text-right",
+                                  staticStyle: {
+                                    "font-size": "10px",
+                                    color: "#BBBBBB",
+                                  },
+                                },
+                                [_vm._v("     Hace 35 segundos")]
+                              ),
                             ]),
                           ]),
                           _vm._v(" "),
-                          _c("tbody", [
-                            _c("tr", [
-                              _c("td", [
-                                _c(
-                                  "div",
-                                  {
-                                    staticClass: "row",
-                                    staticStyle: { "font-size": "0.8em" },
+                          _c("tr", [
+                            _c("td", [
+                              _vm._v("Contenedor 2 - 0.00° "),
+                              _c(
+                                "span",
+                                {
+                                  staticStyle: {
+                                    "font-size": "10px",
+                                    color: "#BBBBBB",
                                   },
-                                  [
-                                    _c("div", { staticClass: "col-6" }, [
-                                      _vm._v(
-                                        "\n                              Identificador\n                            "
-                                      ),
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("div", { staticClass: "col-6" }, [
-                                      _vm._v(
-                                        "\n                              ZGUU204854-3\n                            "
-                                      ),
-                                    ]),
-                                  ]
-                                ),
-                              ]),
+                                },
+                                [_vm._v("      Hace 35 segundos ")]
+                              ),
                             ]),
-                            _vm._v(" "),
-                            _c("tr", [
-                              _c("td", [
-                                _c(
-                                  "div",
-                                  {
-                                    staticClass: "row",
-                                    staticStyle: { "font-size": "0.8em" },
+                          ]),
+                          _vm._v(" "),
+                          _c("tr", [
+                            _c("td", [
+                              _vm._v("Contenedor 3 - 0.00° "),
+                              _c(
+                                "span",
+                                {
+                                  staticStyle: {
+                                    "font-size": "10px",
+                                    color: "#BBBBBB",
                                   },
-                                  [
-                                    _c("div", { staticClass: "col-6" }, [
-                                      _vm._v(
-                                        "\n                              Última actualización\n                            "
-                                      ),
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("div", { staticClass: "col-6" }, [
-                                      _vm._v(
-                                        "\n                              Hace 53 segundos\n                            "
-                                      ),
-                                    ]),
-                                  ]
-                                ),
-                              ]),
+                                },
+                                [_vm._v("     Hace 35 segundos ")]
+                              ),
                             ]),
-                            _vm._v(" "),
-                            _c("tr", [
-                              _c("td", [
-                                _c(
-                                  "div",
-                                  {
-                                    staticClass: "row",
-                                    staticStyle: { "font-size": "0.8em" },
+                          ]),
+                          _vm._v(" "),
+                          _c("tr", [
+                            _c("td", [
+                              _vm._v("Contenedor 4 - 0.00° "),
+                              _c(
+                                "span",
+                                {
+                                  staticStyle: {
+                                    "font-size": "10px",
+                                    color: "#BBBBBB",
                                   },
-                                  [
-                                    _c("div", { staticClass: "col-6" }, [
-                                      _vm._v(
-                                        "\n                              Fecha y Hora\n                            "
-                                      ),
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("div", { staticClass: "col-6" }, [
-                                      _vm._v(
-                                        "\n                              2022-01-21 12:00:00\n                            "
-                                      ),
-                                    ]),
-                                  ]
-                                ),
-                              ]),
+                                },
+                                [_vm._v("     Hace 35 segundos ")]
+                              ),
                             ]),
-                            _vm._v(" "),
-                            _c("tr", [
-                              _c("td", [
-                                _c(
-                                  "div",
-                                  {
-                                    staticClass: "row",
-                                    staticStyle: { "font-size": "0.8em" },
+                          ]),
+                          _vm._v(" "),
+                          _c("tr", [
+                            _c("td", [
+                              _vm._v("Contenedor 5 - 0.00° "),
+                              _c(
+                                "span",
+                                {
+                                  staticStyle: {
+                                    "font-size": "10px",
+                                    color: "#BBBBBB",
                                   },
-                                  [
-                                    _c("div", { staticClass: "col-6" }, [
-                                      _vm._v(
-                                        "\n                              Modelo\n                            "
-                                      ),
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("div", { staticClass: "col-6" }, [
-                                      _vm._v(
-                                        "\n                              GenSet\n                            "
-                                      ),
-                                    ]),
-                                  ]
-                                ),
-                              ]),
-                            ]),
-                            _vm._v(" "),
-                            _c("tr", [
-                              _c("td", [
-                                _c(
-                                  "div",
-                                  {
-                                    staticClass: "row",
-                                    staticStyle: { "font-size": "0.8em" },
-                                  },
-                                  [
-                                    _c("div", { staticClass: "col-6" }, [
-                                      _vm._v(
-                                        "\n                              Booking Client\n                            "
-                                      ),
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("div", { staticClass: "col-6" }, [
-                                      _vm._v(
-                                        "\n                              CH345\n                            "
-                                      ),
-                                    ]),
-                                  ]
-                                ),
-                              ]),
-                            ]),
-                            _vm._v(" "),
-                            _c("tr", [
-                              _c("td", [
-                                _c(
-                                  "div",
-                                  {
-                                    staticClass: "row",
-                                    staticStyle: { "font-size": "0.8em" },
-                                  },
-                                  [
-                                    _c("div", { staticClass: "col-6" }, [
-                                      _vm._v(
-                                        "\n                             SetPoint\n                            "
-                                      ),
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("div", { staticClass: "col-6" }, [
-                                      _vm._v(
-                                        "\n                              0.00 ℃\n                            "
-                                      ),
-                                    ]),
-                                  ]
-                                ),
-                              ]),
-                            ]),
-                            _vm._v(" "),
-                            _c("tr", [
-                              _c("td", [
-                                _c(
-                                  "div",
-                                  {
-                                    staticClass: "row",
-                                    staticStyle: { "font-size": "0.8em" },
-                                  },
-                                  [
-                                    _c("div", { staticClass: "col-6" }, [
-                                      _vm._v(
-                                        "\n                             Estado\n                            "
-                                      ),
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("div", { staticClass: "col-6" }, [
-                                      _vm._v(
-                                        "\n                              Desconectado\n                            "
-                                      ),
-                                    ]),
-                                  ]
-                                ),
-                              ]),
-                            ]),
-                            _vm._v(" "),
-                            _c("tr", [
-                              _c("td", [
-                                _c(
-                                  "div",
-                                  {
-                                    staticClass: "row",
-                                    staticStyle: { "font-size": "0.8em" },
-                                  },
-                                  [
-                                    _c("div", { staticClass: "col-6" }, [
-                                      _vm._v(
-                                        "\n                             Fecha de Apagado\n                            "
-                                      ),
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("div", { staticClass: "col-6" }, [
-                                      _vm._v(
-                                        "\n                              2022-01-21 12:00:00\n                            "
-                                      ),
-                                    ]),
-                                  ]
-                                ),
-                              ]),
-                            ]),
-                            _vm._v(" "),
-                            _c("tr", [
-                              _c("td", [
-                                _c(
-                                  "div",
-                                  {
-                                    staticClass: "row",
-                                    staticStyle: { "font-size": "0.8em" },
-                                  },
-                                  [
-                                    _c("div", { staticClass: "col-6" }, [
-                                      _vm._v(
-                                        "\n                             Fecha de Encendido\n                            "
-                                      ),
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("div", { staticClass: "col-6" }, [
-                                      _vm._v(
-                                        "\n                              2022-01-21 12:00:00\n                            "
-                                      ),
-                                    ]),
-                                  ]
-                                ),
-                              ]),
-                            ]),
-                            _vm._v(" "),
-                            _c("tr", [
-                              _c("td", [
-                                _c(
-                                  "div",
-                                  {
-                                    staticClass: "row",
-                                    staticStyle: { "font-size": "0.8em" },
-                                  },
-                                  [
-                                    _c("div", { staticClass: "col-6" }, [
-                                      _vm._v(
-                                        "\n                             Latitud\n                            "
-                                      ),
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("div", { staticClass: "col-6" }, [
-                                      _vm._v(
-                                        "\n                              -11.703915\n                            "
-                                      ),
-                                    ]),
-                                  ]
-                                ),
-                              ]),
-                            ]),
-                            _vm._v(" "),
-                            _c("tr", [
-                              _c("td", [
-                                _c(
-                                  "div",
-                                  {
-                                    staticClass: "row",
-                                    staticStyle: { "font-size": "0.8em" },
-                                  },
-                                  [
-                                    _c("div", { staticClass: "col-6" }, [
-                                      _vm._v(
-                                        "\n                             Longitud\n                            "
-                                      ),
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("div", { staticClass: "col-6" }, [
-                                      _vm._v(
-                                        "\n                              -77.187972\n                            "
-                                      ),
-                                    ]),
-                                  ]
-                                ),
-                              ]),
+                                },
+                                [_vm._v("     Hace 35 segundos ")]
+                              ),
                             ]),
                           ]),
                         ]),
                       ]),
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "col-8" }, [
-                      _vm._v("\n            One of three columns\n          "),
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-2" }, [
-                      _c("div", { attrs: { id: "reefer" } }, [
-                        _c("table", { staticClass: "table" }, [
-                          _c("thead", { staticClass: "thead-dark" }, [
-                            _c("tr", [
-                              _c("th", { attrs: { scope: "col" } }, [
-                                _vm._v("REEFER"),
-                              ]),
+                    _c("div", { attrs: { id: "info" } }, [
+                      _c("table", { staticClass: "table" }, [
+                        _c("thead", { staticClass: "thead-dark" }, [
+                          _c("tr", [
+                            _c("th", { attrs: { scope: "col" } }, [
+                              _vm._v("INFORMACIÓN"),
+                            ]),
+                          ]),
+                        ]),
+                        _vm._v(" "),
+                        _c("tbody", [
+                          _c("tr", [
+                            _c("td", [
+                              _c(
+                                "div",
+                                {
+                                  staticClass: "row",
+                                  staticStyle: { "font-size": "0.8em" },
+                                },
+                                [
+                                  _c("div", { staticClass: "col-6" }, [
+                                    _vm._v(
+                                      "\n                              Identificador\n                            "
+                                    ),
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "col-6" }, [
+                                    _vm._v(
+                                      "\n                              ZGUU204854-3\n                            "
+                                    ),
+                                  ]),
+                                ]
+                              ),
                             ]),
                           ]),
                           _vm._v(" "),
-                          _c("tbody", [
-                            _c("tr", [
-                              _c("td", [
-                                _c(
-                                  "div",
-                                  {
-                                    staticClass: "row",
-                                    staticStyle: { "font-size": "0.8em" },
-                                  },
-                                  [
-                                    _c("div", { staticClass: "col-6" }, [
-                                      _vm._v(
-                                        "\n                              Identificador\n                            "
-                                      ),
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("div", { staticClass: "col-6" }, [
-                                      _vm._v(
-                                        "\n                              ZGUU204854-3\n                            "
-                                      ),
-                                    ]),
-                                  ]
-                                ),
-                              ]),
+                          _c("tr", [
+                            _c("td", [
+                              _c(
+                                "div",
+                                {
+                                  staticClass: "row",
+                                  staticStyle: { "font-size": "0.8em" },
+                                },
+                                [
+                                  _c("div", { staticClass: "col-6" }, [
+                                    _vm._v(
+                                      "\n                              Última actualización\n                            "
+                                    ),
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "col-6" }, [
+                                    _vm._v(
+                                      "\n                              Hace 53 segundos\n                            "
+                                    ),
+                                  ]),
+                                ]
+                              ),
                             ]),
-                            _vm._v(" "),
-                            _c("tr", [
-                              _c("td", [
-                                _c(
-                                  "div",
-                                  {
-                                    staticClass: "row",
-                                    staticStyle: { "font-size": "0.8em" },
-                                  },
-                                  [
-                                    _c("div", { staticClass: "col-6" }, [
-                                      _vm._v(
-                                        "\n                              Última actualización\n                            "
-                                      ),
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("div", { staticClass: "col-6" }, [
-                                      _vm._v(
-                                        "\n                              Hace 53 segundos\n                            "
-                                      ),
-                                    ]),
-                                  ]
-                                ),
-                              ]),
+                          ]),
+                          _vm._v(" "),
+                          _c("tr", [
+                            _c("td", [
+                              _c(
+                                "div",
+                                {
+                                  staticClass: "row",
+                                  staticStyle: { "font-size": "0.8em" },
+                                },
+                                [
+                                  _c("div", { staticClass: "col-6" }, [
+                                    _vm._v(
+                                      "\n                              Fecha y Hora\n                            "
+                                    ),
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "col-6" }, [
+                                    _vm._v(
+                                      "\n                              2022-01-21 12:00:00\n                            "
+                                    ),
+                                  ]),
+                                ]
+                              ),
                             ]),
-                            _vm._v(" "),
-                            _c("tr", [
-                              _c("td", [
-                                _c(
-                                  "div",
-                                  {
-                                    staticClass: "row",
-                                    staticStyle: { "font-size": "0.8em" },
-                                  },
-                                  [
-                                    _c("div", { staticClass: "col-6" }, [
-                                      _vm._v(
-                                        "\n                              Fecha y Hora\n                            "
-                                      ),
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("div", { staticClass: "col-6" }, [
-                                      _vm._v(
-                                        "\n                              2022-01-21 12:00:00\n                            "
-                                      ),
-                                    ]),
-                                  ]
-                                ),
-                              ]),
+                          ]),
+                          _vm._v(" "),
+                          _c("tr", [
+                            _c("td", [
+                              _c(
+                                "div",
+                                {
+                                  staticClass: "row",
+                                  staticStyle: { "font-size": "0.8em" },
+                                },
+                                [
+                                  _c("div", { staticClass: "col-6" }, [
+                                    _vm._v(
+                                      "\n                              Modelo\n                            "
+                                    ),
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "col-6" }, [
+                                    _vm._v(
+                                      "\n                              GenSet\n                            "
+                                    ),
+                                  ]),
+                                ]
+                              ),
                             ]),
-                            _vm._v(" "),
-                            _c("tr", [
-                              _c("td", [
-                                _c(
-                                  "div",
-                                  {
-                                    staticClass: "row",
-                                    staticStyle: { "font-size": "0.8em" },
-                                  },
-                                  [
-                                    _c("div", { staticClass: "col-6" }, [
-                                      _vm._v(
-                                        "\n                              Modelo\n                            "
-                                      ),
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("div", { staticClass: "col-6" }, [
-                                      _vm._v(
-                                        "\n                              GenSet\n                            "
-                                      ),
-                                    ]),
-                                  ]
-                                ),
-                              ]),
+                          ]),
+                          _vm._v(" "),
+                          _c("tr", [
+                            _c("td", [
+                              _c(
+                                "div",
+                                {
+                                  staticClass: "row",
+                                  staticStyle: { "font-size": "0.8em" },
+                                },
+                                [
+                                  _c("div", { staticClass: "col-6" }, [
+                                    _vm._v(
+                                      "\n                              Booking Client\n                            "
+                                    ),
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "col-6" }, [
+                                    _vm._v(
+                                      "\n                              CH345\n                            "
+                                    ),
+                                  ]),
+                                ]
+                              ),
                             ]),
-                            _vm._v(" "),
-                            _c("tr", [
-                              _c("td", [
-                                _c(
-                                  "div",
-                                  {
-                                    staticClass: "row",
-                                    staticStyle: { "font-size": "0.8em" },
-                                  },
-                                  [
-                                    _c("div", { staticClass: "col-6" }, [
-                                      _vm._v(
-                                        "\n                              Booking Client\n                            "
-                                      ),
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("div", { staticClass: "col-6" }, [
-                                      _vm._v(
-                                        "\n                              CH345\n                            "
-                                      ),
-                                    ]),
-                                  ]
-                                ),
-                              ]),
+                          ]),
+                          _vm._v(" "),
+                          _c("tr", [
+                            _c("td", [
+                              _c(
+                                "div",
+                                {
+                                  staticClass: "row",
+                                  staticStyle: { "font-size": "0.8em" },
+                                },
+                                [
+                                  _c("div", { staticClass: "col-6" }, [
+                                    _vm._v(
+                                      "\n                             SetPoint\n                            "
+                                    ),
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "col-6" }, [
+                                    _vm._v(
+                                      "\n                              0.00 ℃\n                            "
+                                    ),
+                                  ]),
+                                ]
+                              ),
                             ]),
-                            _vm._v(" "),
-                            _c("tr", [
-                              _c("td", [
-                                _c(
-                                  "div",
-                                  {
-                                    staticClass: "row",
-                                    staticStyle: { "font-size": "0.8em" },
-                                  },
-                                  [
-                                    _c("div", { staticClass: "col-6" }, [
-                                      _vm._v(
-                                        "\n                             SetPoint\n                            "
-                                      ),
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("div", { staticClass: "col-6" }, [
-                                      _vm._v(
-                                        "\n                              0.00 ℃\n                            "
-                                      ),
-                                    ]),
-                                  ]
-                                ),
-                              ]),
+                          ]),
+                          _vm._v(" "),
+                          _c("tr", [
+                            _c("td", [
+                              _c(
+                                "div",
+                                {
+                                  staticClass: "row",
+                                  staticStyle: { "font-size": "0.8em" },
+                                },
+                                [
+                                  _c("div", { staticClass: "col-6" }, [
+                                    _vm._v(
+                                      "\n                             Estado\n                            "
+                                    ),
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "col-6" }, [
+                                    _vm._v(
+                                      "\n                              Desconectado\n                            "
+                                    ),
+                                  ]),
+                                ]
+                              ),
                             ]),
-                            _vm._v(" "),
-                            _c("tr", [
-                              _c("td", [
-                                _c(
-                                  "div",
-                                  {
-                                    staticClass: "row",
-                                    staticStyle: { "font-size": "0.8em" },
-                                  },
-                                  [
-                                    _c("div", { staticClass: "col-6" }, [
-                                      _vm._v(
-                                        "\n                             Estado\n                            "
-                                      ),
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("div", { staticClass: "col-6" }, [
-                                      _vm._v(
-                                        "\n                              Desconectado\n                            "
-                                      ),
-                                    ]),
-                                  ]
-                                ),
-                              ]),
+                          ]),
+                          _vm._v(" "),
+                          _c("tr", [
+                            _c("td", [
+                              _c(
+                                "div",
+                                {
+                                  staticClass: "row",
+                                  staticStyle: { "font-size": "0.8em" },
+                                },
+                                [
+                                  _c("div", { staticClass: "col-6" }, [
+                                    _vm._v(
+                                      "\n                             Fecha de Apagado\n                            "
+                                    ),
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "col-6" }, [
+                                    _vm._v(
+                                      "\n                              2022-01-21 12:00:00\n                            "
+                                    ),
+                                  ]),
+                                ]
+                              ),
                             ]),
-                            _vm._v(" "),
-                            _c("tr", [
-                              _c("td", [
-                                _c(
-                                  "div",
-                                  {
-                                    staticClass: "row",
-                                    staticStyle: { "font-size": "0.8em" },
-                                  },
-                                  [
-                                    _c("div", { staticClass: "col-6" }, [
-                                      _vm._v(
-                                        "\n                             Fecha de Apagado\n                            "
-                                      ),
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("div", { staticClass: "col-6" }, [
-                                      _vm._v(
-                                        "\n                              2022-01-21 12:00:00\n                            "
-                                      ),
-                                    ]),
-                                  ]
-                                ),
-                              ]),
+                          ]),
+                          _vm._v(" "),
+                          _c("tr", [
+                            _c("td", [
+                              _c(
+                                "div",
+                                {
+                                  staticClass: "row",
+                                  staticStyle: { "font-size": "0.8em" },
+                                },
+                                [
+                                  _c("div", { staticClass: "col-6" }, [
+                                    _vm._v(
+                                      "\n                             Fecha de Encendido\n                            "
+                                    ),
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "col-6" }, [
+                                    _vm._v(
+                                      "\n                              2022-01-21 12:00:00\n                            "
+                                    ),
+                                  ]),
+                                ]
+                              ),
                             ]),
-                            _vm._v(" "),
-                            _c("tr", [
-                              _c("td", [
-                                _c(
-                                  "div",
-                                  {
-                                    staticClass: "row",
-                                    staticStyle: { "font-size": "0.8em" },
-                                  },
-                                  [
-                                    _c("div", { staticClass: "col-6" }, [
-                                      _vm._v(
-                                        "\n                             Fecha de Encendido\n                            "
-                                      ),
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("div", { staticClass: "col-6" }, [
-                                      _vm._v(
-                                        "\n                              2022-01-21 12:00:00\n                            "
-                                      ),
-                                    ]),
-                                  ]
-                                ),
-                              ]),
+                          ]),
+                          _vm._v(" "),
+                          _c("tr", [
+                            _c("td", [
+                              _c(
+                                "div",
+                                {
+                                  staticClass: "row",
+                                  staticStyle: { "font-size": "0.8em" },
+                                },
+                                [
+                                  _c("div", { staticClass: "col-6" }, [
+                                    _vm._v(
+                                      "\n                             Latitud\n                            "
+                                    ),
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "col-6" }, [
+                                    _vm._v(
+                                      "\n                              -11.703915\n                            "
+                                    ),
+                                  ]),
+                                ]
+                              ),
                             ]),
-                            _vm._v(" "),
-                            _c("tr", [
-                              _c("td", [
-                                _c(
-                                  "div",
-                                  {
-                                    staticClass: "row",
-                                    staticStyle: { "font-size": "0.8em" },
-                                  },
-                                  [
-                                    _c("div", { staticClass: "col-6" }, [
-                                      _vm._v(
-                                        "\n                             Latitud\n                            "
-                                      ),
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("div", { staticClass: "col-6" }, [
-                                      _vm._v(
-                                        "\n                              -11.703915\n                            "
-                                      ),
-                                    ]),
-                                  ]
-                                ),
-                              ]),
-                            ]),
-                            _vm._v(" "),
-                            _c("tr", [
-                              _c("td", [
-                                _c(
-                                  "div",
-                                  {
-                                    staticClass: "row",
-                                    staticStyle: { "font-size": "0.8em" },
-                                  },
-                                  [
-                                    _c("div", { staticClass: "col-6" }, [
-                                      _vm._v(
-                                        "\n                             Longitud\n                            "
-                                      ),
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("div", { staticClass: "col-6" }, [
-                                      _vm._v(
-                                        "\n                              -77.187972\n                            "
-                                      ),
-                                    ]),
-                                  ]
-                                ),
-                              ]),
+                          ]),
+                          _vm._v(" "),
+                          _c("tr", [
+                            _c("td", [
+                              _c(
+                                "div",
+                                {
+                                  staticClass: "row",
+                                  staticStyle: { "font-size": "0.8em" },
+                                },
+                                [
+                                  _c("div", { staticClass: "col-6" }, [
+                                    _vm._v(
+                                      "\n                             Longitud\n                            "
+                                    ),
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "col-6" }, [
+                                    _vm._v(
+                                      "\n                              -77.187972\n                            "
+                                    ),
+                                  ]),
+                                ]
+                              ),
                             ]),
                           ]),
                         ]),
                       ]),
-                      _vm._v(" "),
-                      _c("div", { attrs: { id: "generador" } }, [
-                        _c("table", { staticClass: "table" }, [
+                    ]),
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-7" }, [
+                    _c("div", { staticClass: "row" }, [
+                      _c("div", { staticClass: "col-12" }, [
+                        _c("div", {
+                          staticStyle: { width: "100%", height: "400px" },
+                          attrs: { id: "map" },
+                        }),
+                      ]),
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "row" }, [
+                      _c("div", { staticClass: "col-12" }, [
+                        _c("canvas", {
+                          attrs: {
+                            id: "myChart",
+                            height: "width:100%; height:400px",
+                          },
+                        }),
+                      ]),
+                    ]),
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-3" }, [
+                    _c("div", { attrs: { id: "reefer" } }, [
+                      _c("table", { staticClass: "table" }, [
+                        _c("thead", { staticClass: "thead-dark" }, [
+                          _c("tr", [
+                            _c("th", { attrs: { scope: "col" } }, [
+                              _vm._v("REEFER"),
+                            ]),
+                          ]),
+                        ]),
+                        _vm._v(" "),
+                        _c("tbody", [
+                          _c("tr", [
+                            _c("td", [
+                              _c(
+                                "div",
+                                {
+                                  staticClass: "row",
+                                  staticStyle: { "font-size": "0.8em" },
+                                },
+                                [
+                                  _c("div", { staticClass: "col-6" }, [
+                                    _vm._v(
+                                      "\n                              Identificador\n                            "
+                                    ),
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "col-6" }, [
+                                    _vm._v(
+                                      "\n                              ZGUU204854-3\n                            "
+                                    ),
+                                  ]),
+                                ]
+                              ),
+                            ]),
+                          ]),
+                          _vm._v(" "),
+                          _c("tr", [
+                            _c("td", [
+                              _c(
+                                "div",
+                                {
+                                  staticClass: "row",
+                                  staticStyle: { "font-size": "0.8em" },
+                                },
+                                [
+                                  _c("div", { staticClass: "col-6" }, [
+                                    _vm._v(
+                                      "\n                              Última actualización\n                            "
+                                    ),
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "col-6" }, [
+                                    _vm._v(
+                                      "\n                              Hace 53 segundos\n                            "
+                                    ),
+                                  ]),
+                                ]
+                              ),
+                            ]),
+                          ]),
+                          _vm._v(" "),
+                          _c("tr", [
+                            _c("td", [
+                              _c(
+                                "div",
+                                {
+                                  staticClass: "row",
+                                  staticStyle: { "font-size": "0.8em" },
+                                },
+                                [
+                                  _c("div", { staticClass: "col-6" }, [
+                                    _vm._v(
+                                      "\n                              Fecha y Hora\n                            "
+                                    ),
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "col-6" }, [
+                                    _vm._v(
+                                      "\n                              2022-01-21 12:00:00\n                            "
+                                    ),
+                                  ]),
+                                ]
+                              ),
+                            ]),
+                          ]),
+                          _vm._v(" "),
+                          _c("tr", [
+                            _c("td", [
+                              _c(
+                                "div",
+                                {
+                                  staticClass: "row",
+                                  staticStyle: { "font-size": "0.8em" },
+                                },
+                                [
+                                  _c("div", { staticClass: "col-6" }, [
+                                    _vm._v(
+                                      "\n                              Modelo\n                            "
+                                    ),
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "col-6" }, [
+                                    _vm._v(
+                                      "\n                              GenSet\n                            "
+                                    ),
+                                  ]),
+                                ]
+                              ),
+                            ]),
+                          ]),
+                          _vm._v(" "),
+                          _c("tr", [
+                            _c("td", [
+                              _c(
+                                "div",
+                                {
+                                  staticClass: "row",
+                                  staticStyle: { "font-size": "0.8em" },
+                                },
+                                [
+                                  _c("div", { staticClass: "col-6" }, [
+                                    _vm._v(
+                                      "\n                              Booking Client\n                            "
+                                    ),
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "col-6" }, [
+                                    _vm._v(
+                                      "\n                              CH345\n                            "
+                                    ),
+                                  ]),
+                                ]
+                              ),
+                            ]),
+                          ]),
+                          _vm._v(" "),
+                          _c("tr", [
+                            _c("td", [
+                              _c(
+                                "div",
+                                {
+                                  staticClass: "row",
+                                  staticStyle: { "font-size": "0.8em" },
+                                },
+                                [
+                                  _c("div", { staticClass: "col-6" }, [
+                                    _vm._v(
+                                      "\n                             SetPoint\n                            "
+                                    ),
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "col-6" }, [
+                                    _vm._v(
+                                      "\n                              0.00 ℃\n                            "
+                                    ),
+                                  ]),
+                                ]
+                              ),
+                            ]),
+                          ]),
+                          _vm._v(" "),
+                          _c("tr", [
+                            _c("td", [
+                              _c(
+                                "div",
+                                {
+                                  staticClass: "row",
+                                  staticStyle: { "font-size": "0.8em" },
+                                },
+                                [
+                                  _c("div", { staticClass: "col-6" }, [
+                                    _vm._v(
+                                      "\n                             Estado\n                            "
+                                    ),
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "col-6" }, [
+                                    _vm._v(
+                                      "\n                              Desconectado\n                            "
+                                    ),
+                                  ]),
+                                ]
+                              ),
+                            ]),
+                          ]),
+                          _vm._v(" "),
+                          _c("tr", [
+                            _c("td", [
+                              _c(
+                                "div",
+                                {
+                                  staticClass: "row",
+                                  staticStyle: { "font-size": "0.8em" },
+                                },
+                                [
+                                  _c("div", { staticClass: "col-6" }, [
+                                    _vm._v(
+                                      "\n                             Fecha de Apagado\n                            "
+                                    ),
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "col-6" }, [
+                                    _vm._v(
+                                      "\n                              2022-01-21 12:00:00\n                            "
+                                    ),
+                                  ]),
+                                ]
+                              ),
+                            ]),
+                          ]),
+                          _vm._v(" "),
+                          _c("tr", [
+                            _c("td", [
+                              _c(
+                                "div",
+                                {
+                                  staticClass: "row",
+                                  staticStyle: { "font-size": "0.8em" },
+                                },
+                                [
+                                  _c("div", { staticClass: "col-6" }, [
+                                    _vm._v(
+                                      "\n                             Fecha de Encendido\n                            "
+                                    ),
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "col-6" }, [
+                                    _vm._v(
+                                      "\n                              2022-01-21 12:00:00\n                            "
+                                    ),
+                                  ]),
+                                ]
+                              ),
+                            ]),
+                          ]),
+                          _vm._v(" "),
+                          _c("tr", [
+                            _c("td", [
+                              _c(
+                                "div",
+                                {
+                                  staticClass: "row",
+                                  staticStyle: { "font-size": "0.8em" },
+                                },
+                                [
+                                  _c("div", { staticClass: "col-6" }, [
+                                    _vm._v(
+                                      "\n                             Latitud\n                            "
+                                    ),
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "col-6" }, [
+                                    _vm._v(
+                                      "\n                              -11.703915\n                            "
+                                    ),
+                                  ]),
+                                ]
+                              ),
+                            ]),
+                          ]),
+                          _vm._v(" "),
+                          _c("tr", [
+                            _c("td", [
+                              _c(
+                                "div",
+                                {
+                                  staticClass: "row",
+                                  staticStyle: { "font-size": "0.8em" },
+                                },
+                                [
+                                  _c("div", { staticClass: "col-6" }, [
+                                    _vm._v(
+                                      "\n                             Longitud\n                            "
+                                    ),
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "col-6" }, [
+                                    _vm._v(
+                                      "\n                              -77.187972\n                            "
+                                    ),
+                                  ]),
+                                ]
+                              ),
+                            ]),
+                          ]),
+                        ]),
+                      ]),
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { attrs: { id: "generador" } }, [
+                      _c(
+                        "table",
+                        {
+                          staticClass: "table",
+                          staticStyle: {
+                            height: "100%",
+                            "overflow-y": "scroll",
+                          },
+                        },
+                        [
                           _c("thead", { staticClass: "thead-dark" }, [
                             _c("tr", [
                               _c("th", { attrs: { scope: "col" } }, [
@@ -26304,16 +26441,166 @@ var staticRenderFns = [
                                 ),
                               ]),
                             ]),
+                            _vm._v(" "),
+                            _c("tr", [
+                              _c("td", [
+                                _c(
+                                  "div",
+                                  {
+                                    staticClass: "row",
+                                    staticStyle: { "font-size": "0.8em" },
+                                  },
+                                  [
+                                    _c("div", { staticClass: "col-6" }, [
+                                      _vm._v(
+                                        "\n                             Voltaje de batería\n                            "
+                                      ),
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("div", { staticClass: "col-6" }, [
+                                      _vm._v(
+                                        "\n                              0.00 V\n                            "
+                                      ),
+                                    ]),
+                                  ]
+                                ),
+                              ]),
+                            ]),
+                            _vm._v(" "),
+                            _c("tr", [
+                              _c("td", [
+                                _c(
+                                  "div",
+                                  {
+                                    staticClass: "row",
+                                    staticStyle: { "font-size": "0.8em" },
+                                  },
+                                  [
+                                    _c("div", { staticClass: "col-6" }, [
+                                      _vm._v(
+                                        "\n                             Frecuencia\n                            "
+                                      ),
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("div", { staticClass: "col-6" }, [
+                                      _vm._v(
+                                        "\n                              0.00000 \n                            "
+                                      ),
+                                    ]),
+                                  ]
+                                ),
+                              ]),
+                            ]),
+                            _vm._v(" "),
+                            _c("tr", [
+                              _c("td", [
+                                _c(
+                                  "div",
+                                  {
+                                    staticClass: "row",
+                                    staticStyle: { "font-size": "0.8em" },
+                                  },
+                                  [
+                                    _c("div", { staticClass: "col-6" }, [
+                                      _vm._v(
+                                        "\n                             Temp. Motor\n                            "
+                                      ),
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("div", { staticClass: "col-6" }, [
+                                      _vm._v(
+                                        "\n                              0.00000 \n                            "
+                                      ),
+                                    ]),
+                                  ]
+                                ),
+                              ]),
+                            ]),
+                            _vm._v(" "),
+                            _c("tr", [
+                              _c("td", [
+                                _c(
+                                  "div",
+                                  {
+                                    staticClass: "row",
+                                    staticStyle: { "font-size": "0.8em" },
+                                  },
+                                  [
+                                    _c("div", { staticClass: "col-6" }, [
+                                      _vm._v(
+                                        "\n                             Velocidad  \n                            "
+                                      ),
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("div", { staticClass: "col-6" }, [
+                                      _vm._v(
+                                        "\n                              high\n                            "
+                                      ),
+                                    ]),
+                                  ]
+                                ),
+                              ]),
+                            ]),
+                            _vm._v(" "),
+                            _c("tr", [
+                              _c("td", [
+                                _c(
+                                  "div",
+                                  {
+                                    staticClass: "row",
+                                    staticStyle: { "font-size": "0.8em" },
+                                  },
+                                  [
+                                    _c("div", { staticClass: "col-6" }, [
+                                      _vm._v(
+                                        "\n                             Ecopower  \n                            "
+                                      ),
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("div", { staticClass: "col-6" }, [
+                                      _vm._v(
+                                        "\n                              on\n                            "
+                                      ),
+                                    ]),
+                                  ]
+                                ),
+                              ]),
+                            ]),
+                            _vm._v(" "),
+                            _c("tr", [
+                              _c("td", [
+                                _c(
+                                  "div",
+                                  {
+                                    staticClass: "row",
+                                    staticStyle: { "font-size": "0.8em" },
+                                  },
+                                  [
+                                    _c("div", { staticClass: "col-6" }, [
+                                      _vm._v(
+                                        "\n                             Horometro  \n                            "
+                                      ),
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("div", { staticClass: "col-6" }, [
+                                      _vm._v(
+                                        "\n                              2 316.000000\n                            "
+                                      ),
+                                    ]),
+                                  ]
+                                ),
+                              ]),
+                            ]),
                           ]),
-                        ]),
-                      ]),
+                        ]
+                      ),
                     ]),
-                  ]
-                ),
-              ]
-            ),
-          ]
-        ),
+                  ]),
+                ]
+              ),
+            ]
+          ),
+        ]),
       ]
     )
   },
@@ -26344,7 +26631,14 @@ var render = function () {
     _c(
       "div",
       { staticClass: "container-fluid" },
-      [_vm._m(0), _vm._v(" "), _c("mdlBoard", { ref: "mdlBoard" })],
+      [
+        _vm._m(0),
+        _vm._v(" "),
+        _c("mdlBoard", {
+          ref: "mdlBoard",
+          staticStyle: { height: "100% !important", "overflow-y": "scroll" },
+        }),
+      ],
       1
     ),
   ])

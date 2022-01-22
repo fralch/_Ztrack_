@@ -1,9 +1,9 @@
 <template>
   <div id="mdlBoard" class="modal" style="margin-top:60px;  ">
     <!-- Modal content -->
-    <div class="modal-content" style="  height: 100% !important; ">
-      <div class="content " style="display: block">
-         <div class="row" style="border: 0;">
+    <div class="modal-content" style="">
+      <div class="content " style="display: block;">
+         <div class="row" style="height: 100% !important,  overflow-y: scroll">
             <div class="col-2" style="">
               <div id="tablaContenedor" style="">
                 <table class="table table-striped">
@@ -176,10 +176,19 @@
                   </table>
               </div>
             </div>
-            <div class="col-8">
-              One of three columns
+            <div class="col-7">
+              <div class="row">
+                <div class="col-12">
+                  <div id="map" style="width:100%; height:400px;"></div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12">
+                  <canvas id="myChart"  height="width:100%; height:400px"></canvas>
+                </div>
+              </div>
             </div>
-            <div class="col-2" style="">
+            <div class="col-3" style="">
                <div id="reefer">
                   <table class="table">
                     <thead  class="thead-dark">
@@ -324,7 +333,7 @@
                   </table>
               </div>
                <div id="generador">
-                  <table class="table">
+                  <table class="table" style=" height: 100%; overflow-y: scroll;">
                     <thead  class="thead-dark">
                       <tr>
                         <th scope="col">GENERADOR</th>
@@ -367,6 +376,78 @@
                           </div>      
                         </td>
                       </tr>
+                      <tr>
+                        <td>
+                          <div class="row" style='font-size:0.8em; '>
+                              <div class="col-6">
+                               Voltaje de batería
+                              </div>
+                              <div class="col-6">
+                                0.00 V
+                              </div>
+                          </div>      
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <div class="row" style='font-size:0.8em; '>
+                              <div class="col-6">
+                               Frecuencia
+                              </div>
+                              <div class="col-6">
+                                0.00000 
+                              </div>
+                          </div>      
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <div class="row" style='font-size:0.8em; '>
+                              <div class="col-6">
+                               Temp. Motor
+                              </div>
+                              <div class="col-6">
+                                0.00000 
+                              </div>
+                          </div>      
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <div class="row" style='font-size:0.8em; '>
+                              <div class="col-6">
+                               Velocidad  
+                              </div>
+                              <div class="col-6">
+                                high
+                              </div>
+                          </div>      
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <div class="row" style='font-size:0.8em; '>
+                              <div class="col-6">
+                               Ecopower  
+                              </div>
+                              <div class="col-6">
+                                on
+                              </div>
+                          </div>      
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <div class="row" style='font-size:0.8em; '>
+                              <div class="col-6">
+                               Horometro  
+                              </div>
+                              <div class="col-6">
+                                2 316.000000
+                              </div>
+                          </div>      
+                        </td>
+                      </tr>
                     </tbody>
                   </table>
               </div>
@@ -393,10 +474,50 @@ export default {
   },
 
   mounted() {
-  
+    this.iniciarMap();
+    this.iniciarGraficos();
   },
   methods: {
-    
+    iniciarMap() {
+      var map = L.map('map').setView([51.505, -0.09], 13);
+    },
+    iniciarGraficos(){
+      var ctx = document.getElementById('myChart').getContext('2d');
+      var myChart = new Chart(ctx, {
+          type: 'line',
+          data: {
+              labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+              datasets: [{
+                  label: '# of Votes',
+                  data: [12, 19, 3, 5, 2, 3],
+                  backgroundColor: [
+                      'rgba(255, 99, 132, 0.2)',
+                      'rgba(54, 162, 235, 0.2)',
+                      'rgba(255, 206, 86, 0.2)',
+                      'rgba(75, 192, 192, 0.2)',
+                      'rgba(153, 102, 255, 0.2)',
+                      'rgba(255, 159, 64, 0.2)'
+                  ],
+                  borderColor: [
+                      'rgba(255, 99, 132, 1)',
+                      'rgba(54, 162, 235, 1)',
+                      'rgba(255, 206, 86, 1)',
+                      'rgba(75, 192, 192, 1)',
+                      'rgba(153, 102, 255, 1)',
+                      'rgba(255, 159, 64, 1)'
+                  ],
+                  borderWidth: 1
+              }]
+          },
+          options: {
+              scales: {
+                  y: {
+                      beginAtZero: true
+                  }
+              }
+          }
+      });
+    },
   },
 };
 </script>
