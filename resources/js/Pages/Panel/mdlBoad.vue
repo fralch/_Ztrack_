@@ -479,7 +479,12 @@ export default {
   },
   methods: {
     iniciarMap() {
-      var map = L.map('map').setView([51.505, -0.09], 13);
+      // var map = L.map('map').setView([51.505, -0.09], 13);
+     let map;
+     map = new google.maps.Map(document.getElementById("map"), {
+        center: { lat: -12.0464, lng: -77.0428 },
+        zoom: 12,
+      });
     },
     iniciarGraficos(){
       var ctx = document.getElementById('myChart').getContext('2d');
@@ -523,6 +528,6 @@ export default {
 </script>
 
 <style lang="css">
-
+/* #map { position: absolute; background: transparent; height: 100%; width: 100%; top: 0; left: 0; right: 0; bottom: 0; } */
 </style>
 
