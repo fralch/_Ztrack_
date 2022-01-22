@@ -27382,7 +27382,7 @@ var staticRenderFns = [
       _c(
         "a",
         { staticClass: "nav-link", attrs: { href: "javascript:void(0);" } },
-        [_c("i", { staticClass: "far fa-calendar-alt" }), _vm._v("Calendarios")]
+        [_c("i", { staticClass: "far fa-calendar-alt" }), _vm._v("Fechas")]
       ),
     ])
   },

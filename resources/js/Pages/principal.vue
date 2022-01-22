@@ -18,7 +18,7 @@
                         <a class="nav-link" href="javascript:void(0);" @click="abrirModal('Contenedores')"><i class="far fa-clone"></i>Contenedores</a>
                     </li>
                     <li class="nav-item " >
-                        <a class="nav-link" href="javascript:void(0);"><i class="far fa-calendar-alt"></i>Calendarios</a>
+                        <a class="nav-link" href="javascript:void(0);"><i class="far fa-calendar-alt"></i>Fechas</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="javascript:void(0);"><i class="far fa-chart-bar"></i>Estadisticas</a>
