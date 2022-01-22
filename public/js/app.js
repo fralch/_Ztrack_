@@ -2776,9 +2776,21 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     irPanel: function irPanel() {
       var lis = document.querySelectorAll('li');
-      lis.forEach(function (elem) {// console.log(elem.classList.value);
+      lis.forEach(function (elem) {
+        if (elem.className.toString() == 'nav-item active') {
+          // elem.classList.remove('active');
+          $("#mdl" + elem.textContent).css("display", "block");
+        }
       });
-      $("#mdlBoard").css("display", "block");
+    },
+    abrirModal: function abrirModal(titulo) {
+      var lis = document.querySelectorAll('li');
+      lis.forEach(function (elem) {
+        if (elem.className.toString() == 'nav-item active') {
+          $("#mdl" + elem.textContent).css("display", "none");
+        }
+      });
+      $("#mdl" + titulo).css("display", "block");
     }
   }
 });
@@ -27240,7 +27252,85 @@ var render = function () {
       "div",
       { staticClass: "container-fluid" },
       [
-        _vm._m(0),
+        _c("div", { staticClass: "row" }, [
+          _c(
+            "nav",
+            { staticClass: "col-12 navbar navbar-expand-custom navbar-mainbg" },
+            [
+              _c(
+                "a",
+                {
+                  staticClass: "navbar-brand navbar-logo",
+                  attrs: { href: "#" },
+                },
+                [_vm._v("Ztrack")]
+              ),
+              _vm._v(" "),
+              _vm._m(0),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "collapse navbar-collapse",
+                  staticStyle: { width: "100% !important", margin: "0px" },
+                  attrs: { id: "navbarSupportedContent" },
+                },
+                [
+                  _c("ul", { staticClass: "navbar-nav ml-auto" }, [
+                    _vm._m(1),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "nav-item active" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "nav-link ",
+                          attrs: {
+                            href: "javascript:void(0);",
+                            id: "nav_panel",
+                          },
+                          on: {
+                            click: function ($event) {
+                              return _vm.abrirModal("Board")
+                            },
+                          },
+                        },
+                        [
+                          _c("i", { staticClass: "fas fa-tachometer-alt" }),
+                          _vm._v("Board"),
+                        ]
+                      ),
+                    ]),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "nav-item" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "nav-link",
+                          attrs: { href: "javascript:void(0);" },
+                          on: {
+                            click: function ($event) {
+                              return _vm.abrirModal("Contenedores")
+                            },
+                          },
+                        },
+                        [
+                          _c("i", { staticClass: "far fa-clone" }),
+                          _vm._v("Contenedores"),
+                        ]
+                      ),
+                    ]),
+                    _vm._v(" "),
+                    _vm._m(2),
+                    _vm._v(" "),
+                    _vm._m(3),
+                    _vm._v(" "),
+                    _vm._m(4),
+                  ]),
+                ]
+              ),
+            ]
+          ),
+        ]),
         _vm._v(" "),
         _c("mdlBoard", {
           ref: "mdlBoard",
@@ -27261,118 +27351,62 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row" }, [
+    return _c(
+      "button",
+      {
+        staticClass: "navbar-toggler",
+        attrs: {
+          type: "button",
+          "aria-controls": "navbarSupportedContent",
+          "aria-expanded": "false",
+          "aria-label": "Toggle navigation",
+        },
+      },
+      [_c("i", { staticClass: "fas fa-bars text-white" })]
+    )
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "hori-selector" }, [
+      _c("div", { staticClass: "left" }),
+      _c("div", { staticClass: "right" }),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", { staticClass: "nav-item " }, [
       _c(
-        "nav",
-        { staticClass: "col-12 navbar navbar-expand-custom navbar-mainbg" },
-        [
-          _c(
-            "a",
-            { staticClass: "navbar-brand navbar-logo", attrs: { href: "#" } },
-            [_vm._v("Ztrack")]
-          ),
-          _vm._v(" "),
-          _c(
-            "button",
-            {
-              staticClass: "navbar-toggler",
-              attrs: {
-                type: "button",
-                "aria-controls": "navbarSupportedContent",
-                "aria-expanded": "false",
-                "aria-label": "Toggle navigation",
-              },
-            },
-            [_c("i", { staticClass: "fas fa-bars text-white" })]
-          ),
-          _vm._v(" "),
-          _c(
-            "div",
-            {
-              staticClass: "collapse navbar-collapse",
-              staticStyle: { width: "100% !important", margin: "0px" },
-              attrs: { id: "navbarSupportedContent" },
-            },
-            [
-              _c("ul", { staticClass: "navbar-nav ml-auto" }, [
-                _c("div", { staticClass: "hori-selector" }, [
-                  _c("div", { staticClass: "left" }),
-                  _c("div", { staticClass: "right" }),
-                ]),
-                _vm._v(" "),
-                _c("li", { staticClass: "nav-item active " }, [
-                  _c(
-                    "a",
-                    {
-                      staticClass: "nav-link ",
-                      attrs: { href: "javascript:void(0);", id: "nav_panel" },
-                    },
-                    [
-                      _c("i", { staticClass: "fas fa-tachometer-alt" }),
-                      _vm._v("Panel"),
-                    ]
-                  ),
-                ]),
-                _vm._v(" "),
-                _c("li", { staticClass: "nav-item" }, [
-                  _c(
-                    "a",
-                    {
-                      staticClass: "nav-link",
-                      attrs: { href: "javascript:void(0);" },
-                    },
-                    [
-                      _c("i", { staticClass: "far fa-clone" }),
-                      _vm._v("Contenedores"),
-                    ]
-                  ),
-                ]),
-                _vm._v(" "),
-                _c("li", { staticClass: "nav-item " }, [
-                  _c(
-                    "a",
-                    {
-                      staticClass: "nav-link",
-                      attrs: { href: "javascript:void(0);" },
-                    },
-                    [
-                      _c("i", { staticClass: "far fa-calendar-alt" }),
-                      _vm._v("Calendarios"),
-                    ]
-                  ),
-                ]),
-                _vm._v(" "),
-                _c("li", { staticClass: "nav-item" }, [
-                  _c(
-                    "a",
-                    {
-                      staticClass: "nav-link",
-                      attrs: { href: "javascript:void(0);" },
-                    },
-                    [
-                      _c("i", { staticClass: "far fa-chart-bar" }),
-                      _vm._v("Estadisticas"),
-                    ]
-                  ),
-                ]),
-                _vm._v(" "),
-                _c("li", { staticClass: "nav-item " }, [
-                  _c(
-                    "a",
-                    {
-                      staticClass: "nav-link",
-                      attrs: { href: "javascript:void(0);" },
-                    },
-                    [
-                      _c("i", { staticClass: "far fa-address-book" }),
-                      _vm._v("Mis Datos"),
-                    ]
-                  ),
-                ]),
-              ]),
-            ]
-          ),
-        ]
+        "a",
+        { staticClass: "nav-link", attrs: { href: "javascript:void(0);" } },
+        [_c("i", { staticClass: "far fa-calendar-alt" }), _vm._v("Calendarios")]
+      ),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", { staticClass: "nav-item" }, [
+      _c(
+        "a",
+        { staticClass: "nav-link", attrs: { href: "javascript:void(0);" } },
+        [_c("i", { staticClass: "far fa-chart-bar" }), _vm._v("Estadisticas")]
+      ),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", { staticClass: "nav-item " }, [
+      _c(
+        "a",
+        { staticClass: "nav-link", attrs: { href: "javascript:void(0);" } },
+        [_c("i", { staticClass: "far fa-address-book" }), _vm._v("Mis Datos")]
       ),
     ])
   },
