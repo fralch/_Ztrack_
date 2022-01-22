@@ -37,6 +37,7 @@
         <slot name="component-view"></slot>
       </div> -->
       <mdlBoard ref="mdlBoard" style=" height: 100% !important;  overflow-y: scroll;"></mdlBoard>
+      <mdlContenedores ref="mdlContenedores" style=" height: 100% !important;  overflow-y: scroll;"></mdlContenedores>
     </div>
   </div>
 </template>
@@ -45,11 +46,13 @@
 <script>
 import { Link } from '@inertiajs/inertia-vue';
 import mdlBoard from "./Panel/mdlBoad";
+import mdlContenedores from "./Panel/mdlContenedores";
 export default {
   
   components: {
     Link,
-    mdlBoard,    
+    mdlBoard, 
+    mdlContenedores,   
   },
   props: { 
     //   agencias: Array 
@@ -64,6 +67,11 @@ export default {
   },
   methods: {
     irPanel(){
+      var lis = document.querySelectorAll('li');
+      lis.forEach(function(elem) {
+        // console.log(elem.classList.value);
+        
+      });
       $("#mdlBoard" ).css("display", "block");
     },
   },
