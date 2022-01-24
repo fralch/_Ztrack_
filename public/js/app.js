@@ -2802,6 +2802,70 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {},
   props: {// tu_cuenta:Array,
@@ -27490,18 +27554,99 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-6" }, [
-        _c("img", {
-          attrs: {
-            src: "http://162.248.55.24/resources/images/wallpaper02.jpg",
-            alt: "",
-          },
-        }),
+      _c("div", { staticClass: "limiter" }, [
+        _c("div", { staticClass: "container-login100" }, [
+          _c("div", { staticClass: "wrap-login100" }, [
+            _c("form", { staticClass: "login100-form validate-form" }, [
+              _c("span", { staticClass: "login100-form-title p-b-34" }, [
+                _vm._v("\n            Zgroup\n          "),
+              ]),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "wrap-input100 rs1-wrap-input100 validate-input m-b-20",
+                  attrs: { "data-validate": "Type user name" },
+                },
+                [
+                  _c("input", {
+                    staticClass: "input100",
+                    attrs: {
+                      id: "first-name",
+                      type: "text",
+                      name: "username",
+                      placeholder: "Usuario",
+                    },
+                  }),
+                  _vm._v(" "),
+                  _c("span", { staticClass: "focus-input100" }),
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "wrap-input100 rs2-wrap-input100 validate-input m-b-20",
+                  attrs: { "data-validate": "Type password" },
+                },
+                [
+                  _c("input", {
+                    staticClass: "input100",
+                    attrs: {
+                      type: "password",
+                      name: "pass",
+                      placeholder: "Contraseña",
+                    },
+                  }),
+                  _vm._v(" "),
+                  _c("span", { staticClass: "focus-input100" }),
+                ]
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "container-login100-form-btn" }, [
+                _c("button", { staticClass: "login100-form-btn" }, [
+                  _vm._v("\n              Inicia sesión\n            "),
+                ]),
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "w-full text-center p-t-27 p-b-239" }, [
+                _c("span", { staticClass: "txt1" }, [
+                  _vm._v("\n              ¿Olvidaste\n            "),
+                ]),
+                _vm._v(" "),
+                _c("a", { staticClass: "txt2", attrs: { href: "#" } }, [
+                  _vm._v(
+                    "\n              Nombre de usuario / contraseña?\n            "
+                  ),
+                ]),
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "w-full text-center" }, [
+                _c("img", {
+                  staticStyle: { "margin-top": "-20px" },
+                  attrs: {
+                    src: "http://162.248.55.24/resources/images/zgroup_logo.png",
+                    alt: "Logo",
+                    height: "50px",
+                  },
+                }),
+              ]),
+            ]),
+            _vm._v(" "),
+            _c("div", {
+              staticClass: "login100-more",
+              staticStyle: {
+                "background-image":
+                  "url('http://162.248.55.24/resources/images/wallpaper02.jpg')",
+              },
+            }),
+          ]),
+        ]),
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "col-6" }, [
-        _vm._v("\n    One of three columns\n  "),
-      ]),
+      _c("div", { attrs: { id: "dropDownSelect1" } }),
     ])
   },
 ]
