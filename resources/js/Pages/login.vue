@@ -24,9 +24,8 @@
             </div>
             
             <div class="container-login100-form-btn">
-              <button class="login100-form-btn">
-                Inicia sesión
-              </button>
+               <!-- se usa link para mandar a ver un componente -->
+             <Link class="login100-form-btn" :href="$route('paneles.board')">Inicia sesión</Link>
             </div>
 
             <div class="w-full text-center p-t-27 p-b-239">
@@ -76,10 +75,10 @@
 	<script src="{{asset('js/main.js') }}"></script>
 <!--===============================================================================================-->
 <script>
-
+import { Link } from '@inertiajs/inertia-vue';
 export default {
   components: { 
-
+  Link,
   },
   props: {
     // tu_cuenta:Array,

@@ -2789,6 +2789,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var _inertiajs_inertia_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @inertiajs/inertia-vue */ "./node_modules/@inertiajs/inertia-vue/dist/index.js");
 //
 //
 //
@@ -2865,9 +2866,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  components: {},
+  components: {
+    Link: _inertiajs_inertia_vue__WEBPACK_IMPORTED_MODULE_0__.Link
+  },
   props: {// tu_cuenta:Array,
   },
   data: function data() {
@@ -27425,11 +27428,22 @@ var render = function () {
             }),
             _vm._v(" "),
             _vm._v("\n         \n        "),
+            _c(
+              "a",
+              {
+                staticClass: "navbar-brand",
+                staticStyle: {
+                  "font-family": "Poppins-Regular",
+                  "text-transform": "uppercase",
+                },
+                attrs: { href: "#" },
+              },
+              [_vm._v("Zgroup")]
+            ),
+            _vm._v(" "),
             _vm._m(0),
             _vm._v(" "),
             _vm._m(1),
-            _vm._v(" "),
-            _vm._m(2),
           ]
         ),
       ]),
@@ -27437,14 +27451,6 @@ var render = function () {
   ])
 }
 var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("a", { staticClass: "navbar-brand", attrs: { href: "#" } }, [
-      _c("b", [_vm._v("Zgroup")]),
-    ])
-  },
   function () {
     var _vm = this
     var _h = _vm.$createElement
@@ -27546,107 +27552,127 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { staticClass: "row" }, [
+    _c("div", { staticClass: "limiter" }, [
+      _c("div", { staticClass: "container-login100" }, [
+        _c("div", { staticClass: "wrap-login100" }, [
+          _c("form", { staticClass: "login100-form validate-form" }, [
+            _c("span", { staticClass: "login100-form-title p-b-34" }, [
+              _vm._v("\n            Zgroup\n          "),
+            ]),
+            _vm._v(" "),
+            _vm._m(0),
+            _vm._v(" "),
+            _vm._m(1),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "container-login100-form-btn" },
+              [
+                _c(
+                  "Link",
+                  {
+                    staticClass: "login100-form-btn",
+                    attrs: { href: _vm.$route("paneles.board") },
+                  },
+                  [_vm._v("Inicia sesión")]
+                ),
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _vm._m(2),
+            _vm._v(" "),
+            _vm._m(3),
+          ]),
+          _vm._v(" "),
+          _c("div", {
+            staticClass: "login100-more",
+            staticStyle: {
+              "background-image":
+                "url('http://162.248.55.24/resources/images/wallpaper02.jpg')",
+            },
+          }),
+        ]),
+      ]),
+    ]),
+    _vm._v(" "),
+    _c("div", { attrs: { id: "dropDownSelect1" } }),
+  ])
 }
 var staticRenderFns = [
   function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "limiter" }, [
-        _c("div", { staticClass: "container-login100" }, [
-          _c("div", { staticClass: "wrap-login100" }, [
-            _c("form", { staticClass: "login100-form validate-form" }, [
-              _c("span", { staticClass: "login100-form-title p-b-34" }, [
-                _vm._v("\n            Zgroup\n          "),
-              ]),
-              _vm._v(" "),
-              _c(
-                "div",
-                {
-                  staticClass:
-                    "wrap-input100 rs1-wrap-input100 validate-input m-b-20",
-                  attrs: { "data-validate": "Type user name" },
-                },
-                [
-                  _c("input", {
-                    staticClass: "input100",
-                    attrs: {
-                      id: "first-name",
-                      type: "text",
-                      name: "username",
-                      placeholder: "Usuario",
-                    },
-                  }),
-                  _vm._v(" "),
-                  _c("span", { staticClass: "focus-input100" }),
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "div",
-                {
-                  staticClass:
-                    "wrap-input100 rs2-wrap-input100 validate-input m-b-20",
-                  attrs: { "data-validate": "Type password" },
-                },
-                [
-                  _c("input", {
-                    staticClass: "input100",
-                    attrs: {
-                      type: "password",
-                      name: "pass",
-                      placeholder: "Contraseña",
-                    },
-                  }),
-                  _vm._v(" "),
-                  _c("span", { staticClass: "focus-input100" }),
-                ]
-              ),
-              _vm._v(" "),
-              _c("div", { staticClass: "container-login100-form-btn" }, [
-                _c("button", { staticClass: "login100-form-btn" }, [
-                  _vm._v("\n              Inicia sesión\n            "),
-                ]),
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "w-full text-center p-t-27 p-b-239" }, [
-                _c("span", { staticClass: "txt1" }, [
-                  _vm._v("\n              ¿Olvidaste\n            "),
-                ]),
-                _vm._v(" "),
-                _c("a", { staticClass: "txt2", attrs: { href: "#" } }, [
-                  _vm._v(
-                    "\n              Nombre de usuario / contraseña?\n            "
-                  ),
-                ]),
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "w-full text-center" }, [
-                _c("img", {
-                  staticStyle: { "margin-top": "-20px" },
-                  attrs: {
-                    src: "http://162.248.55.24/resources/images/zgroup_logo.png",
-                    alt: "Logo",
-                    height: "50px",
-                  },
-                }),
-              ]),
-            ]),
-            _vm._v(" "),
-            _c("div", {
-              staticClass: "login100-more",
-              staticStyle: {
-                "background-image":
-                  "url('http://162.248.55.24/resources/images/wallpaper02.jpg')",
-              },
-            }),
-          ]),
-        ]),
+    return _c(
+      "div",
+      {
+        staticClass: "wrap-input100 rs1-wrap-input100 validate-input m-b-20",
+        attrs: { "data-validate": "Type user name" },
+      },
+      [
+        _c("input", {
+          staticClass: "input100",
+          attrs: {
+            id: "first-name",
+            type: "text",
+            name: "username",
+            placeholder: "Usuario",
+          },
+        }),
+        _vm._v(" "),
+        _c("span", { staticClass: "focus-input100" }),
+      ]
+    )
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass: "wrap-input100 rs2-wrap-input100 validate-input m-b-20",
+        attrs: { "data-validate": "Type password" },
+      },
+      [
+        _c("input", {
+          staticClass: "input100",
+          attrs: { type: "password", name: "pass", placeholder: "Contraseña" },
+        }),
+        _vm._v(" "),
+        _c("span", { staticClass: "focus-input100" }),
+      ]
+    )
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "w-full text-center p-t-27 p-b-239" }, [
+      _c("span", { staticClass: "txt1" }, [
+        _vm._v("\n              ¿Olvidaste\n            "),
       ]),
       _vm._v(" "),
-      _c("div", { attrs: { id: "dropDownSelect1" } }),
+      _c("a", { staticClass: "txt2", attrs: { href: "#" } }, [
+        _vm._v("\n              Nombre de usuario / contraseña?\n            "),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "w-full text-center" }, [
+      _c("img", {
+        staticStyle: { "margin-top": "-20px" },
+        attrs: {
+          src: "http://162.248.55.24/resources/images/zgroup_logo.png",
+          alt: "Logo",
+          height: "50px",
+        },
+      }),
     ])
   },
 ]
