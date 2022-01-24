@@ -2,15 +2,17 @@
   <div style="height: 100% !important">
     <div class="container-fluid">
       <div class="row">
-        <nav class="col-12 navbar navbar-expand-lg navbar-light bg-light">
-          <img :src="'/images/logos/copo-de-nieve.png'" alt="Logo" width="30px"/> &nbsp;
+        <nav class="col-12 navbar navbar-expand-lg navbar-light bg-light" style="height:30px !important; background-color:white !important; box-shadow: 0px 0px 13px 2px rgba(0,0,0,0.15) !important;">
+          <img :src="'/images/logos/copo-de-nieve.png'" alt="Logo" width="20px" /> 
+          <!-- <img src="http://162.248.55.24/resources/images/zgroup_logo.png" alt="Logo" width="30px" />  -->
+          &nbsp;
           <a class="navbar-brand" href="#"><b>Zgroup</b></a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
 
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
+            <ul class="navbar-nav mr-auto" style="">
               <!-- <li class="nav-item active">
                 <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
               </li>
@@ -37,10 +39,12 @@
             </form>
           </div>
         </nav>
+      
       </div>
-      <div class="slot-content">
+      <!-- <div class="slot-content">
         <slot name="component-view"></slot>
-      </div>
+      </div> -->
+     
       
     </div>
   </div>
@@ -49,10 +53,12 @@
 
 <script>
 import { Link } from '@inertiajs/inertia-vue';
+
 export default {
   
   components: {
     Link,
+
   },
   props: { 
     //   agencias: Array 

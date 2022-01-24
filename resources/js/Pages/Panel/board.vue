@@ -16,7 +16,7 @@
 
 <script>
 
-import layoutprincipal from "./../principal.vue";
+import layoutprincipal from "../layout.vue";
 
 export default {
   components: { 

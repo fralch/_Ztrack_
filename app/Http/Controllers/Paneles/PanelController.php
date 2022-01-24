@@ -10,9 +10,9 @@ use Illuminate\Support\Facades\DB;
 class PanelController extends Controller
 {
     //
-    public function verPanel()
+    public function verLogin()
     {
-        return Inertia::render('principal', []);
+        return Inertia::render('login', []);
     }
     public function board()
     {
