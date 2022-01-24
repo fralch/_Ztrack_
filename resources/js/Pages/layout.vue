@@ -6,7 +6,7 @@
           <img :src="'/images/logos/copo-de-nieve.png'" alt="Logo" width="20px" /> 
           <!-- <img src="http://162.248.55.24/resources/images/zgroup_logo.png" alt="Logo" width="30px" />  -->
           &nbsp;
-          <a class="navbar-brand" href="#" style="font-family: Poppins-Regular; text-transform: uppercase;">Zgroup</a>
+          <a class="navbar-brand" href="#" style="font-family: Poppins-Regular; text-transform: uppercase;color: #03188f;">Zgroup</a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -41,9 +41,9 @@
         </nav>
       
       </div>
-      <!-- <div class="slot-content">
+      <div class="slot-content">
         <slot name="component-view"></slot>
-      </div> -->
+      </div>
      
       
     </div>

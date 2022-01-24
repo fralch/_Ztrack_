@@ -6,7 +6,7 @@
     >
       <div class="content" style="display: block" id="cuerpo">
         <!-- ---------------------- -->
-          <h1>vista de board</h1>
+          <div class="shadow-sm p-3 mb-5 bg-white rounded">Small shadow</div>
         <!-- ---------------------- -->
       
       </div>

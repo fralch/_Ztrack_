@@ -26310,7 +26310,11 @@ var render = function () {
             staticStyle: { display: "block" },
             attrs: { id: "cuerpo" },
           },
-          [_c("h1", [_vm._v("vista de board")])]
+          [
+            _c("div", { staticClass: "shadow-sm p-3 mb-5 bg-white rounded" }, [
+              _vm._v("Small shadow"),
+            ]),
+          ]
         ),
       ]
     ),
@@ -27435,6 +27439,7 @@ var render = function () {
                 staticStyle: {
                   "font-family": "Poppins-Regular",
                   "text-transform": "uppercase",
+                  color: "#03188f",
                 },
                 attrs: { href: "#" },
               },
@@ -27447,6 +27452,8 @@ var render = function () {
           ]
         ),
       ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "slot-content" }, [_vm._t("component-view")], 2),
     ]),
   ])
 }
