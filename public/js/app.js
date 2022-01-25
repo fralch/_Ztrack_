@@ -2163,6 +2163,31 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -2174,8 +2199,46 @@ __webpack_require__.r(__webpack_exports__);
     return {// submited: false, 
     };
   },
-  mounted: function mounted() {},
-  methods: {}
+  mounted: function mounted() {
+    this.iniciarMap();
+    this.iniciarGraficos();
+  },
+  methods: {
+    iniciarMap: function iniciarMap() {
+      // var map = L.map('map').setView([51.505, -0.09], 13);
+      var map;
+      map = new google.maps.Map(document.getElementById("map"), {
+        center: {
+          lat: -12.0464,
+          lng: -77.0428
+        },
+        zoom: 12
+      });
+    },
+    iniciarGraficos: function iniciarGraficos() {
+      var ctx = document.getElementById('myChart').getContext('2d');
+      var myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+          datasets: [{
+            label: '# SetPoint',
+            data: [12, 19, 3, 5, 2, 3],
+            backgroundColor: ['rgba(255, 99, 132, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(255, 206, 86, 0.2)', 'rgba(75, 192, 192, 0.2)', 'rgba(153, 102, 255, 0.2)', 'rgba(255, 159, 64, 0.2)'],
+            borderColor: ['rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)', 'rgba(255, 206, 86, 1)', 'rgba(75, 192, 192, 1)', 'rgba(153, 102, 255, 1)', 'rgba(255, 159, 64, 1)'],
+            borderWidth: 1
+          }]
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true
+            }
+          }
+        }
+      });
+    }
+  }
 });
 
 /***/ }),
@@ -26428,61 +26491,65 @@ var render = function () {
             _c("div", { staticClass: "content" }, [
               _c(
                 "div",
-                { staticClass: "row", staticStyle: { margin: "0 0 0 20px" } },
+                { staticClass: "row", staticStyle: { margin: "0 0 0 0px" } },
                 [
-                  _c("div", { staticClass: "col-3" }, [
-                    _c(
-                      "div",
-                      {
-                        staticClass: "col shadow-sm p-3 mb-5 bg-white rounded",
-                        staticStyle: { margin: "10px 15px" },
-                        attrs: { id: "asset-search" },
-                      },
-                      [_vm._v("\n              asset search\n            ")]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "col shadow-sm p-3 mb-5 bg-white rounded",
-                        staticStyle: { margin: "10px 15px" },
-                        attrs: { id: "micro-alarms" },
-                      },
-                      [_vm._v("\n              micro alarms\n            ")]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "col shadow-sm p-3 mb-5 bg-white rounded",
-                        staticStyle: { margin: "10px 15px" },
-                        attrs: { id: "cargo-care" },
-                      },
-                      [_vm._v("\n              cargo care\n            ")]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "col shadow-sm p-3 mb-5 bg-white rounded",
-                        staticStyle: { margin: "10px 15px" },
-                        attrs: { id: "pti-result" },
-                      },
-                      [_vm._v("\n              pti result\n            ")]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "col shadow-sm p-3 mb-5 bg-white rounded",
-                        staticStyle: { margin: "10px 15px" },
-                        attrs: { id: "reefers-fleet" },
-                      },
-                      [_vm._v("\n              reefers fleet \n            ")]
-                    ),
-                  ]),
+                  _c(
+                    "div",
+                    { staticStyle: { width: "30%", margin: "10px 0 0 0" } },
+                    [
+                      _c(
+                        "div",
+                        {
+                          staticClass:
+                            "col shadow-sm p-3 mb-5 bg-white rounded",
+                          attrs: { id: "asset-search" },
+                        },
+                        [_vm._v("\n              asset search\n            ")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          staticClass:
+                            "col shadow-sm p-3 mb-5 bg-white rounded",
+                          attrs: { id: "micro-alarms" },
+                        },
+                        [_vm._v("\n              micro alarms\n            ")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          staticClass:
+                            "col shadow-sm p-3 mb-5 bg-white rounded",
+                          attrs: { id: "cargo-care" },
+                        },
+                        [_vm._v("\n              cargo care\n            ")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          staticClass:
+                            "col shadow-sm p-3 mb-5 bg-white rounded",
+                          attrs: { id: "pti-result" },
+                        },
+                        [_vm._v("\n              pti result\n            ")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          staticClass:
+                            "col shadow-sm p-3 mb-5 bg-white rounded",
+                          attrs: { id: "reefers-fleet" },
+                        },
+                        [_vm._v("\n              reefers fleet \n            ")]
+                      ),
+                    ]
+                  ),
                   _vm._v(" "),
-                  _c("div", { staticClass: "col-8" }, [
+                  _c("div", { staticStyle: { width: "70%" } }, [
                     _c(
                       "div",
                       {
@@ -26494,12 +26561,92 @@ var render = function () {
                         _c("div", [_vm._v("Total Reefers: 192")]),
                         _vm._v(" "),
                         _c(
-                          "button",
+                          "div",
                           {
-                            staticClass: "btn btn-outline-success",
-                            attrs: { type: "button" },
+                            staticClass: "row",
+                            staticStyle: { margin: "0 10px" },
                           },
-                          [_vm._v("Success")]
+                          [
+                            _c(
+                              "button",
+                              {
+                                staticClass: "col-3 btn btn-outline-success",
+                                attrs: { type: "button" },
+                              },
+                              [
+                                _c("i", { staticClass: "bi bi-power" }),
+                                _vm._v(" "),
+                                _c(
+                                  "b",
+                                  { staticStyle: { "font-size": "1.2em" } },
+                                  [_vm._v("91")]
+                                ),
+                                _vm._v(
+                                  "\n                     \n                    Running\n                  "
+                                ),
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "button",
+                              {
+                                staticClass: "col-3 btn btn-outline-secondary",
+                                attrs: { type: "button" },
+                              },
+                              [
+                                _c("i", { staticClass: "bi bi-power" }),
+                                _vm._v(" "),
+                                _c(
+                                  "b",
+                                  { staticStyle: { "font-size": "1.2em" } },
+                                  [_vm._v("0")]
+                                ),
+                                _vm._v(
+                                  "\n                     \n                    Standby\n                  "
+                                ),
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "button",
+                              {
+                                staticClass: "col-3 btn btn-outline-danger",
+                                attrs: { type: "button" },
+                              },
+                              [
+                                _c("i", { staticClass: "bi bi-power" }),
+                                _vm._v(" "),
+                                _c(
+                                  "b",
+                                  { staticStyle: { "font-size": "1.2em" } },
+                                  [_vm._v("0")]
+                                ),
+                                _vm._v(
+                                  "\n                     \n                    Shutdown\n                  "
+                                ),
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "button",
+                              {
+                                staticClass: "col-3 btn btn-outline-dark",
+                                attrs: { type: "button" },
+                              },
+                              [
+                                _c("i", { staticClass: "bi bi-power" }),
+                                _vm._v(" "),
+                                _c(
+                                  "b",
+                                  { staticStyle: { "font-size": "1.2em" } },
+                                  [_vm._v("0")]
+                                ),
+                                _vm._v(
+                                  "\n                     \n                    Powerd Down\n                  "
+                                ),
+                              ]
+                            ),
+                          ]
                         ),
                       ]
                     ),
@@ -26511,7 +26658,12 @@ var render = function () {
                         staticStyle: { margin: "-30px 15px 10px 15px" },
                         attrs: { id: "asset_maps" },
                       },
-                      [_vm._v("\n                map\n              ")]
+                      [
+                        _c("div", {
+                          staticStyle: { width: "100%", height: "365px" },
+                          attrs: { id: "map" },
+                        }),
+                      ]
                     ),
                     _vm._v(" "),
                     _c(
@@ -26546,9 +26698,12 @@ var render = function () {
                         attrs: { id: "reefers_grid" },
                       },
                       [
-                        _vm._v(
-                          "\n                Reference monitoring\n              "
-                        ),
+                        _c("canvas", {
+                          attrs: {
+                            id: "myChart",
+                            height: "width:100%; height:400px",
+                          },
+                        }),
                       ]
                     ),
                   ]),
