@@ -8,7 +8,7 @@
         <!-- ---------------------- -->
         <div class="content" >
           <div class="row" style=" margin: 0 0 0 0px;">
-            <div style="width: 30%; margin: 10px 0 0 0;">
+            <div style="width: 25%; margin: 10px 0 0 0;">
               <div id="asset-search" class="col shadow-sm p-3 mb-5 bg-white rounded" >
                 asset search
                 <input type="text" class="form-control" placeholder="Saved seaches" aria-label="Username" aria-describedby="basic-addon1" style="margin:5px">
@@ -30,19 +30,22 @@
               </div>
               <div id="micro-alarms" class="col shadow-sm p-3 mb-5 bg-white rounded" >
                 micro alarms
-                <canvas id="myChart_alarms"  height="width:100%; height:300px"></canvas>
+                <canvas id="myChart_alarms"></canvas>
               </div>
               <div id="cargo-care" class="col shadow-sm p-3 mb-5 bg-white rounded" >
                 cargo care
+                <canvas id="myChart_cargo"></canvas>
               </div>
               <div id="pti-result" class="col shadow-sm p-3 mb-5 bg-white rounded" >
                 pti result
+                <canvas id="myChart_pti"></canvas>
               </div>
               <div id="reefers-fleet" class="col shadow-sm p-3 mb-5 bg-white rounded" >
                 reefers fleet 
+                 <canvas id="myChart_fleet"></canvas>
               </div>
             </div>
-            <div style="width: 70%;">
+            <div style="width: 75%;">
                 <div id="total_reefers" class="col shadow-sm p-3 mb-5 bg-white rounded " style="margin: 10px 15px 0px 15px;">
                   <div>Total Reefers: 192</div>
                   <div class="row" style="margin: 0 10px;">
@@ -75,16 +78,82 @@
                 <div id="asset_maps" class="col shadow-sm p-3 mb-5 bg-white rounded " style="margin: -30px 15px 10px 15px;">
                    <div id="map" style="width:100%; height:365px;"></div>
                 </div>            
-                <div id="reefers_grid_history" class="col shadow-sm p-3 mb-5 bg-white rounded " style="margin: -30px 15px 10px 15px;">
+                <div id="reefers_grid_history" class="col shadow-sm p-3 mb-5 bg-white rounded " style="margin: -30px 15px 10px 15px; height:400px;" >
                   <!-- dates -->
                   <!-- /// -->
-                  <table id="reefer_table_history" class="table display nowrap">
+                  <table class="table display nowrap">
                     <thead class="thead-light">
                       <tr>
                         <th scope="col">Run</th>
                         <th scope="col">PWR</th>
                         <th scope="col">OEM</th>
-                        <th scope="col">Reefer ID</th>
+                        <th scope="col">Reefer_ID</th>
+                        <th scope="col">Booking</th>
+                        <th scope="col">Event</th>
+                        <th scope="col">BLQRB</th>
+                        <th scope="col">City</th>
+                        <th scope="col">State</th>
+                        <th scope="col">Country</th>
+                        <th scope="col">Alarm</th>
+                        <th scope="col">Opr mode</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                       
+                        <td>   <i class="bi bi-power"></i> </td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                        <td>@mdo</td>
+                        <td>@mdo</td>
+                        <td>@mdo</td>
+                        <td>@mdo</td>
+                        <td>@mdo</td>
+                        <td>@mdo</td>
+                        <td>@mdo</td>
+                        <td>@mdo</td>
+                        <td>@mdo</td>
+                      </tr>
+                      <tr>
+                       
+                        <td>   <i class="bi bi-power"></i> </td>
+                        <td>Thornton</td>
+                        <td>@fat</td>
+                        <td>@fat</td>
+                        <td>@fat</td>
+                        <td>@fat</td>
+                        <td>@fat</td>
+                        <td>@fat</td>
+                        <td>@fat</td>
+                        <td>@fat</td>
+                        <td>@fat</td>
+                        <td>@fat</td>
+                      </tr>
+                      <tr> 
+                        <td>   <i class="bi bi-power"></i> </td>
+                        <td>the Bird</td>
+                        <td>@twitter</td>
+                        <td>@twitter</td>
+                        <td>@twitter</td>
+                        <td>@twitter</td>
+                        <td>@twitter</td>
+                        <td>@twitter</td>
+                        <td>@twitter</td>
+                        <td>@twitter</td>
+                        <td>@twitter</td>
+                        <td>@twitter</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div id="reefers_grid" class="col shadow-sm p-3 mb-5 bg-white rounded " style="margin: -30px 15px 10px 15px; height:400px;">
+                  <table  class="table display nowrap">
+                    <thead class="thead-light">
+                      <tr>
+                        <th scope="col">Run</th>
+                        <th scope="col">PWR</th>
+                        <th scope="col">OEM</th>
+                        <th scope="col">Reefer_ID</th>
                         <th scope="col">Booking</th>
                         <th scope="col">Event</th>
                         <th scope="col">BLQRB</th>
@@ -144,73 +213,7 @@
                   </table>
                 </div>
                 <div id="reefers_grid" class="col shadow-sm p-3 mb-5 bg-white rounded " style="margin: -30px 15px 10px 15px;">
-                  <table id="reefer_table" class="table display nowrap">
-                    <thead class="thead-light">
-                      <tr>
-                        <th scope="col">Run</th>
-                        <th scope="col">PWR</th>
-                        <th scope="col">OEM</th>
-                        <th scope="col">Reefer ID</th>
-                        <th scope="col">Booking</th>
-                        <th scope="col">Event</th>
-                        <th scope="col">BLQRB</th>
-                        <th scope="col">City</th>
-                        <th scope="col">State</th>
-                        <th scope="col">Country</th>
-                        <th scope="col">Alarm</th>
-                        <th scope="col">Opr mode</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                       
-                        <td>   <i class="bi bi-power"></i> </td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                      </tr>
-                      <tr>
-                       
-                        <td>   <i class="bi bi-power"></i> </td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                        <td>@fat</td>
-                        <td>@fat</td>
-                        <td>@fat</td>
-                        <td>@fat</td>
-                        <td>@fat</td>
-                        <td>@fat</td>
-                        <td>@fat</td>
-                        <td>@fat</td>
-                        <td>@fat</td>
-                      </tr>
-                      <tr> 
-                        <td>   <i class="bi bi-power"></i> </td>
-                        <td>the Bird</td>
-                        <td>@twitter</td>
-                        <td>@twitter</td>
-                        <td>@twitter</td>
-                        <td>@twitter</td>
-                        <td>@twitter</td>
-                        <td>@twitter</td>
-                        <td>@twitter</td>
-                        <td>@twitter</td>
-                        <td>@twitter</td>
-                        <td>@twitter</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-                <div id="reefers_grid" class="col shadow-sm p-3 mb-5 bg-white rounded " style="margin: -30px 15px 10px 15px;">
-                   <canvas id="myChart"  height="width:100%; height:400px"></canvas>
+                   <canvas id="myChart"  style="width:100%; height:400px"></canvas>
                 </div>
               
             </div>
@@ -252,6 +255,10 @@ export default {
   mounted() {
     this.iniciarMap();
     this.iniciarGraficos();
+    this.iniciarGraficosAlarms();
+    this.iniciarGraficosCargo();
+    this.iniciarGraficosPTI();
+    this.iniciarGraficosFleet();
     this.datatabl();
   },
 
@@ -388,6 +395,96 @@ export default {
               ],
               datasets: [{
                 label: 'My First Dataset',
+                data: [30, 500, 100],
+                backgroundColor: [
+                  'rgb(255, 99, 132)',
+                  'rgb(54, 162, 235)',
+                  'rgb(255, 205, 86)'
+                ],
+                hoverOffset: 4
+              }]
+          },
+          options: {
+              scales: {
+                  y: {
+                      beginAtZero: true
+                  }
+              }
+          }
+      });
+    },
+    iniciarGraficosCargo(){
+      var ctx_cargo = document.getElementById('myChart_cargo').getContext('2d');
+      var myChart_cargo = new Chart(ctx_cargo, {
+          type: 'doughnut',
+          data: {
+              labels: [
+                'Red',
+                'Blue',
+                'Yellow'
+              ],
+              datasets: [{
+                label: 'My First Dataset',
+                data: [30, 90, 100],
+                backgroundColor: [
+                  'rgb(255, 99, 132)',
+                  'rgb(54, 162, 235)',
+                  'rgb(255, 205, 86)'
+                ],
+                hoverOffset: 4
+              }]
+          },
+          options: {
+              scales: {
+                  y: {
+                      beginAtZero: true
+                  }
+              }
+          }
+      });
+    },
+    iniciarGraficosPTI(){
+      var ctx_pti = document.getElementById('myChart_pti').getContext('2d');
+      var myChart_pti = new Chart(ctx_pti, {
+          type: 'doughnut',
+          data: {
+              labels: [
+                'Red',
+                'Blue',
+                'Yellow'
+              ],
+              datasets: [{
+                label: 'My First Dataset',
+                data: [300, 50, 100],
+                backgroundColor: [
+                  'rgb(255, 99, 132)',
+                  'rgb(54, 162, 235)',
+                  'rgb(255, 205, 86)'
+                ],
+                hoverOffset: 4
+              }]
+          },
+          options: {
+              scales: {
+                  y: {
+                      beginAtZero: true
+                  }
+              }
+          }
+      });
+    },
+    iniciarGraficosFleet(){
+      var ctx_fleet = document.getElementById('myChart_fleet').getContext('2d');
+      var myChart_fleet = new Chart(ctx_fleet, {
+          type: 'line',
+          data: {
+              labels: [
+                'Red',
+                'Blue',
+                'Yellow'
+              ],
+              datasets: [{
+                label: 'Reefers fleet',
                 data: [300, 50, 100],
                 backgroundColor: [
                   'rgb(255, 99, 132)',
