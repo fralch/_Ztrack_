@@ -52,12 +52,12 @@
         scrollbar-shadow-color: #646464;
       }
 
-      ::-webkit-scrollbar { width: 8px; height: 3px;}
-      ::-webkit-scrollbar-button {  background-color: #ccc; }
+      ::-webkit-scrollbar { width: 8px; height: 8px;}
+      ::-webkit-scrollbar-button {  background-color: #fafbfd; }
       ::-webkit-scrollbar-track {  background-color: #646464;}
       ::-webkit-scrollbar-track-piece { background-color: #a3a3a3;}
-      ::-webkit-scrollbar-thumb { height: 50px; background-color: #ccc; border-radius: 3px;}
+      ::-webkit-scrollbar-thumb { height: 50px; background-color: #fafbfd; border-radius: 3px;}
       ::-webkit-scrollbar-corner { background-color: #646464;}
-      ::-webkit-resizer { background-color: #ccc;}
+      ::-webkit-resizer { background-color: #fafbfd;}
 	</style>
 </html>

@@ -2227,6 +2227,112 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -2246,42 +2352,73 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     datatabl: function datatabl() {
       // $('#reefer_table_history').DataTable();
-      this.$nextTick(function () {
-        var table_1 = $("#reefer_table_history").DataTable({
-          scrollY: "400px",
-          scrollX: true,
-          paging: false,
-          fixedColumns: {
-            leftColumns: 0
+      $("#reefer_table_history").DataTable({
+        scrollX: true,
+        paging: false,
+        fixedColumns: {
+          leftColumns: 0
+        },
+        fixedHeader: true,
+        language: {
+          retrieve: true,
+          decimal: "",
+          emptyTable: "No hay datos disponibles en la tabla",
+          info: "Mostrando del _START_ al _END_ de _TOTAL_ registros",
+          infoEmpty: "No se encontraron registros",
+          infoFiltered: "(filtrado de _MAX_ registros)",
+          infoPostFix: "",
+          thousands: ",",
+          lengthMenu: "Agrupar por _MENU_ filas",
+          loadingRecords: "Cargando...",
+          processing: "Procesando...",
+          search: "Buscar:",
+          zeroRecords: "No se encontraron registros",
+          paginate: {
+            first: "Primera",
+            last: "Ultima",
+            next: '<i class="fas fa-chevron-circle-right" style="font-size:20px;"></i>',
+            previous: '<i class="fas fa-chevron-circle-left" style="font-size:20px;"></i>'
           },
-          fixedHeader: true,
-          language: {
-            retrieve: true,
-            decimal: "",
-            emptyTable: "No hay datos disponibles en la tabla",
-            info: "Mostrando del _START_ al _END_ de _TOTAL_ registros",
-            infoEmpty: "No se encontraron registros",
-            infoFiltered: "(filtrado de _MAX_ registros)",
-            infoPostFix: "",
-            thousands: ",",
-            lengthMenu: "Agrupar por _MENU_ filas",
-            loadingRecords: "Cargando...",
-            processing: "Procesando...",
-            search: "Buscar:",
-            zeroRecords: "No se encontraron registros",
-            paginate: {
-              first: "Primera",
-              last: "Ultima",
-              next: '<i class="fas fa-chevron-circle-right" style="font-size:20px;"></i>',
-              previous: '<i class="fas fa-chevron-circle-left" style="font-size:20px;"></i>'
-            },
-            aria: {
-              sortAscending: ": activar para ordenar de forma ascendente",
-              sortDescending: ": activar para ordenar de forma descendente"
-            }
+          aria: {
+            sortAscending: ": activar para ordenar de forma ascendente",
+            sortDescending: ": activar para ordenar de forma descendente"
+          }
+        },
+        responsive: true
+      });
+      $("#reefer_table").DataTable({
+        scrollX: true,
+        paging: false,
+        fixedColumns: {
+          leftColumns: 0
+        },
+        fixedHeader: true,
+        language: {
+          retrieve: true,
+          decimal: "",
+          emptyTable: "No hay datos disponibles en la tabla",
+          info: "Mostrando del _START_ al _END_ de _TOTAL_ registros",
+          infoEmpty: "No se encontraron registros",
+          infoFiltered: "(filtrado de _MAX_ registros)",
+          infoPostFix: "",
+          thousands: ",",
+          lengthMenu: "Agrupar por _MENU_ filas",
+          loadingRecords: "Cargando...",
+          processing: "Procesando...",
+          search: "Buscar:",
+          zeroRecords: "No se encontraron registros",
+          paginate: {
+            first: "Primera",
+            last: "Ultima",
+            next: '<i class="fas fa-chevron-circle-right" style="font-size:20px;"></i>',
+            previous: '<i class="fas fa-chevron-circle-left" style="font-size:20px;"></i>'
           },
-          responsive: true
-        });
+          aria: {
+            sortAscending: ": activar para ordenar de forma ascendente",
+            sortDescending: ": activar para ordenar de forma descendente"
+          }
+        },
+        responsive: true
       });
     },
     iniciarMap: function iniciarMap() {
@@ -2307,6 +2444,28 @@ __webpack_require__.r(__webpack_exports__);
             backgroundColor: ['rgba(255, 99, 132, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(255, 206, 86, 0.2)', 'rgba(75, 192, 192, 0.2)', 'rgba(153, 102, 255, 0.2)', 'rgba(255, 159, 64, 0.2)'],
             borderColor: ['rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)', 'rgba(255, 206, 86, 1)', 'rgba(75, 192, 192, 1)', 'rgba(153, 102, 255, 1)', 'rgba(255, 159, 64, 1)'],
             borderWidth: 1
+          }]
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true
+            }
+          }
+        }
+      });
+    },
+    iniciarGraficosAlarms: function iniciarGraficosAlarms() {
+      var ctx_alarms = document.getElementById('myChart_alarms').getContext('2d');
+      var myChart_alarms = new Chart(ctx_alarms, {
+        type: 'doughnut',
+        data: {
+          labels: ['Red', 'Blue', 'Yellow'],
+          datasets: [{
+            label: 'My First Dataset',
+            data: [300, 50, 100],
+            backgroundColor: ['rgb(255, 99, 132)', 'rgb(54, 162, 235)', 'rgb(255, 205, 86)'],
+            hoverOffset: 4
           }]
         },
         options: {
@@ -3157,7 +3316,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n#asset-search {\r\n  padding: 10px;\r\n  height: 300px;\r\n  overflow-y: scroll;\n}\n#reefers_grid_history{\r\n  overflow-x: scroll;\r\n  overflow-y: scroll;\n}\n#total_reefers {\r\n  padding: 10px;\r\n  height: 100px;\n}\n#asset_maps {\r\n  padding: 10px;\r\n  height: 400px;\r\n  /* overflow-y: scroll; */\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n#asset-search {\r\n  padding: 10px;\r\n  height: 300px;\r\n  overflow-y: scroll;\n}\n#reefers_grid_history{\r\n  /* overflow-x: scroll; */\r\n  overflow-y: scroll;\n}\n#reefers_grid{\r\n  /* overflow-x: scroll; */\r\n  overflow-y: scroll;\n}\n#total_reefers {\r\n  padding: 10px;\r\n  height: 100px;\n}\n#asset_maps {\r\n  padding: 10px;\r\n  height: 400px;\r\n  /* overflow-y: scroll; */\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -26584,7 +26743,130 @@ var render = function () {
                             "col shadow-sm p-3 mb-5 bg-white rounded",
                           attrs: { id: "asset-search" },
                         },
-                        [_vm._v("\n              asset search\n            ")]
+                        [
+                          _vm._v(
+                            "\n              asset search\n              "
+                          ),
+                          _c("input", {
+                            staticClass: "form-control",
+                            staticStyle: { margin: "5px" },
+                            attrs: {
+                              type: "text",
+                              placeholder: "Saved seaches",
+                              "aria-label": "Username",
+                              "aria-describedby": "basic-addon1",
+                            },
+                          }),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            {
+                              staticClass: "form-floating",
+                              staticStyle: { margin: "5px" },
+                            },
+                            [
+                              _c("textarea", {
+                                staticClass: "form-control",
+                                attrs: {
+                                  placeholder: "Asset ID",
+                                  id: "floatingTextarea",
+                                },
+                              }),
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            {
+                              staticClass: "form-floating",
+                              staticStyle: { margin: "5px" },
+                            },
+                            [
+                              _c("textarea", {
+                                staticClass: "form-control",
+                                attrs: {
+                                  placeholder: "Booking Number",
+                                  id: "floatingTextarea",
+                                },
+                              }),
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c("input", {
+                            staticClass: "form-control",
+                            staticStyle: { margin: "5px" },
+                            attrs: {
+                              type: "text",
+                              placeholder: "Geofence Status",
+                              "aria-label": "Username",
+                              "aria-describedby": "basic-addon1",
+                            },
+                          }),
+                          _vm._v(" "),
+                          _c("input", {
+                            staticClass: "form-control",
+                            staticStyle: { margin: "5px" },
+                            attrs: {
+                              type: "text",
+                              placeholder: "Geofence ID",
+                              "aria-label": "Username",
+                              "aria-describedby": "basic-addon1",
+                            },
+                          }),
+                          _vm._v(" "),
+                          _c("input", {
+                            staticClass: "form-control",
+                            staticStyle: { margin: "5px" },
+                            attrs: {
+                              type: "text",
+                              placeholder: "OEM Type",
+                              "aria-label": "Username",
+                              "aria-describedby": "basic-addon1",
+                            },
+                          }),
+                          _vm._v(" "),
+                          _c("input", {
+                            staticClass: "form-control",
+                            staticStyle: { margin: "5px" },
+                            attrs: {
+                              type: "text",
+                              placeholder: "Country",
+                              "aria-label": "Username",
+                              "aria-describedby": "basic-addon1",
+                            },
+                          }),
+                          _vm._v(" "),
+                          _c("input", {
+                            staticClass: "form-control",
+                            staticStyle: { margin: "5px" },
+                            attrs: {
+                              type: "text",
+                              placeholder: "Reporting (min)",
+                              "aria-label": "Username",
+                              "aria-describedby": "basic-addon1",
+                            },
+                          }),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "btn-group" }, [
+                            _c(
+                              "a",
+                              {
+                                staticClass: "btn btn-primary active",
+                                attrs: { href: "#", "aria-current": "page" },
+                              },
+                              [_vm._v("Search")]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "a",
+                              {
+                                staticClass: "btn btn-primary",
+                                attrs: { href: "#" },
+                              },
+                              [_vm._v("Clear")]
+                            ),
+                          ]),
+                        ]
                       ),
                       _vm._v(" "),
                       _c(
@@ -26594,7 +26876,17 @@ var render = function () {
                             "col shadow-sm p-3 mb-5 bg-white rounded",
                           attrs: { id: "micro-alarms" },
                         },
-                        [_vm._v("\n              micro alarms\n            ")]
+                        [
+                          _vm._v(
+                            "\n              micro alarms\n              "
+                          ),
+                          _c("canvas", {
+                            attrs: {
+                              id: "myChart_alarms",
+                              height: "width:100%; height:300px",
+                            },
+                          }),
+                        ]
                       ),
                       _vm._v(" "),
                       _c(
@@ -26815,25 +27107,85 @@ var render = function () {
                             _vm._v(" "),
                             _c("tbody", [
                               _c("tr", [
-                                _c("td", [_vm._v("Mark")]),
+                                _c("td", [
+                                  _c("i", { staticClass: "bi bi-power" }),
+                                ]),
                                 _vm._v(" "),
                                 _c("td", [_vm._v("Otto")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@mdo")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@mdo")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@mdo")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@mdo")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@mdo")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@mdo")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@mdo")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@mdo")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@mdo")]),
                                 _vm._v(" "),
                                 _c("td", [_vm._v("@mdo")]),
                               ]),
                               _vm._v(" "),
                               _c("tr", [
-                                _c("td", [_vm._v("Jacob")]),
+                                _c("td", [
+                                  _c("i", { staticClass: "bi bi-power" }),
+                                ]),
                                 _vm._v(" "),
                                 _c("td", [_vm._v("Thornton")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@fat")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@fat")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@fat")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@fat")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@fat")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@fat")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@fat")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@fat")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@fat")]),
                                 _vm._v(" "),
                                 _c("td", [_vm._v("@fat")]),
                               ]),
                               _vm._v(" "),
                               _c("tr", [
-                                _c("td", [_vm._v("Larry")]),
+                                _c("td", [
+                                  _c("i", { staticClass: "bi bi-power" }),
+                                ]),
                                 _vm._v(" "),
                                 _c("td", [_vm._v("the Bird")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@twitter")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@twitter")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@twitter")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@twitter")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@twitter")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@twitter")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@twitter")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@twitter")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@twitter")]),
                                 _vm._v(" "),
                                 _c("td", [_vm._v("@twitter")]),
                               ]),
@@ -26850,7 +27202,154 @@ var render = function () {
                         staticStyle: { margin: "-30px 15px 10px 15px" },
                         attrs: { id: "reefers_grid" },
                       },
-                      [_vm._v("\n                Reefer grid \n              ")]
+                      [
+                        _c(
+                          "table",
+                          {
+                            staticClass: "table display nowrap",
+                            attrs: { id: "reefer_table" },
+                          },
+                          [
+                            _c("thead", { staticClass: "thead-light" }, [
+                              _c("tr", [
+                                _c("th", { attrs: { scope: "col" } }, [
+                                  _vm._v("Run"),
+                                ]),
+                                _vm._v(" "),
+                                _c("th", { attrs: { scope: "col" } }, [
+                                  _vm._v("PWR"),
+                                ]),
+                                _vm._v(" "),
+                                _c("th", { attrs: { scope: "col" } }, [
+                                  _vm._v("OEM"),
+                                ]),
+                                _vm._v(" "),
+                                _c("th", { attrs: { scope: "col" } }, [
+                                  _vm._v("Reefer ID"),
+                                ]),
+                                _vm._v(" "),
+                                _c("th", { attrs: { scope: "col" } }, [
+                                  _vm._v("Booking"),
+                                ]),
+                                _vm._v(" "),
+                                _c("th", { attrs: { scope: "col" } }, [
+                                  _vm._v("Event"),
+                                ]),
+                                _vm._v(" "),
+                                _c("th", { attrs: { scope: "col" } }, [
+                                  _vm._v("BLQRB"),
+                                ]),
+                                _vm._v(" "),
+                                _c("th", { attrs: { scope: "col" } }, [
+                                  _vm._v("City"),
+                                ]),
+                                _vm._v(" "),
+                                _c("th", { attrs: { scope: "col" } }, [
+                                  _vm._v("State"),
+                                ]),
+                                _vm._v(" "),
+                                _c("th", { attrs: { scope: "col" } }, [
+                                  _vm._v("Country"),
+                                ]),
+                                _vm._v(" "),
+                                _c("th", { attrs: { scope: "col" } }, [
+                                  _vm._v("Alarm"),
+                                ]),
+                                _vm._v(" "),
+                                _c("th", { attrs: { scope: "col" } }, [
+                                  _vm._v("Opr mode"),
+                                ]),
+                              ]),
+                            ]),
+                            _vm._v(" "),
+                            _c("tbody", [
+                              _c("tr", [
+                                _c("td", [
+                                  _c("i", { staticClass: "bi bi-power" }),
+                                ]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("Otto")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@mdo")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@mdo")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@mdo")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@mdo")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@mdo")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@mdo")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@mdo")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@mdo")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@mdo")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@mdo")]),
+                              ]),
+                              _vm._v(" "),
+                              _c("tr", [
+                                _c("td", [
+                                  _c("i", { staticClass: "bi bi-power" }),
+                                ]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("Thornton")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@fat")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@fat")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@fat")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@fat")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@fat")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@fat")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@fat")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@fat")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@fat")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@fat")]),
+                              ]),
+                              _vm._v(" "),
+                              _c("tr", [
+                                _c("td", [
+                                  _c("i", { staticClass: "bi bi-power" }),
+                                ]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("the Bird")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@twitter")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@twitter")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@twitter")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@twitter")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@twitter")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@twitter")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@twitter")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@twitter")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@twitter")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@twitter")]),
+                              ]),
+                            ]),
+                          ]
+                        ),
+                      ]
                     ),
                     _vm._v(" "),
                     _c(

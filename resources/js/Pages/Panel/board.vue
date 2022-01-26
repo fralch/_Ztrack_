@@ -11,9 +11,26 @@
             <div style="width: 30%; margin: 10px 0 0 0;">
               <div id="asset-search" class="col shadow-sm p-3 mb-5 bg-white rounded" >
                 asset search
+                <input type="text" class="form-control" placeholder="Saved seaches" aria-label="Username" aria-describedby="basic-addon1" style="margin:5px">
+                <div class="form-floating" style="margin:5px">
+                  <textarea class="form-control" placeholder="Asset ID" id="floatingTextarea"></textarea>
+                </div>
+                <div class="form-floating" style="margin:5px">
+                  <textarea class="form-control" placeholder="Booking Number" id="floatingTextarea"></textarea>
+                </div>
+                <input type="text" class="form-control" placeholder="Geofence Status" aria-label="Username" aria-describedby="basic-addon1" style="margin:5px">
+                <input type="text" class="form-control" placeholder="Geofence ID" aria-label="Username" aria-describedby="basic-addon1" style="margin:5px">
+                <input type="text" class="form-control" placeholder="OEM Type" aria-label="Username" aria-describedby="basic-addon1" style="margin:5px">
+                <input type="text" class="form-control" placeholder="Country" aria-label="Username" aria-describedby="basic-addon1" style="margin:5px">
+                <input type="text" class="form-control" placeholder="Reporting (min)" aria-label="Username" aria-describedby="basic-addon1" style="margin:5px">
+                <div class="btn-group">
+                  <a href="#" class="btn btn-primary active" aria-current="page">Search</a>
+                  <a href="#" class="btn btn-primary">Clear</a>
+                </div>
               </div>
               <div id="micro-alarms" class="col shadow-sm p-3 mb-5 bg-white rounded" >
                 micro alarms
+                <canvas id="myChart_alarms"  height="width:100%; height:300px"></canvas>
               </div>
               <div id="cargo-care" class="col shadow-sm p-3 mb-5 bg-white rounded" >
                 cargo care
@@ -81,27 +98,116 @@
                     <tbody>
                       <tr>
                        
-                        <td>Mark</td>
+                        <td>   <i class="bi bi-power"></i> </td>
                         <td>Otto</td>
+                        <td>@mdo</td>
+                        <td>@mdo</td>
+                        <td>@mdo</td>
+                        <td>@mdo</td>
+                        <td>@mdo</td>
+                        <td>@mdo</td>
+                        <td>@mdo</td>
+                        <td>@mdo</td>
+                        <td>@mdo</td>
                         <td>@mdo</td>
                       </tr>
                       <tr>
                        
-                        <td>Jacob</td>
+                        <td>   <i class="bi bi-power"></i> </td>
                         <td>Thornton</td>
                         <td>@fat</td>
+                        <td>@fat</td>
+                        <td>@fat</td>
+                        <td>@fat</td>
+                        <td>@fat</td>
+                        <td>@fat</td>
+                        <td>@fat</td>
+                        <td>@fat</td>
+                        <td>@fat</td>
+                        <td>@fat</td>
                       </tr>
-                      <tr>
-                       
-                        <td>Larry</td>
+                      <tr> 
+                        <td>   <i class="bi bi-power"></i> </td>
                         <td>the Bird</td>
+                        <td>@twitter</td>
+                        <td>@twitter</td>
+                        <td>@twitter</td>
+                        <td>@twitter</td>
+                        <td>@twitter</td>
+                        <td>@twitter</td>
+                        <td>@twitter</td>
+                        <td>@twitter</td>
+                        <td>@twitter</td>
                         <td>@twitter</td>
                       </tr>
                     </tbody>
                   </table>
                 </div>
                 <div id="reefers_grid" class="col shadow-sm p-3 mb-5 bg-white rounded " style="margin: -30px 15px 10px 15px;">
-                  Reefer grid 
+                  <table id="reefer_table" class="table display nowrap">
+                    <thead class="thead-light">
+                      <tr>
+                        <th scope="col">Run</th>
+                        <th scope="col">PWR</th>
+                        <th scope="col">OEM</th>
+                        <th scope="col">Reefer ID</th>
+                        <th scope="col">Booking</th>
+                        <th scope="col">Event</th>
+                        <th scope="col">BLQRB</th>
+                        <th scope="col">City</th>
+                        <th scope="col">State</th>
+                        <th scope="col">Country</th>
+                        <th scope="col">Alarm</th>
+                        <th scope="col">Opr mode</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                       
+                        <td>   <i class="bi bi-power"></i> </td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                        <td>@mdo</td>
+                        <td>@mdo</td>
+                        <td>@mdo</td>
+                        <td>@mdo</td>
+                        <td>@mdo</td>
+                        <td>@mdo</td>
+                        <td>@mdo</td>
+                        <td>@mdo</td>
+                        <td>@mdo</td>
+                      </tr>
+                      <tr>
+                       
+                        <td>   <i class="bi bi-power"></i> </td>
+                        <td>Thornton</td>
+                        <td>@fat</td>
+                        <td>@fat</td>
+                        <td>@fat</td>
+                        <td>@fat</td>
+                        <td>@fat</td>
+                        <td>@fat</td>
+                        <td>@fat</td>
+                        <td>@fat</td>
+                        <td>@fat</td>
+                        <td>@fat</td>
+                      </tr>
+                      <tr> 
+                        <td>   <i class="bi bi-power"></i> </td>
+                        <td>the Bird</td>
+                        <td>@twitter</td>
+                        <td>@twitter</td>
+                        <td>@twitter</td>
+                        <td>@twitter</td>
+                        <td>@twitter</td>
+                        <td>@twitter</td>
+                        <td>@twitter</td>
+                        <td>@twitter</td>
+                        <td>@twitter</td>
+                        <td>@twitter</td>
+                      </tr>
+                    </tbody>
+                  </table>
                 </div>
                 <div id="reefers_grid" class="col shadow-sm p-3 mb-5 bg-white rounded " style="margin: -30px 15px 10px 15px;">
                    <canvas id="myChart"  height="width:100%; height:400px"></canvas>
@@ -153,9 +259,7 @@ export default {
     datatabl() {
       // $('#reefer_table_history').DataTable();
        
-        this.$nextTick(() => {
-          var table_1 = $("#reefer_table_history").DataTable({
-            scrollY: "400px",
+        $("#reefer_table_history").DataTable({
           scrollX: true,
           paging: false,
           fixedColumns: {
@@ -190,7 +294,41 @@ export default {
             },
           },
           responsive: true,})
-        });
+        $("#reefer_table").DataTable({
+          scrollX: true,
+          paging: false,
+          fixedColumns: {
+            leftColumns: 0,
+          },
+        
+          fixedHeader: true,
+          language: {
+            retrieve: true,
+            decimal: "",
+            emptyTable: "No hay datos disponibles en la tabla",
+            info: "Mostrando del _START_ al _END_ de _TOTAL_ registros",
+            infoEmpty: "No se encontraron registros",
+            infoFiltered: "(filtrado de _MAX_ registros)",
+            infoPostFix: "",
+            thousands: ",",
+            lengthMenu: "Agrupar por _MENU_ filas",
+            loadingRecords: "Cargando...",
+            processing: "Procesando...",
+            search: "Buscar:",
+            zeroRecords: "No se encontraron registros",
+            paginate: {
+              first: "Primera",
+              last: "Ultima",
+              next: '<i class="fas fa-chevron-circle-right" style="font-size:20px;"></i>',
+              previous:
+                '<i class="fas fa-chevron-circle-left" style="font-size:20px;"></i>',
+            },
+            aria: {
+              sortAscending: ": activar para ordenar de forma ascendente",
+              sortDescending: ": activar para ordenar de forma descendente",
+            },
+          },
+          responsive: true,})
         
     },
     iniciarMap() {
@@ -238,6 +376,36 @@ export default {
           }
       });
     },
+    iniciarGraficosAlarms(){
+      var ctx_alarms = document.getElementById('myChart_alarms').getContext('2d');
+      var myChart_alarms = new Chart(ctx_alarms, {
+          type: 'doughnut',
+          data: {
+              labels: [
+                'Red',
+                'Blue',
+                'Yellow'
+              ],
+              datasets: [{
+                label: 'My First Dataset',
+                data: [300, 50, 100],
+                backgroundColor: [
+                  'rgb(255, 99, 132)',
+                  'rgb(54, 162, 235)',
+                  'rgb(255, 205, 86)'
+                ],
+                hoverOffset: 4
+              }]
+          },
+          options: {
+              scales: {
+                  y: {
+                      beginAtZero: true
+                  }
+              }
+          }
+      });
+    },
     
   },
 };
@@ -250,7 +418,11 @@ export default {
   overflow-y: scroll;
 }
 #reefers_grid_history{
-  overflow-x: scroll;
+  /* overflow-x: scroll; */
+  overflow-y: scroll;
+}
+#reefers_grid{
+  /* overflow-x: scroll; */
   overflow-y: scroll;
 }
 #total_reefers {
