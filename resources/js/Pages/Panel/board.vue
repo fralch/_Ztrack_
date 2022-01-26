@@ -59,7 +59,46 @@
                    <div id="map" style="width:100%; height:365px;"></div>
                 </div>            
                 <div id="reefers_grid_history" class="col shadow-sm p-3 mb-5 bg-white rounded " style="margin: -30px 15px 10px 15px;">
-                  Reefer grid history
+                  <!-- dates -->
+                  <!-- /// -->
+                  <table id="reefer_table_history" class="table display nowrap">
+                    <thead class="thead-light">
+                      <tr>
+                        <th scope="col">Run</th>
+                        <th scope="col">PWR</th>
+                        <th scope="col">OEM</th>
+                        <th scope="col">Reefer ID</th>
+                        <th scope="col">Booking</th>
+                        <th scope="col">Event</th>
+                        <th scope="col">BLQRB</th>
+                        <th scope="col">City</th>
+                        <th scope="col">State</th>
+                        <th scope="col">Country</th>
+                        <th scope="col">Alarm</th>
+                        <th scope="col">Opr mode</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                       
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                      </tr>
+                      <tr>
+                       
+                        <td>Jacob</td>
+                        <td>Thornton</td>
+                        <td>@fat</td>
+                      </tr>
+                      <tr>
+                       
+                        <td>Larry</td>
+                        <td>the Bird</td>
+                        <td>@twitter</td>
+                      </tr>
+                    </tbody>
+                  </table>
                 </div>
                 <div id="reefers_grid" class="col shadow-sm p-3 mb-5 bg-white rounded " style="margin: -30px 15px 10px 15px;">
                   Reefer grid 
@@ -107,9 +146,53 @@ export default {
   mounted() {
     this.iniciarMap();
     this.iniciarGraficos();
+    this.datatabl();
   },
 
   methods: {
+    datatabl() {
+      // $('#reefer_table_history').DataTable();
+       
+        this.$nextTick(() => {
+          var table_1 = $("#reefer_table_history").DataTable({
+            scrollY: "400px",
+          scrollX: true,
+          paging: false,
+          fixedColumns: {
+            leftColumns: 0,
+          },
+        
+          fixedHeader: true,
+          language: {
+            retrieve: true,
+            decimal: "",
+            emptyTable: "No hay datos disponibles en la tabla",
+            info: "Mostrando del _START_ al _END_ de _TOTAL_ registros",
+            infoEmpty: "No se encontraron registros",
+            infoFiltered: "(filtrado de _MAX_ registros)",
+            infoPostFix: "",
+            thousands: ",",
+            lengthMenu: "Agrupar por _MENU_ filas",
+            loadingRecords: "Cargando...",
+            processing: "Procesando...",
+            search: "Buscar:",
+            zeroRecords: "No se encontraron registros",
+            paginate: {
+              first: "Primera",
+              last: "Ultima",
+              next: '<i class="fas fa-chevron-circle-right" style="font-size:20px;"></i>',
+              previous:
+                '<i class="fas fa-chevron-circle-left" style="font-size:20px;"></i>',
+            },
+            aria: {
+              sortAscending: ": activar para ordenar de forma ascendente",
+              sortDescending: ": activar para ordenar de forma descendente",
+            },
+          },
+          responsive: true,})
+        });
+        
+    },
     iniciarMap() {
       // var map = L.map('map').setView([51.505, -0.09], 13);
      let map;
@@ -164,6 +247,10 @@ export default {
 #asset-search {
   padding: 10px;
   height: 300px;
+  overflow-y: scroll;
+}
+#reefers_grid_history{
+  overflow-x: scroll;
   overflow-y: scroll;
 }
 #total_reefers {

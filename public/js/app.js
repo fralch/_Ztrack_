@@ -2188,6 +2188,45 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -2202,8 +2241,49 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     this.iniciarMap();
     this.iniciarGraficos();
+    this.datatabl();
   },
   methods: {
+    datatabl: function datatabl() {
+      // $('#reefer_table_history').DataTable();
+      this.$nextTick(function () {
+        var table_1 = $("#reefer_table_history").DataTable({
+          scrollY: "400px",
+          scrollX: true,
+          paging: false,
+          fixedColumns: {
+            leftColumns: 0
+          },
+          fixedHeader: true,
+          language: {
+            retrieve: true,
+            decimal: "",
+            emptyTable: "No hay datos disponibles en la tabla",
+            info: "Mostrando del _START_ al _END_ de _TOTAL_ registros",
+            infoEmpty: "No se encontraron registros",
+            infoFiltered: "(filtrado de _MAX_ registros)",
+            infoPostFix: "",
+            thousands: ",",
+            lengthMenu: "Agrupar por _MENU_ filas",
+            loadingRecords: "Cargando...",
+            processing: "Procesando...",
+            search: "Buscar:",
+            zeroRecords: "No se encontraron registros",
+            paginate: {
+              first: "Primera",
+              last: "Ultima",
+              next: '<i class="fas fa-chevron-circle-right" style="font-size:20px;"></i>',
+              previous: '<i class="fas fa-chevron-circle-left" style="font-size:20px;"></i>'
+            },
+            aria: {
+              sortAscending: ": activar para ordenar de forma ascendente",
+              sortDescending: ": activar para ordenar de forma descendente"
+            }
+          },
+          responsive: true
+        });
+      });
+    },
     iniciarMap: function iniciarMap() {
       // var map = L.map('map').setView([51.505, -0.09], 13);
       var map;
@@ -3077,7 +3157,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n#asset-search {\r\n  padding: 10px;\r\n  height: 300px;\r\n  overflow-y: scroll;\n}\n#total_reefers {\r\n  padding: 10px;\r\n  height: 100px;\n}\n#asset_maps {\r\n  padding: 10px;\r\n  height: 400px;\r\n  /* overflow-y: scroll; */\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n#asset-search {\r\n  padding: 10px;\r\n  height: 300px;\r\n  overflow-y: scroll;\n}\n#reefers_grid_history{\r\n  overflow-x: scroll;\r\n  overflow-y: scroll;\n}\n#total_reefers {\r\n  padding: 10px;\r\n  height: 100px;\n}\n#asset_maps {\r\n  padding: 10px;\r\n  height: 400px;\r\n  /* overflow-y: scroll; */\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -26674,8 +26754,91 @@ var render = function () {
                         attrs: { id: "reefers_grid_history" },
                       },
                       [
-                        _vm._v(
-                          "\n                Reefer grid history\n              "
+                        _c(
+                          "table",
+                          {
+                            staticClass: "table display nowrap",
+                            attrs: { id: "reefer_table_history" },
+                          },
+                          [
+                            _c("thead", { staticClass: "thead-light" }, [
+                              _c("tr", [
+                                _c("th", { attrs: { scope: "col" } }, [
+                                  _vm._v("Run"),
+                                ]),
+                                _vm._v(" "),
+                                _c("th", { attrs: { scope: "col" } }, [
+                                  _vm._v("PWR"),
+                                ]),
+                                _vm._v(" "),
+                                _c("th", { attrs: { scope: "col" } }, [
+                                  _vm._v("OEM"),
+                                ]),
+                                _vm._v(" "),
+                                _c("th", { attrs: { scope: "col" } }, [
+                                  _vm._v("Reefer ID"),
+                                ]),
+                                _vm._v(" "),
+                                _c("th", { attrs: { scope: "col" } }, [
+                                  _vm._v("Booking"),
+                                ]),
+                                _vm._v(" "),
+                                _c("th", { attrs: { scope: "col" } }, [
+                                  _vm._v("Event"),
+                                ]),
+                                _vm._v(" "),
+                                _c("th", { attrs: { scope: "col" } }, [
+                                  _vm._v("BLQRB"),
+                                ]),
+                                _vm._v(" "),
+                                _c("th", { attrs: { scope: "col" } }, [
+                                  _vm._v("City"),
+                                ]),
+                                _vm._v(" "),
+                                _c("th", { attrs: { scope: "col" } }, [
+                                  _vm._v("State"),
+                                ]),
+                                _vm._v(" "),
+                                _c("th", { attrs: { scope: "col" } }, [
+                                  _vm._v("Country"),
+                                ]),
+                                _vm._v(" "),
+                                _c("th", { attrs: { scope: "col" } }, [
+                                  _vm._v("Alarm"),
+                                ]),
+                                _vm._v(" "),
+                                _c("th", { attrs: { scope: "col" } }, [
+                                  _vm._v("Opr mode"),
+                                ]),
+                              ]),
+                            ]),
+                            _vm._v(" "),
+                            _c("tbody", [
+                              _c("tr", [
+                                _c("td", [_vm._v("Mark")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("Otto")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@mdo")]),
+                              ]),
+                              _vm._v(" "),
+                              _c("tr", [
+                                _c("td", [_vm._v("Jacob")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("Thornton")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@fat")]),
+                              ]),
+                              _vm._v(" "),
+                              _c("tr", [
+                                _c("td", [_vm._v("Larry")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("the Bird")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@twitter")]),
+                              ]),
+                            ]),
+                          ]
                         ),
                       ]
                     ),
