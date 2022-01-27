@@ -3285,7 +3285,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -28691,13 +28690,15 @@ var render = function () {
       _c("div", { staticClass: "container-login100" }, [
         _c("div", { staticClass: "wrap-login100" }, [
           _c("form", { staticClass: "login100-form validate-form" }, [
-            _c("span", { staticClass: "login100-form-title p-b-34" }, [
-              _vm._v("\n            Zgroup\n          "),
-            ]),
-            _vm._v(" "),
             _vm._m(0),
             _vm._v(" "),
+            _c("br"),
+            _vm._v(" "),
+            _c("br"),
+            _vm._v(" "),
             _vm._m(1),
+            _vm._v(" "),
+            _vm._m(2),
             _vm._v(" "),
             _c(
               "div",
@@ -28714,8 +28715,6 @@ var render = function () {
               ],
               1
             ),
-            _vm._v(" "),
-            _vm._m(2),
             _vm._v(" "),
             _vm._m(3),
           ]),
@@ -28735,6 +28734,21 @@ var render = function () {
   ])
 }
 var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "w-full text-center" }, [
+      _c("img", {
+        staticStyle: { "margin-top": "-20px" },
+        attrs: {
+          src: "http://162.248.55.24/resources/images/zgroup_logo.png",
+          alt: "Logo",
+          height: "70px",
+        },
+      }),
+    ])
+  },
   function () {
     var _vm = this
     var _h = _vm.$createElement
@@ -28792,21 +28806,6 @@ var staticRenderFns = [
       _c("a", { staticClass: "txt2", attrs: { href: "#" } }, [
         _vm._v("\n              Nombre de usuario / contraseña?\n            "),
       ]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "w-full text-center" }, [
-      _c("img", {
-        staticStyle: { "margin-top": "-20px" },
-        attrs: {
-          src: "http://162.248.55.24/resources/images/zgroup_logo.png",
-          alt: "Logo",
-          height: "50px",
-        },
-      }),
     ])
   },
 ]

@@ -175,7 +175,7 @@ iframe {
 
 .container-login100 {
   width: 100%;  
-  min-height: 100vh;
+  height: 100vh;
   display: -webkit-box;
   display: -webkit-flex;
   display: -moz-box;
@@ -381,6 +381,11 @@ input.input100 {
 /*------------------------------------------------------------------
 [ Responsive ]*/
 
+@media (max-height: 900px) {
+  .wrap-login100 {
+    height: 100% !important;
+  }
+}
 @media (max-width: 992px) {
   .login100-form {
     width: 60%;
