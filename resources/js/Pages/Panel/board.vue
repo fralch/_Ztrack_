@@ -81,7 +81,7 @@
                 <div id="reefers_grid_history" class="col shadow-sm p-3 mb-5 bg-white rounded " style="margin: -30px 15px 10px 15px; height:400px;" >
                   <!-- dates -->
                   <!-- /// -->
-                  <table class="table display nowrap">
+                  <table class="table display nowrap" id="tblContenedores">
                     <thead class="thead-light">
                       <tr>
                         <th scope="col">Run</th>
@@ -143,6 +143,76 @@
                         <td>@twitter</td>
                         <td>@twitter</td>
                       </tr>
+                      <tr> 
+                        <td>   <i class="bi bi-power"></i> </td>
+                        <td>the Bird</td>
+                        <td>@twitter</td>
+                        <td>@twitter</td>
+                        <td>@twitter</td>
+                        <td>@twitter</td>
+                        <td>@twitter</td>
+                        <td>@twitter</td>
+                        <td>@twitter</td>
+                        <td>@twitter</td>
+                        <td>@twitter</td>
+                        <td>@twitter</td>
+                      </tr>
+                      <tr> 
+                        <td>   <i class="bi bi-power"></i> </td>
+                        <td>the Bird</td>
+                        <td>@twitter</td>
+                        <td>@twitter</td>
+                        <td>@twitter</td>
+                        <td>@twitter</td>
+                        <td>@twitter</td>
+                        <td>@twitter</td>
+                        <td>@twitter</td>
+                        <td>@twitter</td>
+                        <td>@twitter</td>
+                        <td>@twitter</td>
+                      </tr>
+                      <tr> 
+                        <td>   <i class="bi bi-power"></i> </td>
+                        <td>the Bird</td>
+                        <td>@twitter</td>
+                        <td>@twitter</td>
+                        <td>@twitter</td>
+                        <td>@twitter</td>
+                        <td>@twitter</td>
+                        <td>@twitter</td>
+                        <td>@twitter</td>
+                        <td>@twitter</td>
+                        <td>@twitter</td>
+                        <td>@twitter</td>
+                      </tr>
+                      <tr> 
+                        <td>   <i class="bi bi-power"></i> </td>
+                        <td>the Bird</td>
+                        <td>@twitter</td>
+                        <td>@twitter</td>
+                        <td>@twitter</td>
+                        <td>@twitter</td>
+                        <td>@twitter</td>
+                        <td>@twitter</td>
+                        <td>@twitter</td>
+                        <td>@twitter</td>
+                        <td>@twitter</td>
+                        <td>@twitter</td>
+                      </tr>
+                      <tr> 
+                        <td>   <i class="bi bi-power"></i> </td>
+                        <td>the Bird</td>
+                        <td>@twitter</td>
+                        <td>@twitter</td>
+                        <td>@twitter</td>
+                        <td>@twitter</td>
+                        <td>@twitter</td>
+                        <td>@twitter</td>
+                        <td>@twitter</td>
+                        <td>@twitter</td>
+                        <td>@twitter</td>
+                        <td>@twitter</td>
+                      </tr>
                     </tbody>
                   </table>
                 </div>
@@ -162,6 +232,12 @@
                         <th scope="col">Country</th>
                         <th scope="col">Alarm</th>
                         <th scope="col">Opr mode</th>
+                        <th scope="col">T set(C°)</th>
+                        <th scope="col">T sup 1 (C°)</th>
+                        <th scope="col">T rtn 1 (C°)</th>
+                        <th scope="col">T amb (C°)</th>
+                        <th scope="col">RH Set</th>
+                        <th scope="col">RH Read</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -259,21 +335,22 @@ export default {
     this.iniciarGraficosCargo();
     this.iniciarGraficosPTI();
     this.iniciarGraficosFleet();
-    this.datatabl();
+    this.TablaContenedores();
   },
 
   methods: {
-    datatabl() {
-      // $('#reefer_table_history').DataTable();
-       
-        $("#reefer_table_history").DataTable({
+    TablaContenedores() {
+      let self = this;
+      this.$nextTick(() => {
+        var table = $("#tblContenedores").DataTable({
+          scrollY: "400px",
           scrollX: true,
+          scrollCollapse: true,
           paging: false,
           fixedColumns: {
             leftColumns: 0,
           },
-        
-          fixedHeader: true,
+          order: [[1, "asc"]],
           language: {
             retrieve: true,
             decimal: "",
@@ -300,43 +377,15 @@ export default {
               sortDescending: ": activar para ordenar de forma descendente",
             },
           },
-          responsive: true,})
-        $("#reefer_table").DataTable({
-          scrollX: true,
-          paging: false,
-          fixedColumns: {
-            leftColumns: 0,
-          },
+          responsive: true,
+          dom: 'Bfrtip',
+          buttons: [
+              'copy', 'csv', 'excel', 'pdf', 'print'
+          ],
+        });
+
         
-          fixedHeader: true,
-          language: {
-            retrieve: true,
-            decimal: "",
-            emptyTable: "No hay datos disponibles en la tabla",
-            info: "Mostrando del _START_ al _END_ de _TOTAL_ registros",
-            infoEmpty: "No se encontraron registros",
-            infoFiltered: "(filtrado de _MAX_ registros)",
-            infoPostFix: "",
-            thousands: ",",
-            lengthMenu: "Agrupar por _MENU_ filas",
-            loadingRecords: "Cargando...",
-            processing: "Procesando...",
-            search: "Buscar:",
-            zeroRecords: "No se encontraron registros",
-            paginate: {
-              first: "Primera",
-              last: "Ultima",
-              next: '<i class="fas fa-chevron-circle-right" style="font-size:20px;"></i>',
-              previous:
-                '<i class="fas fa-chevron-circle-left" style="font-size:20px;"></i>',
-            },
-            aria: {
-              sortAscending: ": activar para ordenar de forma ascendente",
-              sortDescending: ": activar para ordenar de forma descendente",
-            },
-          },
-          responsive: true,})
-        
+      });
     },
     iniciarMap() {
       // var map = L.map('map').setView([51.505, -0.09], 13);

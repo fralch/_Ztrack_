@@ -2336,6 +2336,82 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -2354,78 +2430,50 @@ __webpack_require__.r(__webpack_exports__);
     this.iniciarGraficosCargo();
     this.iniciarGraficosPTI();
     this.iniciarGraficosFleet();
-    this.datatabl();
+    this.TablaContenedores();
   },
   methods: {
-    datatabl: function datatabl() {
-      // $('#reefer_table_history').DataTable();
-      $("#reefer_table_history").DataTable({
-        scrollX: true,
-        paging: false,
-        fixedColumns: {
-          leftColumns: 0
-        },
-        fixedHeader: true,
-        language: {
-          retrieve: true,
-          decimal: "",
-          emptyTable: "No hay datos disponibles en la tabla",
-          info: "Mostrando del _START_ al _END_ de _TOTAL_ registros",
-          infoEmpty: "No se encontraron registros",
-          infoFiltered: "(filtrado de _MAX_ registros)",
-          infoPostFix: "",
-          thousands: ",",
-          lengthMenu: "Agrupar por _MENU_ filas",
-          loadingRecords: "Cargando...",
-          processing: "Procesando...",
-          search: "Buscar:",
-          zeroRecords: "No se encontraron registros",
-          paginate: {
-            first: "Primera",
-            last: "Ultima",
-            next: '<i class="fas fa-chevron-circle-right" style="font-size:20px;"></i>',
-            previous: '<i class="fas fa-chevron-circle-left" style="font-size:20px;"></i>'
+    TablaContenedores: function TablaContenedores() {
+      var self = this;
+      this.$nextTick(function () {
+        var table = $("#tblContenedores").DataTable({
+          scrollY: "400px",
+          scrollX: true,
+          scrollCollapse: true,
+          paging: false,
+          fixedColumns: {
+            leftColumns: 0
           },
-          aria: {
-            sortAscending: ": activar para ordenar de forma ascendente",
-            sortDescending: ": activar para ordenar de forma descendente"
-          }
-        },
-        responsive: true
-      });
-      $("#reefer_table").DataTable({
-        scrollX: true,
-        paging: false,
-        fixedColumns: {
-          leftColumns: 0
-        },
-        fixedHeader: true,
-        language: {
-          retrieve: true,
-          decimal: "",
-          emptyTable: "No hay datos disponibles en la tabla",
-          info: "Mostrando del _START_ al _END_ de _TOTAL_ registros",
-          infoEmpty: "No se encontraron registros",
-          infoFiltered: "(filtrado de _MAX_ registros)",
-          infoPostFix: "",
-          thousands: ",",
-          lengthMenu: "Agrupar por _MENU_ filas",
-          loadingRecords: "Cargando...",
-          processing: "Procesando...",
-          search: "Buscar:",
-          zeroRecords: "No se encontraron registros",
-          paginate: {
-            first: "Primera",
-            last: "Ultima",
-            next: '<i class="fas fa-chevron-circle-right" style="font-size:20px;"></i>',
-            previous: '<i class="fas fa-chevron-circle-left" style="font-size:20px;"></i>'
+          order: [[1, "asc"]],
+          language: {
+            retrieve: true,
+            decimal: "",
+            emptyTable: "No hay datos disponibles en la tabla",
+            info: "Mostrando del _START_ al _END_ de _TOTAL_ registros",
+            infoEmpty: "No se encontraron registros",
+            infoFiltered: "(filtrado de _MAX_ registros)",
+            infoPostFix: "",
+            thousands: ",",
+            lengthMenu: "Agrupar por _MENU_ filas",
+            loadingRecords: "Cargando...",
+            processing: "Procesando...",
+            search: "Buscar:",
+            zeroRecords: "No se encontraron registros",
+            paginate: {
+              first: "Primera",
+              last: "Ultima",
+              next: '<i class="fas fa-chevron-circle-right" style="font-size:20px;"></i>',
+              previous: '<i class="fas fa-chevron-circle-left" style="font-size:20px;"></i>'
+            },
+            aria: {
+              sortAscending: ": activar para ordenar de forma ascendente",
+              sortDescending: ": activar para ordenar de forma descendente"
+            }
           },
-          aria: {
-            sortAscending: ": activar para ordenar de forma ascendente",
-            sortDescending: ": activar para ordenar de forma descendente"
-          }
-        },
-        responsive: true
+          responsive: true,
+          dom: 'Bfrtip',
+          buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
+        });
       });
     },
     iniciarMap: function iniciarMap() {
@@ -27127,145 +27175,292 @@ var render = function () {
                         attrs: { id: "reefers_grid_history" },
                       },
                       [
-                        _c("table", { staticClass: "table display nowrap" }, [
-                          _c("thead", { staticClass: "thead-light" }, [
-                            _c("tr", [
-                              _c("th", { attrs: { scope: "col" } }, [
-                                _vm._v("Run"),
+                        _c(
+                          "table",
+                          {
+                            staticClass: "table display nowrap",
+                            attrs: { id: "tblContenedores" },
+                          },
+                          [
+                            _c("thead", { staticClass: "thead-light" }, [
+                              _c("tr", [
+                                _c("th", { attrs: { scope: "col" } }, [
+                                  _vm._v("Run"),
+                                ]),
+                                _vm._v(" "),
+                                _c("th", { attrs: { scope: "col" } }, [
+                                  _vm._v("PWR"),
+                                ]),
+                                _vm._v(" "),
+                                _c("th", { attrs: { scope: "col" } }, [
+                                  _vm._v("OEM"),
+                                ]),
+                                _vm._v(" "),
+                                _c("th", { attrs: { scope: "col" } }, [
+                                  _vm._v("Reefer_ID"),
+                                ]),
+                                _vm._v(" "),
+                                _c("th", { attrs: { scope: "col" } }, [
+                                  _vm._v("Booking"),
+                                ]),
+                                _vm._v(" "),
+                                _c("th", { attrs: { scope: "col" } }, [
+                                  _vm._v("Event"),
+                                ]),
+                                _vm._v(" "),
+                                _c("th", { attrs: { scope: "col" } }, [
+                                  _vm._v("BLQRB"),
+                                ]),
+                                _vm._v(" "),
+                                _c("th", { attrs: { scope: "col" } }, [
+                                  _vm._v("City"),
+                                ]),
+                                _vm._v(" "),
+                                _c("th", { attrs: { scope: "col" } }, [
+                                  _vm._v("State"),
+                                ]),
+                                _vm._v(" "),
+                                _c("th", { attrs: { scope: "col" } }, [
+                                  _vm._v("Country"),
+                                ]),
+                                _vm._v(" "),
+                                _c("th", { attrs: { scope: "col" } }, [
+                                  _vm._v("Alarm"),
+                                ]),
+                                _vm._v(" "),
+                                _c("th", { attrs: { scope: "col" } }, [
+                                  _vm._v("Opr mode"),
+                                ]),
                               ]),
-                              _vm._v(" "),
-                              _c("th", { attrs: { scope: "col" } }, [
-                                _vm._v("PWR"),
-                              ]),
-                              _vm._v(" "),
-                              _c("th", { attrs: { scope: "col" } }, [
-                                _vm._v("OEM"),
-                              ]),
-                              _vm._v(" "),
-                              _c("th", { attrs: { scope: "col" } }, [
-                                _vm._v("Reefer_ID"),
-                              ]),
-                              _vm._v(" "),
-                              _c("th", { attrs: { scope: "col" } }, [
-                                _vm._v("Booking"),
-                              ]),
-                              _vm._v(" "),
-                              _c("th", { attrs: { scope: "col" } }, [
-                                _vm._v("Event"),
-                              ]),
-                              _vm._v(" "),
-                              _c("th", { attrs: { scope: "col" } }, [
-                                _vm._v("BLQRB"),
-                              ]),
-                              _vm._v(" "),
-                              _c("th", { attrs: { scope: "col" } }, [
-                                _vm._v("City"),
-                              ]),
-                              _vm._v(" "),
-                              _c("th", { attrs: { scope: "col" } }, [
-                                _vm._v("State"),
-                              ]),
-                              _vm._v(" "),
-                              _c("th", { attrs: { scope: "col" } }, [
-                                _vm._v("Country"),
-                              ]),
-                              _vm._v(" "),
-                              _c("th", { attrs: { scope: "col" } }, [
-                                _vm._v("Alarm"),
-                              ]),
-                              _vm._v(" "),
-                              _c("th", { attrs: { scope: "col" } }, [
-                                _vm._v("Opr mode"),
-                              ]),
-                            ]),
-                          ]),
-                          _vm._v(" "),
-                          _c("tbody", [
-                            _c("tr", [
-                              _c("td", [
-                                _c("i", { staticClass: "bi bi-power" }),
-                              ]),
-                              _vm._v(" "),
-                              _c("td", [_vm._v("Otto")]),
-                              _vm._v(" "),
-                              _c("td", [_vm._v("@mdo")]),
-                              _vm._v(" "),
-                              _c("td", [_vm._v("@mdo")]),
-                              _vm._v(" "),
-                              _c("td", [_vm._v("@mdo")]),
-                              _vm._v(" "),
-                              _c("td", [_vm._v("@mdo")]),
-                              _vm._v(" "),
-                              _c("td", [_vm._v("@mdo")]),
-                              _vm._v(" "),
-                              _c("td", [_vm._v("@mdo")]),
-                              _vm._v(" "),
-                              _c("td", [_vm._v("@mdo")]),
-                              _vm._v(" "),
-                              _c("td", [_vm._v("@mdo")]),
-                              _vm._v(" "),
-                              _c("td", [_vm._v("@mdo")]),
-                              _vm._v(" "),
-                              _c("td", [_vm._v("@mdo")]),
                             ]),
                             _vm._v(" "),
-                            _c("tr", [
-                              _c("td", [
-                                _c("i", { staticClass: "bi bi-power" }),
+                            _c("tbody", [
+                              _c("tr", [
+                                _c("td", [
+                                  _c("i", { staticClass: "bi bi-power" }),
+                                ]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("Otto")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@mdo")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@mdo")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@mdo")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@mdo")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@mdo")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@mdo")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@mdo")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@mdo")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@mdo")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@mdo")]),
                               ]),
                               _vm._v(" "),
-                              _c("td", [_vm._v("Thornton")]),
-                              _vm._v(" "),
-                              _c("td", [_vm._v("@fat")]),
-                              _vm._v(" "),
-                              _c("td", [_vm._v("@fat")]),
-                              _vm._v(" "),
-                              _c("td", [_vm._v("@fat")]),
-                              _vm._v(" "),
-                              _c("td", [_vm._v("@fat")]),
-                              _vm._v(" "),
-                              _c("td", [_vm._v("@fat")]),
-                              _vm._v(" "),
-                              _c("td", [_vm._v("@fat")]),
-                              _vm._v(" "),
-                              _c("td", [_vm._v("@fat")]),
-                              _vm._v(" "),
-                              _c("td", [_vm._v("@fat")]),
-                              _vm._v(" "),
-                              _c("td", [_vm._v("@fat")]),
-                              _vm._v(" "),
-                              _c("td", [_vm._v("@fat")]),
-                            ]),
-                            _vm._v(" "),
-                            _c("tr", [
-                              _c("td", [
-                                _c("i", { staticClass: "bi bi-power" }),
+                              _c("tr", [
+                                _c("td", [
+                                  _c("i", { staticClass: "bi bi-power" }),
+                                ]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("Thornton")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@fat")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@fat")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@fat")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@fat")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@fat")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@fat")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@fat")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@fat")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@fat")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@fat")]),
                               ]),
                               _vm._v(" "),
-                              _c("td", [_vm._v("the Bird")]),
+                              _c("tr", [
+                                _c("td", [
+                                  _c("i", { staticClass: "bi bi-power" }),
+                                ]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("the Bird")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@twitter")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@twitter")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@twitter")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@twitter")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@twitter")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@twitter")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@twitter")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@twitter")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@twitter")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@twitter")]),
+                              ]),
                               _vm._v(" "),
-                              _c("td", [_vm._v("@twitter")]),
+                              _c("tr", [
+                                _c("td", [
+                                  _c("i", { staticClass: "bi bi-power" }),
+                                ]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("the Bird")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@twitter")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@twitter")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@twitter")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@twitter")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@twitter")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@twitter")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@twitter")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@twitter")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@twitter")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@twitter")]),
+                              ]),
                               _vm._v(" "),
-                              _c("td", [_vm._v("@twitter")]),
+                              _c("tr", [
+                                _c("td", [
+                                  _c("i", { staticClass: "bi bi-power" }),
+                                ]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("the Bird")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@twitter")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@twitter")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@twitter")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@twitter")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@twitter")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@twitter")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@twitter")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@twitter")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@twitter")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@twitter")]),
+                              ]),
                               _vm._v(" "),
-                              _c("td", [_vm._v("@twitter")]),
+                              _c("tr", [
+                                _c("td", [
+                                  _c("i", { staticClass: "bi bi-power" }),
+                                ]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("the Bird")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@twitter")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@twitter")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@twitter")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@twitter")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@twitter")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@twitter")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@twitter")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@twitter")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@twitter")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@twitter")]),
+                              ]),
                               _vm._v(" "),
-                              _c("td", [_vm._v("@twitter")]),
+                              _c("tr", [
+                                _c("td", [
+                                  _c("i", { staticClass: "bi bi-power" }),
+                                ]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("the Bird")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@twitter")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@twitter")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@twitter")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@twitter")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@twitter")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@twitter")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@twitter")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@twitter")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@twitter")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@twitter")]),
+                              ]),
                               _vm._v(" "),
-                              _c("td", [_vm._v("@twitter")]),
-                              _vm._v(" "),
-                              _c("td", [_vm._v("@twitter")]),
-                              _vm._v(" "),
-                              _c("td", [_vm._v("@twitter")]),
-                              _vm._v(" "),
-                              _c("td", [_vm._v("@twitter")]),
-                              _vm._v(" "),
-                              _c("td", [_vm._v("@twitter")]),
-                              _vm._v(" "),
-                              _c("td", [_vm._v("@twitter")]),
+                              _c("tr", [
+                                _c("td", [
+                                  _c("i", { staticClass: "bi bi-power" }),
+                                ]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("the Bird")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@twitter")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@twitter")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@twitter")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@twitter")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@twitter")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@twitter")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@twitter")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@twitter")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@twitter")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@twitter")]),
+                              ]),
                             ]),
-                          ]),
-                        ]),
+                          ]
+                        ),
                       ]
                     ),
                     _vm._v(" "),
@@ -27329,6 +27524,30 @@ var render = function () {
                               _vm._v(" "),
                               _c("th", { attrs: { scope: "col" } }, [
                                 _vm._v("Opr mode"),
+                              ]),
+                              _vm._v(" "),
+                              _c("th", { attrs: { scope: "col" } }, [
+                                _vm._v("T set(C°)"),
+                              ]),
+                              _vm._v(" "),
+                              _c("th", { attrs: { scope: "col" } }, [
+                                _vm._v("T sup 1 (C°)"),
+                              ]),
+                              _vm._v(" "),
+                              _c("th", { attrs: { scope: "col" } }, [
+                                _vm._v("T rtn 1 (C°)"),
+                              ]),
+                              _vm._v(" "),
+                              _c("th", { attrs: { scope: "col" } }, [
+                                _vm._v("T amb (C°)"),
+                              ]),
+                              _vm._v(" "),
+                              _c("th", { attrs: { scope: "col" } }, [
+                                _vm._v("RH Set"),
+                              ]),
+                              _vm._v(" "),
+                              _c("th", { attrs: { scope: "col" } }, [
+                                _vm._v("RH Read"),
                               ]),
                             ]),
                           ]),
