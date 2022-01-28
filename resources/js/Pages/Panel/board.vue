@@ -10,7 +10,7 @@
           <div class="row" style=" margin: 0 0 0 0px;">
             <div style="width: 25%; margin: 10px 0 0 0;">
               <div id="asset-search" class="col shadow-sm p-3 mb-5 bg-white rounded" >
-                asset search
+                Asset search
                 <input type="text" class="form-control" placeholder="Saved seaches" aria-label="Username" aria-describedby="basic-addon1" style="margin:5px">
                 <div class="form-floating" style="margin:5px">
                   <textarea class="form-control" placeholder="Asset ID" id="floatingTextarea"></textarea>
@@ -19,29 +19,25 @@
                   <textarea class="form-control" placeholder="Booking Number" id="floatingTextarea"></textarea>
                 </div>
                 <input type="text" class="form-control" placeholder="Geofence Status" aria-label="Username" aria-describedby="basic-addon1" style="margin:5px">
-                <input type="text" class="form-control" placeholder="Geofence ID" aria-label="Username" aria-describedby="basic-addon1" style="margin:5px">
-                <input type="text" class="form-control" placeholder="OEM Type" aria-label="Username" aria-describedby="basic-addon1" style="margin:5px">
-                <input type="text" class="form-control" placeholder="Country" aria-label="Username" aria-describedby="basic-addon1" style="margin:5px">
-                <input type="text" class="form-control" placeholder="Reporting (min)" aria-label="Username" aria-describedby="basic-addon1" style="margin:5px">
                 <div class="btn-group">
                   <a href="#" class="btn btn-primary active" aria-current="page">Search</a>
                   <a href="#" class="btn btn-primary">Clear</a>
                 </div>
               </div>
               <div id="micro-alarms" class="col shadow-sm p-3 mb-5 bg-white rounded" >
-                micro alarms
+                Micro alarms
                 <canvas id="myChart_alarms"></canvas>
               </div>
               <div id="cargo-care" class="col shadow-sm p-3 mb-5 bg-white rounded" >
-                cargo care
+                Cargo care
                 <canvas id="myChart_cargo"></canvas>
               </div>
               <div id="pti-result" class="col shadow-sm p-3 mb-5 bg-white rounded" >
-                pti result
+                PTI result
                 <canvas id="myChart_pti"></canvas>
               </div>
               <div id="reefers-fleet" class="col shadow-sm p-3 mb-5 bg-white rounded" >
-                reefers fleet 
+                Reefers fleet 
                  <canvas id="myChart_fleet"></canvas>
               </div>
             </div>
@@ -819,7 +815,7 @@ export default {
 <style lang="css">
 #asset-search {
   padding: 10px;
-  height: 300px;
+  height: 320px;
   overflow-y: scroll;
 }
 #reefers_grid_history{

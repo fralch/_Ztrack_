@@ -2618,10 +2618,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -3690,7 +3686,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n#asset-search {\r\n  padding: 10px;\r\n  height: 300px;\r\n  overflow-y: scroll;\n}\n#reefers_grid_history{\r\n  /* overflow-x: scroll; */\r\n  overflow-y: scroll;\n}\n#reefers_grid{\r\n  /* overflow-x: scroll; */\r\n  overflow-y: scroll;\n}\n#total_reefers {\r\n  padding: 10px;\r\n  height: 100px;\n}\n#asset_maps {\r\n  padding: 10px;\r\n  height: 400px;\r\n  /* overflow-y: scroll; */\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n#asset-search {\r\n  padding: 10px;\r\n  height: 320px;\r\n  overflow-y: scroll;\n}\n#reefers_grid_history{\r\n  /* overflow-x: scroll; */\r\n  overflow-y: scroll;\n}\n#reefers_grid{\r\n  /* overflow-x: scroll; */\r\n  overflow-y: scroll;\n}\n#total_reefers {\r\n  padding: 10px;\r\n  height: 100px;\n}\n#asset_maps {\r\n  padding: 10px;\r\n  height: 400px;\r\n  /* overflow-y: scroll; */\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -27119,7 +27115,7 @@ var render = function () {
                         },
                         [
                           _vm._v(
-                            "\n              asset search\n              "
+                            "\n              Asset search\n              "
                           ),
                           _c("input", {
                             staticClass: "form-control",
@@ -27177,50 +27173,6 @@ var render = function () {
                             },
                           }),
                           _vm._v(" "),
-                          _c("input", {
-                            staticClass: "form-control",
-                            staticStyle: { margin: "5px" },
-                            attrs: {
-                              type: "text",
-                              placeholder: "Geofence ID",
-                              "aria-label": "Username",
-                              "aria-describedby": "basic-addon1",
-                            },
-                          }),
-                          _vm._v(" "),
-                          _c("input", {
-                            staticClass: "form-control",
-                            staticStyle: { margin: "5px" },
-                            attrs: {
-                              type: "text",
-                              placeholder: "OEM Type",
-                              "aria-label": "Username",
-                              "aria-describedby": "basic-addon1",
-                            },
-                          }),
-                          _vm._v(" "),
-                          _c("input", {
-                            staticClass: "form-control",
-                            staticStyle: { margin: "5px" },
-                            attrs: {
-                              type: "text",
-                              placeholder: "Country",
-                              "aria-label": "Username",
-                              "aria-describedby": "basic-addon1",
-                            },
-                          }),
-                          _vm._v(" "),
-                          _c("input", {
-                            staticClass: "form-control",
-                            staticStyle: { margin: "5px" },
-                            attrs: {
-                              type: "text",
-                              placeholder: "Reporting (min)",
-                              "aria-label": "Username",
-                              "aria-describedby": "basic-addon1",
-                            },
-                          }),
-                          _vm._v(" "),
                           _c("div", { staticClass: "btn-group" }, [
                             _c(
                               "a",
@@ -27252,7 +27204,7 @@ var render = function () {
                         },
                         [
                           _vm._v(
-                            "\n              micro alarms\n              "
+                            "\n              Micro alarms\n              "
                           ),
                           _c("canvas", { attrs: { id: "myChart_alarms" } }),
                         ]
@@ -27266,7 +27218,7 @@ var render = function () {
                           attrs: { id: "cargo-care" },
                         },
                         [
-                          _vm._v("\n              cargo care\n              "),
+                          _vm._v("\n              Cargo care\n              "),
                           _c("canvas", { attrs: { id: "myChart_cargo" } }),
                         ]
                       ),
@@ -27279,7 +27231,7 @@ var render = function () {
                           attrs: { id: "pti-result" },
                         },
                         [
-                          _vm._v("\n              pti result\n              "),
+                          _vm._v("\n              PTI result\n              "),
                           _c("canvas", { attrs: { id: "myChart_pti" } }),
                         ]
                       ),
@@ -27293,7 +27245,7 @@ var render = function () {
                         },
                         [
                           _vm._v(
-                            "\n              reefers fleet \n               "
+                            "\n              Reefers fleet \n               "
                           ),
                           _c("canvas", { attrs: { id: "myChart_fleet" } }),
                         ]
