@@ -27,7 +27,7 @@
               <span class="focus-input100"></span>
             </div>
             
-            <div class="container-login100-form-btn">
+            <div class="container-login100-form-btn" >
                <!-- se usa link para mandar a ver un componente -->
              <Link class="login100-form-btn" :href="$route('paneles.board')">Inicia sesión</Link>
             </div>

@@ -8,7 +8,7 @@
         <!-- ---------------------- -->
         <div class="content" >
           <div class="row" style=" margin: 0 0 0 0px;">
-            <div style="width: 25%; margin: 10px 0 0 0;">
+            <div style="width: 25%; margin: 10px 0 0 -5px;">
               <div id="asset-search" class="col shadow-sm p-3 mb-5 bg-white rounded" >
                 Asset search
                 <input type="text" class="form-control" placeholder="Saved seaches" aria-label="Username" aria-describedby="basic-addon1" style="margin:5px">
@@ -45,25 +45,25 @@
                 <div id="total_reefers" class="col shadow-sm p-3 mb-5 bg-white rounded " style="margin: 10px 15px 0px 15px;">
                   <div>Total Reefers: 192</div>
                   <div class="row" style="margin: 0 10px;">
-                    <button type="button" class="col-3 btn btn-outline-success" >
+                    <button type="button" class="col-3 btn btn-success" >
                       <i class="bi bi-power"></i> 
                       <b style="font-size:1.2em;">91</b>
                       &nbsp;
                       Running
                     </button>
-                    <button type="button" class="col-3 btn btn-outline-secondary" >
+                    <button type="button" class="col-3 btn btn-secondary" >
                       <i class="bi bi-power"></i> 
                       <b style="font-size:1.2em;">0</b>
                       &nbsp;
                       Standby
                     </button>
-                    <button type="button" class="col-3 btn btn-outline-danger" >
+                    <button type="button" class="col-3 btn btn-danger" >
                       <i class="bi bi-power"></i> 
                       <b style="font-size:1.2em;">0</b>
                       &nbsp;
                       Shutdown
                     </button>
-                    <button type="button" class="col-3 btn btn-outline-dark" >
+                    <button type="button" class="col-3 btn btn-dark" >
                       <i class="bi bi-power"></i> 
                       <b style="font-size:1.2em;">0</b>
                       &nbsp;
@@ -74,12 +74,12 @@
                 <div id="asset_maps" class="col shadow-sm p-3 mb-5 bg-white rounded " style="margin: -30px 15px 10px 15px;">
                    <div id="map" style="width:100%; height:365px;"></div>
                 </div>            
-                <div id="reefers_grid_history" class="col shadow-sm p-3 mb-5 bg-white rounded " style="margin: -30px 15px 10px 15px; height:400px;" >
+                <div id="reefers_grid_history" class="col shadow-sm p-3 mb-5 bg-white rounded " style="margin: -30px 15px 10px 15px; height:600px;" >
                   <!-- dates -->
                   <!-- /// -->
                   <table class="table display nowrap" id="tblContenedores">
-                    <thead class="thead-light">
-                      <tr>
+                    <thead>
+                      <tr class="bg-success" style="color:white !important;">
                         <th scope="col">Run</th>
                         <th scope="col">PWR</th>
                         <th scope="col">OEM</th>
@@ -281,14 +281,54 @@
                         <td>@mdo</td>
                         <td>@mdo</td>
                       </tr>
+                      <tr>
+                        <td><i class="bi bi-power"></i></td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                        <td>@mdo</td>
+                        <td>@mdo</td>
+                        <td>@mdo</td>
+                        <td>@mdo</td>
+                        <td>@mdo</td>
+                        <td>@mdo</td>
+                        <td>@mdo</td>
+                        <td>@mdo</td>
+                        <td>@mdo</td>
+                        <td>@mdo</td>
+                        <td>@mdo</td>
+                        <td>@mdo</td>
+                        <td>@mdo</td>
+                        <td>@mdo</td>
+                        <td>@mdo</td>
+                      </tr>
+                      <tr>
+                        <td><i class="bi bi-power"></i></td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                        <td>@mdo</td>
+                        <td>@mdo</td>
+                        <td>@mdo</td>
+                        <td>@mdo</td>
+                        <td>@mdo</td>
+                        <td>@mdo</td>
+                        <td>@mdo</td>
+                        <td>@mdo</td>
+                        <td>@mdo</td>
+                        <td>@mdo</td>
+                        <td>@mdo</td>
+                        <td>@mdo</td>
+                        <td>@mdo</td>
+                        <td>@mdo</td>
+                        <td>@mdo</td>
+                      </tr>
                       
                     </tbody>
                   </table>
                 </div>
-                <div id="reefers_grid" class="col shadow-sm p-3 mb-5 bg-white rounded " style="margin: -30px 15px 10px 15px; height:400px;">
+                <div id="reefers_grid" class="col shadow-sm p-3 mb-5 bg-white rounded " style="margin: -30px 15px 10px 15px; height:600px;">
                   <table  class="table display nowrap" id="tblDetalleContenedores">
-                    <thead class="thead-light">
-                      <tr>
+                    <thead>
+                      <tr class="bg-danger" style="color:white !important;">
                         <th scope="col">Run</th>
                         <th scope="col">PWR</th>
                         <th scope="col">OEM</th>

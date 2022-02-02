@@ -2618,6 +2618,46 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -27104,7 +27144,7 @@ var render = function () {
                 [
                   _c(
                     "div",
-                    { staticStyle: { width: "25%", margin: "10px 0 0 0" } },
+                    { staticStyle: { width: "25%", margin: "10px 0 0 -5px" } },
                     [
                       _c(
                         "div",
@@ -27274,7 +27314,7 @@ var render = function () {
                             _c(
                               "button",
                               {
-                                staticClass: "col-3 btn btn-outline-success",
+                                staticClass: "col-3 btn btn-success",
                                 attrs: { type: "button" },
                               },
                               [
@@ -27294,7 +27334,7 @@ var render = function () {
                             _c(
                               "button",
                               {
-                                staticClass: "col-3 btn btn-outline-secondary",
+                                staticClass: "col-3 btn btn-secondary",
                                 attrs: { type: "button" },
                               },
                               [
@@ -27314,7 +27354,7 @@ var render = function () {
                             _c(
                               "button",
                               {
-                                staticClass: "col-3 btn btn-outline-danger",
+                                staticClass: "col-3 btn btn-danger",
                                 attrs: { type: "button" },
                               },
                               [
@@ -27334,7 +27374,7 @@ var render = function () {
                             _c(
                               "button",
                               {
-                                staticClass: "col-3 btn btn-outline-dark",
+                                staticClass: "col-3 btn btn-dark",
                                 attrs: { type: "button" },
                               },
                               [
@@ -27376,7 +27416,7 @@ var render = function () {
                         staticClass: "col shadow-sm p-3 mb-5 bg-white rounded ",
                         staticStyle: {
                           margin: "-30px 15px 10px 15px",
-                          height: "400px",
+                          height: "600px",
                         },
                         attrs: { id: "reefers_grid_history" },
                       },
@@ -27388,80 +27428,87 @@ var render = function () {
                             attrs: { id: "tblContenedores" },
                           },
                           [
-                            _c("thead", { staticClass: "thead-light" }, [
-                              _c("tr", [
-                                _c("th", { attrs: { scope: "col" } }, [
-                                  _vm._v("Run"),
-                                ]),
-                                _vm._v(" "),
-                                _c("th", { attrs: { scope: "col" } }, [
-                                  _vm._v("PWR"),
-                                ]),
-                                _vm._v(" "),
-                                _c("th", { attrs: { scope: "col" } }, [
-                                  _vm._v("OEM"),
-                                ]),
-                                _vm._v(" "),
-                                _c("th", { attrs: { scope: "col" } }, [
-                                  _vm._v("Reefer_ID"),
-                                ]),
-                                _vm._v(" "),
-                                _c("th", { attrs: { scope: "col" } }, [
-                                  _vm._v("Booking"),
-                                ]),
-                                _vm._v(" "),
-                                _c("th", { attrs: { scope: "col" } }, [
-                                  _vm._v("Event"),
-                                ]),
-                                _vm._v(" "),
-                                _c("th", { attrs: { scope: "col" } }, [
-                                  _vm._v("BLQRB"),
-                                ]),
-                                _vm._v(" "),
-                                _c("th", { attrs: { scope: "col" } }, [
-                                  _vm._v("City"),
-                                ]),
-                                _vm._v(" "),
-                                _c("th", { attrs: { scope: "col" } }, [
-                                  _vm._v("State"),
-                                ]),
-                                _vm._v(" "),
-                                _c("th", { attrs: { scope: "col" } }, [
-                                  _vm._v("Country"),
-                                ]),
-                                _vm._v(" "),
-                                _c("th", { attrs: { scope: "col" } }, [
-                                  _vm._v("Alarm"),
-                                ]),
-                                _vm._v(" "),
-                                _c("th", { attrs: { scope: "col" } }, [
-                                  _vm._v("Opr mode"),
-                                ]),
-                                _vm._v(" "),
-                                _c("th", { attrs: { scope: "col" } }, [
-                                  _vm._v("T set(C°)"),
-                                ]),
-                                _vm._v(" "),
-                                _c("th", { attrs: { scope: "col" } }, [
-                                  _vm._v("T sup 1 (C°)"),
-                                ]),
-                                _vm._v(" "),
-                                _c("th", { attrs: { scope: "col" } }, [
-                                  _vm._v("T rtn 1 (C°)"),
-                                ]),
-                                _vm._v(" "),
-                                _c("th", { attrs: { scope: "col" } }, [
-                                  _vm._v("T amb (C°)"),
-                                ]),
-                                _vm._v(" "),
-                                _c("th", { attrs: { scope: "col" } }, [
-                                  _vm._v("RH Set"),
-                                ]),
-                                _vm._v(" "),
-                                _c("th", { attrs: { scope: "col" } }, [
-                                  _vm._v("RH Read"),
-                                ]),
-                              ]),
+                            _c("thead", [
+                              _c(
+                                "tr",
+                                {
+                                  staticClass: "bg-success",
+                                  staticStyle: { color: "white !important" },
+                                },
+                                [
+                                  _c("th", { attrs: { scope: "col" } }, [
+                                    _vm._v("Run"),
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("th", { attrs: { scope: "col" } }, [
+                                    _vm._v("PWR"),
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("th", { attrs: { scope: "col" } }, [
+                                    _vm._v("OEM"),
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("th", { attrs: { scope: "col" } }, [
+                                    _vm._v("Reefer_ID"),
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("th", { attrs: { scope: "col" } }, [
+                                    _vm._v("Booking"),
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("th", { attrs: { scope: "col" } }, [
+                                    _vm._v("Event"),
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("th", { attrs: { scope: "col" } }, [
+                                    _vm._v("BLQRB"),
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("th", { attrs: { scope: "col" } }, [
+                                    _vm._v("City"),
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("th", { attrs: { scope: "col" } }, [
+                                    _vm._v("State"),
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("th", { attrs: { scope: "col" } }, [
+                                    _vm._v("Country"),
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("th", { attrs: { scope: "col" } }, [
+                                    _vm._v("Alarm"),
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("th", { attrs: { scope: "col" } }, [
+                                    _vm._v("Opr mode"),
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("th", { attrs: { scope: "col" } }, [
+                                    _vm._v("T set(C°)"),
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("th", { attrs: { scope: "col" } }, [
+                                    _vm._v("T sup 1 (C°)"),
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("th", { attrs: { scope: "col" } }, [
+                                    _vm._v("T rtn 1 (C°)"),
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("th", { attrs: { scope: "col" } }, [
+                                    _vm._v("T amb (C°)"),
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("th", { attrs: { scope: "col" } }, [
+                                    _vm._v("RH Set"),
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("th", { attrs: { scope: "col" } }, [
+                                    _vm._v("RH Read"),
+                                  ]),
+                                ]
+                              ),
                             ]),
                             _vm._v(" "),
                             _c("tbody", [
@@ -27824,6 +27871,86 @@ var render = function () {
                                 _vm._v(" "),
                                 _c("td", [_vm._v("@mdo")]),
                               ]),
+                              _vm._v(" "),
+                              _c("tr", [
+                                _c("td", [
+                                  _c("i", { staticClass: "bi bi-power" }),
+                                ]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("Otto")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@mdo")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@mdo")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@mdo")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@mdo")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@mdo")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@mdo")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@mdo")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@mdo")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@mdo")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@mdo")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@mdo")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@mdo")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@mdo")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@mdo")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@mdo")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@mdo")]),
+                              ]),
+                              _vm._v(" "),
+                              _c("tr", [
+                                _c("td", [
+                                  _c("i", { staticClass: "bi bi-power" }),
+                                ]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("Otto")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@mdo")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@mdo")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@mdo")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@mdo")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@mdo")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@mdo")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@mdo")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@mdo")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@mdo")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@mdo")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@mdo")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@mdo")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@mdo")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@mdo")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@mdo")]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("@mdo")]),
+                              ]),
                             ]),
                           ]
                         ),
@@ -27836,7 +27963,7 @@ var render = function () {
                         staticClass: "col shadow-sm p-3 mb-5 bg-white rounded ",
                         staticStyle: {
                           margin: "-30px 15px 10px 15px",
-                          height: "400px",
+                          height: "600px",
                         },
                         attrs: { id: "reefers_grid" },
                       },
@@ -27848,80 +27975,87 @@ var render = function () {
                             attrs: { id: "tblDetalleContenedores" },
                           },
                           [
-                            _c("thead", { staticClass: "thead-light" }, [
-                              _c("tr", [
-                                _c("th", { attrs: { scope: "col" } }, [
-                                  _vm._v("Run"),
-                                ]),
-                                _vm._v(" "),
-                                _c("th", { attrs: { scope: "col" } }, [
-                                  _vm._v("PWR"),
-                                ]),
-                                _vm._v(" "),
-                                _c("th", { attrs: { scope: "col" } }, [
-                                  _vm._v("OEM"),
-                                ]),
-                                _vm._v(" "),
-                                _c("th", { attrs: { scope: "col" } }, [
-                                  _vm._v("Reefer_ID"),
-                                ]),
-                                _vm._v(" "),
-                                _c("th", { attrs: { scope: "col" } }, [
-                                  _vm._v("Booking"),
-                                ]),
-                                _vm._v(" "),
-                                _c("th", { attrs: { scope: "col" } }, [
-                                  _vm._v("Event"),
-                                ]),
-                                _vm._v(" "),
-                                _c("th", { attrs: { scope: "col" } }, [
-                                  _vm._v("BLQRB"),
-                                ]),
-                                _vm._v(" "),
-                                _c("th", { attrs: { scope: "col" } }, [
-                                  _vm._v("City"),
-                                ]),
-                                _vm._v(" "),
-                                _c("th", { attrs: { scope: "col" } }, [
-                                  _vm._v("State"),
-                                ]),
-                                _vm._v(" "),
-                                _c("th", { attrs: { scope: "col" } }, [
-                                  _vm._v("Country"),
-                                ]),
-                                _vm._v(" "),
-                                _c("th", { attrs: { scope: "col" } }, [
-                                  _vm._v("Alarm"),
-                                ]),
-                                _vm._v(" "),
-                                _c("th", { attrs: { scope: "col" } }, [
-                                  _vm._v("Opr mode"),
-                                ]),
-                                _vm._v(" "),
-                                _c("th", { attrs: { scope: "col" } }, [
-                                  _vm._v("T set(C°)"),
-                                ]),
-                                _vm._v(" "),
-                                _c("th", { attrs: { scope: "col" } }, [
-                                  _vm._v("T sup 1 (C°)"),
-                                ]),
-                                _vm._v(" "),
-                                _c("th", { attrs: { scope: "col" } }, [
-                                  _vm._v("T rtn 1 (C°)"),
-                                ]),
-                                _vm._v(" "),
-                                _c("th", { attrs: { scope: "col" } }, [
-                                  _vm._v("T amb (C°)"),
-                                ]),
-                                _vm._v(" "),
-                                _c("th", { attrs: { scope: "col" } }, [
-                                  _vm._v("RH Set"),
-                                ]),
-                                _vm._v(" "),
-                                _c("th", { attrs: { scope: "col" } }, [
-                                  _vm._v("RH Read"),
-                                ]),
-                              ]),
+                            _c("thead", [
+                              _c(
+                                "tr",
+                                {
+                                  staticClass: "bg-danger",
+                                  staticStyle: { color: "white !important" },
+                                },
+                                [
+                                  _c("th", { attrs: { scope: "col" } }, [
+                                    _vm._v("Run"),
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("th", { attrs: { scope: "col" } }, [
+                                    _vm._v("PWR"),
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("th", { attrs: { scope: "col" } }, [
+                                    _vm._v("OEM"),
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("th", { attrs: { scope: "col" } }, [
+                                    _vm._v("Reefer_ID"),
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("th", { attrs: { scope: "col" } }, [
+                                    _vm._v("Booking"),
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("th", { attrs: { scope: "col" } }, [
+                                    _vm._v("Event"),
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("th", { attrs: { scope: "col" } }, [
+                                    _vm._v("BLQRB"),
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("th", { attrs: { scope: "col" } }, [
+                                    _vm._v("City"),
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("th", { attrs: { scope: "col" } }, [
+                                    _vm._v("State"),
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("th", { attrs: { scope: "col" } }, [
+                                    _vm._v("Country"),
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("th", { attrs: { scope: "col" } }, [
+                                    _vm._v("Alarm"),
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("th", { attrs: { scope: "col" } }, [
+                                    _vm._v("Opr mode"),
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("th", { attrs: { scope: "col" } }, [
+                                    _vm._v("T set(C°)"),
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("th", { attrs: { scope: "col" } }, [
+                                    _vm._v("T sup 1 (C°)"),
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("th", { attrs: { scope: "col" } }, [
+                                    _vm._v("T rtn 1 (C°)"),
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("th", { attrs: { scope: "col" } }, [
+                                    _vm._v("T amb (C°)"),
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("th", { attrs: { scope: "col" } }, [
+                                    _vm._v("RH Set"),
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("th", { attrs: { scope: "col" } }, [
+                                    _vm._v("RH Read"),
+                                  ]),
+                                ]
+                              ),
                             ]),
                             _vm._v(" "),
                             _c("tbody", [
@@ -29411,15 +29545,15 @@ var render = function () {
           {
             staticClass: "col-12 navbar navbar-expand-lg navbar-light bg-light",
             staticStyle: {
-              height: "30px !important",
-              "background-color": "white !important",
+              height: "40px !important",
+              "background-color": "#232C4C !important",
               "box-shadow": "0px 0px 13px 2px rgba(0,0,0,0.15) !important",
             },
           },
           [
             _c("img", {
               attrs: {
-                src: "/images/logos/copo-de-nieve.png",
+                src: "/images/logos/copos-de-nieve.png",
                 alt: "Logo",
                 width: "20px",
               },
@@ -29433,7 +29567,7 @@ var render = function () {
                 staticStyle: {
                   "font-family": "Poppins-Regular",
                   "text-transform": "uppercase",
-                  color: "#03188f",
+                  color: "white",
                 },
                 attrs: { href: "#" },
               },
@@ -29492,6 +29626,7 @@ var staticRenderFns = [
                 "a",
                 {
                   staticClass: "nav-link dropdown-toggle",
+                  staticStyle: { color: "white !important" },
                   attrs: {
                     href: "#",
                     id: "navbarDropdown",

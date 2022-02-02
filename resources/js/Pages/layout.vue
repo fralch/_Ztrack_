@@ -2,11 +2,11 @@
   <div style="height: 100% !important">
     <div class="container-fluid">
       <div class="row">
-        <nav class="col-12 navbar navbar-expand-lg navbar-light bg-light" style="height:30px !important; background-color:white !important; box-shadow: 0px 0px 13px 2px rgba(0,0,0,0.15) !important;">
-          <img :src="'/images/logos/copo-de-nieve.png'" alt="Logo" width="20px" /> 
+        <nav class="col-12 navbar navbar-expand-lg navbar-light bg-light" style="height:40px !important; background-color: #232C4C !important; box-shadow: 0px 0px 13px 2px rgba(0,0,0,0.15) !important;">
+          <img :src="'/images/logos/copos-de-nieve.png'" alt="Logo" width="20px" /> 
           <!-- <img src="http://162.248.55.24/resources/images/zgroup_logo.png" alt="Logo" width="30px" />  -->
           &nbsp;
-          <a class="navbar-brand" href="#" style="font-family: Poppins-Regular; text-transform: uppercase;color: #03188f;">Zgroup</a>
+          <a class="navbar-brand" href="#" style="font-family: Poppins-Regular; text-transform: uppercase;color: white;">Zgroup</a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -26,7 +26,7 @@
             <form class="form-inline my-2 my-lg-0">
              <ul class="navbar-nav mr-auto">
               <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:white !important;" >
                   Ivineños
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
