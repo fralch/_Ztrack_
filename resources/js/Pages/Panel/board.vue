@@ -590,7 +590,7 @@ export default {
       let self = this;
       this.$nextTick(() => {
         var table = $("#tblContenedores").DataTable({
-          scrollY: "400px",
+          scrollY: "600px",
           scrollX: true,
           scrollCollapse: true,
           paging: true,
@@ -638,7 +638,7 @@ export default {
       let self = this;
       this.$nextTick(() => {
         var table = $("#tblDetalleContenedores").DataTable({
-          scrollY: "400px",
+          scrollY: "600px",
           scrollX: true,
           scrollCollapse: true,
           paging: false,

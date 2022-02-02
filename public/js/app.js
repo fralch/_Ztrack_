@@ -2684,7 +2684,7 @@ __webpack_require__.r(__webpack_exports__);
       var self = this;
       this.$nextTick(function () {
         var table = $("#tblContenedores").DataTable({
-          scrollY: "400px",
+          scrollY: "600px",
           scrollX: true,
           scrollCollapse: true,
           paging: true,
@@ -2727,7 +2727,7 @@ __webpack_require__.r(__webpack_exports__);
       var self = this;
       this.$nextTick(function () {
         var table = $("#tblDetalleContenedores").DataTable({
-          scrollY: "400px",
+          scrollY: "600px",
           scrollX: true,
           scrollCollapse: true,
           paging: false,
