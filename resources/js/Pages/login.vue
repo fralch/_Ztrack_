@@ -23,14 +23,16 @@
               <span class="focus-input100"></span>
             </div>
             <div class="wrap-input100 rs2-wrap-input100 validate-input m-b-20" data-validate="Type password" >
-              <input class="input100" type="password" name="pass" placeholder="Contraseña" v-model="password">
+              <input class="input100" type="password" name="pass" placeholder="Contraseña" v-model="password" v-on:keyup.enter="login()">
+              <!-- v-model="password" v-on:keyup.enter="login()" ===> es para que cuando presiones enter ejecute una funcion -->
               <span class="focus-input100"></span>
             </div>
             
             <div class="container-login100-form-btn" >
                <!-- se usa link para mandar a ver un componente -->
              <!-- <Link class="login100-form-btn" :href="$route('paneles.board')">Inicia sesión</Link> -->
-             <a href="javascript:void(0)" class="login100-form-btn" @click="login()">Inicia sesión</a>
+             <a href="javascript:void(0)" class="login100-form-btn" @click="login()"  >Inicia sesión</a>
+            
             </div>
 
             <div class="w-full text-center p-t-27 p-b-239">
