@@ -9,13 +9,13 @@ use Illuminate\Support\Facades\DB;
 
 class PanelController extends Controller
 {
-    //
-    public function verLogin()
-    {
-        return Inertia::render('login', []);
-    }
+  
+    
     public function board()
     {
+        if (session()->get('user') == null) {
+            return redirect('/');
+        }
         return Inertia::render('Panel/board', []);
     }
     //http://162.248.55.24/trace/AWS981GHABT2X/ZGRU101342-0?setpoint=4.10&tsupply=23.50&treturn=23.50&rehume=32766&reco2=3276.70&reo2=3276.70&avl=32767&latitude=-08.5&longitude=-79.5&status=off&model=ThermoKing

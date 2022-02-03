@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Paneles\PanelController;
+use App\Http\Controllers\LoginController;
+use Inertia\Inertia;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,5 +18,7 @@ use App\Http\Controllers\Paneles\PanelController;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
-Route::get('/', [PanelController::class, 'verLogin'])->name('paneles.ver_login');
+// ----------- LOGIN  -------------------
+Route::get('/', [LoginController::class, 'login' ])->name('/');
+Route::post('/validar_usuario', [LoginController::class, 'validarUsuario' ])->name('validar.usuario');
 Route::get('/board', [PanelController::class, 'board'])->name('paneles.board');

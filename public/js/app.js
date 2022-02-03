@@ -3624,6 +3624,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -3632,11 +3633,39 @@ __webpack_require__.r(__webpack_exports__);
   props: {// tu_cuenta:Array,
   },
   data: function data() {
-    return {// submited: false, 
+    return {
+      submited: false,
+      usuario: null,
+      password: null
     };
   },
   mounted: function mounted() {},
-  methods: {}
+  methods: {
+    login: function login() {
+      var _this = this;
+
+      this.submited = true;
+
+      if (this.usuario && this.password) {
+        // this.$inertia.post(route('validar.usuario'), {
+        //   user: this.usuario,
+        //   password: this.password,
+        // });
+        axios.post(route('validar.usuario'), {
+          user: this.usuario,
+          password: this.password
+        }).then(function (response) {
+          console.log(response.data);
+
+          if (response.data == 1) {
+            _this.$inertia.get(route('paneles.board'));
+          } else {
+            alert('Usuario o contraseña incorrectos');
+          }
+        });
+      }
+    }
+  }
 });
 
 /***/ }),
@@ -29700,27 +29729,100 @@ var render = function () {
             _vm._v(" "),
             _c("br"),
             _vm._v(" "),
-            _vm._m(1),
-            _vm._v(" "),
-            _vm._m(2),
+            _c(
+              "div",
+              {
+                staticClass:
+                  "wrap-input100 rs1-wrap-input100 validate-input m-b-20",
+                attrs: { "data-validate": "Type user name" },
+              },
+              [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.usuario,
+                      expression: "usuario",
+                    },
+                  ],
+                  staticClass: "input100",
+                  attrs: {
+                    id: "first-name",
+                    type: "text",
+                    name: "username",
+                    placeholder: "Usuario",
+                  },
+                  domProps: { value: _vm.usuario },
+                  on: {
+                    input: function ($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.usuario = $event.target.value
+                    },
+                  },
+                }),
+                _vm._v(" "),
+                _c("span", { staticClass: "focus-input100" }),
+              ]
+            ),
             _vm._v(" "),
             _c(
               "div",
-              { staticClass: "container-login100-form-btn" },
+              {
+                staticClass:
+                  "wrap-input100 rs2-wrap-input100 validate-input m-b-20",
+                attrs: { "data-validate": "Type password" },
+              },
               [
-                _c(
-                  "Link",
-                  {
-                    staticClass: "login100-form-btn",
-                    attrs: { href: _vm.$route("paneles.board") },
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.password,
+                      expression: "password",
+                    },
+                  ],
+                  staticClass: "input100",
+                  attrs: {
+                    type: "password",
+                    name: "pass",
+                    placeholder: "Contraseña",
                   },
-                  [_vm._v("Inicia sesión")]
-                ),
-              ],
-              1
+                  domProps: { value: _vm.password },
+                  on: {
+                    input: function ($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.password = $event.target.value
+                    },
+                  },
+                }),
+                _vm._v(" "),
+                _c("span", { staticClass: "focus-input100" }),
+              ]
             ),
             _vm._v(" "),
-            _vm._m(3),
+            _c("div", { staticClass: "container-login100-form-btn" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "login100-form-btn",
+                  attrs: { href: "javascript:void(0)" },
+                  on: {
+                    click: function ($event) {
+                      return _vm.login()
+                    },
+                  },
+                },
+                [_vm._v("Inicia sesión")]
+              ),
+            ]),
+            _vm._v(" "),
+            _vm._m(1),
           ]),
           _vm._v(" "),
           _c("div", {
@@ -29752,51 +29854,6 @@ var staticRenderFns = [
         },
       }),
     ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass: "wrap-input100 rs1-wrap-input100 validate-input m-b-20",
-        attrs: { "data-validate": "Type user name" },
-      },
-      [
-        _c("input", {
-          staticClass: "input100",
-          attrs: {
-            id: "first-name",
-            type: "text",
-            name: "username",
-            placeholder: "Usuario",
-          },
-        }),
-        _vm._v(" "),
-        _c("span", { staticClass: "focus-input100" }),
-      ]
-    )
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass: "wrap-input100 rs2-wrap-input100 validate-input m-b-20",
-        attrs: { "data-validate": "Type password" },
-      },
-      [
-        _c("input", {
-          staticClass: "input100",
-          attrs: { type: "password", name: "pass", placeholder: "Contraseña" },
-        }),
-        _vm._v(" "),
-        _c("span", { staticClass: "focus-input100" }),
-      ]
-    )
   },
   function () {
     var _vm = this

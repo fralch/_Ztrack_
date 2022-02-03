@@ -19,17 +19,18 @@
             <br>
             <br>
             <div class="wrap-input100 rs1-wrap-input100 validate-input m-b-20" data-validate="Type user name">
-              <input id="first-name" class="input100" type="text" name="username" placeholder="Usuario">
+              <input id="first-name" class="input100" type="text" name="username" placeholder="Usuario" v-model="usuario">
               <span class="focus-input100"></span>
             </div>
-            <div class="wrap-input100 rs2-wrap-input100 validate-input m-b-20" data-validate="Type password">
-              <input class="input100" type="password" name="pass" placeholder="Contraseña">
+            <div class="wrap-input100 rs2-wrap-input100 validate-input m-b-20" data-validate="Type password" >
+              <input class="input100" type="password" name="pass" placeholder="Contraseña" v-model="password">
               <span class="focus-input100"></span>
             </div>
             
             <div class="container-login100-form-btn" >
                <!-- se usa link para mandar a ver un componente -->
-             <Link class="login100-form-btn" :href="$route('paneles.board')">Inicia sesión</Link>
+             <!-- <Link class="login100-form-btn" :href="$route('paneles.board')">Inicia sesión</Link> -->
+             <a href="javascript:void(0)" class="login100-form-btn" @click="login()">Inicia sesión</a>
             </div>
 
             <div class="w-full text-center p-t-27 p-b-239">
@@ -86,7 +87,9 @@ export default {
   },
   data() {
     return {
-      // submited: false, 
+      submited: false, 
+      usuario: null, 
+      password: null, 
       
     };
   },
@@ -97,8 +100,29 @@ export default {
   },
 
   methods: {
-    
-    
+    login() {
+      this.submited = true;
+      if (this.usuario && this.password) {
+        // this.$inertia.post(route('validar.usuario'), {
+        //   user: this.usuario,
+        //   password: this.password,
+        // });
+        axios
+        .post(route('validar.usuario'), {
+          user: this.usuario,
+          password: this.password,
+        })
+        .then(response => {
+          console.log(response.data);
+          if (response.data ==1 ) {
+            this.$inertia.get(route('paneles.board'));
+          }
+          else {
+            alert('Usuario o contraseña incorrectos');
+          }
+        })
+      }
+    },  
   },
 };
 </script>
