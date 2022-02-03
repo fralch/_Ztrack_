@@ -3623,6 +3623,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -29726,7 +29727,7 @@ var render = function () {
             staticClass: "login100-more",
             staticStyle: {
               "background-image":
-                "url('http://162.248.55.24/resources/images/wallpaper02.jpg')",
+                "url('https://www.zgroup.com.pe/uploads/shares/nosotros/Banner%20vertical.jpg')",
             },
           }),
         ]),
@@ -29745,7 +29746,7 @@ var staticRenderFns = [
       _c("img", {
         staticStyle: { "margin-top": "-20px" },
         attrs: {
-          src: "http://162.248.55.24/resources/images/zgroup_logo.png",
+          src: "https://www.zgroup.com.pe/static/img/logo-completo.png",
           alt: "Logo",
           height: "70px",
         },

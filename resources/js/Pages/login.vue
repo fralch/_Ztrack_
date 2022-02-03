@@ -14,7 +14,7 @@
               <!-- <a href="#" class="txt3">
                 Sign Up
               </a> -->
-               <img src="http://162.248.55.24/resources/images/zgroup_logo.png" alt="Logo" height="70px" style="margin-top: -20px" /> 
+               <img src="https://www.zgroup.com.pe/static/img/logo-completo.png" alt="Logo" height="70px" style="margin-top: -20px" /> 
             </div>
             <br>
             <br>
@@ -45,7 +45,8 @@
            
           </form>
 
-          <div class="login100-more" style="background-image: url('http://162.248.55.24/resources/images/wallpaper02.jpg');"></div>
+          <!-- <div class="login100-more" style="background-image: url('http://www.zgroup.com.pe/uploads/shares/productos/Cadena%20de%20Frio/ZGROUP%20Store/20%20pies/20%20pies%201.jpg');"></div> -->
+          <div class="login100-more" style="background-image: url('https://www.zgroup.com.pe/uploads/shares/nosotros/Banner%20vertical.jpg');"></div>
         </div>
       </div>
     </div>

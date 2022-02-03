@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
     <link rel="icon" type="image/png" href="images/icons/copos-de-nieve.png"/>
     <meta name="csrf-token" content="{{ csrf_token() }}" />
-    <title>Ztrack</title>
+    <title>Zgroup</title>
     <link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
     <link rel="stylesheet" type="text/css" href="recursos_login/animate/animate.css">
