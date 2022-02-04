@@ -22,9 +22,9 @@
               <input id="first-name" class="input100" type="text" name="username" placeholder="Usuario" v-model="usuario">
               <span class="focus-input100"></span>
             </div>
-            <div class="wrap-input100 rs2-wrap-input100 validate-input m-b-20" data-validate="Type password" >
-              <input class="input100" type="password" name="pass" placeholder="Contraseña" v-model="password" v-on:keyup.enter="login()">
-              <!-- v-model="password" v-on:keyup.enter="login()" ===> es para que cuando presiones enter ejecute una funcion -->
+            <div class="wrap-input100 rs2-wrap-input100 validate-input m-b-20" data-validate="Type contraseña" >
+              <input class="input100" type="password" name="password" placeholder="Contraseña" v-model="contraseña" v-on:keyup.enter="login()">
+              <!-- v-model="contraseña" v-on:keyup.enter="login()" ===> es para que cuando presiones enter ejecute una funcion -->
               <span class="focus-input100"></span>
             </div>
             
@@ -91,7 +91,7 @@ export default {
     return {
       submited: false, 
       usuario: null, 
-      password: null, 
+      contraseña: null, 
       
     };
   },
@@ -104,15 +104,15 @@ export default {
   methods: {
     login() {
       this.submited = true;
-      if (this.usuario && this.password) {
+      if (this.usuario && this.contraseña) {
         // this.$inertia.post(route('validar.usuario'), {
         //   user: this.usuario,
-        //   password: this.password,
+        //   contraseña: this.contraseña,
         // });
         axios
         .post(route('validar.usuario'), {
-          user: this.usuario,
-          password: this.password,
+          usuario: this.usuario,
+          contraseña: this.contraseña,
         })
         .then(response => {
           console.log(response.data);

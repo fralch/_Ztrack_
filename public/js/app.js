@@ -3638,7 +3638,7 @@ __webpack_require__.r(__webpack_exports__);
     return {
       submited: false,
       usuario: null,
-      password: null
+      contraseña: null
     };
   },
   mounted: function mounted() {},
@@ -3648,14 +3648,14 @@ __webpack_require__.r(__webpack_exports__);
 
       this.submited = true;
 
-      if (this.usuario && this.password) {
+      if (this.usuario && this.contraseña) {
         // this.$inertia.post(route('validar.usuario'), {
         //   user: this.usuario,
-        //   password: this.password,
+        //   contraseña: this.contraseña,
         // });
         axios.post(route('validar.usuario'), {
-          user: this.usuario,
-          password: this.password
+          usuario: this.usuario,
+          contraseña: this.contraseña
         }).then(function (response) {
           console.log(response.data);
 
@@ -29776,7 +29776,7 @@ var render = function () {
               {
                 staticClass:
                   "wrap-input100 rs2-wrap-input100 validate-input m-b-20",
-                attrs: { "data-validate": "Type password" },
+                attrs: { "data-validate": "Type contraseña" },
               },
               [
                 _c("input", {
@@ -29784,17 +29784,17 @@ var render = function () {
                     {
                       name: "model",
                       rawName: "v-model",
-                      value: _vm.password,
-                      expression: "password",
+                      value: _vm.contraseña,
+                      expression: "contraseña",
                     },
                   ],
                   staticClass: "input100",
                   attrs: {
                     type: "password",
-                    name: "pass",
+                    name: "password",
                     placeholder: "Contraseña",
                   },
-                  domProps: { value: _vm.password },
+                  domProps: { value: _vm.contraseña },
                   on: {
                     keyup: function ($event) {
                       if (
@@ -29809,7 +29809,7 @@ var render = function () {
                       if ($event.target.composing) {
                         return
                       }
-                      _vm.password = $event.target.value
+                      _vm.contraseña = $event.target.value
                     },
                   },
                 }),

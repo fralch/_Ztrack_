@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
+use App\Models\Usuario;
 
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -21,13 +21,13 @@ class LoginController extends Controller
     {
         // $request->session()->forget('user');
     
-        $user = $request->user; 
-        $password = $request->password;
-        $user_login = User::where('user', $user)->first();
-        if ($user_login) {
-            if ( $password == $user_login->password && $user_login->activo == '1') {
+        $usuario = $request->usuario; 
+        $contraseña = $request->contraseña;
+        $usuario_login = Usuario::where('usuario',$usuario)->first();
+        if ($usuario_login) {
+            if ( $contraseña ==$usuario_login->contraseña &&$usuario_login->activo == '1') {
                
-                $request->session()->put('user', $user);
+                $request->session()->put('usuario',$usuario);
                return 1; 
             }
            
