@@ -3662,7 +3662,8 @@ __webpack_require__.r(__webpack_exports__);
           if (response.data == 1) {
             _this.$inertia.get(route('paneles.board'));
           } else {
-            alert('Usuario o contraseña incorrectos');
+            // alert('Usuario o contraseña incorrectos');
+            Swal.fire('Usuario o contraseña incorrectos');
           }
         });
       }

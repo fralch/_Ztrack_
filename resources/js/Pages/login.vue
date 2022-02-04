@@ -120,7 +120,8 @@ export default {
             this.$inertia.get(route('paneles.board'));
           }
           else {
-            alert('Usuario o contraseña incorrectos');
+            // alert('Usuario o contraseña incorrectos');
+            Swal.fire('Usuario o contraseña incorrectos')
           }
         })
       }
