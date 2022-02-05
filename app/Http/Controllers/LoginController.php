@@ -20,7 +20,6 @@ class LoginController extends Controller
     public function validarUsuario(Request $request)
     {
         // $request->session()->forget('user');
-    
         $usuario = $request->usuario; 
         $contraseña = $request->contraseña;
         $usuario_login = Usuario::where('usuario',$usuario)->first();
@@ -29,12 +28,14 @@ class LoginController extends Controller
                
                 $request->session()->put('usuario',$usuario);
                return 1; 
-            }
-           
+            }  
         }else{
             return 0;
         }
-       
+    }
+    public function cerrarSesion(Request $request)
+    {
+        $request->session()->forget('usuario');
     }
   
 }

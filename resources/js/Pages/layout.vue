@@ -2,7 +2,7 @@
   <div style="height: 100% !important">
     <div class="container-fluid">
       <div class="row">
-        <nav class="col-12 navbar navbar-expand-lg navbar-light bg-light" style="height:40px !important; background-color: #232C4C !important; box-shadow: 0px 0px 13px 2px rgba(0,0,0,0.15) !important;">
+        <nav class="col-12 navbar navbar-expand-lg navbar-light bg-light" style="height:40px !important; background-color: #0E5976 !important; box-shadow: 0px 0px 13px 2px rgba(0,0,0,0.15) !important;">
           <img :src="'/images/logos/copos-de-nieve.png'" alt="Logo" width="20px" /> 
           <!-- <img src="http://162.248.55.24/resources/images/zgroup_logo.png" alt="Logo" width="30px" />  -->
           &nbsp;
@@ -27,11 +27,11 @@
              <ul class="navbar-nav mr-auto">
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:white !important;" >
-                  Ivineños
+                  {{usuario}}
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                   <a class="dropdown-item" href="#">Mi Perfil</a>
-                  <a class="dropdown-item" href="#">Cerrar Sesión</a>
+                  <a class="dropdown-item" href="#" @click="cerrarSesion()">Cerrar Sesión</a>
                 </div>
               </li>
               
@@ -66,15 +66,33 @@ export default {
   data() {
     return { 
         // fecha_actual: null, 
+        usuario: 'nologeado',
     };
   },
   mounted() {
 
   },
   methods: {
-   
-  
+    cerrarSesion(){
+      
+      Swal.fire({
+        title: 'Cerrar sesion?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          axios.post(route('cerrar.sesion')).then(response => {
+            this.$inertia.get(route('/'));
+          });
+        }
+      })
+      
+    },
   },
+  
 };
 </script>
 

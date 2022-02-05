@@ -43,7 +43,7 @@
   </body>
   	<script></script>
    	<style lang="css">
-       body { background-color: #f5f5f5; }
+       body { background-color: #7CBEF8; }
       html {
         scrollbar-face-color: #646464;
         scrollbar-base-color: #646464;

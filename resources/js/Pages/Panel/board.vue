@@ -1,5 +1,5 @@
 <template>
-  <layoutprincipal ref="principal">
+  <layoutprincipal ref="layoutprincipal">  <!-- *** cargando layoutprincipal  **** -->
     <div
       class="slot_body slot_enviar_dinero"
       slot="component-view"
@@ -79,7 +79,7 @@
                   <!-- /// -->
                   <table class="table display nowrap" id="tblContenedores">
                     <thead>
-                      <tr class="bg-success" style="color:white !important;">
+                      <tr class="bg-primary" style="color:white !important;">
                         <th scope="col">Run</th>
                         <th scope="col">PWR</th>
                         <th scope="col">OEM</th>
@@ -328,7 +328,7 @@
                 <div id="reefers_grid" class="col shadow-sm p-3 mb-5 bg-white rounded " style="margin: -30px 15px 10px 15px; height:600px;">
                   <table  class="table display nowrap" id="tblDetalleContenedores">
                     <thead>
-                      <tr class="bg-danger" style="color:white !important;">
+                      <tr class="bg-info" style="color:white !important;">
                         <th scope="col">Run</th>
                         <th scope="col">PWR</th>
                         <th scope="col">OEM</th>
@@ -564,6 +564,7 @@ export default {
   },
   props: {
     // tu_cuenta:Array,
+    usuario_logeado: Array,
    
   },
   data() {
@@ -583,6 +584,7 @@ export default {
     this.iniciarGraficosFleet();
     this.TablaContenedores();
     this.TablaDetalleContenedores();
+    this.usuarioLogeado();
   },
 
   methods: {
@@ -846,6 +848,11 @@ export default {
               }
           }
       });
+    },
+    usuarioLogeado(){
+      // this.$refs.layoutprincipal.usuario = (this.usuario_logeado[0].nombres + " " + this.usuario_logeado[0].apellidos).toUpperCase() ;
+      this.$refs.layoutprincipal.usuario = (this.usuario_logeado[0].nombres ).toUpperCase() ;
+     
     },
     
   },

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Paneles;
 
+use App\Models\Usuario;
+
 use App\Http\Controllers\Controller;
 use Inertia\Inertia;
 use Illuminate\Http\Request;
@@ -13,10 +15,16 @@ class PanelController extends Controller
     
     public function board()
     {
-        if (session()->get('user') == null) {
+        date_default_timezone_set("America/Lima");
+
+        if (session()->get('usuario') == null) {
             return redirect('/');
         }
-        return Inertia::render('Panel/board', []);
+        $actualizado =  Usuario::where('usuario',session()->get('usuario'))->update(['ultimo_acceso'=>date('Y-m-d H:i:s')]);
+        if ($actualizado == 1) {
+            $usuario = Usuario::where('usuario',session()->get('usuario'))->get();
+        }
+        return Inertia::render('Panel/board', ['usuario_logeado' => $usuario]);
     }
     //http://162.248.55.24/trace/AWS981GHABT2X/ZGRU101342-0?setpoint=4.10&tsupply=23.50&treturn=23.50&rehume=32766&reco2=3276.70&reo2=3276.70&avl=32767&latitude=-08.5&longitude=-79.5&status=off&model=ThermoKing
     /* DATOS ENVIADOS POR GENERADOR

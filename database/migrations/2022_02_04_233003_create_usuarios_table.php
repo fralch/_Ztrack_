@@ -21,6 +21,7 @@ class CreateUsuariosTable extends Migration
             $table->integer('activo');
             $table->string('correo');
             $table->string('contraseña');
+            $table->dateTime('ultimo_acceso')->nullable();
             $table->timestamps();
         });
     }

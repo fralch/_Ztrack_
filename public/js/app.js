@@ -2663,7 +2663,9 @@ __webpack_require__.r(__webpack_exports__);
   components: {
     layoutprincipal: _layout_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
-  props: {// tu_cuenta:Array,
+  props: {
+    // tu_cuenta:Array,
+    usuario_logeado: Array
   },
   data: function data() {
     return {// submited: false, 
@@ -2678,6 +2680,7 @@ __webpack_require__.r(__webpack_exports__);
     this.iniciarGraficosFleet();
     this.TablaContenedores();
     this.TablaDetalleContenedores();
+    this.usuarioLogeado();
   },
   methods: {
     TablaContenedores: function TablaContenedores() {
@@ -2887,569 +2890,12 @@ __webpack_require__.r(__webpack_exports__);
           }
         }
       });
-    }
-  }
-});
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Panel/mdlBoad.vue?vue&type=script&lang=js&":
-/*!***************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Panel/mdlBoad.vue?vue&type=script&lang=js& ***!
-  \***************************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  components: {},
-  props: {},
-  data: function data() {
-    return {// clave_ale: null,
-    };
-  },
-  mounted: function mounted() {
-    this.iniciarMap();
-    this.iniciarGraficos();
-  },
-  methods: {
-    iniciarMap: function iniciarMap() {
-      // var map = L.map('map').setView([51.505, -0.09], 13);
-      var map;
-      map = new google.maps.Map(document.getElementById("map"), {
-        center: {
-          lat: -12.0464,
-          lng: -77.0428
-        },
-        zoom: 12
-      });
     },
-    iniciarGraficos: function iniciarGraficos() {
-      var ctx = document.getElementById('myChart').getContext('2d');
-      var myChart = new Chart(ctx, {
-        type: 'line',
-        data: {
-          labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-          datasets: [{
-            label: '# SetPoint',
-            data: [12, 19, 3, 5, 2, 3],
-            backgroundColor: ['rgba(255, 99, 132, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(255, 206, 86, 0.2)', 'rgba(75, 192, 192, 0.2)', 'rgba(153, 102, 255, 0.2)', 'rgba(255, 159, 64, 0.2)'],
-            borderColor: ['rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)', 'rgba(255, 206, 86, 1)', 'rgba(75, 192, 192, 1)', 'rgba(153, 102, 255, 1)', 'rgba(255, 159, 64, 1)'],
-            borderWidth: 1
-          }]
-        },
-        options: {
-          scales: {
-            y: {
-              beginAtZero: true
-            }
-          }
-        }
-      });
+    usuarioLogeado: function usuarioLogeado() {
+      // this.$refs.layoutprincipal.usuario = (this.usuario_logeado[0].nombres + " " + this.usuario_logeado[0].apellidos).toUpperCase() ;
+      this.$refs.layoutprincipal.usuario = this.usuario_logeado[0].nombres.toUpperCase();
     }
   }
-});
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Panel/mdlContenedores.vue?vue&type=script&lang=js&":
-/*!***********************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Panel/mdlContenedores.vue?vue&type=script&lang=js& ***!
-  \***********************************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  components: {},
-  props: {},
-  data: function data() {
-    return {// clave_ale: null,
-    };
-  },
-  mounted: function mounted() {},
-  methods: {}
 });
 
 /***/ }),
@@ -3527,11 +2973,32 @@ __webpack_require__.r(__webpack_exports__);
   props: {//   agencias: Array 
   },
   data: function data() {
-    return {// fecha_actual: null, 
+    return {
+      // fecha_actual: null, 
+      usuario: 'nologeado'
     };
   },
   mounted: function mounted() {},
-  methods: {}
+  methods: {
+    cerrarSesion: function cerrarSesion() {
+      var _this = this;
+
+      Swal.fire({
+        title: 'Cerrar sesion?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si!'
+      }).then(function (result) {
+        if (result.isConfirmed) {
+          axios.post(route('cerrar.sesion')).then(function (response) {
+            _this.$inertia.get(route('/'));
+          });
+        }
+      });
+    }
+  }
 });
 
 /***/ }),
@@ -3760,30 +3227,6 @@ __webpack_require__.r(__webpack_exports__);
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
 ___CSS_LOADER_EXPORT___.push([module.id, "\n#asset-search {\r\n  padding: 10px;\r\n  height: 320px;\r\n  overflow-y: scroll;\n}\n#reefers_grid_history{\r\n  /* overflow-x: scroll; */\r\n  overflow-y: scroll;\n}\n#reefers_grid{\r\n  /* overflow-x: scroll; */\r\n  overflow-y: scroll;\n}\n#total_reefers {\r\n  padding: 10px;\r\n  height: 100px;\n}\n#asset_maps {\r\n  padding: 10px;\r\n  height: 400px;\r\n  /* overflow-y: scroll; */\n}\r\n", ""]);
-// Exports
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
-
-
-/***/ }),
-
-/***/ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Panel/mdlBoad.vue?vue&type=style&index=0&lang=css&":
-/*!***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Panel/mdlBoad.vue?vue&type=style&index=0&lang=css& ***!
-  \***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
-/***/ ((module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
-/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
-// Imports
-
-var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
-// Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\r\n/* #map { position: absolute; background: transparent; height: 100%; width: 100%; top: 0; left: 0; right: 0; bottom: 0; } */\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -26438,36 +25881,6 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 
 /***/ }),
 
-/***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Panel/mdlBoad.vue?vue&type=style&index=0&lang=css&":
-/*!***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Panel/mdlBoad.vue?vue&type=style&index=0&lang=css& ***!
-  \***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
-/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_mdlBoad_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./mdlBoad.vue?vue&type=style&index=0&lang=css& */ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Panel/mdlBoad.vue?vue&type=style&index=0&lang=css&");
-
-            
-
-var options = {};
-
-options.insert = "head";
-options.singleton = false;
-
-var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_mdlBoad_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_1__["default"], options);
-
-
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_mdlBoad_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
-
-/***/ }),
-
 /***/ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js":
 /*!****************************************************************************!*\
   !*** ./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js ***!
@@ -26788,86 +26201,6 @@ component.options.__file = "resources/js/Pages/Panel/board.vue"
 
 /***/ }),
 
-/***/ "./resources/js/Pages/Panel/mdlBoad.vue":
-/*!**********************************************!*\
-  !*** ./resources/js/Pages/Panel/mdlBoad.vue ***!
-  \**********************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _mdlBoad_vue_vue_type_template_id_43d6a7a1___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./mdlBoad.vue?vue&type=template&id=43d6a7a1& */ "./resources/js/Pages/Panel/mdlBoad.vue?vue&type=template&id=43d6a7a1&");
-/* harmony import */ var _mdlBoad_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./mdlBoad.vue?vue&type=script&lang=js& */ "./resources/js/Pages/Panel/mdlBoad.vue?vue&type=script&lang=js&");
-/* harmony import */ var _mdlBoad_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./mdlBoad.vue?vue&type=style&index=0&lang=css& */ "./resources/js/Pages/Panel/mdlBoad.vue?vue&type=style&index=0&lang=css&");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-
-
-;
-
-
-/* normalize component */
-
-var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
-  _mdlBoad_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _mdlBoad_vue_vue_type_template_id_43d6a7a1___WEBPACK_IMPORTED_MODULE_0__.render,
-  _mdlBoad_vue_vue_type_template_id_43d6a7a1___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
-  false,
-  null,
-  null,
-  null
-  
-)
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/js/Pages/Panel/mdlBoad.vue"
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
-
-/***/ }),
-
-/***/ "./resources/js/Pages/Panel/mdlContenedores.vue":
-/*!******************************************************!*\
-  !*** ./resources/js/Pages/Panel/mdlContenedores.vue ***!
-  \******************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _mdlContenedores_vue_vue_type_template_id_b3340c08___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./mdlContenedores.vue?vue&type=template&id=b3340c08& */ "./resources/js/Pages/Panel/mdlContenedores.vue?vue&type=template&id=b3340c08&");
-/* harmony import */ var _mdlContenedores_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./mdlContenedores.vue?vue&type=script&lang=js& */ "./resources/js/Pages/Panel/mdlContenedores.vue?vue&type=script&lang=js&");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-
-
-
-
-/* normalize component */
-;
-var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _mdlContenedores_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _mdlContenedores_vue_vue_type_template_id_b3340c08___WEBPACK_IMPORTED_MODULE_0__.render,
-  _mdlContenedores_vue_vue_type_template_id_b3340c08___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
-  false,
-  null,
-  null,
-  null
-  
-)
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/js/Pages/Panel/mdlContenedores.vue"
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
-
-/***/ }),
-
 /***/ "./resources/js/Pages/layout.vue":
 /*!***************************************!*\
   !*** ./resources/js/Pages/layout.vue ***!
@@ -26962,38 +26295,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/Pages/Panel/mdlBoad.vue?vue&type=script&lang=js&":
-/*!***********************************************************************!*\
-  !*** ./resources/js/Pages/Panel/mdlBoad.vue?vue&type=script&lang=js& ***!
-  \***********************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_mdlBoad_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./mdlBoad.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Panel/mdlBoad.vue?vue&type=script&lang=js&");
- /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_mdlBoad_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
-
-/***/ }),
-
-/***/ "./resources/js/Pages/Panel/mdlContenedores.vue?vue&type=script&lang=js&":
-/*!*******************************************************************************!*\
-  !*** ./resources/js/Pages/Panel/mdlContenedores.vue?vue&type=script&lang=js& ***!
-  \*******************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_mdlContenedores_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./mdlContenedores.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Panel/mdlContenedores.vue?vue&type=script&lang=js&");
- /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_mdlContenedores_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
-
-/***/ }),
-
 /***/ "./resources/js/Pages/layout.vue?vue&type=script&lang=js&":
 /*!****************************************************************!*\
   !*** ./resources/js/Pages/layout.vue?vue&type=script&lang=js& ***!
@@ -27039,19 +26340,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/Pages/Panel/mdlBoad.vue?vue&type=style&index=0&lang=css&":
-/*!*******************************************************************************!*\
-  !*** ./resources/js/Pages/Panel/mdlBoad.vue?vue&type=style&index=0&lang=css& ***!
-  \*******************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_mdlBoad_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/style-loader/dist/cjs.js!../../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./mdlBoad.vue?vue&type=style&index=0&lang=css& */ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Panel/mdlBoad.vue?vue&type=style&index=0&lang=css&");
-
-
-/***/ }),
-
 /***/ "./resources/js/Pages/Panel/board.vue?vue&type=template&id=01ac02fc&":
 /*!***************************************************************************!*\
   !*** ./resources/js/Pages/Panel/board.vue?vue&type=template&id=01ac02fc& ***!
@@ -27065,40 +26353,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_board_vue_vue_type_template_id_01ac02fc___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
 /* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_board_vue_vue_type_template_id_01ac02fc___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./board.vue?vue&type=template&id=01ac02fc& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Panel/board.vue?vue&type=template&id=01ac02fc&");
-
-
-/***/ }),
-
-/***/ "./resources/js/Pages/Panel/mdlBoad.vue?vue&type=template&id=43d6a7a1&":
-/*!*****************************************************************************!*\
-  !*** ./resources/js/Pages/Panel/mdlBoad.vue?vue&type=template&id=43d6a7a1& ***!
-  \*****************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_mdlBoad_vue_vue_type_template_id_43d6a7a1___WEBPACK_IMPORTED_MODULE_0__.render),
-/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_mdlBoad_vue_vue_type_template_id_43d6a7a1___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
-/* harmony export */ });
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_mdlBoad_vue_vue_type_template_id_43d6a7a1___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./mdlBoad.vue?vue&type=template&id=43d6a7a1& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Panel/mdlBoad.vue?vue&type=template&id=43d6a7a1&");
-
-
-/***/ }),
-
-/***/ "./resources/js/Pages/Panel/mdlContenedores.vue?vue&type=template&id=b3340c08&":
-/*!*************************************************************************************!*\
-  !*** ./resources/js/Pages/Panel/mdlContenedores.vue?vue&type=template&id=b3340c08& ***!
-  \*************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_mdlContenedores_vue_vue_type_template_id_b3340c08___WEBPACK_IMPORTED_MODULE_0__.render),
-/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_mdlContenedores_vue_vue_type_template_id_b3340c08___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
-/* harmony export */ });
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_mdlContenedores_vue_vue_type_template_id_b3340c08___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./mdlContenedores.vue?vue&type=template&id=b3340c08& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Panel/mdlContenedores.vue?vue&type=template&id=b3340c08&");
 
 
 /***/ }),
@@ -27153,7 +26407,7 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("layoutprincipal", { ref: "principal" }, [
+  return _c("layoutprincipal", { ref: "layoutprincipal" }, [
     _c(
       "div",
       {
@@ -27465,7 +26719,7 @@ var render = function () {
                               _c(
                                 "tr",
                                 {
-                                  staticClass: "bg-success",
+                                  staticClass: "bg-primary",
                                   staticStyle: { color: "white !important" },
                                 },
                                 [
@@ -28012,7 +27266,7 @@ var render = function () {
                               _c(
                                 "tr",
                                 {
-                                  staticClass: "bg-danger",
+                                  staticClass: "bg-info",
                                   staticStyle: { color: "white !important" },
                                 },
                                 [
@@ -28488,1072 +27742,6 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Panel/mdlBoad.vue?vue&type=template&id=43d6a7a1&":
-/*!********************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Panel/mdlBoad.vue?vue&type=template&id=43d6a7a1& ***!
-  \********************************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* binding */ render),
-/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
-/* harmony export */ });
-var render = function () {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass: "modal",
-        staticStyle: { "margin-top": "60px" },
-        attrs: { id: "mdlBoard" },
-      },
-      [
-        _c("div", { staticClass: "modal-content" }, [
-          _c(
-            "div",
-            { staticClass: "content ", staticStyle: { display: "block" } },
-            [
-              _c(
-                "div",
-                {
-                  staticClass: "row",
-                  staticStyle: {
-                    height: "100% !important,  overflow-y: scroll",
-                  },
-                },
-                [
-                  _c("div", { staticClass: "col-2" }, [
-                    _c("div", { attrs: { id: "tablaContenedor" } }, [
-                      _c("table", { staticClass: "table table-striped" }, [
-                        _c("thead", [
-                          _c("tr", [
-                            _c("th", { attrs: { scope: "col" } }, [
-                              _vm._v("CONTENEDORES"),
-                            ]),
-                          ]),
-                        ]),
-                        _vm._v(" "),
-                        _c("tbody", [
-                          _c("tr", [
-                            _c("td", [
-                              _vm._v("Contenedor 1 - 0.00° "),
-                              _c(
-                                "span",
-                                {
-                                  staticClass: "text-right",
-                                  staticStyle: {
-                                    "font-size": "10px",
-                                    color: "#BBBBBB",
-                                  },
-                                },
-                                [_vm._v("     Hace 35 segundos")]
-                              ),
-                            ]),
-                          ]),
-                          _vm._v(" "),
-                          _c("tr", [
-                            _c("td", [
-                              _vm._v("Contenedor 2 - 0.00° "),
-                              _c(
-                                "span",
-                                {
-                                  staticStyle: {
-                                    "font-size": "10px",
-                                    color: "#BBBBBB",
-                                  },
-                                },
-                                [_vm._v("      Hace 35 segundos ")]
-                              ),
-                            ]),
-                          ]),
-                          _vm._v(" "),
-                          _c("tr", [
-                            _c("td", [
-                              _vm._v("Contenedor 3 - 0.00° "),
-                              _c(
-                                "span",
-                                {
-                                  staticStyle: {
-                                    "font-size": "10px",
-                                    color: "#BBBBBB",
-                                  },
-                                },
-                                [_vm._v("     Hace 35 segundos ")]
-                              ),
-                            ]),
-                          ]),
-                          _vm._v(" "),
-                          _c("tr", [
-                            _c("td", [
-                              _vm._v("Contenedor 4 - 0.00° "),
-                              _c(
-                                "span",
-                                {
-                                  staticStyle: {
-                                    "font-size": "10px",
-                                    color: "#BBBBBB",
-                                  },
-                                },
-                                [_vm._v("     Hace 35 segundos ")]
-                              ),
-                            ]),
-                          ]),
-                          _vm._v(" "),
-                          _c("tr", [
-                            _c("td", [
-                              _vm._v("Contenedor 5 - 0.00° "),
-                              _c(
-                                "span",
-                                {
-                                  staticStyle: {
-                                    "font-size": "10px",
-                                    color: "#BBBBBB",
-                                  },
-                                },
-                                [_vm._v("     Hace 35 segundos ")]
-                              ),
-                            ]),
-                          ]),
-                        ]),
-                      ]),
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { attrs: { id: "info" } }, [
-                      _c("table", { staticClass: "table" }, [
-                        _c("thead", { staticClass: "thead-dark" }, [
-                          _c("tr", [
-                            _c("th", { attrs: { scope: "col" } }, [
-                              _vm._v("INFORMACIÓN"),
-                            ]),
-                          ]),
-                        ]),
-                        _vm._v(" "),
-                        _c("tbody", [
-                          _c("tr", [
-                            _c("td", [
-                              _c(
-                                "div",
-                                {
-                                  staticClass: "row",
-                                  staticStyle: { "font-size": "0.8em" },
-                                },
-                                [
-                                  _c("div", { staticClass: "col-6" }, [
-                                    _vm._v(
-                                      "\n                              Identificador\n                            "
-                                    ),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("div", { staticClass: "col-6" }, [
-                                    _vm._v(
-                                      "\n                              ZGUU204854-3\n                            "
-                                    ),
-                                  ]),
-                                ]
-                              ),
-                            ]),
-                          ]),
-                          _vm._v(" "),
-                          _c("tr", [
-                            _c("td", [
-                              _c(
-                                "div",
-                                {
-                                  staticClass: "row",
-                                  staticStyle: { "font-size": "0.8em" },
-                                },
-                                [
-                                  _c("div", { staticClass: "col-6" }, [
-                                    _vm._v(
-                                      "\n                              Última actualización\n                            "
-                                    ),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("div", { staticClass: "col-6" }, [
-                                    _vm._v(
-                                      "\n                              Hace 53 segundos\n                            "
-                                    ),
-                                  ]),
-                                ]
-                              ),
-                            ]),
-                          ]),
-                          _vm._v(" "),
-                          _c("tr", [
-                            _c("td", [
-                              _c(
-                                "div",
-                                {
-                                  staticClass: "row",
-                                  staticStyle: { "font-size": "0.8em" },
-                                },
-                                [
-                                  _c("div", { staticClass: "col-6" }, [
-                                    _vm._v(
-                                      "\n                              Fecha y Hora\n                            "
-                                    ),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("div", { staticClass: "col-6" }, [
-                                    _vm._v(
-                                      "\n                              2022-01-21 12:00:00\n                            "
-                                    ),
-                                  ]),
-                                ]
-                              ),
-                            ]),
-                          ]),
-                          _vm._v(" "),
-                          _c("tr", [
-                            _c("td", [
-                              _c(
-                                "div",
-                                {
-                                  staticClass: "row",
-                                  staticStyle: { "font-size": "0.8em" },
-                                },
-                                [
-                                  _c("div", { staticClass: "col-6" }, [
-                                    _vm._v(
-                                      "\n                              Modelo\n                            "
-                                    ),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("div", { staticClass: "col-6" }, [
-                                    _vm._v(
-                                      "\n                              GenSet\n                            "
-                                    ),
-                                  ]),
-                                ]
-                              ),
-                            ]),
-                          ]),
-                          _vm._v(" "),
-                          _c("tr", [
-                            _c("td", [
-                              _c(
-                                "div",
-                                {
-                                  staticClass: "row",
-                                  staticStyle: { "font-size": "0.8em" },
-                                },
-                                [
-                                  _c("div", { staticClass: "col-6" }, [
-                                    _vm._v(
-                                      "\n                              Booking Client\n                            "
-                                    ),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("div", { staticClass: "col-6" }, [
-                                    _vm._v(
-                                      "\n                              CH345\n                            "
-                                    ),
-                                  ]),
-                                ]
-                              ),
-                            ]),
-                          ]),
-                          _vm._v(" "),
-                          _c("tr", [
-                            _c("td", [
-                              _c(
-                                "div",
-                                {
-                                  staticClass: "row",
-                                  staticStyle: { "font-size": "0.8em" },
-                                },
-                                [
-                                  _c("div", { staticClass: "col-6" }, [
-                                    _vm._v(
-                                      "\n                             SetPoint\n                            "
-                                    ),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("div", { staticClass: "col-6" }, [
-                                    _vm._v(
-                                      "\n                              0.00 ℃\n                            "
-                                    ),
-                                  ]),
-                                ]
-                              ),
-                            ]),
-                          ]),
-                          _vm._v(" "),
-                          _c("tr", [
-                            _c("td", [
-                              _c(
-                                "div",
-                                {
-                                  staticClass: "row",
-                                  staticStyle: { "font-size": "0.8em" },
-                                },
-                                [
-                                  _c("div", { staticClass: "col-6" }, [
-                                    _vm._v(
-                                      "\n                             Estado\n                            "
-                                    ),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("div", { staticClass: "col-6" }, [
-                                    _vm._v(
-                                      "\n                              Desconectado\n                            "
-                                    ),
-                                  ]),
-                                ]
-                              ),
-                            ]),
-                          ]),
-                          _vm._v(" "),
-                          _c("tr", [
-                            _c("td", [
-                              _c(
-                                "div",
-                                {
-                                  staticClass: "row",
-                                  staticStyle: { "font-size": "0.8em" },
-                                },
-                                [
-                                  _c("div", { staticClass: "col-6" }, [
-                                    _vm._v(
-                                      "\n                             Fecha de Apagado\n                            "
-                                    ),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("div", { staticClass: "col-6" }, [
-                                    _vm._v(
-                                      "\n                              2022-01-21 12:00:00\n                            "
-                                    ),
-                                  ]),
-                                ]
-                              ),
-                            ]),
-                          ]),
-                          _vm._v(" "),
-                          _c("tr", [
-                            _c("td", [
-                              _c(
-                                "div",
-                                {
-                                  staticClass: "row",
-                                  staticStyle: { "font-size": "0.8em" },
-                                },
-                                [
-                                  _c("div", { staticClass: "col-6" }, [
-                                    _vm._v(
-                                      "\n                             Fecha de Encendido\n                            "
-                                    ),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("div", { staticClass: "col-6" }, [
-                                    _vm._v(
-                                      "\n                              2022-01-21 12:00:00\n                            "
-                                    ),
-                                  ]),
-                                ]
-                              ),
-                            ]),
-                          ]),
-                          _vm._v(" "),
-                          _c("tr", [
-                            _c("td", [
-                              _c(
-                                "div",
-                                {
-                                  staticClass: "row",
-                                  staticStyle: { "font-size": "0.8em" },
-                                },
-                                [
-                                  _c("div", { staticClass: "col-6" }, [
-                                    _vm._v(
-                                      "\n                             Latitud\n                            "
-                                    ),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("div", { staticClass: "col-6" }, [
-                                    _vm._v(
-                                      "\n                              -11.703915\n                            "
-                                    ),
-                                  ]),
-                                ]
-                              ),
-                            ]),
-                          ]),
-                          _vm._v(" "),
-                          _c("tr", [
-                            _c("td", [
-                              _c(
-                                "div",
-                                {
-                                  staticClass: "row",
-                                  staticStyle: { "font-size": "0.8em" },
-                                },
-                                [
-                                  _c("div", { staticClass: "col-6" }, [
-                                    _vm._v(
-                                      "\n                             Longitud\n                            "
-                                    ),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("div", { staticClass: "col-6" }, [
-                                    _vm._v(
-                                      "\n                              -77.187972\n                            "
-                                    ),
-                                  ]),
-                                ]
-                              ),
-                            ]),
-                          ]),
-                        ]),
-                      ]),
-                    ]),
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-7" }, [
-                    _c("div", { staticClass: "row" }, [
-                      _c("div", { staticClass: "col-12" }, [
-                        _c("div", {
-                          staticStyle: { width: "100%", height: "400px" },
-                          attrs: { id: "map" },
-                        }),
-                      ]),
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "row" }, [
-                      _c("div", { staticClass: "col-12" }, [
-                        _c("canvas", {
-                          attrs: {
-                            id: "myChart",
-                            height: "width:100%; height:400px",
-                          },
-                        }),
-                      ]),
-                    ]),
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-3" }, [
-                    _c("div", { attrs: { id: "reefer" } }, [
-                      _c("table", { staticClass: "table" }, [
-                        _c("thead", { staticClass: "thead-dark" }, [
-                          _c("tr", [
-                            _c("th", { attrs: { scope: "col" } }, [
-                              _vm._v("REEFER"),
-                            ]),
-                          ]),
-                        ]),
-                        _vm._v(" "),
-                        _c("tbody", [
-                          _c("tr", [
-                            _c("td", [
-                              _c(
-                                "div",
-                                {
-                                  staticClass: "row",
-                                  staticStyle: { "font-size": "0.8em" },
-                                },
-                                [
-                                  _c("div", { staticClass: "col-6" }, [
-                                    _vm._v(
-                                      "\n                              Identificador\n                            "
-                                    ),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("div", { staticClass: "col-6" }, [
-                                    _vm._v(
-                                      "\n                              ZGUU204854-3\n                            "
-                                    ),
-                                  ]),
-                                ]
-                              ),
-                            ]),
-                          ]),
-                          _vm._v(" "),
-                          _c("tr", [
-                            _c("td", [
-                              _c(
-                                "div",
-                                {
-                                  staticClass: "row",
-                                  staticStyle: { "font-size": "0.8em" },
-                                },
-                                [
-                                  _c("div", { staticClass: "col-6" }, [
-                                    _vm._v(
-                                      "\n                              Última actualización\n                            "
-                                    ),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("div", { staticClass: "col-6" }, [
-                                    _vm._v(
-                                      "\n                              Hace 53 segundos\n                            "
-                                    ),
-                                  ]),
-                                ]
-                              ),
-                            ]),
-                          ]),
-                          _vm._v(" "),
-                          _c("tr", [
-                            _c("td", [
-                              _c(
-                                "div",
-                                {
-                                  staticClass: "row",
-                                  staticStyle: { "font-size": "0.8em" },
-                                },
-                                [
-                                  _c("div", { staticClass: "col-6" }, [
-                                    _vm._v(
-                                      "\n                              Fecha y Hora\n                            "
-                                    ),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("div", { staticClass: "col-6" }, [
-                                    _vm._v(
-                                      "\n                              2022-01-21 12:00:00\n                            "
-                                    ),
-                                  ]),
-                                ]
-                              ),
-                            ]),
-                          ]),
-                          _vm._v(" "),
-                          _c("tr", [
-                            _c("td", [
-                              _c(
-                                "div",
-                                {
-                                  staticClass: "row",
-                                  staticStyle: { "font-size": "0.8em" },
-                                },
-                                [
-                                  _c("div", { staticClass: "col-6" }, [
-                                    _vm._v(
-                                      "\n                              Modelo\n                            "
-                                    ),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("div", { staticClass: "col-6" }, [
-                                    _vm._v(
-                                      "\n                              GenSet\n                            "
-                                    ),
-                                  ]),
-                                ]
-                              ),
-                            ]),
-                          ]),
-                          _vm._v(" "),
-                          _c("tr", [
-                            _c("td", [
-                              _c(
-                                "div",
-                                {
-                                  staticClass: "row",
-                                  staticStyle: { "font-size": "0.8em" },
-                                },
-                                [
-                                  _c("div", { staticClass: "col-6" }, [
-                                    _vm._v(
-                                      "\n                              Booking Client\n                            "
-                                    ),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("div", { staticClass: "col-6" }, [
-                                    _vm._v(
-                                      "\n                              CH345\n                            "
-                                    ),
-                                  ]),
-                                ]
-                              ),
-                            ]),
-                          ]),
-                          _vm._v(" "),
-                          _c("tr", [
-                            _c("td", [
-                              _c(
-                                "div",
-                                {
-                                  staticClass: "row",
-                                  staticStyle: { "font-size": "0.8em" },
-                                },
-                                [
-                                  _c("div", { staticClass: "col-6" }, [
-                                    _vm._v(
-                                      "\n                             SetPoint\n                            "
-                                    ),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("div", { staticClass: "col-6" }, [
-                                    _vm._v(
-                                      "\n                              0.00 ℃\n                            "
-                                    ),
-                                  ]),
-                                ]
-                              ),
-                            ]),
-                          ]),
-                          _vm._v(" "),
-                          _c("tr", [
-                            _c("td", [
-                              _c(
-                                "div",
-                                {
-                                  staticClass: "row",
-                                  staticStyle: { "font-size": "0.8em" },
-                                },
-                                [
-                                  _c("div", { staticClass: "col-6" }, [
-                                    _vm._v(
-                                      "\n                             Estado\n                            "
-                                    ),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("div", { staticClass: "col-6" }, [
-                                    _vm._v(
-                                      "\n                              Desconectado\n                            "
-                                    ),
-                                  ]),
-                                ]
-                              ),
-                            ]),
-                          ]),
-                          _vm._v(" "),
-                          _c("tr", [
-                            _c("td", [
-                              _c(
-                                "div",
-                                {
-                                  staticClass: "row",
-                                  staticStyle: { "font-size": "0.8em" },
-                                },
-                                [
-                                  _c("div", { staticClass: "col-6" }, [
-                                    _vm._v(
-                                      "\n                             Fecha de Apagado\n                            "
-                                    ),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("div", { staticClass: "col-6" }, [
-                                    _vm._v(
-                                      "\n                              2022-01-21 12:00:00\n                            "
-                                    ),
-                                  ]),
-                                ]
-                              ),
-                            ]),
-                          ]),
-                          _vm._v(" "),
-                          _c("tr", [
-                            _c("td", [
-                              _c(
-                                "div",
-                                {
-                                  staticClass: "row",
-                                  staticStyle: { "font-size": "0.8em" },
-                                },
-                                [
-                                  _c("div", { staticClass: "col-6" }, [
-                                    _vm._v(
-                                      "\n                             Fecha de Encendido\n                            "
-                                    ),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("div", { staticClass: "col-6" }, [
-                                    _vm._v(
-                                      "\n                              2022-01-21 12:00:00\n                            "
-                                    ),
-                                  ]),
-                                ]
-                              ),
-                            ]),
-                          ]),
-                          _vm._v(" "),
-                          _c("tr", [
-                            _c("td", [
-                              _c(
-                                "div",
-                                {
-                                  staticClass: "row",
-                                  staticStyle: { "font-size": "0.8em" },
-                                },
-                                [
-                                  _c("div", { staticClass: "col-6" }, [
-                                    _vm._v(
-                                      "\n                             Latitud\n                            "
-                                    ),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("div", { staticClass: "col-6" }, [
-                                    _vm._v(
-                                      "\n                              -11.703915\n                            "
-                                    ),
-                                  ]),
-                                ]
-                              ),
-                            ]),
-                          ]),
-                          _vm._v(" "),
-                          _c("tr", [
-                            _c("td", [
-                              _c(
-                                "div",
-                                {
-                                  staticClass: "row",
-                                  staticStyle: { "font-size": "0.8em" },
-                                },
-                                [
-                                  _c("div", { staticClass: "col-6" }, [
-                                    _vm._v(
-                                      "\n                             Longitud\n                            "
-                                    ),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("div", { staticClass: "col-6" }, [
-                                    _vm._v(
-                                      "\n                              -77.187972\n                            "
-                                    ),
-                                  ]),
-                                ]
-                              ),
-                            ]),
-                          ]),
-                        ]),
-                      ]),
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { attrs: { id: "generador" } }, [
-                      _c(
-                        "table",
-                        {
-                          staticClass: "table",
-                          staticStyle: {
-                            height: "100%",
-                            "overflow-y": "scroll",
-                          },
-                        },
-                        [
-                          _c("thead", { staticClass: "thead-dark" }, [
-                            _c("tr", [
-                              _c("th", { attrs: { scope: "col" } }, [
-                                _vm._v("GENERADOR"),
-                              ]),
-                            ]),
-                          ]),
-                          _vm._v(" "),
-                          _c("tbody", [
-                            _c("tr", [
-                              _c("td", [
-                                _c(
-                                  "div",
-                                  {
-                                    staticClass: "row",
-                                    staticStyle: { "font-size": "0.8em" },
-                                  },
-                                  [
-                                    _c("div", { staticClass: "col-6" }, [
-                                      _vm._v(
-                                        "\n                              Combustible\n                            "
-                                      ),
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("div", { staticClass: "col-6" }, [
-                                      _vm._v(
-                                        "\n                              0.00\n                            "
-                                      ),
-                                    ]),
-                                  ]
-                                ),
-                              ]),
-                            ]),
-                            _vm._v(" "),
-                            _c("tr", [
-                              _c("td", [
-                                _c(
-                                  "div",
-                                  {
-                                    staticClass: "row",
-                                    staticStyle: { "font-size": "0.8em" },
-                                  },
-                                  [
-                                    _c("div", { staticClass: "col-6" }, [
-                                      _vm._v(
-                                        "\n                             RPM\n                            "
-                                      ),
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("div", { staticClass: "col-6" }, [
-                                      _vm._v(
-                                        "\n                              0\n                            "
-                                      ),
-                                    ]),
-                                  ]
-                                ),
-                              ]),
-                            ]),
-                            _vm._v(" "),
-                            _c("tr", [
-                              _c("td", [
-                                _c(
-                                  "div",
-                                  {
-                                    staticClass: "row",
-                                    staticStyle: { "font-size": "0.8em" },
-                                  },
-                                  [
-                                    _c("div", { staticClass: "col-6" }, [
-                                      _vm._v(
-                                        "\n                             Voltaje de Salida\n                            "
-                                      ),
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("div", { staticClass: "col-6" }, [
-                                      _vm._v(
-                                        "\n                              0.00 V\n                            "
-                                      ),
-                                    ]),
-                                  ]
-                                ),
-                              ]),
-                            ]),
-                            _vm._v(" "),
-                            _c("tr", [
-                              _c("td", [
-                                _c(
-                                  "div",
-                                  {
-                                    staticClass: "row",
-                                    staticStyle: { "font-size": "0.8em" },
-                                  },
-                                  [
-                                    _c("div", { staticClass: "col-6" }, [
-                                      _vm._v(
-                                        "\n                             Voltaje de batería\n                            "
-                                      ),
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("div", { staticClass: "col-6" }, [
-                                      _vm._v(
-                                        "\n                              0.00 V\n                            "
-                                      ),
-                                    ]),
-                                  ]
-                                ),
-                              ]),
-                            ]),
-                            _vm._v(" "),
-                            _c("tr", [
-                              _c("td", [
-                                _c(
-                                  "div",
-                                  {
-                                    staticClass: "row",
-                                    staticStyle: { "font-size": "0.8em" },
-                                  },
-                                  [
-                                    _c("div", { staticClass: "col-6" }, [
-                                      _vm._v(
-                                        "\n                             Frecuencia\n                            "
-                                      ),
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("div", { staticClass: "col-6" }, [
-                                      _vm._v(
-                                        "\n                              0.00000 \n                            "
-                                      ),
-                                    ]),
-                                  ]
-                                ),
-                              ]),
-                            ]),
-                            _vm._v(" "),
-                            _c("tr", [
-                              _c("td", [
-                                _c(
-                                  "div",
-                                  {
-                                    staticClass: "row",
-                                    staticStyle: { "font-size": "0.8em" },
-                                  },
-                                  [
-                                    _c("div", { staticClass: "col-6" }, [
-                                      _vm._v(
-                                        "\n                             Temp. Motor\n                            "
-                                      ),
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("div", { staticClass: "col-6" }, [
-                                      _vm._v(
-                                        "\n                              0.00000 \n                            "
-                                      ),
-                                    ]),
-                                  ]
-                                ),
-                              ]),
-                            ]),
-                            _vm._v(" "),
-                            _c("tr", [
-                              _c("td", [
-                                _c(
-                                  "div",
-                                  {
-                                    staticClass: "row",
-                                    staticStyle: { "font-size": "0.8em" },
-                                  },
-                                  [
-                                    _c("div", { staticClass: "col-6" }, [
-                                      _vm._v(
-                                        "\n                             Velocidad  \n                            "
-                                      ),
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("div", { staticClass: "col-6" }, [
-                                      _vm._v(
-                                        "\n                              high\n                            "
-                                      ),
-                                    ]),
-                                  ]
-                                ),
-                              ]),
-                            ]),
-                            _vm._v(" "),
-                            _c("tr", [
-                              _c("td", [
-                                _c(
-                                  "div",
-                                  {
-                                    staticClass: "row",
-                                    staticStyle: { "font-size": "0.8em" },
-                                  },
-                                  [
-                                    _c("div", { staticClass: "col-6" }, [
-                                      _vm._v(
-                                        "\n                             Ecopower  \n                            "
-                                      ),
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("div", { staticClass: "col-6" }, [
-                                      _vm._v(
-                                        "\n                              on\n                            "
-                                      ),
-                                    ]),
-                                  ]
-                                ),
-                              ]),
-                            ]),
-                            _vm._v(" "),
-                            _c("tr", [
-                              _c("td", [
-                                _c(
-                                  "div",
-                                  {
-                                    staticClass: "row",
-                                    staticStyle: { "font-size": "0.8em" },
-                                  },
-                                  [
-                                    _c("div", { staticClass: "col-6" }, [
-                                      _vm._v(
-                                        "\n                             Horometro  \n                            "
-                                      ),
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("div", { staticClass: "col-6" }, [
-                                      _vm._v(
-                                        "\n                              2 316.000000\n                            "
-                                      ),
-                                    ]),
-                                  ]
-                                ),
-                              ]),
-                            ]),
-                          ]),
-                        ]
-                      ),
-                    ]),
-                  ]),
-                ]
-              ),
-            ]
-          ),
-        ]),
-      ]
-    )
-  },
-]
-render._withStripped = true
-
-
-
-/***/ }),
-
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Panel/mdlContenedores.vue?vue&type=template&id=b3340c08&":
-/*!****************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Panel/mdlContenedores.vue?vue&type=template&id=b3340c08& ***!
-  \****************************************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* binding */ render),
-/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
-/* harmony export */ });
-var render = function () {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass: "modal",
-        staticStyle: { "margin-top": "60px" },
-        attrs: { id: "mdlContenedores" },
-      },
-      [
-        _c("div", { staticClass: "modal-content" }, [
-          _c(
-            "div",
-            { staticClass: "content ", staticStyle: { display: "block" } },
-            [
-              _c(
-                "div",
-                {
-                  staticClass: "row",
-                  staticStyle: {
-                    height: "100% !important,  overflow-y: scroll",
-                  },
-                },
-                [_c("h1", [_vm._v("Pagina de los contenedores")])]
-              ),
-            ]
-          ),
-        ]),
-      ]
-    )
-  },
-]
-render._withStripped = true
-
-
-
-/***/ }),
-
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/layout.vue?vue&type=template&id=080b10f3&":
 /*!*************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/layout.vue?vue&type=template&id=080b10f3& ***!
@@ -29579,7 +27767,7 @@ var render = function () {
             staticClass: "col-12 navbar navbar-expand-lg navbar-light bg-light",
             staticStyle: {
               height: "40px !important",
-              "background-color": "#232C4C !important",
+              "background-color": "#0E5976 !important",
               "box-shadow": "0px 0px 13px 2px rgba(0,0,0,0.15) !important",
             },
           },
@@ -29609,7 +27797,77 @@ var render = function () {
             _vm._v(" "),
             _vm._m(0),
             _vm._v(" "),
-            _vm._m(1),
+            _c(
+              "div",
+              {
+                staticClass: "collapse navbar-collapse",
+                attrs: { id: "navbarSupportedContent" },
+              },
+              [
+                _c("ul", { staticClass: "navbar-nav mr-auto" }),
+                _vm._v(" "),
+                _c("form", { staticClass: "form-inline my-2 my-lg-0" }, [
+                  _c("ul", { staticClass: "navbar-nav mr-auto" }, [
+                    _c("li", { staticClass: "nav-item dropdown" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "nav-link dropdown-toggle",
+                          staticStyle: { color: "white !important" },
+                          attrs: {
+                            href: "#",
+                            id: "navbarDropdown",
+                            role: "button",
+                            "data-toggle": "dropdown",
+                            "aria-haspopup": "true",
+                            "aria-expanded": "false",
+                          },
+                        },
+                        [
+                          _vm._v(
+                            "\n                " +
+                              _vm._s(_vm.usuario) +
+                              "\n              "
+                          ),
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          staticClass: "dropdown-menu",
+                          attrs: { "aria-labelledby": "navbarDropdown" },
+                        },
+                        [
+                          _c(
+                            "a",
+                            {
+                              staticClass: "dropdown-item",
+                              attrs: { href: "#" },
+                            },
+                            [_vm._v("Mi Perfil")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "a",
+                            {
+                              staticClass: "dropdown-item",
+                              attrs: { href: "#" },
+                              on: {
+                                click: function ($event) {
+                                  return _vm.cerrarSesion()
+                                },
+                              },
+                            },
+                            [_vm._v("Cerrar Sesión")]
+                          ),
+                        ]
+                      ),
+                    ]),
+                  ]),
+                ]),
+              ]
+            ),
           ]
         ),
       ]),
@@ -29637,65 +27895,6 @@ var staticRenderFns = [
         },
       },
       [_c("span", { staticClass: "navbar-toggler-icon" })]
-    )
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass: "collapse navbar-collapse",
-        attrs: { id: "navbarSupportedContent" },
-      },
-      [
-        _c("ul", { staticClass: "navbar-nav mr-auto" }),
-        _vm._v(" "),
-        _c("form", { staticClass: "form-inline my-2 my-lg-0" }, [
-          _c("ul", { staticClass: "navbar-nav mr-auto" }, [
-            _c("li", { staticClass: "nav-item dropdown" }, [
-              _c(
-                "a",
-                {
-                  staticClass: "nav-link dropdown-toggle",
-                  staticStyle: { color: "white !important" },
-                  attrs: {
-                    href: "#",
-                    id: "navbarDropdown",
-                    role: "button",
-                    "data-toggle": "dropdown",
-                    "aria-haspopup": "true",
-                    "aria-expanded": "false",
-                  },
-                },
-                [_vm._v("\n                Ivineños\n              ")]
-              ),
-              _vm._v(" "),
-              _c(
-                "div",
-                {
-                  staticClass: "dropdown-menu",
-                  attrs: { "aria-labelledby": "navbarDropdown" },
-                },
-                [
-                  _c(
-                    "a",
-                    { staticClass: "dropdown-item", attrs: { href: "#" } },
-                    [_vm._v("Mi Perfil")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "a",
-                    { staticClass: "dropdown-item", attrs: { href: "#" } },
-                    [_vm._v("Cerrar Sesión")]
-                  ),
-                ]
-              ),
-            ]),
-          ]),
-        ]),
-      ]
     )
   },
 ]
@@ -42054,10 +40253,6 @@ Vue.compile = compileToFunctions;
 var map = {
 	"./Panel/board": "./resources/js/Pages/Panel/board.vue",
 	"./Panel/board.vue": "./resources/js/Pages/Panel/board.vue",
-	"./Panel/mdlBoad": "./resources/js/Pages/Panel/mdlBoad.vue",
-	"./Panel/mdlBoad.vue": "./resources/js/Pages/Panel/mdlBoad.vue",
-	"./Panel/mdlContenedores": "./resources/js/Pages/Panel/mdlContenedores.vue",
-	"./Panel/mdlContenedores.vue": "./resources/js/Pages/Panel/mdlContenedores.vue",
 	"./layout": "./resources/js/Pages/layout.vue",
 	"./layout.vue": "./resources/js/Pages/layout.vue",
 	"./login": "./resources/js/Pages/login.vue",

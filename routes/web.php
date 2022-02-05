@@ -21,4 +21,5 @@ use Inertia\Inertia;
 // ----------- LOGIN  -------------------
 Route::get('/', [LoginController::class, 'login' ])->name('/');
 Route::post('/validar_usuario', [LoginController::class, 'validarUsuario' ])->name('validar.usuario');
+Route::post('/cerrar_sesion', [LoginController::class, 'cerrarSesion' ])->name('cerrar.sesion');
 Route::get('/board', [PanelController::class, 'board'])->name('paneles.board');
