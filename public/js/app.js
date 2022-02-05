@@ -2681,8 +2681,23 @@ __webpack_require__.r(__webpack_exports__);
     this.TablaContenedores();
     this.TablaDetalleContenedores();
     this.usuarioLogeado();
+    this.bienvenida();
   },
   methods: {
+    bienvenida: function bienvenida() {
+      // Swal.fire(
+      //     'Bienvenido!',
+      //     (this.usuario_logeado[0].nombres + " "+ this.usuario_logeado[0].apellidos ).toUpperCase(),
+      //     'success',
+      //   )
+      Swal.fire({
+        title: 'Bienvenido!',
+        icon: 'success',
+        text: (this.usuario_logeado[0].nombres + " " + this.usuario_logeado[0].apellidos).toUpperCase(),
+        confirmButtonColor: '#3085d6',
+        confirmButtonText: 'OK!'
+      });
+    },
     TablaContenedores: function TablaContenedores() {
       var self = this;
       this.$nextTick(function () {
@@ -3226,7 +3241,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n#asset-search {\r\n  padding: 10px;\r\n  height: 320px;\r\n  overflow-y: scroll;\n}\n#reefers_grid_history{\r\n  /* overflow-x: scroll; */\r\n  overflow-y: scroll;\n}\n#reefers_grid{\r\n  /* overflow-x: scroll; */\r\n  overflow-y: scroll;\n}\n#total_reefers {\r\n  padding: 10px;\r\n  height: 100px;\n}\n#asset_maps {\r\n  padding: 10px;\r\n  height: 400px;\r\n  /* overflow-y: scroll; */\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n#asset-search {\r\n  padding: 10px;\r\n  height: 320px;\r\n  overflow-y: scroll;\n}\n#reefers_grid_history{\r\n  /* overflow-x: scroll; */\r\n  overflow-y: scroll;\n}\n#reefers_grid{\r\n  /* overflow-x: scroll; */\r\n  overflow-y: scroll;\n}\n#total_reefers {\r\n  padding: 10px;\r\n  height: 100px;\n}\n#asset_maps {\r\n  padding: 10px;\r\n  height: 400px;\r\n  /* overflow-y: scroll; */\n}\r\n \r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -27836,6 +27851,7 @@ var render = function () {
                         "div",
                         {
                           staticClass: "dropdown-menu",
+                          staticStyle: { "margin-left": "-80px" },
                           attrs: { "aria-labelledby": "navbarDropdown" },
                         },
                         [

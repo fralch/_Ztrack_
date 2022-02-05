@@ -6,7 +6,6 @@
     <link rel="icon" type="image/png" href="images/icons/copos-de-nieve.png"/>
     <meta name="csrf-token" content="{{ csrf_token() }}" />
     <title>Zgroup</title>
-    <link rel="stylesheet" href="//@sweetalert2/theme-bootstrap-4/bootstrap-4.css">
     <link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
     <link rel="stylesheet" type="text/css" href="recursos_login/animate/animate.css">
@@ -53,7 +52,7 @@
         scrollbar-arrow-color: #000;
         scrollbar-shadow-color: #646464;
       }
-
+      
       ::-webkit-scrollbar { width: 8px; height: 8px;}
       ::-webkit-scrollbar-button {  background-color: #fafbfd; }
       ::-webkit-scrollbar-track {  background-color: #646464;}

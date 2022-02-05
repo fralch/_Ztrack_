@@ -555,9 +555,7 @@
 </template>
 
 <script>
-
 import layoutprincipal from "../layout.vue";
-
 export default {
   components: { 
     layoutprincipal, 
@@ -585,9 +583,25 @@ export default {
     this.TablaContenedores();
     this.TablaDetalleContenedores();
     this.usuarioLogeado();
+    this.bienvenida();
   },
 
   methods: {
+    bienvenida() {
+    // Swal.fire(
+    //     'Bienvenido!',
+    //     (this.usuario_logeado[0].nombres + " "+ this.usuario_logeado[0].apellidos ).toUpperCase(),
+    //     'success',
+    //   )
+     Swal.fire({
+        title: 'Bienvenido!',
+        icon: 'success',
+        text: (this.usuario_logeado[0].nombres + " "+ this.usuario_logeado[0].apellidos ).toUpperCase(),
+        confirmButtonColor: '#3085d6',
+        confirmButtonText: 'OK!'
+      })
+    
+    },
     TablaContenedores() {
       let self = this;
       this.$nextTick(() => {
@@ -882,6 +896,7 @@ export default {
   height: 400px;
   /* overflow-y: scroll; */
 }
+ 
 </style>
 
 
