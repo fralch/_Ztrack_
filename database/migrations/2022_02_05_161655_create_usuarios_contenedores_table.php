@@ -13,7 +13,7 @@ class CreateUsuariosContenedoresTable extends Migration
      */
     public function up()
     {
-        Schema::create('usuarios_contenedores', function (Blueprint $table) {
+        Schema::create('empresas_contenedores', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('empresa_id');
             $table->unsignedBigInteger('contenedor_id');

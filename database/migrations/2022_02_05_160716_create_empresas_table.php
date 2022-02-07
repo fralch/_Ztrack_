@@ -17,7 +17,7 @@ class CreateEmpresasTable extends Migration
             $table->id();
             $table->unsignedBigInteger('usuario_id');
             $table->string('nombre_empresa');
-            $table->string('descripcion');
+            $table->string('descripcion_booking');
             $table->float('temp_contratada');
             $table->timestamps();
         });
