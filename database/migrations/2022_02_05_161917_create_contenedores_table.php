@@ -17,7 +17,7 @@ class CreateContenedoresTable extends Migration
             $table->id();
             $table->string('nombre_contenedor');
             $table->string('tipo');
-            $table->integer('encendido');
+            $table->string('encendido');
             $table->timestamps();
         });
     }

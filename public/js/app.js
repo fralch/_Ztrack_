@@ -2438,226 +2438,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -2665,7 +2445,10 @@ __webpack_require__.r(__webpack_exports__);
   },
   props: {
     // tu_cuenta:Array,
-    usuario_logeado: Array
+    usuario_logeado: Array,
+    empresa_logeado: Array,
+    contenedores_todos: Array,
+    contenedores_encendidos: Array
   },
   data: function data() {
     return {// submited: false, 
@@ -2702,7 +2485,6 @@ __webpack_require__.r(__webpack_exports__);
       var self = this;
       this.$nextTick(function () {
         var table = $("#tblContenedores").DataTable({
-          scrollY: "600px",
           scrollX: true,
           scrollCollapse: true,
           paging: true,
@@ -26604,7 +26386,12 @@ var render = function () {
                         attrs: { id: "total_reefers" },
                       },
                       [
-                        _c("div", [_vm._v("Total Reefers: 192")]),
+                        _c("div", [
+                          _vm._v(
+                            "Total Reefers: " +
+                              _vm._s(_vm.contenedores_todos.length)
+                          ),
+                        ]),
                         _vm._v(" "),
                         _c(
                           "div",
@@ -26625,7 +26412,11 @@ var render = function () {
                                 _c(
                                   "b",
                                   { staticStyle: { "font-size": "1.2em" } },
-                                  [_vm._v("91")]
+                                  [
+                                    _vm._v(
+                                      _vm._s(_vm.contenedores_encendidos.length)
+                                    ),
+                                  ]
                                 ),
                                 _vm._v(
                                   "\n                     \n                    Running\n                  "
@@ -26716,17 +26507,14 @@ var render = function () {
                       "div",
                       {
                         staticClass: "col shadow-sm p-3 mb-5 bg-white rounded ",
-                        staticStyle: {
-                          margin: "-30px 15px 10px 15px",
-                          height: "600px",
-                        },
+                        staticStyle: { margin: "-30px 15px 10px 15px" },
                         attrs: { id: "reefers_grid_history" },
                       },
                       [
                         _c(
                           "table",
                           {
-                            staticClass: "table display nowrap",
+                            staticClass: "table",
                             attrs: { id: "tblContenedores" },
                           },
                           [
@@ -26738,20 +26526,22 @@ var render = function () {
                                   staticStyle: { color: "white !important" },
                                 },
                                 [
+                                  _c(
+                                    "th",
+                                    { attrs: { scope: "col", width: "150px" } },
+                                    [_vm._v("Run")]
+                                  ),
+                                  _vm._v(" "),
                                   _c("th", { attrs: { scope: "col" } }, [
-                                    _vm._v("Run"),
+                                    _vm._v("Contenedor"),
                                   ]),
                                   _vm._v(" "),
                                   _c("th", { attrs: { scope: "col" } }, [
-                                    _vm._v("PWR"),
+                                    _vm._v("Tipo"),
                                   ]),
                                   _vm._v(" "),
                                   _c("th", { attrs: { scope: "col" } }, [
-                                    _vm._v("OEM"),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("th", { attrs: { scope: "col" } }, [
-                                    _vm._v("Reefer_ID"),
+                                    _vm._v("Estado"),
                                   ]),
                                   _vm._v(" "),
                                   _c("th", { attrs: { scope: "col" } }, [
@@ -26759,501 +26549,61 @@ var render = function () {
                                   ]),
                                   _vm._v(" "),
                                   _c("th", { attrs: { scope: "col" } }, [
-                                    _vm._v("Event"),
+                                    _vm._v("Temperatura_contratada"),
                                   ]),
                                   _vm._v(" "),
                                   _c("th", { attrs: { scope: "col" } }, [
-                                    _vm._v("BLQRB"),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("th", { attrs: { scope: "col" } }, [
-                                    _vm._v("City"),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("th", { attrs: { scope: "col" } }, [
-                                    _vm._v("State"),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("th", { attrs: { scope: "col" } }, [
-                                    _vm._v("Country"),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("th", { attrs: { scope: "col" } }, [
-                                    _vm._v("Alarm"),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("th", { attrs: { scope: "col" } }, [
-                                    _vm._v("Opr mode"),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("th", { attrs: { scope: "col" } }, [
-                                    _vm._v("T set(C°)"),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("th", { attrs: { scope: "col" } }, [
-                                    _vm._v("T sup 1 (C°)"),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("th", { attrs: { scope: "col" } }, [
-                                    _vm._v("T rtn 1 (C°)"),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("th", { attrs: { scope: "col" } }, [
-                                    _vm._v("T amb (C°)"),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("th", { attrs: { scope: "col" } }, [
-                                    _vm._v("RH Set"),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("th", { attrs: { scope: "col" } }, [
-                                    _vm._v("RH Read"),
+                                    _vm._v("Empresa"),
                                   ]),
                                 ]
                               ),
                             ]),
                             _vm._v(" "),
-                            _c("tbody", [
-                              _c("tr", [
-                                _c("td", [
-                                  _c("i", { staticClass: "bi bi-power" }),
-                                ]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("Otto")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                              ]),
-                              _vm._v(" "),
-                              _c("tr", [
-                                _c("td", [
-                                  _c("i", { staticClass: "bi bi-power" }),
-                                ]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("Otto")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                              ]),
-                              _vm._v(" "),
-                              _c("tr", [
-                                _c("td", [
-                                  _c("i", { staticClass: "bi bi-power" }),
-                                ]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("Otto")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                              ]),
-                              _vm._v(" "),
-                              _c("tr", [
-                                _c("td", [
-                                  _c("i", { staticClass: "bi bi-power" }),
-                                ]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("Otto")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                              ]),
-                              _vm._v(" "),
-                              _c("tr", [
-                                _c("td", [
-                                  _c("i", { staticClass: "bi bi-power" }),
-                                ]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("Otto")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                              ]),
-                              _vm._v(" "),
-                              _c("tr", [
-                                _c("td", [
-                                  _c("i", { staticClass: "bi bi-power" }),
-                                ]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("Otto")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                              ]),
-                              _vm._v(" "),
-                              _c("tr", [
-                                _c("td", [
-                                  _c("i", { staticClass: "bi bi-power" }),
-                                ]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("Otto")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                              ]),
-                              _vm._v(" "),
-                              _c("tr", [
-                                _c("td", [
-                                  _c("i", { staticClass: "bi bi-power" }),
-                                ]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("Otto")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                              ]),
-                              _vm._v(" "),
-                              _c("tr", [
-                                _c("td", [
-                                  _c("i", { staticClass: "bi bi-power" }),
-                                ]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("Otto")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                              ]),
-                              _vm._v(" "),
-                              _c("tr", [
-                                _c("td", [
-                                  _c("i", { staticClass: "bi bi-power" }),
-                                ]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("Otto")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                              ]),
-                              _vm._v(" "),
-                              _c("tr", [
-                                _c("td", [
-                                  _c("i", { staticClass: "bi bi-power" }),
-                                ]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("Otto")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v("@mdo")]),
-                              ]),
-                            ]),
+                            _c(
+                              "tbody",
+                              _vm._l(
+                                _vm.contenedores_encendidos,
+                                function (contenedor) {
+                                  return _c("tr", { key: contenedor.id }, [
+                                    _c("td", [
+                                      _vm._v(
+                                        _vm._s(contenedor.nombre_contenedor)
+                                      ),
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _vm._v(
+                                        _vm._s(contenedor.nombre_contenedor)
+                                      ),
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v(_vm._s(contenedor.tipo))]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _vm._v(_vm._s(contenedor.encendido)),
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _vm._v(
+                                        _vm._s(contenedor.descripcion_booking)
+                                      ),
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", { staticClass: "text-center" }, [
+                                      _vm._v(
+                                        _vm._s(contenedor.temp_contratada) +
+                                          "C°"
+                                      ),
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _vm._v(_vm._s(contenedor.nombre_empresa)),
+                                    ]),
+                                  ])
+                                }
+                              ),
+                              0
+                            ),
                           ]
                         ),
                       ]

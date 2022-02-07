@@ -43,11 +43,11 @@
             </div>
             <div style="width: 75%;">
                 <div id="total_reefers" class="col shadow-sm p-3 mb-5 bg-white rounded " style="margin: 10px 15px 0px 15px;">
-                  <div>Total Reefers: 192</div>
+                  <div>Total Reefers: {{contenedores_todos.length}}</div>
                   <div class="row" style="margin: 0 10px;">
                     <button type="button" class="col-3 btn btn-success" >
                       <i class="bi bi-power"></i> 
-                      <b style="font-size:1.2em;">91</b>
+                      <b style="font-size:1.2em;">{{contenedores_encendidos.length}}</b>
                       &nbsp;
                       Running
                     </button>
@@ -74,253 +74,33 @@
                 <div id="asset_maps" class="col shadow-sm p-3 mb-5 bg-white rounded " style="margin: -30px 15px 10px 15px;">
                    <div id="map" style="width:100%; height:365px;"></div>
                 </div>            
-                <div id="reefers_grid_history" class="col shadow-sm p-3 mb-5 bg-white rounded " style="margin: -30px 15px 10px 15px; height:600px;" >
+                <div id="reefers_grid_history" class="col shadow-sm p-3 mb-5 bg-white rounded " style="margin: -30px 15px 10px 15px; " >
                   <!-- dates -->
                   <!-- /// -->
-                  <table class="table display nowrap" id="tblContenedores">
-                    <thead>
+                  <table class="table" id="tblContenedores">
+                    <thead >
                       <tr class="bg-primary" style="color:white !important;">
-                        <th scope="col">Run</th>
-                        <th scope="col">PWR</th>
-                        <th scope="col">OEM</th>
-                        <th scope="col">Reefer_ID</th>
+                        <th scope="col" width='150px'>Run</th>
+                        <th scope="col">Contenedor</th>
+                        <th scope="col">Tipo</th>
+                        <th scope="col">Estado</th>
                         <th scope="col">Booking</th>
-                        <th scope="col">Event</th>
-                        <th scope="col">BLQRB</th>
-                        <th scope="col">City</th>
-                        <th scope="col">State</th>
-                        <th scope="col">Country</th>
-                        <th scope="col">Alarm</th>
-                        <th scope="col">Opr mode</th>
-                        <th scope="col">T set(C°)</th>
-                        <th scope="col">T sup 1 (C°)</th>
-                        <th scope="col">T rtn 1 (C°)</th>
-                        <th scope="col">T amb (C°)</th>
-                        <th scope="col">RH Set</th>
-                        <th scope="col">RH Read</th>
+                        <th scope="col">Temperatura_contratada</th>
+                        <th scope="col">Empresa</th>
+                       
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td><i class="bi bi-power"></i></td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
+                      <tr v-for="contenedor in contenedores_encendidos" :key="contenedor.id" >
+                        <td>{{contenedor.nombre_contenedor}}</td>
+                        <td>{{contenedor.nombre_contenedor}}</td>
+                        <td>{{contenedor.tipo}}</td>
+                        <td>{{contenedor.encendido}}</td>
+                        <td>{{contenedor.descripcion_booking}}</td>
+                        <td class="text-center">{{contenedor.temp_contratada}}C°</td>
+                        <td>{{contenedor.nombre_empresa}}</td>
                       </tr>
-                      <tr>
-                        <td><i class="bi bi-power"></i></td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                      </tr>
-                      <tr>
-                        <td><i class="bi bi-power"></i></td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                      </tr>
-                      <tr>
-                        <td><i class="bi bi-power"></i></td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                      </tr>
-                      <tr>
-                        <td><i class="bi bi-power"></i></td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                      </tr>
-                      <tr>
-                        <td><i class="bi bi-power"></i></td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                      </tr>
-                      <tr>
-                        <td><i class="bi bi-power"></i></td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                      </tr>
-                      <tr>
-                        <td><i class="bi bi-power"></i></td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                      </tr>
-                      <tr>
-                        <td><i class="bi bi-power"></i></td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                      </tr>
-                      <tr>
-                        <td><i class="bi bi-power"></i></td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                      </tr>
-                      <tr>
-                        <td><i class="bi bi-power"></i></td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                      </tr>
+                      
                       
                     </tbody>
                   </table>
@@ -563,6 +343,9 @@ export default {
   props: {
     // tu_cuenta:Array,
     usuario_logeado: Array,
+    empresa_logeado: Array,
+    contenedores_todos : Array,
+    contenedores_encendidos: Array,
    
   },
   data() {
@@ -606,7 +389,6 @@ export default {
       let self = this;
       this.$nextTick(() => {
         var table = $("#tblContenedores").DataTable({
-          scrollY: "600px",
           scrollX: true,
           scrollCollapse: true,
           paging: true,

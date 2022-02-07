@@ -3,6 +3,13 @@
 namespace App\Http\Controllers\Paneles;
 
 use App\Models\Usuario;
+use App\Models\Alarma;
+use App\Models\Contenedor;
+use App\Models\Empresa_contenedore;
+use App\Models\Empresa;
+use App\Models\Eventos;
+use App\Models\Registro_diario_generadores;
+use App\Models\Registro_diario_reefers;
 
 use App\Http\Controllers\Controller;
 use Inertia\Inertia;
@@ -16,7 +23,7 @@ class PanelController extends Controller
     public function board()
     {
         date_default_timezone_set("America/Lima");
-        $usuario = 0; 
+        $usuario = []; 
         if (session()->get('usuario') == null) {
             return redirect('/');
         }
@@ -25,7 +32,28 @@ class PanelController extends Controller
             $usuario = Usuario::where('usuario',session()->get('usuario'))->get();
         }
         if (count($usuario) != 0) {
-            return Inertia::render('Panel/board', ['usuario_logeado' => $usuario]);
+
+            $empresaXusuario = Empresa::where('usuario_id',$usuario[0]->id)->get();
+            $contenedores_todos = Empresa_contenedore::select('contenedores.id', 'contenedores.nombre_contenedor', 
+                                        'contenedores.tipo', 'contenedores.encendido', 'empresas.id', 'empresas.usuario_id', 
+                                        'empresas.nombre_empresa', 'empresas.descripcion_booking', 'empresas.temp_contratada')
+                                        ->join('contenedores', 'contenedores.id', 'empresas_contenedores.contenedor_id')
+                                        ->join('empresas', 'empresas.id', 'empresas_contenedores.empresa_id')
+                                        ->get();
+            $contenedores_encendidos = Empresa_contenedore::select('contenedores.id', 'contenedores.nombre_contenedor', 
+                                        'contenedores.tipo', 'contenedores.encendido', 'empresas.id', 'empresas.usuario_id', 
+                                        'empresas.nombre_empresa', 'empresas.descripcion_booking', 'empresas.temp_contratada')
+                                        ->join('contenedores', 'contenedores.id', 'empresas_contenedores.contenedor_id')
+                                        ->join('empresas', 'empresas.id', 'empresas_contenedores.empresa_id')
+                                        ->where('contenedores.encendido','encendido')
+                                        ->get();
+
+            return Inertia::render('Panel/board', [
+                'usuario_logeado' => $usuario,
+                'empresa_logeado' => $empresaXusuario,
+                'contenedores_todos' => $contenedores_todos,
+                'contenedores_encendidos' => $contenedores_encendidos,
+            ]);
         }
         
     }
