@@ -2519,7 +2519,10 @@ __webpack_require__.r(__webpack_exports__);
           },
           responsive: true,
           dom: 'Bfrtip',
-          buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
+          buttons: ['copy', 'csv', 'excel', 'pdf', 'print'],
+          select: {
+            style: "single"
+          }
         });
       });
     },
@@ -2691,6 +2694,9 @@ __webpack_require__.r(__webpack_exports__);
     usuarioLogeado: function usuarioLogeado() {
       // this.$refs.layoutprincipal.usuario = (this.usuario_logeado[0].nombres + " " + this.usuario_logeado[0].apellidos).toUpperCase() ;
       this.$refs.layoutprincipal.usuario = this.usuario_logeado[0].nombres.toUpperCase();
+    },
+    select_contenedor: function select_contenedor() {
+      alert("hola");
     }
   }
 });
@@ -26564,42 +26570,57 @@ var render = function () {
                               _vm._l(
                                 _vm.contenedores_encendidos,
                                 function (contenedor) {
-                                  return _c("tr", { key: contenedor.id }, [
-                                    _c("td", [
-                                      _vm._v(
-                                        _vm._s(contenedor.nombre_contenedor)
-                                      ),
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("td", [
-                                      _vm._v(
-                                        _vm._s(contenedor.nombre_contenedor)
-                                      ),
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("td", [_vm._v(_vm._s(contenedor.tipo))]),
-                                    _vm._v(" "),
-                                    _c("td", [
-                                      _vm._v(_vm._s(contenedor.encendido)),
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("td", [
-                                      _vm._v(
-                                        _vm._s(contenedor.descripcion_booking)
-                                      ),
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("td", { staticClass: "text-center" }, [
-                                      _vm._v(
-                                        _vm._s(contenedor.temp_contratada) +
-                                          "C°"
-                                      ),
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("td", [
-                                      _vm._v(_vm._s(contenedor.nombre_empresa)),
-                                    ]),
-                                  ])
+                                  return _c(
+                                    "tr",
+                                    {
+                                      key: contenedor.id,
+                                      on: {
+                                        click: function ($event) {
+                                          return _vm.select_contenedor()
+                                        },
+                                      },
+                                    },
+                                    [
+                                      _c("td", [
+                                        _vm._v(
+                                          _vm._s(contenedor.nombre_contenedor)
+                                        ),
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("td", [
+                                        _vm._v(
+                                          _vm._s(contenedor.nombre_contenedor)
+                                        ),
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("td", [
+                                        _vm._v(_vm._s(contenedor.tipo)),
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("td", [
+                                        _vm._v(_vm._s(contenedor.encendido)),
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("td", [
+                                        _vm._v(
+                                          _vm._s(contenedor.descripcion_booking)
+                                        ),
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("td", { staticClass: "text-center" }, [
+                                        _vm._v(
+                                          _vm._s(contenedor.temp_contratada) +
+                                            "C°"
+                                        ),
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("td", [
+                                        _vm._v(
+                                          _vm._s(contenedor.nombre_empresa)
+                                        ),
+                                      ]),
+                                    ]
+                                  )
                                 }
                               ),
                               0

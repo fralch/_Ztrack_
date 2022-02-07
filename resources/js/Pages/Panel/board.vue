@@ -91,7 +91,7 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr v-for="contenedor in contenedores_encendidos" :key="contenedor.id" >
+                      <tr v-for="contenedor in contenedores_encendidos" :key="contenedor.id"  @click="select_contenedor()">
                         <td>{{contenedor.nombre_contenedor}}</td>
                         <td>{{contenedor.nombre_contenedor}}</td>
                         <td>{{contenedor.tipo}}</td>
@@ -427,6 +427,9 @@ export default {
           buttons: [
               'copy', 'csv', 'excel', 'pdf', 'print'
           ],
+          select: {
+            style: "single",
+          },
         });
 
         
@@ -650,7 +653,9 @@ export default {
       this.$refs.layoutprincipal.usuario = (this.usuario_logeado[0].nombres ).toUpperCase() ;
      
     },
-    
+    select_contenedor(){
+      alert("hola");
+    },
   },
 };
 </script>
