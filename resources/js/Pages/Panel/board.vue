@@ -77,11 +77,11 @@
                 <div id="reefers_grid_history" class="col shadow-sm p-3 mb-5 bg-white rounded " style="margin: -30px 15px 10px 15px; " >
                   <!-- dates -->
                   <!-- /// -->
-                  <table class="table" id="tblContenedores">
+                  <table class="table" id="tblContenedores" style="margin: 0 auto !important;">
                     <thead >
                       <tr class="bg-primary" style="color:white !important;">
-                        <th scope="col" width='150px'>Run</th>
-                        <th scope="col">Contenedor</th>
+                        <th scope="col" >Run</th>
+                        <th scope="col" width='150px'>Contenedor</th>
                         <th scope="col">Tipo</th>
                         <th scope="col">Estado</th>
                         <th scope="col">Booking</th>
@@ -92,7 +92,7 @@
                     </thead>
                     <tbody>
                       <tr v-for="contenedor in contenedores_encendidos" :key="contenedor.id"  @click="select_contenedor()">
-                        <td>{{contenedor.nombre_contenedor}}</td>
+                       <td><i class="bi bi-power"></i></td>
                         <td>{{contenedor.nombre_contenedor}}</td>
                         <td>{{contenedor.tipo}}</td>
                         <td>{{contenedor.encendido}}</td>

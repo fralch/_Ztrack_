@@ -26521,6 +26521,7 @@ var render = function () {
                           "table",
                           {
                             staticClass: "table",
+                            staticStyle: { margin: "0 auto !important" },
                             attrs: { id: "tblContenedores" },
                           },
                           [
@@ -26532,15 +26533,15 @@ var render = function () {
                                   staticStyle: { color: "white !important" },
                                 },
                                 [
+                                  _c("th", { attrs: { scope: "col" } }, [
+                                    _vm._v("Run"),
+                                  ]),
+                                  _vm._v(" "),
                                   _c(
                                     "th",
                                     { attrs: { scope: "col", width: "150px" } },
-                                    [_vm._v("Run")]
+                                    [_vm._v("Contenedor")]
                                   ),
-                                  _vm._v(" "),
-                                  _c("th", { attrs: { scope: "col" } }, [
-                                    _vm._v("Contenedor"),
-                                  ]),
                                   _vm._v(" "),
                                   _c("th", { attrs: { scope: "col" } }, [
                                     _vm._v("Tipo"),
@@ -26582,9 +26583,7 @@ var render = function () {
                                     },
                                     [
                                       _c("td", [
-                                        _vm._v(
-                                          _vm._s(contenedor.nombre_contenedor)
-                                        ),
+                                        _c("i", { staticClass: "bi bi-power" }),
                                       ]),
                                       _vm._v(" "),
                                       _c("td", [
