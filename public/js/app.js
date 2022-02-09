@@ -2483,90 +2483,56 @@ __webpack_require__.r(__webpack_exports__);
     },
     TablaContenedores: function TablaContenedores() {
       var self = this;
-      this.$nextTick(function () {
-        var table = $("#tblContenedores").DataTable({
-          scrollX: true,
-          scrollCollapse: true,
-          paging: true,
-          fixedColumns: {
-            leftColumns: 0
+      $('#tblContenedores').DataTable({
+        language: {
+          retrieve: true,
+          decimal: "",
+          emptyTable: "No hay datos disponibles en la tabla",
+          info: "Mostrando del _START_ al _END_ de _TOTAL_ registros",
+          infoEmpty: "No se encontraron registros",
+          infoFiltered: "(filtrado de _MAX_ registros)",
+          infoPostFix: "",
+          thousands: ",",
+          lengthMenu: "Agrupar por _MENU_ filas",
+          loadingRecords: "Cargando...",
+          processing: "Procesando...",
+          search: "Buscar:",
+          zeroRecords: "No se encontraron registros",
+          paginate: {
+            first: "Primera",
+            last: "Ultima",
+            next: '<i class="fas fa-chevron-circle-right" style="font-size:20px;"></i>',
+            previous: '<i class="fas fa-chevron-circle-left" style="font-size:20px;"></i>'
           },
-          order: [[1, "asc"]],
-          language: {
-            retrieve: true,
-            decimal: "",
-            emptyTable: "No hay datos disponibles en la tabla",
-            info: "Mostrando del _START_ al _END_ de _TOTAL_ registros",
-            infoEmpty: "No se encontraron registros",
-            infoFiltered: "(filtrado de _MAX_ registros)",
-            infoPostFix: "",
-            thousands: ",",
-            lengthMenu: "Agrupar por _MENU_ filas",
-            loadingRecords: "Cargando...",
-            processing: "Procesando...",
-            search: "Buscar:",
-            zeroRecords: "No se encontraron registros",
-            paginate: {
-              first: "Primera",
-              last: "Ultima",
-              next: '<i class="fas fa-chevron-circle-right" style="font-size:20px;"></i>',
-              previous: '<i class="fas fa-chevron-circle-left" style="font-size:20px;"></i>'
-            },
-            aria: {
-              sortAscending: ": activar para ordenar de forma ascendente",
-              sortDescending: ": activar para ordenar de forma descendente"
-            }
-          },
-          responsive: true,
-          dom: 'Bfrtip',
-          buttons: ['copy', 'csv', 'excel', 'pdf', 'print'],
-          select: {
-            style: "single"
-          }
-        });
+          responsive: true
+        }
       });
     },
     TablaDetalleContenedores: function TablaDetalleContenedores() {
       var self = this;
-      this.$nextTick(function () {
-        var table = $("#tblDetalleContenedores").DataTable({
-          scrollY: "600px",
-          scrollX: true,
-          scrollCollapse: true,
-          paging: false,
-          fixedColumns: {
-            leftColumns: 0
+      $('#tblDetalleContenedores').DataTable({
+        language: {
+          retrieve: true,
+          decimal: "",
+          emptyTable: "No hay datos disponibles en la tabla",
+          info: "Mostrando del _START_ al _END_ de _TOTAL_ registros",
+          infoEmpty: "No se encontraron registros",
+          infoFiltered: "(filtrado de _MAX_ registros)",
+          infoPostFix: "",
+          thousands: ",",
+          lengthMenu: "Agrupar por _MENU_ filas",
+          loadingRecords: "Cargando...",
+          processing: "Procesando...",
+          search: "Buscar:",
+          zeroRecords: "No se encontraron registros",
+          paginate: {
+            first: "Primera",
+            last: "Ultima",
+            next: '<i class="fas fa-chevron-circle-right" style="font-size:20px;"></i>',
+            previous: '<i class="fas fa-chevron-circle-left" style="font-size:20px;"></i>'
           },
-          order: [[1, "asc"]],
-          language: {
-            retrieve: true,
-            decimal: "",
-            emptyTable: "No hay datos disponibles en la tabla",
-            info: "Mostrando del _START_ al _END_ de _TOTAL_ registros",
-            infoEmpty: "No se encontraron registros",
-            infoFiltered: "(filtrado de _MAX_ registros)",
-            infoPostFix: "",
-            thousands: ",",
-            lengthMenu: "Agrupar por _MENU_ filas",
-            loadingRecords: "Cargando...",
-            processing: "Procesando...",
-            search: "Buscar:",
-            zeroRecords: "No se encontraron registros",
-            paginate: {
-              first: "Primera",
-              last: "Ultima",
-              next: '<i class="fas fa-chevron-circle-right" style="font-size:20px;"></i>',
-              previous: '<i class="fas fa-chevron-circle-left" style="font-size:20px;"></i>'
-            },
-            aria: {
-              sortAscending: ": activar para ordenar de forma ascendente",
-              sortDescending: ": activar para ordenar de forma descendente"
-            }
-          },
-          responsive: true,
-          dom: 'Bfrtip',
-          buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
-        });
+          responsive: true
+        }
       });
     },
     iniciarMap: function iniciarMap() {

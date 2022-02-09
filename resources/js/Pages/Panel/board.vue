@@ -387,16 +387,8 @@ export default {
     },
     TablaContenedores() {
       let self = this;
-      this.$nextTick(() => {
-        var table = $("#tblContenedores").DataTable({
-          scrollX: true,
-          scrollCollapse: true,
-          paging: true,
-          fixedColumns: {
-            leftColumns: 0,
-          },
-          order: [[1, "asc"]],
-          language: {
+      $('#tblContenedores').DataTable({
+        language: {
             retrieve: true,
             decimal: "",
             emptyTable: "No hay datos disponibles en la tabla",
@@ -417,37 +409,17 @@ export default {
               previous:
                 '<i class="fas fa-chevron-circle-left" style="font-size:20px;"></i>',
             },
-            aria: {
-              sortAscending: ": activar para ordenar de forma ascendente",
-              sortDescending: ": activar para ordenar de forma descendente",
-            },
-          },
-          responsive: true,
-          dom: 'Bfrtip',
-          buttons: [
-              'copy', 'csv', 'excel', 'pdf', 'print'
-          ],
-          select: {
-            style: "single",
-          },
-        });
-
+            responsive: true,
+     
+        },
         
       });
+      
     },
     TablaDetalleContenedores() {
       let self = this;
-      this.$nextTick(() => {
-        var table = $("#tblDetalleContenedores").DataTable({
-          scrollY: "600px",
-          scrollX: true,
-          scrollCollapse: true,
-          paging: false,
-          fixedColumns: {
-            leftColumns: 0,
-          },
-          order: [[1, "asc"]],
-          language: {
+      $('#tblDetalleContenedores').DataTable({
+        language: {
             retrieve: true,
             decimal: "",
             emptyTable: "No hay datos disponibles en la tabla",
@@ -468,20 +440,11 @@ export default {
               previous:
                 '<i class="fas fa-chevron-circle-left" style="font-size:20px;"></i>',
             },
-            aria: {
-              sortAscending: ": activar para ordenar de forma ascendente",
-              sortDescending: ": activar para ordenar de forma descendente",
-            },
-          },
-          responsive: true,
-          dom: 'Bfrtip',
-          buttons: [
-              'copy', 'csv', 'excel', 'pdf', 'print'
-          ],
-        });
-
-        
+            responsive: true,
+     
+        },
       });
+     
     },
     iniciarMap() {
       // var map = L.map('map').setView([51.505, -0.09], 13);
