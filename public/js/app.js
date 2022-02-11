@@ -2438,6 +2438,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -2451,8 +2459,16 @@ __webpack_require__.r(__webpack_exports__);
     contenedores_encendidos: Array
   },
   data: function data() {
-    return {// submited: false, 
+    return {
+      // submited: false, 
+      contenedores_seleccionados: []
     };
+  },
+  watch: {
+    contenedores_seleccionados: function contenedores_seleccionados() {
+      $("#tblContenedores").DataTable().destroy();
+      this.TablaContenedores();
+    }
   },
   mounted: function mounted() {
     this.iniciarMap();
@@ -2468,11 +2484,6 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     bienvenida: function bienvenida() {
-      // Swal.fire(
-      //     'Bienvenido!',
-      //     (this.usuario_logeado[0].nombres + " "+ this.usuario_logeado[0].apellidos ).toUpperCase(),
-      //     'success',
-      //   )
       Swal.fire({
         title: 'Bienvenido!',
         icon: 'success',
@@ -2483,34 +2494,39 @@ __webpack_require__.r(__webpack_exports__);
     },
     TablaContenedores: function TablaContenedores() {
       var self = this;
-      $('#tblContenedores').DataTable({
-        language: {
-          retrieve: true,
-          decimal: "",
-          emptyTable: "No hay datos disponibles en la tabla",
-          info: "Mostrando del _START_ al _END_ de _TOTAL_ registros",
-          infoEmpty: "No se encontraron registros",
-          infoFiltered: "(filtrado de _MAX_ registros)",
-          infoPostFix: "",
-          thousands: ",",
-          lengthMenu: "Agrupar por _MENU_ filas",
-          loadingRecords: "Cargando...",
-          processing: "Procesando...",
-          search: "Buscar:",
-          zeroRecords: "No se encontraron registros",
-          paginate: {
-            first: "Primera",
-            last: "Ultima",
-            next: '<i class="fas fa-chevron-circle-right" style="font-size:20px;"></i>',
-            previous: '<i class="fas fa-chevron-circle-left" style="font-size:20px;"></i>'
-          },
-          responsive: true
-        }
+      this.$nextTick(function () {
+        var table = $('#tblContenedores').DataTable({
+          language: {
+            retrieve: true,
+            decimal: "",
+            emptyTable: "No hay datos disponibles en la tabla",
+            info: "Mostrando del _START_ al _END_ de _TOTAL_ registros",
+            infoEmpty: "No se encontraron registros",
+            infoFiltered: "(filtrado de _MAX_ registros)",
+            infoPostFix: "",
+            thousands: ",",
+            lengthMenu: "Agrupar por _MENU_ filas",
+            loadingRecords: "Cargando...",
+            processing: "Procesando...",
+            search: "Buscar:",
+            zeroRecords: "No se encontraron registros",
+            paginate: {
+              first: "Primera",
+              last: "Ultima",
+              next: '<i class="fas fa-chevron-circle-right" style="font-size:20px;"></i>',
+              previous: '<i class="fas fa-chevron-circle-left" style="font-size:20px;"></i>'
+            },
+            responsive: true
+          }
+        });
       });
     },
     TablaDetalleContenedores: function TablaDetalleContenedores() {
       var self = this;
       $('#tblDetalleContenedores').DataTable({
+        select: {
+          style: 'api'
+        },
         language: {
           retrieve: true,
           decimal: "",
@@ -2661,8 +2677,12 @@ __webpack_require__.r(__webpack_exports__);
       // this.$refs.layoutprincipal.usuario = (this.usuario_logeado[0].nombres + " " + this.usuario_logeado[0].apellidos).toUpperCase() ;
       this.$refs.layoutprincipal.usuario = this.usuario_logeado[0].nombres.toUpperCase();
     },
-    select_contenedor: function select_contenedor() {
-      alert("hola");
+    contenedores_prendidos: function contenedores_prendidos() {
+      this.contenedores_seleccionados = this.contenedores_encendidos;
+    },
+    select_contenedor: function select_contenedor(x) {
+      // alert("hola");
+      console.log(x);
     }
   }
 });
@@ -26377,6 +26397,7 @@ var render = function () {
                               {
                                 staticClass: "col-3 btn btn-success",
                                 attrs: { type: "button" },
+                                on: { click: _vm.contenedores_prendidos },
                               },
                               [
                                 _c("i", { staticClass: "bi bi-power" }),
@@ -26500,7 +26521,7 @@ var render = function () {
                                 },
                                 [
                                   _c("th", { attrs: { scope: "col" } }, [
-                                    _vm._v("Run"),
+                                    _vm._v("Ver"),
                                   ]),
                                   _vm._v(" "),
                                   _c(
@@ -26517,13 +26538,17 @@ var render = function () {
                                     _vm._v("Estado"),
                                   ]),
                                   _vm._v(" "),
-                                  _c("th", { attrs: { scope: "col" } }, [
-                                    _vm._v("Booking"),
-                                  ]),
+                                  _c(
+                                    "th",
+                                    { attrs: { scope: "col", width: "250px" } },
+                                    [_vm._v("Booking")]
+                                  ),
                                   _vm._v(" "),
-                                  _c("th", { attrs: { scope: "col" } }, [
-                                    _vm._v("Temperatura_contratada"),
-                                  ]),
+                                  _c(
+                                    "th",
+                                    { attrs: { scope: "col", width: "50px" } },
+                                    [_vm._v("Temperatura_contratada")]
+                                  ),
                                   _vm._v(" "),
                                   _c("th", { attrs: { scope: "col" } }, [
                                     _vm._v("Empresa"),
@@ -26535,21 +26560,35 @@ var render = function () {
                             _c(
                               "tbody",
                               _vm._l(
-                                _vm.contenedores_encendidos,
-                                function (contenedor) {
+                                _vm.contenedores_seleccionados,
+                                function (contenedor, index) {
                                   return _c(
                                     "tr",
                                     {
-                                      key: contenedor.id,
+                                      key: index,
                                       on: {
                                         click: function ($event) {
-                                          return _vm.select_contenedor()
+                                          return _vm.select_contenedor(
+                                            contenedor
+                                          )
                                         },
                                       },
                                     },
                                     [
                                       _c("td", [
-                                        _c("i", { staticClass: "bi bi-power" }),
+                                        _c(
+                                          "button",
+                                          {
+                                            staticClass:
+                                              "btn btn-outline-primary",
+                                            attrs: { type: "button" },
+                                          },
+                                          [
+                                            _c("i", {
+                                              staticClass: "bi bi-check-lg",
+                                            }),
+                                          ]
+                                        ),
                                       ]),
                                       _vm._v(" "),
                                       _c("td", [

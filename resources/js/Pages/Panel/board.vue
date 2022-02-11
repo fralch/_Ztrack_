@@ -45,7 +45,7 @@
                 <div id="total_reefers" class="col shadow-sm p-3 mb-5 bg-white rounded " style="margin: 10px 15px 0px 15px;">
                   <div>Total Reefers: {{contenedores_todos.length}}</div>
                   <div class="row" style="margin: 0 10px;">
-                    <button type="button" class="col-3 btn btn-success" >
+                    <button type="button" class="col-3 btn btn-success"  @click="contenedores_prendidos">
                       <i class="bi bi-power"></i> 
                       <b style="font-size:1.2em;">{{contenedores_encendidos.length}}</b>
                       &nbsp;
@@ -80,19 +80,27 @@
                   <table class="table" id="tblContenedores" style="margin: 0 auto !important;">
                     <thead >
                       <tr class="bg-primary" style="color:white !important;">
-                        <th scope="col" >Run</th>
+                        <th scope="col" >Ver</th>
                         <th scope="col" width='150px'>Contenedor</th>
                         <th scope="col">Tipo</th>
                         <th scope="col">Estado</th>
-                        <th scope="col">Booking</th>
-                        <th scope="col">Temperatura_contratada</th>
+                        <th scope="col" width='250px'>Booking</th>
+                        <th scope="col" width='50px'>Temperatura_contratada</th>
                         <th scope="col">Empresa</th>
                        
                       </tr>
                     </thead>
                     <tbody>
-                      <tr v-for="contenedor in contenedores_encendidos" :key="contenedor.id"  @click="select_contenedor()">
-                       <td><i class="bi bi-power"></i></td>
+                      <tr 
+                        v-for="(contenedor, index) in contenedores_seleccionados" :key="index"
+                        @click="select_contenedor(contenedor)" 
+                      >
+                        <td>
+                         <!-- <i class="bi bi-power"></i> -->
+                          <button type="button" class="btn btn-outline-primary" >
+                            <i class="bi bi-check-lg"></i>                    
+                          </button>
+                        </td>
                         <td>{{contenedor.nombre_contenedor}}</td>
                         <td>{{contenedor.tipo}}</td>
                         <td>{{contenedor.encendido}}</td>
@@ -351,10 +359,16 @@ export default {
   data() {
     return {
       // submited: false, 
+      contenedores_seleccionados:[],
       
     };
   },
- 
+  watch: {
+    contenedores_seleccionados(){
+      $("#tblContenedores").DataTable().destroy();
+      this.TablaContenedores();
+    },
+  },
  
   mounted() {
     this.iniciarMap();
@@ -370,12 +384,8 @@ export default {
   },
 
   methods: {
+    
     bienvenida() {
-    // Swal.fire(
-    //     'Bienvenido!',
-    //     (this.usuario_logeado[0].nombres + " "+ this.usuario_logeado[0].apellidos ).toUpperCase(),
-    //     'success',
-    //   )
      Swal.fire({
         title: 'Bienvenido!',
         icon: 'success',
@@ -387,38 +397,44 @@ export default {
     },
     TablaContenedores() {
       let self = this;
-      $('#tblContenedores').DataTable({
-        language: {
-            retrieve: true,
-            decimal: "",
-            emptyTable: "No hay datos disponibles en la tabla",
-            info: "Mostrando del _START_ al _END_ de _TOTAL_ registros",
-            infoEmpty: "No se encontraron registros",
-            infoFiltered: "(filtrado de _MAX_ registros)",
-            infoPostFix: "",
-            thousands: ",",
-            lengthMenu: "Agrupar por _MENU_ filas",
-            loadingRecords: "Cargando...",
-            processing: "Procesando...",
-            search: "Buscar:",
-            zeroRecords: "No se encontraron registros",
-            paginate: {
-              first: "Primera",
-              last: "Ultima",
-              next: '<i class="fas fa-chevron-circle-right" style="font-size:20px;"></i>',
-              previous:
-                '<i class="fas fa-chevron-circle-left" style="font-size:20px;"></i>',
-            },
-            responsive: true,
-     
-        },
+      this.$nextTick(() => {
+        var table = $('#tblContenedores').DataTable({
+          language: {
+              retrieve: true,
+              decimal: "",
+              emptyTable: "No hay datos disponibles en la tabla",
+              info: "Mostrando del _START_ al _END_ de _TOTAL_ registros",
+              infoEmpty: "No se encontraron registros",
+              infoFiltered: "(filtrado de _MAX_ registros)",
+              infoPostFix: "",
+              thousands: ",",
+              lengthMenu: "Agrupar por _MENU_ filas",
+              loadingRecords: "Cargando...",
+              processing: "Procesando...",
+              search: "Buscar:",
+              zeroRecords: "No se encontraron registros",
+              paginate: {
+                first: "Primera",
+                last: "Ultima",
+                next: '<i class="fas fa-chevron-circle-right" style="font-size:20px;"></i>',
+                previous:
+                  '<i class="fas fa-chevron-circle-left" style="font-size:20px;"></i>',
+              },
+              responsive: true,
+      
+          },
         
+        });
       });
+     
       
     },
     TablaDetalleContenedores() {
       let self = this;
       $('#tblDetalleContenedores').DataTable({
+         select: {
+              style: 'api'
+            },
         language: {
             retrieve: true,
             decimal: "",
@@ -441,6 +457,7 @@ export default {
                 '<i class="fas fa-chevron-circle-left" style="font-size:20px;"></i>',
             },
             responsive: true,
+           
      
         },
       });
@@ -616,8 +633,13 @@ export default {
       this.$refs.layoutprincipal.usuario = (this.usuario_logeado[0].nombres ).toUpperCase() ;
      
     },
-    select_contenedor(){
-      alert("hola");
+    contenedores_prendidos(){
+      this.contenedores_seleccionados = this.contenedores_encendidos;
+    },
+    select_contenedor(x){
+      
+      // alert("hola");
+      console.log(x);
     },
   },
 };
