@@ -113,211 +113,60 @@
                     </tbody>
                   </table>
                 </div>
-                <div id="reefers_grid" class="col shadow-sm p-3 mb-5 bg-white rounded " style="margin: -30px 15px 10px 15px; height:600px;">
-                  <table  class="table display nowrap" id="tblDetalleContenedores">
+                <div id="generador_grid" class="col shadow-sm p-3 mb-5 bg-white rounded " style="margin: -30px 15px 10px 15px; display:block;">
+                  <table  class="table display nowrap" id="tblDetalleContenedores_generadores">
                     <thead>
                       <tr class="bg-info" style="color:white !important;">
-                        <th scope="col">Run</th>
-                        <th scope="col">PWR</th>
-                        <th scope="col">OEM</th>
-                        <th scope="col">Reefer_ID</th>
-                        <th scope="col">Booking</th>
-                        <th scope="col">Event</th>
-                        <th scope="col">BLQRB</th>
-                        <th scope="col">City</th>
-                        <th scope="col">State</th>
-                        <th scope="col">Country</th>
-                        <th scope="col">Alarm</th>
-                        <th scope="col">Opr mode</th>
-                        <th scope="col">T set(C°)</th>
-                        <th scope="col">T sup 1 (C°)</th>
-                        <th scope="col">T rtn 1 (C°)</th>
-                        <th scope="col">T amb (C°)</th>
-                        <th scope="col">RH Set</th>
-                        <th scope="col">RH Read</th>
+                        <th scope="col">N°</th>
+                        <th scope="col">Generador</th>
+                        <th scope="col">Set_point</th>
+                        <th scope="col">Temp_supply</th>
+                        <th scope="col">Tem_return</th>
+                        <th scope="col">Re_hume</th>
+                        <th scope="col">Re_co2</th>
+                        <th scope="col">Re_o2</th>
+                        <th scope="col">Alv</th>
+                        <th scope="col">Latitud</th>
+                        <th scope="col">Longitud</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Modelo</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td><i class="bi bi-power"></i></td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
+                      
+                      
+                    </tbody>
+                  </table>
+                </div>
+                <div id="reefers_grid" class="col shadow-sm p-3 mb-5 bg-white rounded " style="margin: -30px 15px 10px 15px; display:none;">
+                  <table  class="table display nowrap" id="tblDetalleContenedores_reefers">
+                    <thead>
+                      <tr class="bg-info" style="color:white !important;">
+                        <th scope="col">N°</th>
+                        <th scope="col">Reefer</th>
+                        <th scope="col">Set_point</th>
+                        <th scope="col">Temp_supply</th>
+                        <th scope="col">Tem_return</th>
+                        <th scope="col">Re_hume</th>
+                        <th scope="col">Fuel_level</th>
+                        <th scope="col">Vdc</th>
+                        <th scope="col">Rpm</th>
+                        <th scope="col">Freq</th>
+                        <th scope="col">Vac</th>
+                        <th scope="col">Latitud</th>
+                        <th scope="col">Longitud</th>
+                        <th scope="col">Temp_motor</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Speed</th>
+                        <th scope="col">Ecopower</th>
+                        <th scope="col">Horometro</th>
+                        <th scope="col">Alarma</th>
+                        <th scope="col">Evento</th>
+                        <th scope="col">Modelo</th>
                       </tr>
-                      <tr>
-                        <td><i class="bi bi-power"></i></td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                      </tr>
-                      <tr>
-                        <td><i class="bi bi-power"></i></td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                      </tr>
-                      <tr>
-                        <td><i class="bi bi-power"></i></td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                      </tr>
-                      <tr>
-                        <td><i class="bi bi-power"></i></td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                      </tr>
-                      <tr>
-                        <td><i class="bi bi-power"></i></td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                      </tr>
-                      <tr>
-                        <td><i class="bi bi-power"></i></td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                      </tr>
-                      <tr>
-                        <td><i class="bi bi-power"></i></td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                      </tr>
-                      <tr>
-                        <td><i class="bi bi-power"></i></td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                      </tr>
+                    </thead>
+                    <tbody>
+                      
                       
                     </tbody>
                   </table>
@@ -430,38 +279,61 @@ export default {
       
     },
     TablaDetalleContenedores() {
-      let self = this;
-      $('#tblDetalleContenedores').DataTable({
-         select: {
-              style: 'api'
-            },
-        language: {
-            retrieve: true,
-            decimal: "",
-            emptyTable: "No hay datos disponibles en la tabla",
-            info: "Mostrando del _START_ al _END_ de _TOTAL_ registros",
-            infoEmpty: "No se encontraron registros",
-            infoFiltered: "(filtrado de _MAX_ registros)",
-            infoPostFix: "",
-            thousands: ",",
-            lengthMenu: "Agrupar por _MENU_ filas",
-            loadingRecords: "Cargando...",
-            processing: "Procesando...",
-            search: "Buscar:",
-            zeroRecords: "No se encontraron registros",
-            paginate: {
-              first: "Primera",
-              last: "Ultima",
-              next: '<i class="fas fa-chevron-circle-right" style="font-size:20px;"></i>',
-              previous:
-                '<i class="fas fa-chevron-circle-left" style="font-size:20px;"></i>',
-            },
-            responsive: true,
-           
-     
-        },
+     let self = this;
+      this.$nextTick(() => {
+        var table = $('#tblDetalleContenedores_generadores').DataTable({
+           scrollX: true,
+          language: {
+              retrieve: true,
+              decimal: "",
+              emptyTable: "No hay datos disponibles en la tabla",
+              info: "Mostrando del _START_ al _END_ de _TOTAL_ registros",
+              infoEmpty: "No se encontraron registros",
+              infoFiltered: "(filtrado de _MAX_ registros)",
+              infoPostFix: "",
+              thousands: ",",
+              lengthMenu: "Agrupar por _MENU_ filas",
+              loadingRecords: "Cargando...",
+              processing: "Procesando...",
+              search: "Buscar:",
+              zeroRecords: "No se encontraron registros",
+              paginate: {
+                first: "Primera",
+                last: "Ultima",
+                next: '<i class="fas fa-chevron-circle-right" style="font-size:20px;"></i>',
+                previous:
+                  '<i class="fas fa-chevron-circle-left" style="font-size:20px;"></i>',
+              },
+              responsive: true,
+          },       
+        });
+        var table2 = $('#tblDetalleContenedores_reefers').DataTable({
+           scrollX: true,
+          language: {
+              retrieve: true,
+              decimal: "",
+              emptyTable: "No hay datos disponibles en la tabla",
+              info: "Mostrando del _START_ al _END_ de _TOTAL_ registros",
+              infoEmpty: "No se encontraron registros",
+              infoFiltered: "(filtrado de _MAX_ registros)",
+              infoPostFix: "",
+              thousands: ",",
+              lengthMenu: "Agrupar por _MENU_ filas",
+              loadingRecords: "Cargando...",
+              processing: "Procesando...",
+              search: "Buscar:",
+              zeroRecords: "No se encontraron registros",
+              paginate: {
+                first: "Primera",
+                last: "Ultima",
+                next: '<i class="fas fa-chevron-circle-right" style="font-size:20px;"></i>',
+                previous:
+                  '<i class="fas fa-chevron-circle-left" style="font-size:20px;"></i>',
+              },
+              responsive: true,
+          },       
+        });
       });
-     
     },
     iniciarMap() {
       // var map = L.map('map').setView([51.505, -0.09], 13);
@@ -637,9 +509,16 @@ export default {
       this.contenedores_seleccionados = this.contenedores_encendidos;
     },
     select_contenedor(x){
-      
-      // alert("hola");
-      console.log(x);
+      console.log(x.tipo);
+      if (x.tipo == "Reefer") {
+       $('#reefers_grid').css('display', 'block');
+       $('#generador_grid').css('display', 'none');
+      }
+      if (x.tipo == "Generador") {
+       $('#reefers_grid').css('display', 'none');
+       $('#generador_grid').css('display', 'block');
+      }
+
     },
   },
 };
