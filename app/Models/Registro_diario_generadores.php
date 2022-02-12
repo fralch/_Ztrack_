@@ -12,7 +12,6 @@ class Registro_diario_generadores extends Model
     protected $fillable = [
         'id',
         'contenedor_id',
-        'nombre_contenedor',
         'set_point',
         'temp_supply',
         'temp_return',
