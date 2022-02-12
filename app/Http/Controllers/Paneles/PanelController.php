@@ -60,9 +60,9 @@ class PanelController extends Controller
     public function faker_datos()
     {
         # code...
-        Registro_diario_generadores::insert([
+        Registro_diario_generadores::create([
             'contenedor_id' => 2,
-            'nombre_contenedor' => 'Contenedor 2',
+            'nombre_contenedor' => 'generador',
             'set_point' => rand((1*10),(100*10))/10,
             'temp_supply' => rand((1*10),(100*10))/10,
             'temp_return' => rand((1*10),(100*10))/10,
@@ -76,9 +76,9 @@ class PanelController extends Controller
             'modelo' => 'ThermoKing',
         ]);
 
-        Registro_diario_reefers::insert([
+        Registro_diario_reefers::create([
             'contenedor_id' => 1,
-            'nombre_contenedor' => 'Contenedor 1',
+            'nombre_contenedor' => 'reefer',
             'set_point' => rand((1*10),(100*10))/10,
             'temp_supply' => rand((1*10),(100*10))/10,
             'temp_return' => rand((1*10),(100*10))/10,
