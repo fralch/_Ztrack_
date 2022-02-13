@@ -33,7 +33,7 @@ class CreateRegistroDiarioReefersTable extends Migration
             $table->float('speed');
             $table->float('ecopower');
             $table->float('horometro');
-            $table->float('alamra_id');
+            $table->float('alarma_id');
             $table->float('evento_id');
             $table->float('modelo');
             $table->timestamps();

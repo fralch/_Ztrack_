@@ -8,7 +8,7 @@
         <!-- ---------------------- -->
         <div class="content" >
           <div class="row" style=" margin: 0 0 0 0px;">
-            <div style="width: 25%; margin: 10px 0 0 -5px;">
+            <div id='lado_izquierdo' style="margin: 10px 0 0 -5px;">
               <div id="asset-search" class="col shadow-sm p-3 mb-5 bg-white rounded" >
                 Asset search
                 <input type="text" class="form-control" placeholder="Saved seaches" aria-label="Username" aria-describedby="basic-addon1" style="margin:5px">
@@ -41,7 +41,7 @@
                  <canvas id="myChart_fleet"></canvas>
               </div>
             </div>
-            <div style="width: 75%;">
+            <div id='lado_derecho' style="">
                 <div id="total_reefers" class="col shadow-sm p-3 mb-5 bg-white rounded " style="margin: 10px 15px 0px 15px;">
                   <div>Total Reefers: {{contenedores_todos.length}}</div>
                   <div class="row" style="margin: 0 10px;">
@@ -80,12 +80,12 @@
                   <table class="table" id="tblContenedores" style="margin: 0 auto !important;">
                     <thead >
                       <tr class="bg-primary" style="color:white !important;">
-                        <th scope="col" >Ver</th>
+                        <th scope="col" width='50px'>Ver</th>
                         <th scope="col" width='150px'>Contenedor</th>
                         <th scope="col">Tipo</th>
                         <th scope="col">Estado</th>
                         <th scope="col" width='250px'>Booking</th>
-                        <th scope="col" width='50px'>Temperatura_contratada</th>
+                        <th scope="col" width='50px'>Temp_contratada</th>
                         <th scope="col">Empresa</th>
                        
                       </tr>
@@ -93,11 +93,10 @@
                     <tbody>
                       <tr 
                         v-for="(contenedor, index) in contenedores_seleccionados" :key="index"
-                        @click="select_contenedor(contenedor)" 
                       >
                         <td>
                          <!-- <i class="bi bi-power"></i> -->
-                          <button type="button" class="btn btn-outline-primary" >
+                          <button :id="contenedor.tipo+'_'+contenedor.contenedores_id" type="button" class="btn btn-outline-primary" @click="select_contenedor(contenedor)"  >
                             <i class="bi bi-check-lg"></i>                    
                           </button>
                         </td>
@@ -106,14 +105,14 @@
                         <td>{{contenedor.encendido}}</td>
                         <td>{{contenedor.descripcion_booking}}</td>
                         <td class="text-center">{{contenedor.temp_contratada}}C°</td>
-                        <td>{{contenedor.nombre_empresa}}</td>
+                        <td>{{(contenedor.nombre_empresa).toUpperCase()}}</td>
                       </tr>
                       
                       
                     </tbody>
                   </table>
                 </div>
-                <div id="generador_grid" class="col shadow-sm p-3 mb-5 bg-white rounded " style="margin: -30px 15px 10px 15px; display:block;">
+                <div id="generador_grid" class="col shadow-sm p-3 mb-5 bg-white rounded " style="margin: -30px 15px 10px 15px; display:none;">
                   <table  class="table display nowrap" id="tblDetalleContenedores_generadores">
                     <thead>
                       <tr class="bg-info" style="color:white !important;">
@@ -121,7 +120,7 @@
                         <th scope="col">Generador</th>
                         <th scope="col">Set_point</th>
                         <th scope="col">Temp_supply</th>
-                        <th scope="col">Tem_return</th>
+                        <th scope="col">Temp_return</th>
                         <th scope="col">Re_hume</th>
                         <th scope="col">Re_co2</th>
                         <th scope="col">Re_o2</th>
@@ -133,12 +132,28 @@
                       </tr>
                     </thead>
                     <tbody>
-                      
+                      <tr 
+                        v-for="(generador, index) in datos_tabla_generador" :key="index"
+                      >
+                        <td>{{index+1}}</td>
+                        <td>{{generador.nombre_contenedor}}</td>
+                        <td>{{generador.set_point}}</td>
+                        <td>{{generador.temp_supply}}</td>
+                        <td>{{generador.temp_return}}</td>
+                        <td>{{generador.re_hume}}</td>
+                        <td>{{generador.re_c_o2}}</td>
+                        <td>{{generador.re_o2}}</td>
+                        <td>{{generador.alv}}</td>
+                        <td>{{generador.latitud}}</td>
+                        <td>{{generador.longitud}}</td>
+                        <td>{{generador.status}}</td>
+                        <td>{{generador.modelo}}</td>
+                      </tr>
                       
                     </tbody>
                   </table>
                 </div>
-                <div id="reefers_grid" class="col shadow-sm p-3 mb-5 bg-white rounded " style="margin: -30px 15px 10px 15px; display:none;">
+                <div id="reefers_grid" class="col shadow-sm p-3 mb-5 bg-white rounded " style="margin: -30px 15px 10px 15px; display:block;">
                   <table  class="table display nowrap" id="tblDetalleContenedores_reefers">
                     <thead>
                       <tr class="bg-info" style="color:white !important;">
@@ -166,8 +181,30 @@
                       </tr>
                     </thead>
                     <tbody>
-                      
-                      
+                      <tr v-for="(reefer, index) in datos_tabla_reefer" :key="index">
+                        <td>{{index+1}}</td>
+                        <td>nombre_reefer</td>
+                        <td>{{reefer.set_point}}</td>
+                        <td>{{reefer.temp_supply}}</td>
+                        <td>{{reefer.temp_return}}</td>
+                        <td>{{reefer.re_hume}}</td>
+                        <td>{{reefer.fuel_level}}</td>
+                        <td>{{reefer.vdc}}</td>
+                        <td>{{reefer.rpm}}</td>
+                        <td>{{reefer.freq}}</td>
+                        <td>{{reefer.vac}}</td>
+                        <td>{{reefer.latitud}}</td>
+                        <td>{{reefer.longitud}}</td>
+                        <td>{{reefer.temp_motor}}</td>
+                        <td>{{reefer.status}}</td>
+                        <td>{{reefer.speed}}</td>
+                        <td>{{reefer.ecopower}}</td>
+                        <td>{{reefer.horometro}}</td>
+                        <td>{{reefer.alarma_id}}</td>
+                        <td>{{reefer.evento_id}}</td>
+                        <td>{{reefer.modelo}}</td>
+                    
+                      </tr>
                     </tbody>
                   </table>
                 </div>
@@ -202,13 +239,14 @@ export default {
     usuario_logeado: Array,
     empresa_logeado: Array,
     contenedores_todos : Array,
-    contenedores_encendidos: Array,
-   
+    contenedores_encendidos: Array,   
   },
   data() {
     return {
       // submited: false, 
       contenedores_seleccionados:[],
+      datos_tabla_reefer:[],
+      datos_tabla_generador: [],
       
     };
   },
@@ -216,6 +254,17 @@ export default {
     contenedores_seleccionados(){
       $("#tblContenedores").DataTable().destroy();
       this.TablaContenedores();
+    },
+    datos_tabla_generador(){
+      // console.log(screen.width);      
+      $("#tblDetalleContenedores_generadores").DataTable().destroy();
+      this.TablaDetalleContenedores_g();
+      // this.iniciarGraficos();
+    },
+    datos_tabla_reefer(){
+      $("#tblDetalleContenedores_reefers").DataTable().destroy();
+      this.TablaDetalleContenedores_r();
+      // this.iniciarGraficos();
     },
   },
  
@@ -227,7 +276,8 @@ export default {
     this.iniciarGraficosPTI();
     this.iniciarGraficosFleet();
     this.TablaContenedores();
-    this.TablaDetalleContenedores();
+    this.TablaDetalleContenedores_g();
+    this.TablaDetalleContenedores_r();
     this.usuarioLogeado();
     this.bienvenida();
   },
@@ -248,6 +298,7 @@ export default {
       let self = this;
       this.$nextTick(() => {
         var table = $('#tblContenedores').DataTable({
+           
           language: {
               retrieve: true,
               decimal: "",
@@ -278,11 +329,43 @@ export default {
      
       
     },
-    TablaDetalleContenedores() {
+    TablaDetalleContenedores_r() {
+     let self = this;
+      this.$nextTick(() => {
+        var table2 = $('#tblDetalleContenedores_reefers').DataTable({
+           scrollX: "100%",
+          language: {
+              retrieve: true,
+              decimal: "",
+              emptyTable: "No hay datos disponibles en la tabla",
+              info: "Mostrando del _START_ al _END_ de _TOTAL_ registros",
+              infoEmpty: "No se encontraron registros",
+              infoFiltered: "(filtrado de _MAX_ registros)",
+              infoPostFix: "",
+              thousands: ",",
+              lengthMenu: "Agrupar por _MENU_ filas",
+              loadingRecords: "Cargando...",
+              processing: "Procesando...",
+              search: "Buscar:",
+              zeroRecords: "No se encontraron registros",
+              paginate: {
+                first: "Primera",
+                last: "Ultima",
+                next: '<i class="fas fa-chevron-circle-right" style="font-size:20px;"></i>',
+                previous:
+                  '<i class="fas fa-chevron-circle-left" style="font-size:20px;"></i>',
+              },
+              responsive: true,
+          },       
+        });
+      });
+    },
+    TablaDetalleContenedores_g() {
      let self = this;
       this.$nextTick(() => {
         var table = $('#tblDetalleContenedores_generadores').DataTable({
-           scrollX: true,
+           scrollX: "100%",
+           responsive: true,
           language: {
               retrieve: true,
               decimal: "",
@@ -304,35 +387,13 @@ export default {
                 previous:
                   '<i class="fas fa-chevron-circle-left" style="font-size:20px;"></i>',
               },
-              responsive: true,
+              
           },       
         });
-        var table2 = $('#tblDetalleContenedores_reefers').DataTable({
-           scrollX: true,
-          language: {
-              retrieve: true,
-              decimal: "",
-              emptyTable: "No hay datos disponibles en la tabla",
-              info: "Mostrando del _START_ al _END_ de _TOTAL_ registros",
-              infoEmpty: "No se encontraron registros",
-              infoFiltered: "(filtrado de _MAX_ registros)",
-              infoPostFix: "",
-              thousands: ",",
-              lengthMenu: "Agrupar por _MENU_ filas",
-              loadingRecords: "Cargando...",
-              processing: "Procesando...",
-              search: "Buscar:",
-              zeroRecords: "No se encontraron registros",
-              paginate: {
-                first: "Primera",
-                last: "Ultima",
-                next: '<i class="fas fa-chevron-circle-right" style="font-size:20px;"></i>',
-                previous:
-                  '<i class="fas fa-chevron-circle-left" style="font-size:20px;"></i>',
-              },
-              responsive: true,
-          },       
-        });
+        if (screen.width <= 1024) {
+          console.log(table.scrollX);
+          // table.scrollX = true;
+        }
       });
     },
     iniciarMap() {
@@ -344,6 +405,9 @@ export default {
       });
     },
     iniciarGraficos(){
+      let self = this;
+      // let datos_r = this.datos_tabla_reefer ;
+      // let datos_g = this.datos_tabla_generador; 
       var ctx = document.getElementById('myChart').getContext('2d');
       var myChart = new Chart(ctx, {
           type: 'line',
@@ -379,6 +443,10 @@ export default {
               }
           }
       });
+      // if (datos_r.length != 0 ) {
+      //   // myChart.labels
+      //   console.log(myChart.labels);
+      // }
     },
     iniciarGraficosAlarms(){
       var ctx_alarms = document.getElementById('myChart_alarms').getContext('2d');
@@ -508,36 +576,55 @@ export default {
     contenedores_prendidos(){
       this.contenedores_seleccionados = this.contenedores_encendidos;
     },
-    select_contenedor(x){
-      console.log(x.tipo);
-      if (x.tipo == "Reefer") {
-       $('#reefers_grid').css('display', 'block');
-       $('#generador_grid').css('display', 'none');
+    select_contenedor(contenedor){
+      let self = this;
+      // console.log(contenedor.tipo);
+      self.datos_tabla_reefer = [];
+      self.datos_tabla_generador  = [];
+      if (contenedor.tipo == "Reefer") {
+        $('#reefers_grid').css('display', 'block');
+        $('#generador_grid').css('display', 'none');
+       
       }
-      if (x.tipo == "Generador") {
+      if (contenedor.tipo == "Generador") {
        $('#reefers_grid').css('display', 'none');
        $('#generador_grid').css('display', 'block');
+       
       }
 
+      axios.post(route('contenedores.get_datos'), {
+        id: contenedor.contenedores_id,
+        tipo: contenedor.tipo
+      }).then(response => {        
+        if (contenedor.tipo == "Reefer") {
+          console.log('datos de reefers');
+          self.datos_tabla_reefer = response.data;
+        }
+        if (contenedor.tipo == "Generador") {
+          console.log('datos de generadores');
+          self.datos_tabla_generador = response.data;
+        }
+      });
+      
+    
     },
   },
 };
 </script>
 
 <style lang="css">
+ #lado_derecho{
+    width: 75%;
+  }
+  #lado_izquierdo{
+    width: 25%;
+  }
 #asset-search {
   padding: 10px;
   height: 320px;
   overflow-y: scroll;
 }
-#reefers_grid_history{
-  /* overflow-x: scroll; */
-  overflow-y: scroll;
-}
-#reefers_grid{
-  /* overflow-x: scroll; */
-  overflow-y: scroll;
-}
+
 #total_reefers {
   padding: 10px;
   height: 100px;
@@ -547,7 +634,15 @@ export default {
   height: 400px;
   /* overflow-y: scroll; */
 }
- 
+
+@media (max-width: 1024px) {
+  #lado_derecho{
+    width: 80%;
+  }
+  #lado_izquierdo{
+    width: 20%;
+  }
+}
 </style>
 
 

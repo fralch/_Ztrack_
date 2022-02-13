@@ -29,7 +29,7 @@ class Registro_diario_reefers extends Model
         'speed',
         'ecopower',
         'horometro',
-        'alamra_id',
+        'alarma_id',
         'evento_id',
         'modelo',
         

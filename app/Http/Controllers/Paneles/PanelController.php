@@ -34,13 +34,13 @@ class PanelController extends Controller
         if (count($usuario) != 0) {
 
             $empresaXusuario = Empresa::where('usuario_id',$usuario[0]->id)->get();
-            $contenedores_todos = Empresa_contenedore::select('contenedores.id', 'contenedores.nombre_contenedor', 
+            $contenedores_todos = Empresa_contenedore::select('contenedores.id as contenedores_id', 'contenedores.nombre_contenedor', 
                                         'contenedores.tipo', 'contenedores.encendido', 'empresas.id', 'empresas.usuario_id', 
                                         'empresas.nombre_empresa', 'empresas.descripcion_booking', 'empresas.temp_contratada')
                                         ->join('contenedores', 'contenedores.id', 'empresas_contenedores.contenedor_id')
                                         ->join('empresas', 'empresas.id', 'empresas_contenedores.empresa_id')
                                         ->get();
-            $contenedores_encendidos = Empresa_contenedore::select('contenedores.id', 'contenedores.nombre_contenedor', 
+            $contenedores_encendidos = Empresa_contenedore::select('contenedores.id as contenedores_id', 'contenedores.nombre_contenedor', 
                                         'contenedores.tipo', 'contenedores.encendido', 'empresas.id', 'empresas.usuario_id', 
                                         'empresas.nombre_empresa', 'empresas.descripcion_booking', 'empresas.temp_contratada')
                                         ->join('contenedores', 'contenedores.id', 'empresas_contenedores.contenedor_id')
@@ -95,10 +95,48 @@ class PanelController extends Controller
             'speed' => rand(10,100),
             'ecopower' => 'on',
             'horometro' => rand(10,100),
-            'alamra_id' =>rand(1,24),
+            'alarma_id' =>rand(1,24),
             'evento_id' => rand(1,25),
             'modelo' => 'ThermoKing',
         ]);
+    }
+
+    public function obtener_datos_contenedor(Request $request)
+    {
+        // return $request; 
+        $id_contenedor = $request->id;
+        $tipo_contenedor = $request->tipo;
+        
+        if ($tipo_contenedor == 'Generador') {
+            return Registro_diario_generadores::from('registro_diario_generadores as rdg')
+                    ->select(
+                        'rdg.set_point', 
+                        'rdg.temp_supply', 
+                        'rdg.temp_return', 
+                        'rdg.re_hume', 
+                        'rdg.re_c_o2', 
+                        'rdg.re_o2', 
+                        'rdg.alv', 
+                        'rdg.latitud', 
+                        'rdg.longitud', 
+                        'rdg.status', 
+                        'rdg.modelo',
+                        'rdg.created_at',
+                        'rdg.updated_at',
+                        'c.nombre_contenedor'
+                        )
+                    ->join('contenedores as c', 'c.id', 'rdg.contenedor_id')
+                    ->where('contenedor_id',$id_contenedor)
+                    ->latest()
+                    ->take(5)
+                    ->get();
+        }
+        if ($tipo_contenedor == 'Reefer') {
+            return Registro_diario_reefers::where('contenedor_id',$id_contenedor)
+            ->latest()
+            ->take(5)
+            ->get();
+        }
     }
 
 

@@ -2295,6 +2295,43 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -2310,13 +2347,24 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       // submited: false, 
-      contenedores_seleccionados: []
+      contenedores_seleccionados: [],
+      datos_tabla_reefer: [],
+      datos_tabla_generador: []
     };
   },
   watch: {
     contenedores_seleccionados: function contenedores_seleccionados() {
       $("#tblContenedores").DataTable().destroy();
       this.TablaContenedores();
+    },
+    datos_tabla_generador: function datos_tabla_generador() {
+      // console.log(screen.width);      
+      $("#tblDetalleContenedores_generadores").DataTable().destroy();
+      this.TablaDetalleContenedores_g(); // this.iniciarGraficos();
+    },
+    datos_tabla_reefer: function datos_tabla_reefer() {
+      $("#tblDetalleContenedores_reefers").DataTable().destroy();
+      this.TablaDetalleContenedores_r(); // this.iniciarGraficos();
     }
   },
   mounted: function mounted() {
@@ -2327,7 +2375,8 @@ __webpack_require__.r(__webpack_exports__);
     this.iniciarGraficosPTI();
     this.iniciarGraficosFleet();
     this.TablaContenedores();
-    this.TablaDetalleContenedores();
+    this.TablaDetalleContenedores_g();
+    this.TablaDetalleContenedores_r();
     this.usuarioLogeado();
     this.bienvenida();
   },
@@ -2370,11 +2419,42 @@ __webpack_require__.r(__webpack_exports__);
         });
       });
     },
-    TablaDetalleContenedores: function TablaDetalleContenedores() {
+    TablaDetalleContenedores_r: function TablaDetalleContenedores_r() {
+      var self = this;
+      this.$nextTick(function () {
+        var table2 = $('#tblDetalleContenedores_reefers').DataTable({
+          scrollX: "100%",
+          language: {
+            retrieve: true,
+            decimal: "",
+            emptyTable: "No hay datos disponibles en la tabla",
+            info: "Mostrando del _START_ al _END_ de _TOTAL_ registros",
+            infoEmpty: "No se encontraron registros",
+            infoFiltered: "(filtrado de _MAX_ registros)",
+            infoPostFix: "",
+            thousands: ",",
+            lengthMenu: "Agrupar por _MENU_ filas",
+            loadingRecords: "Cargando...",
+            processing: "Procesando...",
+            search: "Buscar:",
+            zeroRecords: "No se encontraron registros",
+            paginate: {
+              first: "Primera",
+              last: "Ultima",
+              next: '<i class="fas fa-chevron-circle-right" style="font-size:20px;"></i>',
+              previous: '<i class="fas fa-chevron-circle-left" style="font-size:20px;"></i>'
+            },
+            responsive: true
+          }
+        });
+      });
+    },
+    TablaDetalleContenedores_g: function TablaDetalleContenedores_g() {
       var self = this;
       this.$nextTick(function () {
         var table = $('#tblDetalleContenedores_generadores').DataTable({
-          scrollX: true,
+          scrollX: "100%",
+          responsive: true,
           language: {
             retrieve: true,
             decimal: "",
@@ -2394,35 +2474,13 @@ __webpack_require__.r(__webpack_exports__);
               last: "Ultima",
               next: '<i class="fas fa-chevron-circle-right" style="font-size:20px;"></i>',
               previous: '<i class="fas fa-chevron-circle-left" style="font-size:20px;"></i>'
-            },
-            responsive: true
+            }
           }
         });
-        var table2 = $('#tblDetalleContenedores_reefers').DataTable({
-          scrollX: true,
-          language: {
-            retrieve: true,
-            decimal: "",
-            emptyTable: "No hay datos disponibles en la tabla",
-            info: "Mostrando del _START_ al _END_ de _TOTAL_ registros",
-            infoEmpty: "No se encontraron registros",
-            infoFiltered: "(filtrado de _MAX_ registros)",
-            infoPostFix: "",
-            thousands: ",",
-            lengthMenu: "Agrupar por _MENU_ filas",
-            loadingRecords: "Cargando...",
-            processing: "Procesando...",
-            search: "Buscar:",
-            zeroRecords: "No se encontraron registros",
-            paginate: {
-              first: "Primera",
-              last: "Ultima",
-              next: '<i class="fas fa-chevron-circle-right" style="font-size:20px;"></i>',
-              previous: '<i class="fas fa-chevron-circle-left" style="font-size:20px;"></i>'
-            },
-            responsive: true
-          }
-        });
+
+        if (screen.width <= 1024) {
+          console.log(table.scrollX); // table.scrollX = true;
+        }
       });
     },
     iniciarMap: function iniciarMap() {
@@ -2437,6 +2495,9 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     iniciarGraficos: function iniciarGraficos() {
+      var self = this; // let datos_r = this.datos_tabla_reefer ;
+      // let datos_g = this.datos_tabla_generador; 
+
       var ctx = document.getElementById('myChart').getContext('2d');
       var myChart = new Chart(ctx, {
         type: 'line',
@@ -2457,7 +2518,10 @@ __webpack_require__.r(__webpack_exports__);
             }
           }
         }
-      });
+      }); // if (datos_r.length != 0 ) {
+      //   // myChart.labels
+      //   console.log(myChart.labels);
+      // }
     },
     iniciarGraficosAlarms: function iniciarGraficosAlarms() {
       var ctx_alarms = document.getElementById('myChart_alarms').getContext('2d');
@@ -2554,18 +2618,36 @@ __webpack_require__.r(__webpack_exports__);
     contenedores_prendidos: function contenedores_prendidos() {
       this.contenedores_seleccionados = this.contenedores_encendidos;
     },
-    select_contenedor: function select_contenedor(x) {
-      console.log(x.tipo);
+    select_contenedor: function select_contenedor(contenedor) {
+      var self = this; // console.log(contenedor.tipo);
 
-      if (x.tipo == "Reefer") {
+      self.datos_tabla_reefer = [];
+      self.datos_tabla_generador = [];
+
+      if (contenedor.tipo == "Reefer") {
         $('#reefers_grid').css('display', 'block');
         $('#generador_grid').css('display', 'none');
       }
 
-      if (x.tipo == "Generador") {
+      if (contenedor.tipo == "Generador") {
         $('#reefers_grid').css('display', 'none');
         $('#generador_grid').css('display', 'block');
       }
+
+      axios.post(route('contenedores.get_datos'), {
+        id: contenedor.contenedores_id,
+        tipo: contenedor.tipo
+      }).then(function (response) {
+        if (contenedor.tipo == "Reefer") {
+          console.log('datos de reefers');
+          self.datos_tabla_reefer = response.data;
+        }
+
+        if (contenedor.tipo == "Generador") {
+          console.log('datos de generadores');
+          self.datos_tabla_generador = response.data;
+        }
+      });
     }
   }
 });
@@ -2898,7 +2980,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n#asset-search {\r\n  padding: 10px;\r\n  height: 320px;\r\n  overflow-y: scroll;\n}\n#reefers_grid_history{\r\n  /* overflow-x: scroll; */\r\n  overflow-y: scroll;\n}\n#reefers_grid{\r\n  /* overflow-x: scroll; */\r\n  overflow-y: scroll;\n}\n#total_reefers {\r\n  padding: 10px;\r\n  height: 100px;\n}\n#asset_maps {\r\n  padding: 10px;\r\n  height: 400px;\r\n  /* overflow-y: scroll; */\n}\r\n \r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n#lado_derecho{\n    width: 75%;\n}\n#lado_izquierdo{\n    width: 25%;\n}\n#asset-search {\n  padding: 10px;\n  height: 320px;\n  overflow-y: scroll;\n}\n#total_reefers {\n  padding: 10px;\n  height: 100px;\n}\n#asset_maps {\n  padding: 10px;\n  height: 400px;\n  /* overflow-y: scroll; */\n}\n@media (max-width: 1024px) {\n#lado_derecho{\n    width: 80%;\n}\n#lado_izquierdo{\n    width: 20%;\n}\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -26103,7 +26185,10 @@ var render = function () {
                 [
                   _c(
                     "div",
-                    { staticStyle: { width: "25%", margin: "10px 0 0 -5px" } },
+                    {
+                      staticStyle: { margin: "10px 0 0 -5px" },
+                      attrs: { id: "lado_izquierdo" },
+                    },
                     [
                       _c(
                         "div",
@@ -26252,7 +26337,7 @@ var render = function () {
                     ]
                   ),
                   _vm._v(" "),
-                  _c("div", { staticStyle: { width: "75%" } }, [
+                  _c("div", { attrs: { id: "lado_derecho" } }, [
                     _c(
                       "div",
                       {
@@ -26403,9 +26488,11 @@ var render = function () {
                                   staticStyle: { color: "white !important" },
                                 },
                                 [
-                                  _c("th", { attrs: { scope: "col" } }, [
-                                    _vm._v("Ver"),
-                                  ]),
+                                  _c(
+                                    "th",
+                                    { attrs: { scope: "col", width: "50px" } },
+                                    [_vm._v("Ver")]
+                                  ),
                                   _vm._v(" "),
                                   _c(
                                     "th",
@@ -26430,7 +26517,7 @@ var render = function () {
                                   _c(
                                     "th",
                                     { attrs: { scope: "col", width: "50px" } },
-                                    [_vm._v("Temperatura_contratada")]
+                                    [_vm._v("Temp_contratada")]
                                   ),
                                   _vm._v(" "),
                                   _c("th", { attrs: { scope: "col" } }, [
@@ -26445,69 +26532,69 @@ var render = function () {
                               _vm._l(
                                 _vm.contenedores_seleccionados,
                                 function (contenedor, index) {
-                                  return _c(
-                                    "tr",
-                                    {
-                                      key: index,
-                                      on: {
-                                        click: function ($event) {
-                                          return _vm.select_contenedor(
-                                            contenedor
-                                          )
-                                        },
-                                      },
-                                    },
-                                    [
-                                      _c("td", [
-                                        _c(
-                                          "button",
-                                          {
-                                            staticClass:
-                                              "btn btn-outline-primary",
-                                            attrs: { type: "button" },
+                                  return _c("tr", { key: index }, [
+                                    _c("td", [
+                                      _c(
+                                        "button",
+                                        {
+                                          staticClass:
+                                            "btn btn-outline-primary",
+                                          attrs: {
+                                            id:
+                                              contenedor.tipo +
+                                              "_" +
+                                              contenedor.contenedores_id,
+                                            type: "button",
                                           },
-                                          [
-                                            _c("i", {
-                                              staticClass: "bi bi-check-lg",
-                                            }),
-                                          ]
-                                        ),
-                                      ]),
-                                      _vm._v(" "),
-                                      _c("td", [
-                                        _vm._v(
-                                          _vm._s(contenedor.nombre_contenedor)
-                                        ),
-                                      ]),
-                                      _vm._v(" "),
-                                      _c("td", [
-                                        _vm._v(_vm._s(contenedor.tipo)),
-                                      ]),
-                                      _vm._v(" "),
-                                      _c("td", [
-                                        _vm._v(_vm._s(contenedor.encendido)),
-                                      ]),
-                                      _vm._v(" "),
-                                      _c("td", [
-                                        _vm._v(
-                                          _vm._s(contenedor.descripcion_booking)
-                                        ),
-                                      ]),
-                                      _vm._v(" "),
-                                      _c("td", { staticClass: "text-center" }, [
-                                        _vm._v(
-                                          _vm._s(contenedor.temp_contratada) +
-                                            "C°"
-                                        ),
-                                      ]),
-                                      _vm._v(" "),
-                                      _c("td", [
-                                        _vm._v(
-                                          _vm._s(contenedor.nombre_empresa)
-                                        ),
-                                      ]),
-                                    ]
-                                  )
+                                          on: {
+                                            click: function ($event) {
+                                              return _vm.select_contenedor(
+                                                contenedor
+                                              )
+                                            },
+                                          },
+                                        },
+                                        [
+                                          _c("i", {
+                                            staticClass: "bi bi-check-lg",
+                                          }),
+                                        ]
+                                      ),
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _vm._v(
+                                        _vm._s(contenedor.nombre_contenedor)
+                                      ),
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v(_vm._s(contenedor.tipo))]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _vm._v(_vm._s(contenedor.encendido)),
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _vm._v(
+                                        _vm._s(contenedor.descripcion_booking)
+                                      ),
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", { staticClass: "text-center" }, [
+                                      _vm._v(
+                                        _vm._s(contenedor.temp_contratada) +
+                                          "C°"
+                                      ),
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _vm._v(
+                                        _vm._s(
+                                          contenedor.nombre_empresa.toUpperCase()
+                                        )
+                                      ),
+                                    ]),
+                                  ])
                                 }
                               ),
                               0
@@ -26523,7 +26610,7 @@ var render = function () {
                         staticClass: "col shadow-sm p-3 mb-5 bg-white rounded ",
                         staticStyle: {
                           margin: "-30px 15px 10px 15px",
-                          display: "block",
+                          display: "none",
                         },
                         attrs: { id: "generador_grid" },
                       },
@@ -26560,7 +26647,7 @@ var render = function () {
                                   ]),
                                   _vm._v(" "),
                                   _c("th", { attrs: { scope: "col" } }, [
-                                    _vm._v("Tem_return"),
+                                    _vm._v("Temp_return"),
                                   ]),
                                   _vm._v(" "),
                                   _c("th", { attrs: { scope: "col" } }, [
@@ -26598,7 +26685,64 @@ var render = function () {
                               ),
                             ]),
                             _vm._v(" "),
-                            _c("tbody"),
+                            _c(
+                              "tbody",
+                              _vm._l(
+                                _vm.datos_tabla_generador,
+                                function (generador, index) {
+                                  return _c("tr", { key: index }, [
+                                    _c("td", [_vm._v(_vm._s(index + 1))]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _vm._v(
+                                        _vm._s(generador.nombre_contenedor)
+                                      ),
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _vm._v(_vm._s(generador.set_point)),
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _vm._v(_vm._s(generador.temp_supply)),
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _vm._v(_vm._s(generador.temp_return)),
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _vm._v(_vm._s(generador.re_hume)),
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _vm._v(_vm._s(generador.re_c_o2)),
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v(_vm._s(generador.re_o2))]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v(_vm._s(generador.alv))]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _vm._v(_vm._s(generador.latitud)),
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _vm._v(_vm._s(generador.longitud)),
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _vm._v(_vm._s(generador.status)),
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _vm._v(_vm._s(generador.modelo)),
+                                    ]),
+                                  ])
+                                }
+                              ),
+                              0
+                            ),
                           ]
                         ),
                       ]
@@ -26610,7 +26754,7 @@ var render = function () {
                         staticClass: "col shadow-sm p-3 mb-5 bg-white rounded ",
                         staticStyle: {
                           margin: "-30px 15px 10px 15px",
-                          display: "none",
+                          display: "block",
                         },
                         attrs: { id: "reefers_grid" },
                       },
@@ -26717,7 +26861,74 @@ var render = function () {
                               ),
                             ]),
                             _vm._v(" "),
-                            _c("tbody"),
+                            _c(
+                              "tbody",
+                              _vm._l(
+                                _vm.datos_tabla_reefer,
+                                function (reefer, index) {
+                                  return _c("tr", { key: index }, [
+                                    _c("td", [_vm._v(_vm._s(index + 1))]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v("nombre_reefer")]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _vm._v(_vm._s(reefer.set_point)),
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _vm._v(_vm._s(reefer.temp_supply)),
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _vm._v(_vm._s(reefer.temp_return)),
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v(_vm._s(reefer.re_hume))]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _vm._v(_vm._s(reefer.fuel_level)),
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v(_vm._s(reefer.vdc))]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v(_vm._s(reefer.rpm))]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v(_vm._s(reefer.freq))]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v(_vm._s(reefer.vac))]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v(_vm._s(reefer.latitud))]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v(_vm._s(reefer.longitud))]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _vm._v(_vm._s(reefer.temp_motor)),
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v(_vm._s(reefer.status))]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v(_vm._s(reefer.speed))]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v(_vm._s(reefer.ecopower))]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _vm._v(_vm._s(reefer.horometro)),
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _vm._v(_vm._s(reefer.alarma_id)),
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _vm._v(_vm._s(reefer.evento_id)),
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v(_vm._s(reefer.modelo))]),
+                                  ])
+                                }
+                              ),
+                              0
+                            ),
                           ]
                         ),
                       ]

@@ -23,4 +23,5 @@ Route::get('/', [LoginController::class, 'login' ])->name('/');
 Route::post('/validar_usuario', [LoginController::class, 'validarUsuario' ])->name('validar.usuario');
 Route::post('/cerrar_sesion', [LoginController::class, 'cerrarSesion' ])->name('cerrar.sesion');
 Route::get('/board', [PanelController::class, 'board'])->name('paneles.board');
+Route::post('/obtener_datos_contenedor', [PanelController::class, 'obtener_datos_contenedor' ])->name('contenedores.get_datos');
 Route::get('/faker', [PanelController::class, 'faker_datos'])->name('paneles.faker');
