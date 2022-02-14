@@ -2349,7 +2349,18 @@ __webpack_require__.r(__webpack_exports__);
       // submited: false, 
       contenedores_seleccionados: [],
       datos_tabla_reefer: [],
-      datos_tabla_generador: []
+      datos_tabla_generador: [],
+      myChart_derecha_label_g: [],
+      myChart_derecha_label_r: [],
+      Chart_datos_g: {
+        set_point: [],
+        temp_supply: [],
+        temp_return: [],
+        re_hume: [],
+        re_c_o2: [],
+        re_o2: [],
+        alv: []
+      }
     };
   },
   watch: {
@@ -2368,8 +2379,8 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   mounted: function mounted() {
-    this.iniciarMap();
-    this.iniciarGraficos();
+    this.iniciarMap(); // this.iniciarGraficos();
+
     this.iniciarGraficosAlarms();
     this.iniciarGraficosCargo();
     this.iniciarGraficosPTI();
@@ -2495,19 +2506,48 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     iniciarGraficos: function iniciarGraficos() {
-      var self = this; // let datos_r = this.datos_tabla_reefer ;
-      // let datos_g = this.datos_tabla_generador; 
-
+      var self = this;
       var ctx = document.getElementById('myChart').getContext('2d');
-      var myChart = new Chart(ctx, {
+      var myChart_derecha = new Chart(ctx, {
+        animationEnabled: true,
+        theme: "light2",
         type: 'line',
         data: {
-          labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+          labels: self.myChart_derecha_label_g,
           datasets: [{
-            label: '# SetPoint',
-            data: [12, 19, 3, 5, 2, 3],
-            backgroundColor: ['rgba(255, 99, 132, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(255, 206, 86, 0.2)', 'rgba(75, 192, 192, 0.2)', 'rgba(153, 102, 255, 0.2)', 'rgba(255, 159, 64, 0.2)'],
-            borderColor: ['rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)', 'rgba(255, 206, 86, 1)', 'rgba(75, 192, 192, 1)', 'rgba(153, 102, 255, 1)', 'rgba(255, 159, 64, 1)'],
+            label: 'SetPoint',
+            data: self.Chart_datos_g.set_point,
+            borderColor: '#db0404',
+            borderWidth: 1
+          }, {
+            label: 'TempSupply',
+            data: self.Chart_datos_g.temp_supply,
+            borderColor: '#3498db',
+            borderWidth: 1
+          }, {
+            label: 'TempReturn',
+            data: self.Chart_datos_g.temp_return,
+            borderColor: '#9b59b6',
+            borderWidth: 1
+          }, {
+            label: 'ReHume',
+            data: self.Chart_datos_g.re_hume,
+            borderColor: '#e67e22',
+            borderWidth: 1
+          }, {
+            label: 'ReCo2',
+            data: self.Chart_datos_g.re_c_o2,
+            borderColor: '#1abc9c',
+            borderWidth: 1
+          }, {
+            label: 'ReO2',
+            data: self.Chart_datos_g.re_o2,
+            borderColor: '#2c3e50',
+            borderWidth: 1
+          }, {
+            label: 'Alv',
+            data: self.Chart_datos_g.alv,
+            borderColor: '#f39c12',
             borderWidth: 1
           }]
         },
@@ -2518,10 +2558,7 @@ __webpack_require__.r(__webpack_exports__);
             }
           }
         }
-      }); // if (datos_r.length != 0 ) {
-      //   // myChart.labels
-      //   console.log(myChart.labels);
-      // }
+      });
     },
     iniciarGraficosAlarms: function iniciarGraficosAlarms() {
       var ctx_alarms = document.getElementById('myChart_alarms').getContext('2d');
@@ -2594,7 +2631,7 @@ __webpack_require__.r(__webpack_exports__);
       var myChart_fleet = new Chart(ctx_fleet, {
         type: 'line',
         data: {
-          labels: ['Red', 'Blue', 'Yellow'],
+          labels: [],
           datasets: [{
             label: 'Reefers fleet',
             data: [300, 50, 100],
@@ -2639,15 +2676,38 @@ __webpack_require__.r(__webpack_exports__);
         tipo: contenedor.tipo
       }).then(function (response) {
         if (contenedor.tipo == "Reefer") {
-          console.log('datos de reefers');
           self.datos_tabla_reefer = response.data;
+          response.data.map(function (fecha, index) {
+            self.myChart_derecha_label_g.push(fecha.created_at);
+          });
         }
 
         if (contenedor.tipo == "Generador") {
-          console.log('datos de generadores');
           self.datos_tabla_generador = response.data;
+          response.data.map(function (datos_g, index) {
+            var date = new Date(datos_g.created_at);
+            var day = date.getDate();
+            var month = date.getMonth() + 1;
+            var year = date.getFullYear();
+
+            if (month < 10) {
+              self.myChart_derecha_label_g.push("".concat(day, "-0").concat(month, "-").concat(year));
+            } else {
+              self.myChart_derecha_label_g.push("".concat(day, "-").concat(month, "-").concat(year));
+            }
+
+            self.Chart_datos_g.set_point.push(datos_g.set_point);
+            self.Chart_datos_g.temp_supply.push(datos_g.temp_supply);
+            self.Chart_datos_g.temp_return.push(datos_g.temp_return);
+            self.Chart_datos_g.re_hume.push(datos_g.re_hume);
+            self.Chart_datos_g.re_c_o2.push(datos_g.re_c_o2);
+            self.Chart_datos_g.re_o2.push(datos_g.re_o2);
+            self.Chart_datos_g.alv.push(datos_g.alv);
+          });
         }
-      });
+      }).then(function () {
+        self.iniciarGraficos();
+      }); // myChart_derecha_label_g
     }
   }
 });

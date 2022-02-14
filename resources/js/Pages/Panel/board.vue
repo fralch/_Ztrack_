@@ -247,7 +247,17 @@ export default {
       contenedores_seleccionados:[],
       datos_tabla_reefer:[],
       datos_tabla_generador: [],
-      
+      myChart_derecha_label_g: [],
+      myChart_derecha_label_r: [],
+      Chart_datos_g: {
+        set_point: [],
+        temp_supply: [],
+        temp_return: [],
+        re_hume: [],
+        re_c_o2: [],
+        re_o2: [],
+        alv: [],
+      },
     };
   },
   watch: {
@@ -270,7 +280,7 @@ export default {
  
   mounted() {
     this.iniciarMap();
-    this.iniciarGraficos();
+    // this.iniciarGraficos();
     this.iniciarGraficosAlarms();
     this.iniciarGraficosCargo();
     this.iniciarGraficosPTI();
@@ -406,34 +416,58 @@ export default {
     },
     iniciarGraficos(){
       let self = this;
-      // let datos_r = this.datos_tabla_reefer ;
-      // let datos_g = this.datos_tabla_generador; 
       var ctx = document.getElementById('myChart').getContext('2d');
-      var myChart = new Chart(ctx, {
+           
+      var myChart_derecha = new Chart(ctx, {
+           animationEnabled: true,
+           theme: "light2",
           type: 'line',
           data: {
-              labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-              datasets: [{
-                  label: '# SetPoint',
-                  data: [12, 19, 3, 5, 2, 3],
-                  backgroundColor: [
-                      'rgba(255, 99, 132, 0.2)',
-                      'rgba(54, 162, 235, 0.2)',
-                      'rgba(255, 206, 86, 0.2)',
-                      'rgba(75, 192, 192, 0.2)',
-                      'rgba(153, 102, 255, 0.2)',
-                      'rgba(255, 159, 64, 0.2)'
-                  ],
-                  borderColor: [
-                      'rgba(255, 99, 132, 1)',
-                      'rgba(54, 162, 235, 1)',
-                      'rgba(255, 206, 86, 1)',
-                      'rgba(75, 192, 192, 1)',
-                      'rgba(153, 102, 255, 1)',
-                      'rgba(255, 159, 64, 1)'
-                  ],
-                  borderWidth: 1
-              }]
+              labels: self.myChart_derecha_label_g,
+              datasets: [
+                {
+                  label: 'SetPoint',
+                  data: self.Chart_datos_g.set_point,
+                  borderColor: '#db0404',
+                  borderWidth: 1,
+                },
+                {
+                  label: 'TempSupply',
+                  data:self.Chart_datos_g.temp_supply,
+                  borderColor: '#3498db',
+                  borderWidth: 1,               
+                },
+                {
+                  label: 'TempReturn',
+                  data: self.Chart_datos_g.temp_return,
+                  borderColor: '#9b59b6',
+                  borderWidth: 1,               
+                },
+                {
+                  label: 'ReHume',
+                  data:self.Chart_datos_g.re_hume,
+                  borderColor: '#e67e22',
+                  borderWidth: 1,               
+                },
+                {
+                  label: 'ReCo2',
+                  data:self.Chart_datos_g.re_c_o2,
+                  borderColor: '#1abc9c',
+                  borderWidth: 1,               
+                },
+                {
+                  label: 'ReO2',
+                  data:self.Chart_datos_g.re_o2,
+                  borderColor: '#2c3e50',
+                  borderWidth: 1,               
+                },
+                {
+                  label: 'Alv',
+                  data: self.Chart_datos_g.alv,
+                  borderColor: '#f39c12',
+                  borderWidth: 1,               
+                },
+              ]
           },
           options: {
               scales: {
@@ -443,10 +477,7 @@ export default {
               }
           }
       });
-      // if (datos_r.length != 0 ) {
-      //   // myChart.labels
-      //   console.log(myChart.labels);
-      // }
+     
     },
     iniciarGraficosAlarms(){
       var ctx_alarms = document.getElementById('myChart_alarms').getContext('2d');
@@ -544,9 +575,7 @@ export default {
           type: 'line',
           data: {
               labels: [
-                'Red',
-                'Blue',
-                'Yellow'
+                
               ],
               datasets: [{
                 label: 'Reefers fleet',
@@ -597,16 +626,41 @@ export default {
         tipo: contenedor.tipo
       }).then(response => {        
         if (contenedor.tipo == "Reefer") {
-          console.log('datos de reefers');
           self.datos_tabla_reefer = response.data;
+          response.data.map(function(fecha, index){
+            self.myChart_derecha_label_g.push(fecha.created_at);
+          });
         }
         if (contenedor.tipo == "Generador") {
-          console.log('datos de generadores');
           self.datos_tabla_generador = response.data;
+          response.data.map(function(datos_g, index){
+            let date = new Date(datos_g.created_at);
+            let day = date.getDate()
+            let month = date.getMonth() + 1
+            let year = date.getFullYear()
+            
+            if(month < 10){
+              self.myChart_derecha_label_g.push(`${day}-0${month}-${year}`)
+            }else{
+              self.myChart_derecha_label_g.push(`${day}-${month}-${year}`)
+            }
+
+            
+            self.Chart_datos_g.set_point.push(datos_g.set_point);
+            self.Chart_datos_g.temp_supply.push(datos_g.temp_supply);
+            self.Chart_datos_g.temp_return.push(datos_g.temp_return);
+            self.Chart_datos_g.re_hume.push(datos_g.re_hume);
+            self.Chart_datos_g.re_c_o2.push(datos_g.re_c_o2);
+            self.Chart_datos_g.re_o2.push(datos_g.re_o2);
+            self.Chart_datos_g.alv.push(datos_g.alv);
+          });
         }
+      }).then(()=>{
+        self.iniciarGraficos();
       });
+     
       
-    
+    // myChart_derecha_label_g
     },
   },
 };
