@@ -2518,36 +2518,43 @@ __webpack_require__.r(__webpack_exports__);
             label: 'SetPoint',
             data: self.Chart_datos_g.set_point,
             borderColor: '#db0404',
+            backgroundColor: '#db0404',
             borderWidth: 1
           }, {
             label: 'TempSupply',
             data: self.Chart_datos_g.temp_supply,
             borderColor: '#3498db',
+            backgroundColor: '#3498db',
             borderWidth: 1
           }, {
             label: 'TempReturn',
             data: self.Chart_datos_g.temp_return,
             borderColor: '#9b59b6',
+            backgroundColor: '#9b59b6',
             borderWidth: 1
           }, {
             label: 'ReHume',
             data: self.Chart_datos_g.re_hume,
             borderColor: '#e67e22',
+            backgroundColor: '#e67e22',
             borderWidth: 1
           }, {
             label: 'ReCo2',
             data: self.Chart_datos_g.re_c_o2,
             borderColor: '#1abc9c',
+            backgroundColor: '#1abc9c',
             borderWidth: 1
           }, {
             label: 'ReO2',
             data: self.Chart_datos_g.re_o2,
             borderColor: '#2c3e50',
+            backgroundColor: '#2c3e50',
             borderWidth: 1
           }, {
             label: 'Alv',
             data: self.Chart_datos_g.alv,
             borderColor: '#f39c12',
+            backgroundColor: '#f39c12',
             borderWidth: 1
           }]
         },
