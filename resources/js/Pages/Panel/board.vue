@@ -411,7 +411,6 @@ export default {
     },
     iniciarMap() {
       let self = this;
-      
       this.$nextTick(() => {
          self.mapa = new google.maps.Map(document.getElementById("map"), {
             center: self.ubicacion,
@@ -425,8 +424,6 @@ export default {
           marcador.setPosition( self.ubicacion);
           
       });
-      // var map = L.map('map').setView([51.505, -0.09], 13);
-   
     },
    
     Circular_iniciarGraficosAlarms(){

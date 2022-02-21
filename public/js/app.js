@@ -2507,7 +2507,7 @@ __webpack_require__.r(__webpack_exports__);
           map: self.mapa
         });
         marcador.setPosition(self.ubicacion);
-      }); // var map = L.map('map').setView([51.505, -0.09], 13);
+      });
     },
     Circular_iniciarGraficosAlarms: function Circular_iniciarGraficosAlarms() {
       var ctx_alarms = document.getElementById('myChart_alarms').getContext('2d');
