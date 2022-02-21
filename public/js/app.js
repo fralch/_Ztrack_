@@ -2337,6 +2337,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -2352,34 +2360,12 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       // submited: false, 
+      tipo: "",
+      mapa: null,
+      ubicacion: new google.maps.LatLng(-12.0464, -77.0428),
       contenedores_seleccionados: [],
       datos_tabla_reefer: [],
-      datos_tabla_generador: [],
-      myChart_derecha_label_g: [],
-      myChart_derecha_label_r: [],
-      Chart_datos_g: {
-        set_point: [],
-        temp_supply: [],
-        temp_return: [],
-        re_hume: [],
-        re_c_o2: [],
-        re_o2: [],
-        alv: []
-      },
-      Chart_datos_r: {
-        set_point: [],
-        temp_supply: [],
-        temp_return: [],
-        re_hume: [],
-        fuel_level: [],
-        vdc: [],
-        rpm: [],
-        freq: [],
-        vac: [],
-        temp_motor: [],
-        speed: [],
-        horometro: []
-      }
+      datos_tabla_generador: []
     };
   },
   watch: {
@@ -2477,7 +2463,7 @@ __webpack_require__.r(__webpack_exports__);
             responsive: true
           }
         });
-      }); // this.abrirGrafico('reefer');    
+      });
     },
     TablaDetalleContenedores_g: function TablaDetalleContenedores_g() {
       var self = this;
@@ -2507,176 +2493,21 @@ __webpack_require__.r(__webpack_exports__);
             }
           }
         });
-
-        if (screen.width <= 1024) {
-          console.log(table.scrollX); // table.scrollX = true;
-        }
-      }); // this.abrirGrafico('generador');        
+      });
     },
     iniciarMap: function iniciarMap() {
-      // var map = L.map('map').setView([51.505, -0.09], 13);
-      var map;
-      map = new google.maps.Map(document.getElementById("map"), {
-        center: {
-          lat: -12.0464,
-          lng: -77.0428
-        },
-        zoom: 12
-      });
-    },
-    Generadores_iniciarGraficos: function Generadores_iniciarGraficos() {
       var self = this;
-      var ctx = document.getElementById('myChart_generadores').getContext('2d');
-      var myChart_derecha = new Chart(ctx, {
-        animationEnabled: true,
-        theme: "light2",
-        type: 'line',
-        data: {
-          labels: self.myChart_derecha_label_g,
-          datasets: [{
-            label: 'SetPoint',
-            data: self.Chart_datos_g.set_point,
-            borderColor: '#db0404',
-            backgroundColor: '#db0404',
-            borderWidth: 1
-          }, {
-            label: 'TempSupply',
-            data: self.Chart_datos_g.temp_supply,
-            borderColor: '#3498db',
-            backgroundColor: '#3498db',
-            borderWidth: 1
-          }, {
-            label: 'TempReturn',
-            data: self.Chart_datos_g.temp_return,
-            borderColor: '#9b59b6',
-            backgroundColor: '#9b59b6',
-            borderWidth: 1
-          }, {
-            label: 'ReHume',
-            data: self.Chart_datos_g.re_hume,
-            borderColor: '#e67e22',
-            backgroundColor: '#e67e22',
-            borderWidth: 1
-          }, {
-            label: 'ReCo2',
-            data: self.Chart_datos_g.re_c_o2,
-            borderColor: '#1abc9c',
-            backgroundColor: '#1abc9c',
-            borderWidth: 1
-          }, {
-            label: 'ReO2',
-            data: self.Chart_datos_g.re_o2,
-            borderColor: '#2c3e50',
-            backgroundColor: '#2c3e50',
-            borderWidth: 1
-          }, {
-            label: 'Alv',
-            data: self.Chart_datos_g.alv,
-            borderColor: '#f39c12',
-            backgroundColor: '#f39c12',
-            borderWidth: 1
-          }]
-        },
-        options: {
-          scales: {
-            y: {
-              beginAtZero: true
-            }
-          }
-        }
-      });
-    },
-    Reefers_iniciarGraficos: function Reefers_iniciarGraficos() {
-      var self = this;
-      var ctxr = document.getElementById('myChart_reefers').getContext('2d');
-      var myChart_derecha_r = new Chart(ctxr, {
-        animationEnabled: true,
-        theme: "light2",
-        type: 'line',
-        data: {
-          labels: self.myChart_derecha_label_r,
-          datasets: [{
-            label: 'SetPoint',
-            data: self.Chart_datos_r.set_point,
-            borderColor: '#FFC312',
-            backgroundColor: '#FFC312',
-            borderWidth: 1
-          }, {
-            label: 'Temp_supply',
-            data: self.Chart_datos_r.temp_supply,
-            borderColor: '#C4E538',
-            backgroundColor: '#C4E538',
-            borderWidth: 1
-          }, {
-            label: 'Temp_return',
-            data: self.Chart_datos_r.temp_return,
-            borderColor: '#12CBC4',
-            backgroundColor: '#12CBC4',
-            borderWidth: 1
-          }, {
-            label: 'Re_hume',
-            data: self.Chart_datos_r.re_hume,
-            borderColor: '#FDA7DF',
-            backgroundColor: '#FDA7DF',
-            borderWidth: 1
-          }, {
-            label: 'Fuel_level',
-            data: self.Chart_datos_r.fuel_level,
-            borderColor: '#ED4C67',
-            backgroundColor: '#ED4C67',
-            borderWidth: 1
-          }, {
-            label: 'Vdc',
-            data: self.Chart_datos_r.vdc,
-            borderColor: '#db0404',
-            backgroundColor: '#db0404',
-            borderWidth: 1
-          }, {
-            label: 'Rpm',
-            data: self.Chart_datos_r.rpm,
-            borderColor: '#009432',
-            backgroundColor: '#009432',
-            borderWidth: 1
-          }, {
-            label: 'Freq',
-            data: self.Chart_datos_r.freq,
-            borderColor: '#0652DD',
-            backgroundColor: '#0652DD',
-            borderWidth: 1
-          }, {
-            label: 'Vac',
-            data: self.Chart_datos_r.vac,
-            borderColor: '#9980FA',
-            backgroundColor: '#9980FA',
-            borderWidth: 1
-          }, {
-            label: 'Temp_motor',
-            data: self.Chart_datos_r.temp_motor,
-            borderColor: '#1B1464',
-            backgroundColor: '#1B1464',
-            borderWidth: 1
-          }, {
-            label: 'Speed',
-            data: self.Chart_datos_r.speed,
-            borderColor: '#EE5A24',
-            backgroundColor: '#EE5A24',
-            borderWidth: 1
-          }, {
-            label: 'Horometro',
-            data: self.Chart_datos_r.horometro,
-            borderColor: '#6F1E51',
-            backgroundColor: '#6F1E51',
-            borderWidth: 1
-          }]
-        },
-        options: {
-          scales: {
-            y: {
-              beginAtZero: true
-            }
-          }
-        }
-      });
+      this.$nextTick(function () {
+        self.mapa = new google.maps.Map(document.getElementById("map"), {
+          center: self.ubicacion,
+          zoom: 12
+        });
+        var marcador = new google.maps.Marker({
+          position: self.ubicacion,
+          map: self.mapa
+        });
+        marcador.setPosition(self.ubicacion);
+      }); // var map = L.map('map').setView([51.505, -0.09], 13);
     },
     Circular_iniciarGraficosAlarms: function Circular_iniciarGraficosAlarms() {
       var ctx_alarms = document.getElementById('myChart_alarms').getContext('2d');
@@ -2779,14 +2610,12 @@ __webpack_require__.r(__webpack_exports__);
       self.datos_tabla_reefer = [];
       self.datos_tabla_generador = [];
 
-      if (contenedor.tipo == "Reefer") {
-        $('#reefers_grid').css('display', 'block');
-        $('#generador_grid').css('display', 'none');
+      if (contenedor.tipo == 'Reefer') {
+        self.tipo = "Reefer";
       }
 
-      if (contenedor.tipo == "Generador") {
-        $('#reefers_grid').css('display', 'none');
-        $('#generador_grid').css('display', 'block');
+      if (contenedor.tipo == 'Generador') {
+        self.tipo = "Generador";
       }
 
       axios.post(route('contenedores.get_datos'), {
@@ -2796,103 +2625,27 @@ __webpack_require__.r(__webpack_exports__);
         // console.log(response.data);     
         if (contenedor.tipo == "Reefer") {
           self.datos_tabla_reefer = response.data;
-          response.data.map(function (datos_r, index) {
-            // self.myChart_derecha_label_r.push(fecha.created_at);
-            var date = new Date(datos_r.created_at);
-            var day = date.getDate();
-            var month = date.getMonth() + 1;
-            var year = date.getFullYear(); // -- horas ----
-
-            var hours = date.getHours();
-            var minutes = date.getMinutes();
-            var seconds = date.getSeconds();
-
-            if (minutes < 10) {
-              minutes = "0" + minutes;
-            }
-
-            if (seconds < 10) {
-              seconds = "0" + seconds;
-            }
-
-            if (month < 10) {
-              self.myChart_derecha_label_r.push("".concat(day, "-0").concat(month, "-").concat(year, " ").concat(hours, ":").concat(minutes, ":").concat(seconds));
-            } else {
-              self.myChart_derecha_label_r.push("".concat(day, "-").concat(month, "-").concat(year, "  ").concat(hours, ":").concat(minutes, ":").concat(seconds));
-            }
-
-            self.Chart_datos_r.set_point.push(datos_r.set_point);
-            self.Chart_datos_r.temp_supply.push(datos_r.temp_supply);
-            self.Chart_datos_r.temp_return.push(datos_r.temp_return);
-            self.Chart_datos_r.re_hume.push(datos_r.re_hume);
-            self.Chart_datos_r.fuel_level.push(datos_r.fuel_level);
-            self.Chart_datos_r.vdc.push(datos_r.vdc);
-            self.Chart_datos_r.rpm.push(datos_r.rpm);
-            self.Chart_datos_r.freq.push(datos_r.freq);
-            self.Chart_datos_r.vac.push(datos_r.vac);
-            self.Chart_datos_r.temp_motor.push(datos_r.temp_motor);
-            self.Chart_datos_r.speed.push(datos_r.speed);
-            self.Chart_datos_r.horometro.push(datos_r.horometro);
-          });
         }
 
         if (contenedor.tipo == "Generador") {
           self.datos_tabla_generador = response.data;
-          response.data.map(function (datos_g, index) {
-            var date = new Date(datos_g.created_at);
-            var day = date.getDate();
-            var month = date.getMonth() + 1;
-            var year = date.getFullYear(); // -- horas ----
-
-            var hours = date.getHours();
-            var minutes = date.getMinutes();
-            var seconds = date.getSeconds();
-
-            if (minutes < 10) {
-              minutes = "0" + minutes;
-            }
-
-            if (seconds < 10) {
-              seconds = "0" + seconds;
-            }
-
-            if (month < 10) {
-              self.myChart_derecha_label_g.push("".concat(day, "-0").concat(month, "-").concat(year, " ").concat(hours, ":").concat(minutes, ":").concat(seconds));
-            } else {
-              self.myChart_derecha_label_g.push("".concat(day, "-").concat(month, "-").concat(year, "  ").concat(hours, ":").concat(minutes, ":").concat(seconds));
-            }
-
-            self.Chart_datos_g.set_point.push(datos_g.set_point);
-            self.Chart_datos_g.temp_supply.push(datos_g.temp_supply);
-            self.Chart_datos_g.temp_return.push(datos_g.temp_return);
-            self.Chart_datos_g.re_hume.push(datos_g.re_hume);
-            self.Chart_datos_g.re_c_o2.push(datos_g.re_c_o2);
-            self.Chart_datos_g.re_o2.push(datos_g.re_o2);
-            self.Chart_datos_g.alv.push(datos_g.alv);
-          });
         }
       }).then(function () {
-        if (self.datos_tabla_generador.length > 0) {
-          self.Generadores_iniciarGraficos();
+        if (contenedor.tipo == "Reefer") {
+          var lat = self.datos_tabla_reefer[self.datos_tabla_reefer.length - 1].latitud;
+          var lon = self.datos_tabla_reefer[self.datos_tabla_reefer.length - 1].longitud; // self.ubicacion = {lat: lat, lng: lon};
+
+          self.ubicacion = new google.maps.LatLng(lat, lon);
         }
 
-        if (self.datos_tabla_reefer.length > 0) {
-          self.Reefers_iniciarGraficos();
+        if (contenedor.tipo == "Generador") {
+          var _lat = self.datos_tabla_generador[self.datos_tabla_generador.length - 1].latitud;
+          var _lon = self.datos_tabla_generador[self.datos_tabla_generador.length - 1].longitud;
+          self.ubicacion = new google.maps.LatLng(_lat, _lon);
         }
+      }).then(function () {
+        self.iniciarMap();
       }); // myChart_derecha_label_g
-    },
-    abrirGrafico: function abrirGrafico(tipo) {
-      if (this.datos_tabla_reefer.length > 0) {
-        console.log('reefer_g'); // $('#reefers_grid').css('display', 'block');
-        // $('#generador_grid').css('display', 'none');
-        // this.Reefers_iniciarGraficos();        
-      }
-
-      if (this.datos_tabla_generador.length > 0) {
-        console.log('generador_g'); // $('#reefers_grid').css('display', 'none');
-        // $('#generador_grid').css('display', 'block');
-        // this.Generadores_iniciarGraficos();                
-      }
     }
   }
 });
@@ -26849,372 +26602,373 @@ var render = function () {
                       ]
                     ),
                     _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "col shadow-sm p-3 mb-5 bg-white rounded ",
-                        staticStyle: {
-                          margin: "-30px 15px 10px 15px",
-                          display: "none",
-                        },
-                        attrs: { id: "generador_grid" },
-                      },
-                      [
-                        _c(
-                          "table",
+                    _vm.tipo == "Generador"
+                      ? _c(
+                          "div",
                           {
-                            staticClass: "table display nowrap",
-                            attrs: { id: "tblDetalleContenedores_generadores" },
+                            staticClass:
+                              "col shadow-sm p-3 mb-5 bg-white rounded ",
+                            staticStyle: { margin: "-30px 15px 10px 15px" },
+                            attrs: { id: "generador_grid" },
                           },
                           [
-                            _c("thead", [
-                              _c(
-                                "tr",
-                                {
-                                  staticClass: "bg-info",
-                                  staticStyle: { color: "white !important" },
-                                },
-                                [
-                                  _c("th", { attrs: { scope: "col" } }, [
-                                    _vm._v("N°"),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("th", { attrs: { scope: "col" } }, [
-                                    _vm._v("Generador"),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("th", { attrs: { scope: "col" } }, [
-                                    _vm._v("Set_point"),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("th", { attrs: { scope: "col" } }, [
-                                    _vm._v("Temp_supply"),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("th", { attrs: { scope: "col" } }, [
-                                    _vm._v("Temp_return"),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("th", { attrs: { scope: "col" } }, [
-                                    _vm._v("Re_hume"),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("th", { attrs: { scope: "col" } }, [
-                                    _vm._v("Re_co2"),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("th", { attrs: { scope: "col" } }, [
-                                    _vm._v("Re_o2"),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("th", { attrs: { scope: "col" } }, [
-                                    _vm._v("Alv"),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("th", { attrs: { scope: "col" } }, [
-                                    _vm._v("Latitud"),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("th", { attrs: { scope: "col" } }, [
-                                    _vm._v("Longitud"),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("th", { attrs: { scope: "col" } }, [
-                                    _vm._v("Status"),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("th", { attrs: { scope: "col" } }, [
-                                    _vm._v("Modelo"),
-                                  ]),
-                                ]
-                              ),
-                            ]),
-                            _vm._v(" "),
                             _c(
-                              "tbody",
-                              _vm._l(
-                                _vm.datos_tabla_generador,
-                                function (generador, index) {
-                                  return _c("tr", { key: index }, [
-                                    _c("td", [_vm._v(_vm._s(index + 1))]),
-                                    _vm._v(" "),
-                                    _c("td", [
-                                      _vm._v(
-                                        _vm._s(generador.nombre_contenedor)
-                                      ),
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("td", [
-                                      _vm._v(_vm._s(generador.set_point)),
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("td", [
-                                      _vm._v(_vm._s(generador.temp_supply)),
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("td", [
-                                      _vm._v(_vm._s(generador.temp_return)),
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("td", [
-                                      _vm._v(_vm._s(generador.re_hume)),
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("td", [
-                                      _vm._v(_vm._s(generador.re_c_o2)),
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("td", [_vm._v(_vm._s(generador.re_o2))]),
-                                    _vm._v(" "),
-                                    _c("td", [_vm._v(_vm._s(generador.alv))]),
-                                    _vm._v(" "),
-                                    _c("td", [
-                                      _vm._v(_vm._s(generador.latitud)),
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("td", [
-                                      _vm._v(_vm._s(generador.longitud)),
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("td", [
-                                      _vm._v(_vm._s(generador.status)),
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("td", [
-                                      _vm._v(_vm._s(generador.modelo)),
-                                    ]),
-                                  ])
-                                }
-                              ),
-                              0
+                              "table",
+                              {
+                                staticClass: "table display nowrap",
+                                attrs: {
+                                  id: "tblDetalleContenedores_generadores",
+                                },
+                              },
+                              [
+                                _c("thead", [
+                                  _c(
+                                    "tr",
+                                    {
+                                      staticClass: "bg-info",
+                                      staticStyle: {
+                                        color: "white !important",
+                                      },
+                                    },
+                                    [
+                                      _c("th", { attrs: { scope: "col" } }, [
+                                        _vm._v("N°"),
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("th", { attrs: { scope: "col" } }, [
+                                        _vm._v("Generador"),
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("th", { attrs: { scope: "col" } }, [
+                                        _vm._v("Set_point"),
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("th", { attrs: { scope: "col" } }, [
+                                        _vm._v("Temp_supply"),
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("th", { attrs: { scope: "col" } }, [
+                                        _vm._v("Temp_return"),
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("th", { attrs: { scope: "col" } }, [
+                                        _vm._v("Re_hume"),
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("th", { attrs: { scope: "col" } }, [
+                                        _vm._v("Re_co2"),
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("th", { attrs: { scope: "col" } }, [
+                                        _vm._v("Re_o2"),
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("th", { attrs: { scope: "col" } }, [
+                                        _vm._v("Alv"),
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("th", { attrs: { scope: "col" } }, [
+                                        _vm._v("Latitud"),
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("th", { attrs: { scope: "col" } }, [
+                                        _vm._v("Longitud"),
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("th", { attrs: { scope: "col" } }, [
+                                        _vm._v("Status"),
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("th", { attrs: { scope: "col" } }, [
+                                        _vm._v("Modelo"),
+                                      ]),
+                                    ]
+                                  ),
+                                ]),
+                                _vm._v(" "),
+                                _c(
+                                  "tbody",
+                                  _vm._l(
+                                    _vm.datos_tabla_generador,
+                                    function (generador, index) {
+                                      return _c("tr", { key: index }, [
+                                        _c("td", [_vm._v(_vm._s(index + 1))]),
+                                        _vm._v(" "),
+                                        _c("td", [
+                                          _vm._v(
+                                            _vm._s(generador.nombre_contenedor)
+                                          ),
+                                        ]),
+                                        _vm._v(" "),
+                                        _c("td", [
+                                          _vm._v(_vm._s(generador.set_point)),
+                                        ]),
+                                        _vm._v(" "),
+                                        _c("td", [
+                                          _vm._v(_vm._s(generador.temp_supply)),
+                                        ]),
+                                        _vm._v(" "),
+                                        _c("td", [
+                                          _vm._v(_vm._s(generador.temp_return)),
+                                        ]),
+                                        _vm._v(" "),
+                                        _c("td", [
+                                          _vm._v(_vm._s(generador.re_hume)),
+                                        ]),
+                                        _vm._v(" "),
+                                        _c("td", [
+                                          _vm._v(_vm._s(generador.re_c_o2)),
+                                        ]),
+                                        _vm._v(" "),
+                                        _c("td", [
+                                          _vm._v(_vm._s(generador.re_o2)),
+                                        ]),
+                                        _vm._v(" "),
+                                        _c("td", [
+                                          _vm._v(_vm._s(generador.alv)),
+                                        ]),
+                                        _vm._v(" "),
+                                        _c("td", [
+                                          _vm._v(_vm._s(generador.latitud)),
+                                        ]),
+                                        _vm._v(" "),
+                                        _c("td", [
+                                          _vm._v(_vm._s(generador.longitud)),
+                                        ]),
+                                        _vm._v(" "),
+                                        _c("td", [
+                                          _vm._v(_vm._s(generador.status)),
+                                        ]),
+                                        _vm._v(" "),
+                                        _c("td", [
+                                          _vm._v(_vm._s(generador.modelo)),
+                                        ]),
+                                      ])
+                                    }
+                                  ),
+                                  0
+                                ),
+                              ]
                             ),
                           ]
-                        ),
-                      ]
-                    ),
+                        )
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _vm.tipo == "Reefer"
+                      ? _c(
+                          "div",
+                          {
+                            staticClass:
+                              "col shadow-sm p-3 mb-5 bg-white rounded ",
+                            staticStyle: { margin: "-30px 15px 10px 15px" },
+                            attrs: { id: "reefers_grid" },
+                          },
+                          [
+                            _c(
+                              "table",
+                              {
+                                staticClass: "table display nowrap",
+                                attrs: { id: "tblDetalleContenedores_reefers" },
+                              },
+                              [
+                                _c("thead", [
+                                  _c(
+                                    "tr",
+                                    {
+                                      staticClass: "bg-info",
+                                      staticStyle: {
+                                        color: "white !important",
+                                      },
+                                    },
+                                    [
+                                      _c("th", { attrs: { scope: "col" } }, [
+                                        _vm._v("N°"),
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("th", { attrs: { scope: "col" } }, [
+                                        _vm._v("Reefer"),
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("th", { attrs: { scope: "col" } }, [
+                                        _vm._v("Set_point"),
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("th", { attrs: { scope: "col" } }, [
+                                        _vm._v("Temp_supply"),
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("th", { attrs: { scope: "col" } }, [
+                                        _vm._v("Tem_return"),
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("th", { attrs: { scope: "col" } }, [
+                                        _vm._v("Re_hume"),
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("th", { attrs: { scope: "col" } }, [
+                                        _vm._v("Fuel_level"),
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("th", { attrs: { scope: "col" } }, [
+                                        _vm._v("Vdc"),
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("th", { attrs: { scope: "col" } }, [
+                                        _vm._v("Rpm"),
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("th", { attrs: { scope: "col" } }, [
+                                        _vm._v("Freq"),
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("th", { attrs: { scope: "col" } }, [
+                                        _vm._v("Vac"),
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("th", { attrs: { scope: "col" } }, [
+                                        _vm._v("Latitud"),
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("th", { attrs: { scope: "col" } }, [
+                                        _vm._v("Longitud"),
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("th", { attrs: { scope: "col" } }, [
+                                        _vm._v("Temp_motor"),
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("th", { attrs: { scope: "col" } }, [
+                                        _vm._v("Status"),
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("th", { attrs: { scope: "col" } }, [
+                                        _vm._v("Speed"),
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("th", { attrs: { scope: "col" } }, [
+                                        _vm._v("Ecopower"),
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("th", { attrs: { scope: "col" } }, [
+                                        _vm._v("Horometro"),
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("th", { attrs: { scope: "col" } }, [
+                                        _vm._v("Alarma"),
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("th", { attrs: { scope: "col" } }, [
+                                        _vm._v("Evento"),
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("th", { attrs: { scope: "col" } }, [
+                                        _vm._v("Modelo"),
+                                      ]),
+                                    ]
+                                  ),
+                                ]),
+                                _vm._v(" "),
+                                _c(
+                                  "tbody",
+                                  _vm._l(
+                                    _vm.datos_tabla_reefer,
+                                    function (reefer, index) {
+                                      return _c("tr", { key: index }, [
+                                        _c("td", [_vm._v(_vm._s(index + 1))]),
+                                        _vm._v(" "),
+                                        _c("td", [_vm._v("nombre_reefer")]),
+                                        _vm._v(" "),
+                                        _c("td", [
+                                          _vm._v(_vm._s(reefer.set_point)),
+                                        ]),
+                                        _vm._v(" "),
+                                        _c("td", [
+                                          _vm._v(_vm._s(reefer.temp_supply)),
+                                        ]),
+                                        _vm._v(" "),
+                                        _c("td", [
+                                          _vm._v(_vm._s(reefer.temp_return)),
+                                        ]),
+                                        _vm._v(" "),
+                                        _c("td", [
+                                          _vm._v(_vm._s(reefer.re_hume)),
+                                        ]),
+                                        _vm._v(" "),
+                                        _c("td", [
+                                          _vm._v(_vm._s(reefer.fuel_level)),
+                                        ]),
+                                        _vm._v(" "),
+                                        _c("td", [_vm._v(_vm._s(reefer.vdc))]),
+                                        _vm._v(" "),
+                                        _c("td", [_vm._v(_vm._s(reefer.rpm))]),
+                                        _vm._v(" "),
+                                        _c("td", [_vm._v(_vm._s(reefer.freq))]),
+                                        _vm._v(" "),
+                                        _c("td", [_vm._v(_vm._s(reefer.vac))]),
+                                        _vm._v(" "),
+                                        _c("td", [
+                                          _vm._v(_vm._s(reefer.latitud)),
+                                        ]),
+                                        _vm._v(" "),
+                                        _c("td", [
+                                          _vm._v(_vm._s(reefer.longitud)),
+                                        ]),
+                                        _vm._v(" "),
+                                        _c("td", [
+                                          _vm._v(_vm._s(reefer.temp_motor)),
+                                        ]),
+                                        _vm._v(" "),
+                                        _c("td", [
+                                          _vm._v(_vm._s(reefer.status)),
+                                        ]),
+                                        _vm._v(" "),
+                                        _c("td", [
+                                          _vm._v(_vm._s(reefer.speed)),
+                                        ]),
+                                        _vm._v(" "),
+                                        _c("td", [
+                                          _vm._v(_vm._s(reefer.ecopower)),
+                                        ]),
+                                        _vm._v(" "),
+                                        _c("td", [
+                                          _vm._v(_vm._s(reefer.horometro)),
+                                        ]),
+                                        _vm._v(" "),
+                                        _c("td", [
+                                          _vm._v(_vm._s(reefer.alarma_id)),
+                                        ]),
+                                        _vm._v(" "),
+                                        _c("td", [
+                                          _vm._v(_vm._s(reefer.evento_id)),
+                                        ]),
+                                        _vm._v(" "),
+                                        _c("td", [
+                                          _vm._v(_vm._s(reefer.modelo)),
+                                        ]),
+                                      ])
+                                    }
+                                  ),
+                                  0
+                                ),
+                              ]
+                            ),
+                          ]
+                        )
+                      : _vm._e(),
                     _vm._v(" "),
                     _c(
                       "div",
                       {
                         staticClass: "col shadow-sm p-3 mb-5 bg-white rounded ",
-                        staticStyle: {
-                          margin: "-30px 15px 10px 15px",
-                          display: "block",
-                        },
-                        attrs: { id: "reefers_grid" },
-                      },
-                      [
-                        _c(
-                          "table",
-                          {
-                            staticClass: "table display nowrap",
-                            attrs: { id: "tblDetalleContenedores_reefers" },
-                          },
-                          [
-                            _c("thead", [
-                              _c(
-                                "tr",
-                                {
-                                  staticClass: "bg-info",
-                                  staticStyle: { color: "white !important" },
-                                },
-                                [
-                                  _c("th", { attrs: { scope: "col" } }, [
-                                    _vm._v("N°"),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("th", { attrs: { scope: "col" } }, [
-                                    _vm._v("Reefer"),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("th", { attrs: { scope: "col" } }, [
-                                    _vm._v("Set_point"),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("th", { attrs: { scope: "col" } }, [
-                                    _vm._v("Temp_supply"),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("th", { attrs: { scope: "col" } }, [
-                                    _vm._v("Tem_return"),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("th", { attrs: { scope: "col" } }, [
-                                    _vm._v("Re_hume"),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("th", { attrs: { scope: "col" } }, [
-                                    _vm._v("Fuel_level"),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("th", { attrs: { scope: "col" } }, [
-                                    _vm._v("Vdc"),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("th", { attrs: { scope: "col" } }, [
-                                    _vm._v("Rpm"),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("th", { attrs: { scope: "col" } }, [
-                                    _vm._v("Freq"),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("th", { attrs: { scope: "col" } }, [
-                                    _vm._v("Vac"),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("th", { attrs: { scope: "col" } }, [
-                                    _vm._v("Latitud"),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("th", { attrs: { scope: "col" } }, [
-                                    _vm._v("Longitud"),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("th", { attrs: { scope: "col" } }, [
-                                    _vm._v("Temp_motor"),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("th", { attrs: { scope: "col" } }, [
-                                    _vm._v("Status"),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("th", { attrs: { scope: "col" } }, [
-                                    _vm._v("Speed"),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("th", { attrs: { scope: "col" } }, [
-                                    _vm._v("Ecopower"),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("th", { attrs: { scope: "col" } }, [
-                                    _vm._v("Horometro"),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("th", { attrs: { scope: "col" } }, [
-                                    _vm._v("Alarma"),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("th", { attrs: { scope: "col" } }, [
-                                    _vm._v("Evento"),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("th", { attrs: { scope: "col" } }, [
-                                    _vm._v("Modelo"),
-                                  ]),
-                                ]
-                              ),
-                            ]),
-                            _vm._v(" "),
-                            _c(
-                              "tbody",
-                              _vm._l(
-                                _vm.datos_tabla_reefer,
-                                function (reefer, index) {
-                                  return _c("tr", { key: index }, [
-                                    _c("td", [_vm._v(_vm._s(index + 1))]),
-                                    _vm._v(" "),
-                                    _c("td", [_vm._v("nombre_reefer")]),
-                                    _vm._v(" "),
-                                    _c("td", [
-                                      _vm._v(_vm._s(reefer.set_point)),
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("td", [
-                                      _vm._v(_vm._s(reefer.temp_supply)),
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("td", [
-                                      _vm._v(_vm._s(reefer.temp_return)),
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("td", [_vm._v(_vm._s(reefer.re_hume))]),
-                                    _vm._v(" "),
-                                    _c("td", [
-                                      _vm._v(_vm._s(reefer.fuel_level)),
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("td", [_vm._v(_vm._s(reefer.vdc))]),
-                                    _vm._v(" "),
-                                    _c("td", [_vm._v(_vm._s(reefer.rpm))]),
-                                    _vm._v(" "),
-                                    _c("td", [_vm._v(_vm._s(reefer.freq))]),
-                                    _vm._v(" "),
-                                    _c("td", [_vm._v(_vm._s(reefer.vac))]),
-                                    _vm._v(" "),
-                                    _c("td", [_vm._v(_vm._s(reefer.latitud))]),
-                                    _vm._v(" "),
-                                    _c("td", [_vm._v(_vm._s(reefer.longitud))]),
-                                    _vm._v(" "),
-                                    _c("td", [
-                                      _vm._v(_vm._s(reefer.temp_motor)),
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("td", [_vm._v(_vm._s(reefer.status))]),
-                                    _vm._v(" "),
-                                    _c("td", [_vm._v(_vm._s(reefer.speed))]),
-                                    _vm._v(" "),
-                                    _c("td", [_vm._v(_vm._s(reefer.ecopower))]),
-                                    _vm._v(" "),
-                                    _c("td", [
-                                      _vm._v(_vm._s(reefer.horometro)),
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("td", [
-                                      _vm._v(_vm._s(reefer.alarma_id)),
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("td", [
-                                      _vm._v(_vm._s(reefer.evento_id)),
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("td", [_vm._v(_vm._s(reefer.modelo))]),
-                                  ])
-                                }
-                              ),
-                              0
-                            ),
-                          ]
-                        ),
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "col shadow-sm p-3 mb-5 bg-white rounded ",
-                        staticStyle: {
-                          margin: "-30px 15px 10px 15px",
-                          display: "block",
-                        },
+                        staticStyle: { margin: "-30px 15px 10px 15px" },
                         attrs: { id: "generadores_grid" },
                       },
                       [
                         _c("p", [_vm._v("Generadores")]),
                         _vm._v(" "),
                         _c("canvas", {
-                          staticStyle: { width: "100%", height: "400px" },
+                          staticStyle: { width: "100%", height: "300px" },
                           attrs: { id: "myChart_generadores" },
-                        }),
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "col shadow-sm p-3 mb-5 bg-white rounded ",
-                        staticStyle: {
-                          margin: "-30px 15px 10px 15px",
-                          display: "block",
-                        },
-                        attrs: { id: "reefers_grid" },
-                      },
-                      [
-                        _c("p", [_vm._v("Reefers")]),
-                        _vm._v(" "),
-                        _c("canvas", {
-                          staticStyle: { width: "100%", height: "400px" },
-                          attrs: { id: "myChart_reefers" },
                         }),
                       ]
                     ),
