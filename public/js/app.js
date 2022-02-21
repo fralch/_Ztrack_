@@ -2335,6 +2335,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -2475,8 +2477,7 @@ __webpack_require__.r(__webpack_exports__);
             responsive: true
           }
         });
-      });
-      this.abrirGrafico('reefer');
+      }); // this.abrirGrafico('reefer');    
     },
     TablaDetalleContenedores_g: function TablaDetalleContenedores_g() {
       var self = this;
@@ -2510,8 +2511,7 @@ __webpack_require__.r(__webpack_exports__);
         if (screen.width <= 1024) {
           console.log(table.scrollX); // table.scrollX = true;
         }
-      });
-      this.abrirGrafico('generador');
+      }); // this.abrirGrafico('generador');        
     },
     iniciarMap: function iniciarMap() {
       // var map = L.map('map').setView([51.505, -0.09], 13);
@@ -2793,8 +2793,7 @@ __webpack_require__.r(__webpack_exports__);
         id: contenedor.contenedores_id,
         tipo: contenedor.tipo
       }).then(function (response) {
-        console.log(response.data);
-
+        // console.log(response.data);     
         if (contenedor.tipo == "Reefer") {
           self.datos_tabla_reefer = response.data;
           response.data.map(function (datos_r, index) {
@@ -2874,45 +2873,26 @@ __webpack_require__.r(__webpack_exports__);
         }
       }).then(function () {
         if (self.datos_tabla_generador.length > 0) {
-          self.Reefers_iniciarGraficos();
+          self.Generadores_iniciarGraficos();
         }
 
         if (self.datos_tabla_reefer.length > 0) {
-          // console.log('graficos reefer');
-          // $('#reefers_grid').css('display', 'block');
-          // $('#generadores_grid').css('display', 'none');
-          self.Generadores_iniciarGraficos();
+          self.Reefers_iniciarGraficos();
         }
       }); // myChart_derecha_label_g
     },
     abrirGrafico: function abrirGrafico(tipo) {
       if (this.datos_tabla_reefer.length > 0) {
-        console.log('reefer_g');
-        $('#reefers_grid').css('display', 'block');
-        $('#generador_grid').css('display', 'none'); // this.Reefers_iniciarGraficos();        
+        console.log('reefer_g'); // $('#reefers_grid').css('display', 'block');
+        // $('#generador_grid').css('display', 'none');
+        // this.Reefers_iniciarGraficos();        
       }
 
       if (this.datos_tabla_generador.length > 0) {
-        console.log('generador_g');
-        $('#reefers_grid').css('display', 'none');
-        $('#generador_grid').css('display', 'block'); // this.Generadores_iniciarGraficos();                
-      } // if (tipo=='reefer') {
-      //   console.log('reefer_g');
-      // }
-      // if (tipo='generador') {
-      //   console.log('generador_g');      
-      // }
-      // if (condition) {
-      //   $('#reefers_grid').css('display', 'block');
-      //   $('#generadores_grid').css('display', 'none');
-      //   self.Reefers_iniciarGraficos();        
-      // }
-      // if (condition) {
-      //   $('#generadores_grid').css('display', 'block');
-      //   $('#reefers_grid').css('display', 'none');
-      //   this.Generadores_iniciarGraficos(); 
-      // }
-
+        console.log('generador_g'); // $('#reefers_grid').css('display', 'none');
+        // $('#generador_grid').css('display', 'block');
+        // this.Generadores_iniciarGraficos();                
+      }
     }
   }
 });
@@ -27210,6 +27190,8 @@ var render = function () {
                         attrs: { id: "generadores_grid" },
                       },
                       [
+                        _c("p", [_vm._v("Generadores")]),
+                        _vm._v(" "),
                         _c("canvas", {
                           staticStyle: { width: "100%", height: "400px" },
                           attrs: { id: "myChart_generadores" },
@@ -27228,6 +27210,8 @@ var render = function () {
                         attrs: { id: "reefers_grid" },
                       },
                       [
+                        _c("p", [_vm._v("Reefers")]),
+                        _vm._v(" "),
                         _c("canvas", {
                           staticStyle: { width: "100%", height: "400px" },
                           attrs: { id: "myChart_reefers" },

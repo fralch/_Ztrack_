@@ -209,10 +209,12 @@
                   </table>
                 </div>
                 <div id="generadores_grid" class="col shadow-sm p-3 mb-5 bg-white rounded " style="margin: -30px 15px 10px 15px; display:block;">
+                    <p>Generadores</p>
                    <canvas id="myChart_generadores"  style="width:100%; height:400px"></canvas>
                 </div>
                 <div id="reefers_grid" class="col shadow-sm p-3 mb-5 bg-white rounded " style="margin: -30px 15px 10px 15px; display:block;">
-                   <canvas id="myChart_reefers"  style="width:100%; height:400px"></canvas>
+                    <p>Reefers</p>
+                    <canvas id="myChart_reefers"  style="width:100%; height:400px"></canvas>
                 </div>
               
             </div>
@@ -387,7 +389,7 @@ export default {
           },       
         });
       });
-      this.abrirGrafico('reefer');    
+      // this.abrirGrafico('reefer');    
     },
     TablaDetalleContenedores_g() {
      let self = this;
@@ -424,7 +426,7 @@ export default {
           // table.scrollX = true;
         }
       });
-      this.abrirGrafico('generador');        
+      // this.abrirGrafico('generador');        
     },
     iniciarMap() {
       // var map = L.map('map').setView([51.505, -0.09], 13);
@@ -759,7 +761,7 @@ export default {
         id: contenedor.contenedores_id,
         tipo: contenedor.tipo
       }).then(response => {   
-        console.log(response.data);     
+        // console.log(response.data);     
         if (contenedor.tipo == "Reefer") {
           self.datos_tabla_reefer = response.data;
           response.data.map(function(datos_r, index){
@@ -841,13 +843,11 @@ export default {
         }
       }).then(()=>{
         if (self.datos_tabla_generador.length > 0) {
-          self.Reefers_iniciarGraficos();        
+            self.Generadores_iniciarGraficos();        
         }
         if (self.datos_tabla_reefer.length > 0) {
-          // console.log('graficos reefer');
-          // $('#reefers_grid').css('display', 'block');
-          // $('#generadores_grid').css('display', 'none');
-           self.Generadores_iniciarGraficos();              
+           
+            self.Reefers_iniciarGraficos();            
         }
        
       });
@@ -858,33 +858,17 @@ export default {
     abrirGrafico(tipo){
       if (this.datos_tabla_reefer.length > 0) {
          console.log('reefer_g'); 
-        $('#reefers_grid').css('display', 'block');
-        $('#generador_grid').css('display', 'none');
+        // $('#reefers_grid').css('display', 'block');
+        // $('#generador_grid').css('display', 'none');
         // this.Reefers_iniciarGraficos();        
       }
       if (this.datos_tabla_generador.length > 0) {
         console.log('generador_g');  
-        $('#reefers_grid').css('display', 'none');
-        $('#generador_grid').css('display', 'block');
+        // $('#reefers_grid').css('display', 'none');
+        // $('#generador_grid').css('display', 'block');
         // this.Generadores_iniciarGraficos();                
       }
 
-      // if (tipo=='reefer') {
-      //   console.log('reefer_g');
-      // }
-      // if (tipo='generador') {
-      //   console.log('generador_g');      
-      // }
-      // if (condition) {
-      //   $('#reefers_grid').css('display', 'block');
-      //   $('#generadores_grid').css('display', 'none');
-      //   self.Reefers_iniciarGraficos();        
-      // }
-      // if (condition) {
-      //   $('#generadores_grid').css('display', 'block');
-      //   $('#reefers_grid').css('display', 'none');
-      //   this.Generadores_iniciarGraficos(); 
-      // }
     },
   },  
 };
