@@ -219,9 +219,13 @@
                     </tbody>
                   </table>
                 </div>
-                <div id="generadores_grid" class="col shadow-sm p-3 mb-5 bg-white rounded " style="margin: -30px 15px 10px 15px;">
-                    <p>Generadores</p>
-                   <canvas id="myChart_generadores"  style="width:100%; height:300px"></canvas>
+                <div 
+                  id="myChart_principal_id" 
+                  class="col shadow-sm p-3 mb-5 bg-white rounded " 
+                  style="margin: -30px 15px 10px 15px; "
+                   v-if="tipo != ''"
+                  >
+                   <canvas id="myChart_principal"  style="height:600px"></canvas>
                 </div>
               
               
@@ -243,6 +247,7 @@
 
 <script>
 import layoutprincipal from "../layout.vue";
+var myChart_principal; 
 export default {
   components: { 
     layoutprincipal, 
@@ -259,11 +264,151 @@ export default {
       // submited: false, 
       tipo: "",
       mapa: null,
-      ubicacion: new google.maps.LatLng(-12.0464, -77.0428), 
+      ubicacion: new google.maps.LatLng(-12.0434112, -75.2178798), 
       contenedores_seleccionados:[],
       datos_tabla_reefer:[],
       datos_tabla_generador: [],
-     
+      //  ---- myChart_principal -----
+      my_Chart_principal_dataset_reefer: [
+                {
+                  label: 'SetPoint',
+                  data: [],
+                  borderColor: '#FFC312',
+                  backgroundColor: '#FFC312',
+                  borderWidth: 1,
+                },
+                {
+                  label: 'Temp_supply',
+                  data: [],
+                  borderColor: '#C4E538',
+                  backgroundColor: '#C4E538',
+                  borderWidth: 1,
+                },
+                {
+                  label: 'Temp_return',
+                  data: [],
+                  borderColor: '#12CBC4',
+                  backgroundColor: '#12CBC4',
+                  borderWidth: 1,
+                },
+                {
+                  label: 'Re_hume',
+                  data: [],
+                  borderColor: '#FDA7DF',
+                  backgroundColor: '#FDA7DF',
+                  borderWidth: 1,
+                },
+                {
+                  label: 'Fuel_level',
+                  data: [],
+                  borderColor: '#ED4C67',
+                  backgroundColor: '#ED4C67',
+                  borderWidth: 1,
+                },
+                {
+                  label: 'Vdc',
+                  data: [],
+                  borderColor: '#db0404',
+                  backgroundColor: '#db0404',
+                  borderWidth: 1,
+                },
+                {
+                  label: 'Rpm',
+                  data: [],
+                  borderColor: '#009432',
+                  backgroundColor: '#009432',
+                  borderWidth: 1,
+                },
+                {
+                  label: 'Freq',
+                  data: [],
+                  borderColor: '#0652DD',
+                  backgroundColor: '#0652DD',
+                  borderWidth: 1,
+                },
+                {
+                  label: 'Vac',
+                  data: [],
+                  borderColor: '#9980FA',
+                  backgroundColor: '#9980FA',
+                  borderWidth: 1,
+                },
+                {
+                  label: 'Temp_motor',
+                  data: [],
+                  borderColor: '#1B1464',
+                  backgroundColor: '#1B1464',
+                  borderWidth: 1,
+                },
+                {
+                  label: 'Speed',
+                  data: [],
+                  borderColor: '#EE5A24',
+                  backgroundColor: '#EE5A24',
+                  borderWidth: 1,
+                },
+                {
+                  label: 'Horometro',
+                  data: [],
+                  borderColor: '#6F1E51',
+                  backgroundColor: '#6F1E51',
+                  borderWidth: 1,
+                },
+                
+              ],
+      my_Chart_principal_dataset_generador: [
+                {
+                  label: 'SetPoint',
+                  data: [],
+                  borderColor: '#db0404',
+                  backgroundColor: '#db0404',
+                  borderWidth: 1,
+                },
+                {
+                  label: 'TempSupply',
+                  data: [],
+                  borderColor: '#3498db',
+                  backgroundColor: '#3498db',
+                  borderWidth: 1,               
+                },
+                {
+                  label: 'TempReturn',
+                  data: [],
+                  borderColor: '#9b59b6',
+                  backgroundColor: '#9b59b6',
+                  borderWidth: 1,               
+                },
+                {
+                  label: 'ReHume',
+                  data: [],
+                  borderColor: '#e67e22',
+                  backgroundColor: '#e67e22',
+                  borderWidth: 1,               
+                },
+                {
+                  label: 'ReCo2',
+                  data: [],
+                  borderColor: '#1abc9c',
+                  backgroundColor: '#1abc9c',
+                  borderWidth: 1,               
+                },
+                {
+                  label: 'ReO2',
+                  data: [],
+                  borderColor: '#2c3e50',
+                  backgroundColor: '#2c3e50',
+                  borderWidth: 1,               
+                },
+                {
+                  label: 'Alv',
+                  data: [],
+                  borderColor: '#f39c12',
+                  backgroundColor: '#f39c12',
+                  borderWidth: 1,               
+                },
+              ],
+      my_Chart_principal_labels: [],
+      my_Chart_principal_dataSetable: [],
     };
   },
   watch: {
@@ -285,17 +430,17 @@ export default {
   },
  
   mounted() {
-    this.iniciarMap();
-    // this.iniciarGraficos();
+    this.usuarioLogeado();
+    this.bienvenida();
+    this.iniciarMap();    
+    this.TablaContenedores();
+    // -- graficos circulares --
     this.Circular_iniciarGraficosAlarms();
     this.Circular_iniciarGraficosCargo();
     this.Circular_iniciarGraficosPTI();
     this.Circular_iniciarGraficosFleet();
-    this.TablaContenedores();
-    this.TablaDetalleContenedores_g();
-    this.TablaDetalleContenedores_r();
-    this.usuarioLogeado();
-    this.bienvenida();
+
+    // this.myChartPrincipal();
   },
 
   methods: {
@@ -414,7 +559,7 @@ export default {
       this.$nextTick(() => {
          self.mapa = new google.maps.Map(document.getElementById("map"), {
             center: self.ubicacion,
-            zoom: 12,
+            zoom: 15,
           });
 
           let marcador = new google.maps.Marker({
@@ -587,15 +732,173 @@ export default {
             let lon = self.datos_tabla_generador[self.datos_tabla_generador.length -1].longitud;
            self.ubicacion =  new google.maps.LatLng(lat, lon);
           }
-      })
-      .then(()=>{
+      }).then(()=>{
         self.iniciarMap();
+      }).then(()=>{
+        self.setLabelsMyChartPrincipal();
       });
      
       
     // myChart_derecha_label_g
     },
-   
+    myChartPrincipal(){
+      let self = this;
+      
+      const ctx_principal = document.getElementById('myChart_principal').getContext('2d');
+      myChart_principal = new Chart(ctx_principal, {
+        type: 'line',
+        data: {
+        labels: self.my_Chart_principal_labels,
+        datasets: self.my_Chart_principal_dataSetable,
+        },
+          options: {
+            maintainAspectRatio: false,
+            scales: {
+              y: { 
+                min: 0
+                }
+              },
+          }
+      });   
+    //  console.log('myChart_principal');
+      // myChart_principal.resize();
+     
+    },
+    setLabelsMyChartPrincipal(){
+      let self = this;
+     async function set_labels(){ 
+        self.my_Chart_principal_labels = [];
+        if (self.tipo == "Reefer") {
+        self.datos_tabla_reefer.map(function(datos_r, index){
+              let date = new Date(datos_r.created_at);
+              let day = date.getDate()
+              let month = date.getMonth() + 1
+              let year = date.getFullYear()
+              let hours = date.getHours();
+              let minutes = date.getMinutes();
+              let seconds = date.getSeconds();
+              if (minutes < 10) {
+                  minutes = "0" + minutes;
+              }
+                
+              if (seconds < 10) {
+                  seconds = "0" + seconds;
+              }
+              
+              if(month < 10){
+                self.my_Chart_principal_labels.push(`${day}-0${month}-${year} ${hours}:${minutes}:${seconds}`);
+              }else{
+                self.my_Chart_principal_labels.push(`${day}-${month}-${year}  ${hours}:${minutes}:${seconds}`);
+              }
+         });
+        }
+        if (self.tipo == "Generador") {
+          self.datos_tabla_generador.map(function(datos_g, index){
+              let date = new Date(datos_g.created_at);
+              let day = date.getDate()
+              let month = date.getMonth() + 1
+              let year = date.getFullYear()
+              let hours = date.getHours();
+              let minutes = date.getMinutes();
+              let seconds = date.getSeconds();
+              if (minutes < 10) {
+                  minutes = "0" + minutes;
+              }
+                
+              if (seconds < 10) {
+                  seconds = "0" + seconds;
+              }
+              
+              if(month < 10){
+                self.my_Chart_principal_labels.push(`${day}-0${month}-${year} ${hours}:${minutes}:${seconds}`);
+              }else{
+                self.my_Chart_principal_labels.push(`${day}-${month}-${year}  ${hours}:${minutes}:${seconds}`);
+              }
+          });
+        }
+     }
+
+      set_labels().then(()=>{
+        self.setDatosGraficoPrincipal();
+      }).then(()=>{
+        if (myChart_principal) {
+          // myChart_principal.update();
+          myChart_principal.destroy();
+          self.myChartPrincipal();
+        }else{
+          self.myChartPrincipal();
+        }
+      });
+    },
+    setDatosGraficoPrincipal(){
+      let self = this;
+      async function set_data(){ 
+      self.my_Chart_principal_dataset = [];
+       if (self.tipo == "Reefer") {
+        self.datos_tabla_reefer.map(function(datos_r, index){
+            self.my_Chart_principal_dataset_generador[0].data = [];
+            self.my_Chart_principal_dataset_generador[1].data = [];
+            self.my_Chart_principal_dataset_generador[2].data = [];
+            self.my_Chart_principal_dataset_generador[3].data = [];
+            self.my_Chart_principal_dataset_generador[4].data = [];
+            self.my_Chart_principal_dataset_generador[5].data = [];
+            self.my_Chart_principal_dataset_generador[6].data = [];
+
+            self.my_Chart_principal_dataset_reefer[0].data.push(datos_r.set_point);
+            self.my_Chart_principal_dataset_reefer[1].data.push(datos_r.temp_supply);
+            self.my_Chart_principal_dataset_reefer[2].data.push(datos_r.temp_return);
+            self.my_Chart_principal_dataset_reefer[3].data.push(datos_r.re_hume);
+            self.my_Chart_principal_dataset_reefer[4].data.push(datos_r.fuel_level);
+            self.my_Chart_principal_dataset_reefer[5].data.push(datos_r.vdc);
+            self.my_Chart_principal_dataset_reefer[6].data.push(datos_r.rpm);
+            self.my_Chart_principal_dataset_reefer[7].data.push(datos_r.freq);
+            self.my_Chart_principal_dataset_reefer[8].data.push(datos_r.vac);
+            self.my_Chart_principal_dataset_reefer[9].data.push(datos_r.temp_motor);
+            self.my_Chart_principal_dataset_reefer[10].data.push(datos_r.speed);
+            self.my_Chart_principal_dataset_reefer[11].data.push(datos_r.horometro);
+        });
+       }
+       if (self.tipo == "Generador") {
+          self.datos_tabla_generador.map(function(datos_g, index){
+            self.my_Chart_principal_dataset_reefer[0].data = [];
+            self.my_Chart_principal_dataset_reefer[1].data = [];
+            self.my_Chart_principal_dataset_reefer[2].data = [];
+            self.my_Chart_principal_dataset_reefer[3].data = [];
+            self.my_Chart_principal_dataset_reefer[4].data = [];
+            self.my_Chart_principal_dataset_reefer[5].data = [];
+            self.my_Chart_principal_dataset_reefer[6].data = [];
+            self.my_Chart_principal_dataset_reefer[7].data = [];
+            self.my_Chart_principal_dataset_reefer[8].data = [];
+            self.my_Chart_principal_dataset_reefer[9].data = [];
+            self.my_Chart_principal_dataset_reefer[10].data = [];
+            self.my_Chart_principal_dataset_reefer[11].data = [];
+            
+            self.my_Chart_principal_dataset_generador[0].data.push(datos_g.set_point);
+            self.my_Chart_principal_dataset_generador[1].data.push(datos_g.temp_supply);
+            self.my_Chart_principal_dataset_generador[2].data.push(datos_g.temp_return);
+            self.my_Chart_principal_dataset_generador[3].data.push(datos_g.re_hume);
+            self.my_Chart_principal_dataset_generador[4].data.push(datos_g.re_c_o2);
+            self.my_Chart_principal_dataset_generador[5].data.push(datos_g.re_o2);
+            self.my_Chart_principal_dataset_generador[6].data.push(datos_g.alv);
+          });
+        }
+        console.log('my_Chart_principal_dataset');
+       }
+
+       set_data().then(()=>{
+          // if (myChart_principal) {
+          //   myChart_principal.update();
+          // }else{
+          //   self.myChartPrincipal();
+          // }
+          if (self.tipo == "Reefer") {
+          self.my_Chart_principal_dataSetable = self.my_Chart_principal_dataset_reefer;
+          }
+          if (self.tipo == "Generador") {
+            self.my_Chart_principal_dataSetable = self.my_Chart_principal_dataset_generador;
+          }
+       });
+    },
   },  
 };
 </script>

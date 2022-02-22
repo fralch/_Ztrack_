@@ -38,21 +38,21 @@
    	<style lang="css">
        body { background-color: #7CBEF8; }
       html {
-        scrollbar-face-color: #646464;
-        scrollbar-base-color: #646464;
-        scrollbar-3dlight-color: #646464;
-        scrollbar-highlight-color: #646464;
+        scrollbar-face-color: #fafbfd;
+        scrollbar-base-color: #fafbfd;
+        scrollbar-3dlight-color: #fafbfd;
+        scrollbar-highlight-color: #fafbfd;
         scrollbar-track-color: #000;
         scrollbar-arrow-color: #000;
-        scrollbar-shadow-color: #646464;
+        scrollbar-shadow-color: #fafbfd;
       }
       
       ::-webkit-scrollbar { width: 8px; height: 8px;}
-      ::-webkit-scrollbar-button {  background-color: #fafbfd; }
-      ::-webkit-scrollbar-track {  background-color: #646464;}
-      ::-webkit-scrollbar-track-piece { background-color: #a3a3a3;}
-      ::-webkit-scrollbar-thumb { height: 50px; background-color: #fafbfd; border-radius: 3px;}
-      ::-webkit-scrollbar-corner { background-color: #646464;}
-      ::-webkit-resizer { background-color: #fafbfd;}
+      ::-webkit-scrollbar-button {  background-color: #bfbfbf; }
+      ::-webkit-scrollbar-track {  background-color: #fafbfd;}
+      ::-webkit-scrollbar-track-piece { background-color: #fafbfd;}
+      ::-webkit-scrollbar-thumb { height: 50px; background-color: #bfbfbf; border-radius: 3px;}
+      ::-webkit-scrollbar-corner { background-color: #fafbfd;}
+      ::-webkit-resizer { background-color: #bfbfbf;}
 	</style>
 </html>
