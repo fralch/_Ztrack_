@@ -194,7 +194,7 @@
                     <tbody>
                       <tr v-for="(reefer, index) in datos_tabla_reefer" :key="index">
                         <td>{{index+1}}</td>
-                        <td>nombre_reefer</td>
+                        <td>{{reefer.nombre_contenedor}}</td>
                         <td>{{reefer.set_point}}</td>
                         <td>{{reefer.temp_supply}}</td>
                         <td>{{reefer.temp_return}}</td>
@@ -211,8 +211,8 @@
                         <td>{{reefer.speed}}</td>
                         <td>{{reefer.ecopower}}</td>
                         <td>{{reefer.horometro}}</td>
-                        <td>{{reefer.alarma_id}}</td>
-                        <td>{{reefer.evento_id}}</td>
+                        <td>{{reefer.nombre_alarma}}</td>
+                        <td>{{reefer.nombre_evento}}</td>
                         <td>{{reefer.modelo}}</td>
                     
                       </tr>
@@ -752,6 +752,7 @@ export default {
         datasets: self.my_Chart_principal_dataSetable,
         },
           options: {
+            responsive: true,
             maintainAspectRatio: false,
             scales: {
               y: { 

@@ -70,8 +70,8 @@ class PanelController extends Controller
             're_c_o2' => rand((1*10),(100*10))/10,
             're_o2' => rand((1*10),(100*10))/10,
             'alv' => rand(10,1000),
-            'latitud'=> -08.5,
-            'longitud' =>-79.5,
+            'latitud'=> -12.014386,
+            'longitud' =>-75.230926,
             'status' => 'on',
             'modelo' => 'ThermoKing',
         ]);
@@ -88,8 +88,8 @@ class PanelController extends Controller
             'rpm' => rand(10,1000),
             'freq' => rand(10,100),
             'vac' => rand(10,100),
-            'latitud'=> -08.5,
-            'longitud' =>-79.5,
+            'latitud'=> -12.014386,
+            'longitud' =>-75.230926,
             'temp_motor' => rand((1*10),(1000*10))/10,
             'status' => 'on',
             'speed' => rand(10,100),
@@ -128,13 +128,44 @@ class PanelController extends Controller
                     ->join('contenedores as c', 'c.id', 'rdg.contenedor_id')
                     ->where('contenedor_id',$id_contenedor)
                     ->latest()
-                    ->take(5)
+                    ->take(30)
                     ->get();
         }
         if ($tipo_contenedor == 'Reefer') {
-            return Registro_diario_reefers::where('contenedor_id',$id_contenedor)
+            return Registro_diario_reefers::from('registro_diario_reefers as rdr')
+            ->select(
+                'rdr.set_point', 
+                'rdr.temp_supply', 
+                'rdr.temp_return', 
+                'rdr.re_hume', 
+                'rdr.temp_supply',
+                'rdr.temp_return',
+                'rdr.re_hume',
+                'rdr.fuel_level',
+                'rdr.vdc',
+                'rdr.rpm',
+                'rdr.freq',
+                'rdr.vac',
+                'rdr.latitud',
+                'rdr.longitud',
+                'rdr.temp_motor',
+                'rdr.status',
+                'rdr.speed',
+                'rdr.ecopower',
+                'rdr.horometro',
+                'rdr.modelo',
+                'rdr.created_at',
+                'rdr.updated_at',
+                'c.nombre_contenedor',
+                'al.nombre_alarma',
+                'e.nombre_evento',
+            )
+            ->join('contenedores as c', 'c.id', 'rdr.contenedor_id')
+            ->join('alarmas as al', 'al.id', 'rdr.alarma_id')
+            ->join('eventos as e', 'e.id', 'rdr.evento_id')
+            ->where('contenedor_id',$id_contenedor)
             ->latest()
-            ->take(5)
+            ->take(30)
             ->get();
         }
     }

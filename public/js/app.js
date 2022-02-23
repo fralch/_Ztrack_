@@ -2800,6 +2800,7 @@ var myChart_principal;
           datasets: self.my_Chart_principal_dataSetable
         },
         options: {
+          responsive: true,
           maintainAspectRatio: false,
           scales: {
             y: {
@@ -27982,7 +27983,11 @@ var render = function () {
                                       return _c("tr", { key: index }, [
                                         _c("td", [_vm._v(_vm._s(index + 1))]),
                                         _vm._v(" "),
-                                        _c("td", [_vm._v("nombre_reefer")]),
+                                        _c("td", [
+                                          _vm._v(
+                                            _vm._s(reefer.nombre_contenedor)
+                                          ),
+                                        ]),
                                         _vm._v(" "),
                                         _c("td", [
                                           _vm._v(_vm._s(reefer.set_point)),
@@ -28041,11 +28046,11 @@ var render = function () {
                                         ]),
                                         _vm._v(" "),
                                         _c("td", [
-                                          _vm._v(_vm._s(reefer.alarma_id)),
+                                          _vm._v(_vm._s(reefer.nombre_alarma)),
                                         ]),
                                         _vm._v(" "),
                                         _c("td", [
-                                          _vm._v(_vm._s(reefer.evento_id)),
+                                          _vm._v(_vm._s(reefer.nombre_evento)),
                                         ]),
                                         _vm._v(" "),
                                         _c("td", [
