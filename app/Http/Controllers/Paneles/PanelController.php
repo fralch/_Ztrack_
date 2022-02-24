@@ -189,7 +189,22 @@ class PanelController extends Controller
             ->groupBy('al.nombre_alarma')
             ->take(5)
             ->get();
-            return $cantidad_alarma;
+
+            $cantidad_evento =Registro_diario_reefers::from('registro_diario_reefers as rdr')
+            ->select(
+                'e.nombre_evento',       
+                DB::raw('count(rdr.evento_id) as cantidad_evento'),
+            )
+            ->join('eventos as e', 'e.id', 'rdr.evento_id')
+            ->where('contenedor_id',$request->id)
+            ->groupBy('e.nombre_evento')
+            ->take(5)
+            ->get();
+             
+            return $arreglo_alarma_evento = [
+                'alarma' => $cantidad_alarma,
+                'evento' => $cantidad_evento,
+            ];
         }
     }
     
