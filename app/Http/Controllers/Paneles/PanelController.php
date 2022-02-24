@@ -69,7 +69,7 @@ class PanelController extends Controller
             're_hume' => rand((1*10),(100*10))/10,
             're_c_o2' => rand((1*10),(100*10))/10,
             're_o2' => rand((1*10),(100*10))/10,
-            'alv' => rand(10,1000),
+            'alv' => rand(10,100),
             'latitud'=> -12.014386,
             'longitud' =>-75.230926,
             'status' => 'on',
@@ -85,12 +85,12 @@ class PanelController extends Controller
             're_hume' => rand((1*10),(100*10))/10,
             'fuel_level' => rand(10,100),
             'vdc' => rand(10,100),
-            'rpm' => rand(10,1000),
+            'rpm' => rand(10,100),
             'freq' => rand(10,100),
             'vac' => rand(10,100),
             'latitud'=> -12.014386,
-            'longitud' =>-75.230926,
-            'temp_motor' => rand((1*10),(1000*10))/10,
+            'longitud' =>-76.230926,
+            'temp_motor' => rand((1*10),(100*10))/10,
             'status' => 'on',
             'speed' => rand(10,100),
             'ecopower' => 'on',
@@ -123,7 +123,8 @@ class PanelController extends Controller
                         'rdg.modelo',
                         'rdg.created_at',
                         'rdg.updated_at',
-                        'c.nombre_contenedor'
+                        'c.nombre_contenedor',
+                        'rdg.contenedor_id',
                         )
                     ->join('contenedores as c', 'c.id', 'rdg.contenedor_id')
                     ->where('contenedor_id',$id_contenedor)
@@ -159,6 +160,7 @@ class PanelController extends Controller
                 'c.nombre_contenedor',
                 'al.nombre_alarma',
                 'e.nombre_evento',
+                'rdr.contenedor_id',
             )
             ->join('contenedores as c', 'c.id', 'rdr.contenedor_id')
             ->join('alarmas as al', 'al.id', 'rdr.alarma_id')
@@ -170,8 +172,32 @@ class PanelController extends Controller
         }
     }
 
+    public function get_alarma_evento(Request $request)
+    {
+        // return $request; 
+        if ($request->tipo == 'Generador') {
+            return 0 ; 
+        }
+        if ($request->tipo == 'Reefer') {
+            $cantidad_alarma =Registro_diario_reefers::from('registro_diario_reefers as rdr')
+            ->select(
+                'al.nombre_alarma',       
+                DB::raw('count(rdr.alarma_id) as cantidad_alarma'),
+            )
+            ->join('alarmas as al', 'al.id', 'rdr.alarma_id')
+            ->where('contenedor_id',$request->id)
+            ->groupBy('al.nombre_alarma')
+            ->get();
+            return $cantidad_alarma;
+        }
+    }
+    
+}
 
-    //http://162.248.55.24/trace/AWS981GHABT2X/ZGRU101342-0?setpoint=4.10&tsupply=23.50&treturn=23.50&rehume=32766&reco2=3276.70&reo2=3276.70&avl=32767&latitude=-08.5&longitude=-79.5&status=off&model=ThermoKing
+
+
+
+//http://162.248.55.24/trace/AWS981GHABT2X/ZGRU101342-0?setpoint=4.10&tsupply=23.50&treturn=23.50&rehume=32766&reco2=3276.70&reo2=3276.70&avl=32767&latitude=-08.5&longitude=-79.5&status=off&model=ThermoKing
     /* DATOS ENVIADOS POR GENERADOR
     trace
     AWS981GHABT2X
@@ -213,4 +239,3 @@ class PanelController extends Controller
     event.0=
     model=thermoking
     */
-}

@@ -819,9 +819,11 @@ export default {
         }
      }
 
-      set_labels().then(()=>{
+      set_labels()
+      .then(()=>{
         self.setDatosGraficoPrincipal();
-      }).then(()=>{
+      })
+      .then(()=>{
         if (myChart_principal) {
           // myChart_principal.update();
           myChart_principal.destroy();
@@ -829,6 +831,41 @@ export default {
         }else{
           self.myChartPrincipal();
         }
+      })
+      .then(()=>{
+          // self.$nextTick(() => {
+          //   console.log(self.datos_tabla_generador[0].contenedor_id); 
+          // });
+
+        if (self.tipo == "Reefer") {
+          axios
+          .post(route('contenedores.get_alarma_evento'), {
+            id: self.datos_tabla_reefer[0].contenedor_id,
+            tipo: self.tipo
+          })
+          .then(response => {
+            console.log(response.data);
+          });
+        }
+        if (self.tipo == "Generador") {
+          
+          axios
+          .post(route('contenedores.get_alarma_evento'), {
+            id: self.datos_tabla_generador[0].contenedor_id,
+            tipo: self.tipo
+          })
+          .then(response => {
+            console.log(response.data);
+          });
+        }
+        // axios
+        // .post(route('contenedores.get_alarma_evento'), {
+        //   id: self.contenedores_seleccionados[0].contenedores_id,
+        //   tipo: self.tipo
+        // })
+        // .then(response => {
+        //   console.log(response.data);
+        // });
       });
     },
     setDatosGraficoPrincipal(){
@@ -883,7 +920,7 @@ export default {
             self.my_Chart_principal_dataset_generador[6].data.push(datos_g.alv);
           });
         }
-        console.log('my_Chart_principal_dataset');
+        // console.log('my_Chart_principal_dataset');
        }
 
        set_data().then(()=>{

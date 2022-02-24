@@ -2898,6 +2898,35 @@ var myChart_principal;
         } else {
           self.myChartPrincipal();
         }
+      }).then(function () {
+        // self.$nextTick(() => {
+        //   console.log(self.datos_tabla_generador[0].contenedor_id); 
+        // });
+        if (self.tipo == "Reefer") {
+          axios.post(route('contenedores.get_alarma_evento'), {
+            id: self.datos_tabla_reefer[0].contenedor_id,
+            tipo: self.tipo
+          }).then(function (response) {
+            console.log(response.data);
+          });
+        }
+
+        if (self.tipo == "Generador") {
+          axios.post(route('contenedores.get_alarma_evento'), {
+            id: self.datos_tabla_generador[0].contenedor_id,
+            tipo: self.tipo
+          }).then(function (response) {
+            console.log(response.data);
+          });
+        } // axios
+        // .post(route('contenedores.get_alarma_evento'), {
+        //   id: self.contenedores_seleccionados[0].contenedores_id,
+        //   tipo: self.tipo
+        // })
+        // .then(response => {
+        //   console.log(response.data);
+        // });
+
       });
     },
     setDatosGraficoPrincipal: function setDatosGraficoPrincipal() {
@@ -2961,11 +2990,10 @@ var myChart_principal;
                       self.my_Chart_principal_dataset_generador[5].data.push(datos_g.re_o2);
                       self.my_Chart_principal_dataset_generador[6].data.push(datos_g.alv);
                     });
-                  }
+                  } // console.log('my_Chart_principal_dataset');
 
-                  console.log('my_Chart_principal_dataset');
 
-                case 4:
+                case 3:
                 case "end":
                   return _context2.stop();
               }
