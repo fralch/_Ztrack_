@@ -187,6 +187,7 @@ class PanelController extends Controller
             ->join('alarmas as al', 'al.id', 'rdr.alarma_id')
             ->where('contenedor_id',$request->id)
             ->groupBy('al.nombre_alarma')
+            ->take(5)
             ->get();
             return $cantidad_alarma;
         }
