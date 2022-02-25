@@ -455,18 +455,38 @@ export default {
   methods: {
     autoRefresh(){
       let self = this;
-     this.$nextTick(() => {
-        if(self.tipo == 'Reefer'){
-          // console.log('automatizando reefers');
-          let contenedor = self.contenedores_seleccionados.filter(element => element.tipo == 'Reefer');
-          console.log(contenedor[0])
-          // self.select_contenedor(contenedor[0]); 
-        }else if(self.tipo == 'Generador'){
-           let contenedor = self.contenedores_seleccionados.filter(element => element.tipo == 'Generador');
-          console.log(contenedor[0])
-          // self.select_contenedor(contenedor[0]); 
+      this.$nextTick(() => {
+          // if(self.tipo == 'Reefer'){
+          //   // console.log('automatizando reefers');
+          //   let contenedor = self.contenedores_seleccionados.filter(element => element.tipo == 'Reefer');
+          //   console.log(contenedor[0])
+          //   // self.select_contenedor(contenedor[0]); 
+          // }else if(self.tipo == 'Generador'){
+          //   let contenedor = self.contenedores_seleccionados.filter(element => element.tipo == 'Generador');
+          //   console.log(contenedor[0])
+          //   // self.select_contenedor(contenedor[0]); 
+          // // }
+
+
+          
+         async function f() {
+          let promise = new Promise((resolve, reject) => {
+            setTimeout(() => resolve(true), 120000)
+          });
+          let result = await promise; 
+           if(self.tipo == 'Reefer'){
+            let contenedor = self.contenedores_seleccionados.filter(element => element.tipo == 'Reefer');
+            console.log(contenedor[0])
+            self.select_contenedor(contenedor[0]); 
+          }else if(self.tipo == 'Generador'){
+            let contenedor = self.contenedores_seleccionados.filter(element => element.tipo == 'Generador');
+            self.select_contenedor(contenedor[0]); 
+            console.log(contenedor[0])
+          }
         }
-     });
+
+        f();
+      });
     
     },
     bienvenida() {

@@ -2549,19 +2549,64 @@ var Chart_eventos;
     autoRefresh: function autoRefresh() {
       var self = this;
       this.$nextTick(function () {
-        if (self.tipo == 'Reefer') {
-          // console.log('automatizando reefers');
-          var contenedor = self.contenedores_seleccionados.filter(function (element) {
-            return element.tipo == 'Reefer';
-          });
-          console.log(contenedor[0]); // self.select_contenedor(contenedor[0]); 
-        } else if (self.tipo == 'Generador') {
-          var _contenedor = self.contenedores_seleccionados.filter(function (element) {
-            return element.tipo == 'Generador';
-          });
-
-          console.log(_contenedor[0]); // self.select_contenedor(contenedor[0]); 
+        // if(self.tipo == 'Reefer'){
+        //   // console.log('automatizando reefers');
+        //   let contenedor = self.contenedores_seleccionados.filter(element => element.tipo == 'Reefer');
+        //   console.log(contenedor[0])
+        //   // self.select_contenedor(contenedor[0]); 
+        // }else if(self.tipo == 'Generador'){
+        //   let contenedor = self.contenedores_seleccionados.filter(element => element.tipo == 'Generador');
+        //   console.log(contenedor[0])
+        //   // self.select_contenedor(contenedor[0]); 
+        // // }
+        function f() {
+          return _f.apply(this, arguments);
         }
+
+        function _f() {
+          _f = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+            var promise, result, contenedor, _contenedor;
+
+            return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+              while (1) {
+                switch (_context.prev = _context.next) {
+                  case 0:
+                    promise = new Promise(function (resolve, reject) {
+                      setTimeout(function () {
+                        return resolve(true);
+                      }, 120000);
+                    });
+                    _context.next = 3;
+                    return promise;
+
+                  case 3:
+                    result = _context.sent;
+
+                    if (self.tipo == 'Reefer') {
+                      contenedor = self.contenedores_seleccionados.filter(function (element) {
+                        return element.tipo == 'Reefer';
+                      });
+                      console.log(contenedor[0]);
+                      self.select_contenedor(contenedor[0]);
+                    } else if (self.tipo == 'Generador') {
+                      _contenedor = self.contenedores_seleccionados.filter(function (element) {
+                        return element.tipo == 'Generador';
+                      });
+                      self.select_contenedor(_contenedor[0]);
+                      console.log(_contenedor[0]);
+                    }
+
+                  case 5:
+                  case "end":
+                    return _context.stop();
+                }
+              }
+            }, _callee);
+          }));
+          return _f.apply(this, arguments);
+        }
+
+        f();
       });
     },
     bienvenida: function bienvenida() {
@@ -2846,10 +2891,10 @@ var Chart_eventos;
       }
 
       function _set_labels() {
-        _set_labels = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
-          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+        _set_labels = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
+          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
             while (1) {
-              switch (_context.prev = _context.next) {
+              switch (_context2.prev = _context2.next) {
                 case 0:
                   self.my_Chart_principal_labels = [];
 
@@ -2907,10 +2952,10 @@ var Chart_eventos;
 
                 case 3:
                 case "end":
-                  return _context.stop();
+                  return _context2.stop();
               }
             }
-          }, _callee);
+          }, _callee2);
         }));
         return _set_labels.apply(this, arguments);
       }
@@ -2973,10 +3018,10 @@ var Chart_eventos;
       }
 
       function _set_data() {
-        _set_data = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
-          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+        _set_data = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3() {
+          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
             while (1) {
-              switch (_context2.prev = _context2.next) {
+              switch (_context3.prev = _context3.next) {
                 case 0:
                   self.my_Chart_principal_dataset = [];
 
@@ -3031,10 +3076,10 @@ var Chart_eventos;
 
                 case 3:
                 case "end":
-                  return _context2.stop();
+                  return _context3.stop();
               }
             }
-          }, _callee2);
+          }, _callee3);
         }));
         return _set_data.apply(this, arguments);
       }
