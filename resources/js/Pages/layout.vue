@@ -30,8 +30,17 @@
                   {{usuario}}
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown" style='margin-left: -80px;'>
-                  <a class="dropdown-item" href="#">Mi Perfil</a>
+                  <a class="dropdown-item" href="javascript:void(0)">Mi Perfil</a>
                   <a class="dropdown-item" href="#" @click="cerrarSesion()">Cerrar Sesión</a>
+                </div>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:white !important;" >
+                  <i class="bi bi-gear-fill"></i>
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown" style='margin-left: -80px;'>
+                  <a class="dropdown-item" href="javascript:void(0)">EMPRESAS</a>
+                  <a class="dropdown-item" href="javascript:void(0)">USUARIOS</a>
                 </div>
               </li>
               

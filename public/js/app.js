@@ -3159,6 +3159,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -28302,7 +28311,7 @@ var render = function () {
                             "a",
                             {
                               staticClass: "dropdown-item",
-                              attrs: { href: "#" },
+                              attrs: { href: "javascript:void(0)" },
                             },
                             [_vm._v("Mi Perfil")]
                           ),
@@ -28323,6 +28332,8 @@ var render = function () {
                         ]
                       ),
                     ]),
+                    _vm._v(" "),
+                    _vm._m(1),
                   ]),
                 ]),
               ]
@@ -28355,6 +28366,57 @@ var staticRenderFns = [
       },
       [_c("span", { staticClass: "navbar-toggler-icon" })]
     )
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", { staticClass: "nav-item dropdown" }, [
+      _c(
+        "a",
+        {
+          staticClass: "nav-link dropdown-toggle",
+          staticStyle: { color: "white !important" },
+          attrs: {
+            href: "#",
+            id: "navbarDropdown",
+            role: "button",
+            "data-toggle": "dropdown",
+            "aria-haspopup": "true",
+            "aria-expanded": "false",
+          },
+        },
+        [_c("i", { staticClass: "bi bi-gear-fill" })]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "dropdown-menu",
+          staticStyle: { "margin-left": "-80px" },
+          attrs: { "aria-labelledby": "navbarDropdown" },
+        },
+        [
+          _c(
+            "a",
+            {
+              staticClass: "dropdown-item",
+              attrs: { href: "javascript:void(0)" },
+            },
+            [_vm._v("EMPRESAS")]
+          ),
+          _vm._v(" "),
+          _c(
+            "a",
+            {
+              staticClass: "dropdown-item",
+              attrs: { href: "javascript:void(0)" },
+            },
+            [_vm._v("USUARIOS")]
+          ),
+        ]
+      ),
+    ])
   },
 ]
 render._withStripped = true
