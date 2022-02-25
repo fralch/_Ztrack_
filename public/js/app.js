@@ -2370,6 +2370,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 
 var myChart_principal;
+var Chart_alarmas;
+var Chart_eventos;
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
     layoutprincipal: _layout_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
@@ -2508,7 +2510,13 @@ var myChart_principal;
         borderWidth: 1
       }],
       my_Chart_principal_labels: [],
-      my_Chart_principal_dataSetable: []
+      my_Chart_principal_dataSetable: [],
+      // --------- chart alarmas ------
+      chart_alarma_labels: [],
+      chart_alarma_dataset_data: [],
+      //  -------- chart eventos -------
+      chart_eventos_labels: [],
+      chart_eventos_dataset_data: []
     };
   },
   watch: {
@@ -2533,7 +2541,7 @@ var myChart_principal;
     this.TablaContenedores(); // -- graficos circulares --
 
     this.Circular_iniciarGraficosAlarms();
-    this.Circular_iniciarGraficosCargo();
+    this.Circular_iniciarGraficosEventos();
     this.Circular_iniciarGraficosPTI();
     this.Circular_iniciarGraficosFleet(); // this.myChartPrincipal();
   },
@@ -2651,15 +2659,15 @@ var myChart_principal;
       });
     },
     Circular_iniciarGraficosAlarms: function Circular_iniciarGraficosAlarms() {
+      var self = this;
       var ctx_alarms = document.getElementById('myChart_alarms').getContext('2d');
-      var myChart_alarms = new Chart(ctx_alarms, {
+      Chart_alarmas = new Chart(ctx_alarms, {
         type: 'doughnut',
         data: {
-          labels: ['Red', 'Blue', 'Yellow'],
+          labels: self.chart_alarma_labels,
           datasets: [{
-            label: 'My First Dataset',
-            data: [30, 500, 100],
-            backgroundColor: ['rgb(255, 99, 132)', 'rgb(54, 162, 235)', 'rgb(255, 205, 86)'],
+            data: self.chart_alarma_dataset_data,
+            backgroundColor: ['#9c88ff', '#fbc531', '#e84118', '#00a8ff', '#718093'],
             hoverOffset: 4
           }]
         },
@@ -2672,16 +2680,17 @@ var myChart_principal;
         }
       });
     },
-    Circular_iniciarGraficosCargo: function Circular_iniciarGraficosCargo() {
+    Circular_iniciarGraficosEventos: function Circular_iniciarGraficosEventos() {
+      var self = this;
       var ctx_cargo = document.getElementById('myChart_cargo').getContext('2d');
-      var myChart_cargo = new Chart(ctx_cargo, {
+      Chart_eventos = new Chart(ctx_cargo, {
         type: 'doughnut',
         data: {
-          labels: ['Red', 'Blue', 'Yellow'],
+          labels: self.chart_eventos_labels,
           datasets: [{
             label: 'My First Dataset',
-            data: [30, 90, 100],
-            backgroundColor: ['rgb(255, 99, 132)', 'rgb(54, 162, 235)', 'rgb(255, 205, 86)'],
+            data: self.chart_eventos_dataset_data,
+            backgroundColor: ['#fc5c65', '#fd9644', '#fed330', '#26de81', '#a55eea'],
             hoverOffset: 4
           }]
         },
@@ -2907,7 +2916,20 @@ var myChart_principal;
             id: self.datos_tabla_reefer[0].contenedor_id,
             tipo: self.tipo
           }).then(function (response) {
-            console.log(response.data);
+            if (response.data != 0) {
+              response.data['alarma'].forEach(function (element) {
+                self.chart_alarma_labels.push(element.nombre_alarma);
+                self.chart_alarma_dataset_data.push(element.cantidad_alarma);
+              });
+              response.data['evento'].forEach(function (element) {
+                self.chart_eventos_labels.push(element.nombre_evento);
+                self.chart_eventos_dataset_data.push(element.cantidad_evento);
+              });
+            }
+          }).then(function () {
+            Chart_alarmas.update();
+          }).then(function () {
+            Chart_eventos.update();
           });
         }
 
@@ -2915,19 +2937,9 @@ var myChart_principal;
           axios.post(route('contenedores.get_alarma_evento'), {
             id: self.datos_tabla_generador[0].contenedor_id,
             tipo: self.tipo
-          }).then(function (response) {
-            console.log(response.data);
-          });
-        } // axios
-        // .post(route('contenedores.get_alarma_evento'), {
-        //   id: self.contenedores_seleccionados[0].contenedores_id,
-        //   tipo: self.tipo
-        // })
-        // .then(response => {
-        //   console.log(response.data);
-        // });
-
-      });
+          }).then(function (response) {});
+        }
+      }).then(function () {});
     },
     setDatosGraficoPrincipal: function setDatosGraficoPrincipal() {
       var self = this;
@@ -27420,9 +27432,7 @@ var render = function () {
                           attrs: { id: "micro-alarms" },
                         },
                         [
-                          _vm._v(
-                            "\n              Micro alarms\n              "
-                          ),
+                          _vm._v("\n              Alarmas \n              "),
                           _c("canvas", { attrs: { id: "myChart_alarms" } }),
                         ]
                       ),
@@ -27435,7 +27445,7 @@ var render = function () {
                           attrs: { id: "cargo-care" },
                         },
                         [
-                          _vm._v("\n              Cargo care\n              "),
+                          _vm._v("\n              Eventos\n              "),
                           _c("canvas", { attrs: { id: "myChart_cargo" } }),
                         ]
                       ),
@@ -27445,6 +27455,7 @@ var render = function () {
                         {
                           staticClass:
                             "col shadow-sm p-3 mb-5 bg-white rounded",
+                          staticStyle: { display: "none" },
                           attrs: { id: "pti-result" },
                         },
                         [
@@ -27458,6 +27469,7 @@ var render = function () {
                         {
                           staticClass:
                             "col shadow-sm p-3 mb-5 bg-white rounded",
+                          staticStyle: { display: "none" },
                           attrs: { id: "reefers-fleet" },
                         },
                         [

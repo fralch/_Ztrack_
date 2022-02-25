@@ -25,18 +25,18 @@
                 </div>
               </div>
               <div id="micro-alarms" class="col shadow-sm p-3 mb-5 bg-white rounded" >
-                Micro alarms
+                Alarmas 
                 <canvas id="myChart_alarms"></canvas>
               </div>
               <div id="cargo-care" class="col shadow-sm p-3 mb-5 bg-white rounded" >
-                Cargo care
+                Eventos
                 <canvas id="myChart_cargo"></canvas>
               </div>
-              <div id="pti-result" class="col shadow-sm p-3 mb-5 bg-white rounded" >
+              <div id="pti-result" class="col shadow-sm p-3 mb-5 bg-white rounded" style='display:none; ' >
                 PTI result
                 <canvas id="myChart_pti"></canvas>
               </div>
-              <div id="reefers-fleet" class="col shadow-sm p-3 mb-5 bg-white rounded" >
+              <div id="reefers-fleet" class="col shadow-sm p-3 mb-5 bg-white rounded" style='display:none; ' >
                 Reefers fleet 
                  <canvas id="myChart_fleet"></canvas>
               </div>
@@ -248,6 +248,8 @@
 <script>
 import layoutprincipal from "../layout.vue";
 var myChart_principal; 
+var Chart_alarmas; 
+var Chart_eventos; 
 export default {
   components: { 
     layoutprincipal, 
@@ -409,6 +411,12 @@ export default {
               ],
       my_Chart_principal_labels: [],
       my_Chart_principal_dataSetable: [],
+      // --------- chart alarmas ------
+      chart_alarma_labels : [],
+      chart_alarma_dataset_data : [],
+      //  -------- chart eventos -------
+      chart_eventos_labels : [],
+      chart_eventos_dataset_data : [],
     };
   },
   watch: {
@@ -436,7 +444,7 @@ export default {
     this.TablaContenedores();
     // -- graficos circulares --
     this.Circular_iniciarGraficosAlarms();
-    this.Circular_iniciarGraficosCargo();
+    this.Circular_iniciarGraficosEventos();
     this.Circular_iniciarGraficosPTI();
     this.Circular_iniciarGraficosFleet();
 
@@ -572,22 +580,20 @@ export default {
     },
    
     Circular_iniciarGraficosAlarms(){
+      let self = this;
       var ctx_alarms = document.getElementById('myChart_alarms').getContext('2d');
-      var myChart_alarms = new Chart(ctx_alarms, {
+      Chart_alarmas = new Chart(ctx_alarms, {
           type: 'doughnut',
           data: {
-              labels: [
-                'Red',
-                'Blue',
-                'Yellow'
-              ],
+              labels: self.chart_alarma_labels,
               datasets: [{
-                label: 'My First Dataset',
-                data: [30, 500, 100],
+                data: self.chart_alarma_dataset_data,
                 backgroundColor: [
-                  'rgb(255, 99, 132)',
-                  'rgb(54, 162, 235)',
-                  'rgb(255, 205, 86)'
+                  '#9c88ff',
+                  '#fbc531',
+                  '#e84118',
+                  '#00a8ff',
+                  '#718093',
                 ],
                 hoverOffset: 4
               }]
@@ -601,23 +607,22 @@ export default {
           }
       });
     },
-    Circular_iniciarGraficosCargo(){
+    Circular_iniciarGraficosEventos(){
+      let self = this;
       var ctx_cargo = document.getElementById('myChart_cargo').getContext('2d');
-      var myChart_cargo = new Chart(ctx_cargo, {
+      Chart_eventos = new Chart(ctx_cargo, {
           type: 'doughnut',
           data: {
-              labels: [
-                'Red',
-                'Blue',
-                'Yellow'
-              ],
+              labels:self.chart_eventos_labels ,
               datasets: [{
                 label: 'My First Dataset',
-                data: [30, 90, 100],
+                data: self.chart_eventos_dataset_data,
                 backgroundColor: [
-                  'rgb(255, 99, 132)',
-                  'rgb(54, 162, 235)',
-                  'rgb(255, 205, 86)'
+                  '#fc5c65', 
+                  '#fd9644',
+                  '#fed330',  
+                  '#26de81',
+                  '#a55eea',
                 ],
                 hoverOffset: 4
               }]
@@ -844,7 +849,20 @@ export default {
             tipo: self.tipo
           })
           .then(response => {
-            console.log(response.data);
+            if (response.data != 0) {
+              response.data['alarma'].forEach(element => {
+                self.chart_alarma_labels.push(element.nombre_alarma);
+                self.chart_alarma_dataset_data.push(element.cantidad_alarma);
+              });
+              response.data['evento'].forEach(element => {
+                self.chart_eventos_labels.push(element.nombre_evento);
+                self.chart_eventos_dataset_data.push(element.cantidad_evento);
+              });
+            }
+          }).then(()=>{
+            Chart_alarmas.update(); 
+          }).then(()=>{
+            Chart_eventos.update(); 
           });
         }
         if (self.tipo == "Generador") {
@@ -854,18 +872,12 @@ export default {
             id: self.datos_tabla_generador[0].contenedor_id,
             tipo: self.tipo
           })
-          .then(response => {
-            console.log(response.data);
+          .then(response => {            
           });
         }
-        // axios
-        // .post(route('contenedores.get_alarma_evento'), {
-        //   id: self.contenedores_seleccionados[0].contenedores_id,
-        //   tipo: self.tipo
-        // })
-        // .then(response => {
-        //   console.log(response.data);
-        // });
+       
+      }).then(()=>{
+        
       });
     },
     setDatosGraficoPrincipal(){
