@@ -2549,16 +2549,6 @@ var Chart_eventos;
     autoRefresh: function autoRefresh() {
       var self = this;
       this.$nextTick(function () {
-        // if(self.tipo == 'Reefer'){
-        //   // console.log('automatizando reefers');
-        //   let contenedor = self.contenedores_seleccionados.filter(element => element.tipo == 'Reefer');
-        //   console.log(contenedor[0])
-        //   // self.select_contenedor(contenedor[0]); 
-        // }else if(self.tipo == 'Generador'){
-        //   let contenedor = self.contenedores_seleccionados.filter(element => element.tipo == 'Generador');
-        //   console.log(contenedor[0])
-        //   // self.select_contenedor(contenedor[0]); 
-        // // }
         function f() {
           return _f.apply(this, arguments);
         }
