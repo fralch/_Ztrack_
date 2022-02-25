@@ -2546,6 +2546,24 @@ var Chart_eventos;
     this.Circular_iniciarGraficosFleet(); // this.myChartPrincipal();
   },
   methods: {
+    autoRefresh: function autoRefresh() {
+      var self = this;
+      this.$nextTick(function () {
+        if (self.tipo == 'Reefer') {
+          // console.log('automatizando reefers');
+          var contenedor = self.contenedores_seleccionados.filter(function (element) {
+            return element.tipo == 'Reefer';
+          });
+          console.log(contenedor[0]); // self.select_contenedor(contenedor[0]); 
+        } else if (self.tipo == 'Generador') {
+          var _contenedor = self.contenedores_seleccionados.filter(function (element) {
+            return element.tipo == 'Generador';
+          });
+
+          console.log(_contenedor[0]); // self.select_contenedor(contenedor[0]); 
+        }
+      });
+    },
     bienvenida: function bienvenida() {
       Swal.fire({
         title: 'Bienvenido!',
@@ -2911,12 +2929,16 @@ var Chart_eventos;
         // self.$nextTick(() => {
         //   console.log(self.datos_tabla_generador[0].contenedor_id); 
         // });
+        // self.chart_alarma_labels = [];
+        // self.chart_alarma_dataset_data = [];
+        // self.chart_eventos_labels = [];
+        // self.chart_eventos_dataset_data = [];
         if (self.tipo == "Reefer") {
           axios.post(route('contenedores.get_alarma_evento'), {
             id: self.datos_tabla_reefer[0].contenedor_id,
             tipo: self.tipo
           }).then(function (response) {
-            if (response.data != 0) {
+            if (response.data != 0 && self.chart_alarma_labels.length == 0) {
               response.data['alarma'].forEach(function (element) {
                 self.chart_alarma_labels.push(element.nombre_alarma);
                 self.chart_alarma_dataset_data.push(element.cantidad_alarma);
@@ -2939,7 +2961,9 @@ var Chart_eventos;
             tipo: self.tipo
           }).then(function (response) {});
         }
-      }).then(function () {});
+      }).then(function () {
+        self.autoRefresh();
+      });
     },
     setDatosGraficoPrincipal: function setDatosGraficoPrincipal() {
       var self = this;

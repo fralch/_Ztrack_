@@ -420,6 +420,7 @@ export default {
     };
   },
   watch: {
+    
     contenedores_seleccionados(){
       $("#tblContenedores").DataTable().destroy();
       this.TablaContenedores();
@@ -452,6 +453,22 @@ export default {
   },
 
   methods: {
+    autoRefresh(){
+      let self = this;
+     this.$nextTick(() => {
+        if(self.tipo == 'Reefer'){
+          // console.log('automatizando reefers');
+          let contenedor = self.contenedores_seleccionados.filter(element => element.tipo == 'Reefer');
+          console.log(contenedor[0])
+          // self.select_contenedor(contenedor[0]); 
+        }else if(self.tipo == 'Generador'){
+           let contenedor = self.contenedores_seleccionados.filter(element => element.tipo == 'Generador');
+          console.log(contenedor[0])
+          // self.select_contenedor(contenedor[0]); 
+        }
+     });
+    
+    },
     bienvenida() {
      Swal.fire({
         title: 'Bienvenido!',
@@ -841,6 +858,10 @@ export default {
           // self.$nextTick(() => {
           //   console.log(self.datos_tabla_generador[0].contenedor_id); 
           // });
+            // self.chart_alarma_labels = [];
+            // self.chart_alarma_dataset_data = [];
+            // self.chart_eventos_labels = [];
+            // self.chart_eventos_dataset_data = [];
 
         if (self.tipo == "Reefer") {
           axios
@@ -849,7 +870,8 @@ export default {
             tipo: self.tipo
           })
           .then(response => {
-            if (response.data != 0) {
+            
+            if (response.data != 0 && self.chart_alarma_labels.length == 0) {
               response.data['alarma'].forEach(element => {
                 self.chart_alarma_labels.push(element.nombre_alarma);
                 self.chart_alarma_dataset_data.push(element.cantidad_alarma);
@@ -877,7 +899,7 @@ export default {
         }
        
       }).then(()=>{
-        
+        self.autoRefresh();
       });
     },
     setDatosGraficoPrincipal(){
