@@ -2801,8 +2801,10 @@ var Chart_eventos;
       });
     },
     usuarioLogeado: function usuarioLogeado() {
+      /* AQUI ES DONDE SE PONE EL NOMBRE DEL USUARIO EN EL NAV  */
       // this.$refs.layoutprincipal.usuario = (this.usuario_logeado[0].nombres + " " + this.usuario_logeado[0].apellidos).toUpperCase() ;
       this.$refs.layoutprincipal.usuario = this.usuario_logeado[0].nombres.toUpperCase();
+      this.$refs.layoutprincipal.admin = this.usuario_logeado[0].admin;
     },
     contenedores_prendidos: function contenedores_prendidos() {
       this.contenedores_seleccionados = this.contenedores_encendidos;
@@ -3168,6 +3170,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -3178,11 +3187,16 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       // fecha_actual: null, 
-      usuario: 'nologeado'
+      usuario: 'nologeado',
+      admin: false
     };
   },
-  mounted: function mounted() {},
+  mounted: function mounted() {
+    this.usuarios();
+  },
   methods: {
+    usuarios: function usuarios() {// console.log(sessionStorage());
+    },
     cerrarSesion: function cerrarSesion() {
       var _this = this;
 
@@ -28333,7 +28347,13 @@ var render = function () {
                       ),
                     ]),
                     _vm._v(" "),
-                    _vm._m(1),
+                    _vm.admin == true
+                      ? _c("li", { staticClass: "nav-item dropdown" }, [
+                          _vm._m(1),
+                          _vm._v(" "),
+                          _vm._m(2),
+                        ])
+                      : _vm._e(),
                   ]),
                 ]),
               ]
@@ -28371,52 +28391,54 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("li", { staticClass: "nav-item dropdown" }, [
-      _c(
-        "a",
-        {
-          staticClass: "nav-link dropdown-toggle",
-          staticStyle: { color: "white !important" },
-          attrs: {
-            href: "#",
-            id: "navbarDropdown",
-            role: "button",
-            "data-toggle": "dropdown",
-            "aria-haspopup": "true",
-            "aria-expanded": "false",
+    return _c(
+      "a",
+      {
+        staticClass: "nav-link dropdown-toggle",
+        staticStyle: { color: "white !important" },
+        attrs: {
+          href: "#",
+          id: "navbarDropdown",
+          role: "button",
+          "data-toggle": "dropdown",
+          "aria-haspopup": "true",
+          "aria-expanded": "false",
+        },
+      },
+      [_c("i", { staticClass: "bi bi-gear-fill" })]
+    )
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass: "dropdown-menu",
+        staticStyle: { "margin-left": "-80px" },
+        attrs: { "aria-labelledby": "navbarDropdown" },
+      },
+      [
+        _c(
+          "a",
+          {
+            staticClass: "dropdown-item",
+            attrs: { href: "javascript:void(0)" },
           },
-        },
-        [_c("i", { staticClass: "bi bi-gear-fill" })]
-      ),
-      _vm._v(" "),
-      _c(
-        "div",
-        {
-          staticClass: "dropdown-menu",
-          staticStyle: { "margin-left": "-80px" },
-          attrs: { "aria-labelledby": "navbarDropdown" },
-        },
-        [
-          _c(
-            "a",
-            {
-              staticClass: "dropdown-item",
-              attrs: { href: "javascript:void(0)" },
-            },
-            [_vm._v("EMPRESAS")]
-          ),
-          _vm._v(" "),
-          _c(
-            "a",
-            {
-              staticClass: "dropdown-item",
-              attrs: { href: "javascript:void(0)" },
-            },
-            [_vm._v("USUARIOS")]
-          ),
-        ]
-      ),
-    ])
+          [_vm._v("EMPRESAS")]
+        ),
+        _vm._v(" "),
+        _c(
+          "a",
+          {
+            staticClass: "dropdown-item",
+            attrs: { href: "javascript:void(0)" },
+          },
+          [_vm._v("USUARIOS")]
+        ),
+      ]
+    )
   },
 ]
 render._withStripped = true

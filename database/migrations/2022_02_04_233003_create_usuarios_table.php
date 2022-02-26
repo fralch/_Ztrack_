@@ -19,6 +19,7 @@ class CreateUsuariosTable extends Migration
             $table->string('apellidos');
             $table->string('nombres');
             $table->integer('activo');
+            $table->boolean('admin');
             $table->string('correo');
             $table->string('contraseña');
             $table->dateTime('ultimo_acceso')->nullable();

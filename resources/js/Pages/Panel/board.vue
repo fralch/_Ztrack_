@@ -720,8 +720,10 @@ export default {
       });
     },
     usuarioLogeado(){
+      /* AQUI ES DONDE SE PONE EL NOMBRE DEL USUARIO EN EL NAV  */
       // this.$refs.layoutprincipal.usuario = (this.usuario_logeado[0].nombres + " " + this.usuario_logeado[0].apellidos).toUpperCase() ;
       this.$refs.layoutprincipal.usuario = (this.usuario_logeado[0].nombres ).toUpperCase() ;
+     this.$refs.layoutprincipal.admin = this.usuario_logeado[0].admin; 
      
     },
     contenedores_prendidos(){
