@@ -1,7 +1,7 @@
 <template>
   <layoutprincipal ref="layoutprincipal">  <!-- *** cargando layoutprincipal  **** -->
     <div
-      class="slot_body slot_enviar_dinero"
+      class="slot_body slot_board"
       slot="component-view"
     >
       <div class="content" style="display: block" id="cuerpo">

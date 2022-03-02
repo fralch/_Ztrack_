@@ -6,7 +6,7 @@
           <img :src="'/images/logos/copos-de-nieve.png'" alt="Logo" width="20px" /> 
           <!-- <img src="http://162.248.55.24/resources/images/zgroup_logo.png" alt="Logo" width="30px" />  -->
           &nbsp;
-          <a class="navbar-brand" href="#" style="font-family: Poppins-Regular; text-transform: uppercase;color: white;">Zgroup</a>
+          <a class="navbar-brand" href="/board" style="font-family: Poppins-Regular; text-transform: uppercase;color: white;">Zgroup</a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -46,8 +46,9 @@
                   <i class="bi bi-gear-fill"></i>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown" style='margin-left: -80px;'>
-                  <a class="dropdown-item" href="javascript:void(0)">EMPRESAS</a>
-                  <a class="dropdown-item" href="javascript:void(0)">USUARIOS</a>
+                  <!-- <a class="dropdown-item" href="javascript:void(0)">EMPRESAS</a> -->
+                  <Link  class="dropdown-item" href="setting">Setting</Link>
+                  <!-- <a class="dropdown-item" href="javascript:void(0)">USUARIOS</a> -->
                 </div>
               </li>
               

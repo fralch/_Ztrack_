@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Paneles\PanelController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\SettingController;
 use Inertia\Inertia;
 /*
 |--------------------------------------------------------------------------
@@ -25,5 +26,8 @@ Route::post('/cerrar_sesion', [LoginController::class, 'cerrarSesion' ])->name('
 Route::get('/board', [PanelController::class, 'board'])->name('paneles.board');
 Route::post('/obtener_datos_contenedor', [PanelController::class, 'obtener_datos_contenedor' ])->name('contenedores.get_datos');
 Route::post('/get_alarma_evento', [PanelController::class, 'get_alarma_evento' ])->name('contenedores.get_alarma_evento');
+
+Route::get('/setting', [SettingController::class, 'verSetting'])->name('setting');
+Route::post('/usuario/nuevo', [SettingController::class, 'nuevoUsuario'])->name('nuevo_usuario');
 
 Route::get('/faker', [PanelController::class, 'faker_datos'])->name('paneles.faker');
