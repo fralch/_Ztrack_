@@ -207,7 +207,13 @@ class PanelController extends Controller
             ];
         }
     }
-    
+    // -------------- APIS --------------
+    public function api_reefer(Request $request)
+    {
+        return $request; 
+        // return $usuario = Usuario::where('id',$request->id)->first();
+        // dd($request);
+    }
 }
 
 
