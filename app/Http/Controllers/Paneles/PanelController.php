@@ -40,12 +40,44 @@ class PanelController extends Controller
                                         ->join('contenedores', 'contenedores.id', 'empresas_contenedores.contenedor_id')
                                         ->join('empresas', 'empresas.id', 'empresas_contenedores.empresa_id')
                                         ->get();
-            $contenedores_encendidos = Empresa_contenedore::select('contenedores.id as contenedores_id', 'contenedores.nombre_contenedor', 
-                                        'contenedores.tipo', 'contenedores.encendido', 'empresas.id', 'empresas.usuario_id', 
-                                        'empresas.nombre_empresa', 'empresas.descripcion_booking', 'empresas.temp_contratada')
-                                        ->join('contenedores', 'contenedores.id', 'empresas_contenedores.contenedor_id')
-                                        ->join('empresas', 'empresas.id', 'empresas_contenedores.empresa_id')
-                                        ->where('contenedores.encendido','encendido')
+            // $contenedores_encendidos = Empresa_contenedore::select(
+            //                             'contenedores.id', 
+            //                             'contenedores.id as contenedores_id', 
+            //                             'contenedores.nombre_contenedor', 
+            //                             'contenedores.tipo', 
+            //                             'contenedores.encendido', 
+            //                             'empresas.id', 
+            //                             'empresas.usuario_id', 
+            //                             'empresas.nombre_empresa', 
+            //                             'empresas.descripcion_booking', 
+            //                             'empresas.temp_contratada',
+            //                             'registro_diario_reefers.set_point'
+            //                             )
+            //                             ->join('contenedores', 'contenedores.id', 'empresas_contenedores.contenedor_id')
+            //                             ->join('empresas', 'empresas.id', 'empresas_contenedores.empresa_id')
+            //                             ->join('registro_diario_reefers', 'registro_diario_reefers.contenedor_id', 'empresas_contenedores.contenedor_id')
+            //                             ->where('contenedores.encendido','encendido')
+            //                             ->groupBy('contenedores.id')
+            //                             ->get();
+            
+            $contenedores_encendidos = Registro_diario_generadores::select(
+                                        'registro_diario_reefers.set_point', 
+                                        'registro_diario_reefers.temp_supply', 
+                                        'registro_diario_reefers.temp_return', 
+                                        'registro_diario_reefers.re_hume', 
+                                        'registro_diario_reefers.re_c_o2', 
+                                        'registro_diario_reefers.re_o2', 
+                                        'registro_diario_reefers.alv', 
+                                        'registro_diario_reefers.latitud', 
+                                        'registro_diario_reefers.longitud', 
+                                        'registro_diario_reefers.status', 
+                                        'registro_diario_reefers.modelo',
+                                        'registro_diario_reefers.created_at',
+                                        'registro_diario_reefers.updated_at',
+                                        )
+                                        ->join('contenedores', 'contenedores.id', 'registro_diario_reefers.contenedor_id')
+                                        ->latest()
+                                        ->take(1)
                                         ->get();
 
             return Inertia::render('Panel/board', [
@@ -209,10 +241,8 @@ class PanelController extends Controller
     }
     // -------------- APIS --------------
     public function api_reefer(Request $request)
-    {
+    { 
         return $request; 
-        // return $usuario = Usuario::where('id',$request->id)->first();
-        // dd($request);
     }
 }
 
