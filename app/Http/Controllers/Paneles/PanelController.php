@@ -40,24 +40,15 @@ class PanelController extends Controller
                                         ->join('contenedores', 'contenedores.id', 'empresas_contenedores.contenedor_id')
                                         ->join('empresas', 'empresas.id', 'empresas_contenedores.empresa_id')
                                         ->get();
-            // $contenedores_encendidos = Empresa_contenedore::select(
-            //                             'contenedores.id', 
-            //                             'contenedores.id as contenedores_id', 
-            //                             'contenedores.nombre_contenedor', 
-            //                             'contenedores.tipo', 
-            //                             'contenedores.encendido', 
-            //                             'empresas.id', 
-            //                             'empresas.usuario_id', 
-            //                             'empresas.nombre_empresa', 
-            //                             'empresas.descripcion_booking', 
-            //                             'empresas.temp_contratada',
-            //                             )
-            //                             ->join('contenedores', 'contenedores.id', 'empresas_contenedores.contenedor_id')
-            //                             ->join('empresas', 'empresas.id', 'empresas_contenedores.empresa_id')
-            //                             ->where('contenedores.encendido','encendido')
-            //                             ->get();
+        //    $contenedores_encendidos = Empresa_contenedore::select('contenedores.id as contenedores_id', 'contenedores.nombre_contenedor', 
+        //                                 'contenedores.tipo', 'contenedores.encendido', 'empresas.id', 'empresas.usuario_id', 
+        //                                 'empresas.nombre_empresa', 'empresas.descripcion_booking', 'empresas.temp_contratada')
+        //                                 ->join('contenedores', 'contenedores.id', 'empresas_contenedores.contenedor_id')
+        //                                 ->join('empresas', 'empresas.id', 'empresas_contenedores.empresa_id')
+        //                                 ->where('contenedores.encendido','encendido')
+        //                                 ->get();
             
-            $contenedores_encendidos =Contenedor::select(
+             $contenedores_encendidos =Contenedor::select(
                                             'contenedores.id', 
                                             'contenedores.id as contenedores_id', 
                                             'contenedores.nombre_contenedor', 
@@ -68,14 +59,24 @@ class PanelController extends Controller
                                             'registro_diario_reefers.temp_supply', 
                                             'registro_diario_reefers.temp_return', 
                                             'registro_diario_reefers.re_hume', 
-                                            'registro_diario_reefers.re_c_o2', 
-                                            'registro_diario_reefers.re_o2', 
-                                            'registro_diario_reefers.alv', 
-                                            'registro_diario_reefers.latitud', 
-                                            'registro_diario_reefers.longitud', 
-                                            'registro_diario_reefers.status', 
+                                            'registro_diario_reefers.temp_supply',
+                                            'registro_diario_reefers.temp_return',
+                                            'registro_diario_reefers.re_hume',
+                                            'registro_diario_reefers.fuel_level',
+                                            'registro_diario_reefers.vdc',
+                                            'registro_diario_reefers.rpm',
+                                            'registro_diario_reefers.freq',
+                                            'registro_diario_reefers.vac',
+                                            'registro_diario_reefers.latitud',
+                                            'registro_diario_reefers.longitud',
+                                            'registro_diario_reefers.temp_motor',
+                                            'registro_diario_reefers.status',
+                                            'registro_diario_reefers.speed',
+                                            'registro_diario_reefers.ecopower',
+                                            'registro_diario_reefers.horometro',
                                             'registro_diario_reefers.modelo',
                                             'registro_diario_reefers.created_at',
+                                            'registro_diario_reefers.updated_at',
                                             'registro_diario_reefers.id as reefer_id',
 
                                                 )
