@@ -40,13 +40,7 @@ class PanelController extends Controller
                                         ->join('contenedores', 'contenedores.id', 'empresas_contenedores.contenedor_id')
                                         ->join('empresas', 'empresas.id', 'empresas_contenedores.empresa_id')
                                         ->get();
-        //    $contenedores_encendidos = Empresa_contenedore::select('contenedores.id as contenedores_id', 'contenedores.nombre_contenedor', 
-        //                                 'contenedores.tipo', 'contenedores.encendido', 'empresas.id', 'empresas.usuario_id', 
-        //                                 'empresas.nombre_empresa', 'empresas.descripcion_booking', 'empresas.temp_contratada')
-        //                                 ->join('contenedores', 'contenedores.id', 'empresas_contenedores.contenedor_id')
-        //                                 ->join('empresas', 'empresas.id', 'empresas_contenedores.empresa_id')
-        //                                 ->where('contenedores.encendido','encendido')
-        //                                 ->get();
+       
             
              $contenedores_encendidos =Contenedor::select(
                                             'contenedores.id', 

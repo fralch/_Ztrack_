@@ -16,26 +16,40 @@ class CreateRegistroDiarioGeneradoresTable extends Migration
         Schema::create('registro_diario_generadores', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('contenedor_id');
-            $table->string('nombre_contenedor');
-            $table->float('set_point');
-            $table->float('temp_supply');
-            $table->float('temp_return');
-            $table->float('re_hume');
+            
+            $table->float('voltage_measured');
+            $table->float('battery_voltage');
+            $table->float('water_temp');
+            $table->float('running_frequency');
             $table->float('fuel_level');
-            $table->float('vdc');
-            $table->float('rpm');
-            $table->float('freq');
-            $table->float('vac');
-            $table->float('latitud');
-            $table->float('longitud');
-            $table->float('temp_motor');
-            $table->float('status');
+            $table->float('rotor_current');
+            $table->float('fiel_current');
+            $table->float('init');
+            $table->float('fuel_relay');
+            $table->float('air_heater');
+            $table->float('starter');
+            $table->float('restart_20_min');
+            $table->float('runnig');
+            $table->float('shutdown');
+            $table->float('hardware_error');
+            $table->float('start_delay');
+            $table->float('pti');
+            $table->float('auto_config');
+            $table->float('stop_by_user');
+            $table->float('dealyed_output');
+            $table->float('load_measure');
+            $table->float('delay_voltage');
             $table->float('speed');
-            $table->float('ecopower');
+            $table->float('eco_power');
+            $table->float('rpm');
+            $table->float('unit_mode');
             $table->float('horometro');
             $table->float('alarma_id');
             $table->float('evento_id');
             $table->float('modelo');
+            $table->float('latitud');
+            $table->float('longitud');
+           
             $table->timestamps();
         });
     }
