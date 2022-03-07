@@ -2564,7 +2564,7 @@ var Chart_eventos;
                     promise = new Promise(function (resolve, reject) {
                       setTimeout(function () {
                         return resolve(true);
-                      }, 120000);
+                      }, 600000);
                     });
                     _context.next = 3;
                     return promise;

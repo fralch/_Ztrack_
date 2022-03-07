@@ -459,7 +459,7 @@ export default {
           
          async function f() {
           let promise = new Promise((resolve, reject) => {
-            setTimeout(() => resolve(true), 120000)
+            setTimeout(() => resolve(true), 600000)
           });
           let result = await promise; 
            if(self.tipo == 'Reefer'){
