@@ -7,9 +7,9 @@
 -- Versión del servidor: 10.4.22-MariaDB
 -- Versión de PHP: 8.1.1
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
-SET time_zone = "+00:00";
+-- SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+-- START TRANSACTION;
+-- SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -27,19 +27,19 @@ SET time_zone = "+00:00";
 -- Estructura de tabla para la tabla `usuarios`
 --
 
-CREATE TABLE `usuarios` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `usuario` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `apellidos` varchar(700) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `nombres` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `activo` int(11) NOT NULL,
-  `admin` tinyint(1) NOT NULL,
-  `correo` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `contraseña` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `ultimo_acceso` datetime DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+-- CREATE TABLE `usuarios` (
+--   `id` bigint(20) UNSIGNED NOT NULL,
+--   `usuario` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+--   `apellidos` varchar(700) COLLATE utf8mb4_unicode_ci NOT NULL,
+--   `nombres` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+--   `activo` int(11) NOT NULL,
+--   `admin` tinyint(1) NOT NULL,
+--   `correo` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+--   `contraseña` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+--   `ultimo_acceso` datetime DEFAULT NULL,
+--   `created_at` timestamp NULL DEFAULT NULL,
+--   `updated_at` timestamp NULL DEFAULT NULL
+-- ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `usuarios`
