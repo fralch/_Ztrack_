@@ -20,6 +20,8 @@ class CreateEmpresasTable extends Migration
             $table->string('descripcion_booking');
             $table->float('temp_contratada');
             $table->timestamps();
+
+            $table->foreign('usuario_id')->references('id')->on('usuarios');
         });
     }
 

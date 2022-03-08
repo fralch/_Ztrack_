@@ -79,6 +79,8 @@ class CreateRegistroDiarioReefersTable extends Migration
             $table->float('longitud')->nullable();
 
             $table->timestamps();
+
+            $table->foreign('contenedor_id')->references('id')->on('contenedores');
         });
     }
 

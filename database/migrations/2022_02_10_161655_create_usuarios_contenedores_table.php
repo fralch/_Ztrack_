@@ -18,6 +18,9 @@ class CreateUsuariosContenedoresTable extends Migration
             $table->unsignedBigInteger('empresa_id');
             $table->unsignedBigInteger('contenedor_id');
             $table->timestamps();
+
+            $table->foreign('empresa_id')->references('id')->on('empresas');
+            $table->foreign('contenedor_id')->references('id')->on('contenedores');
         });
     }
 

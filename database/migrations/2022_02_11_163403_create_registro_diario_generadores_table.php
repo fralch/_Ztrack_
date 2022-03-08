@@ -37,6 +37,11 @@ class CreateRegistroDiarioGeneradoresTable extends Migration
             $table->string('engine_state', 100)->nullable();
            
             $table->timestamps();
+
+            $table->foreign('contenedor_id')->references('id')->on('contenedores');
+            $table->foreign('alarma_id')->references('id')->on('alarmas');
+            $table->foreign('evento_id')->references('id')->on('eventos');
+            
         });
     }
 
