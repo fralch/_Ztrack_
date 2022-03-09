@@ -38,20 +38,32 @@ class PanelController extends Controller
             
              $contenedores_encendidos_reefer =Contenedor::select()->where([['encendido', 1], ['tipo', 'Reefer']])->get();    
 
-             $contenedores_encendidos_gen =Contenedor::select(
-                                            'contenedores.id',
-                                            'contenedores.nombre_contenedor',
-                                            'registro_diario_generadores.battery_voltage',
-
-                                            'registro_diario_generadores.created_at',
+             $contenedores_encendidos_gen = Registro_diario_generadores::select(
+                                            // 'registro_diario_generadores.id',
+                                            // 'registro_diario_generadores.contenedor_id',
+                                            // 'registro_diario_generadores.battery_voltage',
+                                            // 'registro_diario_generadores.water_temp',
+                                            // 'registro_diario_generadores.running_frequency',
+                                            // 'registro_diario_generadores.fuel_level',
+                                            // 'registro_diario_generadores.voltage_measure',
+                                            // 'registro_diario_generadores.rotor_current',
+                                            // 'registro_diario_generadores.fiel_current',
+                                            // 'registro_diario_generadores.speed',
+                                            // 'registro_diario_generadores.eco_power',
+                                            // 'registro_diario_generadores.rpm',
+                                            // 'registro_diario_generadores.unit_mode',
+                                            // 'registro_diario_generadores.horometro',
+                                            // 'registro_diario_generadores.alarma_id',
+                                            // 'registro_diario_generadores.evento_id',
+                                            // 'registro_diario_generadores.modelo',
+                                            // 'registro_diario_generadores.latitud',
+                                            // 'registro_diario_generadores.longitud',
+                                            // 'registro_diario_generadores.engine_state',
+                                            // 'registro_diario_generadores.created_at',
                                             )
-                                            ->join('registro_diario_generadores', 'contenedores.id',  'registro_diario_generadores.contenedor_id')
-                                            ->where('contenedores.encendido', 1)
-                                            ->groupBy('contenedores.id')
-                                            ->groupBy('contenedores.nombre_contenedor')
-                                            ->latest()
-                                            ->take(1)
-                                            ->get();    
+                                            ->latest('registro_diario_generadores.id')
+                                            ->groupBy('registro_diario_generadores.contenedor_id')
+                                            ->get();
 
             return Inertia::render('Panel/board', [
                 'usuario_logeado' => $usuario,
