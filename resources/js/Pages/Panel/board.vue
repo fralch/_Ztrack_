@@ -47,27 +47,27 @@
                   <div class="row" style="margin: 0 10px;">
                     <button type="button" class="col-3 btn btn-success"  @click="contenedores_prendidos">
                       <i class="bi bi-power"></i> 
-                      <b style="font-size:1.2em;">{{contenedores_encendidos.length}}</b>
+                      <b style="font-size:1.2em;">{{contenedores_encendidos_reefer.length}}</b>
                       &nbsp;
-                      Running
+                      Reefers Running 
                     </button>
-                    <button type="button" class="col-3 btn btn-secondary" >
+                    <button type="button" class="col-3 btn btn-primary" >
                       <i class="bi bi-power"></i> 
-                      <b style="font-size:1.2em;">0</b>
+                      <b style="font-size:1.2em;">{{contenedores_encendidos_gen.length}}</b>
                       &nbsp;
-                      Standby
+                      Gen Running 
                     </button>
                     <button type="button" class="col-3 btn btn-danger" >
                       <i class="bi bi-power"></i> 
                       <b style="font-size:1.2em;">0</b>
                       &nbsp;
-                      Shutdown
+                      Standby
                     </button>
                     <button type="button" class="col-3 btn btn-dark" >
                       <i class="bi bi-power"></i> 
                       <b style="font-size:1.2em;">0</b>
                       &nbsp;
-                      Powerd Down
+                      Shutdown
                     </button>
                   </div>
                 </div>             
@@ -259,7 +259,8 @@ export default {
     usuario_logeado: Array,
     empresa_logeado: Array,
     contenedores_todos : Array,
-    contenedores_encendidos: Array,   
+    contenedores_encendidos_reefer: Array,   
+    contenedores_encendidos_gen: Array,   
   },
   data() {
     return {

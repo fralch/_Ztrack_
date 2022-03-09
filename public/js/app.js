@@ -2381,7 +2381,8 @@ var Chart_eventos;
     usuario_logeado: Array,
     empresa_logeado: Array,
     contenedores_todos: Array,
-    contenedores_encendidos: Array
+    contenedores_encendidos_reefer: Array,
+    contenedores_encendidos_gen: Array
   },
   data: function data() {
     return {
@@ -28116,12 +28117,15 @@ var render = function () {
                                   { staticStyle: { "font-size": "1.2em" } },
                                   [
                                     _vm._v(
-                                      _vm._s(_vm.contenedores_encendidos.length)
+                                      _vm._s(
+                                        _vm.contenedores_encendidos_reefer
+                                          .length
+                                      )
                                     ),
                                   ]
                                 ),
                                 _vm._v(
-                                  "\n                     \n                    Running\n                  "
+                                  "\n                     \n                    Reefers Running \n                  "
                                 ),
                               ]
                             ),
@@ -28129,7 +28133,7 @@ var render = function () {
                             _c(
                               "button",
                               {
-                                staticClass: "col-3 btn btn-secondary",
+                                staticClass: "col-3 btn btn-primary",
                                 attrs: { type: "button" },
                               },
                               [
@@ -28138,10 +28142,16 @@ var render = function () {
                                 _c(
                                   "b",
                                   { staticStyle: { "font-size": "1.2em" } },
-                                  [_vm._v("0")]
+                                  [
+                                    _vm._v(
+                                      _vm._s(
+                                        _vm.contenedores_encendidos_gen.length
+                                      )
+                                    ),
+                                  ]
                                 ),
                                 _vm._v(
-                                  "\n                     \n                    Standby\n                  "
+                                  "\n                     \n                    Gen Running \n                  "
                                 ),
                               ]
                             ),
@@ -28161,7 +28171,7 @@ var render = function () {
                                   [_vm._v("0")]
                                 ),
                                 _vm._v(
-                                  "\n                     \n                    Shutdown\n                  "
+                                  "\n                     \n                    Standby\n                  "
                                 ),
                               ]
                             ),
@@ -28181,7 +28191,7 @@ var render = function () {
                                   [_vm._v("0")]
                                 ),
                                 _vm._v(
-                                  "\n                     \n                    Powerd Down\n                  "
+                                  "\n                     \n                    Shutdown\n                  "
                                 ),
                               ]
                             ),

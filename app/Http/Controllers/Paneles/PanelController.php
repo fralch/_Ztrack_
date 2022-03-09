@@ -34,56 +34,31 @@ class PanelController extends Controller
         if (count($usuario) != 0) {
 
             $empresaXusuario = Empresa::where('usuario_id',$usuario[0]->id)->get();
-            $contenedores_todos = Empresa_contenedore::select('contenedores.id as contenedores_id', 'contenedores.nombre_contenedor', 
-                                        'contenedores.tipo', 'contenedores.encendido', 'empresas.id', 'empresas.usuario_id', 
-                                        'empresas.nombre_empresa', 'empresas.descripcion_booking', 'empresas.temp_contratada')
-                                        ->join('contenedores', 'contenedores.id', 'empresas_contenedores.contenedor_id')
-                                        ->join('empresas', 'empresas.id', 'empresas_contenedores.empresa_id')
-                                        ->get();
-       
+            $contenedores_todos = Contenedor::all(); 
             
-             $contenedores_encendidos =Contenedor::select(
-                                            'contenedores.id', 
-                                            'contenedores.id as contenedores_id', 
-                                            'contenedores.nombre_contenedor', 
-                                            'contenedores.tipo', 
-                                            'contenedores.encendido', 
-                                            // 'contenedores.created_at',
-                                            'registro_diario_reefers.set_point', 
-                                            'registro_diario_reefers.temp_supply', 
-                                            'registro_diario_reefers.temp_return', 
-                                            'registro_diario_reefers.re_hume', 
-                                            'registro_diario_reefers.temp_supply',
-                                            'registro_diario_reefers.temp_return',
-                                            'registro_diario_reefers.re_hume',
-                                            'registro_diario_reefers.fuel_level',
-                                            'registro_diario_reefers.vdc',
-                                            'registro_diario_reefers.rpm',
-                                            'registro_diario_reefers.freq',
-                                            'registro_diario_reefers.vac',
-                                            'registro_diario_reefers.latitud',
-                                            'registro_diario_reefers.longitud',
-                                            'registro_diario_reefers.temp_motor',
-                                            'registro_diario_reefers.status',
-                                            'registro_diario_reefers.speed',
-                                            'registro_diario_reefers.ecopower',
-                                            'registro_diario_reefers.horometro',
-                                            'registro_diario_reefers.modelo',
-                                            'registro_diario_reefers.created_at',
-                                            'registro_diario_reefers.updated_at',
-                                            'registro_diario_reefers.id as reefer_id',
+             $contenedores_encendidos_reefer =Contenedor::select()->where([['encendido', 1], ['tipo', 'Reefer']])->get();    
 
-                                                )
-                                                ->join('registro_diario_reefers', 'registro_diario_reefers.contenedor_id', 'contenedores.id')
-                                                ->latest()
-                                                ->take(1)
-                                                ->get();
+             $contenedores_encendidos_gen =Contenedor::select(
+                                            'contenedores.id',
+                                            'contenedores.nombre_contenedor',
+                                            'registro_diario_generadores.battery_voltage',
+
+                                            'registro_diario_generadores.created_at',
+                                            )
+                                            ->join('registro_diario_generadores', 'contenedores.id',  'registro_diario_generadores.contenedor_id')
+                                            ->where('contenedores.encendido', 1)
+                                            ->groupBy('contenedores.id')
+                                            ->groupBy('contenedores.nombre_contenedor')
+                                            ->latest()
+                                            ->take(1)
+                                            ->get();    
 
             return Inertia::render('Panel/board', [
                 'usuario_logeado' => $usuario,
                 'empresa_logeado' => $empresaXusuario,
                 'contenedores_todos' => $contenedores_todos,
-                'contenedores_encendidos' => $contenedores_encendidos,
+                'contenedores_encendidos_reefer' => $contenedores_encendidos_reefer,
+                'contenedores_encendidos_gen' => $contenedores_encendidos_gen,
             ]);
         }
         
@@ -92,7 +67,7 @@ class PanelController extends Controller
     {
         # code...
         Registro_diario_generadores::create([
-            'contenedor_id' =>rand(1,2),
+            'contenedor_id' =>rand(4,5),
             
             'battery_voltage' => rand((1*1),(10*10))/10,
             'water_temp' => rand((1*1),(10*10))/10,
