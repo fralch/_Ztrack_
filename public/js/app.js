@@ -2393,6 +2393,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 
 var myChart_principal;
 var Chart_alarmas;
@@ -2420,6 +2422,7 @@ var Chart_eventos;
       datos_tabla_generador: [],
       datos_resumen_gen: [],
       datos_resumen_reefer: [],
+      tipo_contenedor_seleccionado: 'r',
       //  ---- myChart_principal -----
       my_Chart_principal_dataset_reefer: [{
         label: 'SetPoint',
@@ -2565,8 +2568,7 @@ var Chart_eventos;
   mounted: function mounted() {
     this.usuarioLogeado();
     this.bienvenida();
-    this.iniciarMap();
-    this.TablaContenedores(); // -- graficos circulares --
+    this.iniciarMap(); // -- graficos circulares --
 
     this.Circular_iniciarGraficosAlarms();
     this.Circular_iniciarGraficosEventos();
@@ -2576,58 +2578,25 @@ var Chart_eventos;
     this.resumenContenedor();
   },
   methods: {
-    autoRefresh: function autoRefresh() {
-      var self = this;
-      this.$nextTick(function () {
-        function f() {
-          return _f.apply(this, arguments);
-        }
-
-        function _f() {
-          _f = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
-            var promise, result, contenedor, _contenedor;
-
-            return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
-              while (1) {
-                switch (_context.prev = _context.next) {
-                  case 0:
-                    promise = new Promise(function (resolve, reject) {
-                      setTimeout(function () {
-                        return resolve(true);
-                      }, 600000);
-                    });
-                    _context.next = 3;
-                    return promise;
-
-                  case 3:
-                    result = _context.sent;
-
-                    if (self.tipo == 'Reefer') {
-                      contenedor = self.contenedores_seleccionados.filter(function (element) {
-                        return element.tipo == 'Reefer';
-                      });
-                      console.log(contenedor[0]);
-                      self.select_contenedor(contenedor[0]);
-                    } else if (self.tipo == 'Generador') {
-                      _contenedor = self.contenedores_seleccionados.filter(function (element) {
-                        return element.tipo == 'Generador';
-                      });
-                      self.select_contenedor(_contenedor[0]);
-                      console.log(_contenedor[0]);
-                    }
-
-                  case 5:
-                  case "end":
-                    return _context.stop();
-                }
-              }
-            }, _callee);
-          }));
-          return _f.apply(this, arguments);
-        }
-
-        f();
-      });
+    autoRefresh: function autoRefresh() {// let self = this;
+      // this.$nextTick(() => {
+      //    async function f() {
+      //     let promise = new Promise((resolve, reject) => {
+      //       setTimeout(() => resolve(true), 600000)
+      //     });
+      //     let result = await promise; 
+      //      if(self.tipo == 'Reefer'){
+      //       let contenedor = self.contenedores_seleccionados.filter(element => element.tipo == 'Reefer');
+      //       console.log(contenedor[0])
+      //       self.select_contenedor(contenedor[0]); 
+      //     }else if(self.tipo == 'Generador'){
+      //       let contenedor = self.contenedores_seleccionados.filter(element => element.tipo == 'Generador');
+      //       self.select_contenedor(contenedor[0]); 
+      //       console.log(contenedor[0])
+      //     }
+      //   }
+      //   f();
+      // });
     },
     bienvenida: function bienvenida() {
       Swal.fire({
@@ -2860,53 +2829,49 @@ var Chart_eventos;
       this.$refs.layoutprincipal.usuario = this.usuario_logeado[0].nombres.toUpperCase();
       this.$refs.layoutprincipal.admin = this.usuario_logeado[0].admin;
     },
-    contenedores_prendidos: function contenedores_prendidos() {
-      this.contenedores_seleccionados = this.contenedores_encendidos;
+    contenedores_prendidos: function contenedores_prendidos(tipo) {
+      // this.contenedores_seleccionados = this.contenedores_encendidos;
+      this.tipo_contenedor_seleccionado = tipo;
     },
     select_contenedor: function select_contenedor(contenedor) {
-      var self = this; // console.log(contenedor.tipo);
-
-      self.datos_tabla_reefer = [];
-      self.datos_tabla_generador = [];
-
-      if (contenedor.tipo == 'Reefer') {
-        self.tipo = "Reefer";
-      }
-
-      if (contenedor.tipo == 'Generador') {
-        self.tipo = "Generador";
-      }
-
-      axios.post(route('contenedores.get_datos'), {
-        id: contenedor.contenedores_id,
-        tipo: contenedor.tipo
-      }).then(function (response) {
-        // console.log(response.data);     
-        if (contenedor.tipo == "Reefer") {
-          self.datos_tabla_reefer = response.data;
-        }
-
-        if (contenedor.tipo == "Generador") {
-          self.datos_tabla_generador = response.data;
-        }
-      }).then(function () {
-        if (contenedor.tipo == "Reefer") {
-          var lat = self.datos_tabla_reefer[self.datos_tabla_reefer.length - 1].latitud;
-          var lon = self.datos_tabla_reefer[self.datos_tabla_reefer.length - 1].longitud; // self.ubicacion = {lat: lat, lng: lon};
-
-          self.ubicacion = new google.maps.LatLng(lat, lon);
-        }
-
-        if (contenedor.tipo == "Generador") {
-          var _lat = self.datos_tabla_generador[self.datos_tabla_generador.length - 1].latitud;
-          var _lon = self.datos_tabla_generador[self.datos_tabla_generador.length - 1].longitud;
-          self.ubicacion = new google.maps.LatLng(_lat, _lon);
-        }
-      }).then(function () {
-        self.iniciarMap();
-      }).then(function () {
-        self.setLabelsMyChartPrincipal();
-      }); // myChart_derecha_label_g
+      console.log(contenedor); // let self = this;
+      // // console.log(contenedor.tipo);
+      // self.datos_tabla_reefer = [];
+      // self.datos_tabla_generador  = [];
+      // if (contenedor.tipo =='Reefer') {
+      //      self.tipo= "Reefer";
+      // }
+      // if (contenedor.tipo =='Generador') {
+      //      self.tipo= "Generador";
+      // }
+      // axios.post(route('contenedores.get_datos'), {
+      //   id: contenedor.contenedores_id,
+      //   tipo: contenedor.tipo
+      // }).then(response => {   
+      //   // console.log(response.data);     
+      //   if (contenedor.tipo == "Reefer") {
+      //     self.datos_tabla_reefer = response.data;
+      //   }
+      //   if (contenedor.tipo == "Generador") {
+      //     self.datos_tabla_generador = response.data;
+      //   }
+      // }).then(()=>{
+      //     if (contenedor.tipo == "Reefer") {
+      //       let lat = self.datos_tabla_reefer[self.datos_tabla_reefer.length -1].latitud;
+      //       let lon = self.datos_tabla_reefer[self.datos_tabla_reefer.length -1].longitud;
+      //       // self.ubicacion = {lat: lat, lng: lon};
+      //       self.ubicacion =  new google.maps.LatLng(lat, lon);
+      //     }
+      //     if (contenedor.tipo == "Generador") {
+      //       let lat = self.datos_tabla_generador[self.datos_tabla_generador.length -1].latitud;
+      //       let lon = self.datos_tabla_generador[self.datos_tabla_generador.length -1].longitud;
+      //      self.ubicacion =  new google.maps.LatLng(lat, lon);
+      //     }
+      // }).then(()=>{
+      //   self.iniciarMap();
+      // }).then(()=>{
+      //   self.setLabelsMyChartPrincipal();
+      // });
     },
     myChartPrincipal: function myChartPrincipal() {
       var self = this;
@@ -2937,10 +2902,10 @@ var Chart_eventos;
       }
 
       function _set_labels() {
-        _set_labels = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
-          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+        _set_labels = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
             while (1) {
-              switch (_context2.prev = _context2.next) {
+              switch (_context.prev = _context.next) {
                 case 0:
                   self.my_Chart_principal_labels = [];
 
@@ -2998,10 +2963,10 @@ var Chart_eventos;
 
                 case 3:
                 case "end":
-                  return _context2.stop();
+                  return _context.stop();
               }
             }
-          }, _callee2);
+          }, _callee);
         }));
         return _set_labels.apply(this, arguments);
       }
@@ -3064,10 +3029,10 @@ var Chart_eventos;
       }
 
       function _set_data() {
-        _set_data = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3() {
-          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
+        _set_data = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
+          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
             while (1) {
-              switch (_context3.prev = _context3.next) {
+              switch (_context2.prev = _context2.next) {
                 case 0:
                   self.my_Chart_principal_dataset = [];
 
@@ -3122,10 +3087,10 @@ var Chart_eventos;
 
                 case 3:
                 case "end":
-                  return _context3.stop();
+                  return _context2.stop();
               }
             }
-          }, _callee3);
+          }, _callee2);
         }));
         return _set_data.apply(this, arguments);
       }
@@ -3147,25 +3112,52 @@ var Chart_eventos;
     },
     resumenContenedor: function resumenContenedor() {
       var self = this;
-      self.contenedores_encendidos_gen.map(function (contenedor) {
-        axios.post(route('contenedores.resumen'), {
-          id_contenedor: contenedor.id,
-          tipo_contenedor: contenedor.tipo
-        }).then(function (response) {
-          contenedor = Object.assign(contenedor, response.data); // aqui unimos el objeto con los ultimos datos del registro diario
-        });
-        self.datos_resumen_gen.push(contenedor);
-      }); // console.log(self.datos_resumen_gen)
+      this.$nextTick(function () {
+        function rellenar_resumen() {
+          return _rellenar_resumen.apply(this, arguments);
+        }
 
-      self.contenedores_encendidos_reefer.map(function (cont) {
-        axios.post(route('contenedores.resumen'), {
-          id_contenedor: cont.id,
-          tipo_contenedor: cont.tipo
-        }).then(function (rp) {
-          cont = Object.assign(cont, rp.data); // aqui unimos el objeto con los ultimos datos del registro diario
+        function _rellenar_resumen() {
+          _rellenar_resumen = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3() {
+            return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
+              while (1) {
+                switch (_context3.prev = _context3.next) {
+                  case 0:
+                    self.contenedores_encendidos_gen.map(function (contenedor) {
+                      axios.post(route('contenedores.resumen'), {
+                        id_contenedor: contenedor.id,
+                        tipo_contenedor: contenedor.tipo
+                      }).then(function (response) {
+                        contenedor = Object.assign(contenedor, response.data); // aqui unimos el objeto con los ultimos datos del registro diario
+                      });
+                      self.datos_resumen_gen.push(contenedor);
+                    });
+                    self.contenedores_encendidos_reefer.map(function (cont) {
+                      axios.post(route('contenedores.resumen'), {
+                        id_contenedor: cont.id,
+                        tipo_contenedor: cont.tipo
+                      }).then(function (rp) {
+                        cont = Object.assign(cont, rp.data); // aqui unimos el objeto con los ultimos datos del registro diario
+                      });
+                      self.datos_resumen_reefer.push(cont);
+                    });
+
+                  case 2:
+                  case "end":
+                    return _context3.stop();
+                }
+              }
+            }, _callee3);
+          }));
+          return _rellenar_resumen.apply(this, arguments);
+        }
+
+        rellenar_resumen().then(function () {
+          console.log(self.datos_resumen_gen);
+          console.log(self.datos_resumen_reefer);
+          self.TablaContenedores();
         });
-        self.datos_resumen_reefer.push(cont);
-      }); // console.log(self.datos_resumen_reefer)
+      });
     }
   }
 });
@@ -28186,7 +28178,11 @@ var render = function () {
                               {
                                 staticClass: "col-3 btn btn-success",
                                 attrs: { type: "button" },
-                                on: { click: _vm.contenedores_prendidos },
+                                on: {
+                                  click: function ($event) {
+                                    return _vm.contenedores_prendidos("r")
+                                  },
+                                },
                               },
                               [
                                 _c("i", { staticClass: "bi bi-power" }),
@@ -28214,6 +28210,11 @@ var render = function () {
                               {
                                 staticClass: "col-3 btn btn-primary",
                                 attrs: { type: "button" },
+                                on: {
+                                  click: function ($event) {
+                                    return _vm.contenedores_prendidos("g")
+                                  },
+                                },
                               },
                               [
                                 _c("i", { staticClass: "bi bi-power" }),
@@ -28302,227 +28303,301 @@ var render = function () {
                         attrs: { id: "grid_resumen_contenedores" },
                       },
                       [
-                        _c(
-                          "table",
-                          {
-                            staticClass: "table",
-                            staticStyle: { margin: "0 auto !important" },
-                            attrs: { id: "tblContenedor_reefers" },
-                          },
-                          [
-                            _c("thead", [
-                              _c(
-                                "tr",
-                                {
-                                  staticClass: "bg-primary",
-                                  staticStyle: { color: "white !important" },
-                                },
-                                [
+                        _vm.tipo_contenedor_seleccionado == "r"
+                          ? _c(
+                              "table",
+                              {
+                                staticClass: "table",
+                                staticStyle: { margin: "0 auto !important" },
+                                attrs: { id: "tblContenedor_reefers" },
+                              },
+                              [
+                                _c("thead", [
                                   _c(
-                                    "th",
-                                    { attrs: { scope: "col", width: "50px" } },
-                                    [_vm._v("Ver")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "th",
-                                    { attrs: { scope: "col", width: "150px" } },
-                                    [_vm._v("Contenedor")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c("th", { attrs: { scope: "col" } }, [
-                                    _vm._v("Tipo"),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("th", { attrs: { scope: "col" } }, [
-                                    _vm._v("Estado"),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c(
-                                    "th",
-                                    { attrs: { scope: "col", width: "250px" } },
-                                    [_vm._v("Booking")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "th",
-                                    { attrs: { scope: "col", width: "50px" } },
-                                    [_vm._v("Temp_contratada")]
-                                  ),
-                                ]
-                              ),
-                            ]),
-                            _vm._v(" "),
-                            _c(
-                              "tbody",
-                              _vm._l(
-                                _vm.datos_resumen_reefer,
-                                function (contenedor, index) {
-                                  return _c("tr", { key: index }, [
-                                    _c("td", [
+                                    "tr",
+                                    {
+                                      staticClass: "bg-primary",
+                                      staticStyle: {
+                                        color: "white !important",
+                                      },
+                                    },
+                                    [
                                       _c(
-                                        "button",
+                                        "th",
                                         {
-                                          staticClass:
-                                            "btn btn-outline-primary",
                                           attrs: {
-                                            id:
-                                              contenedor.tipo +
-                                              "_" +
-                                              contenedor.contenedores_id,
-                                            type: "button",
-                                          },
-                                          on: {
-                                            click: function ($event) {
-                                              return _vm.select_contenedor(
-                                                contenedor
-                                              )
-                                            },
+                                            scope: "col",
+                                            width: "50px",
                                           },
                                         },
-                                        [
-                                          _c("i", {
-                                            staticClass: "bi bi-check-lg",
-                                          }),
-                                        ]
+                                        [_vm._v("Ver")]
                                       ),
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("td", [
-                                      _vm._v(
-                                        _vm._s(contenedor.nombre_contenedor)
+                                      _vm._v(" "),
+                                      _c(
+                                        "th",
+                                        {
+                                          attrs: {
+                                            scope: "col",
+                                            width: "150px",
+                                          },
+                                        },
+                                        [_vm._v("Reefers")]
                                       ),
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("td", [_vm._v(_vm._s(contenedor.tipo))]),
-                                    _vm._v(" "),
-                                    _c("td", [
-                                      _vm._v(_vm._s(contenedor.encendido)),
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("td", [
-                                      _vm._v(_vm._s(contenedor.booking)),
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("td", { staticClass: "text-center" }, [
-                                      _vm._v(
-                                        _vm._s(contenedor.booking_temp) + "C°"
+                                      _vm._v(" "),
+                                      _c("th", { attrs: { scope: "col" } }, [
+                                        _vm._v("Tipo"),
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("th", { attrs: { scope: "col" } }, [
+                                        _vm._v("Estado"),
+                                      ]),
+                                      _vm._v(" "),
+                                      _c(
+                                        "th",
+                                        {
+                                          attrs: {
+                                            scope: "col",
+                                            width: "250px",
+                                          },
+                                        },
+                                        [_vm._v("Booking")]
                                       ),
-                                    ]),
-                                  ])
-                                }
-                              ),
-                              0
-                            ),
-                          ]
-                        ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "th",
+                                        {
+                                          attrs: {
+                                            scope: "col",
+                                            width: "50px",
+                                          },
+                                        },
+                                        [_vm._v("Temp_contratada")]
+                                      ),
+                                      _vm._v(" "),
+                                      _c("th", { attrs: { scope: "col" } }, [
+                                        _vm._v("Set_point"),
+                                      ]),
+                                    ]
+                                  ),
+                                ]),
+                                _vm._v(" "),
+                                _c(
+                                  "tbody",
+                                  _vm._l(
+                                    _vm.datos_resumen_reefer,
+                                    function (reef, index) {
+                                      return _c("tr", { key: index }, [
+                                        _c("td", [
+                                          _c(
+                                            "button",
+                                            {
+                                              staticClass:
+                                                "btn btn-outline-primary",
+                                              attrs: {
+                                                id:
+                                                  reef.tipo +
+                                                  "_" +
+                                                  reef.contenedores_id,
+                                                type: "button",
+                                              },
+                                              on: {
+                                                click: function ($event) {
+                                                  return _vm.select_contenedor(
+                                                    reef
+                                                  )
+                                                },
+                                              },
+                                            },
+                                            [
+                                              _c("i", {
+                                                staticClass: "bi bi-check-lg",
+                                              }),
+                                            ]
+                                          ),
+                                        ]),
+                                        _vm._v(" "),
+                                        _c("td", [
+                                          _vm._v(
+                                            _vm._s(reef.nombre_contenedor)
+                                          ),
+                                        ]),
+                                        _vm._v(" "),
+                                        _c("td", [_vm._v(_vm._s(reef.tipo))]),
+                                        _vm._v(" "),
+                                        _c("td", [
+                                          _vm._v(_vm._s(reef.encendido)),
+                                        ]),
+                                        _vm._v(" "),
+                                        _c("td", [
+                                          _vm._v(_vm._s(reef.booking)),
+                                        ]),
+                                        _vm._v(" "),
+                                        _c(
+                                          "td",
+                                          { staticClass: "text-center" },
+                                          [
+                                            _vm._v(
+                                              _vm._s(reef.booking_temp) + "C°"
+                                            ),
+                                          ]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "td",
+                                          { staticClass: "text-center" },
+                                          [
+                                            _vm._v(
+                                              _vm._s(reef.set_point) + "C°"
+                                            ),
+                                          ]
+                                        ),
+                                      ])
+                                    }
+                                  ),
+                                  0
+                                ),
+                              ]
+                            )
+                          : _vm._e(),
                         _vm._v(" "),
-                        _c(
-                          "table",
-                          {
-                            staticClass: "table",
-                            staticStyle: { margin: "0 auto !important" },
-                            attrs: { id: "" },
-                          },
-                          [
-                            _c("thead", [
-                              _c(
-                                "tr",
-                                {
-                                  staticClass: "bg-primary",
-                                  staticStyle: { color: "white !important" },
-                                },
-                                [
+                        _vm.tipo_contenedor_seleccionado == "g"
+                          ? _c(
+                              "table",
+                              {
+                                staticClass: "table",
+                                staticStyle: { margin: "0 auto !important" },
+                                attrs: { id: "tblContenedor_gen" },
+                              },
+                              [
+                                _c("thead", [
                                   _c(
-                                    "th",
-                                    { attrs: { scope: "col", width: "50px" } },
-                                    [_vm._v("Ver")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "th",
-                                    { attrs: { scope: "col", width: "150px" } },
-                                    [_vm._v("Contenedor")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c("th", { attrs: { scope: "col" } }, [
-                                    _vm._v("Tipo"),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("th", { attrs: { scope: "col" } }, [
-                                    _vm._v("Estado"),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c(
-                                    "th",
-                                    { attrs: { scope: "col", width: "250px" } },
-                                    [_vm._v("Booking")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "th",
-                                    { attrs: { scope: "col", width: "50px" } },
-                                    [_vm._v("Temp_contratada")]
-                                  ),
-                                ]
-                              ),
-                            ]),
-                            _vm._v(" "),
-                            _c(
-                              "tbody",
-                              _vm._l(
-                                _vm.datos_resumen_gen,
-                                function (gen, index) {
-                                  return _c("tr", { key: index }, [
-                                    _c("td", [
+                                    "tr",
+                                    {
+                                      staticClass: "bg-primary",
+                                      staticStyle: {
+                                        color: "white !important",
+                                      },
+                                    },
+                                    [
                                       _c(
-                                        "button",
+                                        "th",
                                         {
-                                          staticClass:
-                                            "btn btn-outline-primary",
                                           attrs: {
-                                            id:
-                                              gen.tipo +
-                                              "_" +
-                                              gen.contenedores_id,
-                                            type: "button",
-                                          },
-                                          on: {
-                                            click: function ($event) {
-                                              return _vm.select_contenedor(
-                                                _vm.contenedor
-                                              )
-                                            },
+                                            scope: "col",
+                                            width: "50px",
                                           },
                                         },
-                                        [
-                                          _c("i", {
-                                            staticClass: "bi bi-check-lg",
-                                          }),
-                                        ]
+                                        [_vm._v("Ver")]
                                       ),
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("td", [
-                                      _vm._v(_vm._s(gen.nombre_contenedor)),
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("td", [_vm._v(_vm._s(gen.tipo))]),
-                                    _vm._v(" "),
-                                    _c("td", [_vm._v(_vm._s(gen.encendido))]),
-                                    _vm._v(" "),
-                                    _c("td", [_vm._v(_vm._s(gen.booking))]),
-                                    _vm._v(" "),
-                                    _c("td", { staticClass: "text-center" }, [
-                                      _vm._v(_vm._s(gen.booking_temp) + "C°"),
-                                    ]),
-                                  ])
-                                }
-                              ),
-                              0
-                            ),
-                          ]
-                        ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "th",
+                                        {
+                                          attrs: {
+                                            scope: "col",
+                                            width: "150px",
+                                          },
+                                        },
+                                        [_vm._v("Generador")]
+                                      ),
+                                      _vm._v(" "),
+                                      _c("th", { attrs: { scope: "col" } }, [
+                                        _vm._v("Tipo"),
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("th", { attrs: { scope: "col" } }, [
+                                        _vm._v("Estado"),
+                                      ]),
+                                      _vm._v(" "),
+                                      _c(
+                                        "th",
+                                        {
+                                          attrs: {
+                                            scope: "col",
+                                            width: "250px",
+                                          },
+                                        },
+                                        [_vm._v("Booking")]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "th",
+                                        {
+                                          attrs: {
+                                            scope: "col",
+                                            width: "50px",
+                                          },
+                                        },
+                                        [_vm._v("Temp_contratada")]
+                                      ),
+                                    ]
+                                  ),
+                                ]),
+                                _vm._v(" "),
+                                _c(
+                                  "tbody",
+                                  _vm._l(
+                                    _vm.datos_resumen_gen,
+                                    function (gen, index) {
+                                      return _c("tr", { key: index }, [
+                                        _c("td", [
+                                          _c(
+                                            "button",
+                                            {
+                                              staticClass:
+                                                "btn btn-outline-primary",
+                                              attrs: {
+                                                id:
+                                                  gen.tipo +
+                                                  "_" +
+                                                  gen.contenedores_id,
+                                                type: "button",
+                                              },
+                                              on: {
+                                                click: function ($event) {
+                                                  return _vm.select_contenedor(
+                                                    gen
+                                                  )
+                                                },
+                                              },
+                                            },
+                                            [
+                                              _c("i", {
+                                                staticClass: "bi bi-check-lg",
+                                              }),
+                                            ]
+                                          ),
+                                        ]),
+                                        _vm._v(" "),
+                                        _c("td", [
+                                          _vm._v(_vm._s(gen.nombre_contenedor)),
+                                        ]),
+                                        _vm._v(" "),
+                                        _c("td", [_vm._v(_vm._s(gen.tipo))]),
+                                        _vm._v(" "),
+                                        _c("td", [
+                                          _vm._v(_vm._s(gen.encendido)),
+                                        ]),
+                                        _vm._v(" "),
+                                        _c("td", [_vm._v(_vm._s(gen.booking))]),
+                                        _vm._v(" "),
+                                        _c(
+                                          "td",
+                                          { staticClass: "text-center" },
+                                          [
+                                            _vm._v(
+                                              _vm._s(gen.booking_temp) + "C°"
+                                            ),
+                                          ]
+                                        ),
+                                      ])
+                                    }
+                                  ),
+                                  0
+                                ),
+                              ]
+                            )
+                          : _vm._e(),
                       ]
                     ),
                     _vm._v(" "),

@@ -45,13 +45,13 @@
                 <div id="total_reefers" class="col shadow-sm p-3 mb-5 bg-white rounded " style="margin: 10px 15px 0px 15px;">
                   <div>Total Reefers: {{contenedores_todos.length}}</div>
                   <div class="row" style="margin: 0 10px;">
-                    <button type="button" class="col-3 btn btn-success"  @click="contenedores_prendidos">
+                    <button type="button" class="col-3 btn btn-success"  @click="contenedores_prendidos('r')">
                       <i class="bi bi-power"></i> 
                       <b style="font-size:1.2em;">{{contenedores_encendidos_reefer.length}}</b>
                       &nbsp;
                       Reefers Running 
                     </button>
-                    <button type="button" class="col-3 btn btn-primary" >
+                    <button type="button" class="col-3 btn btn-primary" @click="contenedores_prendidos('g')" >
                       <i class="bi bi-power"></i> 
                       <b style="font-size:1.2em;">{{contenedores_encendidos_gen.length}}</b>
                       &nbsp;
@@ -77,43 +77,45 @@
                 </div>
 <!-- ********* TABLA RESUMEN CONTENEDORES  *********-->
                 <div id="grid_resumen_contenedores" class="col shadow-sm p-3 mb-5 bg-white rounded " style="margin: -30px 15px 10px 15px; " >
-                  <table class="table" id="tblContenedor_reefers" style="margin: 0 auto !important;">
+                  <table class="table" id="tblContenedor_reefers" style="margin: 0 auto !important;" v-if="tipo_contenedor_seleccionado == 'r' ">
                     <thead >
                       <tr class="bg-primary" style="color:white !important;">
                         <th scope="col" width='50px'>Ver</th>
-                        <th scope="col" width='150px'>Contenedor</th>
+                        <th scope="col" width='150px'>Reefers</th>
                         <th scope="col">Tipo</th>
                         <th scope="col">Estado</th>
                         <th scope="col" width='250px'>Booking</th>
                         <th scope="col" width='50px'>Temp_contratada</th>
+                        <th scope="col">Set_point</th>
                         
                        
                       </tr>
                     </thead>
                     <tbody>
                       <tr 
-                        v-for="(contenedor, index) in datos_resumen_reefer" :key="index"
+                        v-for="(reef, index) in datos_resumen_reefer" :key="index"
                       >
                         <td>
                          <!-- <i class="bi bi-power"></i> -->
-                          <button :id="contenedor.tipo+'_'+contenedor.contenedores_id" type="button" class="btn btn-outline-primary" @click="select_contenedor(contenedor)"  >
+                          <button :id="reef.tipo+'_'+reef.contenedores_id" type="button" class="btn btn-outline-primary" @click="select_contenedor(reef)"  >
                             <i class="bi bi-check-lg"></i>                    
                           </button>
                         </td>
-                        <td>{{contenedor.nombre_contenedor}}</td>
-                        <td>{{contenedor.tipo}}</td>
-                        <td>{{contenedor.encendido}}</td>
-                        <td>{{contenedor.booking}}</td>
-                        <td class="text-center">{{contenedor.booking_temp}}C°</td>
+                        <td>{{reef.nombre_contenedor}}</td>
+                        <td>{{reef.tipo}}</td>
+                        <td>{{reef.encendido}}</td>
+                        <td>{{reef.booking}}</td>
+                        <td class="text-center">{{reef.booking_temp}}C°</td>
+                        <td class="text-center">{{reef.set_point}}C°</td>
                       </tr>
                     </tbody>
                   </table>
                   <!-- ///////////// -->
-                  <table class="table" id="" style="margin: 0 auto !important;">
+                  <table class="table" id="tblContenedor_gen" style="margin: 0 auto !important;" v-if="tipo_contenedor_seleccionado == 'g' ">
                     <thead >
                       <tr class="bg-primary" style="color:white !important;">
                         <th scope="col" width='50px'>Ver</th>
-                        <th scope="col" width='150px'>Contenedor</th>
+                        <th scope="col" width='150px'>Generador</th>
                         <th scope="col">Tipo</th>
                         <th scope="col">Estado</th>
                         <th scope="col" width='250px'>Booking</th>
@@ -128,7 +130,7 @@
                       >
                         <td>
                          <!-- <i class="bi bi-power"></i> -->
-                          <button :id="gen.tipo+'_'+gen.contenedores_id" type="button" class="btn btn-outline-primary" @click="select_contenedor(contenedor)"  >
+                          <button :id="gen.tipo+'_'+gen.contenedores_id" type="button" class="btn btn-outline-primary" @click="select_contenedor(gen)"  >
                             <i class="bi bi-check-lg"></i>                    
                           </button>
                         </td>
@@ -298,6 +300,7 @@ export default {
       datos_tabla_generador: [],
       datos_resumen_gen: [],
       datos_resumen_reefer: [],
+      tipo_contenedor_seleccionado: 'r', 
       //  ---- myChart_principal -----
       my_Chart_principal_dataset_reefer: [
                 {
@@ -470,7 +473,7 @@ export default {
     this.usuarioLogeado();
     this.bienvenida();
     this.iniciarMap();    
-    this.TablaContenedores();
+   
     // -- graficos circulares --
     this.Circular_iniciarGraficosAlarms();
     this.Circular_iniciarGraficosEventos();
@@ -483,25 +486,25 @@ export default {
 
   methods: {
     autoRefresh(){
-      let self = this;
-      this.$nextTick(() => {
-         async function f() {
-          let promise = new Promise((resolve, reject) => {
-            setTimeout(() => resolve(true), 600000)
-          });
-          let result = await promise; 
-           if(self.tipo == 'Reefer'){
-            let contenedor = self.contenedores_seleccionados.filter(element => element.tipo == 'Reefer');
-            console.log(contenedor[0])
-            self.select_contenedor(contenedor[0]); 
-          }else if(self.tipo == 'Generador'){
-            let contenedor = self.contenedores_seleccionados.filter(element => element.tipo == 'Generador');
-            self.select_contenedor(contenedor[0]); 
-            console.log(contenedor[0])
-          }
-        }
-        f();
-      });
+      // let self = this;
+      // this.$nextTick(() => {
+      //    async function f() {
+      //     let promise = new Promise((resolve, reject) => {
+      //       setTimeout(() => resolve(true), 600000)
+      //     });
+      //     let result = await promise; 
+      //      if(self.tipo == 'Reefer'){
+      //       let contenedor = self.contenedores_seleccionados.filter(element => element.tipo == 'Reefer');
+      //       console.log(contenedor[0])
+      //       self.select_contenedor(contenedor[0]); 
+      //     }else if(self.tipo == 'Generador'){
+      //       let contenedor = self.contenedores_seleccionados.filter(element => element.tipo == 'Generador');
+      //       self.select_contenedor(contenedor[0]); 
+      //       console.log(contenedor[0])
+      //     }
+      //   }
+      //   f();
+      // });
     },
     bienvenida() {
      Swal.fire({
@@ -774,52 +777,54 @@ export default {
      this.$refs.layoutprincipal.admin = this.usuario_logeado[0].admin; 
      
     },
-    contenedores_prendidos(){
-      this.contenedores_seleccionados = this.contenedores_encendidos;
+    contenedores_prendidos(tipo){
+      // this.contenedores_seleccionados = this.contenedores_encendidos;
+      this.tipo_contenedor_seleccionado = tipo;
     },
     select_contenedor(contenedor){
-      let self = this;
-      // console.log(contenedor.tipo);
-      self.datos_tabla_reefer = [];
-      self.datos_tabla_generador  = [];
-      if (contenedor.tipo =='Reefer') {
-           self.tipo= "Reefer";
-      }
-      if (contenedor.tipo =='Generador') {
-           self.tipo= "Generador";
-      }
+      console.log( contenedor)
+      // let self = this;
+      // // console.log(contenedor.tipo);
+      // self.datos_tabla_reefer = [];
+      // self.datos_tabla_generador  = [];
+      // if (contenedor.tipo =='Reefer') {
+      //      self.tipo= "Reefer";
+      // }
+      // if (contenedor.tipo =='Generador') {
+      //      self.tipo= "Generador";
+      // }
 
-      axios.post(route('contenedores.get_datos'), {
-        id: contenedor.contenedores_id,
-        tipo: contenedor.tipo
-      }).then(response => {   
-        // console.log(response.data);     
-        if (contenedor.tipo == "Reefer") {
-          self.datos_tabla_reefer = response.data;
-        }
-        if (contenedor.tipo == "Generador") {
-          self.datos_tabla_generador = response.data;
-        }
-      }).then(()=>{
-          if (contenedor.tipo == "Reefer") {
-            let lat = self.datos_tabla_reefer[self.datos_tabla_reefer.length -1].latitud;
-            let lon = self.datos_tabla_reefer[self.datos_tabla_reefer.length -1].longitud;
-            // self.ubicacion = {lat: lat, lng: lon};
-            self.ubicacion =  new google.maps.LatLng(lat, lon);
-          }
-          if (contenedor.tipo == "Generador") {
-            let lat = self.datos_tabla_generador[self.datos_tabla_generador.length -1].latitud;
-            let lon = self.datos_tabla_generador[self.datos_tabla_generador.length -1].longitud;
-           self.ubicacion =  new google.maps.LatLng(lat, lon);
-          }
-      }).then(()=>{
-        self.iniciarMap();
-      }).then(()=>{
-        self.setLabelsMyChartPrincipal();
-      });
+      // axios.post(route('contenedores.get_datos'), {
+      //   id: contenedor.contenedores_id,
+      //   tipo: contenedor.tipo
+      // }).then(response => {   
+      //   // console.log(response.data);     
+      //   if (contenedor.tipo == "Reefer") {
+      //     self.datos_tabla_reefer = response.data;
+      //   }
+      //   if (contenedor.tipo == "Generador") {
+      //     self.datos_tabla_generador = response.data;
+      //   }
+      // }).then(()=>{
+      //     if (contenedor.tipo == "Reefer") {
+      //       let lat = self.datos_tabla_reefer[self.datos_tabla_reefer.length -1].latitud;
+      //       let lon = self.datos_tabla_reefer[self.datos_tabla_reefer.length -1].longitud;
+      //       // self.ubicacion = {lat: lat, lng: lon};
+      //       self.ubicacion =  new google.maps.LatLng(lat, lon);
+      //     }
+      //     if (contenedor.tipo == "Generador") {
+      //       let lat = self.datos_tabla_generador[self.datos_tabla_generador.length -1].latitud;
+      //       let lon = self.datos_tabla_generador[self.datos_tabla_generador.length -1].longitud;
+      //      self.ubicacion =  new google.maps.LatLng(lat, lon);
+      //     }
+      // }).then(()=>{
+      //   self.iniciarMap();
+      // }).then(()=>{
+      //   self.setLabelsMyChartPrincipal();
+      // });
      
       
-    // myChart_derecha_label_g
+    
     },
     myChartPrincipal(){
       let self = this;
@@ -1031,33 +1036,42 @@ export default {
     },
     resumenContenedor(){
       let self = this;
-      
-      self.contenedores_encendidos_gen.map(function(contenedor){
-          axios
-              .post(route('contenedores.resumen'), {
-                id_contenedor: contenedor.id,
-                tipo_contenedor: contenedor.tipo,
-              })
-              .then(response => {  
-                contenedor = Object.assign(contenedor, response.data);      // aqui unimos el objeto con los ultimos datos del registro diario
-              });
-        self.datos_resumen_gen.push(contenedor);
+      this.$nextTick(() => {
+         async function rellenar_resumen() {
+           self.contenedores_encendidos_gen.map(function(contenedor){
+                axios
+                    .post(route('contenedores.resumen'), {
+                      id_contenedor: contenedor.id,
+                      tipo_contenedor: contenedor.tipo,
+                    })
+                    .then(response => {  
+                      contenedor = Object.assign(contenedor, response.data);      // aqui unimos el objeto con los ultimos datos del registro diario
+                    });
+              self.datos_resumen_gen.push(contenedor);
+            });
+            self.contenedores_encendidos_reefer.map(function(cont){
+                axios
+                    .post(route('contenedores.resumen'), {
+                      id_contenedor: cont.id,
+                      tipo_contenedor: cont.tipo,
+                    })
+                    .then(rp => {  
+                      cont = Object.assign(cont, rp.data);      // aqui unimos el objeto con los ultimos datos del registro diario
+                    });
+              self.datos_resumen_reefer.push(cont);
+            });
+        }
+        rellenar_resumen().then(()=>{
+          console.log( self.datos_resumen_gen);
+          console.log( self.datos_resumen_reefer);
+          self.TablaContenedores();
+        });
       });
-      // console.log(self.datos_resumen_gen)
 
-      self.contenedores_encendidos_reefer.map(function(cont){
-          axios
-              .post(route('contenedores.resumen'), {
-                id_contenedor: cont.id,
-                tipo_contenedor: cont.tipo,
-              })
-              .then(rp => {  
-                cont = Object.assign(cont, rp.data);      // aqui unimos el objeto con los ultimos datos del registro diario
-              });
-        self.datos_resumen_reefer.push(cont);
-      });
-      // console.log(self.datos_resumen_reefer)
-      
+
+     
+     
+       
     },
   },  
 };
