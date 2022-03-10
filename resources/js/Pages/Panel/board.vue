@@ -86,13 +86,13 @@
                         <th scope="col">Estado</th>
                         <th scope="col" width='250px'>Booking</th>
                         <th scope="col" width='50px'>Temp_contratada</th>
-                        <th scope="col">Empresa</th>
+                        
                        
                       </tr>
                     </thead>
                     <tbody>
                       <tr 
-                        v-for="(contenedor, index) in contenedores_seleccionados" :key="index"
+                        v-for="(contenedor, index) in datos_resumen_reefer" :key="index"
                       >
                         <td>
                          <!-- <i class="bi bi-power"></i> -->
@@ -103,9 +103,8 @@
                         <td>{{contenedor.nombre_contenedor}}</td>
                         <td>{{contenedor.tipo}}</td>
                         <td>{{contenedor.encendido}}</td>
-                        <td>{{contenedor.descripcion_booking}}</td>
-                        <td class="text-center">{{contenedor.temp_contratada}}C°</td>
-                        <td>{{(contenedor.nombre_empresa).toUpperCase()}}</td>
+                        <td>{{contenedor.booking}}</td>
+                        <td class="text-center">{{contenedor.booking_temp}}C°</td>
                       </tr>
                     </tbody>
                   </table>
@@ -125,9 +124,8 @@
                     </thead>
                     <tbody>
                       <tr 
-                        v-for="(gen, index) in contenedores_encendidos_gen" :key="index"
+                        v-for="(gen, index) in datos_resumen_gen" :key="index"
                       >
-                       
                         <td>
                          <!-- <i class="bi bi-power"></i> -->
                           <button :id="gen.tipo+'_'+gen.contenedores_id" type="button" class="btn btn-outline-primary" @click="select_contenedor(contenedor)"  >
@@ -1045,7 +1043,7 @@ export default {
               });
         self.datos_resumen_gen.push(contenedor);
       });
-      console.log(self.datos_resumen_gen)
+      // console.log(self.datos_resumen_gen)
 
       self.contenedores_encendidos_reefer.map(function(cont){
           axios
@@ -1058,7 +1056,7 @@ export default {
               });
         self.datos_resumen_reefer.push(cont);
       });
-      console.log(self.datos_resumen_reefer)
+      // console.log(self.datos_resumen_reefer)
       
     },
   },  

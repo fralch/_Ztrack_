@@ -2393,8 +2393,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
 
 var myChart_principal;
 var Chart_alarmas;
@@ -3157,8 +3155,8 @@ var Chart_eventos;
           contenedor = Object.assign(contenedor, response.data); // aqui unimos el objeto con los ultimos datos del registro diario
         });
         self.datos_resumen_gen.push(contenedor);
-      });
-      console.log(self.datos_resumen_gen);
+      }); // console.log(self.datos_resumen_gen)
+
       self.contenedores_encendidos_reefer.map(function (cont) {
         axios.post(route('contenedores.resumen'), {
           id_contenedor: cont.id,
@@ -3167,8 +3165,7 @@ var Chart_eventos;
           cont = Object.assign(cont, rp.data); // aqui unimos el objeto con los ultimos datos del registro diario
         });
         self.datos_resumen_reefer.push(cont);
-      });
-      console.log(self.datos_resumen_reefer);
+      }); // console.log(self.datos_resumen_reefer)
     }
   }
 });
@@ -28352,10 +28349,6 @@ var render = function () {
                                     { attrs: { scope: "col", width: "50px" } },
                                     [_vm._v("Temp_contratada")]
                                   ),
-                                  _vm._v(" "),
-                                  _c("th", { attrs: { scope: "col" } }, [
-                                    _vm._v("Empresa"),
-                                  ]),
                                 ]
                               ),
                             ]),
@@ -28363,7 +28356,7 @@ var render = function () {
                             _c(
                               "tbody",
                               _vm._l(
-                                _vm.contenedores_seleccionados,
+                                _vm.datos_resumen_reefer,
                                 function (contenedor, index) {
                                   return _c("tr", { key: index }, [
                                     _c("td", [
@@ -28408,23 +28401,12 @@ var render = function () {
                                     ]),
                                     _vm._v(" "),
                                     _c("td", [
-                                      _vm._v(
-                                        _vm._s(contenedor.descripcion_booking)
-                                      ),
+                                      _vm._v(_vm._s(contenedor.booking)),
                                     ]),
                                     _vm._v(" "),
                                     _c("td", { staticClass: "text-center" }, [
                                       _vm._v(
-                                        _vm._s(contenedor.temp_contratada) +
-                                          "C°"
-                                      ),
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("td", [
-                                      _vm._v(
-                                        _vm._s(
-                                          contenedor.nombre_empresa.toUpperCase()
-                                        )
+                                        _vm._s(contenedor.booking_temp) + "C°"
                                       ),
                                     ]),
                                   ])
@@ -28489,7 +28471,7 @@ var render = function () {
                             _c(
                               "tbody",
                               _vm._l(
-                                _vm.contenedores_encendidos_gen,
+                                _vm.datos_resumen_gen,
                                 function (gen, index) {
                                   return _c("tr", { key: index }, [
                                     _c("td", [
