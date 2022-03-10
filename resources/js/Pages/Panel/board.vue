@@ -70,14 +70,14 @@
                       Shutdown
                     </button>
                   </div>
-                </div>             
+                </div>      
+<!-- ********** CANVAS MAPA **********-->
                 <div id="asset_maps" class="col shadow-sm p-3 mb-5 bg-white rounded " style="margin: -30px 15px 10px 15px;">
                    <div id="map" style="width:100%; height:365px;"></div>
-                </div>            
-                <div id="reefers_grid_history" class="col shadow-sm p-3 mb-5 bg-white rounded " style="margin: -30px 15px 10px 15px; " >
-                  <!-- dates -->
-                  <!-- /// -->
-                  <table class="table" id="tblContenedores" style="margin: 0 auto !important;">
+                </div>
+<!-- ********* TABLA RESUMEN CONTENEDORES  *********-->
+                <div id="grid_resumen_contenedores" class="col shadow-sm p-3 mb-5 bg-white rounded " style="margin: -30px 15px 10px 15px; " >
+                  <table class="table" id="tblContenedor_reefers" style="margin: 0 auto !important;">
                     <thead >
                       <tr class="bg-primary" style="color:white !important;">
                         <th scope="col" width='50px'>Ver</th>
@@ -107,11 +107,44 @@
                         <td class="text-center">{{contenedor.temp_contratada}}C°</td>
                         <td>{{(contenedor.nombre_empresa).toUpperCase()}}</td>
                       </tr>
-                      
-                      
+                    </tbody>
+                  </table>
+                  <!-- ///////////// -->
+                  <table class="table" id="" style="margin: 0 auto !important;">
+                    <thead >
+                      <tr class="bg-primary" style="color:white !important;">
+                        <th scope="col" width='50px'>Ver</th>
+                        <th scope="col" width='150px'>Contenedor</th>
+                        <th scope="col">Tipo</th>
+                        <th scope="col">Estado</th>
+                        <th scope="col" width='250px'>Booking</th>
+                        <th scope="col" width='50px'>Temp_contratada</th>
+                        
+                       
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr 
+                        v-for="(gen, index) in contenedores_encendidos_gen" :key="index"
+                      >
+                       
+                        <td>
+                         <!-- <i class="bi bi-power"></i> -->
+                          <button :id="gen.tipo+'_'+gen.contenedores_id" type="button" class="btn btn-outline-primary" @click="select_contenedor(contenedor)"  >
+                            <i class="bi bi-check-lg"></i>                    
+                          </button>
+                        </td>
+                        <td>{{gen.nombre_contenedor}}</td>
+                        <td>{{gen.tipo}}</td>
+                        <td>{{gen.encendido}}</td>
+                        <td>{{gen.booking}}</td>
+                        <td class="text-center">{{gen.booking_temp}}C°</td>
+                      </tr>
                     </tbody>
                   </table>
                 </div>
+
+  <!-- *********** TABLA DETALLE CONTENEDORES *********** -->
                 <div 
                   id="generador_grid" 
                   class="col shadow-sm p-3 mb-5 bg-white rounded " 
@@ -219,6 +252,7 @@
                     </tbody>
                   </table>
                 </div>
+<!-- *********** GRAFICOS PRINCIPAL *********** -->
                 <div 
                   id="myChart_principal_id" 
                   class="col shadow-sm p-3 mb-5 bg-white rounded " 
@@ -227,21 +261,14 @@
                   >
                    <canvas id="myChart_principal"  style="height:600px"></canvas>
                 </div>
-              
-              
             </div>
           </div>
             <!-- <div class="row">
             <div class="col shadow-sm p-3 mb-5 bg-white rounded">col</div>
             <div class="col">col</div> -->
           </div>
-        </div>
-          
-        
-        <!-- ---------------------- -->
-      
-    </div>
-    
+        </div>      
+    </div>    
   </layoutprincipal>
 </template>
 
@@ -271,6 +298,8 @@ export default {
       contenedores_seleccionados:[],
       datos_tabla_reefer:[],
       datos_tabla_generador: [],
+      datos_resumen_gen: [],
+      datos_resumen_reefer: [],
       //  ---- myChart_principal -----
       my_Chart_principal_dataset_reefer: [
                 {
@@ -423,7 +452,7 @@ export default {
   watch: {
     
     contenedores_seleccionados(){
-      $("#tblContenedores").DataTable().destroy();
+      $("#tblContenedor_reefers").DataTable().destroy();
       this.TablaContenedores();
     },
     datos_tabla_generador(){
@@ -450,14 +479,14 @@ export default {
     this.Circular_iniciarGraficosPTI();
     this.Circular_iniciarGraficosFleet();
 
-    // this.myChartPrincipal();
+    // this.myChartPrincipal();}
+    this.resumenContenedor(); 
   },
 
   methods: {
     autoRefresh(){
       let self = this;
       this.$nextTick(() => {
-          
          async function f() {
           let promise = new Promise((resolve, reject) => {
             setTimeout(() => resolve(true), 600000)
@@ -473,10 +502,8 @@ export default {
             console.log(contenedor[0])
           }
         }
-
         f();
       });
-    
     },
     bienvenida() {
      Swal.fire({
@@ -490,8 +517,7 @@ export default {
     TablaContenedores() {
       let self = this;
       this.$nextTick(() => {
-        var table = $('#tblContenedores').DataTable({
-           
+        var table = $('#tblContenedor_reefers').DataTable({
           language: {
               retrieve: true,
               decimal: "",
@@ -514,9 +540,32 @@ export default {
                   '<i class="fas fa-chevron-circle-left" style="font-size:20px;"></i>',
               },
               responsive: true,
-      
           },
-        
+        });
+        var table2 = $('#tblContenedor_gen').DataTable({
+          language: {
+              retrieve: true,
+              decimal: "",
+              emptyTable: "No hay datos disponibles en la tabla",
+              info: "Mostrando del _START_ al _END_ de _TOTAL_ registros",
+              infoEmpty: "No se encontraron registros",
+              infoFiltered: "(filtrado de _MAX_ registros)",
+              infoPostFix: "",
+              thousands: ",",
+              lengthMenu: "Agrupar por _MENU_ filas",
+              loadingRecords: "Cargando...",
+              processing: "Procesando...",
+              search: "Buscar:",
+              zeroRecords: "No se encontraron registros",
+              paginate: {
+                first: "Primera",
+                last: "Ultima",
+                next: '<i class="fas fa-chevron-circle-right" style="font-size:20px;"></i>',
+                previous:
+                  '<i class="fas fa-chevron-circle-left" style="font-size:20px;"></i>',
+              },
+              responsive: true,
+          },
         });
       });
      
@@ -981,6 +1030,36 @@ export default {
             self.my_Chart_principal_dataSetable = self.my_Chart_principal_dataset_generador;
           }
        });
+    },
+    resumenContenedor(){
+      let self = this;
+      
+      self.contenedores_encendidos_gen.map(function(contenedor){
+          axios
+              .post(route('contenedores.resumen'), {
+                id_contenedor: contenedor.id,
+                tipo_contenedor: contenedor.tipo,
+              })
+              .then(response => {  
+                contenedor = Object.assign(contenedor, response.data);      // aqui unimos el objeto con los ultimos datos del registro diario
+              });
+        self.datos_resumen_gen.push(contenedor);
+      });
+      console.log(self.datos_resumen_gen)
+
+      self.contenedores_encendidos_reefer.map(function(cont){
+          axios
+              .post(route('contenedores.resumen'), {
+                id_contenedor: cont.id,
+                tipo_contenedor: cont.tipo,
+              })
+              .then(rp => {  
+                cont = Object.assign(cont, rp.data);      // aqui unimos el objeto con los ultimos datos del registro diario
+              });
+        self.datos_resumen_reefer.push(cont);
+      });
+      console.log(self.datos_resumen_reefer)
+      
     },
   },  
 };

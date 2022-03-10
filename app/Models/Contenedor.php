@@ -14,5 +14,7 @@ class Contenedor extends Model
         'nombre_contendor',
         'tipo',
         'encendido',
+        'booking',
+        'booking_temp',
     ];
 }

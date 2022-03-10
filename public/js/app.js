@@ -2368,6 +2368,33 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 var myChart_principal;
 var Chart_alarmas;
@@ -2393,6 +2420,8 @@ var Chart_eventos;
       contenedores_seleccionados: [],
       datos_tabla_reefer: [],
       datos_tabla_generador: [],
+      datos_resumen_gen: [],
+      datos_resumen_reefer: [],
       //  ---- myChart_principal -----
       my_Chart_principal_dataset_reefer: [{
         label: 'SetPoint',
@@ -2522,7 +2551,7 @@ var Chart_eventos;
   },
   watch: {
     contenedores_seleccionados: function contenedores_seleccionados() {
-      $("#tblContenedores").DataTable().destroy();
+      $("#tblContenedor_reefers").DataTable().destroy();
       this.TablaContenedores();
     },
     datos_tabla_generador: function datos_tabla_generador() {
@@ -2544,7 +2573,9 @@ var Chart_eventos;
     this.Circular_iniciarGraficosAlarms();
     this.Circular_iniciarGraficosEventos();
     this.Circular_iniciarGraficosPTI();
-    this.Circular_iniciarGraficosFleet(); // this.myChartPrincipal();
+    this.Circular_iniciarGraficosFleet(); // this.myChartPrincipal();}
+
+    this.resumenContenedor();
   },
   methods: {
     autoRefresh: function autoRefresh() {
@@ -2612,7 +2643,31 @@ var Chart_eventos;
     TablaContenedores: function TablaContenedores() {
       var self = this;
       this.$nextTick(function () {
-        var table = $('#tblContenedores').DataTable({
+        var table = $('#tblContenedor_reefers').DataTable({
+          language: {
+            retrieve: true,
+            decimal: "",
+            emptyTable: "No hay datos disponibles en la tabla",
+            info: "Mostrando del _START_ al _END_ de _TOTAL_ registros",
+            infoEmpty: "No se encontraron registros",
+            infoFiltered: "(filtrado de _MAX_ registros)",
+            infoPostFix: "",
+            thousands: ",",
+            lengthMenu: "Agrupar por _MENU_ filas",
+            loadingRecords: "Cargando...",
+            processing: "Procesando...",
+            search: "Buscar:",
+            zeroRecords: "No se encontraron registros",
+            paginate: {
+              first: "Primera",
+              last: "Ultima",
+              next: '<i class="fas fa-chevron-circle-right" style="font-size:20px;"></i>',
+              previous: '<i class="fas fa-chevron-circle-left" style="font-size:20px;"></i>'
+            },
+            responsive: true
+          }
+        });
+        var table2 = $('#tblContenedor_gen').DataTable({
           language: {
             retrieve: true,
             decimal: "",
@@ -3091,6 +3146,29 @@ var Chart_eventos;
           self.my_Chart_principal_dataSetable = self.my_Chart_principal_dataset_generador;
         }
       });
+    },
+    resumenContenedor: function resumenContenedor() {
+      var self = this;
+      self.contenedores_encendidos_gen.map(function (contenedor) {
+        axios.post(route('contenedores.resumen'), {
+          id_contenedor: contenedor.id,
+          tipo_contenedor: contenedor.tipo
+        }).then(function (response) {
+          contenedor = Object.assign(contenedor, response.data); // aqui unimos el objeto con los ultimos datos del registro diario
+        });
+        self.datos_resumen_gen.push(contenedor);
+      });
+      console.log(self.datos_resumen_gen);
+      self.contenedores_encendidos_reefer.map(function (cont) {
+        axios.post(route('contenedores.resumen'), {
+          id_contenedor: cont.id,
+          tipo_contenedor: cont.tipo
+        }).then(function (rp) {
+          cont = Object.assign(cont, rp.data); // aqui unimos el objeto con los ultimos datos del registro diario
+        });
+        self.datos_resumen_reefer.push(cont);
+      });
+      console.log(self.datos_resumen_reefer);
     }
   }
 });
@@ -27941,7 +28019,7 @@ var render = function () {
                         },
                         [
                           _vm._v(
-                            "\n              Asset search\n              "
+                            "\n                Asset search\n                "
                           ),
                           _c("input", {
                             staticClass: "form-control",
@@ -28029,7 +28107,9 @@ var render = function () {
                           attrs: { id: "micro-alarms" },
                         },
                         [
-                          _vm._v("\n              Alarmas \n              "),
+                          _vm._v(
+                            "\n                Alarmas \n                "
+                          ),
                           _c("canvas", { attrs: { id: "myChart_alarms" } }),
                         ]
                       ),
@@ -28042,7 +28122,7 @@ var render = function () {
                           attrs: { id: "cargo-care" },
                         },
                         [
-                          _vm._v("\n              Eventos\n              "),
+                          _vm._v("\n                Eventos\n                "),
                           _c("canvas", { attrs: { id: "myChart_cargo" } }),
                         ]
                       ),
@@ -28056,7 +28136,9 @@ var render = function () {
                           attrs: { id: "pti-result" },
                         },
                         [
-                          _vm._v("\n              PTI result\n              "),
+                          _vm._v(
+                            "\n                PTI result\n                "
+                          ),
                           _c("canvas", { attrs: { id: "myChart_pti" } }),
                         ]
                       ),
@@ -28071,7 +28153,7 @@ var render = function () {
                         },
                         [
                           _vm._v(
-                            "\n              Reefers fleet \n               "
+                            "\n                Reefers fleet \n                 "
                           ),
                           _c("canvas", { attrs: { id: "myChart_fleet" } }),
                         ]
@@ -28125,7 +28207,7 @@ var render = function () {
                                   ]
                                 ),
                                 _vm._v(
-                                  "\n                     \n                    Reefers Running \n                  "
+                                  "\n                       \n                      Reefers Running \n                    "
                                 ),
                               ]
                             ),
@@ -28151,7 +28233,7 @@ var render = function () {
                                   ]
                                 ),
                                 _vm._v(
-                                  "\n                     \n                    Gen Running \n                  "
+                                  "\n                       \n                      Gen Running \n                    "
                                 ),
                               ]
                             ),
@@ -28171,7 +28253,7 @@ var render = function () {
                                   [_vm._v("0")]
                                 ),
                                 _vm._v(
-                                  "\n                     \n                    Standby\n                  "
+                                  "\n                       \n                      Standby\n                    "
                                 ),
                               ]
                             ),
@@ -28191,7 +28273,7 @@ var render = function () {
                                   [_vm._v("0")]
                                 ),
                                 _vm._v(
-                                  "\n                     \n                    Shutdown\n                  "
+                                  "\n                       \n                      Shutdown\n                    "
                                 ),
                               ]
                             ),
@@ -28220,7 +28302,7 @@ var render = function () {
                       {
                         staticClass: "col shadow-sm p-3 mb-5 bg-white rounded ",
                         staticStyle: { margin: "-30px 15px 10px 15px" },
-                        attrs: { id: "reefers_grid_history" },
+                        attrs: { id: "grid_resumen_contenedores" },
                       },
                       [
                         _c(
@@ -28228,7 +28310,7 @@ var render = function () {
                           {
                             staticClass: "table",
                             staticStyle: { margin: "0 auto !important" },
-                            attrs: { id: "tblContenedores" },
+                            attrs: { id: "tblContenedor_reefers" },
                           },
                           [
                             _c("thead", [
@@ -28344,6 +28426,113 @@ var render = function () {
                                           contenedor.nombre_empresa.toUpperCase()
                                         )
                                       ),
+                                    ]),
+                                  ])
+                                }
+                              ),
+                              0
+                            ),
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "table",
+                          {
+                            staticClass: "table",
+                            staticStyle: { margin: "0 auto !important" },
+                            attrs: { id: "" },
+                          },
+                          [
+                            _c("thead", [
+                              _c(
+                                "tr",
+                                {
+                                  staticClass: "bg-primary",
+                                  staticStyle: { color: "white !important" },
+                                },
+                                [
+                                  _c(
+                                    "th",
+                                    { attrs: { scope: "col", width: "50px" } },
+                                    [_vm._v("Ver")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "th",
+                                    { attrs: { scope: "col", width: "150px" } },
+                                    [_vm._v("Contenedor")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c("th", { attrs: { scope: "col" } }, [
+                                    _vm._v("Tipo"),
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("th", { attrs: { scope: "col" } }, [
+                                    _vm._v("Estado"),
+                                  ]),
+                                  _vm._v(" "),
+                                  _c(
+                                    "th",
+                                    { attrs: { scope: "col", width: "250px" } },
+                                    [_vm._v("Booking")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "th",
+                                    { attrs: { scope: "col", width: "50px" } },
+                                    [_vm._v("Temp_contratada")]
+                                  ),
+                                ]
+                              ),
+                            ]),
+                            _vm._v(" "),
+                            _c(
+                              "tbody",
+                              _vm._l(
+                                _vm.contenedores_encendidos_gen,
+                                function (gen, index) {
+                                  return _c("tr", { key: index }, [
+                                    _c("td", [
+                                      _c(
+                                        "button",
+                                        {
+                                          staticClass:
+                                            "btn btn-outline-primary",
+                                          attrs: {
+                                            id:
+                                              gen.tipo +
+                                              "_" +
+                                              gen.contenedores_id,
+                                            type: "button",
+                                          },
+                                          on: {
+                                            click: function ($event) {
+                                              return _vm.select_contenedor(
+                                                _vm.contenedor
+                                              )
+                                            },
+                                          },
+                                        },
+                                        [
+                                          _c("i", {
+                                            staticClass: "bi bi-check-lg",
+                                          }),
+                                        ]
+                                      ),
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _vm._v(_vm._s(gen.nombre_contenedor)),
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v(_vm._s(gen.tipo))]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v(_vm._s(gen.encendido))]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v(_vm._s(gen.booking))]),
+                                    _vm._v(" "),
+                                    _c("td", { staticClass: "text-center" }, [
+                                      _vm._v(_vm._s(gen.booking_temp) + "C°"),
                                     ]),
                                   ])
                                 }

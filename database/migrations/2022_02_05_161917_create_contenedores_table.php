@@ -18,6 +18,8 @@ class CreateContenedoresTable extends Migration
             $table->string('nombre_contenedor');
             $table->string('tipo');
             $table->boolean('encendido');
+            $table->string('booking');
+            $table->float('booking_temp');
             $table->timestamps();
         });
     }
