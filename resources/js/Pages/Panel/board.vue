@@ -45,13 +45,13 @@
                 <div id="total_reefers" class="col shadow-sm p-3 mb-5 bg-white rounded " style="margin: 10px 15px 0px 15px;">
                   <div>Total Reefers: {{contenedores_todos.length}}</div>
                   <div class="row" style="margin: 0 10px;">
-                    <button type="button" class="col-3 btn btn-success"  @click="contenedores_prendidos('r')">
+                    <button type="button" class="col-3 btn btn-success"  @click="contenedores_prendidos('Reefer')">
                       <i class="bi bi-power"></i> 
                       <b style="font-size:1.2em;">{{contenedores_encendidos_reefer.length}}</b>
                       &nbsp;
                       Reefers Running 
                     </button>
-                    <button type="button" class="col-3 btn btn-primary" @click="contenedores_prendidos('g')" >
+                    <button type="button" class="col-3 btn btn-primary" @click="contenedores_prendidos('Generador')" >
                       <i class="bi bi-power"></i> 
                       <b style="font-size:1.2em;">{{contenedores_encendidos_gen.length}}</b>
                       &nbsp;
@@ -76,8 +76,8 @@
                    <div id="map" style="width:100%; height:365px;"></div>
                 </div>
 <!-- ********* TABLA RESUMEN CONTENEDORES  *********-->
-                <div id="grid_resumen_contenedores" class="col shadow-sm p-3 mb-5 bg-white rounded " style="margin: -30px 15px 10px 15px; " >
-                  <table class="table" id="tblContenedor_reefers" style="margin: 0 auto !important;" v-if="tipo_contenedor_seleccionado == 'r' ">
+                <div id="grid_resumen_reefer" class="col shadow-sm p-3 mb-5 bg-white rounded " style="margin: -30px 15px 10px 15px; "   v-if="tipo == 'Reefer'" >
+                  <table class="table" id="tblContenedor_reefers" style="margin: 0 auto !important;">
                     <thead >
                       <tr class="bg-primary" style="color:white !important;">
                         <th scope="col" width='50px' class="text-center">Ver</th>
@@ -229,8 +229,10 @@
                       </tr>
                     </tbody>
                   </table>
-                  <!-- ///////////// -->
-                  <table class="table" id="tblContenedor_gen" style="margin: 0 auto !important;" v-if="tipo_contenedor_seleccionado == 'g' ">
+                </div>
+                <!-- ///////////// -->
+                <div id="grid_resumen_generadores" class="col shadow-sm p-3 mb-5 bg-white rounded " style="margin: -30px 15px 10px 15px; "   v-if="tipo == 'Generador'">
+                  <table class="table" id="tblContenedor_generador" style="margin: 0 auto !important;">
                     <thead >
                       <tr class="bg-primary" style="color:white !important;">
                         <th scope="col" width='50px'>Ver</th>
@@ -419,7 +421,7 @@ export default {
       datos_tabla_generador: [],
       datos_resumen_gen: [],
       datos_resumen_reefer: [],
-      tipo_contenedor_seleccionado: null, 
+      // tipo_contenedor_seleccionado: null, 
       //  ---- myChart_principal -----
       my_Chart_principal_dataset_reefer: [
                 {
@@ -571,8 +573,9 @@ export default {
   },
   watch: {
     
-    contenedores_seleccionados(){
+    tipo(){
       $("#tblContenedor_reefers").DataTable().destroy();
+      $("#tblContenedor_generador").DataTable().destroy();
       this.TablaContenedores();
     },
     datos_tabla_generador(){
@@ -635,9 +638,36 @@ export default {
       })
     },
     TablaContenedores() {
+      // console.log('cargar tabla de contenedores'); 
       let self = this;
       this.$nextTick(() => {
         var table = $('#tblContenedor_reefers').DataTable({
+          scrollX: "100%",
+          language: {
+              decimal: "",
+              emptyTable: "No hay datos disponibles en la tabla",
+              info: "Mostrando del _START_ al _END_ de _TOTAL_ registros",
+              infoEmpty: "No se encontraron registros",
+              infoFiltered: "(filtrado de _MAX_ registros)",
+              infoPostFix: "",
+              thousands: ",",
+              lengthMenu: "Agrupar por _MENU_ filas",
+              loadingRecords: "Cargando...",
+              processing: "Procesando...",
+              search: "Buscar:",
+              zeroRecords: "No se encontraron registros",
+              paginate: {
+                first: "Primera",
+                last: "Ultima",
+                next: '<i class="fas fa-chevron-circle-right" style="font-size:20px;"></i>',
+                previous:
+                  '<i class="fas fa-chevron-circle-left" style="font-size:20px;"></i>',
+              },
+              responsive: true,
+          },
+        });
+        var table2 = $('#tblContenedor_generador').DataTable({
+          scrollX: "100%",
           language: {
               retrieve: true,
               decimal: "",
@@ -662,31 +692,7 @@ export default {
               responsive: true,
           },
         });
-        var table2 = $('#tblContenedor_gen').DataTable({
-          language: {
-              retrieve: true,
-              decimal: "",
-              emptyTable: "No hay datos disponibles en la tabla",
-              info: "Mostrando del _START_ al _END_ de _TOTAL_ registros",
-              infoEmpty: "No se encontraron registros",
-              infoFiltered: "(filtrado de _MAX_ registros)",
-              infoPostFix: "",
-              thousands: ",",
-              lengthMenu: "Agrupar por _MENU_ filas",
-              loadingRecords: "Cargando...",
-              processing: "Procesando...",
-              search: "Buscar:",
-              zeroRecords: "No se encontraron registros",
-              paginate: {
-                first: "Primera",
-                last: "Ultima",
-                next: '<i class="fas fa-chevron-circle-right" style="font-size:20px;"></i>',
-                previous:
-                  '<i class="fas fa-chevron-circle-left" style="font-size:20px;"></i>',
-              },
-              responsive: true,
-          },
-        });
+        // console.log(table);
       });
      
       
@@ -896,9 +902,10 @@ export default {
      this.$refs.layoutprincipal.admin = this.usuario_logeado[0].admin; 
      
     },
-    contenedores_prendidos(tipo){
+    contenedores_prendidos(variable){
       // this.contenedores_seleccionados = this.contenedores_encendidos;
-      this.tipo_contenedor_seleccionado = tipo;
+      
+      this.tipo = variable; 
     },
     select_contenedor(contenedor){
       console.log( contenedor)
@@ -1183,7 +1190,7 @@ export default {
         rellenar_resumen().then(()=>{
           // console.log( self.datos_resumen_gen);
           // console.log( self.datos_resumen_reefer);
-          self.TablaContenedores();
+          // self.TablaContenedores();
         });
       });
 
@@ -1208,7 +1215,10 @@ export default {
   height: 320px;
   overflow-y: scroll;
 }
-
+/* #tblContenedor_reefers{
+  width: 100%;
+  overflow-y: scroll;
+} */
 #total_reefers {
   padding: 10px;
   height: 100px;

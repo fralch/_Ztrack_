@@ -2514,6 +2514,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 
 var myChart_principal;
 var Chart_alarmas;
@@ -2541,7 +2543,7 @@ var Chart_eventos;
       datos_tabla_generador: [],
       datos_resumen_gen: [],
       datos_resumen_reefer: [],
-      tipo_contenedor_seleccionado: null,
+      // tipo_contenedor_seleccionado: null, 
       //  ---- myChart_principal -----
       my_Chart_principal_dataset_reefer: [{
         label: 'SetPoint',
@@ -2670,8 +2672,9 @@ var Chart_eventos;
     };
   },
   watch: {
-    contenedores_seleccionados: function contenedores_seleccionados() {
+    tipo: function tipo() {
       $("#tblContenedor_reefers").DataTable().destroy();
+      $("#tblContenedor_generador").DataTable().destroy();
       this.TablaContenedores();
     },
     datos_tabla_generador: function datos_tabla_generador() {
@@ -2727,9 +2730,35 @@ var Chart_eventos;
       });
     },
     TablaContenedores: function TablaContenedores() {
+      // console.log('cargar tabla de contenedores'); 
       var self = this;
       this.$nextTick(function () {
         var table = $('#tblContenedor_reefers').DataTable({
+          scrollX: "100%",
+          language: {
+            decimal: "",
+            emptyTable: "No hay datos disponibles en la tabla",
+            info: "Mostrando del _START_ al _END_ de _TOTAL_ registros",
+            infoEmpty: "No se encontraron registros",
+            infoFiltered: "(filtrado de _MAX_ registros)",
+            infoPostFix: "",
+            thousands: ",",
+            lengthMenu: "Agrupar por _MENU_ filas",
+            loadingRecords: "Cargando...",
+            processing: "Procesando...",
+            search: "Buscar:",
+            zeroRecords: "No se encontraron registros",
+            paginate: {
+              first: "Primera",
+              last: "Ultima",
+              next: '<i class="fas fa-chevron-circle-right" style="font-size:20px;"></i>',
+              previous: '<i class="fas fa-chevron-circle-left" style="font-size:20px;"></i>'
+            },
+            responsive: true
+          }
+        });
+        var table2 = $('#tblContenedor_generador').DataTable({
+          scrollX: "100%",
           language: {
             retrieve: true,
             decimal: "",
@@ -2752,31 +2781,7 @@ var Chart_eventos;
             },
             responsive: true
           }
-        });
-        var table2 = $('#tblContenedor_gen').DataTable({
-          language: {
-            retrieve: true,
-            decimal: "",
-            emptyTable: "No hay datos disponibles en la tabla",
-            info: "Mostrando del _START_ al _END_ de _TOTAL_ registros",
-            infoEmpty: "No se encontraron registros",
-            infoFiltered: "(filtrado de _MAX_ registros)",
-            infoPostFix: "",
-            thousands: ",",
-            lengthMenu: "Agrupar por _MENU_ filas",
-            loadingRecords: "Cargando...",
-            processing: "Procesando...",
-            search: "Buscar:",
-            zeroRecords: "No se encontraron registros",
-            paginate: {
-              first: "Primera",
-              last: "Ultima",
-              next: '<i class="fas fa-chevron-circle-right" style="font-size:20px;"></i>',
-              previous: '<i class="fas fa-chevron-circle-left" style="font-size:20px;"></i>'
-            },
-            responsive: true
-          }
-        });
+        }); // console.log(table);
       });
     },
     TablaDetalleContenedores_r: function TablaDetalleContenedores_r() {
@@ -2948,9 +2953,9 @@ var Chart_eventos;
       this.$refs.layoutprincipal.usuario = this.usuario_logeado[0].nombres.toUpperCase();
       this.$refs.layoutprincipal.admin = this.usuario_logeado[0].admin;
     },
-    contenedores_prendidos: function contenedores_prendidos(tipo) {
+    contenedores_prendidos: function contenedores_prendidos(variable) {
       // this.contenedores_seleccionados = this.contenedores_encendidos;
-      this.tipo_contenedor_seleccionado = tipo;
+      this.tipo = variable;
     },
     select_contenedor: function select_contenedor(contenedor) {
       console.log(contenedor); // let self = this;
@@ -3271,10 +3276,9 @@ var Chart_eventos;
           return _rellenar_resumen.apply(this, arguments);
         }
 
-        rellenar_resumen().then(function () {
-          // console.log( self.datos_resumen_gen);
+        rellenar_resumen().then(function () {// console.log( self.datos_resumen_gen);
           // console.log( self.datos_resumen_reefer);
-          self.TablaContenedores();
+          // self.TablaContenedores();
         });
       });
     }
@@ -4003,7 +4007,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n#lado_derecho{\n    width: 75%;\n}\n#lado_izquierdo{\n    width: 25%;\n}\n#asset-search {\n  padding: 10px;\n  height: 320px;\n  overflow-y: scroll;\n}\n#total_reefers {\n  padding: 10px;\n  height: 100px;\n}\n#asset_maps {\n  padding: 10px;\n  height: 400px;\n  /* overflow-y: scroll; */\n}\n@media (max-width: 1024px) {\n#lado_derecho{\n    width: 80%;\n}\n#lado_izquierdo{\n    width: 20%;\n}\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n#lado_derecho{\n    width: 75%;\n}\n#lado_izquierdo{\n    width: 25%;\n}\n#asset-search {\n  padding: 10px;\n  height: 320px;\n  overflow-y: scroll;\n}\n/* #tblContenedor_reefers{\n  width: 100%;\n  overflow-y: scroll;\n} */\n#total_reefers {\n  padding: 10px;\n  height: 100px;\n}\n#asset_maps {\n  padding: 10px;\n  height: 400px;\n  /* overflow-y: scroll; */\n}\n@media (max-width: 1024px) {\n#lado_derecho{\n    width: 80%;\n}\n#lado_izquierdo{\n    width: 20%;\n}\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -28299,7 +28303,7 @@ var render = function () {
                                 attrs: { type: "button" },
                                 on: {
                                   click: function ($event) {
-                                    return _vm.contenedores_prendidos("r")
+                                    return _vm.contenedores_prendidos("Reefer")
                                   },
                                 },
                               },
@@ -28331,7 +28335,9 @@ var render = function () {
                                 attrs: { type: "button" },
                                 on: {
                                   click: function ($event) {
-                                    return _vm.contenedores_prendidos("g")
+                                    return _vm.contenedores_prendidos(
+                                      "Generador"
+                                    )
                                   },
                                 },
                               },
@@ -28414,16 +28420,17 @@ var render = function () {
                       ]
                     ),
                     _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "col shadow-sm p-3 mb-5 bg-white rounded ",
-                        staticStyle: { margin: "-30px 15px 10px 15px" },
-                        attrs: { id: "grid_resumen_contenedores" },
-                      },
-                      [
-                        _vm.tipo_contenedor_seleccionado == "r"
-                          ? _c(
+                    _vm.tipo == "Reefer"
+                      ? _c(
+                          "div",
+                          {
+                            staticClass:
+                              "col shadow-sm p-3 mb-5 bg-white rounded ",
+                            staticStyle: { margin: "-30px 15px 10px 15px" },
+                            attrs: { id: "grid_resumen_reefer" },
+                          },
+                          [
+                            _c(
                               "table",
                               {
                                 staticClass: "table",
@@ -29647,16 +29654,27 @@ var render = function () {
                                   0
                                 ),
                               ]
-                            )
-                          : _vm._e(),
-                        _vm._v(" "),
-                        _vm.tipo_contenedor_seleccionado == "g"
-                          ? _c(
+                            ),
+                          ]
+                        )
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _vm.tipo == "Generador"
+                      ? _c(
+                          "div",
+                          {
+                            staticClass:
+                              "col shadow-sm p-3 mb-5 bg-white rounded ",
+                            staticStyle: { margin: "-30px 15px 10px 15px" },
+                            attrs: { id: "grid_resumen_generadores" },
+                          },
+                          [
+                            _c(
                               "table",
                               {
                                 staticClass: "table",
                                 staticStyle: { margin: "0 auto !important" },
-                                attrs: { id: "tblContenedor_gen" },
+                                attrs: { id: "tblContenedor_generador" },
                               },
                               [
                                 _c("thead", [
@@ -29807,10 +29825,10 @@ var render = function () {
                                   0
                                 ),
                               ]
-                            )
-                          : _vm._e(),
-                      ]
-                    ),
+                            ),
+                          ]
+                        )
+                      : _vm._e(),
                     _vm._v(" "),
                     _vm.tipo == "Generador"
                       ? _c(
