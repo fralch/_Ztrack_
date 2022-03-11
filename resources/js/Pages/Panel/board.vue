@@ -79,12 +79,12 @@
                 <div id="grid_resumen_reefer" class="col shadow-sm p-3 mb-5 bg-white rounded " style="margin: -30px 15px 10px 15px; "   v-if="tipo == 'Reefer'" >
                   <table class="table" id="tblContenedor_reefers" style="margin: 0 auto !important;">
                     <thead >
-                      <tr class="bg-primary" style="color:white !important;">
+                      <tr class="bg-success" style="color:white !important;">
                         <th scope="col" width='50px' class="text-center">Ver</th>
                         <th scope="col" width='150px' class="text-center">Reefers</th>
                         <th scope="col" class="text-center">Tipo</th>
                         <th scope="col" class="text-center">Estado</th>
-                        <th scope="col" width='250px' class="text-center">Booking</th>
+                        <th scope="col" width='150px' class="text-center">Booking</th>
                         <th scope="col" width='50px' class="text-center">booking_temp</th>
                         <th scope="col" class="text-center">Set_point</th>
                         <th scope="col" class="text-center">Temp_supply_1</th>
@@ -156,13 +156,13 @@
                       >
                         <td>
                          <!-- <i class="bi bi-power"></i> -->
-                          <button :id="reef.tipo+'_'+reef.contenedores_id" type="button" class="btn btn-outline-primary" @click="select_contenedor(reef)"  >
+                          <button :id="reef.tipo+'_'+reef.contenedores_id" type="button" class="btn btn-outline-success" @click="select_contenedor(reef)"  >
                             <i class="bi bi-check-lg"></i>                    
                           </button>
                         </td>
                         <td class="text-center">{{reef.nombre_contenedor}}</td>
                         <td class="text-center">{{reef.tipo}}</td>
-                        <td class="text-center">{{reef.encendido}}</td>
+                        <td class="text-center">{{reef.encendido == 1 ? 'SI': 'NO'}}</td>
                         <td class="text-center">{{reef.booking}}</td>
                         <td class="text-center">{{reef.booking_temp}}C°</td>
                         <td class="text-center">{{reef.set_point}}C°</td>
@@ -236,12 +236,28 @@
                     <thead >
                       <tr class="bg-primary" style="color:white !important;">
                         <th scope="col" width='50px'>Ver</th>
-                        <th scope="col" width='150px'>Generador</th>
-                        <th scope="col">Tipo</th>
-                        <th scope="col">Estado</th>
-                        <th scope="col" width='250px'>Booking</th>
-                        <th scope="col" width='50px'>Temp_contratada</th>                      
-                        <th scope="col" width='50px'>far</th>
+                        <th scope="col" width='150px' class="text-center">Generador</th>
+                        <th scope="col" class="text-center">Tipo</th>
+                        <th scope="col" class="text-center">Estado</th>
+                        <th scope="col" width='150px' class="text-center">Booking</th>
+                        <th scope="col" width='50px' class="text-center">Booking_temp</th>                      
+                        <th scope="col" width='50px' class="text-center">Battery_voltage</th>
+                        <th scope="col" width='50px' class="text-center">Water_temp</th>
+                        <th scope="col" width='50px' class="text-center">Running_frequency</th>
+                        <th scope="col" width='50px' class="text-center">Fuel_level</th>
+                        <th scope="col" width='50px' class="text-center">Voltage_measure</th>
+                        <th scope="col" width='50px' class="text-center">Rotor_current</th>
+                        <th scope="col" width='50px' class="text-center">fiel_current</th>
+                        <th scope="col" width='50px' class="text-center">Speed</th>
+                        <th scope="col" width='50px' class="text-center">Eco_power</th>
+                        <th scope="col" width='50px' class="text-center">RPM</th>
+                        <th scope="col" width='50px' class="text-center">Unit_mode</th>
+                        <th scope="col" width='50px' class="text-center">Horometro</th>
+                        <th scope="col" width='50px' class="text-center">Modelo</th>
+                        <th scope="col" width='50px' class="text-center">Latitud</th>
+                        <th scope="col" width='50px' class="text-center">Longitud</th>
+                        <th scope="col" width='50px' class="text-center">Alarma</th>
+                        <th scope="col" width='50px' class="text-center">Evento</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -254,12 +270,28 @@
                             <i class="bi bi-check-lg"></i>                    
                           </button>
                         </td>
-                        <td>{{gen.nombre_contenedor}}</td>
-                        <td>{{gen.tipo}}</td>
-                        <td>{{gen.encendido}}</td>
-                        <td>{{gen.booking}}</td>
+                        <td class="text-center">{{gen.nombre_contenedor}}</td>
+                        <td class="text-center">{{gen.tipo}}</td>
+                        <td class="text-center">{{gen.encendido == 1 ? 'SI': 'NO'}}</td>
+                        <td class="text-center">{{gen.booking}}</td>
                         <td class="text-center">{{gen.booking_temp}}C°</td>
-                        <td class="text-center">{{gen.engine_state}}C°</td>
+                        <td class="text-center">{{gen.battery_voltage}}</td>
+                        <td class="text-center">{{gen.water_temp}}</td>
+                        <td class="text-center">{{gen.running_frequency}}</td>
+                        <td class="text-center">{{gen.fuel_level}}</td>
+                        <td class="text-center">{{gen.voltage_measure}}</td>
+                        <td class="text-center">{{gen.rotor_current}}</td>
+                        <td class="text-center">{{gen.fiel_current}}</td>
+                        <td class="text-center">{{gen.speed}}</td>
+                        <td class="text-center">{{gen.eco_power}}</td>
+                        <td class="text-center">{{gen.rpm}}</td>
+                        <td class="text-center">{{gen.unit_mode}}</td>
+                        <td class="text-center">{{gen.horometro}}</td>
+                        <td class="text-center">{{gen.modelo}}</td>
+                        <td class="text-center">{{gen.latitud}}</td>
+                        <td class="text-center">{{gen.longitud}}</td>
+                        <td class="text-center">{{gen.nombre_alarma}}</td>
+                        <td class="text-center">{{gen.nombre_evento}}</td>
                       </tr>
                     </tbody>
                   </table>

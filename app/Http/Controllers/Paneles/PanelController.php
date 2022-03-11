@@ -59,7 +59,12 @@ class PanelController extends Controller
             return $ultimo_dato_contenedor = Registro_diario_reefers::where('contenedor_id',$id_contenedor)->orderBy('id', 'desc')->first();
         }
         if ($tipo_contenedor == 'Generador') {
-            return $ultimo_dato_contenedor = Registro_diario_generadores::where('contenedor_id',$id_contenedor)->orderBy('id', 'desc')->first();
+            return $ultimo_dato_contenedor = Registro_diario_generadores::select()
+                                            ->join('alarmas as al', 'al.id', 'registro_diario_generadores.alarma_id')
+                                            ->join('eventos as e', 'e.id', 'registro_diario_generadores.evento_id')
+                                            ->where('registro_diario_generadores.contenedor_id',$id_contenedor)
+                                            ->orderBy('registro_diario_generadores.id', 'desc')
+                                            ->first();
         }
         
     }

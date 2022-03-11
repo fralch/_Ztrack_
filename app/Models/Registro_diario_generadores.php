@@ -17,7 +17,7 @@ class Registro_diario_generadores extends Model
         'water_temp', // Water Temperature
         'running_frequency', // Running Frequency
         'fuel_level', // Fuel Level
-        'voltage_measured', // Voltage Measured
+        'voltage_measure', // Voltage Measured
         'rotor_current', // Rotor Current
         'fiel_current', // Field Current
         'speed', // Speed
