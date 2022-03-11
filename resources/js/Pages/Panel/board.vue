@@ -28,7 +28,7 @@
                 Alarmas 
                 <canvas id="myChart_alarms"></canvas>
               </div>
-              <div id="cargo-care" class="col shadow-sm p-3 mb-5 bg-white rounded" >
+              <div id="cargo-care" class="col shadow-sm p-3 mb-5 bg-white rounded"  >
                 Eventos
                 <canvas id="myChart_cargo"></canvas>
               </div>
@@ -80,20 +80,20 @@
                   <table class="table" id="tblContenedor_reefers" style="margin: 0 auto !important;" v-if="tipo_contenedor_seleccionado == 'r' ">
                     <thead >
                       <tr class="bg-primary" style="color:white !important;">
-                        <th scope="col" width='50px'>Ver</th>
-                        <th scope="col" width='150px'>Reefers</th>
-                        <th scope="col">Tipo</th>
-                        <th scope="col">Estado</th>
-                        <th scope="col" width='250px'>Booking</th>
-                        <th scope="col" width='50px'>Temp_contratada</th>
-                        <th scope="col">Set_point</th>
+                        <th scope="col" width='50px' class="text-center">Ver</th>
+                        <th scope="col" width='150px' class="text-center">Reefers</th>
+                        <th scope="col" class="text-center">Tipo</th>
+                        <th scope="col" class="text-center">Estado</th>
+                        <th scope="col" width='250px' class="text-center">Booking</th>
+                        <th scope="col" width='50px' class="text-center">Temp_contratada</th>
+                        <th scope="col" class="text-center">Set_point</th>
                         
                        
                       </tr>
                     </thead>
                     <tbody>
                       <tr 
-                        v-for="(reef, index) in datos_resumen_reefer" :key="index"
+                        v-for="(reef, index) in datos_resumen_reefer" :key="index" @click="select_contenedor(reef)"
                       >
                         <td>
                          <!-- <i class="bi bi-power"></i> -->
@@ -101,12 +101,12 @@
                             <i class="bi bi-check-lg"></i>                    
                           </button>
                         </td>
-                        <td>{{reef.nombre_contenedor}}</td>
-                        <td>{{reef.tipo}}</td>
-                        <td>{{reef.encendido}}</td>
-                        <td>{{reef.booking}}</td>
+                        <td class="text-center">{{reef.nombre_contenedor}}</td>
+                        <td class="text-center">{{reef.tipo}}</td>
+                        <td class="text-center">{{reef.encendido}}</td>
+                        <td class="text-center">{{reef.booking}}</td>
                         <td class="text-center">{{reef.booking_temp}}C°</td>
-                        <td class="text-center">{{reef.set_point}}C°</td>
+                        <td class="text-center">{{reef.capacity_load}}C°</td>
                       </tr>
                     </tbody>
                   </table>
@@ -119,9 +119,8 @@
                         <th scope="col">Tipo</th>
                         <th scope="col">Estado</th>
                         <th scope="col" width='250px'>Booking</th>
-                        <th scope="col" width='50px'>Temp_contratada</th>
-                        
-                       
+                        <th scope="col" width='50px'>Temp_contratada</th>                      
+                        <th scope="col" width='50px'>far</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -139,6 +138,7 @@
                         <td>{{gen.encendido}}</td>
                         <td>{{gen.booking}}</td>
                         <td class="text-center">{{gen.booking_temp}}C°</td>
+                        <td class="text-center">{{gen.engine_state}}C°</td>
                       </tr>
                     </tbody>
                   </table>
@@ -300,7 +300,7 @@ export default {
       datos_tabla_generador: [],
       datos_resumen_gen: [],
       datos_resumen_reefer: [],
-      tipo_contenedor_seleccionado: 'r', 
+      tipo_contenedor_seleccionado: null, 
       //  ---- myChart_principal -----
       my_Chart_principal_dataset_reefer: [
                 {

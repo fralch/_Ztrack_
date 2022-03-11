@@ -2422,7 +2422,7 @@ var Chart_eventos;
       datos_tabla_generador: [],
       datos_resumen_gen: [],
       datos_resumen_reefer: [],
-      tipo_contenedor_seleccionado: 'r',
+      tipo_contenedor_seleccionado: null,
       //  ---- myChart_principal -----
       my_Chart_principal_dataset_reefer: [{
         label: 'SetPoint',
@@ -28325,6 +28325,7 @@ var render = function () {
                                       _c(
                                         "th",
                                         {
+                                          staticClass: "text-center",
                                           attrs: {
                                             scope: "col",
                                             width: "50px",
@@ -28336,6 +28337,7 @@ var render = function () {
                                       _c(
                                         "th",
                                         {
+                                          staticClass: "text-center",
                                           attrs: {
                                             scope: "col",
                                             width: "150px",
@@ -28344,17 +28346,28 @@ var render = function () {
                                         [_vm._v("Reefers")]
                                       ),
                                       _vm._v(" "),
-                                      _c("th", { attrs: { scope: "col" } }, [
-                                        _vm._v("Tipo"),
-                                      ]),
-                                      _vm._v(" "),
-                                      _c("th", { attrs: { scope: "col" } }, [
-                                        _vm._v("Estado"),
-                                      ]),
+                                      _c(
+                                        "th",
+                                        {
+                                          staticClass: "text-center",
+                                          attrs: { scope: "col" },
+                                        },
+                                        [_vm._v("Tipo")]
+                                      ),
                                       _vm._v(" "),
                                       _c(
                                         "th",
                                         {
+                                          staticClass: "text-center",
+                                          attrs: { scope: "col" },
+                                        },
+                                        [_vm._v("Estado")]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "th",
+                                        {
+                                          staticClass: "text-center",
                                           attrs: {
                                             scope: "col",
                                             width: "250px",
@@ -28366,6 +28379,7 @@ var render = function () {
                                       _c(
                                         "th",
                                         {
+                                          staticClass: "text-center",
                                           attrs: {
                                             scope: "col",
                                             width: "50px",
@@ -28374,9 +28388,14 @@ var render = function () {
                                         [_vm._v("Temp_contratada")]
                                       ),
                                       _vm._v(" "),
-                                      _c("th", { attrs: { scope: "col" } }, [
-                                        _vm._v("Set_point"),
-                                      ]),
+                                      _c(
+                                        "th",
+                                        {
+                                          staticClass: "text-center",
+                                          attrs: { scope: "col" },
+                                        },
+                                        [_vm._v("Set_point")]
+                                      ),
                                     ]
                                   ),
                                 ]),
@@ -28386,72 +28405,96 @@ var render = function () {
                                   _vm._l(
                                     _vm.datos_resumen_reefer,
                                     function (reef, index) {
-                                      return _c("tr", { key: index }, [
-                                        _c("td", [
-                                          _c(
-                                            "button",
-                                            {
-                                              staticClass:
-                                                "btn btn-outline-primary",
-                                              attrs: {
-                                                id:
-                                                  reef.tipo +
-                                                  "_" +
-                                                  reef.contenedores_id,
-                                                type: "button",
-                                              },
-                                              on: {
-                                                click: function ($event) {
-                                                  return _vm.select_contenedor(
-                                                    reef
-                                                  )
+                                      return _c(
+                                        "tr",
+                                        {
+                                          key: index,
+                                          on: {
+                                            click: function ($event) {
+                                              return _vm.select_contenedor(reef)
+                                            },
+                                          },
+                                        },
+                                        [
+                                          _c("td", [
+                                            _c(
+                                              "button",
+                                              {
+                                                staticClass:
+                                                  "btn btn-outline-primary",
+                                                attrs: {
+                                                  id:
+                                                    reef.tipo +
+                                                    "_" +
+                                                    reef.contenedores_id,
+                                                  type: "button",
+                                                },
+                                                on: {
+                                                  click: function ($event) {
+                                                    return _vm.select_contenedor(
+                                                      reef
+                                                    )
+                                                  },
                                                 },
                                               },
-                                            },
+                                              [
+                                                _c("i", {
+                                                  staticClass: "bi bi-check-lg",
+                                                }),
+                                              ]
+                                            ),
+                                          ]),
+                                          _vm._v(" "),
+                                          _c(
+                                            "td",
+                                            { staticClass: "text-center" },
                                             [
-                                              _c("i", {
-                                                staticClass: "bi bi-check-lg",
-                                              }),
+                                              _vm._v(
+                                                _vm._s(reef.nombre_contenedor)
+                                              ),
                                             ]
                                           ),
-                                        ]),
-                                        _vm._v(" "),
-                                        _c("td", [
-                                          _vm._v(
-                                            _vm._s(reef.nombre_contenedor)
+                                          _vm._v(" "),
+                                          _c(
+                                            "td",
+                                            { staticClass: "text-center" },
+                                            [_vm._v(_vm._s(reef.tipo))]
                                           ),
-                                        ]),
-                                        _vm._v(" "),
-                                        _c("td", [_vm._v(_vm._s(reef.tipo))]),
-                                        _vm._v(" "),
-                                        _c("td", [
-                                          _vm._v(_vm._s(reef.encendido)),
-                                        ]),
-                                        _vm._v(" "),
-                                        _c("td", [
-                                          _vm._v(_vm._s(reef.booking)),
-                                        ]),
-                                        _vm._v(" "),
-                                        _c(
-                                          "td",
-                                          { staticClass: "text-center" },
-                                          [
-                                            _vm._v(
-                                              _vm._s(reef.booking_temp) + "C°"
-                                            ),
-                                          ]
-                                        ),
-                                        _vm._v(" "),
-                                        _c(
-                                          "td",
-                                          { staticClass: "text-center" },
-                                          [
-                                            _vm._v(
-                                              _vm._s(reef.set_point) + "C°"
-                                            ),
-                                          ]
-                                        ),
-                                      ])
+                                          _vm._v(" "),
+                                          _c(
+                                            "td",
+                                            { staticClass: "text-center" },
+                                            [_vm._v(_vm._s(reef.encendido))]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "td",
+                                            { staticClass: "text-center" },
+                                            [_vm._v(_vm._s(reef.booking))]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "td",
+                                            { staticClass: "text-center" },
+                                            [
+                                              _vm._v(
+                                                _vm._s(reef.booking_temp) + "C°"
+                                              ),
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "td",
+                                            { staticClass: "text-center" },
+                                            [
+                                              _vm._v(
+                                                _vm._s(reef.capacity_load) +
+                                                  "C°"
+                                              ),
+                                            ]
+                                          ),
+                                        ]
+                                      )
                                     }
                                   ),
                                   0
@@ -28530,6 +28573,17 @@ var render = function () {
                                         },
                                         [_vm._v("Temp_contratada")]
                                       ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "th",
+                                        {
+                                          attrs: {
+                                            scope: "col",
+                                            width: "50px",
+                                          },
+                                        },
+                                        [_vm._v("far")]
+                                      ),
                                     ]
                                   ),
                                 ]),
@@ -28587,6 +28641,16 @@ var render = function () {
                                           [
                                             _vm._v(
                                               _vm._s(gen.booking_temp) + "C°"
+                                            ),
+                                          ]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "td",
+                                          { staticClass: "text-center" },
+                                          [
+                                            _vm._v(
+                                              _vm._s(gen.engine_state) + "C°"
                                             ),
                                           ]
                                         ),
