@@ -1270,10 +1270,11 @@ export default {
 </script>
 
 <style lang="css">
-/* .selected {
-  background-color: #444444 !important;
+.selected {
+  background-color: #A2AEC7 !important;
   color: white;
-  } */
+  }
+
  #lado_derecho{
     width: 75%;
   }
