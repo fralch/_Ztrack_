@@ -45,13 +45,13 @@
                 <div id="total_reefers" class="col shadow-sm p-3 mb-5 bg-white rounded " style="margin: 10px 15px 0px 15px;">
                   <div>Total Reefers: {{contenedores_todos.length}}</div>
                   <div class="row" style="margin: 0 10px;">
-                    <button type="button" class="col-3 btn btn-success"  @click="contenedores_prendidos('Reefer')">
+                    <button type="button" id="select_reef" class="col-3 btn btn-success"  @click="contenedores_prendidos('Reefer')">
                       <i class="bi bi-power"></i> 
                       <b style="font-size:1.2em;">{{contenedores_encendidos_reefer.length}}</b>
                       &nbsp;
                       Reefers Running 
                     </button>
-                    <button type="button" class="col-3 btn btn-primary" @click="contenedores_prendidos('Generador')" >
+                    <button type="button" id="select_gen" class="col-3 btn btn-primary" @click="contenedores_prendidos('Generador')" >
                       <i class="bi bi-power"></i> 
                       <b style="font-size:1.2em;">{{contenedores_encendidos_gen.length}}</b>
                       &nbsp;
@@ -77,10 +77,10 @@
                 </div>
 <!-- ********* TABLA RESUMEN CONTENEDORES  *********-->
                 <div id="grid_resumen_reefer" class="col shadow-sm p-3 mb-5 bg-white rounded " style="margin: -30px 15px 10px 15px; "   v-if="tipo == 'Reefer'" >
-                  <table class="table" id="tblContenedor_reefers" style="margin: 0 auto !important;">
+                  <table class="display nowrap" id="tblContenedor_reefers" style="margin: 0 auto !important;">
                     <thead >
                       <tr class="bg-success" style="color:white !important;">
-                        <th scope="col" width='50px' class="text-center">Ver</th>
+                        <!-- <th scope="col" width='50px' class="text-center">Ver</th> -->
                         <th scope="col" width='150px' class="text-center">Reefers</th>
                         <th scope="col" class="text-center">Tipo</th>
                         <th scope="col" class="text-center">Estado</th>
@@ -154,12 +154,12 @@
                       <tr 
                         v-for="(reef, index) in datos_resumen_reefer" :key="index" @click="select_contenedor(reef)"
                       >
-                        <td>
-                         <!-- <i class="bi bi-power"></i> -->
+                        <!-- <td>
+                         
                           <button :id="reef.tipo+'_'+reef.contenedores_id" type="button" class="btn btn-outline-success" @click="select_contenedor(reef)"  >
                             <i class="bi bi-check-lg"></i>                    
                           </button>
-                        </td>
+                        </td> -->
                         <td class="text-center">{{reef.nombre_contenedor}}</td>
                         <td class="text-center">{{reef.tipo}}</td>
                         <td class="text-center">{{reef.encendido == 1 ? 'SI': 'NO'}}</td>
@@ -232,10 +232,10 @@
                 </div>
                 <!-- ///////////// -->
                 <div id="grid_resumen_generadores" class="col shadow-sm p-3 mb-5 bg-white rounded " style="margin: -30px 15px 10px 15px; "   v-if="tipo == 'Generador'">
-                  <table class="table" id="tblContenedor_generador" style="margin: 0 auto !important;">
+                  <table class="display nowrap" id="tblContenedor_generador" style="margin: 0 auto !important;">
                     <thead >
-                      <tr class="bg-primary" style="color:white !important;">
-                        <th scope="col" width='50px'>Ver</th>
+                      <tr class="bg-primary" style="color:white !important;" >
+                        <!-- <th scope="col" width='50px'>Ver</th> -->
                         <th scope="col" width='150px' class="text-center">Generador</th>
                         <th scope="col" class="text-center">Tipo</th>
                         <th scope="col" class="text-center">Estado</th>
@@ -263,13 +263,13 @@
                     <tbody>
                       <tr 
                         v-for="(gen, index) in datos_resumen_gen" :key="index"
+                        class="tr_resumen_reef"
                       >
-                        <td>
-                         <!-- <i class="bi bi-power"></i> -->
+                        <!-- <td>
                           <button :id="gen.tipo+'_'+gen.contenedores_id" type="button" class="btn btn-outline-primary" @click="select_contenedor(gen)"  >
                             <i class="bi bi-check-lg"></i>                    
                           </button>
-                        </td>
+                        </td> -->
                         <td class="text-center">{{gen.nombre_contenedor}}</td>
                         <td class="text-center">{{gen.tipo}}</td>
                         <td class="text-center">{{gen.encendido == 1 ? 'SI': 'NO'}}</td>
@@ -325,6 +325,7 @@
                     <tbody>
                       <tr 
                         v-for="(generador, index) in datos_tabla_generador" :key="index"
+                        class="tr_resumen_gen"
                       >
                         <td>{{index+1}}</td>
                         <td>{{generador.nombre_contenedor}}</td>
@@ -675,7 +676,10 @@ export default {
       this.$nextTick(() => {
         var table = $('#tblContenedor_reefers').DataTable({
           scrollX: "100%",
+          scrollCollapse: true,
+          select: 'single',
           language: {
+              retrieve: true,
               decimal: "",
               emptyTable: "No hay datos disponibles en la tabla",
               info: "Mostrando del _START_ al _END_ de _TOTAL_ registros",
@@ -695,9 +699,25 @@ export default {
                 previous:
                   '<i class="fas fa-chevron-circle-left" style="font-size:20px;"></i>',
               },
-              responsive: true,
           },
+           responsive: true,
         });
+        /* Esta es la funcion que selecciona una fila  yla colorea  */
+          $('#tblContenedor_reefers tbody').on( 'click', 'tr', function () {
+          if ( $(this).hasClass('selected') ) {
+              $(this).removeClass('selected');
+          }
+          else {
+              table.$('tr.selected').removeClass('selected');
+              $(this).addClass('selected');
+              }
+          } );
+          /* deseleccionar al cambiar de tipo de contenedor */
+          $('#select_gen').click( function () {
+              // table.row('.selected').remove().draw( false );
+              console.log('borre select de reef'); 
+          } );
+        // --------------------------------
         var table2 = $('#tblContenedor_generador').DataTable({
           scrollX: "100%",
           language: {
@@ -724,7 +744,21 @@ export default {
               responsive: true,
           },
         });
-        // console.log(table);
+        /* Esta es la funcion que selecciona una fila  yla colorea  */
+          $('#tblContenedor_generador tbody').on( 'click', 'tr', function () {
+          if ( $(this).hasClass('selected') ) {
+              $(this).removeClass('selected');
+          }
+          else {
+              table2.$('tr.selected').removeClass('selected');
+              $(this).addClass('selected');
+              }
+          } );
+          /* deseleccionar al cambiar de tipo de contenedor */
+          $('#select_reef').click( function () {
+              // table2.row('.selected').remove().draw( false );
+              console.log('borre select de gen')
+          } );
       });
      
       
@@ -1236,6 +1270,10 @@ export default {
 </script>
 
 <style lang="css">
+/* .selected {
+  background-color: #444444 !important;
+  color: white;
+  } */
  #lado_derecho{
     width: 75%;
   }
@@ -1260,6 +1298,7 @@ export default {
   height: 400px;
   /* overflow-y: scroll; */
 }
+
 
 @media (max-width: 1024px) {
   #lado_derecho{
