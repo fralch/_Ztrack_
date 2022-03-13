@@ -45,17 +45,17 @@
                 <div id="total_reefers" class="col shadow-sm p-3 mb-5 bg-white rounded " style="margin: 10px 15px 0px 15px;">
                   <div>Total Reefers: {{contenedores_todos.length}}</div>
                   <div class="row" style="margin: 0 10px;">
-                    <button type="button" id="select_reef" class="col-3 btn btn-success"  @click="contenedores_prendidos('Reefer')">
-                      <i class="bi bi-power"></i> 
-                      <b style="font-size:1.2em;">{{contenedores_encendidos_reefer.length}}</b>
-                      &nbsp;
-                      Reefers Running 
-                    </button>
                     <button type="button" id="select_gen" class="col-3 btn btn-primary" @click="contenedores_prendidos('Generador')" >
                       <i class="bi bi-power"></i> 
                       <b style="font-size:1.2em;">{{contenedores_encendidos_gen.length}}</b>
                       &nbsp;
                       Gen Running 
+                    </button>
+                    <button type="button" id="select_reef" class="col-3 btn btn-success"  @click="contenedores_prendidos('Reefer')">
+                      <i class="bi bi-power"></i> 
+                      <b style="font-size:1.2em;">{{contenedores_encendidos_reefer.length}}</b>
+                      &nbsp;
+                      Reefers Running 
                     </button>
                     <button type="button" class="col-3 btn btn-danger" >
                       <i class="bi bi-power"></i> 
@@ -310,19 +310,24 @@
                   <table  class="table display nowrap" id="tblDetalleContenedores_generadores">
                     <thead>
                       <tr class="bg-info" style="color:white !important;">
-                        <th scope="col">N°</th>
-                        <th scope="col">Generador</th>
-                        <th scope="col">Set_point</th>
-                        <th scope="col">Temp_supply</th>
-                        <th scope="col">Temp_return</th>
-                        <th scope="col">Re_hume</th>
-                        <th scope="col">Re_co2</th>
-                        <th scope="col">Re_o2</th>
-                        <th scope="col">Alv</th>
-                        <th scope="col">Latitud</th>
-                        <th scope="col">Longitud</th>
-                        <th scope="col">Status</th>
-                        <th scope="col">Modelo</th>
+                        <th scope="col">N°</th>            
+                        <th scope="col" width='50px' class="text-center">Battery_voltage</th>
+                        <th scope="col" width='50px' class="text-center">Water_temp</th>
+                        <th scope="col" width='50px' class="text-center">Running_frequency</th>
+                        <th scope="col" width='50px' class="text-center">Fuel_level</th>
+                        <th scope="col" width='50px' class="text-center">Voltage_measure</th>
+                        <th scope="col" width='50px' class="text-center">Rotor_current</th>
+                        <th scope="col" width='50px' class="text-center">fiel_current</th>
+                        <th scope="col" width='50px' class="text-center">Speed</th>
+                        <th scope="col" width='50px' class="text-center">Eco_power</th>
+                        <th scope="col" width='50px' class="text-center">RPM</th>
+                        <th scope="col" width='50px' class="text-center">Unit_mode</th>
+                        <th scope="col" width='50px' class="text-center">Horometro</th>
+                        <th scope="col" width='50px' class="text-center">Modelo</th>
+                        <th scope="col" width='50px' class="text-center">Latitud</th>
+                        <th scope="col" width='50px' class="text-center">Longitud</th>
+                        <th scope="col" width='50px' class="text-center">Alarma</th>
+                        <th scope="col" width='50px' class="text-center">Evento</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -330,19 +335,25 @@
                         v-for="(generador, index) in datos_tabla_generador" :key="index"
                         class="tr_resumen_gen"
                       >
-                        <td>{{index+1}}</td>
-                        <td>{{generador.nombre_contenedor}}</td>
-                        <td>{{generador.set_point}}</td>
-                        <td>{{generador.temp_supply}}</td>
-                        <td>{{generador.temp_return}}</td>
-                        <td>{{generador.re_hume}}</td>
-                        <td>{{generador.re_c_o2}}</td>
-                        <td>{{generador.re_o2}}</td>
-                        <td>{{generador.alv}}</td>
-                        <td>{{generador.latitud}}</td>
-                        <td>{{generador.longitud}}</td>
-                        <td>{{generador.status}}</td>
-                        <td>{{generador.modelo}}</td>
+                        <!-- <td>{{index+1}}</td> -->
+                        <td class="text-center">{{generador.id}}</td>
+                        <td class="text-center">{{generador.battery_voltage}}</td>
+                        <td class="text-center">{{generador.water_temp}}</td>
+                        <td class="text-center">{{generador.running_frequency}}</td>
+                        <td class="text-center">{{generador.fuel_level}}</td>
+                        <td class="text-center">{{generador.voltage_measure}}</td>
+                        <td class="text-center">{{generador.rotor_current}}</td>
+                        <td class="text-center">{{generador.fiel_current}}</td>
+                        <td class="text-center">{{generador.speed}}</td>
+                        <td class="text-center">{{generador.eco_power}}</td>
+                        <td class="text-center">{{generador.rpm}}</td>
+                        <td class="text-center">{{generador.unit_mode}}</td>
+                        <td class="text-center">{{generador.horometro}}</td>
+                        <td class="text-center">{{generador.modelo}}</td>
+                        <td class="text-center">{{generador.latitud}}</td>
+                        <td class="text-center">{{generador.longitud}}</td>
+                        <td class="text-center">{{generador.alarma_id}}</td>
+                        <td class="text-center">{{generador.evento_id}}</td>
                       </tr>
                       
                     </tbody>
@@ -359,51 +370,132 @@
                     <thead>
                       <tr class="bg-info" style="color:white !important;">
                         <th scope="col">N°</th>
-                        <th scope="col">Reefer</th>
-                        <th scope="col">Set_point</th>
-                        <th scope="col">Temp_supply</th>
-                        <th scope="col">Tem_return</th>
-                        <th scope="col">Re_hume</th>
-                        <th scope="col">Fuel_level</th>
-                        <th scope="col">Vdc</th>
-                        <th scope="col">Rpm</th>
-                        <th scope="col">Freq</th>
-                        <th scope="col">Vac</th>
-                        <th scope="col">Latitud</th>
-                        <th scope="col">Longitud</th>
-                        <th scope="col">Temp_motor</th>
-                        <th scope="col">Status</th>
-                        <th scope="col">Speed</th>
-                        <th scope="col">Ecopower</th>
-                        <th scope="col">Horometro</th>
-                        <th scope="col">Alarma</th>
-                        <th scope="col">Evento</th>
-                        <th scope="col">Modelo</th>
+                        <th scope="col" class="text-center">Set_point</th>
+                        <th scope="col" class="text-center">Temp_supply_1</th>
+                        <th scope="col" class="text-center">Temp_supply_2</th>
+                        <th scope="col" class="text-center">Return_air</th>
+                        <th scope="col" class="text-center">Evaporation_coil</th>
+                        <th scope="col" class="text-center">Condensation_coil</th>
+                        <th scope="col" class="text-center">Compress_coil_1</th>
+                        <th scope="col" class="text-center">Compress_coil_2</th>
+                        <th scope="col" class="text-center">Ambient_air</th>
+                        <th scope="col" class="text-center">Cargo_1_temp</th>
+                        <th scope="col" class="text-center">Cargo_2_temp</th>
+                        <th scope="col" class="text-center">Cargo_3_temp</th>
+                        <th scope="col" class="text-center">Cargo_4_temp</th>
+                        <th scope="col" class="text-center">Relative_humidity</th>
+                        <th scope="col" class="text-center">AVL</th>
+                        <th scope="col" class="text-center">Suction_pressure</th>
+                        <th scope="col" class="text-center">Discharge_pressure</th>
+                        <th scope="col" class="text-center">Line_voltage</th>
+                        <th scope="col" class="text-center">Line_frequency</th>
+                        <th scope="col" class="text-center">Consumption_ph_1</th>
+                        <th scope="col" class="text-center">Consumption_ph_2</th>
+                        <th scope="col" class="text-center">Consumption_ph_3</th>
+                        <th scope="col" class="text-center">Co2_reading</th>
+                        <th scope="col" class="text-center">O2_reading</th>
+                        <th scope="col" class="text-center">Evaporator_speed</th>
+                        <th scope="col" class="text-center">Condenser_speed</th>
+                        <th scope="col" class="text-center">Battery_voltage</th>
+                        <th scope="col" class="text-center">Power_kwh</th>
+                        <th scope="col" class="text-center">Power_trip_reading</th>
+                        <th scope="col" class="text-center">Power_trip_duration</th>
+                        <th scope="col" class="text-center">Suction_temp</th>
+                        <th scope="col" class="text-center">Discharge_temp</th>
+                        <th scope="col" class="text-center">Supply_air_temp</th>
+                        <th scope="col" class="text-center">Return_air_temp</th>
+                        <th scope="col" class="text-center">Dl_battery_temp</th>
+                        <th scope="col" class="text-center">Dl_battery_charge</th>
+                        <th scope="col" class="text-center">Power_consumption</th>
+                        <th scope="col" class="text-center">Power_consumption_avg</th>
+                        <th scope="col" class="text-center">Alarm_present</th>
+                        <th scope="col" class="text-center">Capacity_load</th>
+                        <th scope="col" class="text-center">Power_state</th>
+                        <th scope="col" class="text-center">Controlling_mode</th>
+                        <th scope="col" class="text-center">Humidity_control</th>
+                        <th scope="col" class="text-center">Humidity_set_point</th>
+                        <th scope="col" class="text-center">Fresh_air_ex_mode</th>
+                        <th scope="col" class="text-center">Fresh_air_ex_rate</th>
+                        <th scope="col" class="text-center">Fresh_air_ex_delay</th>
+                        <th scope="col" class="text-center">Set_point_o2</th>
+                        <th scope="col" class="text-center">Set_point_co2</th>
+                        <th scope="col" class="text-center">Defrost_term_temp</th>
+                        <th scope="col" class="text-center">Defrost_interval</th>
+                        <th scope="col" class="text-center">Water_cooled_conde</th>
+                        <th scope="col" class="text-center">USDA_trip</th>
+                        <th scope="col" class="text-center">Evaporator_exp_valve</th>
+                        <th scope="col" class="text-center">Suction_mod_valve</th>
+                        <th scope="col" class="text-center">Hot_gas_valve</th>
+                        <th scope="col" class="text-center">Economizer_valve</th>
+                        <th scope="col" class="text-center">Modelo</th>
+                        <th scope="col" class="text-center">Latitud</th>
+                        <th scope="col" class="text-center">Longitud</th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr v-for="(reefer, index) in datos_tabla_reefer" :key="index">
-                        <td>{{index+1}}</td>
-                        <td>{{reefer.nombre_contenedor}}</td>
-                        <td>{{reefer.set_point}}</td>
-                        <td>{{reefer.temp_supply}}</td>
-                        <td>{{reefer.temp_return}}</td>
-                        <td>{{reefer.re_hume}}</td>
-                        <td>{{reefer.fuel_level}}</td>
-                        <td>{{reefer.vdc}}</td>
-                        <td>{{reefer.rpm}}</td>
-                        <td>{{reefer.freq}}</td>
-                        <td>{{reefer.vac}}</td>
-                        <td>{{reefer.latitud}}</td>
-                        <td>{{reefer.longitud}}</td>
-                        <td>{{reefer.temp_motor}}</td>
-                        <td>{{reefer.status}}</td>
-                        <td>{{reefer.speed}}</td>
-                        <td>{{reefer.ecopower}}</td>
-                        <td>{{reefer.horometro}}</td>
-                        <td>{{reefer.nombre_alarma}}</td>
-                        <td>{{reefer.nombre_evento}}</td>
-                        <td>{{reefer.modelo}}</td>
+                        <!-- <td>{{index+1}}</td> -->
+                        <td class="text-center">{{reefer.id}}</td>
+                        <td class="text-center">{{reefer.set_point}}C°</td>
+                        <td class="text-center">{{reefer.temp_supply_1}}</td>
+                        <td class="text-center">{{reefer.temp_supply_2}}</td>
+                        <td class="text-center">{{reefer.return_air}}</td>
+                        <td class="text-center">{{reefer.evaporation_coil}}</td>
+                        <td class="text-center">{{reefer.condensation_coil}}</td>
+                        <td class="text-center">{{reefer.compress_coil_1}}</td>
+                        <td class="text-center">{{reefer.compress_coil_2}}</td>
+                        <td class="text-center">{{reefer.ambient_air}}</td>
+                        <td class="text-center">{{reefer.cargo_1_temp}}</td>
+                        <td class="text-center">{{reefer.cargo_2_temp}}</td>
+                        <td class="text-center">{{reefer.cargo_3_temp}}</td>
+                        <td class="text-center">{{reefer.cargo_4_temp}}</td>
+                        <td class="text-center">{{reefer.relative_humidity}}</td>
+                        <td class="text-center">{{reefer.avl}}</td>
+                        <td class="text-center">{{reefer.suction_pressure}}</td>
+                        <td class="text-center">{{reefer.discharge_pressure}}</td>
+                        <td class="text-center">{{reefer.line_voltage}}</td>
+                        <td class="text-center">{{reefer.line_frequency}}</td>
+                        <td class="text-center">{{reefer.consumption_ph_1}}</td>
+                        <td class="text-center">{{reefer.consumption_ph_2}}</td>
+                        <td class="text-center">{{reefer.consumption_ph_3}}</td>
+                        <td class="text-center">{{reefer.co2_reading}}</td>
+                        <td class="text-center">{{reefer.o2_reading}}</td>
+                        <td class="text-center">{{reefer.evaporator_speed}}</td>
+                        <td class="text-center">{{reefer.condenser_speed}}</td>
+                        <td class="text-center">{{reefer.battery_voltage}}</td>
+                        <td class="text-center">{{reefer.power_kwh}}</td>
+                        <td class="text-center">{{reefer.power_trip_reading}}</td>
+                        <td class="text-center">{{reefer.power_trip_duration}}</td>
+                        <td class="text-center">{{reefer.suction_temp}}</td>
+                        <td class="text-center">{{reefer.discharge_temp}}</td>
+                        <td class="text-center">{{reefer.supply_air_temp}}</td>
+                        <td class="text-center">{{reefer.return_air_temp}}</td>
+                        <td class="text-center">{{reefer.dl_battery_temp}}</td>
+                        <td class="text-center">{{reefer.dl_battery_charge}}</td>
+                        <td class="text-center">{{reefer.power_consumption}}</td>
+                        <td class="text-center">{{reefer.power_consumption_avg}}</td>
+                        <td class="text-center">{{reefer.alarm_present}}</td>
+                        <td class="text-center">{{reefer.capacity_load}}</td>
+                        <td class="text-center">{{reefer.power_state}}</td>
+                        <td class="text-center">{{reefer.controlling_mode}}</td>
+                        <td class="text-center">{{reefer.humidity_control}}</td>
+                        <td class="text-center">{{reefer.humidity_set_point}}</td>
+                        <td class="text-center">{{reefer.fresh_air_ex_mode}}</td>
+                        <td class="text-center">{{reefer.fresh_air_ex_rate}}</td>
+                        <td class="text-center">{{reefer.fresh_air_ex_delay}}</td>
+                        <td class="text-center">{{reefer.set_point_o2}}</td>
+                        <td class="text-center">{{reefer.set_point_co2}}</td>
+                        <td class="text-center">{{reefer.defrost_term_temp}}</td>
+                        <td class="text-center">{{reefer.defrost_interval}}</td>
+                        <td class="text-center">{{reefer.water_cooled_conde}}</td>
+                        <td class="text-center">{{reefer.usda_trip}}</td>
+                        <td class="text-center">{{reefer.evaporator_exp_valve}}</td>
+                        <td class="text-center">{{reefer.suction_mod_valve}}</td>
+                        <td class="text-center">{{reefer.hot_gas_valve}}</td>
+                        <td class="text-center">{{reefer.economizer_valve}}</td>
+                        <td class="text-center">{{reefer.modelo}}</td>
+                        <td class="text-center">{{reefer.latitud}}</td>
+                        <td class="text-center">{{reefer.longitud}}</td>
                     
                       </tr>
                     </tbody>
@@ -612,7 +704,8 @@ export default {
     tipo(val){
       // console.log(val);
       if (val == "Reefer") {
-         
+         this.datos_tabla_reefer=[]; 
+         this.datos_tabla_generador =[] ;
         // console.log("reefer");
         $("#tblContenedor_generador").DataTable().destroy();
         $("#tblContenedor_reefers").DataTable().destroy();
@@ -777,6 +870,7 @@ export default {
       this.$nextTick(() => {
         var table2 = $('#tblDetalleContenedores_reefers').DataTable({
            scrollX: "100%",
+           order: [ 0, "desc" ],
           language: {
               retrieve: true,
               decimal: "",
@@ -810,6 +904,7 @@ export default {
         var table = $('#tblDetalleContenedores_generadores').DataTable({
            scrollX: "100%",
            responsive: true,
+            order: [ 0, "desc" ],
           language: {
               retrieve: true,
               decimal: "",
@@ -987,19 +1082,19 @@ export default {
       self.datos_tabla_reefer = [];
       self.datos_tabla_generador  = [];
      
-      console.log(contenedor); 
+      // console.log(contenedor); 
 
       axios.post(route('contenedores.get_datos'), {
-        id: contenedor.contenedores_id,
+        id: contenedor.contenedor_id,
         tipo: contenedor.tipo
       }).then(response => {   
         console.log(response.data);     
-        // if (contenedor.tipo == "Reefer") {
-        //   self.datos_tabla_reefer = response.data;
-        // }
-        // if (contenedor.tipo == "Generador") {
-        //   self.datos_tabla_generador = response.data;
-        // }
+        if (contenedor.tipo == "Reefer") {
+          self.datos_tabla_reefer = response.data;
+        }
+        if (contenedor.tipo == "Generador") {
+          self.datos_tabla_generador = response.data;
+        }
       }).then(()=>{
           // if (contenedor.tipo == "Reefer") {
           //   let lat = self.datos_tabla_reefer[self.datos_tabla_reefer.length -1].latitud;

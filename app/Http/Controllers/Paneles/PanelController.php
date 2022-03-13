@@ -169,67 +169,21 @@ class PanelController extends Controller
         $tipo_contenedor = $request->tipo;
         
         if ($tipo_contenedor == 'Generador') {
-            return Registro_diario_reefers::from('registro_diario_reefers as rdr')
-                    ->select(
-                        'rdr.set_point', 
-                        'rdr.temp_supply', 
-                        'rdr.temp_return', 
-                        'rdr.re_hume', 
-                        'rdr.re_c_o2', 
-                        'rdr.re_o2', 
-                        'rdr.alv', 
-                        'rdr.latitud', 
-                        'rdr.longitud', 
-                        'rdr.status', 
-                        'rdr.modelo',
-                        'rdr.created_at',
-                        'rdr.updated_at',
-                        'c.nombre_contenedor',
-                        'rdr.contenedor_id',
-                        )
-                    ->join('contenedores as c', 'c.id', 'rdr.contenedor_id')
-                    ->where('contenedor_id',$id_contenedor)
-                    ->latest()
-                    ->take(30)
-                    ->get();
-        }
-        if ($tipo_contenedor == 'Reefer') {
-            return Registro_diario_generadores::from('registro_diario_generadores as rdg')
-            ->select(
-                'rdg.set_point', 
-                'rdg.temp_supply', 
-                'rdg.temp_return', 
-                'rdg.re_hume', 
-                'rdg.temp_supply',
-                'rdg.temp_return',
-                'rdg.re_hume',
-                'rdg.fuel_level',
-                'rdg.vdc',
-                'rdg.rpm',
-                'rdg.freq',
-                'rdg.vac',
-                'rdg.latitud',
-                'rdg.longitud',
-                'rdg.temp_motor',
-                'rdg.status',
-                'rdg.speed',
-                'rdg.ecopower',
-                'rdg.horometro',
-                'rdg.modelo',
-                'rdg.created_at',
-                'rdg.updated_at',
-                'c.nombre_contenedor',
-                'al.nombre_alarma',
-                'e.nombre_evento',
-                'rdg.contenedor_id',
-            )
-            ->join('contenedores as c', 'c.id', 'rdg.contenedor_id')
-            ->join('alarmas as al', 'al.id', 'rdg.alarma_id')
-            ->join('eventos as e', 'e.id', 'rdg.evento_id')
+            return Registro_diario_generadores::from('registro_diario_generadores')
+            ->select()
             ->where('contenedor_id',$id_contenedor)
             ->latest()
             ->take(30)
             ->get();
+        }
+        if ($tipo_contenedor == 'Reefer') {
+            return Registro_diario_reefers::from('registro_diario_reefers')
+                    ->select()
+                    ->where('contenedor_id',$id_contenedor)
+                    ->latest()
+                    ->take(30)
+                    ->get();
+            
         }
     }
 
