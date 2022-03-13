@@ -2121,6 +2121,11 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
 //
 //
 //
@@ -2568,6 +2573,7 @@ var Chart_eventos;
   data: function data() {
     return {
       // submited: false, 
+      contenedor_selecionado: null,
       tipo: "",
       mapa: null,
       ubicacion: new google.maps.LatLng(-12.0434112, -75.2178798),
@@ -2705,10 +2711,21 @@ var Chart_eventos;
     };
   },
   watch: {
-    tipo: function tipo() {
-      $("#tblContenedor_reefers").DataTable().destroy();
-      $("#tblContenedor_generador").DataTable().destroy();
-      this.TablaContenedores();
+    tipo: function tipo(val) {
+      // console.log(val);
+      if (val == "Reefer") {
+        // console.log("reefer");
+        $("#tblContenedor_generador").DataTable().destroy();
+        $("#tblContenedor_reefers").DataTable().destroy();
+        this.TablaContenedores();
+      }
+
+      if (val == "Generador") {
+        // console.log("Generador");
+        $("#tblContenedor_reefers").DataTable().destroy();
+        $("#tblContenedor_generador").DataTable().destroy();
+        this.TablaContenedores_gen();
+      }
     },
     datos_tabla_generador: function datos_tabla_generador() {
       // console.log(screen.width);      
@@ -2730,7 +2747,8 @@ var Chart_eventos;
     this.Circular_iniciarGraficosPTI();
     this.Circular_iniciarGraficosFleet(); // this.myChartPrincipal();}
 
-    this.resumenContenedor();
+    this.resumenContenedor(); // this.TablaContenedores_gen(); 
+    // this.TablaContenedores();
   },
   methods: {
     autoRefresh: function autoRefresh() {// let self = this;
@@ -2766,52 +2784,50 @@ var Chart_eventos;
       // console.log('cargar tabla de contenedores'); 
       var self = this;
       this.$nextTick(function () {
-        var table = $('#tblContenedor_reefers').DataTable({
+        var _$$DataTable;
+
+        var table = $('#tblContenedor_reefers').DataTable((_$$DataTable = {
           scrollX: "100%",
           scrollCollapse: true,
-          select: 'single',
-          language: {
-            retrieve: true,
-            decimal: "",
-            emptyTable: "No hay datos disponibles en la tabla",
-            info: "Mostrando del _START_ al _END_ de _TOTAL_ registros",
-            infoEmpty: "No se encontraron registros",
-            infoFiltered: "(filtrado de _MAX_ registros)",
-            infoPostFix: "",
-            thousands: ",",
-            lengthMenu: "Agrupar por _MENU_ filas",
-            loadingRecords: "Cargando...",
-            processing: "Procesando...",
-            search: "Buscar:",
-            zeroRecords: "No se encontraron registros",
-            paginate: {
-              first: "Primera",
-              last: "Ultima",
-              next: '<i class="fas fa-chevron-circle-right" style="font-size:20px;"></i>',
-              previous: '<i class="fas fa-chevron-circle-left" style="font-size:20px;"></i>'
-            }
-          },
-          responsive: true
-        });
+          select: 'single'
+        }, _defineProperty(_$$DataTable, "select", {
+          style: "single",
+          info: false
+        }), _defineProperty(_$$DataTable, "language", {
+          retrieve: true,
+          decimal: "",
+          emptyTable: "No hay datos disponibles en la tabla",
+          info: "Mostrando del _START_ al _END_ de _TOTAL_ registros",
+          infoEmpty: "No se encontraron registros",
+          infoFiltered: "(filtrado de _MAX_ registros)",
+          infoPostFix: "",
+          thousands: ",",
+          lengthMenu: "Agrupar por _MENU_ filas",
+          loadingRecords: "Cargando...",
+          processing: "Procesando...",
+          search: "Buscar:",
+          zeroRecords: "No se encontraron registros",
+          paginate: {
+            first: "Primera",
+            last: "Ultima",
+            next: '<i class="fas fa-chevron-circle-right" style="font-size:20px;"></i>',
+            previous: '<i class="fas fa-chevron-circle-left" style="font-size:20px;"></i>'
+          }
+        }), _defineProperty(_$$DataTable, "responsive", true), _$$DataTable));
         /* Esta es la funcion que selecciona una fila  yla colorea  */
 
         $('#tblContenedor_reefers tbody').on('click', 'tr', function () {
-          if ($(this).hasClass('selected')) {
-            $(this).removeClass('selected');
-          } else {
-            table.$('tr.selected').removeClass('selected');
-            $(this).addClass('selected');
-          }
+          table.$('tr.selected').removeClass('selected');
+          $(this).addClass('selected');
         });
-        /* deseleccionar al cambiar de tipo de contenedor */
-
-        $('#select_gen').click(function () {
-          // table.row('.selected').remove().draw( false );
-          console.log('borre select de reef');
-        }); // --------------------------------
-
+      });
+    },
+    TablaContenedores_gen: function TablaContenedores_gen() {
+      var self = this;
+      this.$nextTick(function () {
         var table2 = $('#tblContenedor_generador').DataTable({
           scrollX: "100%",
+          scrollCollapse: true,
           language: {
             retrieve: true,
             decimal: "",
@@ -2838,18 +2854,8 @@ var Chart_eventos;
         /* Esta es la funcion que selecciona una fila  yla colorea  */
 
         $('#tblContenedor_generador tbody').on('click', 'tr', function () {
-          if ($(this).hasClass('selected')) {
-            $(this).removeClass('selected');
-          } else {
-            table2.$('tr.selected').removeClass('selected');
-            $(this).addClass('selected');
-          }
-        });
-        /* deseleccionar al cambiar de tipo de contenedor */
-
-        $('#select_reef').click(function () {
-          // table2.row('.selected').remove().draw( false );
-          console.log('borre select de gen');
+          table2.$('tr.selected').removeClass('selected');
+          $(this).addClass('selected');
         });
       });
     },
@@ -3027,44 +3033,34 @@ var Chart_eventos;
       this.tipo = variable;
     },
     select_contenedor: function select_contenedor(contenedor) {
-      console.log(contenedor); // let self = this;
-      // // console.log(contenedor.tipo);
-      // self.datos_tabla_reefer = [];
-      // self.datos_tabla_generador  = [];
-      // if (contenedor.tipo =='Reefer') {
-      //      self.tipo= "Reefer";
-      // }
-      // if (contenedor.tipo =='Generador') {
-      //      self.tipo= "Generador";
-      // }
-      // axios.post(route('contenedores.get_datos'), {
-      //   id: contenedor.contenedores_id,
-      //   tipo: contenedor.tipo
-      // }).then(response => {   
-      //   // console.log(response.data);     
-      //   if (contenedor.tipo == "Reefer") {
-      //     self.datos_tabla_reefer = response.data;
-      //   }
-      //   if (contenedor.tipo == "Generador") {
-      //     self.datos_tabla_generador = response.data;
-      //   }
-      // }).then(()=>{
-      //     if (contenedor.tipo == "Reefer") {
-      //       let lat = self.datos_tabla_reefer[self.datos_tabla_reefer.length -1].latitud;
-      //       let lon = self.datos_tabla_reefer[self.datos_tabla_reefer.length -1].longitud;
-      //       // self.ubicacion = {lat: lat, lng: lon};
-      //       self.ubicacion =  new google.maps.LatLng(lat, lon);
-      //     }
-      //     if (contenedor.tipo == "Generador") {
-      //       let lat = self.datos_tabla_generador[self.datos_tabla_generador.length -1].latitud;
-      //       let lon = self.datos_tabla_generador[self.datos_tabla_generador.length -1].longitud;
-      //      self.ubicacion =  new google.maps.LatLng(lat, lon);
-      //     }
-      // }).then(()=>{
-      //   self.iniciarMap();
-      // }).then(()=>{
-      //   self.setLabelsMyChartPrincipal();
-      // });
+      var self = this;
+      self.datos_tabla_reefer = [];
+      self.datos_tabla_generador = [];
+      console.log(contenedor);
+      axios.post(route('contenedores.get_datos'), {
+        id: contenedor.contenedores_id,
+        tipo: contenedor.tipo
+      }).then(function (response) {
+        console.log(response.data); // if (contenedor.tipo == "Reefer") {
+        //   self.datos_tabla_reefer = response.data;
+        // }
+        // if (contenedor.tipo == "Generador") {
+        //   self.datos_tabla_generador = response.data;
+        // }
+      }).then(function () {// if (contenedor.tipo == "Reefer") {
+        //   let lat = self.datos_tabla_reefer[self.datos_tabla_reefer.length -1].latitud;
+        //   let lon = self.datos_tabla_reefer[self.datos_tabla_reefer.length -1].longitud;
+        //   // self.ubicacion = {lat: lat, lng: lon};
+        //   self.ubicacion =  new google.maps.LatLng(lat, lon);
+        // }
+        // if (contenedor.tipo == "Generador") {
+        //   let lat = self.datos_tabla_generador[self.datos_tabla_generador.length -1].latitud;
+        //   let lon = self.datos_tabla_generador[self.datos_tabla_generador.length -1].longitud;
+        //  self.ubicacion =  new google.maps.LatLng(lat, lon);
+        // }
+      }).then(function () {// self.iniciarMap();
+      }).then(function () {// self.setLabelsMyChartPrincipal();
+      });
     },
     myChartPrincipal: function myChartPrincipal() {
       var self = this;
@@ -4076,7 +4072,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.selected {\r\n  background-color: #A2AEC7 !important;\r\n  color: white;\n}\n#lado_derecho{\r\n    width: 75%;\n}\n#lado_izquierdo{\r\n    width: 25%;\n}\n#asset-search {\r\n  padding: 10px;\r\n  height: 320px;\r\n  overflow-y: scroll;\n}\r\n/* #tblContenedor_reefers{\r\n  width: 100%;\r\n  overflow-y: scroll;\r\n} */\n#total_reefers {\r\n  padding: 10px;\r\n  height: 100px;\n}\n#asset_maps {\r\n  padding: 10px;\r\n  height: 400px;\r\n  /* overflow-y: scroll; */\n}\n@media (max-width: 1024px) {\n#lado_derecho{\r\n    width: 80%;\n}\n#lado_izquierdo{\r\n    width: 20%;\n}\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.selected {\r\n  background-color: #A2AEC7 !important;\r\n  color: black;\n}\n#lado_derecho{\r\n    width: 75%;\n}\n#lado_izquierdo{\r\n    width: 25%;\n}\n#asset-search {\r\n  padding: 10px;\r\n  height: 320px;\r\n  overflow-y: scroll;\n}\r\n/* #tblContenedor_reefers{\r\n  width: 100%;\r\n  overflow-y: scroll;\r\n} */\n#total_reefers {\r\n  padding: 10px;\r\n  height: 100px;\n}\n#asset_maps {\r\n  padding: 10px;\r\n  height: 400px;\r\n  /* overflow-y: scroll; */\n}\n@media (max-width: 1024px) {\n#lado_derecho{\r\n    width: 80%;\n}\n#lado_izquierdo{\r\n    width: 20%;\n}\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -29994,6 +29990,11 @@ var render = function () {
                                         {
                                           key: index,
                                           staticClass: "tr_resumen_reef",
+                                          on: {
+                                            click: function ($event) {
+                                              return _vm.select_contenedor(gen)
+                                            },
+                                          },
                                         },
                                         [
                                           _c(

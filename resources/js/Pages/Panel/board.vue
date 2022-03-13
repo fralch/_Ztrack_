@@ -152,7 +152,9 @@
                     </thead>
                     <tbody>
                       <tr 
-                        v-for="(reef, index) in datos_resumen_reefer" :key="index" @click="select_contenedor(reef)"
+                        v-for="(reef, index) in datos_resumen_reefer" 
+                        :key="index" 
+                        @click="select_contenedor(reef)"
                       >
                         <!-- <td>
                          
@@ -264,6 +266,7 @@
                       <tr 
                         v-for="(gen, index) in datos_resumen_gen" :key="index"
                         class="tr_resumen_reef"
+                        @click="select_contenedor(gen)"
                       >
                         <!-- <td>
                           <button :id="gen.tipo+'_'+gen.contenedores_id" type="button" class="btn btn-outline-primary" @click="select_contenedor(gen)"  >
@@ -446,6 +449,7 @@ export default {
   data() {
     return {
       // submited: false, 
+      contenedor_selecionado: null, 
       tipo: "",
       mapa: null,
       ubicacion: new google.maps.LatLng(-12.0434112, -75.2178798), 
@@ -605,11 +609,21 @@ export default {
     };
   },
   watch: {
-    
-    tipo(){
-      $("#tblContenedor_reefers").DataTable().destroy();
-      $("#tblContenedor_generador").DataTable().destroy();
-      this.TablaContenedores();
+    tipo(val){
+      // console.log(val);
+      if (val == "Reefer") {
+         
+        // console.log("reefer");
+        $("#tblContenedor_generador").DataTable().destroy();
+        $("#tblContenedor_reefers").DataTable().destroy();
+        this.TablaContenedores();        
+      }
+      if (val == "Generador") {
+        // console.log("Generador");
+        $("#tblContenedor_reefers").DataTable().destroy();
+        $("#tblContenedor_generador").DataTable().destroy();
+        this.TablaContenedores_gen();   
+      }
     },
     datos_tabla_generador(){
       // console.log(screen.width);      
@@ -637,6 +651,8 @@ export default {
 
     // this.myChartPrincipal();}
     this.resumenContenedor(); 
+    // this.TablaContenedores_gen(); 
+    // this.TablaContenedores();
   },
 
   methods: {
@@ -678,6 +694,10 @@ export default {
           scrollX: "100%",
           scrollCollapse: true,
           select: 'single',
+          	select: {
+						style: "single",
+						info: false,
+					},
           language: {
               retrieve: true,
               decimal: "",
@@ -704,22 +724,22 @@ export default {
         });
         /* Esta es la funcion que selecciona una fila  yla colorea  */
           $('#tblContenedor_reefers tbody').on( 'click', 'tr', function () {
-          if ( $(this).hasClass('selected') ) {
-              $(this).removeClass('selected');
-          }
-          else {
               table.$('tr.selected').removeClass('selected');
               $(this).addClass('selected');
-              }
-          } );
-          /* deseleccionar al cambiar de tipo de contenedor */
-          $('#select_gen').click( function () {
-              // table.row('.selected').remove().draw( false );
-              console.log('borre select de reef'); 
-          } );
-        // --------------------------------
+            }
+          );
+          
+         
+      });
+     
+      
+    },
+    TablaContenedores_gen(){
+      let self = this;
+      this.$nextTick(() => {
         var table2 = $('#tblContenedor_generador').DataTable({
           scrollX: "100%",
+          scrollCollapse: true,
           language: {
               retrieve: true,
               decimal: "",
@@ -746,22 +766,11 @@ export default {
         });
         /* Esta es la funcion que selecciona una fila  yla colorea  */
           $('#tblContenedor_generador tbody').on( 'click', 'tr', function () {
-          if ( $(this).hasClass('selected') ) {
-              $(this).removeClass('selected');
-          }
-          else {
               table2.$('tr.selected').removeClass('selected');
               $(this).addClass('selected');
-              }
           } );
-          /* deseleccionar al cambiar de tipo de contenedor */
-          $('#select_reef').click( function () {
-              // table2.row('.selected').remove().draw( false );
-              console.log('borre select de gen')
-          } );
+          
       });
-     
-      
     },
     TablaDetalleContenedores_r() {
      let self = this;
@@ -974,46 +983,40 @@ export default {
       this.tipo = variable; 
     },
     select_contenedor(contenedor){
-      console.log( contenedor)
-      // let self = this;
-      // // console.log(contenedor.tipo);
-      // self.datos_tabla_reefer = [];
-      // self.datos_tabla_generador  = [];
-      // if (contenedor.tipo =='Reefer') {
-      //      self.tipo= "Reefer";
-      // }
-      // if (contenedor.tipo =='Generador') {
-      //      self.tipo= "Generador";
-      // }
+      let self = this;
+      self.datos_tabla_reefer = [];
+      self.datos_tabla_generador  = [];
+     
+      console.log(contenedor); 
 
-      // axios.post(route('contenedores.get_datos'), {
-      //   id: contenedor.contenedores_id,
-      //   tipo: contenedor.tipo
-      // }).then(response => {   
-      //   // console.log(response.data);     
-      //   if (contenedor.tipo == "Reefer") {
-      //     self.datos_tabla_reefer = response.data;
-      //   }
-      //   if (contenedor.tipo == "Generador") {
-      //     self.datos_tabla_generador = response.data;
-      //   }
-      // }).then(()=>{
-      //     if (contenedor.tipo == "Reefer") {
-      //       let lat = self.datos_tabla_reefer[self.datos_tabla_reefer.length -1].latitud;
-      //       let lon = self.datos_tabla_reefer[self.datos_tabla_reefer.length -1].longitud;
-      //       // self.ubicacion = {lat: lat, lng: lon};
-      //       self.ubicacion =  new google.maps.LatLng(lat, lon);
-      //     }
-      //     if (contenedor.tipo == "Generador") {
-      //       let lat = self.datos_tabla_generador[self.datos_tabla_generador.length -1].latitud;
-      //       let lon = self.datos_tabla_generador[self.datos_tabla_generador.length -1].longitud;
-      //      self.ubicacion =  new google.maps.LatLng(lat, lon);
-      //     }
-      // }).then(()=>{
-      //   self.iniciarMap();
-      // }).then(()=>{
-      //   self.setLabelsMyChartPrincipal();
-      // });
+      axios.post(route('contenedores.get_datos'), {
+        id: contenedor.contenedores_id,
+        tipo: contenedor.tipo
+      }).then(response => {   
+        console.log(response.data);     
+        // if (contenedor.tipo == "Reefer") {
+        //   self.datos_tabla_reefer = response.data;
+        // }
+        // if (contenedor.tipo == "Generador") {
+        //   self.datos_tabla_generador = response.data;
+        // }
+      }).then(()=>{
+          // if (contenedor.tipo == "Reefer") {
+          //   let lat = self.datos_tabla_reefer[self.datos_tabla_reefer.length -1].latitud;
+          //   let lon = self.datos_tabla_reefer[self.datos_tabla_reefer.length -1].longitud;
+          //   // self.ubicacion = {lat: lat, lng: lon};
+          //   self.ubicacion =  new google.maps.LatLng(lat, lon);
+          // }
+          // if (contenedor.tipo == "Generador") {
+          //   let lat = self.datos_tabla_generador[self.datos_tabla_generador.length -1].latitud;
+          //   let lon = self.datos_tabla_generador[self.datos_tabla_generador.length -1].longitud;
+          //  self.ubicacion =  new google.maps.LatLng(lat, lon);
+          // }
+      }).then(()=>{
+        // self.iniciarMap();
+      }).then(()=>{
+        // self.setLabelsMyChartPrincipal();
+      });
      
       
     
@@ -1272,7 +1275,7 @@ export default {
 <style lang="css">
 .selected {
   background-color: #A2AEC7 !important;
-  color: white;
+  color: black;
   }
 
  #lado_derecho{
