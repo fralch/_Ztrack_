@@ -554,89 +554,363 @@ export default {
       //  ---- myChart_principal -----
       my_Chart_principal_dataset_reefer: [
                 {
-                  label: 'SetPoint',
+                  label: 'set_point',
                   data: [],
                   borderColor: '#FFC312',
                   backgroundColor: '#FFC312',
                   borderWidth: 1,
                 },
                 {
-                  label: 'Temp_supply',
+                  label: 'temp_supply_1',
                   data: [],
                   borderColor: '#C4E538',
                   backgroundColor: '#C4E538',
                   borderWidth: 1,
                 },
                 {
-                  label: 'Temp_return',
+                  label: 'temp_supply_2',
                   data: [],
                   borderColor: '#12CBC4',
                   backgroundColor: '#12CBC4',
                   borderWidth: 1,
                 },
                 {
-                  label: 'Re_hume',
+                  label: 'return_air',
                   data: [],
                   borderColor: '#FDA7DF',
                   backgroundColor: '#FDA7DF',
                   borderWidth: 1,
                 },
                 {
-                  label: 'Fuel_level',
+                  label: 'evaporation_coil',
                   data: [],
                   borderColor: '#ED4C67',
                   backgroundColor: '#ED4C67',
                   borderWidth: 1,
                 },
                 {
-                  label: 'Vdc',
+                  label: 'condensation_coil',
                   data: [],
                   borderColor: '#db0404',
                   backgroundColor: '#db0404',
                   borderWidth: 1,
                 },
                 {
-                  label: 'Rpm',
+                  label: 'compress_coil_1',
                   data: [],
                   borderColor: '#009432',
                   backgroundColor: '#009432',
                   borderWidth: 1,
                 },
                 {
-                  label: 'Freq',
+                  label: 'compress_coil_2',
                   data: [],
                   borderColor: '#0652DD',
                   backgroundColor: '#0652DD',
                   borderWidth: 1,
                 },
                 {
-                  label: 'Vac',
+                  label: 'ambient_air',
                   data: [],
                   borderColor: '#9980FA',
                   backgroundColor: '#9980FA',
                   borderWidth: 1,
                 },
                 {
-                  label: 'Temp_motor',
+                  label: 'cargo_1_temp',
                   data: [],
                   borderColor: '#1B1464',
                   backgroundColor: '#1B1464',
                   borderWidth: 1,
                 },
                 {
-                  label: 'Speed',
+                  label: 'cargo_2_temp',
                   data: [],
                   borderColor: '#EE5A24',
                   backgroundColor: '#EE5A24',
                   borderWidth: 1,
                 },
                 {
-                  label: 'Horometro',
+                  label: 'cargo_3_temp',
                   data: [],
                   borderColor: '#6F1E51',
                   backgroundColor: '#6F1E51',
                   borderWidth: 1,
                 },
+                {
+                  label: 'cargo_4_temp',
+                  data: [],
+                  borderColor: '#1F1E51',
+                  backgroundColor: '#1F1E51',
+                  borderWidth: 1,
+                },
+                {
+                  label: 'relative_humidity',
+                  data: [],
+                  borderColor: '#FF1E51',
+                  backgroundColor: '#FF1E51',
+                  borderWidth: 1,
+                },
+                {
+                  label: 'avl',
+                  data: [],
+                  borderColor: '#F61E51',
+                  backgroundColor: '#F61E51',
+                  borderWidth: 1,
+                },
+                {
+                  label: 'suction_pressure',
+                  data: [],
+                  borderColor: '#AF1E51',
+                  backgroundColor: '#AF1E51',
+                  borderWidth: 1,
+                },
+                {
+                  label: 'discharge_pressure',
+                  data: [],
+                  borderColor: '#BF1E51',
+                  backgroundColor: '#BF1E51',
+                  borderWidth: 1,
+                },
+                {
+                  label: 'line_voltage',
+                  data: [],
+                  borderColor: '#CF1E51',
+                  backgroundColor: '#CF1E51',
+                  borderWidth: 1,
+                },
+                {
+                  label: 'line_frequency',
+                  data: [],
+                  borderColor: '#DF1E51',
+                  backgroundColor: '#DF1E51',
+                  borderWidth: 1,
+                },
+                {
+                  label: 'consumption_ph_1',
+                  data: [],
+                  borderColor: '#EF1E51',
+                  backgroundColor: '#EF1E51',
+                  borderWidth: 1,
+                },
+                {
+                  label: 'consumption_ph_2',
+                  data: [],
+                  borderColor: '#FFFE51',
+                  backgroundColor: '#FFFE51',
+                  borderWidth: 1,
+                },
+                {
+                  label: 'consumption_ph_3',
+                  data: [],
+                  borderColor: '#FAE51',
+                  backgroundColor: '#FA1E51',
+                  borderWidth: 1,
+                },
+                {
+                  label: 'co2_reading',
+                  data: [],
+                  borderColor: '#AAE51',
+                  backgroundColor: '#AA1E51',
+                  borderWidth: 1,
+                },
+                {
+                  label: 'o2_reading',
+                  data: [],
+                  borderColor: '#BA1A51',
+                  backgroundColor: '#BA1A51',
+                  borderWidth: 1,
+                },
+                {
+                  label: 'evaporator_speed',
+                  data: [],
+                  borderColor: '#CA1A51',
+                  backgroundColor: '#CA1A51',
+                  borderWidth: 1,
+                },
+                {
+                  label: 'condenser_speed',
+                  data: [],
+                  borderColor: '#DA1A51',
+                  backgroundColor: '#DA1A51',
+                  borderWidth: 1,
+                },
+                {
+                  label: 'battery_voltage',
+                  data: [],
+                  borderColor: '#EA1A51',
+                  backgroundColor: '#EA1A51',
+                  borderWidth: 1,
+                },
+                {
+                  label: 'power_kwh',
+                  data: [],
+                  borderColor: '#FA1A51',
+                  backgroundColor: '#FA1A51',
+                  borderWidth: 1,
+                },
+                {
+                  label: 'power_trip_reading',
+                  data: [],
+                  borderColor: '#AB1A51',
+                  backgroundColor: '#AB1A51',
+                  borderWidth: 1,
+                },
+                {
+                  label: 'power_trip_duration',
+                  data: [],
+                  borderColor: '#AB1A51',
+                  backgroundColor: '#AB1A51',
+                  borderWidth: 1,
+                },
+                {
+                  label: 'suction_temp',
+                  data: [],
+                  borderColor: '#BB1A51',
+                  backgroundColor: '#BB1A51',
+                  borderWidth: 1,
+                },
+                {
+                  label: 'discharge_temp',
+                  data: [],
+                  borderColor: '#CB1A51',
+                  backgroundColor: '#CB1A51',
+                  borderWidth: 1,
+                },
+                {
+                  label: 'supply_air_temp',
+                  data: [],
+                  borderColor: '#DB1A51',
+                  backgroundColor: '#DB1A51',
+                  borderWidth: 1,
+                },
+                {
+                  label: 'return_air_temp',
+                  data: [],
+                  borderColor: '#EB1A51',
+                  backgroundColor: '#EB1A51',
+                  borderWidth: 1,
+                },
+                {
+                  label: 'dl_battery_temp',
+                  data: [],
+                  borderColor: '#FB1A51',
+                  backgroundColor: '#FB1A51',
+                  borderWidth: 1,
+                },
+                {
+                  label: 'dl_battery_charge',
+                  data: [],
+                  borderColor: '#FB1A51',
+                  backgroundColor: '#FB1A51',
+                  borderWidth: 1,
+                },
+                {
+                  label: 'power_consumption',
+                  data: [],
+                  borderColor: '#FC1A51',
+                  backgroundColor: '#FC1A51',
+                  borderWidth: 1,
+                },
+                {
+                  label: 'power_consumption_avg',
+                  data: [],
+                  borderColor: '#AC1A51',
+                  backgroundColor: '#AC1A51',
+                  borderWidth: 1,
+                },
+                {
+                  label: 'capacity_load',
+                  data: [],
+                  borderColor: '#CC1A51',
+                  backgroundColor: '#CC1A51',
+                  borderWidth: 1,
+                },
+                {
+                  label: 'humidity_set_point',
+                  data: [],
+                  borderColor: '#AD1A51',
+                  backgroundColor: '#AD1A51',
+                  borderWidth: 1,
+                },
+                {
+                  label: 'fresh_air_ex_mode',
+                  data: [],
+                  borderColor: '#AD1A51',
+                  backgroundColor: '#AD1A51',
+                  borderWidth: 1,
+                },
+                {
+                  label: 'fresh_air_ex_rate',
+                  data: [],
+                  borderColor: '#BD1A51',
+                  backgroundColor: '#BD1A51',
+                  borderWidth: 1,
+                },
+                {
+                  label: 'fresh_air_ex_delay',
+                  data: [],
+                  borderColor: '#CD1A51',
+                  backgroundColor: '#CD1A51',
+                  borderWidth: 1,
+                },
+                {
+                  label: 'set_point_o2',
+                  data: [],
+                  borderColor: '#DD1A51',
+                  backgroundColor: '#DD1A51',
+                  borderWidth: 1,
+                },
+                {
+                  label: 'set_point_co2',
+                  data: [],
+                  borderColor: '#ED1A51',
+                  backgroundColor: '#ED1A51',
+                  borderWidth: 1,
+                },
+                {
+                  label: 'defrost_term_temp',
+                  data: [],
+                  borderColor: '#FD1A51',
+                  backgroundColor: '#FD1A51',
+                  borderWidth: 1,
+                },
+                {
+                  label: 'defrost_interval',
+                  data: [],
+                  borderColor: '#AE1A51',
+                  backgroundColor: '#AE1A51',
+                  borderWidth: 1,
+                },
+                {
+                  label: 'evaporator_exp_valve',
+                  data: [],
+                  borderColor: '#DE1A51',
+                  backgroundColor: '#DE1A51',
+                  borderWidth: 1,
+                },
+                {
+                  label: 'suction_mod_valve',
+                  data: [],
+                  borderColor: '#EE1A51',
+                  backgroundColor: '#EE1A51',
+                  borderWidth: 1,
+                },
+                {
+                  label: 'hot_gas_valve',
+                  data: [],
+                  borderColor: '#FE1A51',
+                  backgroundColor: '#FE1A51',
+                  borderWidth: 1,
+                },
+                {
+                  label: 'economizer_valve',
+                  data: [],
+                  borderColor: '#AF1A51',
+                  backgroundColor: '#AF1A51',
+                  borderWidth: 1,
+                },
+               
                 
               ],
       my_Chart_principal_dataset_generador: [
@@ -1124,7 +1398,7 @@ export default {
       }).then(()=>{
         self.iniciarMap();
       }).then(()=>{
-        // self.setLabelsMyChartPrincipal();
+        self.setLabelsMyChartPrincipal();
       });
      
       
@@ -1180,6 +1454,7 @@ export default {
               }else{
                 self.my_Chart_principal_labels.push(`${day}-${month}-${year}  ${hours}:${minutes}:${seconds}`);
               }
+              //  console.log(self.my_Chart_principal_labels);
          });
         }
         if (self.tipo == "Generador") {
@@ -1205,12 +1480,13 @@ export default {
                 self.my_Chart_principal_labels.push(`${day}-${month}-${year}  ${hours}:${minutes}:${seconds}`);
               }
           });
+          // console.log(self.my_Chart_principal_labels);
         }
      }
 
       set_labels()
       .then(()=>{
-        // self.setDatosGraficoPrincipal();
+        self.setDatosGraficoPrincipal();
       })
       .then(()=>{
         // if (myChart_principal) {
@@ -1230,52 +1506,52 @@ export default {
             // self.chart_eventos_labels = [];
             // self.chart_eventos_dataset_data = [];
 
-        if (self.tipo == "Reefer") {
-          axios
-          .post(route('contenedores.get_alarma_evento'), {
-            id: self.datos_tabla_generador[0].contenedor_id,
-            tipo: self.tipo
-          })
-          .then(response => {
+        // // // if (self.tipo == "Reefer") {
+        // // //   axios
+        // // //   .post(route('contenedores.get_alarma_evento'), {
+        // // //     id: self.datos_tabla_generador[0].contenedor_id,
+        // // //     tipo: self.tipo
+        // // //   })
+        // // //   .then(response => {
             
-            if (response.data != 0 && self.chart_alarma_labels.length == 0) {
-              response.data['alarma'].forEach(element => {
-                self.chart_alarma_labels.push(element.nombre_alarma);
-                self.chart_alarma_dataset_data.push(element.cantidad_alarma);
-              });
-              response.data['evento'].forEach(element => {
-                self.chart_eventos_labels.push(element.nombre_evento);
-                self.chart_eventos_dataset_data.push(element.cantidad_evento);
-              });
-            }
-          }).then(()=>{
-            Chart_alarmas.update(); 
-          }).then(()=>{
-            Chart_eventos.update(); 
-          });
-        }
-        if (self.tipo == "Generador") {
+        // // //     if (response.data != 0 && self.chart_alarma_labels.length == 0) {
+        // // //       response.data['alarma'].forEach(element => {
+        // // //         self.chart_alarma_labels.push(element.nombre_alarma);
+        // // //         self.chart_alarma_dataset_data.push(element.cantidad_alarma);
+        // // //       });
+        // // //       response.data['evento'].forEach(element => {
+        // // //         self.chart_eventos_labels.push(element.nombre_evento);
+        // // //         self.chart_eventos_dataset_data.push(element.cantidad_evento);
+        // // //       });
+        // // //     }
+        // // //   }).then(()=>{
+        // // //     Chart_alarmas.update(); 
+        // // //   }).then(()=>{
+        // // //     Chart_eventos.update(); 
+        // // //   });
+        // // // }
+        // // // if (self.tipo == "Generador") {
           
-          axios
-          .post(route('contenedores.get_alarma_evento'), {
-            id: self.datos_tabla_reefer[0].contenedor_id,
-            tipo: self.tipo
-          })
-          .then(response => {            
-          });
-        }
+        // // //   axios
+        // // //   .post(route('contenedores.get_alarma_evento'), {
+        // // //     id: self.datos_tabla_reefer[0].contenedor_id,
+        // // //     tipo: self.tipo
+        // // //   })
+        // // //   .then(response => {            
+        // // //   });
+        // // // }
        
       }).then(()=>{
-        self.autoRefresh();
+        // self.autoRefresh();
       });
     },
     setDatosGraficoPrincipal(){
+      /* CUANDO QUIERAS AGREGAR O QUITAR VARIABLES PARA EL GRAFICO PRINCIPAL PRIMERO TIENES AGREGARLOS EN LOS DATA QUE ESTAN ABAJO DE LOS PROPS LUEGO ACTUALIZARLOS AQUI  */
       let self = this;
       async function set_data(){ 
       self.my_Chart_principal_dataset = [];
        if (self.tipo == "Reefer") {
-        self.datos_tabla_reefer.map(function(datos_r, index){
-            self.my_Chart_principal_dataset_reefer[0].data = [];
+         self.my_Chart_principal_dataset_reefer[0].data = [];
             self.my_Chart_principal_dataset_reefer[1].data = [];
             self.my_Chart_principal_dataset_reefer[2].data = [];
             self.my_Chart_principal_dataset_reefer[3].data = [];
@@ -1326,98 +1602,91 @@ export default {
             self.my_Chart_principal_dataset_reefer[48].data = [];
             self.my_Chart_principal_dataset_reefer[49].data = [];
             self.my_Chart_principal_dataset_reefer[50].data = [];
-            self.my_Chart_principal_dataset_reefer[51].data = [];
-            self.my_Chart_principal_dataset_reefer[52].data = [];
-            self.my_Chart_principal_dataset_reefer[53].data = [];
-            self.my_Chart_principal_dataset_reefer[54].data = [];
-            
-            self.my_Chart_principal_dataset_generador[0].data.push(datos_g.set_point);
-            self.my_Chart_principal_dataset_generador[1].data.push(datos_g.temp_supply_1);
-            self.my_Chart_principal_dataset_generador[2].data.push(datos_g.temp_supply_2);
-            self.my_Chart_principal_dataset_generador[3].data.push(datos_g.return_air);
-            self.my_Chart_principal_dataset_generador[4].data.push(datos_g.evaporation_coil);
-            self.my_Chart_principal_dataset_generador[5].data.push(datos_g.condensation_coil);
-            self.my_Chart_principal_dataset_generador[6].data.push(datos_g.compress_coil_1);
-            self.my_Chart_principal_dataset_generador[7].data.push(datos_g.compress_coil_2);
-            self.my_Chart_principal_dataset_generador[8].data.push(datos_g.ambient_air);
-            self.my_Chart_principal_dataset_generador[9].data.push(datos_g.cargo_1_temp);
-            self.my_Chart_principal_dataset_generador[10].data.push(datos_g.cargo_2_temp);
-            self.my_Chart_principal_dataset_generador[11].data.push(datos_g.cargo_3_temp);
-            self.my_Chart_principal_dataset_generador[12].data.push(datos_g.cargo_4_temp);
-            self.my_Chart_principal_dataset_generador[13].data.push(datos_g.relative_humidity);
-            self.my_Chart_principal_dataset_generador[14].data.push(datos_g.avl);
-            self.my_Chart_principal_dataset_generador[15].data.push(datos_g.suction_pressure);
-            self.my_Chart_principal_dataset_generador[16].data.push(datos_g.discharge_pressure);
-            self.my_Chart_principal_dataset_generador[17].data.push(datos_g.line_voltage);
-            self.my_Chart_principal_dataset_generador[18].data.push(datos_g.line_frequency);
-            self.my_Chart_principal_dataset_generador[19].data.push(datos_g.consumption_ph_1);
-            self.my_Chart_principal_dataset_generador[20].data.push(datos_g.consumption_ph_2);
-            self.my_Chart_principal_dataset_generador[21].data.push(datos_g.consumption_ph_3);
-            self.my_Chart_principal_dataset_generador[22].data.push(datos_g.co2_reading);
-            self.my_Chart_principal_dataset_generador[23].data.push(datos_g.o2_reading);
-            self.my_Chart_principal_dataset_generador[24].data.push(datos_g.evaporator_speed);
-            self.my_Chart_principal_dataset_generador[25].data.push(datos_g.condenser_speed);
-            self.my_Chart_principal_dataset_generador[26].data.push(datos_g.battery_voltage);
-            self.my_Chart_principal_dataset_generador[27].data.push(datos_g.power_kwh);
-            self.my_Chart_principal_dataset_generador[28].data.push(datos_g.power_trip_reading);
-            self.my_Chart_principal_dataset_generador[29].data.push(datos_g.power_trip_duration);
-            self.my_Chart_principal_dataset_generador[30].data.push(datos_g.suction_temp);
-            self.my_Chart_principal_dataset_generador[31].data.push(datos_g.discharge_temp);
-            self.my_Chart_principal_dataset_generador[32].data.push(datos_g.supply_air_temp);
-            self.my_Chart_principal_dataset_generador[33].data.push(datos_g.return_air_temp);
-            self.my_Chart_principal_dataset_generador[34].data.push(datos_g.dl_battery_temp);
-            self.my_Chart_principal_dataset_generador[35].data.push(datos_g.dl_battery_charge);
-            self.my_Chart_principal_dataset_generador[36].data.push(datos_g.power_consumption);
-            self.my_Chart_principal_dataset_generador[37].data.push(datos_g.power_consumption_avg);
-            self.my_Chart_principal_dataset_generador[38].data.push(datos_g.alarm_present);
-            self.my_Chart_principal_dataset_generador[39].data.push(datos_g.capacity_load);
-            self.my_Chart_principal_dataset_generador[40].data.push(datos_g.humidity_control);
-            self.my_Chart_principal_dataset_generador[41].data.push(datos_g.humidity_set_point);
-            self.my_Chart_principal_dataset_generador[42].data.push(datos_g.fresh_air_ex_mode);
-            self.my_Chart_principal_dataset_generador[43].data.push(datos_g.fresh_air_ex_rate);
-            self.my_Chart_principal_dataset_generador[44].data.push(datos_g.fresh_air_ex_delay);
-            self.my_Chart_principal_dataset_generador[45].data.push(datos_g.set_point_o2);
-            self.my_Chart_principal_dataset_generador[46].data.push(datos_g.set_point_co2);
-            self.my_Chart_principal_dataset_generador[47].data.push(datos_g.defrost_term_temp);
-            self.my_Chart_principal_dataset_generador[48].data.push(datos_g.defrost_interval);
-            self.my_Chart_principal_dataset_generador[49].data.push(datos_g.water_cooled_conde);
-            self.my_Chart_principal_dataset_generador[50].data.push(datos_g.usda_trip);
-            self.my_Chart_principal_dataset_generador[51].data.push(datos_g.evaporator_exp_valve);
-            self.my_Chart_principal_dataset_generador[52].data.push(datos_g.suction_mod_valve);
-            self.my_Chart_principal_dataset_generador[53].data.push(datos_g.hot_gas_valve);
-            self.my_Chart_principal_dataset_generador[54].data.push(datos_g.economizer_valve);
+
+        self.datos_tabla_reefer.map(function(datos_r, index){
+            self.my_Chart_principal_dataset_reefer[0].data.push(datos_r.set_point);
+            self.my_Chart_principal_dataset_reefer[1].data.push(datos_r.temp_supply_1);
+            self.my_Chart_principal_dataset_reefer[2].data.push(datos_r.temp_supply_2);
+            self.my_Chart_principal_dataset_reefer[3].data.push(datos_r.return_air);
+            self.my_Chart_principal_dataset_reefer[4].data.push(datos_r.evaporation_coil);
+            self.my_Chart_principal_dataset_reefer[5].data.push(datos_r.condensation_coil);
+            self.my_Chart_principal_dataset_reefer[6].data.push(datos_r.compress_coil_1);
+            self.my_Chart_principal_dataset_reefer[7].data.push(datos_r.compress_coil_2);
+            self.my_Chart_principal_dataset_reefer[8].data.push(datos_r.ambient_air);
+            self.my_Chart_principal_dataset_reefer[9].data.push(datos_r.cargo_1_temp);
+            self.my_Chart_principal_dataset_reefer[10].data.push(datos_r.cargo_2_temp);
+            self.my_Chart_principal_dataset_reefer[11].data.push(datos_r.cargo_3_temp);
+            self.my_Chart_principal_dataset_reefer[12].data.push(datos_r.cargo_4_temp);
+            self.my_Chart_principal_dataset_reefer[13].data.push(datos_r.relative_humidity);
+            self.my_Chart_principal_dataset_reefer[14].data.push(datos_r.avl);
+            self.my_Chart_principal_dataset_reefer[15].data.push(datos_r.suction_pressure);
+            self.my_Chart_principal_dataset_reefer[16].data.push(datos_r.discharge_pressure);
+            self.my_Chart_principal_dataset_reefer[17].data.push(datos_r.line_voltage);
+            self.my_Chart_principal_dataset_reefer[18].data.push(datos_r.line_frequency);
+            self.my_Chart_principal_dataset_reefer[19].data.push(datos_r.consumption_ph_1);
+            self.my_Chart_principal_dataset_reefer[20].data.push(datos_r.consumption_ph_2);
+            self.my_Chart_principal_dataset_reefer[21].data.push(datos_r.consumption_ph_3);
+            self.my_Chart_principal_dataset_reefer[22].data.push(datos_r.co2_reading);
+            self.my_Chart_principal_dataset_reefer[23].data.push(datos_r.o2_reading);
+            self.my_Chart_principal_dataset_reefer[24].data.push(datos_r.evaporator_speed);
+            self.my_Chart_principal_dataset_reefer[25].data.push(datos_r.condenser_speed);
+            self.my_Chart_principal_dataset_reefer[26].data.push(datos_r.battery_voltage);
+            self.my_Chart_principal_dataset_reefer[27].data.push(datos_r.power_kwh);
+            self.my_Chart_principal_dataset_reefer[28].data.push(datos_r.power_trip_reading);
+            self.my_Chart_principal_dataset_reefer[29].data.push(datos_r.power_trip_duration);
+            self.my_Chart_principal_dataset_reefer[30].data.push(datos_r.suction_temp);
+            self.my_Chart_principal_dataset_reefer[31].data.push(datos_r.discharge_temp);
+            self.my_Chart_principal_dataset_reefer[32].data.push(datos_r.supply_air_temp);
+            self.my_Chart_principal_dataset_reefer[33].data.push(datos_r.return_air_temp);
+            self.my_Chart_principal_dataset_reefer[34].data.push(datos_r.dl_battery_temp);
+            self.my_Chart_principal_dataset_reefer[35].data.push(datos_r.dl_battery_charge);
+            self.my_Chart_principal_dataset_reefer[36].data.push(datos_r.power_consumption);
+            self.my_Chart_principal_dataset_reefer[37].data.push(datos_r.power_consumption_avg);
+            self.my_Chart_principal_dataset_reefer[38].data.push(datos_r.capacity_load);
+            self.my_Chart_principal_dataset_reefer[39].data.push(datos_r.humidity_set_point);
+            self.my_Chart_principal_dataset_reefer[40].data.push(datos_r.fresh_air_ex_mode);
+            self.my_Chart_principal_dataset_reefer[41].data.push(datos_r.fresh_air_ex_rate);
+            self.my_Chart_principal_dataset_reefer[42].data.push(datos_r.fresh_air_ex_delay);
+            self.my_Chart_principal_dataset_reefer[43].data.push(datos_r.set_point_o2);
+            self.my_Chart_principal_dataset_reefer[44].data.push(datos_r.set_point_co2);
+            self.my_Chart_principal_dataset_reefer[45].data.push(datos_r.defrost_term_temp);
+            self.my_Chart_principal_dataset_reefer[46].data.push(datos_r.defrost_interval);
+            self.my_Chart_principal_dataset_reefer[47].data.push(datos_r.evaporator_exp_valve);
+            self.my_Chart_principal_dataset_reefer[48].data.push(datos_r.suction_mod_valve);
+            self.my_Chart_principal_dataset_reefer[49].data.push(datos_r.hot_gas_valve);
+            self.my_Chart_principal_dataset_reefer[50].data.push(datos_r.economizer_valve);
         });
        }
-       if (self.tipo == "Generador") {
-          self.datos_tabla_generador.map(function(datos_g, index){
-            self.my_Chart_principal_dataset_generador[0].data = [];
-            self.my_Chart_principal_dataset_generador[1].data = [];
-            self.my_Chart_principal_dataset_generador[2].data = [];
-            self.my_Chart_principal_dataset_generador[3].data = [];
-            self.my_Chart_principal_dataset_generador[4].data = [];
-            self.my_Chart_principal_dataset_generador[5].data = [];
-            self.my_Chart_principal_dataset_generador[6].data = [];
-            self.my_Chart_principal_dataset_generador[7].data = [];
-            self.my_Chart_principal_dataset_generador[8].data = [];
-            self.my_Chart_principal_dataset_generador[9].data = [];
-            self.my_Chart_principal_dataset_generador[10].data = [];
+      //  if (self.tipo == "Generador") {
+      //     self.datos_tabla_generador.map(function(datos_g, index){
+      //       self.my_Chart_principal_dataset_generador[0].data = [];
+      //       self.my_Chart_principal_dataset_generador[1].data = [];
+      //       self.my_Chart_principal_dataset_generador[2].data = [];
+      //       self.my_Chart_principal_dataset_generador[3].data = [];
+      //       self.my_Chart_principal_dataset_generador[4].data = [];
+      //       self.my_Chart_principal_dataset_generador[5].data = [];
+      //       self.my_Chart_principal_dataset_generador[6].data = [];
+      //       self.my_Chart_principal_dataset_generador[7].data = [];
+      //       self.my_Chart_principal_dataset_generador[8].data = [];
+      //       self.my_Chart_principal_dataset_generador[9].data = [];
+      //       self.my_Chart_principal_dataset_generador[10].data = [];
 
-            self.my_Chart_principal_dataset_reefer[0].data.push(datos_r.battery_voltage);
-            self.my_Chart_principal_dataset_reefer[1].data.push(datos_r.water_temp);
-            self.my_Chart_principal_dataset_reefer[2].data.push(datos_r.running_frequency);
-            self.my_Chart_principal_dataset_reefer[3].data.push(datos_r.fuel_level);
-            self.my_Chart_principal_dataset_reefer[4].data.push(datos_r.voltage_measure);
-            self.my_Chart_principal_dataset_reefer[5].data.push(datos_r.rotor_current);
-            self.my_Chart_principal_dataset_reefer[6].data.push(datos_r.fiel_current);
-            self.my_Chart_principal_dataset_reefer[7].data.push(datos_r.speed);
-            self.my_Chart_principal_dataset_reefer[8].data.push(datos_r.eco_power);
-            self.my_Chart_principal_dataset_reefer[9].data.push(datos_r.rpm);
-            self.my_Chart_principal_dataset_reefer[10].data.push(datos_r.horometro);
-            // -----------------
+      //       self.my_Chart_principal_dataset_reefer[0].data.push(datos_r.battery_voltage);
+      //       self.my_Chart_principal_dataset_reefer[1].data.push(datos_r.water_temp);
+      //       self.my_Chart_principal_dataset_reefer[2].data.push(datos_r.running_frequency);
+      //       self.my_Chart_principal_dataset_reefer[3].data.push(datos_r.fuel_level);
+      //       self.my_Chart_principal_dataset_reefer[4].data.push(datos_r.voltage_measure);
+      //       self.my_Chart_principal_dataset_reefer[5].data.push(datos_r.rotor_current);
+      //       self.my_Chart_principal_dataset_reefer[6].data.push(datos_r.fiel_current);
+      //       self.my_Chart_principal_dataset_reefer[7].data.push(datos_r.speed);
+      //       self.my_Chart_principal_dataset_reefer[8].data.push(datos_r.eco_power);
+      //       self.my_Chart_principal_dataset_reefer[9].data.push(datos_r.rpm);
+      //       self.my_Chart_principal_dataset_reefer[10].data.push(datos_r.horometro);
+      //       // -----------------
            
-          });
-        }
-        console.log('my_Chart_principal_dataset');
+      //     });
+      //   }
+      //   console.log('my_Chart_principal_dataset');
        }
 
        set_data().then(()=>{
@@ -1426,12 +1695,12 @@ export default {
           // }else{
           //   self.myChartPrincipal();
           // }
-          if (self.tipo == "Reefer") {
-          self.my_Chart_principal_dataSetable = self.my_Chart_principal_dataset_reefer;
-          }
-          if (self.tipo == "Generador") {
-            self.my_Chart_principal_dataSetable = self.my_Chart_principal_dataset_generador;
-          }
+          // if (self.tipo == "Reefer") {
+          // self.my_Chart_principal_dataSetable = self.my_Chart_principal_dataset_reefer;
+          // }
+          // if (self.tipo == "Generador") {
+          //   self.my_Chart_principal_dataSetable = self.my_Chart_principal_dataset_generador;
+          // }
        });
     },
     resumenContenedor(){
