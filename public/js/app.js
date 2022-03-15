@@ -2984,43 +2984,55 @@ var Chart_eventos;
         borderWidth: 1
       }],
       my_Chart_principal_dataset_generador: [{
-        label: 'SetPoint',
+        label: 'battery_voltage',
         data: [],
         borderColor: '#db0404',
         backgroundColor: '#db0404',
         borderWidth: 1
       }, {
-        label: 'TempSupply',
+        label: 'water_temp',
         data: [],
         borderColor: '#3498db',
         backgroundColor: '#3498db',
         borderWidth: 1
       }, {
-        label: 'TempReturn',
+        label: 'running_frequency',
         data: [],
         borderColor: '#9b59b6',
         backgroundColor: '#9b59b6',
         borderWidth: 1
       }, {
-        label: 'ReHume',
+        label: 'fuel_level',
         data: [],
         borderColor: '#e67e22',
         backgroundColor: '#e67e22',
         borderWidth: 1
       }, {
-        label: 'ReCo2',
+        label: 'voltage_measure',
         data: [],
         borderColor: '#1abc9c',
         backgroundColor: '#1abc9c',
         borderWidth: 1
       }, {
-        label: 'ReO2',
+        label: 'rotor_current',
         data: [],
         borderColor: '#2c3e50',
         backgroundColor: '#2c3e50',
         borderWidth: 1
       }, {
-        label: 'Alv',
+        label: 'fiel_current',
+        data: [],
+        borderColor: '#f39c12',
+        backgroundColor: '#f39c12',
+        borderWidth: 1
+      }, {
+        label: 'rpm',
+        data: [],
+        borderColor: '#f39c12',
+        backgroundColor: '#f39c12',
+        borderWidth: 1
+      }, {
+        label: 'horometro',
         data: [],
         borderColor: '#f39c12',
         backgroundColor: '#f39c12',
@@ -3684,37 +3696,33 @@ var Chart_eventos;
                       self.my_Chart_principal_dataset_reefer[49].data.push(datos_r.hot_gas_valve);
                       self.my_Chart_principal_dataset_reefer[50].data.push(datos_r.economizer_valve);
                     });
-                  } //  if (self.tipo == "Generador") {
-                  //     self.datos_tabla_generador.map(function(datos_g, index){
-                  //       self.my_Chart_principal_dataset_generador[0].data = [];
-                  //       self.my_Chart_principal_dataset_generador[1].data = [];
-                  //       self.my_Chart_principal_dataset_generador[2].data = [];
-                  //       self.my_Chart_principal_dataset_generador[3].data = [];
-                  //       self.my_Chart_principal_dataset_generador[4].data = [];
-                  //       self.my_Chart_principal_dataset_generador[5].data = [];
-                  //       self.my_Chart_principal_dataset_generador[6].data = [];
-                  //       self.my_Chart_principal_dataset_generador[7].data = [];
-                  //       self.my_Chart_principal_dataset_generador[8].data = [];
-                  //       self.my_Chart_principal_dataset_generador[9].data = [];
-                  //       self.my_Chart_principal_dataset_generador[10].data = [];
-                  //       self.my_Chart_principal_dataset_reefer[0].data.push(datos_r.battery_voltage);
-                  //       self.my_Chart_principal_dataset_reefer[1].data.push(datos_r.water_temp);
-                  //       self.my_Chart_principal_dataset_reefer[2].data.push(datos_r.running_frequency);
-                  //       self.my_Chart_principal_dataset_reefer[3].data.push(datos_r.fuel_level);
-                  //       self.my_Chart_principal_dataset_reefer[4].data.push(datos_r.voltage_measure);
-                  //       self.my_Chart_principal_dataset_reefer[5].data.push(datos_r.rotor_current);
-                  //       self.my_Chart_principal_dataset_reefer[6].data.push(datos_r.fiel_current);
-                  //       self.my_Chart_principal_dataset_reefer[7].data.push(datos_r.speed);
-                  //       self.my_Chart_principal_dataset_reefer[8].data.push(datos_r.eco_power);
-                  //       self.my_Chart_principal_dataset_reefer[9].data.push(datos_r.rpm);
-                  //       self.my_Chart_principal_dataset_reefer[10].data.push(datos_r.horometro);
-                  //       // -----------------
-                  //     });
-                  //   }
-                  //   console.log('my_Chart_principal_dataset');
+                  }
+
+                  if (self.tipo == "Generador") {
+                    self.my_Chart_principal_dataset_generador[0].data = [];
+                    self.my_Chart_principal_dataset_generador[1].data = [];
+                    self.my_Chart_principal_dataset_generador[2].data = [];
+                    self.my_Chart_principal_dataset_generador[3].data = [];
+                    self.my_Chart_principal_dataset_generador[4].data = [];
+                    self.my_Chart_principal_dataset_generador[5].data = [];
+                    self.my_Chart_principal_dataset_generador[6].data = [];
+                    self.my_Chart_principal_dataset_generador[7].data = [];
+                    self.my_Chart_principal_dataset_generador[8].data = [];
+                    self.datos_tabla_generador.map(function (datos_g, index) {
+                      self.my_Chart_principal_dataset_generador[0].data.push(datos_g.battery_voltage);
+                      self.my_Chart_principal_dataset_generador[1].data.push(datos_g.water_temp);
+                      self.my_Chart_principal_dataset_generador[2].data.push(datos_g.running_frequency);
+                      self.my_Chart_principal_dataset_generador[3].data.push(datos_g.fuel_level);
+                      self.my_Chart_principal_dataset_generador[4].data.push(datos_g.voltage_measure);
+                      self.my_Chart_principal_dataset_generador[5].data.push(datos_g.rotor_current);
+                      self.my_Chart_principal_dataset_generador[6].data.push(datos_g.fiel_current);
+                      self.my_Chart_principal_dataset_generador[7].data.push(datos_g.rpm);
+                      self.my_Chart_principal_dataset_generador[8].data.push(datos_g.horometro); // -----------------
+                    });
+                  } // console.log('my_Chart_principal_dataset');
 
 
-                case 2:
+                case 3:
                 case "end":
                   return _context2.stop();
               }
