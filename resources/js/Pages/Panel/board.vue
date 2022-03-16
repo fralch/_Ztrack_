@@ -1042,7 +1042,8 @@ export default {
     this.Circular_iniciarGraficosPTI();
     this.Circular_iniciarGraficosFleet();
 
-    // this.myChartPrincipal();}
+    // this.myChartPrincipal();
+
     this.resumenContenedor(); 
     // this.TablaContenedores_gen(); 
     // this.TablaContenedores();
@@ -1503,13 +1504,13 @@ export default {
         self.setDatosGraficoPrincipal();
       })
       .then(()=>{
-        // if (myChart_principal) {
-        //   myChart_principal.update();
-        //   myChart_principal.destroy();
-        //   self.myChartPrincipal();
-        // }else{
-        //   self.myChartPrincipal();
-        // }
+        if (myChart_principal) {
+          myChart_principal.update();
+          myChart_principal.destroy();
+          self.myChartPrincipal();
+        }else{
+          self.myChartPrincipal();
+        }
       })
       .then(()=>{
           // self.$nextTick(() => {
@@ -1700,17 +1701,18 @@ export default {
        }
 
        set_data().then(()=>{
-          // if (myChart_principal) {
-          //   myChart_principal.update();
-          // }else{
-          //   self.myChartPrincipal();
-          // }
-          // if (self.tipo == "Reefer") {
-          // self.my_Chart_principal_dataSetable = self.my_Chart_principal_dataset_reefer;
-          // }
-          // if (self.tipo == "Generador") {
-          //   self.my_Chart_principal_dataSetable = self.my_Chart_principal_dataset_generador;
-          // }
+          if (myChart_principal) {
+            myChart_principal.update();
+          }else{
+            self.myChartPrincipal();
+          }
+          // self.my_Chart_principal_dataSetable = [];
+          if (self.tipo == "Reefer") {
+          self.my_Chart_principal_dataSetable = self.my_Chart_principal_dataset_reefer;
+          }
+          if (self.tipo == "Generador") {
+            self.my_Chart_principal_dataSetable = self.my_Chart_principal_dataset_generador;
+          }
        });
     },
     resumenContenedor(){

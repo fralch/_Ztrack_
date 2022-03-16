@@ -3097,7 +3097,7 @@ var Chart_eventos;
     this.Circular_iniciarGraficosAlarms();
     this.Circular_iniciarGraficosEventos();
     this.Circular_iniciarGraficosPTI();
-    this.Circular_iniciarGraficosFleet(); // this.myChartPrincipal();}
+    this.Circular_iniciarGraficosFleet(); // this.myChartPrincipal();
 
     this.resumenContenedor(); // this.TablaContenedores_gen(); 
     // this.TablaContenedores();
@@ -3526,13 +3526,14 @@ var Chart_eventos;
 
       set_labels().then(function () {
         self.setDatosGraficoPrincipal();
-      }).then(function () {// if (myChart_principal) {
-        //   myChart_principal.update();
-        //   myChart_principal.destroy();
-        //   self.myChartPrincipal();
-        // }else{
-        //   self.myChartPrincipal();
-        // }
+      }).then(function () {
+        if (myChart_principal) {
+          myChart_principal.update();
+          myChart_principal.destroy();
+          self.myChartPrincipal();
+        } else {
+          self.myChartPrincipal();
+        }
       }).then(function () {// self.$nextTick(() => {
         //   console.log(self.datos_tabla_generador[0].contenedor_id); 
         // });
@@ -3732,17 +3733,21 @@ var Chart_eventos;
         return _set_data.apply(this, arguments);
       }
 
-      set_data().then(function () {// if (myChart_principal) {
-        //   myChart_principal.update();
-        // }else{
-        //   self.myChartPrincipal();
-        // }
-        // if (self.tipo == "Reefer") {
-        // self.my_Chart_principal_dataSetable = self.my_Chart_principal_dataset_reefer;
-        // }
-        // if (self.tipo == "Generador") {
-        //   self.my_Chart_principal_dataSetable = self.my_Chart_principal_dataset_generador;
-        // }
+      set_data().then(function () {
+        if (myChart_principal) {
+          myChart_principal.update();
+        } else {
+          self.myChartPrincipal();
+        } // self.my_Chart_principal_dataSetable = [];
+
+
+        if (self.tipo == "Reefer") {
+          self.my_Chart_principal_dataSetable = self.my_Chart_principal_dataset_reefer;
+        }
+
+        if (self.tipo == "Generador") {
+          self.my_Chart_principal_dataSetable = self.my_Chart_principal_dataset_generador;
+        }
       });
     },
     resumenContenedor: function resumenContenedor() {
