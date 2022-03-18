@@ -8,7 +8,7 @@
         <!-- ---------------------- -->
         <div class="content" >
           <div class="row" style=" margin: 0 0 0 0px;">
-            <div id='lado_izquierdo' style="margin: 10px 0 0 -5px;">
+            <div id='lado_izquierdo'>
               <div id="asset-empresas" class="col shadow-sm p-3 mb-5 bg-white rounded "  >
                  <div class="text-center"  style="background-color: #353b48; " >
                    <label for="buscar" style="color:white; font-size:20px;  margin-top: 10px; ">USUARIOS </label>
@@ -18,8 +18,8 @@
                   <br>
                   <!-- ****** table empreas ******* -->
                   <div id="grid_usuarios">
-                      <table class="table" id="tblUsuarios">
-                         <thead class="bg-warning">
+                      <table  id="tblUsuarios">
+                         <thead>
                           <tr >
                             <th scope="col" width='50px'>N°</th>
                             <th scope="col" width='50px'>Ver</th>
@@ -59,9 +59,9 @@
               </div>
              
             </div>
-            <div id='lado_derecho' style="">
+            <div id='lado_derecho' >
                 <!-- <div id="total_reefers" class="col shadow-sm p-3 mb-5 bg-white rounded " style="margin: 10px 15px 0px 15px;height: 90vh; "> -->
-               <div id="asset-empresas" class="col shadow-sm p-3 mb-5 bg-white rounded "  style=" margin: 10px 15px 0px 15px;" >
+               <div id="asset-empresas" class="col shadow-sm p-3 mb-5 bg-white rounded "  >
                   <div class="text-center"  style="background-color: #353b48; " >
                    <label for="buscar" style="color:white; font-size:20px;  margin-top: 10px; ">EMPRESAS </label>
                     <!-- <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search">
@@ -70,15 +70,14 @@
                   <br>
                   <!-- ****** table empreas ******* -->
                   <div id="grid_empresas">
-                      <table class="table" id="tblEmpresas">
-                         <thead class="bg-success" style="color:white; ">
+                      <table  id="tblEmpresas">
+                         <thead >
                           <tr >
-                            <th scope="col" width='50px'>N°</th>
-                            <th scope="col" width='150px'>Empresa</th>
-                            <th scope="col">Descripcion_booking</th>
-                            <th scope="col">Temp_contratada</th>
-                            <th scope="col" width='250px'> Otros_datos_contratados </th>
-                            <th scope="col">Usuario_asigando</th>
+                            <th  >N°</th>
+                            <th  >Empresa</th>
+                            <th >Booking</th>
+                            <th >Booking_temp</th>
+                            <th >Usuario_asigando</th>
                           
                           </tr>
                         </thead>
@@ -88,14 +87,13 @@
                             <td>{{(empresa.nombre_empresa).toUpperCase()}}</td>
                             <td>{{empresa.descripcion_booking}}</td>
                             <td>{{empresa.temp_contratada}}</td>
-                            <td class="text-center"> 0 C°</td>
                             <td>{{(empresa.usuario).toUpperCase()}}</td>
                           </tr>
                         </tbody>
                       </table>
                   </div>
                   <div class="row" style="margin: 0 10px;">
-                    <button type="button" class="col-3 btn btn-success"  >
+                   <button type="button" class="col-3 btn btn-dark"  data-toggle="modal" data-target="#empresasModal" >
                      <i class="bi bi-check-lg"></i>
                       <b style="font-size:1.2em;"></b>
                       &nbsp;
@@ -151,39 +149,42 @@
               </div>
             </div>
           </div>
-        <!-- Modal usuario -->
-          <div class="modal fade" id="usuarioModal" tabindex="-1" role="dialog" aria-labelledby="usuarioModalLabel" aria-hidden="true">
+        <!-- Modal empresas -->
+          <div class="modal fade" id="empresasModal" tabindex="-1" role="dialog" aria-labelledby="empresasoModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">Crear Usuario</h5>
+                  <h5 class="modal-title" id="exampleModalLabel">Crear Empresa</h5>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
                 </div>
                 <div class="modal-body">
                     <div class="form-inline">
-                      <label style="margin-right: 10px; ">Usuario</label>
-                      <input class="form-control mr-sm-2" type="usuario" placeholder="nombre de usuario" aria-label="Usuario" v-model="nuevo_usuario">
+                      <label style="margin-right: 10px; ">Empresa</label>
+                      <input class="form-control mr-sm-2"  placeholder="nombre de empresa" v-model="nueva_empresa">
                     </div>
                     <br>
                     <div class="form-inline">
-                      <label style="margin-right: 10px; ">Apellidos</label>
-                      <input class="form-control mr-sm-2" type="apellidos" placeholder="apellidos" aria-label="Apellidos" v-model="nuevo_apellidos">
+                      <label style="margin-right: 10px; ">Booking</label>
+                      <textarea class="form-control mr-sm-2"  v-model="nuevo_booking"></textarea>
                     </div>
                     <br>
                     <div class="form-inline">
-                      <label style="margin-right: 10px; ">Nombres</label>
-                      <input class="form-control mr-sm-2" type="nombres" placeholder="nombres" aria-label="Nombres" v-model="nuevo_nombres">
+                      <label style="margin-right: 10px; ">Booking_temp</label>
+                      <input class="form-control mr-sm-2"  placeholder="Booking Temperature" v-model="nuevo_booking_temp">
                     </div>
                     <br>
                     <div class="form-inline">
-                      <label style="margin-right: 10px; ">Correo</label>
-                      <input class="form-control mr-sm-2" type="correo" placeholder="correo" aria-label="Correo" v-model="nuevo_correo">
+                      <label style="margin-right: 10px; ">Usuario Asignado</label>
+                      <select class="form-control mr-sm-2" v-model="nuevo_usuario_asignado">
+                        <option value='0' disabled>Seleccione un usuario</option>
+                        <option v-for="(usuario, index) in usuario_todos"  :key="index" :value="usuario.id">{{usuario.nombres}}</option>
+                      </select>
                     </div>
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-warning" @click="guardarUsuario">
+                  <button type="button" class="btn btn-dark" @click="guardarEmpresa">
                      <i class="fas fa-save"></i>
                     Guardar
                   </button>
@@ -223,6 +224,11 @@ export default {
       nuevo_apellidos: "",
       nuevo_nombres: "",
       nuevo_correo: "",
+      // -- empresas datos ---
+      nueva_empresa: "",
+      nuevo_booking: "",
+      nuevo_booking_temp: "",
+      nuevo_usuario_asignado: 0,
 
     };
   },
@@ -246,63 +252,22 @@ export default {
    TablaEmpresas() {
       let self = this;
       this.$nextTick(() => {
-        var table = $('#tblEmpresas').DataTable({
-            scrollX: "100%",
-          language: {
-              retrieve: true,
-              decimal: "",
-              emptyTable: "No hay datos disponibles en la tabla",
-              info: "Mostrando del _START_ al _END_ de _TOTAL_ registros",
-              infoEmpty: "No se encontraron registros",
-              infoFiltered: "(filtrado de _MAX_ registros)",
-              infoPostFix: "",
-              thousands: ",",
-              lengthMenu: "Agrupar por _MENU_ filas",
-              loadingRecords: "Cargando...",
-              processing: "Procesando...",
-              search: "Buscar:",
-              zeroRecords: "No se encontraron registros",
-              paginate: {
-                first: "Primera",
-                last: "Ultima",
-                next: '<i class="fas fa-chevron-circle-right" style="font-size:20px;"></i>',
-                previous:
-                  '<i class="fas fa-chevron-circle-left" style="font-size:20px;"></i>',
-              },
-              responsive: true,
-          },
-        });
+          $('#tblEmpresas').DataTable({
+            "language": {
+              "url": "//cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json"
+            }
+          });
       });
     },
    TablaUsuarios() {
       let self = this;
       this.$nextTick(() => {
-        var table = $('#tblUsuarios').DataTable({
-            scrollX: "100%",
-          language: {
-              retrieve: true,
-              decimal: "",
-              emptyTable: "No hay datos disponibles en la tabla",
-              info: "Mostrando del _START_ al _END_ de _TOTAL_ registros",
-              infoEmpty: "No se encontraron registros",
-              infoFiltered: "(filtrado de _MAX_ registros)",
-              infoPostFix: "",
-              thousands: ",",
-              lengthMenu: "Agrupar por _MENU_ filas",
-              loadingRecords: "Cargando...",
-              processing: "Procesando...",
-              search: "Buscar:",
-              zeroRecords: "No se encontraron registros",
-              paginate: {
-                first: "Primera",
-                last: "Ultima",
-                next: '<i class="fas fa-chevron-circle-right" style="font-size:20px;"></i>',
-                previous:
-                  '<i class="fas fa-chevron-circle-left" style="font-size:20px;"></i>',
-              },
-              responsive: true,
-          },
-        });
+         $('#tblUsuarios').DataTable({
+            "language": {
+              "url": "//cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json"
+            }
+          });
+       
       });
     },
     usuarioLogeado(){
@@ -359,6 +324,54 @@ export default {
       });
     
     },
+    guardarEmpresa(){
+      let self = this;
+      let data = {
+        nombre_empresa: self.nueva_empresa,
+        booking: self.nuevo_booking,
+        booking_temp: self.nuevo_booking_temp,
+        usuario_asigando: self.nuevo_usuario_asignado,
+      };
+      if (self.nueva_empresa =="" || self.nuevo_booking =="" || self.nuevo_booking_temp =="" || self.nuevo_usuario_asignado == 0) {
+        // self.mensaje_error("Debe llenar todos los campos");
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Debe llenar todos los campos!',
+        })
+        
+      }
+      axios.post(route('nueva_empresa'), data)
+      .then(function(response){
+        console.log(response.data);
+        
+        if (response.data == 'empresa_existe') {
+           Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: 'La empresa ya existe!',
+            })
+        }
+        if (response.data > 0) {
+           Swal.fire({
+              title: 'Empresa Creada!',
+              icon: 'success',
+              confirmButtonColor: '#e58e26',
+              confirmButtonText: 'OK!'
+            })
+        }
+       
+      }).then(()=>{
+        $('#empresasModal').modal('hide')
+        self.nuevo_nombres = "";
+        self.nuevo_apellidos = "";
+        self.nuevo_correo = "";
+        self.nuevo_usuario = "";
+        $("#tblEmpresas").DataTable().destroy();
+        self.TablaEmpresas();
+      });
+    
+    },
       
   },
 };
@@ -366,20 +379,20 @@ export default {
 
 <style lang="css">
  #lado_derecho{
-    width: 50%;
+    width: 100%;
   }
   #lado_izquierdo{
-    width: 50%;
+    width: 100%;
   }
 
 
 
 @media (max-width: 1024px) {
   #lado_derecho{
-    width: 50%;
+    width: 100%;
   }
   #lado_izquierdo{
-    width: 50%;
+    width: 100%;
   }
 }
 </style>

@@ -76,4 +76,19 @@ class SettingController extends Controller
         ]);
         return $usuario->id;
     }
+    public function nuevaEmpresa(Request $request)
+    {
+        // return $request; 
+        $empresa_existe = Empresa::where('nombre_empresa',$request->nombre_empresa)->get();
+        if (count($empresa_existe) > 0) {
+            return 'empresa_existe'; 
+        }
+        $empresa = Empresa::create([
+            'nombre_empresa' => $request->nombre_empresa,
+            'descripcion_booking' => $request->booking,
+            'temp_contratada' => $request->booking_temp,
+            'usuario_id' => $request->usuario_asigando,
+        ]);
+        return $empresa->id;
+    }
 }

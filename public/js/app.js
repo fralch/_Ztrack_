@@ -3945,6 +3945,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -3966,7 +3967,12 @@ __webpack_require__.r(__webpack_exports__);
       nuevo_usuario: "",
       nuevo_apellidos: "",
       nuevo_nombres: "",
-      nuevo_correo: ""
+      nuevo_correo: "",
+      // -- empresas datos ---
+      nueva_empresa: "",
+      nuevo_booking: "",
+      nuevo_booking_temp: "",
+      nuevo_usuario_asignado: 0
     };
   },
   watch: {
@@ -3990,29 +3996,9 @@ __webpack_require__.r(__webpack_exports__);
     TablaEmpresas: function TablaEmpresas() {
       var self = this;
       this.$nextTick(function () {
-        var table = $('#tblEmpresas').DataTable({
-          scrollX: "100%",
-          language: {
-            retrieve: true,
-            decimal: "",
-            emptyTable: "No hay datos disponibles en la tabla",
-            info: "Mostrando del _START_ al _END_ de _TOTAL_ registros",
-            infoEmpty: "No se encontraron registros",
-            infoFiltered: "(filtrado de _MAX_ registros)",
-            infoPostFix: "",
-            thousands: ",",
-            lengthMenu: "Agrupar por _MENU_ filas",
-            loadingRecords: "Cargando...",
-            processing: "Procesando...",
-            search: "Buscar:",
-            zeroRecords: "No se encontraron registros",
-            paginate: {
-              first: "Primera",
-              last: "Ultima",
-              next: '<i class="fas fa-chevron-circle-right" style="font-size:20px;"></i>',
-              previous: '<i class="fas fa-chevron-circle-left" style="font-size:20px;"></i>'
-            },
-            responsive: true
+        $('#tblEmpresas').DataTable({
+          "language": {
+            "url": "//cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json"
           }
         });
       });
@@ -4020,29 +4006,9 @@ __webpack_require__.r(__webpack_exports__);
     TablaUsuarios: function TablaUsuarios() {
       var self = this;
       this.$nextTick(function () {
-        var table = $('#tblUsuarios').DataTable({
-          scrollX: "100%",
-          language: {
-            retrieve: true,
-            decimal: "",
-            emptyTable: "No hay datos disponibles en la tabla",
-            info: "Mostrando del _START_ al _END_ de _TOTAL_ registros",
-            infoEmpty: "No se encontraron registros",
-            infoFiltered: "(filtrado de _MAX_ registros)",
-            infoPostFix: "",
-            thousands: ",",
-            lengthMenu: "Agrupar por _MENU_ filas",
-            loadingRecords: "Cargando...",
-            processing: "Procesando...",
-            search: "Buscar:",
-            zeroRecords: "No se encontraron registros",
-            paginate: {
-              first: "Primera",
-              last: "Ultima",
-              next: '<i class="fas fa-chevron-circle-right" style="font-size:20px;"></i>',
-              previous: '<i class="fas fa-chevron-circle-left" style="font-size:20px;"></i>'
-            },
-            responsive: true
+        $('#tblUsuarios').DataTable({
+          "language": {
+            "url": "//cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json"
           }
         });
       });
@@ -4098,6 +4064,53 @@ __webpack_require__.r(__webpack_exports__);
         self.nuevo_usuario = "";
         $("#tblUsuarios").DataTable().destroy();
         self.TablaUsuarios();
+      });
+    },
+    guardarEmpresa: function guardarEmpresa() {
+      var self = this;
+      var data = {
+        nombre_empresa: self.nueva_empresa,
+        booking: self.nuevo_booking,
+        booking_temp: self.nuevo_booking_temp,
+        usuario_asigando: self.nuevo_usuario_asignado
+      };
+
+      if (self.nueva_empresa == "" || self.nuevo_booking == "" || self.nuevo_booking_temp == "" || self.nuevo_usuario_asignado == 0) {
+        // self.mensaje_error("Debe llenar todos los campos");
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Debe llenar todos los campos!'
+        });
+      }
+
+      axios.post(route('nueva_empresa'), data).then(function (response) {
+        console.log(response.data);
+
+        if (response.data == 'empresa_existe') {
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'La empresa ya existe!'
+          });
+        }
+
+        if (response.data > 0) {
+          Swal.fire({
+            title: 'Empresa Creada!',
+            icon: 'success',
+            confirmButtonColor: '#e58e26',
+            confirmButtonText: 'OK!'
+          });
+        }
+      }).then(function () {
+        $('#empresasModal').modal('hide');
+        self.nuevo_nombres = "";
+        self.nuevo_apellidos = "";
+        self.nuevo_correo = "";
+        self.nuevo_usuario = "";
+        $("#tblEmpresas").DataTable().destroy();
+        self.TablaEmpresas();
       });
     }
   }
@@ -4215,7 +4228,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n#lado_derecho{\n    width: 50%;\n}\n#lado_izquierdo{\n    width: 50%;\n}\n@media (max-width: 1024px) {\n#lado_derecho{\n    width: 50%;\n}\n#lado_izquierdo{\n    width: 50%;\n}\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n#lado_derecho{\n    width: 100%;\n}\n#lado_izquierdo{\n    width: 100%;\n}\n@media (max-width: 1024px) {\n#lado_derecho{\n    width: 100%;\n}\n#lado_izquierdo{\n    width: 100%;\n}\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -32281,250 +32294,202 @@ var render = function () {
                 "div",
                 { staticClass: "row", staticStyle: { margin: "0 0 0 0px" } },
                 [
-                  _c(
-                    "div",
-                    {
-                      staticStyle: { margin: "10px 0 0 -5px" },
-                      attrs: { id: "lado_izquierdo" },
-                    },
-                    [
-                      _c(
-                        "div",
-                        {
-                          staticClass:
-                            "col shadow-sm p-3 mb-5 bg-white rounded ",
-                          attrs: { id: "asset-empresas" },
-                        },
-                        [
-                          _c(
-                            "div",
-                            {
-                              staticClass: "text-center",
-                              staticStyle: { "background-color": "#353b48" },
-                            },
-                            [
-                              _c(
-                                "label",
-                                {
-                                  staticStyle: {
-                                    color: "white",
-                                    "font-size": "20px",
-                                    "margin-top": "10px",
-                                  },
-                                  attrs: { for: "buscar" },
-                                },
-                                [_vm._v("USUARIOS ")]
-                              ),
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c("br"),
-                          _vm._v(" "),
-                          _c("div", { attrs: { id: "grid_usuarios" } }, [
+                  _c("div", { attrs: { id: "lado_izquierdo" } }, [
+                    _c(
+                      "div",
+                      {
+                        staticClass: "col shadow-sm p-3 mb-5 bg-white rounded ",
+                        attrs: { id: "asset-empresas" },
+                      },
+                      [
+                        _c(
+                          "div",
+                          {
+                            staticClass: "text-center",
+                            staticStyle: { "background-color": "#353b48" },
+                          },
+                          [
                             _c(
-                              "table",
+                              "label",
                               {
-                                staticClass: "table",
-                                attrs: { id: "tblUsuarios" },
+                                staticStyle: {
+                                  color: "white",
+                                  "font-size": "20px",
+                                  "margin-top": "10px",
+                                },
+                                attrs: { for: "buscar" },
                               },
-                              [
-                                _c("thead", { staticClass: "bg-warning" }, [
-                                  _c("tr", [
-                                    _c(
-                                      "th",
-                                      {
-                                        attrs: { scope: "col", width: "50px" },
-                                      },
-                                      [_vm._v("N°")]
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "th",
-                                      {
-                                        attrs: { scope: "col", width: "50px" },
-                                      },
-                                      [_vm._v("Ver")]
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "th",
-                                      {
-                                        attrs: { scope: "col", width: "150px" },
-                                      },
-                                      [_vm._v("Usuario")]
-                                    ),
-                                    _vm._v(" "),
-                                    _c("th", { attrs: { scope: "col" } }, [
-                                      _vm._v("Apellidos"),
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("th", { attrs: { scope: "col" } }, [
-                                      _vm._v("Nombres"),
-                                    ]),
-                                    _vm._v(" "),
-                                    _c(
-                                      "th",
-                                      {
-                                        attrs: { scope: "col", width: "50px" },
-                                      },
-                                      [_vm._v("Activo ")]
-                                    ),
-                                    _vm._v(" "),
-                                    _c("th", { attrs: { scope: "col" } }, [
-                                      _vm._v("Administrador"),
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("th", { attrs: { scope: "col" } }, [
-                                      _vm._v("Correo"),
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("th", { attrs: { scope: "col" } }, [
-                                      _vm._v("Ultimo_acceso"),
-                                    ]),
-                                  ]),
+                              [_vm._v("USUARIOS ")]
+                            ),
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c("br"),
+                        _vm._v(" "),
+                        _c("div", { attrs: { id: "grid_usuarios" } }, [
+                          _c("table", { attrs: { id: "tblUsuarios" } }, [
+                            _c("thead", [
+                              _c("tr", [
+                                _c(
+                                  "th",
+                                  { attrs: { scope: "col", width: "50px" } },
+                                  [_vm._v("N°")]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "th",
+                                  { attrs: { scope: "col", width: "50px" } },
+                                  [_vm._v("Ver")]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "th",
+                                  { attrs: { scope: "col", width: "150px" } },
+                                  [_vm._v("Usuario")]
+                                ),
+                                _vm._v(" "),
+                                _c("th", { attrs: { scope: "col" } }, [
+                                  _vm._v("Apellidos"),
+                                ]),
+                                _vm._v(" "),
+                                _c("th", { attrs: { scope: "col" } }, [
+                                  _vm._v("Nombres"),
                                 ]),
                                 _vm._v(" "),
                                 _c(
-                                  "tbody",
-                                  _vm._l(
-                                    _vm.usuario_todos,
-                                    function (usuario, index) {
-                                      return _c("tr", { key: index }, [
-                                        _c(
-                                          "td",
-                                          { staticClass: "text-center" },
-                                          [_vm._v(_vm._s(index + 1))]
-                                        ),
-                                        _vm._v(" "),
-                                        _c(
-                                          "td",
-                                          { staticClass: "text-center" },
-                                          [
-                                            _c("input", {
-                                              directives: [
-                                                {
-                                                  name: "model",
-                                                  rawName: "v-model",
-                                                  value: _vm.radio_user,
-                                                  expression: "radio_user",
-                                                },
-                                              ],
-                                              attrs: { type: "radio" },
-                                              domProps: {
-                                                value: usuario.id,
-                                                checked: _vm._q(
-                                                  _vm.radio_user,
-                                                  usuario.id
-                                                ),
-                                              },
-                                              on: {
-                                                change: function ($event) {
-                                                  _vm.radio_user = usuario.id
-                                                },
-                                              },
-                                            }),
-                                          ]
-                                        ),
-                                        _vm._v(" "),
-                                        _c("td", [
-                                          _vm._v(
-                                            _vm._s(
-                                              usuario.usuario.toUpperCase()
-                                            )
+                                  "th",
+                                  { attrs: { scope: "col", width: "50px" } },
+                                  [_vm._v("Activo ")]
+                                ),
+                                _vm._v(" "),
+                                _c("th", { attrs: { scope: "col" } }, [
+                                  _vm._v("Administrador"),
+                                ]),
+                                _vm._v(" "),
+                                _c("th", { attrs: { scope: "col" } }, [
+                                  _vm._v("Correo"),
+                                ]),
+                                _vm._v(" "),
+                                _c("th", { attrs: { scope: "col" } }, [
+                                  _vm._v("Ultimo_acceso"),
+                                ]),
+                              ]),
+                            ]),
+                            _vm._v(" "),
+                            _c(
+                              "tbody",
+                              _vm._l(
+                                _vm.usuario_todos,
+                                function (usuario, index) {
+                                  return _c("tr", { key: index }, [
+                                    _c("td", { staticClass: "text-center" }, [
+                                      _vm._v(_vm._s(index + 1)),
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", { staticClass: "text-center" }, [
+                                      _c("input", {
+                                        directives: [
+                                          {
+                                            name: "model",
+                                            rawName: "v-model",
+                                            value: _vm.radio_user,
+                                            expression: "radio_user",
+                                          },
+                                        ],
+                                        attrs: { type: "radio" },
+                                        domProps: {
+                                          value: usuario.id,
+                                          checked: _vm._q(
+                                            _vm.radio_user,
+                                            usuario.id
                                           ),
-                                        ]),
-                                        _vm._v(" "),
-                                        _c("td", [
-                                          _vm._v(_vm._s(usuario.apellidos)),
-                                        ]),
-                                        _vm._v(" "),
-                                        _c("td", [
-                                          _vm._v(_vm._s(usuario.nombres)),
-                                        ]),
-                                        _vm._v(" "),
-                                        _c(
-                                          "td",
-                                          { staticClass: "text-center" },
-                                          [
-                                            _vm._v(
-                                              _vm._s(
-                                                usuario.activo == 1
-                                                  ? "SI"
-                                                  : "NO"
-                                              )
-                                            ),
-                                          ]
-                                        ),
-                                        _vm._v(" "),
-                                        _c(
-                                          "td",
-                                          { staticClass: "text-center" },
-                                          [
-                                            _vm._v(
-                                              _vm._s(
-                                                usuario.admin == 1 ? "SI" : "NO"
-                                              )
-                                            ),
-                                          ]
-                                        ),
-                                        _vm._v(" "),
-                                        _c("td", [
-                                          _vm._v(_vm._s(usuario.correo)),
-                                        ]),
-                                        _vm._v(" "),
-                                        _c("td", [
-                                          _vm._v(_vm._s(usuario.ultimo_acceso)),
-                                        ]),
-                                      ])
-                                    }
-                                  ),
-                                  0
+                                        },
+                                        on: {
+                                          change: function ($event) {
+                                            _vm.radio_user = usuario.id
+                                          },
+                                        },
+                                      }),
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _vm._v(
+                                        _vm._s(usuario.usuario.toUpperCase())
+                                      ),
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _vm._v(_vm._s(usuario.apellidos)),
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v(_vm._s(usuario.nombres))]),
+                                    _vm._v(" "),
+                                    _c("td", { staticClass: "text-center" }, [
+                                      _vm._v(
+                                        _vm._s(
+                                          usuario.activo == 1 ? "SI" : "NO"
+                                        )
+                                      ),
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", { staticClass: "text-center" }, [
+                                      _vm._v(
+                                        _vm._s(usuario.admin == 1 ? "SI" : "NO")
+                                      ),
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v(_vm._s(usuario.correo))]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _vm._v(_vm._s(usuario.ultimo_acceso)),
+                                    ]),
+                                  ])
+                                }
+                              ),
+                              0
+                            ),
+                          ]),
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          {
+                            staticClass: "row",
+                            staticStyle: { margin: "0 10px" },
+                          },
+                          [
+                            _c(
+                              "button",
+                              {
+                                staticClass: "col-3 btn btn-warning",
+                                attrs: {
+                                  type: "button",
+                                  "data-toggle": "modal",
+                                  "data-target": "#usuarioModal",
+                                },
+                              },
+                              [
+                                _c("i", { staticClass: "bi bi-check-lg" }),
+                                _vm._v(" "),
+                                _c("b", {
+                                  staticStyle: { "font-size": "1.2em" },
+                                }),
+                                _vm._v(
+                                  "\n                     \n                    Nueva Usuario\n                  "
                                 ),
                               ]
                             ),
-                          ]),
-                          _vm._v(" "),
-                          _c(
-                            "div",
-                            {
-                              staticClass: "row",
-                              staticStyle: { margin: "0 10px" },
-                            },
-                            [
-                              _c(
-                                "button",
-                                {
-                                  staticClass: "col-3 btn btn-warning",
-                                  attrs: {
-                                    type: "button",
-                                    "data-toggle": "modal",
-                                    "data-target": "#usuarioModal",
-                                  },
-                                },
-                                [
-                                  _c("i", { staticClass: "bi bi-check-lg" }),
-                                  _vm._v(" "),
-                                  _c("b", {
-                                    staticStyle: { "font-size": "1.2em" },
-                                  }),
-                                  _vm._v(
-                                    "\n                     \n                    Nueva Usuario\n                  "
-                                  ),
-                                ]
-                              ),
-                            ]
-                          ),
-                        ]
-                      ),
-                    ]
-                  ),
+                          ]
+                        ),
+                      ]
+                    ),
+                  ]),
                   _vm._v(" "),
                   _c("div", { attrs: { id: "lado_derecho" } }, [
                     _c(
                       "div",
                       {
                         staticClass: "col shadow-sm p-3 mb-5 bg-white rounded ",
-                        staticStyle: { margin: "10px 15px 0px 15px" },
                         attrs: { id: "asset-empresas" },
                       },
                       [
@@ -32553,102 +32518,58 @@ var render = function () {
                         _c("br"),
                         _vm._v(" "),
                         _c("div", { attrs: { id: "grid_empresas" } }, [
-                          _c(
-                            "table",
-                            {
-                              staticClass: "table",
-                              attrs: { id: "tblEmpresas" },
-                            },
-                            [
-                              _c(
-                                "thead",
-                                {
-                                  staticClass: "bg-success",
-                                  staticStyle: { color: "white" },
-                                },
-                                [
-                                  _c("tr", [
-                                    _c(
-                                      "th",
-                                      {
-                                        attrs: { scope: "col", width: "50px" },
-                                      },
-                                      [_vm._v("N°")]
-                                    ),
+                          _c("table", { attrs: { id: "tblEmpresas" } }, [
+                            _c("thead", [
+                              _c("tr", [
+                                _c("th", [_vm._v("N°")]),
+                                _vm._v(" "),
+                                _c("th", [_vm._v("Empresa")]),
+                                _vm._v(" "),
+                                _c("th", [_vm._v("Booking")]),
+                                _vm._v(" "),
+                                _c("th", [_vm._v("Booking_temp")]),
+                                _vm._v(" "),
+                                _c("th", [_vm._v("Usuario_asigando")]),
+                              ]),
+                            ]),
+                            _vm._v(" "),
+                            _c(
+                              "tbody",
+                              _vm._l(
+                                _vm.tabla_datos_empresas,
+                                function (empresa, index) {
+                                  return _c("tr", { key: index }, [
+                                    _c("td", [_vm._v(_vm._s(index + 1))]),
                                     _vm._v(" "),
-                                    _c(
-                                      "th",
-                                      {
-                                        attrs: { scope: "col", width: "150px" },
-                                      },
-                                      [_vm._v("Empresa")]
-                                    ),
-                                    _vm._v(" "),
-                                    _c("th", { attrs: { scope: "col" } }, [
-                                      _vm._v("Descripcion_booking"),
+                                    _c("td", [
+                                      _vm._v(
+                                        _vm._s(
+                                          empresa.nombre_empresa.toUpperCase()
+                                        )
+                                      ),
                                     ]),
                                     _vm._v(" "),
-                                    _c("th", { attrs: { scope: "col" } }, [
-                                      _vm._v("Temp_contratada"),
+                                    _c("td", [
+                                      _vm._v(
+                                        _vm._s(empresa.descripcion_booking)
+                                      ),
                                     ]),
                                     _vm._v(" "),
-                                    _c(
-                                      "th",
-                                      {
-                                        attrs: { scope: "col", width: "250px" },
-                                      },
-                                      [_vm._v(" Otros_datos_contratados ")]
-                                    ),
-                                    _vm._v(" "),
-                                    _c("th", { attrs: { scope: "col" } }, [
-                                      _vm._v("Usuario_asigando"),
+                                    _c("td", [
+                                      _vm._v(_vm._s(empresa.temp_contratada)),
                                     ]),
-                                  ]),
-                                ]
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _vm._v(
+                                        _vm._s(empresa.usuario.toUpperCase())
+                                      ),
+                                    ]),
+                                  ])
+                                }
                               ),
-                              _vm._v(" "),
-                              _c(
-                                "tbody",
-                                _vm._l(
-                                  _vm.tabla_datos_empresas,
-                                  function (empresa, index) {
-                                    return _c("tr", { key: index }, [
-                                      _c("td", [_vm._v(_vm._s(index + 1))]),
-                                      _vm._v(" "),
-                                      _c("td", [
-                                        _vm._v(
-                                          _vm._s(
-                                            empresa.nombre_empresa.toUpperCase()
-                                          )
-                                        ),
-                                      ]),
-                                      _vm._v(" "),
-                                      _c("td", [
-                                        _vm._v(
-                                          _vm._s(empresa.descripcion_booking)
-                                        ),
-                                      ]),
-                                      _vm._v(" "),
-                                      _c("td", [
-                                        _vm._v(_vm._s(empresa.temp_contratada)),
-                                      ]),
-                                      _vm._v(" "),
-                                      _c("td", { staticClass: "text-center" }, [
-                                        _vm._v(" 0 C°"),
-                                      ]),
-                                      _vm._v(" "),
-                                      _c("td", [
-                                        _vm._v(
-                                          _vm._s(empresa.usuario.toUpperCase())
-                                        ),
-                                      ]),
-                                    ])
-                                  }
-                                ),
-                                0
-                              ),
-                            ]
-                          ),
+                              0
+                            ),
+                          ]),
                         ]),
                         _vm._v(" "),
                         _c(
@@ -32661,8 +32582,12 @@ var render = function () {
                             _c(
                               "button",
                               {
-                                staticClass: "col-3 btn btn-success",
-                                attrs: { type: "button" },
+                                staticClass: "col-3 btn btn-dark",
+                                attrs: {
+                                  type: "button",
+                                  "data-toggle": "modal",
+                                  "data-target": "#empresasModal",
+                                },
                               },
                               [
                                 _c("i", { staticClass: "bi bi-check-lg" }),
@@ -32902,10 +32827,10 @@ var render = function () {
           {
             staticClass: "modal fade",
             attrs: {
-              id: "usuarioModal",
+              id: "empresasModal",
               tabindex: "-1",
               role: "dialog",
-              "aria-labelledby": "usuarioModalLabel",
+              "aria-labelledby": "empresasoModalLabel",
               "aria-hidden": "true",
             },
           },
@@ -32922,7 +32847,7 @@ var render = function () {
                         staticClass: "modal-title",
                         attrs: { id: "exampleModalLabel" },
                       },
-                      [_vm._v("Crear Usuario")]
+                      [_vm._v("Crear Empresa")]
                     ),
                     _vm._v(" "),
                     _c(
@@ -32946,7 +32871,7 @@ var render = function () {
                   _c("div", { staticClass: "modal-body" }, [
                     _c("div", { staticClass: "form-inline" }, [
                       _c("label", { staticStyle: { "margin-right": "10px" } }, [
-                        _vm._v("Usuario"),
+                        _vm._v("Empresa"),
                       ]),
                       _vm._v(" "),
                       _c("input", {
@@ -32954,23 +32879,19 @@ var render = function () {
                           {
                             name: "model",
                             rawName: "v-model",
-                            value: _vm.nuevo_usuario,
-                            expression: "nuevo_usuario",
+                            value: _vm.nueva_empresa,
+                            expression: "nueva_empresa",
                           },
                         ],
                         staticClass: "form-control mr-sm-2",
-                        attrs: {
-                          type: "usuario",
-                          placeholder: "nombre de usuario",
-                          "aria-label": "Usuario",
-                        },
-                        domProps: { value: _vm.nuevo_usuario },
+                        attrs: { placeholder: "nombre de empresa" },
+                        domProps: { value: _vm.nueva_empresa },
                         on: {
                           input: function ($event) {
                             if ($event.target.composing) {
                               return
                             }
-                            _vm.nuevo_usuario = $event.target.value
+                            _vm.nueva_empresa = $event.target.value
                           },
                         },
                       }),
@@ -32980,31 +32901,26 @@ var render = function () {
                     _vm._v(" "),
                     _c("div", { staticClass: "form-inline" }, [
                       _c("label", { staticStyle: { "margin-right": "10px" } }, [
-                        _vm._v("Apellidos"),
+                        _vm._v("Booking"),
                       ]),
                       _vm._v(" "),
-                      _c("input", {
+                      _c("textarea", {
                         directives: [
                           {
                             name: "model",
                             rawName: "v-model",
-                            value: _vm.nuevo_apellidos,
-                            expression: "nuevo_apellidos",
+                            value: _vm.nuevo_booking,
+                            expression: "nuevo_booking",
                           },
                         ],
                         staticClass: "form-control mr-sm-2",
-                        attrs: {
-                          type: "apellidos",
-                          placeholder: "apellidos",
-                          "aria-label": "Apellidos",
-                        },
-                        domProps: { value: _vm.nuevo_apellidos },
+                        domProps: { value: _vm.nuevo_booking },
                         on: {
                           input: function ($event) {
                             if ($event.target.composing) {
                               return
                             }
-                            _vm.nuevo_apellidos = $event.target.value
+                            _vm.nuevo_booking = $event.target.value
                           },
                         },
                       }),
@@ -33014,7 +32930,7 @@ var render = function () {
                     _vm._v(" "),
                     _c("div", { staticClass: "form-inline" }, [
                       _c("label", { staticStyle: { "margin-right": "10px" } }, [
-                        _vm._v("Nombres"),
+                        _vm._v("Booking_temp"),
                       ]),
                       _vm._v(" "),
                       _c("input", {
@@ -33022,23 +32938,19 @@ var render = function () {
                           {
                             name: "model",
                             rawName: "v-model",
-                            value: _vm.nuevo_nombres,
-                            expression: "nuevo_nombres",
+                            value: _vm.nuevo_booking_temp,
+                            expression: "nuevo_booking_temp",
                           },
                         ],
                         staticClass: "form-control mr-sm-2",
-                        attrs: {
-                          type: "nombres",
-                          placeholder: "nombres",
-                          "aria-label": "Nombres",
-                        },
-                        domProps: { value: _vm.nuevo_nombres },
+                        attrs: { placeholder: "Booking Temperature" },
+                        domProps: { value: _vm.nuevo_booking_temp },
                         on: {
                           input: function ($event) {
                             if ($event.target.composing) {
                               return
                             }
-                            _vm.nuevo_nombres = $event.target.value
+                            _vm.nuevo_booking_temp = $event.target.value
                           },
                         },
                       }),
@@ -33048,34 +32960,55 @@ var render = function () {
                     _vm._v(" "),
                     _c("div", { staticClass: "form-inline" }, [
                       _c("label", { staticStyle: { "margin-right": "10px" } }, [
-                        _vm._v("Correo"),
+                        _vm._v("Usuario Asignado"),
                       ]),
                       _vm._v(" "),
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.nuevo_correo,
-                            expression: "nuevo_correo",
+                      _c(
+                        "select",
+                        {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.nuevo_usuario_asignado,
+                              expression: "nuevo_usuario_asignado",
+                            },
+                          ],
+                          staticClass: "form-control mr-sm-2",
+                          on: {
+                            change: function ($event) {
+                              var $$selectedVal = Array.prototype.filter
+                                .call($event.target.options, function (o) {
+                                  return o.selected
+                                })
+                                .map(function (o) {
+                                  var val = "_value" in o ? o._value : o.value
+                                  return val
+                                })
+                              _vm.nuevo_usuario_asignado = $event.target
+                                .multiple
+                                ? $$selectedVal
+                                : $$selectedVal[0]
+                            },
                           },
+                        },
+                        [
+                          _c(
+                            "option",
+                            { attrs: { value: "0", disabled: "" } },
+                            [_vm._v("Seleccione un usuario")]
+                          ),
+                          _vm._v(" "),
+                          _vm._l(_vm.usuario_todos, function (usuario, index) {
+                            return _c(
+                              "option",
+                              { key: index, domProps: { value: usuario.id } },
+                              [_vm._v(_vm._s(usuario.nombres))]
+                            )
+                          }),
                         ],
-                        staticClass: "form-control mr-sm-2",
-                        attrs: {
-                          type: "correo",
-                          placeholder: "correo",
-                          "aria-label": "Correo",
-                        },
-                        domProps: { value: _vm.nuevo_correo },
-                        on: {
-                          input: function ($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.nuevo_correo = $event.target.value
-                          },
-                        },
-                      }),
+                        2
+                      ),
                     ]),
                   ]),
                   _vm._v(" "),
@@ -33083,9 +33016,9 @@ var render = function () {
                     _c(
                       "button",
                       {
-                        staticClass: "btn btn-warning",
+                        staticClass: "btn btn-dark",
                         attrs: { type: "button" },
-                        on: { click: _vm.guardarUsuario },
+                        on: { click: _vm.guardarEmpresa },
                       },
                       [
                         _c("i", { staticClass: "fas fa-save" }),
