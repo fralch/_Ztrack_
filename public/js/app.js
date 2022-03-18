@@ -3946,6 +3946,53 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -32530,6 +32577,8 @@ var render = function () {
                                 _c("th", [_vm._v("Booking_temp")]),
                                 _vm._v(" "),
                                 _c("th", [_vm._v("Usuario_asigando")]),
+                                _vm._v(" "),
+                                _c("th", [_vm._v("Asignar_empresa")]),
                               ]),
                             ]),
                             _vm._v(" "),
@@ -32562,6 +32611,25 @@ var render = function () {
                                     _c("td", [
                                       _vm._v(
                                         _vm._s(empresa.usuario.toUpperCase())
+                                      ),
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _c(
+                                        "button",
+                                        {
+                                          staticClass: "col-3 btn btn-dark",
+                                          attrs: {
+                                            type: "button",
+                                            "data-toggle": "modal",
+                                            "data-target": "#asignarModal",
+                                          },
+                                        },
+                                        [
+                                          _c("i", {
+                                            staticClass: "bi bi-check-lg",
+                                          }),
+                                        ]
                                       ),
                                     ]),
                                   ])
@@ -33006,6 +33074,191 @@ var render = function () {
                               [_vm._v(_vm._s(usuario.nombres))]
                             )
                           }),
+                        ],
+                        2
+                      ),
+                    ]),
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "modal-footer" }, [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-dark",
+                        attrs: { type: "button" },
+                        on: { click: _vm.guardarEmpresa },
+                      },
+                      [
+                        _c("i", { staticClass: "fas fa-save" }),
+                        _vm._v("\n                  Guardar\n                "),
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-secondary",
+                        attrs: { type: "button", "data-dismiss": "modal" },
+                      },
+                      [_vm._v("Cerrar")]
+                    ),
+                  ]),
+                ]),
+              ]
+            ),
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "modal fade",
+            attrs: {
+              id: "asignarModal",
+              tabindex: "-1",
+              role: "dialog",
+              "aria-labelledby": "asignarModalLabel",
+              "aria-hidden": "true",
+            },
+          },
+          [
+            _c(
+              "div",
+              { staticClass: "modal-dialog", attrs: { role: "document" } },
+              [
+                _c("div", { staticClass: "modal-content" }, [
+                  _c("div", { staticClass: "modal-header" }, [
+                    _c(
+                      "h5",
+                      {
+                        staticClass: "modal-title",
+                        attrs: { id: "exampleModalLabel" },
+                      },
+                      [_vm._v("Asignar contenedor")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        staticClass: "close",
+                        attrs: {
+                          type: "button",
+                          "data-dismiss": "modal",
+                          "aria-label": "Close",
+                        },
+                      },
+                      [
+                        _c("span", { attrs: { "aria-hidden": "true" } }, [
+                          _vm._v("×"),
+                        ]),
+                      ]
+                    ),
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "modal-body" }, [
+                    _c("div", { staticClass: "form-check" }, [
+                      _c("input", {
+                        staticClass: "form-check-input",
+                        attrs: {
+                          type: "radio",
+                          name: "flexRadioDefault",
+                          id: "flexRadioDefault1",
+                        },
+                      }),
+                      _vm._v(" "),
+                      _c(
+                        "label",
+                        {
+                          staticClass: "form-check-label",
+                          attrs: { for: "flexRadioDefault1" },
+                        },
+                        [
+                          _vm._v(
+                            "\n                        GenSet\n                      "
+                          ),
+                        ]
+                      ),
+                    ]),
+                    _vm._v(" "),
+                    _c("br"),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-check" }, [
+                      _c("input", {
+                        staticClass: "form-check-input",
+                        attrs: {
+                          type: "radio",
+                          name: "flexRadioDefault",
+                          id: "flexRadioDefault2",
+                          checked: "",
+                        },
+                      }),
+                      _vm._v(" "),
+                      _c(
+                        "label",
+                        {
+                          staticClass: "form-check-label",
+                          attrs: { for: "flexRadioDefault2" },
+                        },
+                        [
+                          _vm._v(
+                            "\n                        Reefer\n                      "
+                          ),
+                        ]
+                      ),
+                    ]),
+                    _vm._v(" "),
+                    _c("br"),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-inline" }, [
+                      _c(
+                        "select",
+                        {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.nuevo_usuario_asignado,
+                              expression: "nuevo_usuario_asignado",
+                            },
+                          ],
+                          staticClass: "form-control mr-sm-2",
+                          on: {
+                            change: function ($event) {
+                              var $$selectedVal = Array.prototype.filter
+                                .call($event.target.options, function (o) {
+                                  return o.selected
+                                })
+                                .map(function (o) {
+                                  var val = "_value" in o ? o._value : o.value
+                                  return val
+                                })
+                              _vm.nuevo_usuario_asignado = $event.target
+                                .multiple
+                                ? $$selectedVal
+                                : $$selectedVal[0]
+                            },
+                          },
+                        },
+                        [
+                          _c(
+                            "option",
+                            { attrs: { value: "0", disabled: "" } },
+                            [_vm._v("Seleccione un usuario")]
+                          ),
+                          _vm._v(" "),
+                          _vm._l(
+                            _vm.contenedores,
+                            function (contenedor, index) {
+                              return _c(
+                                "option",
+                                {
+                                  key: index,
+                                  domProps: { value: contenedor.id },
+                                },
+                                [_vm._v(_vm._s(contenedor.nombre_contenedor))]
+                              )
+                            }
+                          ),
                         ],
                         2
                       ),

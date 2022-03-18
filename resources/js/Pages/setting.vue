@@ -78,7 +78,7 @@
                             <th >Booking</th>
                             <th >Booking_temp</th>
                             <th >Usuario_asigando</th>
-                          
+                            <th >Asignar_empresa</th>                          
                           </tr>
                         </thead>
                         <tbody>
@@ -88,6 +88,11 @@
                             <td>{{empresa.descripcion_booking}}</td>
                             <td>{{empresa.temp_contratada}}</td>
                             <td>{{(empresa.usuario).toUpperCase()}}</td>
+                            <td>
+                              <button type="button" class="col-3 btn btn-dark"  data-toggle="modal" data-target="#asignarModal" >
+                                <i class="bi bi-check-lg"></i>
+                              </button>
+                            </td>
                           </tr>
                         </tbody>
                       </table>
@@ -180,6 +185,48 @@
                       <select class="form-control mr-sm-2" v-model="nuevo_usuario_asignado">
                         <option value='0' disabled>Seleccione un usuario</option>
                         <option v-for="(usuario, index) in usuario_todos"  :key="index" :value="usuario.id">{{usuario.nombres}}</option>
+                      </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-dark" @click="guardarEmpresa">
+                     <i class="fas fa-save"></i>
+                    Guardar
+                  </button>
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Modal asignar contenedor a empresa -->
+          <div class="modal fade" id="asignarModal" tabindex="-1" role="dialog" aria-labelledby="asignarModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Asignar contenedor</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                   <div class="form-check">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                        <label class="form-check-label" for="flexRadioDefault1">
+                          GenSet
+                        </label>
+                      </div>
+                      <br>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                        <label class="form-check-label" for="flexRadioDefault2">
+                          Reefer
+                        </label>
+                      </div>
+                      <br>
+                    <div class="form-inline">                     
+                      <select class="form-control mr-sm-2" v-model="nuevo_usuario_asignado">
+                        <option value='0' disabled>Seleccione un usuario</option>
+                        <option v-for="(contenedor, index) in contenedores"  :key="index" :value="contenedor.id">{{contenedor.nombre_contenedor}}</option>
                       </select>
                     </div>
                 </div>
