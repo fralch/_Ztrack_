@@ -89,7 +89,7 @@
                             <td>{{empresa.temp_contratada}}</td>
                             <td>{{(empresa.usuario).toUpperCase()}}</td>
                             <td>
-                              <button type="button" class="col-3 btn btn-dark"  data-toggle="modal" data-target="#asignarModal" >
+                              <button type="button" class="col-3 btn btn-dark"  data-toggle="modal" data-target="#asignarModal" @click="asignar_id_empresa=empresa.id">
                                 <i class="bi bi-check-lg"></i>
                               </button>
                             </td>
@@ -107,7 +107,6 @@
                   </div>
               </div>     
             </div>
-          
           </div>
           
           </div>
@@ -210,28 +209,28 @@
                 </div>
                 <div class="modal-body">
                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                        <input class="form-check-input" value="G" type="radio" name="flexRadioDefault" id="flexRadioDefault1"  v-model="asignar_tipo">
                         <label class="form-check-label" for="flexRadioDefault1">
                           GenSet
                         </label>
                       </div>
                       <br>
                       <div class="form-check">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                        <input class="form-check-input" value="R" type="radio" name="flexRadioDefault" id="flexRadioDefault2" v-model="asignar_tipo">
                         <label class="form-check-label" for="flexRadioDefault2">
                           Reefer
                         </label>
                       </div>
                       <br>
                     <div class="form-inline">                     
-                      <select class="form-control mr-sm-2" v-model="nuevo_usuario_asignado">
+                      <select class="form-control mr-sm-2" v-model="asignar_id_contenedor">
                         <option value='0' disabled>Seleccione un usuario</option>
-                        <option v-for="(contenedor, index) in contenedores"  :key="index" :value="contenedor.id">{{contenedor.nombre_contenedor}}</option>
+                        <option v-for="(contenedor, index) in contentenedores_filtros"  :key="index" :value="contenedor.id">{{contenedor.nombre_contenedor}}</option>
                       </select>
                     </div>
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-dark" @click="guardarEmpresa">
+                  <button type="button" class="btn btn-dark" @click="asignar_contenedor_guardar">
                      <i class="fas fa-save"></i>
                     Guardar
                   </button>
@@ -266,6 +265,7 @@ export default {
       // submited: false, 
       tabla_datos_empresas: this.empresas, 
       radio_user: null,
+      contentenedores_filtros:[],
       // -- usuarios datos ---
       nuevo_usuario: "",
       nuevo_apellidos: "",
@@ -276,6 +276,10 @@ export default {
       nuevo_booking: "",
       nuevo_booking_temp: "",
       nuevo_usuario_asignado: 0,
+      //--- asignar contenedor ---
+      asignar_id_empresa:null,
+      asignar_tipo: "G",
+      asignar_id_contenedor: 0,
 
     };
   },
@@ -283,20 +287,32 @@ export default {
     radio_user(){
       this.filtrarEmpresa();
     },
-    
+    asignar_tipo(){
+      this.filtrarContenedores();
+    },
   },
  
   mounted() {
       this.usuarioLogeado(); 
       this.TablaUsuarios();
       this.TablaEmpresas()  
+      this.filtrarContenedores();
   },
 
   methods: {
-    filtrarEmpresa(){
-      this.tabla_datos_empresas = this.empresas.filter(item => item.usuario_id == this.radio_user);
+    filtrarContenedores(){
+      if (this.asignar_tipo == "G") {
+        this.contentenedores_filtros = this.contenedores.filter(contenedor => contenedor.tipo == "Generador");   
+      }
+      if (this.asignar_tipo == "R") {
+        this.contentenedores_filtros = this.contenedores.filter(contenedor => contenedor.tipo == "Reefer");   
+      }
+     
     },
-   TablaEmpresas() {
+    filtrarEmpresa(){
+        this.tabla_datos_empresas = this.empresas.filter(item => item.usuario_id == this.radio_user);
+    },
+    TablaEmpresas() {
       let self = this;
       this.$nextTick(() => {
           $('#tblEmpresas').DataTable({
@@ -306,7 +322,7 @@ export default {
           });
       });
     },
-   TablaUsuarios() {
+    TablaUsuarios() {
       let self = this;
       this.$nextTick(() => {
          $('#tblUsuarios').DataTable({
@@ -386,7 +402,6 @@ export default {
           title: 'Oops...',
           text: 'Debe llenar todos los campos!',
         })
-        
       }
       axios.post(route('nueva_empresa'), data)
       .then(function(response){
@@ -407,7 +422,6 @@ export default {
               confirmButtonText: 'OK!'
             })
         }
-       
       }).then(()=>{
         $('#empresasModal').modal('hide')
         self.nuevo_nombres = "";
@@ -417,7 +431,47 @@ export default {
         $("#tblEmpresas").DataTable().destroy();
         self.TablaEmpresas();
       });
-    
+    },
+    asignar_contenedor_guardar(){
+      let self = this;
+      let data = {
+        asig_contenedor: self.asignar_id_contenedor,
+        asig_empresa: self.asignar_id_empresa,
+        asig_tipo: self.asignar_tipo,
+      };
+      if (self.asignar_id_contenedor =="0" || self.asignar_id_empresa == null ) {
+        console.log(self.asignar_id_empresa);
+        console.log(self.asignar_id_contenedor);
+
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Debe llenar todos los campos!',
+        })
+      }
+      axios.post(route('asignar_contenedor'), data)
+      .then(function(response){
+        console.log(response.data);
+        
+        if (response.data == 'asignacion_existe') {
+           Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: 'El contenedor ya asignado!',
+            })
+        }
+        if (response.data > 0) {
+           Swal.fire({
+              title: 'Asignacion realizada!',
+              icon: 'success',
+              confirmButtonColor: '#e58e26',
+              confirmButtonText: 'OK!'
+            })
+        }
+      }).then(()=>{
+        $('#asignarModalLabel').modal('hide')
+      
+      });
     },
       
   },

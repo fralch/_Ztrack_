@@ -91,4 +91,20 @@ class SettingController extends Controller
         ]);
         return $empresa->id;
     }
+    public function asignarContenedor(Request $request)
+    {
+        // return $request; 
+        $contenedor_existe = Empresa_contenedore::where('empresa_id',$request->asig_empresa)->where('contenedor_id',$request->asig_contenedor)->get();
+        if (count($contenedor_existe) > 0) {
+            return 'asignacion_existe'; 
+        }
+        $contenedor = Empresa_contenedore::create([
+            'empresa_id' => $request->asig_empresa,
+            'contenedor_id' => $request->asig_contenedor,
+        ]);
+        return $contenedor->id;
+    }
+    
+    
+    
 }

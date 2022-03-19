@@ -2674,7 +2674,6 @@ var Chart_eventos;
       datos_tabla_generador: [],
       datos_resumen_gen: [],
       datos_resumen_reefer: [],
-      // tipo_contenedor_seleccionado: null, 
       //  ---- myChart_principal -----
       my_Chart_principal_dataset_reefer: [{
         label: 'set_point',
@@ -2822,14 +2821,12 @@ var Chart_eventos;
       }
     },
     datos_tabla_generador: function datos_tabla_generador() {
-      // console.log(screen.width); 
       if (this.tipo == "Generador") {
         $("#tblDetalleContenedores_reefers").DataTable().destroy();
         $("#tblDetalleContenedores_generadores").DataTable().destroy();
         this.TablaDetalleContenedores_g();
         this.TablaDetalleContenedores_r();
-      } // this.iniciarGraficos();
-
+      }
     },
     datos_tabla_reefer: function datos_tabla_reefer() {
       if (this.tipo == "Reefer") {
@@ -2837,8 +2834,7 @@ var Chart_eventos;
         $("#tblDetalleContenedores_reefers").DataTable().destroy();
         this.TablaDetalleContenedores_r();
         this.TablaDetalleContenedores_g();
-      } // this.iniciarGraficos();
-
+      }
     }
   },
   mounted: function mounted() {
@@ -2848,11 +2844,10 @@ var Chart_eventos;
 
     this.Circular_iniciarGraficosAlarms();
     this.Circular_iniciarGraficosEventos();
-    this.Circular_iniciarGraficosPTI();
-    this.Circular_iniciarGraficosFleet(); // this.myChartPrincipal();
+    /*this.Circular_iniciarGraficosPTI();
+    this.Circular_iniciarGraficosFleet();*/
 
-    this.resumenContenedor(); // this.TablaContenedores_gen(); 
-    // this.TablaContenedores();
+    this.resumenContenedor();
   },
   methods: {
     autoRefresh: function autoRefresh() {// let self = this;
@@ -3084,58 +3079,71 @@ var Chart_eventos;
         }
       });
     },
-    Circular_iniciarGraficosPTI: function Circular_iniciarGraficosPTI() {
+
+    /*Circular_iniciarGraficosPTI(){
       var ctx_pti = document.getElementById('myChart_pti').getContext('2d');
       var myChart_pti = new Chart(ctx_pti, {
-        type: 'doughnut',
-        data: {
-          labels: ['Red', 'Blue', 'Yellow'],
-          datasets: [{
-            label: 'My First Dataset',
-            data: [300, 50, 100],
-            backgroundColor: ['rgb(255, 99, 132)', 'rgb(54, 162, 235)', 'rgb(255, 205, 86)'],
-            hoverOffset: 4
-          }]
-        },
-        options: {
-          scales: {
-            y: {
-              beginAtZero: true
-            }
+          type: 'doughnut',
+          data: {
+              labels: [
+                'Red',
+                'Blue',
+                'Yellow'
+              ],
+              datasets: [{
+                label: 'My First Dataset',
+                data: [300, 50, 100],
+                backgroundColor: [
+                  'rgb(255, 99, 132)',
+                  'rgb(54, 162, 235)',
+                  'rgb(255, 205, 86)'
+                ],
+                hoverOffset: 4
+              }]
+          },
+          options: {
+              scales: {
+                  y: {
+                      beginAtZero: true
+                  }
+              }
           }
-        }
       });
     },
-    Circular_iniciarGraficosFleet: function Circular_iniciarGraficosFleet() {
+    Circular_iniciarGraficosFleet(){
       var ctx_fleet = document.getElementById('myChart_fleet').getContext('2d');
       var myChart_fleet = new Chart(ctx_fleet, {
-        type: 'line',
-        data: {
-          labels: [],
-          datasets: [{
-            label: 'Reefers fleet',
-            data: [300, 50, 100],
-            backgroundColor: ['rgb(255, 99, 132)', 'rgb(54, 162, 235)', 'rgb(255, 205, 86)'],
-            hoverOffset: 4
-          }]
-        },
-        options: {
-          scales: {
-            y: {
-              beginAtZero: true
-            }
+          type: 'line',
+          data: {
+              labels: [
+                
+              ],
+              datasets: [{
+                label: 'Reefers fleet',
+                data: [300, 50, 100],
+                backgroundColor: [
+                  'rgb(255, 99, 132)',
+                  'rgb(54, 162, 235)',
+                  'rgb(255, 205, 86)'
+                ],
+                hoverOffset: 4
+              }]
+          },
+          options: {
+              scales: {
+                  y: {
+                      beginAtZero: true
+                  }
+              }
           }
-        }
       });
-    },
+    },*/
     usuarioLogeado: function usuarioLogeado() {
       /* AQUI ES DONDE SE PONE EL NOMBRE DEL USUARIO EN EL NAV  */
-      // this.$refs.layoutprincipal.usuario = (this.usuario_logeado[0].nombres + " " + this.usuario_logeado[0].apellidos).toUpperCase() ;
       this.$refs.layoutprincipal.usuario = this.usuario_logeado[0].nombres.toUpperCase();
       this.$refs.layoutprincipal.admin = this.usuario_logeado[0].admin;
     },
     contenedores_prendidos: function contenedores_prendidos(variable) {
-      // this.contenedores_seleccionados = this.contenedores_encendidos;
       this.tipo = variable;
     },
     select_contenedor: function select_contenedor(contenedor) {
@@ -3195,8 +3203,7 @@ var Chart_eventos;
             }
           }
         }
-      }); //  console.log('myChart_principal');
-      // myChart_principal.resize();
+      });
     },
     setLabelsMyChartPrincipal: function setLabelsMyChartPrincipal() {
       var self = this;
@@ -3286,45 +3293,45 @@ var Chart_eventos;
         } else {
           self.myChartPrincipal();
         }
-      }).then(function () {// self.$nextTick(() => {
-        //   console.log(self.datos_tabla_generador[0].contenedor_id); 
-        // });
-        // self.chart_alarma_labels = [];
-        // self.chart_alarma_dataset_data = [];
-        // self.chart_eventos_labels = [];
-        // self.chart_eventos_dataset_data = [];
-        // // // if (self.tipo == "Reefer") {
-        // // //   axios
-        // // //   .post(route('contenedores.get_alarma_evento'), {
-        // // //     id: self.datos_tabla_generador[0].contenedor_id,
-        // // //     tipo: self.tipo
-        // // //   })
-        // // //   .then(response => {
-        // // //     if (response.data != 0 && self.chart_alarma_labels.length == 0) {
-        // // //       response.data['alarma'].forEach(element => {
-        // // //         self.chart_alarma_labels.push(element.nombre_alarma);
-        // // //         self.chart_alarma_dataset_data.push(element.cantidad_alarma);
-        // // //       });
-        // // //       response.data['evento'].forEach(element => {
-        // // //         self.chart_eventos_labels.push(element.nombre_evento);
-        // // //         self.chart_eventos_dataset_data.push(element.cantidad_evento);
-        // // //       });
-        // // //     }
-        // // //   }).then(()=>{
-        // // //     Chart_alarmas.update(); 
-        // // //   }).then(()=>{
-        // // //     Chart_eventos.update(); 
-        // // //   });
-        // // // }
-        // // // if (self.tipo == "Generador") {
-        // // //   axios
-        // // //   .post(route('contenedores.get_alarma_evento'), {
-        // // //     id: self.datos_tabla_reefer[0].contenedor_id,
-        // // //     tipo: self.tipo
-        // // //   })
-        // // //   .then(response => {            
-        // // //   });
-        // // // }
+      }).then(function () {
+        if (self.tipo == "Generador") {
+          // console.log(self.datos_tabla_generador[0].contenedor_id);
+          axios.post(route('contenedores.get_alarma_evento'), {
+            id: self.datos_tabla_generador[0].contenedor_id,
+            tipo: self.tipo
+          }).then(function (response) {
+            if (response.data != 0 && self.chart_alarma_labels.length == 0) {
+              self.chart_alarma_labels = [];
+              self.chart_alarma_dataset_data = [];
+              response.data['alarma'].forEach(function (element) {
+                self.chart_alarma_labels.push(element.nombre_alarma);
+                self.chart_alarma_dataset_data.push(element.cantidad_alarma);
+              });
+              self.chart_eventos_labels = [];
+              self.chart_eventos_dataset_data = [];
+              response.data['evento'].forEach(function (element) {
+                self.chart_eventos_labels.push(element.nombre_evento);
+                self.chart_eventos_dataset_data.push(element.cantidad_evento);
+              });
+            }
+          }).then(function () {
+            console.log('actualizando el chart circular '); // Chart_alarmas.update(); 
+
+            Chart_alarmas.destroy();
+            self.Circular_iniciarGraficosAlarms();
+          }).then(function () {
+            // Chart_eventos.update(); 
+            Chart_eventos.destroy();
+            self.Circular_iniciarGraficosEventos();
+          });
+        }
+
+        if (self.tipo == "Reefer") {
+          axios.post(route('contenedores.get_alarma_evento'), {
+            id: self.datos_tabla_reefer[0].contenedor_id,
+            tipo: self.tipo
+          }).then(function (response) {});
+        }
       }).then(function () {// self.autoRefresh();
       });
     },
@@ -3402,13 +3409,6 @@ var Chart_eventos;
       }
 
       set_data().then(function () {
-        if (myChart_principal) {
-          myChart_principal.update();
-        } else {
-          self.myChartPrincipal();
-        } // self.my_Chart_principal_dataSetable = [];
-
-
         if (self.tipo == "Reefer") {
           self.my_Chart_principal_dataSetable = self.my_Chart_principal_dataset_reefer;
         }
@@ -3992,7 +3992,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -4010,6 +4009,7 @@ __webpack_require__.r(__webpack_exports__);
       // submited: false, 
       tabla_datos_empresas: this.empresas,
       radio_user: null,
+      contentenedores_filtros: [],
       // -- usuarios datos ---
       nuevo_usuario: "",
       nuevo_apellidos: "",
@@ -4019,20 +4019,41 @@ __webpack_require__.r(__webpack_exports__);
       nueva_empresa: "",
       nuevo_booking: "",
       nuevo_booking_temp: "",
-      nuevo_usuario_asignado: 0
+      nuevo_usuario_asignado: 0,
+      //--- asignar contenedor ---
+      asignar_id_empresa: null,
+      asignar_tipo: "G",
+      asignar_id_contenedor: 0
     };
   },
   watch: {
     radio_user: function radio_user() {
       this.filtrarEmpresa();
+    },
+    asignar_tipo: function asignar_tipo() {
+      this.filtrarContenedores();
     }
   },
   mounted: function mounted() {
     this.usuarioLogeado();
     this.TablaUsuarios();
     this.TablaEmpresas();
+    this.filtrarContenedores();
   },
   methods: {
+    filtrarContenedores: function filtrarContenedores() {
+      if (this.asignar_tipo == "G") {
+        this.contentenedores_filtros = this.contenedores.filter(function (contenedor) {
+          return contenedor.tipo == "Generador";
+        });
+      }
+
+      if (this.asignar_tipo == "R") {
+        this.contentenedores_filtros = this.contenedores.filter(function (contenedor) {
+          return contenedor.tipo == "Reefer";
+        });
+      }
+    },
     filtrarEmpresa: function filtrarEmpresa() {
       var _this = this;
 
@@ -4158,6 +4179,47 @@ __webpack_require__.r(__webpack_exports__);
         self.nuevo_usuario = "";
         $("#tblEmpresas").DataTable().destroy();
         self.TablaEmpresas();
+      });
+    },
+    asignar_contenedor_guardar: function asignar_contenedor_guardar() {
+      var self = this;
+      var data = {
+        asig_contenedor: self.asignar_id_contenedor,
+        asig_empresa: self.asignar_id_empresa,
+        asig_tipo: self.asignar_tipo
+      };
+
+      if (self.asignar_id_contenedor == "0" || self.asignar_id_empresa == null) {
+        console.log(self.asignar_id_empresa);
+        console.log(self.asignar_id_contenedor);
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Debe llenar todos los campos!'
+        });
+      }
+
+      axios.post(route('asignar_contenedor'), data).then(function (response) {
+        console.log(response.data);
+
+        if (response.data == 'asignacion_existe') {
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'El contenedor ya asignado!'
+          });
+        }
+
+        if (response.data > 0) {
+          Swal.fire({
+            title: 'Asignacion realizada!',
+            icon: 'success',
+            confirmButtonColor: '#e58e26',
+            confirmButtonText: 'OK!'
+          });
+        }
+      }).then(function () {
+        $('#asignarModalLabel').modal('hide');
       });
     }
   }
@@ -32624,6 +32686,12 @@ var render = function () {
                                             "data-toggle": "modal",
                                             "data-target": "#asignarModal",
                                           },
+                                          on: {
+                                            click: function ($event) {
+                                              _vm.asignar_id_empresa =
+                                                empresa.id
+                                            },
+                                          },
                                         },
                                         [
                                           _c("i", {
@@ -33158,11 +33226,26 @@ var render = function () {
                   _c("div", { staticClass: "modal-body" }, [
                     _c("div", { staticClass: "form-check" }, [
                       _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.asignar_tipo,
+                            expression: "asignar_tipo",
+                          },
+                        ],
                         staticClass: "form-check-input",
                         attrs: {
+                          value: "G",
                           type: "radio",
                           name: "flexRadioDefault",
                           id: "flexRadioDefault1",
+                        },
+                        domProps: { checked: _vm._q(_vm.asignar_tipo, "G") },
+                        on: {
+                          change: function ($event) {
+                            _vm.asignar_tipo = "G"
+                          },
                         },
                       }),
                       _vm._v(" "),
@@ -33184,12 +33267,26 @@ var render = function () {
                     _vm._v(" "),
                     _c("div", { staticClass: "form-check" }, [
                       _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.asignar_tipo,
+                            expression: "asignar_tipo",
+                          },
+                        ],
                         staticClass: "form-check-input",
                         attrs: {
+                          value: "R",
                           type: "radio",
                           name: "flexRadioDefault",
                           id: "flexRadioDefault2",
-                          checked: "",
+                        },
+                        domProps: { checked: _vm._q(_vm.asignar_tipo, "R") },
+                        on: {
+                          change: function ($event) {
+                            _vm.asignar_tipo = "R"
+                          },
                         },
                       }),
                       _vm._v(" "),
@@ -33217,8 +33314,8 @@ var render = function () {
                             {
                               name: "model",
                               rawName: "v-model",
-                              value: _vm.nuevo_usuario_asignado,
-                              expression: "nuevo_usuario_asignado",
+                              value: _vm.asignar_id_contenedor,
+                              expression: "asignar_id_contenedor",
                             },
                           ],
                           staticClass: "form-control mr-sm-2",
@@ -33232,8 +33329,7 @@ var render = function () {
                                   var val = "_value" in o ? o._value : o.value
                                   return val
                                 })
-                              _vm.nuevo_usuario_asignado = $event.target
-                                .multiple
+                              _vm.asignar_id_contenedor = $event.target.multiple
                                 ? $$selectedVal
                                 : $$selectedVal[0]
                             },
@@ -33247,7 +33343,7 @@ var render = function () {
                           ),
                           _vm._v(" "),
                           _vm._l(
-                            _vm.contenedores,
+                            _vm.contentenedores_filtros,
                             function (contenedor, index) {
                               return _c(
                                 "option",
@@ -33271,7 +33367,7 @@ var render = function () {
                       {
                         staticClass: "btn btn-dark",
                         attrs: { type: "button" },
-                        on: { click: _vm.guardarEmpresa },
+                        on: { click: _vm.asignar_contenedor_guardar },
                       },
                       [
                         _c("i", { staticClass: "fas fa-save" }),
