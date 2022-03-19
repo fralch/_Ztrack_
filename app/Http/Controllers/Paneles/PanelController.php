@@ -190,10 +190,10 @@ class PanelController extends Controller
     public function get_alarma_evento(Request $request)
     {
         // return $request; 
-        if ($request->tipo == 'Generador') {
+        if ($request->tipo == 'Reefer') {
             return 0 ; 
         }
-        if ($request->tipo == 'Reefer') {
+        if ($request->tipo == 'Generador') {
             $cantidad_alarma =Registro_diario_generadores::from('registro_diario_generadores as rdg')
             ->select(
                 'al.nombre_alarma',       

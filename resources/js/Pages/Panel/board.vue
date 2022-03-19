@@ -550,7 +550,7 @@ export default {
       datos_tabla_generador: [],
       datos_resumen_gen: [],
       datos_resumen_reefer: [],
-      // tipo_contenedor_seleccionado: null, 
+      
       //  ---- myChart_principal -----
       my_Chart_principal_dataset_reefer: [
                 {
@@ -1009,7 +1009,7 @@ export default {
       }
     },
     datos_tabla_generador(){
-      // console.log(screen.width); 
+     
       if (this.tipo == "Generador") {
         $("#tblDetalleContenedores_reefers").DataTable().destroy();
         $("#tblDetalleContenedores_generadores").DataTable().destroy();
@@ -1017,7 +1017,7 @@ export default {
           this.TablaDetalleContenedores_r();
       }     
       
-      // this.iniciarGraficos();
+   
     },
     datos_tabla_reefer(){
       if (this.tipo == "Reefer") {
@@ -1027,7 +1027,7 @@ export default {
         this.TablaDetalleContenedores_g();
        }
       
-      // this.iniciarGraficos();
+ 
     },
   },
  
@@ -1039,14 +1039,13 @@ export default {
     // -- graficos circulares --
     this.Circular_iniciarGraficosAlarms();
     this.Circular_iniciarGraficosEventos();
-    this.Circular_iniciarGraficosPTI();
-    this.Circular_iniciarGraficosFleet();
+    /*this.Circular_iniciarGraficosPTI();
+    this.Circular_iniciarGraficosFleet();*/
 
-    // this.myChartPrincipal();
+   
 
     this.resumenContenedor(); 
-    // this.TablaContenedores_gen(); 
-    // this.TablaContenedores();
+   
   },
 
   methods: {
@@ -1308,7 +1307,7 @@ export default {
           }
       });
     },
-    Circular_iniciarGraficosPTI(){
+    /*Circular_iniciarGraficosPTI(){
       var ctx_pti = document.getElementById('myChart_pti').getContext('2d');
       var myChart_pti = new Chart(ctx_pti, {
           type: 'doughnut',
@@ -1365,17 +1364,14 @@ export default {
               }
           }
       });
-    },
+    },*/
     usuarioLogeado(){
       /* AQUI ES DONDE SE PONE EL NOMBRE DEL USUARIO EN EL NAV  */
-      // this.$refs.layoutprincipal.usuario = (this.usuario_logeado[0].nombres + " " + this.usuario_logeado[0].apellidos).toUpperCase() ;
       this.$refs.layoutprincipal.usuario = (this.usuario_logeado[0].nombres ).toUpperCase() ;
      this.$refs.layoutprincipal.admin = this.usuario_logeado[0].admin; 
      
     },
-    contenedores_prendidos(variable){
-      // this.contenedores_seleccionados = this.contenedores_encendidos;
-      
+    contenedores_prendidos(variable){      
       this.tipo = variable; 
     },
     select_contenedor(contenedor){
@@ -1439,8 +1435,7 @@ export default {
               },
           }
       });   
-    //  console.log('myChart_principal');
-      // myChart_principal.resize();
+  
      
     },
     setLabelsMyChartPrincipal(){
@@ -1512,49 +1507,54 @@ export default {
           self.myChartPrincipal();
         }
       })
-      .then(()=>{
-          // self.$nextTick(() => {
-          //   console.log(self.datos_tabla_generador[0].contenedor_id); 
-          // });
-            // self.chart_alarma_labels = [];
-            // self.chart_alarma_dataset_data = [];
-            // self.chart_eventos_labels = [];
-            // self.chart_eventos_dataset_data = [];
-
-        // // // if (self.tipo == "Reefer") {
-        // // //   axios
-        // // //   .post(route('contenedores.get_alarma_evento'), {
-        // // //     id: self.datos_tabla_generador[0].contenedor_id,
-        // // //     tipo: self.tipo
-        // // //   })
-        // // //   .then(response => {
-            
-        // // //     if (response.data != 0 && self.chart_alarma_labels.length == 0) {
-        // // //       response.data['alarma'].forEach(element => {
-        // // //         self.chart_alarma_labels.push(element.nombre_alarma);
-        // // //         self.chart_alarma_dataset_data.push(element.cantidad_alarma);
-        // // //       });
-        // // //       response.data['evento'].forEach(element => {
-        // // //         self.chart_eventos_labels.push(element.nombre_evento);
-        // // //         self.chart_eventos_dataset_data.push(element.cantidad_evento);
-        // // //       });
-        // // //     }
-        // // //   }).then(()=>{
-        // // //     Chart_alarmas.update(); 
-        // // //   }).then(()=>{
-        // // //     Chart_eventos.update(); 
-        // // //   });
-        // // // }
-        // // // if (self.tipo == "Generador") {
+      .then(()=>{          
+        
+        if (self.tipo == "Generador") {
+           
           
-        // // //   axios
-        // // //   .post(route('contenedores.get_alarma_evento'), {
-        // // //     id: self.datos_tabla_reefer[0].contenedor_id,
-        // // //     tipo: self.tipo
-        // // //   })
-        // // //   .then(response => {            
-        // // //   });
-        // // // }
+          // console.log(self.datos_tabla_generador[0].contenedor_id);
+          axios
+          .post(route('contenedores.get_alarma_evento'), {
+            id: self.datos_tabla_generador[0].contenedor_id,
+            tipo: self.tipo
+          })
+          .then(response => {
+            
+            if (response.data != 0 && self.chart_alarma_labels.length == 0) {
+              self.chart_alarma_labels = [];
+              self.chart_alarma_dataset_data = [];
+              response.data['alarma'].forEach(element => {
+                self.chart_alarma_labels.push(element.nombre_alarma);
+                self.chart_alarma_dataset_data.push(element.cantidad_alarma);
+              });
+              self.chart_eventos_labels = [];
+              self.chart_eventos_dataset_data = [];
+              response.data['evento'].forEach(element => {
+                self.chart_eventos_labels.push(element.nombre_evento);
+                self.chart_eventos_dataset_data.push(element.cantidad_evento);
+              });
+            }
+          }).then(()=>{
+            console.log('actualizando el chart circular ');
+            // Chart_alarmas.update(); 
+              Chart_alarmas.destroy();
+              self.Circular_iniciarGraficosAlarms();
+          }).then(()=>{
+            // Chart_eventos.update(); 
+              Chart_eventos.destroy();
+              self.Circular_iniciarGraficosEventos();
+          });
+        }
+        if (self.tipo == "Reefer") {
+          
+          axios
+          .post(route('contenedores.get_alarma_evento'), {
+            id: self.datos_tabla_reefer[0].contenedor_id,
+            tipo: self.tipo
+          })
+          .then(response => {            
+          });
+        }
        
       }).then(()=>{
         // self.autoRefresh();
@@ -1701,12 +1701,6 @@ export default {
        }
 
        set_data().then(()=>{
-          if (myChart_principal) {
-            myChart_principal.update();
-          }else{
-            self.myChartPrincipal();
-          }
-          // self.my_Chart_principal_dataSetable = [];
           if (self.tipo == "Reefer") {
           self.my_Chart_principal_dataSetable = self.my_Chart_principal_dataset_reefer;
           }
