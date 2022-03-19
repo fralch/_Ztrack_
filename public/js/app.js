@@ -2121,8 +2121,6 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 //
 //
 //
@@ -2883,36 +2881,14 @@ var Chart_eventos;
       // console.log('cargar tabla de contenedores'); 
       var self = this;
       this.$nextTick(function () {
-        var _$$DataTable;
-
-        var table = $('#tblContenedor_reefers').DataTable((_$$DataTable = {
-          scrollX: "100%",
-          scrollCollapse: true,
-          select: 'single'
-        }, _defineProperty(_$$DataTable, "select", {
-          style: "single",
-          info: false
-        }), _defineProperty(_$$DataTable, "language", {
-          retrieve: true,
-          decimal: "",
-          emptyTable: "No hay datos disponibles en la tabla",
-          info: "Mostrando del _START_ al _END_ de _TOTAL_ registros",
-          infoEmpty: "No se encontraron registros",
-          infoFiltered: "(filtrado de _MAX_ registros)",
-          infoPostFix: "",
-          thousands: ",",
-          lengthMenu: "Agrupar por _MENU_ filas",
-          loadingRecords: "Cargando...",
-          processing: "Procesando...",
-          search: "Buscar:",
-          zeroRecords: "No se encontraron registros",
-          paginate: {
-            first: "Primera",
-            last: "Ultima",
-            next: '<i class="fas fa-chevron-circle-right" style="font-size:20px;"></i>',
-            previous: '<i class="fas fa-chevron-circle-left" style="font-size:20px;"></i>'
-          }
-        }), _defineProperty(_$$DataTable, "responsive", true), _$$DataTable));
+        var table = $('#tblContenedor_reefers').DataTable({
+          "scrollX": "100%",
+          "scrollCollapse": true,
+          "language": {
+            "url": "//cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json"
+          },
+          "responsive": true
+        });
         /* Esta es la funcion que selecciona una fila  yla colorea  */
 
         $('#tblContenedor_reefers tbody').on('click', 'tr', function () {
@@ -2925,29 +2901,10 @@ var Chart_eventos;
       var self = this;
       this.$nextTick(function () {
         var table2 = $('#tblContenedor_generador').DataTable({
-          scrollX: "100%",
-          scrollCollapse: true,
-          language: {
-            retrieve: true,
-            decimal: "",
-            emptyTable: "No hay datos disponibles en la tabla",
-            info: "Mostrando del _START_ al _END_ de _TOTAL_ registros",
-            infoEmpty: "No se encontraron registros",
-            infoFiltered: "(filtrado de _MAX_ registros)",
-            infoPostFix: "",
-            thousands: ",",
-            lengthMenu: "Agrupar por _MENU_ filas",
-            loadingRecords: "Cargando...",
-            processing: "Procesando...",
-            search: "Buscar:",
-            zeroRecords: "No se encontraron registros",
-            paginate: {
-              first: "Primera",
-              last: "Ultima",
-              next: '<i class="fas fa-chevron-circle-right" style="font-size:20px;"></i>',
-              previous: '<i class="fas fa-chevron-circle-left" style="font-size:20px;"></i>'
-            },
-            responsive: true
+          "scrollX": "100%",
+          "scrollCollapse": true,
+          "language": {
+            "url": "//cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json"
           }
         });
         /* Esta es la funcion que selecciona una fila  yla colorea  */
@@ -2962,29 +2919,11 @@ var Chart_eventos;
       var self = this;
       this.$nextTick(function () {
         var table2 = $('#tblDetalleContenedores_reefers').DataTable({
-          scrollX: "100%",
-          order: [0, "desc"],
-          language: {
-            retrieve: true,
-            decimal: "",
-            emptyTable: "No hay datos disponibles en la tabla",
-            info: "Mostrando del _START_ al _END_ de _TOTAL_ registros",
-            infoEmpty: "No se encontraron registros",
-            infoFiltered: "(filtrado de _MAX_ registros)",
-            infoPostFix: "",
-            thousands: ",",
-            lengthMenu: "Agrupar por _MENU_ filas",
-            loadingRecords: "Cargando...",
-            processing: "Procesando...",
-            search: "Buscar:",
-            zeroRecords: "No se encontraron registros",
-            paginate: {
-              first: "Primera",
-              last: "Ultima",
-              next: '<i class="fas fa-chevron-circle-right" style="font-size:20px;"></i>',
-              previous: '<i class="fas fa-chevron-circle-left" style="font-size:20px;"></i>'
-            },
-            responsive: true
+          "scrollX": "100%",
+          "responsive": true,
+          "order": [0, "desc"],
+          "language": {
+            "url": "//cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json"
           }
         });
       });
@@ -2993,29 +2932,11 @@ var Chart_eventos;
       var self = this;
       this.$nextTick(function () {
         var table = $('#tblDetalleContenedores_generadores').DataTable({
-          scrollX: "100%",
-          responsive: true,
-          order: [0, "desc"],
-          language: {
-            retrieve: true,
-            decimal: "",
-            emptyTable: "No hay datos disponibles en la tabla",
-            info: "Mostrando del _START_ al _END_ de _TOTAL_ registros",
-            infoEmpty: "No se encontraron registros",
-            infoFiltered: "(filtrado de _MAX_ registros)",
-            infoPostFix: "",
-            thousands: ",",
-            lengthMenu: "Agrupar por _MENU_ filas",
-            loadingRecords: "Cargando...",
-            processing: "Procesando...",
-            search: "Buscar:",
-            zeroRecords: "No se encontraron registros",
-            paginate: {
-              first: "Primera",
-              last: "Ultima",
-              next: '<i class="fas fa-chevron-circle-right" style="font-size:20px;"></i>',
-              previous: '<i class="fas fa-chevron-circle-left" style="font-size:20px;"></i>'
-            }
+          "scrollX": "100%",
+          "responsive": true,
+          "order": [0, "desc"],
+          "language": {
+            "url": "//cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json"
           }
         });
       });
@@ -4206,7 +4127,7 @@ __webpack_require__.r(__webpack_exports__);
           Swal.fire({
             icon: 'error',
             title: 'Oops...',
-            text: 'El contenedor ya asignado!'
+            text: 'El contenedor ya esta asignado!'
           });
         }
 

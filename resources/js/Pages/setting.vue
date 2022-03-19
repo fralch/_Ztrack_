@@ -457,7 +457,7 @@ export default {
            Swal.fire({
               icon: 'error',
               title: 'Oops...',
-              text: 'El contenedor ya asignado!',
+              text: 'El contenedor ya esta asignado!',
             })
         }
         if (response.data > 0) {
