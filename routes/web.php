@@ -33,5 +33,6 @@ Route::post('/get_alarma_evento', [PanelController::class, 'get_alarma_evento' ]
 //--------------------- SETTING ------------------------
 Route::get('/setting', [SettingController::class, 'verSetting'])->name('setting');
 Route::post('/usuario/nuevo', [SettingController::class, 'nuevoUsuario'])->name('nuevo_usuario');
+Route::post('/empresa/nueva', [SettingController::class, 'nuevaEmpresa'])->name('nueva_empresa');
 
 Route::get('/faker', [PanelController::class, 'faker_datos'])->name('paneles.faker');

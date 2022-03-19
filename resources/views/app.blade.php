@@ -36,7 +36,7 @@
   </body>
   	<script></script>
    	<style lang="css">
-       body { background-color: #7CBEF8; }
+       /* body { background-color: #7CBEF8; }
       html {
         scrollbar-face-color: #fafbfd;
         scrollbar-base-color: #fafbfd;
@@ -53,6 +53,6 @@
       ::-webkit-scrollbar-track-piece { background-color: #fafbfd;}
       ::-webkit-scrollbar-thumb { height: 50px; background-color: #bfbfbf; border-radius: 3px;}
       ::-webkit-scrollbar-corner { background-color: #fafbfd;}
-      ::-webkit-resizer { background-color: #bfbfbf;}
+      ::-webkit-resizer { background-color: #bfbfbf;} */
 	</style>
 </html>

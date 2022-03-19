@@ -2701,121 +2701,29 @@ var Chart_eventos;
         backgroundColor: '#FDA7DF',
         borderWidth: 1
       }, {
-        label: 'evaporation_coil',
-        data: [],
-        borderColor: '#ED4C67',
-        backgroundColor: '#ED4C67',
-        borderWidth: 1
-      }, {
-        label: 'condensation_coil',
-        data: [],
-        borderColor: '#db0404',
-        backgroundColor: '#db0404',
-        borderWidth: 1
-      }, {
-        label: 'compress_coil_1',
-        data: [],
-        borderColor: '#009432',
-        backgroundColor: '#009432',
-        borderWidth: 1
-      }, {
-        label: 'compress_coil_2',
-        data: [],
-        borderColor: '#0652DD',
-        backgroundColor: '#0652DD',
-        borderWidth: 1
-      }, {
         label: 'ambient_air',
+        //------------
         data: [],
         borderColor: '#9980FA',
         backgroundColor: '#9980FA',
         borderWidth: 1
       }, {
-        label: 'cargo_1_temp',
-        data: [],
-        borderColor: '#1B1464',
-        backgroundColor: '#1B1464',
-        borderWidth: 1
-      }, {
-        label: 'cargo_2_temp',
-        data: [],
-        borderColor: '#EE5A24',
-        backgroundColor: '#EE5A24',
-        borderWidth: 1
-      }, {
-        label: 'cargo_3_temp',
-        data: [],
-        borderColor: '#6F1E51',
-        backgroundColor: '#6F1E51',
-        borderWidth: 1
-      }, {
-        label: 'cargo_4_temp',
-        data: [],
-        borderColor: '#1F1E51',
-        backgroundColor: '#1F1E51',
-        borderWidth: 1
-      }, {
         label: 'relative_humidity',
+        //-------------
         data: [],
         borderColor: '#FF1E51',
         backgroundColor: '#FF1E51',
         borderWidth: 1
       }, {
-        label: 'avl',
-        data: [],
-        borderColor: '#F61E51',
-        backgroundColor: '#F61E51',
-        borderWidth: 1
-      }, {
-        label: 'suction_pressure',
-        data: [],
-        borderColor: '#AF1E51',
-        backgroundColor: '#AF1E51',
-        borderWidth: 1
-      }, {
-        label: 'discharge_pressure',
-        data: [],
-        borderColor: '#BF1E51',
-        backgroundColor: '#BF1E51',
-        borderWidth: 1
-      }, {
-        label: 'line_voltage',
-        data: [],
-        borderColor: '#CF1E51',
-        backgroundColor: '#CF1E51',
-        borderWidth: 1
-      }, {
-        label: 'line_frequency',
-        data: [],
-        borderColor: '#DF1E51',
-        backgroundColor: '#DF1E51',
-        borderWidth: 1
-      }, {
-        label: 'consumption_ph_1',
-        data: [],
-        borderColor: '#EF1E51',
-        backgroundColor: '#EF1E51',
-        borderWidth: 1
-      }, {
-        label: 'consumption_ph_2',
-        data: [],
-        borderColor: '#FFFE51',
-        backgroundColor: '#FFFE51',
-        borderWidth: 1
-      }, {
-        label: 'consumption_ph_3',
-        data: [],
-        borderColor: '#FAE51',
-        backgroundColor: '#FA1E51',
-        borderWidth: 1
-      }, {
         label: 'co2_reading',
+        //--------------
         data: [],
         borderColor: '#AAE51',
         backgroundColor: '#AA1E51',
         borderWidth: 1
       }, {
         label: 'o2_reading',
+        //-----------------
         data: [],
         borderColor: '#BA1A51',
         backgroundColor: '#BA1A51',
@@ -2825,162 +2733,6 @@ var Chart_eventos;
         data: [],
         borderColor: '#CA1A51',
         backgroundColor: '#CA1A51',
-        borderWidth: 1
-      }, {
-        label: 'condenser_speed',
-        data: [],
-        borderColor: '#DA1A51',
-        backgroundColor: '#DA1A51',
-        borderWidth: 1
-      }, {
-        label: 'battery_voltage',
-        data: [],
-        borderColor: '#EA1A51',
-        backgroundColor: '#EA1A51',
-        borderWidth: 1
-      }, {
-        label: 'power_kwh',
-        data: [],
-        borderColor: '#FA1A51',
-        backgroundColor: '#FA1A51',
-        borderWidth: 1
-      }, {
-        label: 'power_trip_reading',
-        data: [],
-        borderColor: '#AB1A51',
-        backgroundColor: '#AB1A51',
-        borderWidth: 1
-      }, {
-        label: 'power_trip_duration',
-        data: [],
-        borderColor: '#AB1A51',
-        backgroundColor: '#AB1A51',
-        borderWidth: 1
-      }, {
-        label: 'suction_temp',
-        data: [],
-        borderColor: '#BB1A51',
-        backgroundColor: '#BB1A51',
-        borderWidth: 1
-      }, {
-        label: 'discharge_temp',
-        data: [],
-        borderColor: '#CB1A51',
-        backgroundColor: '#CB1A51',
-        borderWidth: 1
-      }, {
-        label: 'supply_air_temp',
-        data: [],
-        borderColor: '#DB1A51',
-        backgroundColor: '#DB1A51',
-        borderWidth: 1
-      }, {
-        label: 'return_air_temp',
-        data: [],
-        borderColor: '#EB1A51',
-        backgroundColor: '#EB1A51',
-        borderWidth: 1
-      }, {
-        label: 'dl_battery_temp',
-        data: [],
-        borderColor: '#FB1A51',
-        backgroundColor: '#FB1A51',
-        borderWidth: 1
-      }, {
-        label: 'dl_battery_charge',
-        data: [],
-        borderColor: '#FB1A51',
-        backgroundColor: '#FB1A51',
-        borderWidth: 1
-      }, {
-        label: 'power_consumption',
-        data: [],
-        borderColor: '#FC1A51',
-        backgroundColor: '#FC1A51',
-        borderWidth: 1
-      }, {
-        label: 'power_consumption_avg',
-        data: [],
-        borderColor: '#AC1A51',
-        backgroundColor: '#AC1A51',
-        borderWidth: 1
-      }, {
-        label: 'capacity_load',
-        data: [],
-        borderColor: '#CC1A51',
-        backgroundColor: '#CC1A51',
-        borderWidth: 1
-      }, {
-        label: 'humidity_set_point',
-        data: [],
-        borderColor: '#AD1A51',
-        backgroundColor: '#AD1A51',
-        borderWidth: 1
-      }, {
-        label: 'fresh_air_ex_mode',
-        data: [],
-        borderColor: '#AD1A51',
-        backgroundColor: '#AD1A51',
-        borderWidth: 1
-      }, {
-        label: 'fresh_air_ex_rate',
-        data: [],
-        borderColor: '#BD1A51',
-        backgroundColor: '#BD1A51',
-        borderWidth: 1
-      }, {
-        label: 'fresh_air_ex_delay',
-        data: [],
-        borderColor: '#CD1A51',
-        backgroundColor: '#CD1A51',
-        borderWidth: 1
-      }, {
-        label: 'set_point_o2',
-        data: [],
-        borderColor: '#DD1A51',
-        backgroundColor: '#DD1A51',
-        borderWidth: 1
-      }, {
-        label: 'set_point_co2',
-        data: [],
-        borderColor: '#ED1A51',
-        backgroundColor: '#ED1A51',
-        borderWidth: 1
-      }, {
-        label: 'defrost_term_temp',
-        data: [],
-        borderColor: '#FD1A51',
-        backgroundColor: '#FD1A51',
-        borderWidth: 1
-      }, {
-        label: 'defrost_interval',
-        data: [],
-        borderColor: '#AE1A51',
-        backgroundColor: '#AE1A51',
-        borderWidth: 1
-      }, {
-        label: 'evaporator_exp_valve',
-        data: [],
-        borderColor: '#DE1A51',
-        backgroundColor: '#DE1A51',
-        borderWidth: 1
-      }, {
-        label: 'suction_mod_valve',
-        data: [],
-        borderColor: '#EE1A51',
-        backgroundColor: '#EE1A51',
-        borderWidth: 1
-      }, {
-        label: 'hot_gas_valve',
-        data: [],
-        borderColor: '#FE1A51',
-        backgroundColor: '#FE1A51',
-        borderWidth: 1
-      }, {
-        label: 'economizer_valve',
-        data: [],
-        borderColor: '#AF1A51',
-        backgroundColor: '#AF1A51',
         borderWidth: 1
       }],
       my_Chart_principal_dataset_generador: [{
@@ -3602,100 +3354,16 @@ var Chart_eventos;
                     self.my_Chart_principal_dataset_reefer[6].data = [];
                     self.my_Chart_principal_dataset_reefer[7].data = [];
                     self.my_Chart_principal_dataset_reefer[8].data = [];
-                    self.my_Chart_principal_dataset_reefer[9].data = [];
-                    self.my_Chart_principal_dataset_reefer[10].data = [];
-                    self.my_Chart_principal_dataset_reefer[11].data = [];
-                    self.my_Chart_principal_dataset_reefer[12].data = [];
-                    self.my_Chart_principal_dataset_reefer[13].data = [];
-                    self.my_Chart_principal_dataset_reefer[14].data = [];
-                    self.my_Chart_principal_dataset_reefer[15].data = [];
-                    self.my_Chart_principal_dataset_reefer[16].data = [];
-                    self.my_Chart_principal_dataset_reefer[17].data = [];
-                    self.my_Chart_principal_dataset_reefer[18].data = [];
-                    self.my_Chart_principal_dataset_reefer[19].data = [];
-                    self.my_Chart_principal_dataset_reefer[20].data = [];
-                    self.my_Chart_principal_dataset_reefer[21].data = [];
-                    self.my_Chart_principal_dataset_reefer[22].data = [];
-                    self.my_Chart_principal_dataset_reefer[23].data = [];
-                    self.my_Chart_principal_dataset_reefer[24].data = [];
-                    self.my_Chart_principal_dataset_reefer[25].data = [];
-                    self.my_Chart_principal_dataset_reefer[26].data = [];
-                    self.my_Chart_principal_dataset_reefer[27].data = [];
-                    self.my_Chart_principal_dataset_reefer[28].data = [];
-                    self.my_Chart_principal_dataset_reefer[29].data = [];
-                    self.my_Chart_principal_dataset_reefer[30].data = [];
-                    self.my_Chart_principal_dataset_reefer[31].data = [];
-                    self.my_Chart_principal_dataset_reefer[32].data = [];
-                    self.my_Chart_principal_dataset_reefer[33].data = [];
-                    self.my_Chart_principal_dataset_reefer[34].data = [];
-                    self.my_Chart_principal_dataset_reefer[35].data = [];
-                    self.my_Chart_principal_dataset_reefer[36].data = [];
-                    self.my_Chart_principal_dataset_reefer[37].data = [];
-                    self.my_Chart_principal_dataset_reefer[38].data = [];
-                    self.my_Chart_principal_dataset_reefer[39].data = [];
-                    self.my_Chart_principal_dataset_reefer[40].data = [];
-                    self.my_Chart_principal_dataset_reefer[41].data = [];
-                    self.my_Chart_principal_dataset_reefer[42].data = [];
-                    self.my_Chart_principal_dataset_reefer[43].data = [];
-                    self.my_Chart_principal_dataset_reefer[44].data = [];
-                    self.my_Chart_principal_dataset_reefer[45].data = [];
-                    self.my_Chart_principal_dataset_reefer[46].data = [];
-                    self.my_Chart_principal_dataset_reefer[47].data = [];
-                    self.my_Chart_principal_dataset_reefer[48].data = [];
-                    self.my_Chart_principal_dataset_reefer[49].data = [];
-                    self.my_Chart_principal_dataset_reefer[50].data = [];
                     self.datos_tabla_reefer.map(function (datos_r, index) {
                       self.my_Chart_principal_dataset_reefer[0].data.push(datos_r.set_point);
                       self.my_Chart_principal_dataset_reefer[1].data.push(datos_r.temp_supply_1);
                       self.my_Chart_principal_dataset_reefer[2].data.push(datos_r.temp_supply_2);
                       self.my_Chart_principal_dataset_reefer[3].data.push(datos_r.return_air);
-                      self.my_Chart_principal_dataset_reefer[4].data.push(datos_r.evaporation_coil);
-                      self.my_Chart_principal_dataset_reefer[5].data.push(datos_r.condensation_coil);
-                      self.my_Chart_principal_dataset_reefer[6].data.push(datos_r.compress_coil_1);
-                      self.my_Chart_principal_dataset_reefer[7].data.push(datos_r.compress_coil_2);
-                      self.my_Chart_principal_dataset_reefer[8].data.push(datos_r.ambient_air);
-                      self.my_Chart_principal_dataset_reefer[9].data.push(datos_r.cargo_1_temp);
-                      self.my_Chart_principal_dataset_reefer[10].data.push(datos_r.cargo_2_temp);
-                      self.my_Chart_principal_dataset_reefer[11].data.push(datos_r.cargo_3_temp);
-                      self.my_Chart_principal_dataset_reefer[12].data.push(datos_r.cargo_4_temp);
-                      self.my_Chart_principal_dataset_reefer[13].data.push(datos_r.relative_humidity);
-                      self.my_Chart_principal_dataset_reefer[14].data.push(datos_r.avl);
-                      self.my_Chart_principal_dataset_reefer[15].data.push(datos_r.suction_pressure);
-                      self.my_Chart_principal_dataset_reefer[16].data.push(datos_r.discharge_pressure);
-                      self.my_Chart_principal_dataset_reefer[17].data.push(datos_r.line_voltage);
-                      self.my_Chart_principal_dataset_reefer[18].data.push(datos_r.line_frequency);
-                      self.my_Chart_principal_dataset_reefer[19].data.push(datos_r.consumption_ph_1);
-                      self.my_Chart_principal_dataset_reefer[20].data.push(datos_r.consumption_ph_2);
-                      self.my_Chart_principal_dataset_reefer[21].data.push(datos_r.consumption_ph_3);
-                      self.my_Chart_principal_dataset_reefer[22].data.push(datos_r.co2_reading);
-                      self.my_Chart_principal_dataset_reefer[23].data.push(datos_r.o2_reading);
-                      self.my_Chart_principal_dataset_reefer[24].data.push(datos_r.evaporator_speed);
-                      self.my_Chart_principal_dataset_reefer[25].data.push(datos_r.condenser_speed);
-                      self.my_Chart_principal_dataset_reefer[26].data.push(datos_r.battery_voltage);
-                      self.my_Chart_principal_dataset_reefer[27].data.push(datos_r.power_kwh);
-                      self.my_Chart_principal_dataset_reefer[28].data.push(datos_r.power_trip_reading);
-                      self.my_Chart_principal_dataset_reefer[29].data.push(datos_r.power_trip_duration);
-                      self.my_Chart_principal_dataset_reefer[30].data.push(datos_r.suction_temp);
-                      self.my_Chart_principal_dataset_reefer[31].data.push(datos_r.discharge_temp);
-                      self.my_Chart_principal_dataset_reefer[32].data.push(datos_r.supply_air_temp);
-                      self.my_Chart_principal_dataset_reefer[33].data.push(datos_r.return_air_temp);
-                      self.my_Chart_principal_dataset_reefer[34].data.push(datos_r.dl_battery_temp);
-                      self.my_Chart_principal_dataset_reefer[35].data.push(datos_r.dl_battery_charge);
-                      self.my_Chart_principal_dataset_reefer[36].data.push(datos_r.power_consumption);
-                      self.my_Chart_principal_dataset_reefer[37].data.push(datos_r.power_consumption_avg);
-                      self.my_Chart_principal_dataset_reefer[38].data.push(datos_r.capacity_load);
-                      self.my_Chart_principal_dataset_reefer[39].data.push(datos_r.humidity_set_point);
-                      self.my_Chart_principal_dataset_reefer[40].data.push(datos_r.fresh_air_ex_mode);
-                      self.my_Chart_principal_dataset_reefer[41].data.push(datos_r.fresh_air_ex_rate);
-                      self.my_Chart_principal_dataset_reefer[42].data.push(datos_r.fresh_air_ex_delay);
-                      self.my_Chart_principal_dataset_reefer[43].data.push(datos_r.set_point_o2);
-                      self.my_Chart_principal_dataset_reefer[44].data.push(datos_r.set_point_co2);
-                      self.my_Chart_principal_dataset_reefer[45].data.push(datos_r.defrost_term_temp);
-                      self.my_Chart_principal_dataset_reefer[46].data.push(datos_r.defrost_interval);
-                      self.my_Chart_principal_dataset_reefer[47].data.push(datos_r.evaporator_exp_valve);
-                      self.my_Chart_principal_dataset_reefer[48].data.push(datos_r.suction_mod_valve);
-                      self.my_Chart_principal_dataset_reefer[49].data.push(datos_r.hot_gas_valve);
-                      self.my_Chart_principal_dataset_reefer[50].data.push(datos_r.economizer_valve);
+                      self.my_Chart_principal_dataset_reefer[4].data.push(datos_r.ambient_air);
+                      self.my_Chart_principal_dataset_reefer[5].data.push(datos_r.relative_humidity);
+                      self.my_Chart_principal_dataset_reefer[6].data.push(datos_r.co2_reading);
+                      self.my_Chart_principal_dataset_reefer[7].data.push(datos_r.o2_reading);
+                      self.my_Chart_principal_dataset_reefer[8].data.push(datos_r.evaporator_speed);
                     });
                   }
 
@@ -4277,6 +3945,54 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -4298,7 +4014,12 @@ __webpack_require__.r(__webpack_exports__);
       nuevo_usuario: "",
       nuevo_apellidos: "",
       nuevo_nombres: "",
-      nuevo_correo: ""
+      nuevo_correo: "",
+      // -- empresas datos ---
+      nueva_empresa: "",
+      nuevo_booking: "",
+      nuevo_booking_temp: "",
+      nuevo_usuario_asignado: 0
     };
   },
   watch: {
@@ -4322,29 +4043,9 @@ __webpack_require__.r(__webpack_exports__);
     TablaEmpresas: function TablaEmpresas() {
       var self = this;
       this.$nextTick(function () {
-        var table = $('#tblEmpresas').DataTable({
-          scrollX: "100%",
-          language: {
-            retrieve: true,
-            decimal: "",
-            emptyTable: "No hay datos disponibles en la tabla",
-            info: "Mostrando del _START_ al _END_ de _TOTAL_ registros",
-            infoEmpty: "No se encontraron registros",
-            infoFiltered: "(filtrado de _MAX_ registros)",
-            infoPostFix: "",
-            thousands: ",",
-            lengthMenu: "Agrupar por _MENU_ filas",
-            loadingRecords: "Cargando...",
-            processing: "Procesando...",
-            search: "Buscar:",
-            zeroRecords: "No se encontraron registros",
-            paginate: {
-              first: "Primera",
-              last: "Ultima",
-              next: '<i class="fas fa-chevron-circle-right" style="font-size:20px;"></i>',
-              previous: '<i class="fas fa-chevron-circle-left" style="font-size:20px;"></i>'
-            },
-            responsive: true
+        $('#tblEmpresas').DataTable({
+          "language": {
+            "url": "//cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json"
           }
         });
       });
@@ -4352,29 +4053,9 @@ __webpack_require__.r(__webpack_exports__);
     TablaUsuarios: function TablaUsuarios() {
       var self = this;
       this.$nextTick(function () {
-        var table = $('#tblUsuarios').DataTable({
-          scrollX: "100%",
-          language: {
-            retrieve: true,
-            decimal: "",
-            emptyTable: "No hay datos disponibles en la tabla",
-            info: "Mostrando del _START_ al _END_ de _TOTAL_ registros",
-            infoEmpty: "No se encontraron registros",
-            infoFiltered: "(filtrado de _MAX_ registros)",
-            infoPostFix: "",
-            thousands: ",",
-            lengthMenu: "Agrupar por _MENU_ filas",
-            loadingRecords: "Cargando...",
-            processing: "Procesando...",
-            search: "Buscar:",
-            zeroRecords: "No se encontraron registros",
-            paginate: {
-              first: "Primera",
-              last: "Ultima",
-              next: '<i class="fas fa-chevron-circle-right" style="font-size:20px;"></i>',
-              previous: '<i class="fas fa-chevron-circle-left" style="font-size:20px;"></i>'
-            },
-            responsive: true
+        $('#tblUsuarios').DataTable({
+          "language": {
+            "url": "//cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json"
           }
         });
       });
@@ -4430,6 +4111,53 @@ __webpack_require__.r(__webpack_exports__);
         self.nuevo_usuario = "";
         $("#tblUsuarios").DataTable().destroy();
         self.TablaUsuarios();
+      });
+    },
+    guardarEmpresa: function guardarEmpresa() {
+      var self = this;
+      var data = {
+        nombre_empresa: self.nueva_empresa,
+        booking: self.nuevo_booking,
+        booking_temp: self.nuevo_booking_temp,
+        usuario_asigando: self.nuevo_usuario_asignado
+      };
+
+      if (self.nueva_empresa == "" || self.nuevo_booking == "" || self.nuevo_booking_temp == "" || self.nuevo_usuario_asignado == 0) {
+        // self.mensaje_error("Debe llenar todos los campos");
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Debe llenar todos los campos!'
+        });
+      }
+
+      axios.post(route('nueva_empresa'), data).then(function (response) {
+        console.log(response.data);
+
+        if (response.data == 'empresa_existe') {
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'La empresa ya existe!'
+          });
+        }
+
+        if (response.data > 0) {
+          Swal.fire({
+            title: 'Empresa Creada!',
+            icon: 'success',
+            confirmButtonColor: '#e58e26',
+            confirmButtonText: 'OK!'
+          });
+        }
+      }).then(function () {
+        $('#empresasModal').modal('hide');
+        self.nuevo_nombres = "";
+        self.nuevo_apellidos = "";
+        self.nuevo_correo = "";
+        self.nuevo_usuario = "";
+        $("#tblEmpresas").DataTable().destroy();
+        self.TablaEmpresas();
       });
     }
   }
@@ -4547,7 +4275,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n#lado_derecho{\n    width: 50%;\n}\n#lado_izquierdo{\n    width: 50%;\n}\n@media (max-width: 1024px) {\n#lado_derecho{\n    width: 50%;\n}\n#lado_izquierdo{\n    width: 50%;\n}\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n#lado_derecho{\n    width: 100%;\n}\n#lado_izquierdo{\n    width: 100%;\n}\n@media (max-width: 1024px) {\n#lado_derecho{\n    width: 100%;\n}\n#lado_izquierdo{\n    width: 100%;\n}\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -32613,250 +32341,202 @@ var render = function () {
                 "div",
                 { staticClass: "row", staticStyle: { margin: "0 0 0 0px" } },
                 [
-                  _c(
-                    "div",
-                    {
-                      staticStyle: { margin: "10px 0 0 -5px" },
-                      attrs: { id: "lado_izquierdo" },
-                    },
-                    [
-                      _c(
-                        "div",
-                        {
-                          staticClass:
-                            "col shadow-sm p-3 mb-5 bg-white rounded ",
-                          attrs: { id: "asset-empresas" },
-                        },
-                        [
-                          _c(
-                            "div",
-                            {
-                              staticClass: "text-center",
-                              staticStyle: { "background-color": "#353b48" },
-                            },
-                            [
-                              _c(
-                                "label",
-                                {
-                                  staticStyle: {
-                                    color: "white",
-                                    "font-size": "20px",
-                                    "margin-top": "10px",
-                                  },
-                                  attrs: { for: "buscar" },
-                                },
-                                [_vm._v("USUARIOS ")]
-                              ),
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c("br"),
-                          _vm._v(" "),
-                          _c("div", { attrs: { id: "grid_usuarios" } }, [
+                  _c("div", { attrs: { id: "lado_izquierdo" } }, [
+                    _c(
+                      "div",
+                      {
+                        staticClass: "col shadow-sm p-3 mb-5 bg-white rounded ",
+                        attrs: { id: "asset-empresas" },
+                      },
+                      [
+                        _c(
+                          "div",
+                          {
+                            staticClass: "text-center",
+                            staticStyle: { "background-color": "#353b48" },
+                          },
+                          [
                             _c(
-                              "table",
+                              "label",
                               {
-                                staticClass: "table",
-                                attrs: { id: "tblUsuarios" },
+                                staticStyle: {
+                                  color: "white",
+                                  "font-size": "20px",
+                                  "margin-top": "10px",
+                                },
+                                attrs: { for: "buscar" },
                               },
-                              [
-                                _c("thead", { staticClass: "bg-warning" }, [
-                                  _c("tr", [
-                                    _c(
-                                      "th",
-                                      {
-                                        attrs: { scope: "col", width: "50px" },
-                                      },
-                                      [_vm._v("N°")]
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "th",
-                                      {
-                                        attrs: { scope: "col", width: "50px" },
-                                      },
-                                      [_vm._v("Ver")]
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "th",
-                                      {
-                                        attrs: { scope: "col", width: "150px" },
-                                      },
-                                      [_vm._v("Usuario")]
-                                    ),
-                                    _vm._v(" "),
-                                    _c("th", { attrs: { scope: "col" } }, [
-                                      _vm._v("Apellidos"),
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("th", { attrs: { scope: "col" } }, [
-                                      _vm._v("Nombres"),
-                                    ]),
-                                    _vm._v(" "),
-                                    _c(
-                                      "th",
-                                      {
-                                        attrs: { scope: "col", width: "50px" },
-                                      },
-                                      [_vm._v("Activo ")]
-                                    ),
-                                    _vm._v(" "),
-                                    _c("th", { attrs: { scope: "col" } }, [
-                                      _vm._v("Administrador"),
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("th", { attrs: { scope: "col" } }, [
-                                      _vm._v("Correo"),
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("th", { attrs: { scope: "col" } }, [
-                                      _vm._v("Ultimo_acceso"),
-                                    ]),
-                                  ]),
+                              [_vm._v("USUARIOS ")]
+                            ),
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c("br"),
+                        _vm._v(" "),
+                        _c("div", { attrs: { id: "grid_usuarios" } }, [
+                          _c("table", { attrs: { id: "tblUsuarios" } }, [
+                            _c("thead", [
+                              _c("tr", [
+                                _c(
+                                  "th",
+                                  { attrs: { scope: "col", width: "50px" } },
+                                  [_vm._v("N°")]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "th",
+                                  { attrs: { scope: "col", width: "50px" } },
+                                  [_vm._v("Ver")]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "th",
+                                  { attrs: { scope: "col", width: "150px" } },
+                                  [_vm._v("Usuario")]
+                                ),
+                                _vm._v(" "),
+                                _c("th", { attrs: { scope: "col" } }, [
+                                  _vm._v("Apellidos"),
+                                ]),
+                                _vm._v(" "),
+                                _c("th", { attrs: { scope: "col" } }, [
+                                  _vm._v("Nombres"),
                                 ]),
                                 _vm._v(" "),
                                 _c(
-                                  "tbody",
-                                  _vm._l(
-                                    _vm.usuario_todos,
-                                    function (usuario, index) {
-                                      return _c("tr", { key: index }, [
-                                        _c(
-                                          "td",
-                                          { staticClass: "text-center" },
-                                          [_vm._v(_vm._s(index + 1))]
-                                        ),
-                                        _vm._v(" "),
-                                        _c(
-                                          "td",
-                                          { staticClass: "text-center" },
-                                          [
-                                            _c("input", {
-                                              directives: [
-                                                {
-                                                  name: "model",
-                                                  rawName: "v-model",
-                                                  value: _vm.radio_user,
-                                                  expression: "radio_user",
-                                                },
-                                              ],
-                                              attrs: { type: "radio" },
-                                              domProps: {
-                                                value: usuario.id,
-                                                checked: _vm._q(
-                                                  _vm.radio_user,
-                                                  usuario.id
-                                                ),
-                                              },
-                                              on: {
-                                                change: function ($event) {
-                                                  _vm.radio_user = usuario.id
-                                                },
-                                              },
-                                            }),
-                                          ]
-                                        ),
-                                        _vm._v(" "),
-                                        _c("td", [
-                                          _vm._v(
-                                            _vm._s(
-                                              usuario.usuario.toUpperCase()
-                                            )
+                                  "th",
+                                  { attrs: { scope: "col", width: "50px" } },
+                                  [_vm._v("Activo ")]
+                                ),
+                                _vm._v(" "),
+                                _c("th", { attrs: { scope: "col" } }, [
+                                  _vm._v("Administrador"),
+                                ]),
+                                _vm._v(" "),
+                                _c("th", { attrs: { scope: "col" } }, [
+                                  _vm._v("Correo"),
+                                ]),
+                                _vm._v(" "),
+                                _c("th", { attrs: { scope: "col" } }, [
+                                  _vm._v("Ultimo_acceso"),
+                                ]),
+                              ]),
+                            ]),
+                            _vm._v(" "),
+                            _c(
+                              "tbody",
+                              _vm._l(
+                                _vm.usuario_todos,
+                                function (usuario, index) {
+                                  return _c("tr", { key: index }, [
+                                    _c("td", { staticClass: "text-center" }, [
+                                      _vm._v(_vm._s(index + 1)),
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", { staticClass: "text-center" }, [
+                                      _c("input", {
+                                        directives: [
+                                          {
+                                            name: "model",
+                                            rawName: "v-model",
+                                            value: _vm.radio_user,
+                                            expression: "radio_user",
+                                          },
+                                        ],
+                                        attrs: { type: "radio" },
+                                        domProps: {
+                                          value: usuario.id,
+                                          checked: _vm._q(
+                                            _vm.radio_user,
+                                            usuario.id
                                           ),
-                                        ]),
-                                        _vm._v(" "),
-                                        _c("td", [
-                                          _vm._v(_vm._s(usuario.apellidos)),
-                                        ]),
-                                        _vm._v(" "),
-                                        _c("td", [
-                                          _vm._v(_vm._s(usuario.nombres)),
-                                        ]),
-                                        _vm._v(" "),
-                                        _c(
-                                          "td",
-                                          { staticClass: "text-center" },
-                                          [
-                                            _vm._v(
-                                              _vm._s(
-                                                usuario.activo == 1
-                                                  ? "SI"
-                                                  : "NO"
-                                              )
-                                            ),
-                                          ]
-                                        ),
-                                        _vm._v(" "),
-                                        _c(
-                                          "td",
-                                          { staticClass: "text-center" },
-                                          [
-                                            _vm._v(
-                                              _vm._s(
-                                                usuario.admin == 1 ? "SI" : "NO"
-                                              )
-                                            ),
-                                          ]
-                                        ),
-                                        _vm._v(" "),
-                                        _c("td", [
-                                          _vm._v(_vm._s(usuario.correo)),
-                                        ]),
-                                        _vm._v(" "),
-                                        _c("td", [
-                                          _vm._v(_vm._s(usuario.ultimo_acceso)),
-                                        ]),
-                                      ])
-                                    }
-                                  ),
-                                  0
+                                        },
+                                        on: {
+                                          change: function ($event) {
+                                            _vm.radio_user = usuario.id
+                                          },
+                                        },
+                                      }),
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _vm._v(
+                                        _vm._s(usuario.usuario.toUpperCase())
+                                      ),
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _vm._v(_vm._s(usuario.apellidos)),
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v(_vm._s(usuario.nombres))]),
+                                    _vm._v(" "),
+                                    _c("td", { staticClass: "text-center" }, [
+                                      _vm._v(
+                                        _vm._s(
+                                          usuario.activo == 1 ? "SI" : "NO"
+                                        )
+                                      ),
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", { staticClass: "text-center" }, [
+                                      _vm._v(
+                                        _vm._s(usuario.admin == 1 ? "SI" : "NO")
+                                      ),
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v(_vm._s(usuario.correo))]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _vm._v(_vm._s(usuario.ultimo_acceso)),
+                                    ]),
+                                  ])
+                                }
+                              ),
+                              0
+                            ),
+                          ]),
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          {
+                            staticClass: "row",
+                            staticStyle: { margin: "0 10px" },
+                          },
+                          [
+                            _c(
+                              "button",
+                              {
+                                staticClass: "col-3 btn btn-warning",
+                                attrs: {
+                                  type: "button",
+                                  "data-toggle": "modal",
+                                  "data-target": "#usuarioModal",
+                                },
+                              },
+                              [
+                                _c("i", { staticClass: "bi bi-check-lg" }),
+                                _vm._v(" "),
+                                _c("b", {
+                                  staticStyle: { "font-size": "1.2em" },
+                                }),
+                                _vm._v(
+                                  "\n                     \n                    Nueva Usuario\n                  "
                                 ),
                               ]
                             ),
-                          ]),
-                          _vm._v(" "),
-                          _c(
-                            "div",
-                            {
-                              staticClass: "row",
-                              staticStyle: { margin: "0 10px" },
-                            },
-                            [
-                              _c(
-                                "button",
-                                {
-                                  staticClass: "col-3 btn btn-warning",
-                                  attrs: {
-                                    type: "button",
-                                    "data-toggle": "modal",
-                                    "data-target": "#usuarioModal",
-                                  },
-                                },
-                                [
-                                  _c("i", { staticClass: "bi bi-check-lg" }),
-                                  _vm._v(" "),
-                                  _c("b", {
-                                    staticStyle: { "font-size": "1.2em" },
-                                  }),
-                                  _vm._v(
-                                    "\n                     \n                    Nueva Usuario\n                  "
-                                  ),
-                                ]
-                              ),
-                            ]
-                          ),
-                        ]
-                      ),
-                    ]
-                  ),
+                          ]
+                        ),
+                      ]
+                    ),
+                  ]),
                   _vm._v(" "),
                   _c("div", { attrs: { id: "lado_derecho" } }, [
                     _c(
                       "div",
                       {
                         staticClass: "col shadow-sm p-3 mb-5 bg-white rounded ",
-                        staticStyle: { margin: "10px 15px 0px 15px" },
                         attrs: { id: "asset-empresas" },
                       },
                       [
@@ -32885,102 +32565,79 @@ var render = function () {
                         _c("br"),
                         _vm._v(" "),
                         _c("div", { attrs: { id: "grid_empresas" } }, [
-                          _c(
-                            "table",
-                            {
-                              staticClass: "table",
-                              attrs: { id: "tblEmpresas" },
-                            },
-                            [
-                              _c(
-                                "thead",
-                                {
-                                  staticClass: "bg-success",
-                                  staticStyle: { color: "white" },
-                                },
-                                [
-                                  _c("tr", [
-                                    _c(
-                                      "th",
-                                      {
-                                        attrs: { scope: "col", width: "50px" },
-                                      },
-                                      [_vm._v("N°")]
-                                    ),
+                          _c("table", { attrs: { id: "tblEmpresas" } }, [
+                            _c("thead", [
+                              _c("tr", [
+                                _c("th", [_vm._v("N°")]),
+                                _vm._v(" "),
+                                _c("th", [_vm._v("Empresa")]),
+                                _vm._v(" "),
+                                _c("th", [_vm._v("Booking")]),
+                                _vm._v(" "),
+                                _c("th", [_vm._v("Booking_temp")]),
+                                _vm._v(" "),
+                                _c("th", [_vm._v("Usuario_asigando")]),
+                                _vm._v(" "),
+                                _c("th", [_vm._v("Asignar_empresa")]),
+                              ]),
+                            ]),
+                            _vm._v(" "),
+                            _c(
+                              "tbody",
+                              _vm._l(
+                                _vm.tabla_datos_empresas,
+                                function (empresa, index) {
+                                  return _c("tr", { key: index }, [
+                                    _c("td", [_vm._v(_vm._s(index + 1))]),
                                     _vm._v(" "),
-                                    _c(
-                                      "th",
-                                      {
-                                        attrs: { scope: "col", width: "150px" },
-                                      },
-                                      [_vm._v("Empresa")]
-                                    ),
-                                    _vm._v(" "),
-                                    _c("th", { attrs: { scope: "col" } }, [
-                                      _vm._v("Descripcion_booking"),
+                                    _c("td", [
+                                      _vm._v(
+                                        _vm._s(
+                                          empresa.nombre_empresa.toUpperCase()
+                                        )
+                                      ),
                                     ]),
                                     _vm._v(" "),
-                                    _c("th", { attrs: { scope: "col" } }, [
-                                      _vm._v("Temp_contratada"),
+                                    _c("td", [
+                                      _vm._v(
+                                        _vm._s(empresa.descripcion_booking)
+                                      ),
                                     ]),
                                     _vm._v(" "),
-                                    _c(
-                                      "th",
-                                      {
-                                        attrs: { scope: "col", width: "250px" },
-                                      },
-                                      [_vm._v(" Otros_datos_contratados ")]
-                                    ),
-                                    _vm._v(" "),
-                                    _c("th", { attrs: { scope: "col" } }, [
-                                      _vm._v("Usuario_asigando"),
+                                    _c("td", [
+                                      _vm._v(_vm._s(empresa.temp_contratada)),
                                     ]),
-                                  ]),
-                                ]
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _vm._v(
+                                        _vm._s(empresa.usuario.toUpperCase())
+                                      ),
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _c(
+                                        "button",
+                                        {
+                                          staticClass: "col-3 btn btn-dark",
+                                          attrs: {
+                                            type: "button",
+                                            "data-toggle": "modal",
+                                            "data-target": "#asignarModal",
+                                          },
+                                        },
+                                        [
+                                          _c("i", {
+                                            staticClass: "bi bi-check-lg",
+                                          }),
+                                        ]
+                                      ),
+                                    ]),
+                                  ])
+                                }
                               ),
-                              _vm._v(" "),
-                              _c(
-                                "tbody",
-                                _vm._l(
-                                  _vm.tabla_datos_empresas,
-                                  function (empresa, index) {
-                                    return _c("tr", { key: index }, [
-                                      _c("td", [_vm._v(_vm._s(index + 1))]),
-                                      _vm._v(" "),
-                                      _c("td", [
-                                        _vm._v(
-                                          _vm._s(
-                                            empresa.nombre_empresa.toUpperCase()
-                                          )
-                                        ),
-                                      ]),
-                                      _vm._v(" "),
-                                      _c("td", [
-                                        _vm._v(
-                                          _vm._s(empresa.descripcion_booking)
-                                        ),
-                                      ]),
-                                      _vm._v(" "),
-                                      _c("td", [
-                                        _vm._v(_vm._s(empresa.temp_contratada)),
-                                      ]),
-                                      _vm._v(" "),
-                                      _c("td", { staticClass: "text-center" }, [
-                                        _vm._v(" 0 C°"),
-                                      ]),
-                                      _vm._v(" "),
-                                      _c("td", [
-                                        _vm._v(
-                                          _vm._s(empresa.usuario.toUpperCase())
-                                        ),
-                                      ]),
-                                    ])
-                                  }
-                                ),
-                                0
-                              ),
-                            ]
-                          ),
+                              0
+                            ),
+                          ]),
                         ]),
                         _vm._v(" "),
                         _c(
@@ -32993,8 +32650,12 @@ var render = function () {
                             _c(
                               "button",
                               {
-                                staticClass: "col-3 btn btn-success",
-                                attrs: { type: "button" },
+                                staticClass: "col-3 btn btn-dark",
+                                attrs: {
+                                  type: "button",
+                                  "data-toggle": "modal",
+                                  "data-target": "#empresasModal",
+                                },
                               },
                               [
                                 _c("i", { staticClass: "bi bi-check-lg" }),
@@ -33234,10 +32895,10 @@ var render = function () {
           {
             staticClass: "modal fade",
             attrs: {
-              id: "usuarioModal",
+              id: "empresasModal",
               tabindex: "-1",
               role: "dialog",
-              "aria-labelledby": "usuarioModalLabel",
+              "aria-labelledby": "empresasoModalLabel",
               "aria-hidden": "true",
             },
           },
@@ -33254,7 +32915,7 @@ var render = function () {
                         staticClass: "modal-title",
                         attrs: { id: "exampleModalLabel" },
                       },
-                      [_vm._v("Crear Usuario")]
+                      [_vm._v("Crear Empresa")]
                     ),
                     _vm._v(" "),
                     _c(
@@ -33278,7 +32939,7 @@ var render = function () {
                   _c("div", { staticClass: "modal-body" }, [
                     _c("div", { staticClass: "form-inline" }, [
                       _c("label", { staticStyle: { "margin-right": "10px" } }, [
-                        _vm._v("Usuario"),
+                        _vm._v("Empresa"),
                       ]),
                       _vm._v(" "),
                       _c("input", {
@@ -33286,23 +32947,19 @@ var render = function () {
                           {
                             name: "model",
                             rawName: "v-model",
-                            value: _vm.nuevo_usuario,
-                            expression: "nuevo_usuario",
+                            value: _vm.nueva_empresa,
+                            expression: "nueva_empresa",
                           },
                         ],
                         staticClass: "form-control mr-sm-2",
-                        attrs: {
-                          type: "usuario",
-                          placeholder: "nombre de usuario",
-                          "aria-label": "Usuario",
-                        },
-                        domProps: { value: _vm.nuevo_usuario },
+                        attrs: { placeholder: "nombre de empresa" },
+                        domProps: { value: _vm.nueva_empresa },
                         on: {
                           input: function ($event) {
                             if ($event.target.composing) {
                               return
                             }
-                            _vm.nuevo_usuario = $event.target.value
+                            _vm.nueva_empresa = $event.target.value
                           },
                         },
                       }),
@@ -33312,31 +32969,26 @@ var render = function () {
                     _vm._v(" "),
                     _c("div", { staticClass: "form-inline" }, [
                       _c("label", { staticStyle: { "margin-right": "10px" } }, [
-                        _vm._v("Apellidos"),
+                        _vm._v("Booking"),
                       ]),
                       _vm._v(" "),
-                      _c("input", {
+                      _c("textarea", {
                         directives: [
                           {
                             name: "model",
                             rawName: "v-model",
-                            value: _vm.nuevo_apellidos,
-                            expression: "nuevo_apellidos",
+                            value: _vm.nuevo_booking,
+                            expression: "nuevo_booking",
                           },
                         ],
                         staticClass: "form-control mr-sm-2",
-                        attrs: {
-                          type: "apellidos",
-                          placeholder: "apellidos",
-                          "aria-label": "Apellidos",
-                        },
-                        domProps: { value: _vm.nuevo_apellidos },
+                        domProps: { value: _vm.nuevo_booking },
                         on: {
                           input: function ($event) {
                             if ($event.target.composing) {
                               return
                             }
-                            _vm.nuevo_apellidos = $event.target.value
+                            _vm.nuevo_booking = $event.target.value
                           },
                         },
                       }),
@@ -33346,7 +32998,7 @@ var render = function () {
                     _vm._v(" "),
                     _c("div", { staticClass: "form-inline" }, [
                       _c("label", { staticStyle: { "margin-right": "10px" } }, [
-                        _vm._v("Nombres"),
+                        _vm._v("Booking_temp"),
                       ]),
                       _vm._v(" "),
                       _c("input", {
@@ -33354,23 +33006,19 @@ var render = function () {
                           {
                             name: "model",
                             rawName: "v-model",
-                            value: _vm.nuevo_nombres,
-                            expression: "nuevo_nombres",
+                            value: _vm.nuevo_booking_temp,
+                            expression: "nuevo_booking_temp",
                           },
                         ],
                         staticClass: "form-control mr-sm-2",
-                        attrs: {
-                          type: "nombres",
-                          placeholder: "nombres",
-                          "aria-label": "Nombres",
-                        },
-                        domProps: { value: _vm.nuevo_nombres },
+                        attrs: { placeholder: "Booking Temperature" },
+                        domProps: { value: _vm.nuevo_booking_temp },
                         on: {
                           input: function ($event) {
                             if ($event.target.composing) {
                               return
                             }
-                            _vm.nuevo_nombres = $event.target.value
+                            _vm.nuevo_booking_temp = $event.target.value
                           },
                         },
                       }),
@@ -33380,34 +33028,55 @@ var render = function () {
                     _vm._v(" "),
                     _c("div", { staticClass: "form-inline" }, [
                       _c("label", { staticStyle: { "margin-right": "10px" } }, [
-                        _vm._v("Correo"),
+                        _vm._v("Usuario Asignado"),
                       ]),
                       _vm._v(" "),
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.nuevo_correo,
-                            expression: "nuevo_correo",
+                      _c(
+                        "select",
+                        {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.nuevo_usuario_asignado,
+                              expression: "nuevo_usuario_asignado",
+                            },
+                          ],
+                          staticClass: "form-control mr-sm-2",
+                          on: {
+                            change: function ($event) {
+                              var $$selectedVal = Array.prototype.filter
+                                .call($event.target.options, function (o) {
+                                  return o.selected
+                                })
+                                .map(function (o) {
+                                  var val = "_value" in o ? o._value : o.value
+                                  return val
+                                })
+                              _vm.nuevo_usuario_asignado = $event.target
+                                .multiple
+                                ? $$selectedVal
+                                : $$selectedVal[0]
+                            },
                           },
+                        },
+                        [
+                          _c(
+                            "option",
+                            { attrs: { value: "0", disabled: "" } },
+                            [_vm._v("Seleccione un usuario")]
+                          ),
+                          _vm._v(" "),
+                          _vm._l(_vm.usuario_todos, function (usuario, index) {
+                            return _c(
+                              "option",
+                              { key: index, domProps: { value: usuario.id } },
+                              [_vm._v(_vm._s(usuario.nombres))]
+                            )
+                          }),
                         ],
-                        staticClass: "form-control mr-sm-2",
-                        attrs: {
-                          type: "correo",
-                          placeholder: "correo",
-                          "aria-label": "Correo",
-                        },
-                        domProps: { value: _vm.nuevo_correo },
-                        on: {
-                          input: function ($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.nuevo_correo = $event.target.value
-                          },
-                        },
-                      }),
+                        2
+                      ),
                     ]),
                   ]),
                   _vm._v(" "),
@@ -33415,9 +33084,194 @@ var render = function () {
                     _c(
                       "button",
                       {
-                        staticClass: "btn btn-warning",
+                        staticClass: "btn btn-dark",
                         attrs: { type: "button" },
-                        on: { click: _vm.guardarUsuario },
+                        on: { click: _vm.guardarEmpresa },
+                      },
+                      [
+                        _c("i", { staticClass: "fas fa-save" }),
+                        _vm._v("\n                  Guardar\n                "),
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-secondary",
+                        attrs: { type: "button", "data-dismiss": "modal" },
+                      },
+                      [_vm._v("Cerrar")]
+                    ),
+                  ]),
+                ]),
+              ]
+            ),
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "modal fade",
+            attrs: {
+              id: "asignarModal",
+              tabindex: "-1",
+              role: "dialog",
+              "aria-labelledby": "asignarModalLabel",
+              "aria-hidden": "true",
+            },
+          },
+          [
+            _c(
+              "div",
+              { staticClass: "modal-dialog", attrs: { role: "document" } },
+              [
+                _c("div", { staticClass: "modal-content" }, [
+                  _c("div", { staticClass: "modal-header" }, [
+                    _c(
+                      "h5",
+                      {
+                        staticClass: "modal-title",
+                        attrs: { id: "exampleModalLabel" },
+                      },
+                      [_vm._v("Asignar contenedor")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        staticClass: "close",
+                        attrs: {
+                          type: "button",
+                          "data-dismiss": "modal",
+                          "aria-label": "Close",
+                        },
+                      },
+                      [
+                        _c("span", { attrs: { "aria-hidden": "true" } }, [
+                          _vm._v("×"),
+                        ]),
+                      ]
+                    ),
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "modal-body" }, [
+                    _c("div", { staticClass: "form-check" }, [
+                      _c("input", {
+                        staticClass: "form-check-input",
+                        attrs: {
+                          type: "radio",
+                          name: "flexRadioDefault",
+                          id: "flexRadioDefault1",
+                        },
+                      }),
+                      _vm._v(" "),
+                      _c(
+                        "label",
+                        {
+                          staticClass: "form-check-label",
+                          attrs: { for: "flexRadioDefault1" },
+                        },
+                        [
+                          _vm._v(
+                            "\n                        GenSet\n                      "
+                          ),
+                        ]
+                      ),
+                    ]),
+                    _vm._v(" "),
+                    _c("br"),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-check" }, [
+                      _c("input", {
+                        staticClass: "form-check-input",
+                        attrs: {
+                          type: "radio",
+                          name: "flexRadioDefault",
+                          id: "flexRadioDefault2",
+                          checked: "",
+                        },
+                      }),
+                      _vm._v(" "),
+                      _c(
+                        "label",
+                        {
+                          staticClass: "form-check-label",
+                          attrs: { for: "flexRadioDefault2" },
+                        },
+                        [
+                          _vm._v(
+                            "\n                        Reefer\n                      "
+                          ),
+                        ]
+                      ),
+                    ]),
+                    _vm._v(" "),
+                    _c("br"),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-inline" }, [
+                      _c(
+                        "select",
+                        {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.nuevo_usuario_asignado,
+                              expression: "nuevo_usuario_asignado",
+                            },
+                          ],
+                          staticClass: "form-control mr-sm-2",
+                          on: {
+                            change: function ($event) {
+                              var $$selectedVal = Array.prototype.filter
+                                .call($event.target.options, function (o) {
+                                  return o.selected
+                                })
+                                .map(function (o) {
+                                  var val = "_value" in o ? o._value : o.value
+                                  return val
+                                })
+                              _vm.nuevo_usuario_asignado = $event.target
+                                .multiple
+                                ? $$selectedVal
+                                : $$selectedVal[0]
+                            },
+                          },
+                        },
+                        [
+                          _c(
+                            "option",
+                            { attrs: { value: "0", disabled: "" } },
+                            [_vm._v("Seleccione un usuario")]
+                          ),
+                          _vm._v(" "),
+                          _vm._l(
+                            _vm.contenedores,
+                            function (contenedor, index) {
+                              return _c(
+                                "option",
+                                {
+                                  key: index,
+                                  domProps: { value: contenedor.id },
+                                },
+                                [_vm._v(_vm._s(contenedor.nombre_contenedor))]
+                              )
+                            }
+                          ),
+                        ],
+                        2
+                      ),
+                    ]),
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "modal-footer" }, [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-dark",
+                        attrs: { type: "button" },
+                        on: { click: _vm.guardarEmpresa },
                       },
                       [
                         _c("i", { staticClass: "fas fa-save" }),
