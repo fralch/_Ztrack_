@@ -28,14 +28,31 @@ class CreateUsuariosTable extends Migration
         });
         DB::table("usuarios")
         ->insert([ 
-            'usuario' => 'admin',
+            ['usuario' => 'admin',
             'apellidos' => 'admin',
             'nombres' => 'admin',
             'activo' => 1,
             'admin' => 1,
             'correo' => 'ingfralch@gmail.com',
             'contraseña' => '123456',
-            'ultimo_acceso' => null,
+            'ultimo_acceso' => null,],
+            ['usuario' => 've_logistic',
+            'apellidos' => 'VE Logistic ',
+            'nombres' => 'VE Logistic ',
+            'activo' => 1,
+            'admin' => 0,
+            'correo' => 've_logistic@gmail.com',
+            'contraseña' => '123456',
+            'ultimo_acceso' => null,],
+            ['usuario' => 'dp_world',
+            'apellidos' => 'Dp World',
+            'nombres' => 'Dp World',
+            'activo' => 1,
+            'admin' => 0,
+            'correo' => 'dp_world@gmail.com',
+            'contraseña' => '123456',
+            'ultimo_acceso' => null,],
+
         ]);
     }
 
