@@ -19,4 +19,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('/reefer', [PanelController::class, 'api_reefer'])->name('api.reefer');
+Route::post('/reefer', [PanelController::class, 'api_contendedores'])->name('api.reefer');

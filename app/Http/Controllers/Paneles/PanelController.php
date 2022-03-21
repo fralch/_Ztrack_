@@ -72,9 +72,8 @@ class PanelController extends Controller
     public function faker_datos()
     {
         # code...
-        Registro_diario_generadores::create([
-            'contenedor_id' =>rand(4,5),
-            
+        return Registro_diario_generadores::create([
+            'contenedor_id' =>rand(2,5), 
             'battery_voltage' => rand((1*1),(10*10))/10,
             'water_temp' => rand((1*1),(10*10))/10,
             'running_frequency' => rand((1*1),(10*10))/10,
@@ -87,7 +86,7 @@ class PanelController extends Controller
             'rpm' => rand(0,10),
             'unit_mode' => 'starting',
             'horometro' => rand(0,10),
-            'alarma_id' =>rand(1,24),
+            'alarma_id' =>1,
             'evento_id' => rand(1,25),
             'modelo' => 'sg',
             'latitud'=> -12.014386,
@@ -96,7 +95,7 @@ class PanelController extends Controller
         ]);
 
         Registro_diario_reefers::create([
-            'contenedor_id' => rand(1,3),
+            'contenedor_id' => 1,
 
             'set_point' => rand((1*1),(10*10))/10,
             'temp_supply_1' => rand((1*1),(10*10))/10,
@@ -160,6 +159,7 @@ class PanelController extends Controller
             'longitud' =>-75.210926,
             
         ]);
+        
     }
 
     public function obtener_datos_contenedor(Request $request)
@@ -223,9 +223,104 @@ class PanelController extends Controller
         }
     }
     // -------------- APIS --------------
-    public function api_reefer(Request $request)
+    public function api_contendedores(Request $request)
     { 
-        return $request; 
+        // return $request; 
+        if ($request->tipo == 'Reefer') {
+            $id_r =Contenedor::select()->where([['nombre_contenedor', $request->nombre_contenedor], ['tipo', 'Reefer']])->get()->lasts()['id'];   
+            Registro_diario_generadores::create([
+                'contenedor_id' => $id_r, 
+                'battery_voltage' => $request->battery_voltage,
+                'water_temp' => $request->water_temp,
+                'running_frequency' => $request->running_frequency,
+                'fuel_level' => $request->fuel_level,
+                'voltage_measure' => $request->voltage_measure,
+                'rotor_current' => $request->rotor_current,
+                'fiel_current' => $request->fiel_current,
+                'speed' => $request->speed,
+                'eco_power' => $request->eco_power,
+                'rpm' => $request->rpm,
+                'unit_mode' => $request->unit_mode,
+                'horometro' => $request->horometro,
+                'alarma_id' =>1,
+                'evento_id' => 1,
+                'modelo' => $request->modelo,
+                'latitud'=>     $request->latitud,
+                'longitud' => $request->longitud,
+                'engine_state' => $request->engine_state,
+            ]);
+            return "reefer guardado ;D"; 
+        }
+        if ($request->tipo == 'Generador') {
+            $id_g =Contenedor::select()->where([['nombre_contenedor', $request->nombre_contenedor], ['tipo', 'Generador']])->get()->lasts()['id'];
+            Registro_diario_reefers::create([
+                'contenedor_id' => $id_g,
+                'set_point' => $request->set_point,
+                'temp_supply_1' => $request->temp_supply_1,
+                'temp_supply_2' => $request->temp_supply_2,
+                'return_air' => $request->return_air,
+                'evaporation_coil' => $request->evaporation_coil,
+                'condensation_coil' => $request->condensation_coil,
+                'compress_coil_1' => $request->compress_coil_1,
+                'compress_coil_2' => $request->compress_coil_2,
+                'ambient_air' => $request->ambient_air,
+                'cargo_1_temp' => $request->cargo_1_temp,
+                'cargo_2_temp' => $request->cargo_2_temp,
+                'cargo_3_temp' => $request->cargo_3_temp,
+                'cargo_4_temp' => $request->cargo_4_temp,
+                'relative_humidity' => $request->relative_humidity,
+                'avl' => $request->avl,
+                'suction_pressure' => $request->suction_pressure,
+                'discharge_pressure' => $request->discharge_pressure,
+                'line_voltage'  => $request->line_voltage,
+                'line_frequency' => $request->line_frequency,
+                'consumption_ph_1' => $request->consumption_ph_1,
+                'consumption_ph_2' => $request->consumption_ph_2,
+                'consumption_ph_3' => $request->consumption_ph_3,
+                'co2_reading' => $request->co2_reading,
+                'o2_reading' => $request->o2_reading,
+                'evaporator_speed'  => $request->evaporator_speed,
+                'condenser_speed'  => $request->condenser_speed,
+                'battery_voltage' => $request->battery_voltage,
+                'power_kwh' => $request->power_kwh,
+                'power_trip_reading' => $request->power_trip_reading,
+                'power_trip_duration'  => $request->power_trip_duration,
+                'suction_temp' => $request->suction_temp,
+                'discharge_temp' => $request->discharge_temp,
+                'supply_air_temp' => $request->supply_air_temp,
+                'return_air_temp' => $request->return_air_temp,
+                'dl_battery_temp' => $request->dl_battery_temp,
+                'dl_battery_charge' => $request->dl_battery_charge,
+                'power_consumption' => $request->power_consumption,
+                'power_consumption_avg' => $request->power_consumption_avg,
+                'alarm_present'  => $request->alarm_present,
+                'capacity_load'  => $request->capacity_load,
+                'power_state'  => $request->power_state,
+                'controlling_mode'  => $request->controlling_mode,
+                'humidity_control'  => $request->humidity_control,
+                'humidity_set_point'  => $request->humidity_set_point,
+                'fresh_air_ex_mode'  => $request->fresh_air_ex_mode,
+                'fresh_air_ex_rate'  => $request->fresh_air_ex_rate,
+                'fresh_air_ex_delay'  => $request->fresh_air_ex_delay,
+                'set_point_o2'  => $request->set_point_o2,
+                'set_point_co2'  => $request->set_point_co2,
+                'defrost_term_temp' => $request->defrost_term_temp,
+                'defrost_interval'  => $request->defrost_interval,
+                'water_cooled_conde'  => $request->water_cooled_conde,
+                'usda_trip'  => $request->usda_trip,
+                'evaporator_exp_valve'  => $request->evaporator_exp_valve,
+                'suction_mod_valve'  => $request->suction_mod_valve,
+                'hot_gas_valve'  => $request->hot_gas_valve,
+                'economizer_valve'  =>  $request->economizer_valve,
+                'modelo'  => $request->modelo,
+                'latitud'=>    $request->latitud,
+                'longitud' =>   $request->longitud,
+                
+            ]);
+            return "genset guardado ;D";
+        }
+
+        
     }
 }
 
