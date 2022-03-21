@@ -28,7 +28,14 @@ class CreateUsuariosTable extends Migration
         });
         DB::table("usuarios")
         ->insert([ 
-
+            'usuario' => 'admin',
+            'apellidos' => 'admin',
+            'nombres' => 'admin',
+            'activo' => 1,
+            'admin' => 1,
+            'correo' => 'ingfralch@gmail.com',
+            'contraseña' => '123456',
+            'ultimo_acceso' => null,
         ]);
     }
 
