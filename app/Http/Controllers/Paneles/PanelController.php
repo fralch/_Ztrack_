@@ -229,7 +229,7 @@ class PanelController extends Controller
         // exit();
         if ($request->tipo == 'Generador') {
           
-            $id_r =Contenedor::select()->where([['nombre_contenedor', $request->nombre_contenedor], ['tipo', 'Reefer']])->get()->last()['id'];   
+            $id_r =Contenedor::select()->where([['nombre_contenedor', $request->nombre_contenedor]])->get()->last()['id'];   
             Registro_diario_generadores::create([
                 'contenedor_id' => $id_r, 
                 'battery_voltage' => $request->battery_voltage,
@@ -254,7 +254,7 @@ class PanelController extends Controller
             return "genset guardado ;D"; 
         }
         if ($request->tipo == 'Reefer') {
-            $id_g =Contenedor::select()->where([['nombre_contenedor', $request->nombre_contenedor], ['tipo', 'Generador']])->get()->last()['id'];
+            $id_g =Contenedor::select()->where([['nombre_contenedor', $request->nombre_contenedor]])->get()->last()['id'];
             Registro_diario_reefers::create([
                 'contenedor_id' => $id_g,
                 'set_point' => $request->set_point,
