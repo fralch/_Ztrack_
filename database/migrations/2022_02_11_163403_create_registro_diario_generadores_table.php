@@ -35,10 +35,10 @@ class CreateRegistroDiarioGeneradoresTable extends Migration
             $table->float('latitud')->nullable();
             $table->float('longitud')->nullable();
             $table->string('engine_state', 100)->nullable();
-            $table->decimal('set_point', $precision=8, $scale=2)->nullable();
-            $table->decimal('temp_suppy_1', $precision=8, $scale=1)->nullable();
-            $table->decimal('return_air', $precision=8, $scale=1)->nullable();
-            $table->string('reefer_conected',100)->nullable();
+            $table->string('reefer_conected',100)->default('-');
+            $table->decimal('set_point', $precision=8, $scale=2)->default(0);
+            $table->decimal('temp_suppy_1', $precision=8, $scale=1)->default(0);
+            $table->decimal('return_air', $precision=8, $scale=1)->default(0);
            
             $table->timestamps();
 
