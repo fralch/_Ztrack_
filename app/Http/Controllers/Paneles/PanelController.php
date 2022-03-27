@@ -250,6 +250,10 @@ class PanelController extends Controller
                 'latitud'=>     $request->latitud,
                 'longitud' => $request->longitud,
                 'engine_state' => $request->engine_state,
+                'reefer_conected' => $request->reefer_conected,
+                'set_point' => $request->set_point,
+                'temp_suppy_1' => $request->temp_suppy_1,
+                'return_air' => $request->return_air,
             ]);
             return "genset guardado ;D"; 
         }
