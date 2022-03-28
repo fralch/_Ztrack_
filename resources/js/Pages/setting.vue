@@ -9,16 +9,11 @@
         <div class="content" >
           <div class="row" style=" margin: 0 0 0 0px;">
             <div id='lado_izquierdo'>
-              <div id="asset-empresas" class="col shadow-sm p-3 mb-5 bg-white rounded "  >
-                 <div class="text-center"  style="background-color: #353b48; " >
-                   <label for="buscar" style="color:white; font-size:20px;  margin-top: 10px; ">USUARIOS </label>
-                    <!-- <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search">
-                    <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Buscar</button> -->
-                  </div>
-                  <br>
-                  <!-- ****** table empreas ******* -->
-                  <div id="grid_usuarios">
-                      <table  id="tblUsuarios">
+              <div id="asset-empresas"  >
+                <div class="card bg-light mb-3 shadow p-3 mb-5 bg-white rounded">
+                  <div class="card-header">USUARIOS</div>
+                  <div class="card-body">
+                     <table  id="tblUsuarios">
                          <thead>
                           <tr >
                             <th scope="col" width='50px'>N°</th>
@@ -26,7 +21,7 @@
                             <th scope="col" width='150px'>Usuario</th>
                             <th scope="col">Apellidos</th>
                             <th scope="col">Nombres</th>
-                            <th scope="col" width='50px'>Activo </th>
+                            <th scope="col" width='50px'>Activo </th>  
                             <th scope="col">Administrador</th>
                             <th scope="col">Correo</th>
                             <th scope="col">Ultimo_acceso</th>
@@ -47,15 +42,14 @@
                           </tr>
                         </tbody>
                       </table>
+                       <button type="button" class="btn btn-secondary"  data-toggle="modal" data-target="#usuarioModal" >
+                        <i class="bi bi-check-lg"></i>
+                          <b style="font-size:1.2em;"></b>
+                          &nbsp;
+                          Nuevo Usuario
+                        </button>
                   </div>
-                  <div class="row" style="margin: 0 10px;">
-                    <button type="button" class="col-3 btn btn-warning"  data-toggle="modal" data-target="#usuarioModal" >
-                     <i class="bi bi-check-lg"></i>
-                      <b style="font-size:1.2em;"></b>
-                      &nbsp;
-                      Nueva Usuario
-                    </button>
-                  </div>
+                </div> 
               </div>
              
             </div>

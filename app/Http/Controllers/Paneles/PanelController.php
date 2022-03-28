@@ -72,7 +72,7 @@ class PanelController extends Controller
     public function faker_datos()
     {
         # code...
-        return Registro_diario_generadores::create([
+         Registro_diario_generadores::create([
             'contenedor_id' =>rand(2,5), 
             'battery_voltage' => rand((1*1),(10*10))/10,
             'water_temp' => rand((1*1),(10*10))/10,
@@ -252,7 +252,7 @@ class PanelController extends Controller
                 'engine_state' => $request->engine_state,
                 'reefer_conected' => $request->reefer_conected,
                 'set_point' => $request->set_point,
-                'temp_suppy_1' => $request->temp_suppy_1,
+                'temp_supply_1' => $request->temp_supply_1,
                 'return_air' => $request->return_air,
             ]);
             return "genset guardado ;D"; 

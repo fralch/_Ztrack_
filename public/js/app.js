@@ -2644,6 +2644,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 var myChart_principal;
 var Chart_alarmas;
@@ -3666,12 +3674,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _layout__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./layout */ "./resources/js/Pages/layout.vue");
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -30566,6 +30568,54 @@ var render = function () {
                                         },
                                         [_vm._v("Evento")]
                                       ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "th",
+                                        {
+                                          staticClass: "text-center",
+                                          attrs: {
+                                            scope: "col",
+                                            width: "50px",
+                                          },
+                                        },
+                                        [_vm._v("REEFER_CONECTED")]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "th",
+                                        {
+                                          staticClass: "text-center",
+                                          attrs: {
+                                            scope: "col",
+                                            width: "50px",
+                                          },
+                                        },
+                                        [_vm._v("SET_POINT")]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "th",
+                                        {
+                                          staticClass: "text-center",
+                                          attrs: {
+                                            scope: "col",
+                                            width: "50px",
+                                          },
+                                        },
+                                        [_vm._v("TEMP_SUPPLY")]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "th",
+                                        {
+                                          staticClass: "text-center",
+                                          attrs: {
+                                            scope: "col",
+                                            width: "50px",
+                                          },
+                                        },
+                                        [_vm._v("RETURN_AIR")]
+                                      ),
                                     ]
                                   ),
                                 ]),
@@ -30740,6 +30790,48 @@ var render = function () {
                                             [
                                               _vm._v(
                                                 _vm._s(generador.evento_id)
+                                              ),
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "td",
+                                            { staticClass: "text-center" },
+                                            [
+                                              _vm._v(
+                                                _vm._s(
+                                                  generador.reefer_conected
+                                                )
+                                              ),
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "td",
+                                            { staticClass: "text-center" },
+                                            [
+                                              _vm._v(
+                                                _vm._s(generador.set_point)
+                                              ),
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "td",
+                                            { staticClass: "text-center" },
+                                            [
+                                              _vm._v(
+                                                _vm._s(generador.temp_supply_1)
+                                              ),
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "td",
+                                            { staticClass: "text-center" },
+                                            [
+                                              _vm._v(
+                                                _vm._s(generador.return_air)
                                               ),
                                             ]
                                           ),
@@ -32325,173 +32417,152 @@ var render = function () {
                 { staticClass: "row", staticStyle: { margin: "0 0 0 0px" } },
                 [
                   _c("div", { attrs: { id: "lado_izquierdo" } }, [
-                    _c(
-                      "div",
-                      {
-                        staticClass: "col shadow-sm p-3 mb-5 bg-white rounded ",
-                        attrs: { id: "asset-empresas" },
-                      },
-                      [
-                        _c(
-                          "div",
-                          {
-                            staticClass: "text-center",
-                            staticStyle: { "background-color": "#353b48" },
-                          },
-                          [
-                            _c(
-                              "label",
-                              {
-                                staticStyle: {
-                                  color: "white",
-                                  "font-size": "20px",
-                                  "margin-top": "10px",
-                                },
-                                attrs: { for: "buscar" },
-                              },
-                              [_vm._v("USUARIOS ")]
-                            ),
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c("br"),
-                        _vm._v(" "),
-                        _c("div", { attrs: { id: "grid_usuarios" } }, [
-                          _c("table", { attrs: { id: "tblUsuarios" } }, [
-                            _c("thead", [
-                              _c("tr", [
-                                _c(
-                                  "th",
-                                  { attrs: { scope: "col", width: "50px" } },
-                                  [_vm._v("N°")]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "th",
-                                  { attrs: { scope: "col", width: "50px" } },
-                                  [_vm._v("Ver")]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "th",
-                                  { attrs: { scope: "col", width: "150px" } },
-                                  [_vm._v("Usuario")]
-                                ),
-                                _vm._v(" "),
-                                _c("th", { attrs: { scope: "col" } }, [
-                                  _vm._v("Apellidos"),
-                                ]),
-                                _vm._v(" "),
-                                _c("th", { attrs: { scope: "col" } }, [
-                                  _vm._v("Nombres"),
-                                ]),
-                                _vm._v(" "),
-                                _c(
-                                  "th",
-                                  { attrs: { scope: "col", width: "50px" } },
-                                  [_vm._v("Activo ")]
-                                ),
-                                _vm._v(" "),
-                                _c("th", { attrs: { scope: "col" } }, [
-                                  _vm._v("Administrador"),
-                                ]),
-                                _vm._v(" "),
-                                _c("th", { attrs: { scope: "col" } }, [
-                                  _vm._v("Correo"),
-                                ]),
-                                _vm._v(" "),
-                                _c("th", { attrs: { scope: "col" } }, [
-                                  _vm._v("Ultimo_acceso"),
+                    _c("div", { attrs: { id: "asset-empresas" } }, [
+                      _c(
+                        "div",
+                        {
+                          staticClass:
+                            "card bg-light mb-3 shadow p-3 mb-5 bg-white rounded",
+                        },
+                        [
+                          _c("div", { staticClass: "card-header" }, [
+                            _vm._v("USUARIOS"),
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "card-body" }, [
+                            _c("table", { attrs: { id: "tblUsuarios" } }, [
+                              _c("thead", [
+                                _c("tr", [
+                                  _c(
+                                    "th",
+                                    { attrs: { scope: "col", width: "50px" } },
+                                    [_vm._v("N°")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "th",
+                                    { attrs: { scope: "col", width: "50px" } },
+                                    [_vm._v("Ver")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "th",
+                                    { attrs: { scope: "col", width: "150px" } },
+                                    [_vm._v("Usuario")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c("th", { attrs: { scope: "col" } }, [
+                                    _vm._v("Apellidos"),
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("th", { attrs: { scope: "col" } }, [
+                                    _vm._v("Nombres"),
+                                  ]),
+                                  _vm._v(" "),
+                                  _c(
+                                    "th",
+                                    { attrs: { scope: "col", width: "50px" } },
+                                    [_vm._v("Activo ")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c("th", { attrs: { scope: "col" } }, [
+                                    _vm._v("Administrador"),
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("th", { attrs: { scope: "col" } }, [
+                                    _vm._v("Correo"),
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("th", { attrs: { scope: "col" } }, [
+                                    _vm._v("Ultimo_acceso"),
+                                  ]),
                                 ]),
                               ]),
+                              _vm._v(" "),
+                              _c(
+                                "tbody",
+                                _vm._l(
+                                  _vm.usuario_todos,
+                                  function (usuario, index) {
+                                    return _c("tr", { key: index }, [
+                                      _c("td", { staticClass: "text-center" }, [
+                                        _vm._v(_vm._s(index + 1)),
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("td", { staticClass: "text-center" }, [
+                                        _c("input", {
+                                          directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value: _vm.radio_user,
+                                              expression: "radio_user",
+                                            },
+                                          ],
+                                          attrs: { type: "radio" },
+                                          domProps: {
+                                            value: usuario.id,
+                                            checked: _vm._q(
+                                              _vm.radio_user,
+                                              usuario.id
+                                            ),
+                                          },
+                                          on: {
+                                            change: function ($event) {
+                                              _vm.radio_user = usuario.id
+                                            },
+                                          },
+                                        }),
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("td", [
+                                        _vm._v(
+                                          _vm._s(usuario.usuario.toUpperCase())
+                                        ),
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("td", [
+                                        _vm._v(_vm._s(usuario.apellidos)),
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("td", [
+                                        _vm._v(_vm._s(usuario.nombres)),
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("td", { staticClass: "text-center" }, [
+                                        _vm._v(
+                                          _vm._s(
+                                            usuario.activo == 1 ? "SI" : "NO"
+                                          )
+                                        ),
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("td", { staticClass: "text-center" }, [
+                                        _vm._v(
+                                          _vm._s(
+                                            usuario.admin == 1 ? "SI" : "NO"
+                                          )
+                                        ),
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("td", [
+                                        _vm._v(_vm._s(usuario.correo)),
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("td", [
+                                        _vm._v(_vm._s(usuario.ultimo_acceso)),
+                                      ]),
+                                    ])
+                                  }
+                                ),
+                                0
+                              ),
                             ]),
                             _vm._v(" "),
                             _c(
-                              "tbody",
-                              _vm._l(
-                                _vm.usuario_todos,
-                                function (usuario, index) {
-                                  return _c("tr", { key: index }, [
-                                    _c("td", { staticClass: "text-center" }, [
-                                      _vm._v(_vm._s(index + 1)),
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("td", { staticClass: "text-center" }, [
-                                      _c("input", {
-                                        directives: [
-                                          {
-                                            name: "model",
-                                            rawName: "v-model",
-                                            value: _vm.radio_user,
-                                            expression: "radio_user",
-                                          },
-                                        ],
-                                        attrs: { type: "radio" },
-                                        domProps: {
-                                          value: usuario.id,
-                                          checked: _vm._q(
-                                            _vm.radio_user,
-                                            usuario.id
-                                          ),
-                                        },
-                                        on: {
-                                          change: function ($event) {
-                                            _vm.radio_user = usuario.id
-                                          },
-                                        },
-                                      }),
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("td", [
-                                      _vm._v(
-                                        _vm._s(usuario.usuario.toUpperCase())
-                                      ),
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("td", [
-                                      _vm._v(_vm._s(usuario.apellidos)),
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("td", [_vm._v(_vm._s(usuario.nombres))]),
-                                    _vm._v(" "),
-                                    _c("td", { staticClass: "text-center" }, [
-                                      _vm._v(
-                                        _vm._s(
-                                          usuario.activo == 1 ? "SI" : "NO"
-                                        )
-                                      ),
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("td", { staticClass: "text-center" }, [
-                                      _vm._v(
-                                        _vm._s(usuario.admin == 1 ? "SI" : "NO")
-                                      ),
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("td", [_vm._v(_vm._s(usuario.correo))]),
-                                    _vm._v(" "),
-                                    _c("td", [
-                                      _vm._v(_vm._s(usuario.ultimo_acceso)),
-                                    ]),
-                                  ])
-                                }
-                              ),
-                              0
-                            ),
-                          ]),
-                        ]),
-                        _vm._v(" "),
-                        _c(
-                          "div",
-                          {
-                            staticClass: "row",
-                            staticStyle: { margin: "0 10px" },
-                          },
-                          [
-                            _c(
                               "button",
                               {
-                                staticClass: "col-3 btn btn-warning",
+                                staticClass: "btn btn-secondary",
                                 attrs: {
                                   type: "button",
                                   "data-toggle": "modal",
@@ -32505,14 +32576,14 @@ var render = function () {
                                   staticStyle: { "font-size": "1.2em" },
                                 }),
                                 _vm._v(
-                                  "\n                     \n                    Nueva Usuario\n                  "
+                                  "\n                         \n                        Nuevo Usuario\n                      "
                                 ),
                               ]
                             ),
-                          ]
-                        ),
-                      ]
-                    ),
+                          ]),
+                        ]
+                      ),
+                    ]),
                   ]),
                   _vm._v(" "),
                   _c("div", { attrs: { id: "lado_derecho" } }, [

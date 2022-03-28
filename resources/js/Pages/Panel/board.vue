@@ -328,6 +328,10 @@
                         <th scope="col" width='50px' class="text-center">Longitud</th>
                         <th scope="col" width='50px' class="text-center">Alarma</th>
                         <th scope="col" width='50px' class="text-center">Evento</th>
+                        <th scope="col" width='50px' class="text-center">REEFER_CONECTED</th>
+                        <th scope="col" width='50px' class="text-center">SET_POINT</th>
+                        <th scope="col" width='50px' class="text-center">TEMP_SUPPLY</th>
+                        <th scope="col" width='50px' class="text-center">RETURN_AIR</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -354,6 +358,10 @@
                         <td class="text-center">{{generador.longitud}}</td>
                         <td class="text-center">{{generador.alarma_id}}</td>
                         <td class="text-center">{{generador.evento_id}}</td>
+                        <td class="text-center">{{generador.reefer_conected}}</td>
+                        <td class="text-center">{{generador.set_point}}</td>
+                        <td class="text-center">{{generador.temp_supply_1}}</td>
+                        <td class="text-center">{{generador.return_air}}</td>
                       </tr>
                       
                     </tbody>
