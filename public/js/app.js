@@ -3897,24 +3897,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -3932,6 +3914,7 @@ __webpack_require__.r(__webpack_exports__);
       // submited: false, 
       tabla_datos_empresas: this.empresas,
       radio_user: null,
+      radio_empresa: null,
       contentenedores_filtros: [],
       // -- usuarios datos ---
       nuevo_usuario: "",
@@ -4260,7 +4243,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n#lado_derecho{\n    width: 100%;\n}\n#lado_izquierdo{\n    width: 100%;\n}\n@media (max-width: 1024px) {\n#lado_derecho{\n    width: 100%;\n}\n#lado_izquierdo{\n    width: 100%;\n}\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n#lado_derecho{\n    width: 100%;\n}\n#lado_izquierdo{\n    width: 100%;\n}\n@media (max-width: 1024px) {\n#lado_derecho{\n    width: 100%;\n}\n#lado_izquierdo{\n    width: 100%;\n}\n}\n.bg-primary {\n  background-color: #0E5976 !important;\n}\n.btn-primary {\n  background-color: #0E5976 !important;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -32398,7 +32381,7 @@ var render = function () {
     _c(
       "div",
       {
-        staticClass: "slot_body slot_empresas",
+        staticClass: "slot_body slot_empresas ",
         attrs: { slot: "component-view" },
         slot: "component-view",
       },
@@ -32406,7 +32389,7 @@ var render = function () {
         _c(
           "div",
           {
-            staticClass: "content",
+            staticClass: "content ",
             staticStyle: { display: "block" },
             attrs: { id: "cuerpo" },
           },
@@ -32416,281 +32399,320 @@ var render = function () {
                 "div",
                 { staticClass: "row", staticStyle: { margin: "0 0 0 0px" } },
                 [
-                  _c("div", { attrs: { id: "lado_izquierdo" } }, [
-                    _c("div", { attrs: { id: "asset-empresas" } }, [
+                  _c(
+                    "div",
+                    {
+                      staticClass: "rounded border border-5",
+                      attrs: { id: "lado_izquierdo" },
+                    },
+                    [
                       _c(
                         "div",
-                        {
-                          staticClass:
-                            "card bg-light mb-3 shadow p-3 mb-5 bg-white rounded",
-                        },
+                        { staticClass: "card-body shadow p-3 mb-5 bg-white " },
                         [
-                          _c("div", { staticClass: "card-header" }, [
-                            _vm._v("USUARIOS"),
-                          ]),
+                          _c(
+                            "h5",
+                            {
+                              staticClass:
+                                "card-title p-3 mb-2 bg-primary text-white",
+                            },
+                            [_vm._v("USUARIOS")]
+                          ),
                           _vm._v(" "),
-                          _c("div", { staticClass: "card-body" }, [
-                            _c("table", { attrs: { id: "tblUsuarios" } }, [
-                              _c("thead", [
-                                _c("tr", [
-                                  _c(
-                                    "th",
-                                    { attrs: { scope: "col", width: "50px" } },
-                                    [_vm._v("N°")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "th",
-                                    { attrs: { scope: "col", width: "50px" } },
-                                    [_vm._v("Ver")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "th",
-                                    { attrs: { scope: "col", width: "150px" } },
-                                    [_vm._v("Usuario")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c("th", { attrs: { scope: "col" } }, [
-                                    _vm._v("Apellidos"),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("th", { attrs: { scope: "col" } }, [
-                                    _vm._v("Nombres"),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c(
-                                    "th",
-                                    { attrs: { scope: "col", width: "50px" } },
-                                    [_vm._v("Activo ")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c("th", { attrs: { scope: "col" } }, [
-                                    _vm._v("Administrador"),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("th", { attrs: { scope: "col" } }, [
-                                    _vm._v("Correo"),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("th", { attrs: { scope: "col" } }, [
-                                    _vm._v("Ultimo_acceso"),
-                                  ]),
-                                ]),
+                          _c(
+                            "div",
+                            {
+                              staticClass:
+                                "card bg-light mb-3 shadow-none p-3 mb-5 bg-light rounded",
+                            },
+                            [
+                              _c("div", { staticClass: "card-body" }, [
+                                _c(
+                                  "div",
+                                  { staticClass: "row align-items-start" },
+                                  [
+                                    _c("div", { staticClass: "col" }, [
+                                      _c("label", [_vm._v("Nuevo Usuario")]),
+                                      _vm._v(" "),
+                                      _c("input", {
+                                        directives: [
+                                          {
+                                            name: "model",
+                                            rawName: "v-model",
+                                            value: _vm.nuevo_usuario,
+                                            expression: "nuevo_usuario",
+                                          },
+                                        ],
+                                        staticClass: "form-control mr-sm-2",
+                                        attrs: {
+                                          type: "usuario",
+                                          placeholder: "nombre de usuario",
+                                          "aria-label": "Usuario",
+                                        },
+                                        domProps: { value: _vm.nuevo_usuario },
+                                        on: {
+                                          input: function ($event) {
+                                            if ($event.target.composing) {
+                                              return
+                                            }
+                                            _vm.nuevo_usuario =
+                                              $event.target.value
+                                          },
+                                        },
+                                      }),
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("div", { staticClass: "col" }, [
+                                      _c("label", [_vm._v("Apellidos")]),
+                                      _vm._v(" "),
+                                      _c("input", {
+                                        directives: [
+                                          {
+                                            name: "model",
+                                            rawName: "v-model",
+                                            value: _vm.nuevo_apellidos,
+                                            expression: "nuevo_apellidos",
+                                          },
+                                        ],
+                                        staticClass: "form-control mr-sm-2",
+                                        attrs: {
+                                          type: "apellidos",
+                                          placeholder: "apellidos",
+                                          "aria-label": "Apellidos",
+                                        },
+                                        domProps: {
+                                          value: _vm.nuevo_apellidos,
+                                        },
+                                        on: {
+                                          input: function ($event) {
+                                            if ($event.target.composing) {
+                                              return
+                                            }
+                                            _vm.nuevo_apellidos =
+                                              $event.target.value
+                                          },
+                                        },
+                                      }),
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("div", { staticClass: "col" }, [
+                                      _c(
+                                        "label",
+                                        {
+                                          staticStyle: {
+                                            "margin-right": "10px",
+                                          },
+                                        },
+                                        [_vm._v("Nombres")]
+                                      ),
+                                      _vm._v(" "),
+                                      _c("input", {
+                                        directives: [
+                                          {
+                                            name: "model",
+                                            rawName: "v-model",
+                                            value: _vm.nuevo_nombres,
+                                            expression: "nuevo_nombres",
+                                          },
+                                        ],
+                                        staticClass: "form-control mr-sm-2",
+                                        attrs: {
+                                          type: "nombres",
+                                          placeholder: "nombres",
+                                          "aria-label": "Nombres",
+                                        },
+                                        domProps: { value: _vm.nuevo_nombres },
+                                        on: {
+                                          input: function ($event) {
+                                            if ($event.target.composing) {
+                                              return
+                                            }
+                                            _vm.nuevo_nombres =
+                                              $event.target.value
+                                          },
+                                        },
+                                      }),
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("div", { staticClass: "col" }, [
+                                      _c(
+                                        "label",
+                                        {
+                                          staticStyle: {
+                                            "margin-right": "10px",
+                                          },
+                                        },
+                                        [_vm._v("Correo")]
+                                      ),
+                                      _vm._v(" "),
+                                      _c("input", {
+                                        directives: [
+                                          {
+                                            name: "model",
+                                            rawName: "v-model",
+                                            value: _vm.nuevo_correo,
+                                            expression: "nuevo_correo",
+                                          },
+                                        ],
+                                        staticClass: "form-control mr-sm-2",
+                                        attrs: {
+                                          type: "correo",
+                                          placeholder: "correo",
+                                          "aria-label": "Correo",
+                                        },
+                                        domProps: { value: _vm.nuevo_correo },
+                                        on: {
+                                          input: function ($event) {
+                                            if ($event.target.composing) {
+                                              return
+                                            }
+                                            _vm.nuevo_correo =
+                                              $event.target.value
+                                          },
+                                        },
+                                      }),
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("div", { staticClass: "col" }, [
+                                      _c(
+                                        "button",
+                                        {
+                                          staticClass: "btn btn-primary",
+                                          staticStyle: { "margin-top": "30px" },
+                                          attrs: { type: "button" },
+                                          on: { click: _vm.guardarUsuario },
+                                        },
+                                        [
+                                          _c("i", {
+                                            staticClass: "fas fa-save",
+                                          }),
+                                          _vm._v(
+                                            "\n                              Agregar usuario\n                            "
+                                          ),
+                                        ]
+                                      ),
+                                    ]),
+                                  ]
+                                ),
                               ]),
-                              _vm._v(" "),
-                              _c(
-                                "tbody",
-                                _vm._l(
-                                  _vm.usuario_todos,
-                                  function (usuario, index) {
-                                    return _c("tr", { key: index }, [
-                                      _c("td", { staticClass: "text-center" }, [
-                                        _vm._v(_vm._s(index + 1)),
-                                      ]),
-                                      _vm._v(" "),
-                                      _c("td", { staticClass: "text-center" }, [
-                                        _c("input", {
-                                          directives: [
-                                            {
-                                              name: "model",
-                                              rawName: "v-model",
-                                              value: _vm.radio_user,
-                                              expression: "radio_user",
-                                            },
-                                          ],
-                                          attrs: { type: "radio" },
-                                          domProps: {
-                                            value: usuario.id,
-                                            checked: _vm._q(
-                                              _vm.radio_user,
-                                              usuario.id
-                                            ),
-                                          },
-                                          on: {
-                                            change: function ($event) {
-                                              _vm.radio_user = usuario.id
-                                            },
-                                          },
-                                        }),
-                                      ]),
-                                      _vm._v(" "),
-                                      _c("td", [
-                                        _vm._v(
-                                          _vm._s(usuario.usuario.toUpperCase())
-                                        ),
-                                      ]),
-                                      _vm._v(" "),
-                                      _c("td", [
-                                        _vm._v(_vm._s(usuario.apellidos)),
-                                      ]),
-                                      _vm._v(" "),
-                                      _c("td", [
-                                        _vm._v(_vm._s(usuario.nombres)),
-                                      ]),
-                                      _vm._v(" "),
-                                      _c("td", { staticClass: "text-center" }, [
-                                        _vm._v(
-                                          _vm._s(
-                                            usuario.activo == 1 ? "SI" : "NO"
-                                          )
-                                        ),
-                                      ]),
-                                      _vm._v(" "),
-                                      _c("td", { staticClass: "text-center" }, [
-                                        _vm._v(
-                                          _vm._s(
-                                            usuario.admin == 1 ? "SI" : "NO"
-                                          )
-                                        ),
-                                      ]),
-                                      _vm._v(" "),
-                                      _c("td", [
-                                        _vm._v(_vm._s(usuario.correo)),
-                                      ]),
-                                      _vm._v(" "),
-                                      _c("td", [
-                                        _vm._v(_vm._s(usuario.ultimo_acceso)),
-                                      ]),
-                                    ])
-                                  }
-                                ),
-                                0
-                              ),
-                            ]),
-                            _vm._v(" "),
-                            _c(
-                              "button",
-                              {
-                                staticClass: "btn btn-secondary",
-                                attrs: {
-                                  type: "button",
-                                  "data-toggle": "modal",
-                                  "data-target": "#usuarioModal",
-                                },
-                              },
-                              [
-                                _c("i", { staticClass: "bi bi-check-lg" }),
-                                _vm._v(" "),
-                                _c("b", {
-                                  staticStyle: { "font-size": "1.2em" },
-                                }),
-                                _vm._v(
-                                  "\n                         \n                        Nuevo Usuario\n                      "
-                                ),
-                              ]
-                            ),
-                          ]),
-                        ]
-                      ),
-                    ]),
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { attrs: { id: "lado_derecho" } }, [
-                    _c(
-                      "div",
-                      {
-                        staticClass: "col shadow-sm p-3 mb-5 bg-white rounded ",
-                        attrs: { id: "asset-empresas" },
-                      },
-                      [
-                        _c(
-                          "div",
-                          {
-                            staticClass: "text-center",
-                            staticStyle: { "background-color": "#353b48" },
-                          },
-                          [
-                            _c(
-                              "label",
-                              {
-                                staticStyle: {
-                                  color: "white",
-                                  "font-size": "20px",
-                                  "margin-top": "10px",
-                                },
-                                attrs: { for: "buscar" },
-                              },
-                              [_vm._v("EMPRESAS ")]
-                            ),
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c("br"),
-                        _vm._v(" "),
-                        _c("div", { attrs: { id: "grid_empresas" } }, [
-                          _c("table", { attrs: { id: "tblEmpresas" } }, [
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c("table", { attrs: { id: "tblUsuarios" } }, [
                             _c("thead", [
                               _c("tr", [
-                                _c("th", [_vm._v("N°")]),
+                                _c(
+                                  "th",
+                                  { attrs: { scope: "col", width: "50px" } },
+                                  [_vm._v("N°")]
+                                ),
                                 _vm._v(" "),
-                                _c("th", [_vm._v("Empresa")]),
+                                _c(
+                                  "th",
+                                  { attrs: { scope: "col", width: "50px" } },
+                                  [_vm._v("Ver")]
+                                ),
                                 _vm._v(" "),
-                                _c("th", [_vm._v("Booking")]),
+                                _c(
+                                  "th",
+                                  { attrs: { scope: "col", width: "150px" } },
+                                  [_vm._v("Usuario")]
+                                ),
                                 _vm._v(" "),
-                                _c("th", [_vm._v("Booking_temp")]),
+                                _c("th", { attrs: { scope: "col" } }, [
+                                  _vm._v("Apellidos"),
+                                ]),
                                 _vm._v(" "),
-                                _c("th", [_vm._v("Usuario_asigando")]),
+                                _c("th", { attrs: { scope: "col" } }, [
+                                  _vm._v("Nombres"),
+                                ]),
                                 _vm._v(" "),
-                                _c("th", [_vm._v("Asignar_empresa")]),
+                                _c(
+                                  "th",
+                                  { attrs: { scope: "col", width: "50px" } },
+                                  [_vm._v("Activo ")]
+                                ),
+                                _vm._v(" "),
+                                _c("th", { attrs: { scope: "col" } }, [
+                                  _vm._v("Administrador"),
+                                ]),
+                                _vm._v(" "),
+                                _c("th", { attrs: { scope: "col" } }, [
+                                  _vm._v("Correo"),
+                                ]),
+                                _vm._v(" "),
+                                _c("th", { attrs: { scope: "col" } }, [
+                                  _vm._v("Ultimo_acceso"),
+                                ]),
                               ]),
                             ]),
                             _vm._v(" "),
                             _c(
                               "tbody",
                               _vm._l(
-                                _vm.tabla_datos_empresas,
-                                function (empresa, index) {
+                                _vm.usuario_todos,
+                                function (usuario, index) {
                                   return _c("tr", { key: index }, [
-                                    _c("td", [_vm._v(_vm._s(index + 1))]),
+                                    _c("td", { staticClass: "text-center" }, [
+                                      _vm._v(_vm._s(index + 1)),
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", { staticClass: "text-center" }, [
+                                      _c("input", {
+                                        directives: [
+                                          {
+                                            name: "model",
+                                            rawName: "v-model",
+                                            value: _vm.radio_user,
+                                            expression: "radio_user",
+                                          },
+                                        ],
+                                        attrs: { type: "radio" },
+                                        domProps: {
+                                          value: usuario.id,
+                                          checked: _vm._q(
+                                            _vm.radio_user,
+                                            usuario.id
+                                          ),
+                                        },
+                                        on: {
+                                          change: function ($event) {
+                                            _vm.radio_user = usuario.id
+                                          },
+                                        },
+                                      }),
+                                    ]),
                                     _vm._v(" "),
                                     _c("td", [
                                       _vm._v(
+                                        _vm._s(usuario.usuario.toUpperCase())
+                                      ),
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _vm._v(_vm._s(usuario.apellidos)),
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v(_vm._s(usuario.nombres))]),
+                                    _vm._v(" "),
+                                    _c("td", { staticClass: "text-center" }, [
+                                      _vm._v(
                                         _vm._s(
-                                          empresa.nombre_empresa.toUpperCase()
+                                          usuario.activo == 1 ? "SI" : "NO"
                                         )
                                       ),
                                     ]),
                                     _vm._v(" "),
-                                    _c("td", [
+                                    _c("td", { staticClass: "text-center" }, [
                                       _vm._v(
-                                        _vm._s(empresa.descripcion_booking)
+                                        _vm._s(usuario.admin == 1 ? "SI" : "NO")
                                       ),
                                     ]),
                                     _vm._v(" "),
-                                    _c("td", [
-                                      _vm._v(_vm._s(empresa.temp_contratada)),
-                                    ]),
+                                    _c("td", [_vm._v(_vm._s(usuario.correo))]),
                                     _vm._v(" "),
                                     _c("td", [
-                                      _vm._v(
-                                        _vm._s(empresa.usuario.toUpperCase())
-                                      ),
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("td", [
-                                      _c(
-                                        "button",
-                                        {
-                                          staticClass: "col-3 btn btn-dark",
-                                          attrs: {
-                                            type: "button",
-                                            "data-toggle": "modal",
-                                            "data-target": "#asignarModal",
-                                          },
-                                          on: {
-                                            click: function ($event) {
-                                              _vm.asignar_id_empresa =
-                                                empresa.id
-                                            },
-                                          },
-                                        },
-                                        [
-                                          _c("i", {
-                                            staticClass: "bi bi-check-lg",
-                                          }),
-                                        ]
-                                      ),
+                                      _vm._v(_vm._s(usuario.ultimo_acceso)),
                                     ]),
                                   ])
                                 }
@@ -32698,255 +32720,335 @@ var render = function () {
                               0
                             ),
                           ]),
-                        ]),
-                        _vm._v(" "),
+                        ]
+                      ),
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c("div", { attrs: { id: "lado_derecho" } }, [
+                    _c(
+                      "div",
+                      {
+                        staticClass:
+                          "card-body shadow p-3 mb-5 bg-white rounded border border-1",
+                      },
+                      [
                         _c(
-                          "div",
+                          "h5",
                           {
-                            staticClass: "row",
-                            staticStyle: { margin: "0 10px" },
+                            staticClass:
+                              "card-title p-3 mb-2 bg-primary text-white",
                           },
-                          [
+                          [_vm._v("EMPRESAS")]
+                        ),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "card bg-light mb-3 " }, [
+                          _c("div", { staticClass: "card-body" }, [
                             _c(
-                              "button",
-                              {
-                                staticClass: "col-3 btn btn-dark",
-                                attrs: {
-                                  type: "button",
-                                  "data-toggle": "modal",
-                                  "data-target": "#empresasModal",
-                                },
-                              },
+                              "div",
+                              { staticClass: "row align-items-start" },
                               [
-                                _c("i", { staticClass: "bi bi-check-lg" }),
+                                _c("div", { staticClass: "col" }, [
+                                  _c(
+                                    "label",
+                                    { staticStyle: { "margin-right": "10px" } },
+                                    [_vm._v("Empresa")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c("input", {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.nueva_empresa,
+                                        expression: "nueva_empresa",
+                                      },
+                                    ],
+                                    staticClass: "form-control mr-sm-2",
+                                    attrs: { placeholder: "nombre de empresa" },
+                                    domProps: { value: _vm.nueva_empresa },
+                                    on: {
+                                      input: function ($event) {
+                                        if ($event.target.composing) {
+                                          return
+                                        }
+                                        _vm.nueva_empresa = $event.target.value
+                                      },
+                                    },
+                                  }),
+                                ]),
                                 _vm._v(" "),
-                                _c("b", {
-                                  staticStyle: { "font-size": "1.2em" },
-                                }),
-                                _vm._v(
-                                  "\n                     \n                    Nueva Empresa\n                  "
-                                ),
+                                _c("div", { staticClass: "col" }, [
+                                  _c(
+                                    "label",
+                                    { staticStyle: { "margin-right": "10px" } },
+                                    [_vm._v("Booking")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c("textarea", {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.nuevo_booking,
+                                        expression: "nuevo_booking",
+                                      },
+                                    ],
+                                    staticClass: "form-control mr-sm-2",
+                                    domProps: { value: _vm.nuevo_booking },
+                                    on: {
+                                      input: function ($event) {
+                                        if ($event.target.composing) {
+                                          return
+                                        }
+                                        _vm.nuevo_booking = $event.target.value
+                                      },
+                                    },
+                                  }),
+                                ]),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "col" }, [
+                                  _c(
+                                    "label",
+                                    { staticStyle: { "margin-right": "10px" } },
+                                    [_vm._v("Booking_temp")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c("input", {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.nuevo_booking_temp,
+                                        expression: "nuevo_booking_temp",
+                                      },
+                                    ],
+                                    staticClass: "form-control mr-sm-2",
+                                    attrs: {
+                                      placeholder: "Booking Temperature",
+                                    },
+                                    domProps: { value: _vm.nuevo_booking_temp },
+                                    on: {
+                                      input: function ($event) {
+                                        if ($event.target.composing) {
+                                          return
+                                        }
+                                        _vm.nuevo_booking_temp =
+                                          $event.target.value
+                                      },
+                                    },
+                                  }),
+                                ]),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "col" }, [
+                                  _c(
+                                    "label",
+                                    { staticStyle: { "margin-right": "10px" } },
+                                    [_vm._v("Usuario Asignado")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "select",
+                                    {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.nuevo_usuario_asignado,
+                                          expression: "nuevo_usuario_asignado",
+                                        },
+                                      ],
+                                      staticClass: "form-control mr-sm-2",
+                                      on: {
+                                        change: function ($event) {
+                                          var $$selectedVal =
+                                            Array.prototype.filter
+                                              .call(
+                                                $event.target.options,
+                                                function (o) {
+                                                  return o.selected
+                                                }
+                                              )
+                                              .map(function (o) {
+                                                var val =
+                                                  "_value" in o
+                                                    ? o._value
+                                                    : o.value
+                                                return val
+                                              })
+                                          _vm.nuevo_usuario_asignado = $event
+                                            .target.multiple
+                                            ? $$selectedVal
+                                            : $$selectedVal[0]
+                                        },
+                                      },
+                                    },
+                                    [
+                                      _c(
+                                        "option",
+                                        { attrs: { value: "0", disabled: "" } },
+                                        [_vm._v("Seleccione un usuario")]
+                                      ),
+                                      _vm._v(" "),
+                                      _vm._l(
+                                        _vm.usuario_todos,
+                                        function (usuario, index) {
+                                          return _c(
+                                            "option",
+                                            {
+                                              key: index,
+                                              domProps: { value: usuario.id },
+                                            },
+                                            [_vm._v(_vm._s(usuario.nombres))]
+                                          )
+                                        }
+                                      ),
+                                    ],
+                                    2
+                                  ),
+                                ]),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "col" }, [
+                                  _c(
+                                    "button",
+                                    {
+                                      staticClass: "btn btn-primary",
+                                      staticStyle: { "margin-top": "30px" },
+                                      attrs: { type: "button" },
+                                      on: { click: _vm.guardarEmpresa },
+                                    },
+                                    [
+                                      _c("i", { staticClass: "fas fa-save" }),
+                                      _vm._v(
+                                        "\n                                Agregar empresa\n                              "
+                                      ),
+                                    ]
+                                  ),
+                                ]),
                               ]
                             ),
-                          ]
-                        ),
+                          ]),
+                        ]),
+                        _vm._v(" "),
+                        _c("table", { attrs: { id: "tblEmpresas" } }, [
+                          _c("thead", [
+                            _c("tr", [
+                              _c("th", { attrs: { width: "20px" } }, [
+                                _vm._v("N°"),
+                              ]),
+                              _vm._v(" "),
+                              _c(
+                                "th",
+                                {
+                                  staticClass: "text-center",
+                                  attrs: { width: "50px" },
+                                },
+                                [_vm._v("Ver")]
+                              ),
+                              _vm._v(" "),
+                              _c("th", [_vm._v("Empresa")]),
+                              _vm._v(" "),
+                              _c("th", [_vm._v("Booking")]),
+                              _vm._v(" "),
+                              _c("th", [_vm._v("Booking_temp")]),
+                              _vm._v(" "),
+                              _c("th", [_vm._v("Usuario_asigando")]),
+                              _vm._v(" "),
+                              _c("th", [_vm._v("Asignar_empresa")]),
+                            ]),
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "tbody",
+                            _vm._l(
+                              _vm.tabla_datos_empresas,
+                              function (empresa, index) {
+                                return _c("tr", { key: index }, [
+                                  _c("td", [_vm._v(_vm._s(index + 1))]),
+                                  _vm._v(" "),
+                                  _c("td", { staticClass: "text-center" }, [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.radio_empresa,
+                                          expression: "radio_empresa",
+                                        },
+                                      ],
+                                      attrs: { type: "radio" },
+                                      domProps: {
+                                        value: empresa.id,
+                                        checked: _vm._q(
+                                          _vm.radio_empresa,
+                                          empresa.id
+                                        ),
+                                      },
+                                      on: {
+                                        change: function ($event) {
+                                          _vm.radio_empresa = empresa.id
+                                        },
+                                      },
+                                    }),
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("td", [
+                                    _vm._v(
+                                      _vm._s(
+                                        empresa.nombre_empresa.toUpperCase()
+                                      )
+                                    ),
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("td", [
+                                    _vm._v(_vm._s(empresa.descripcion_booking)),
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("td", [
+                                    _vm._v(_vm._s(empresa.temp_contratada)),
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("td", [
+                                    _vm._v(
+                                      _vm._s(empresa.usuario.toUpperCase())
+                                    ),
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("td", [
+                                    _c(
+                                      "button",
+                                      {
+                                        staticClass: "col-3 btn btn-primary",
+                                        attrs: {
+                                          type: "button",
+                                          "data-toggle": "modal",
+                                          "data-target": "#asignarModal",
+                                        },
+                                        on: {
+                                          click: function ($event) {
+                                            _vm.asignar_id_empresa = empresa.id
+                                          },
+                                        },
+                                      },
+                                      [
+                                        _c("i", {
+                                          staticClass: "bi bi-check-lg",
+                                        }),
+                                      ]
+                                    ),
+                                  ]),
+                                ])
+                              }
+                            ),
+                            0
+                          ),
+                        ]),
                       ]
                     ),
                   ]),
                 ]
               ),
             ]),
-          ]
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          {
-            staticClass: "modal fade",
-            attrs: {
-              id: "usuarioModal",
-              tabindex: "-1",
-              role: "dialog",
-              "aria-labelledby": "usuarioModalLabel",
-              "aria-hidden": "true",
-            },
-          },
-          [
-            _c(
-              "div",
-              { staticClass: "modal-dialog", attrs: { role: "document" } },
-              [
-                _c("div", { staticClass: "modal-content" }, [
-                  _c("div", { staticClass: "modal-header" }, [
-                    _c(
-                      "h5",
-                      {
-                        staticClass: "modal-title",
-                        attrs: { id: "exampleModalLabel" },
-                      },
-                      [_vm._v("Crear Usuario")]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "button",
-                      {
-                        staticClass: "close",
-                        attrs: {
-                          type: "button",
-                          "data-dismiss": "modal",
-                          "aria-label": "Close",
-                        },
-                      },
-                      [
-                        _c("span", { attrs: { "aria-hidden": "true" } }, [
-                          _vm._v("×"),
-                        ]),
-                      ]
-                    ),
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "modal-body" }, [
-                    _c("div", { staticClass: "form-inline" }, [
-                      _c("label", { staticStyle: { "margin-right": "10px" } }, [
-                        _vm._v("Usuario"),
-                      ]),
-                      _vm._v(" "),
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.nuevo_usuario,
-                            expression: "nuevo_usuario",
-                          },
-                        ],
-                        staticClass: "form-control mr-sm-2",
-                        attrs: {
-                          type: "usuario",
-                          placeholder: "nombre de usuario",
-                          "aria-label": "Usuario",
-                        },
-                        domProps: { value: _vm.nuevo_usuario },
-                        on: {
-                          input: function ($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.nuevo_usuario = $event.target.value
-                          },
-                        },
-                      }),
-                    ]),
-                    _vm._v(" "),
-                    _c("br"),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "form-inline" }, [
-                      _c("label", { staticStyle: { "margin-right": "10px" } }, [
-                        _vm._v("Apellidos"),
-                      ]),
-                      _vm._v(" "),
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.nuevo_apellidos,
-                            expression: "nuevo_apellidos",
-                          },
-                        ],
-                        staticClass: "form-control mr-sm-2",
-                        attrs: {
-                          type: "apellidos",
-                          placeholder: "apellidos",
-                          "aria-label": "Apellidos",
-                        },
-                        domProps: { value: _vm.nuevo_apellidos },
-                        on: {
-                          input: function ($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.nuevo_apellidos = $event.target.value
-                          },
-                        },
-                      }),
-                    ]),
-                    _vm._v(" "),
-                    _c("br"),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "form-inline" }, [
-                      _c("label", { staticStyle: { "margin-right": "10px" } }, [
-                        _vm._v("Nombres"),
-                      ]),
-                      _vm._v(" "),
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.nuevo_nombres,
-                            expression: "nuevo_nombres",
-                          },
-                        ],
-                        staticClass: "form-control mr-sm-2",
-                        attrs: {
-                          type: "nombres",
-                          placeholder: "nombres",
-                          "aria-label": "Nombres",
-                        },
-                        domProps: { value: _vm.nuevo_nombres },
-                        on: {
-                          input: function ($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.nuevo_nombres = $event.target.value
-                          },
-                        },
-                      }),
-                    ]),
-                    _vm._v(" "),
-                    _c("br"),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "form-inline" }, [
-                      _c("label", { staticStyle: { "margin-right": "10px" } }, [
-                        _vm._v("Correo"),
-                      ]),
-                      _vm._v(" "),
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.nuevo_correo,
-                            expression: "nuevo_correo",
-                          },
-                        ],
-                        staticClass: "form-control mr-sm-2",
-                        attrs: {
-                          type: "correo",
-                          placeholder: "correo",
-                          "aria-label": "Correo",
-                        },
-                        domProps: { value: _vm.nuevo_correo },
-                        on: {
-                          input: function ($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.nuevo_correo = $event.target.value
-                          },
-                        },
-                      }),
-                    ]),
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "modal-footer" }, [
-                    _c(
-                      "button",
-                      {
-                        staticClass: "btn btn-warning",
-                        attrs: { type: "button" },
-                        on: { click: _vm.guardarUsuario },
-                      },
-                      [
-                        _c("i", { staticClass: "fas fa-save" }),
-                        _vm._v("\n                  Guardar\n                "),
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "button",
-                      {
-                        staticClass: "btn btn-secondary",
-                        attrs: { type: "button", "data-dismiss": "modal" },
-                      },
-                      [_vm._v("Cerrar")]
-                    ),
-                  ]),
-                ]),
-              ]
-            ),
           ]
         ),
         _vm._v(" "),
@@ -32997,172 +33099,22 @@ var render = function () {
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "modal-body" }, [
-                    _c("div", { staticClass: "form-inline" }, [
-                      _c("label", { staticStyle: { "margin-right": "10px" } }, [
-                        _vm._v("Empresa"),
-                      ]),
-                      _vm._v(" "),
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.nueva_empresa,
-                            expression: "nueva_empresa",
-                          },
-                        ],
-                        staticClass: "form-control mr-sm-2",
-                        attrs: { placeholder: "nombre de empresa" },
-                        domProps: { value: _vm.nueva_empresa },
-                        on: {
-                          input: function ($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.nueva_empresa = $event.target.value
-                          },
-                        },
-                      }),
-                    ]),
+                    _c("div", { staticClass: "form-inline" }),
                     _vm._v(" "),
                     _c("br"),
                     _vm._v(" "),
-                    _c("div", { staticClass: "form-inline" }, [
-                      _c("label", { staticStyle: { "margin-right": "10px" } }, [
-                        _vm._v("Booking"),
-                      ]),
-                      _vm._v(" "),
-                      _c("textarea", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.nuevo_booking,
-                            expression: "nuevo_booking",
-                          },
-                        ],
-                        staticClass: "form-control mr-sm-2",
-                        domProps: { value: _vm.nuevo_booking },
-                        on: {
-                          input: function ($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.nuevo_booking = $event.target.value
-                          },
-                        },
-                      }),
-                    ]),
+                    _c("div", { staticClass: "form-inline" }),
                     _vm._v(" "),
                     _c("br"),
                     _vm._v(" "),
-                    _c("div", { staticClass: "form-inline" }, [
-                      _c("label", { staticStyle: { "margin-right": "10px" } }, [
-                        _vm._v("Booking_temp"),
-                      ]),
-                      _vm._v(" "),
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.nuevo_booking_temp,
-                            expression: "nuevo_booking_temp",
-                          },
-                        ],
-                        staticClass: "form-control mr-sm-2",
-                        attrs: { placeholder: "Booking Temperature" },
-                        domProps: { value: _vm.nuevo_booking_temp },
-                        on: {
-                          input: function ($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.nuevo_booking_temp = $event.target.value
-                          },
-                        },
-                      }),
-                    ]),
+                    _c("div", { staticClass: "form-inline" }),
                     _vm._v(" "),
                     _c("br"),
                     _vm._v(" "),
-                    _c("div", { staticClass: "form-inline" }, [
-                      _c("label", { staticStyle: { "margin-right": "10px" } }, [
-                        _vm._v("Usuario Asignado"),
-                      ]),
-                      _vm._v(" "),
-                      _c(
-                        "select",
-                        {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.nuevo_usuario_asignado,
-                              expression: "nuevo_usuario_asignado",
-                            },
-                          ],
-                          staticClass: "form-control mr-sm-2",
-                          on: {
-                            change: function ($event) {
-                              var $$selectedVal = Array.prototype.filter
-                                .call($event.target.options, function (o) {
-                                  return o.selected
-                                })
-                                .map(function (o) {
-                                  var val = "_value" in o ? o._value : o.value
-                                  return val
-                                })
-                              _vm.nuevo_usuario_asignado = $event.target
-                                .multiple
-                                ? $$selectedVal
-                                : $$selectedVal[0]
-                            },
-                          },
-                        },
-                        [
-                          _c(
-                            "option",
-                            { attrs: { value: "0", disabled: "" } },
-                            [_vm._v("Seleccione un usuario")]
-                          ),
-                          _vm._v(" "),
-                          _vm._l(_vm.usuario_todos, function (usuario, index) {
-                            return _c(
-                              "option",
-                              { key: index, domProps: { value: usuario.id } },
-                              [_vm._v(_vm._s(usuario.nombres))]
-                            )
-                          }),
-                        ],
-                        2
-                      ),
-                    ]),
+                    _c("div", { staticClass: "form-inline" }),
                   ]),
                   _vm._v(" "),
-                  _c("div", { staticClass: "modal-footer" }, [
-                    _c(
-                      "button",
-                      {
-                        staticClass: "btn btn-dark",
-                        attrs: { type: "button" },
-                        on: { click: _vm.guardarEmpresa },
-                      },
-                      [
-                        _c("i", { staticClass: "fas fa-save" }),
-                        _vm._v("\n                  Guardar\n                "),
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "button",
-                      {
-                        staticClass: "btn btn-secondary",
-                        attrs: { type: "button", "data-dismiss": "modal" },
-                      },
-                      [_vm._v("Cerrar")]
-                    ),
-                  ]),
+                  _c("div", { staticClass: "modal-footer" }),
                 ]),
               ]
             ),
