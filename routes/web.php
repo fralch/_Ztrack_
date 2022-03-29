@@ -29,6 +29,7 @@ Route::get('/board', [PanelController::class, 'board'])->name('paneles.board');
 Route::post('/obtener_datos_contenedor', [PanelController::class, 'obtener_datos_contenedor' ])->name('contenedores.get_datos');
 Route::post('/resumen_contenedores', [PanelController::class, 'resumen_contenedores' ])->name('contenedores.resumen');
 Route::post('/get_alarma_evento', [PanelController::class, 'get_alarma_evento' ])->name('contenedores.get_alarma_evento');
+Route::post('/get_lat_log', [PanelController::class, 'obtenerLatLong' ])->name('contenedores.get_lat_log');
 
 //--------------------- SETTING ------------------------
 Route::get('/setting', [SettingController::class, 'verSetting'])->name('setting');

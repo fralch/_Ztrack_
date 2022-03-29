@@ -186,6 +186,29 @@ class PanelController extends Controller
             
         }
     }
+    public function obtenerLatLong(Request $request)
+    {
+        $id_registro = $request->id;
+        $tipo_contenedor = $request->tipo;
+        
+        if ($tipo_contenedor == 'Generador') {
+            return Registro_diario_generadores::from('registro_diario_generadores')
+            ->select()
+            ->where('id',$id_registro)
+            ->latest()
+            ->take(30)
+            ->get()[0];
+        }
+        if ($tipo_contenedor == 'Reefer') {
+            return Registro_diario_reefers::from('registro_diario_reefers')
+                    ->select()
+                    ->where('id',$id_registro)
+                    ->latest()
+                    ->take(30)
+                    ->get()[0];
+            
+        }
+    }
 
     public function get_alarma_evento(Request $request)
     {

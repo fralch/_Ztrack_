@@ -530,6 +530,7 @@
 </template>
 
 <script>
+import axios from 'axios';
 import layoutprincipal from "../layout.vue";
 var myChart_principal; 
 var Chart_alarmas; 
@@ -552,7 +553,7 @@ export default {
       contenedor_selecionado: null, 
       tipo: "",
       mapa: null,
-      ubicacion: new google.maps.LatLng(-12.0434112, -75.2178798), 
+      ubicacion: new google.maps.LatLng(-11.98, -77.12), 
       contenedores_seleccionados:[],
       datos_tabla_reefer:[],
       datos_tabla_generador: [],
@@ -1029,21 +1030,29 @@ export default {
         }
       }).then(()=>{
           if (contenedor.tipo == "Reefer") {
-            let lat = self.datos_tabla_reefer[self.datos_tabla_reefer.length -1].latitud;
-            let lon = self.datos_tabla_reefer[self.datos_tabla_reefer.length -1].longitud;
-            // self.ubicacion = {lat: lat, lng: lon};
-            // console.log(lat + " " + lon);
-            self.ubicacion =  new google.maps.LatLng(lat, lon);
+            let mayor_id = self.datos_tabla_reefer.map(function(e) { return e.id; }).sort().reverse()[0];
+           axios
+             .post(route('contenedores.get_lat_log'), {id: mayor_id,tipo: contenedor.tipo})
+             .then(response => {
+               console.log(response.data.latitud, '---',response.data.longitud);
+                self.ubicacion =  new google.maps.LatLng(response.data.latitud, response.data.longitud);
+             }).then(()=>{
+                self.iniciarMap();
+              });  
           }
           if (contenedor.tipo == "Generador") {
-            let lat = self.datos_tabla_generador[self.datos_tabla_generador.length -1].latitud;
-            let lon = self.datos_tabla_generador[self.datos_tabla_generador.length -1].longitud;
-            // console.log(lat + " " + lon);
-           self.ubicacion =  new google.maps.LatLng(lat, lon);
+              let mayor_id = self.datos_tabla_generador.map(function(e) { return e.id; }).sort().reverse()[0];
+              axios
+              .post(route('contenedores.get_lat_log'), {id: mayor_id,tipo: contenedor.tipo})
+              .then(response => {
+                console.log(response.data.latitud, '---',response.data.longitud);
+                self.ubicacion =  new google.maps.LatLng(response.data.latitud, response.data.longitud);
+              }).then(()=>{
+                self.iniciarMap();
+              });           
           }
-      }).then(()=>{
-        self.iniciarMap();
-      }).then(()=>{
+      })
+      .then(()=>{
         self.setLabelsMyChartPrincipal();
       });
      
