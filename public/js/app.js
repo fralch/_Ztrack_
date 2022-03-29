@@ -3159,6 +3159,7 @@ var Chart_eventos;
 
       function _set_labels() {
         _set_labels = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+          var datos_r, datos_g;
           return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
             while (1) {
               switch (_context.prev = _context.next) {
@@ -3166,7 +3167,8 @@ var Chart_eventos;
                   self.my_Chart_principal_labels = [];
 
                   if (self.tipo == "Reefer") {
-                    self.datos_tabla_reefer.map(function (datos_r, index) {
+                    datos_r = self.datos_tabla_reefer.length != 0 ? self.datos_tabla_reefer.reverse() : [];
+                    datos_r.map(function (datos_r, index) {
                       var date = new Date(datos_r.created_at);
                       var day = date.getDate();
                       var month = date.getMonth() + 1;
@@ -3193,7 +3195,8 @@ var Chart_eventos;
                   }
 
                   if (self.tipo == "Generador") {
-                    self.datos_tabla_generador.map(function (datos_g, index) {
+                    datos_g = self.datos_tabla_generador != null ? self.datos_tabla_generador.reverse() : [];
+                    datos_g.map(function (datos_g, index) {
                       var date = new Date(datos_g.created_at);
                       var day = date.getDate();
                       var month = date.getMonth() + 1;
@@ -3290,6 +3293,7 @@ var Chart_eventos;
 
       function _set_data() {
         _set_data = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
+          var datos_reefer, datos_genset;
           return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
             while (1) {
               switch (_context2.prev = _context2.next) {
@@ -3306,7 +3310,8 @@ var Chart_eventos;
                     self.my_Chart_principal_dataset_reefer[6].data = [];
                     self.my_Chart_principal_dataset_reefer[7].data = [];
                     self.my_Chart_principal_dataset_reefer[8].data = [];
-                    self.datos_tabla_reefer.map(function (datos_r, index) {
+                    datos_reefer = self.datos_tabla_reefer.length != 0 ? self.datos_tabla_reefer.reverse() : [];
+                    datos_reefer.map(function (datos_r, index) {
                       self.my_Chart_principal_dataset_reefer[0].data.push(datos_r.set_point);
                       self.my_Chart_principal_dataset_reefer[1].data.push(datos_r.temp_supply_1);
                       self.my_Chart_principal_dataset_reefer[2].data.push(datos_r.temp_supply_2);
@@ -3329,7 +3334,8 @@ var Chart_eventos;
                     self.my_Chart_principal_dataset_generador[6].data = [];
                     self.my_Chart_principal_dataset_generador[7].data = [];
                     self.my_Chart_principal_dataset_generador[8].data = [];
-                    self.datos_tabla_generador.map(function (datos_g, index) {
+                    datos_genset = self.datos_tabla_generador.length != 0 ? self.datos_tabla_generador.reverse() : [];
+                    datos_genset.map(function (datos_g, index) {
                       self.my_Chart_principal_dataset_generador[0].data.push(datos_g.battery_voltage);
                       self.my_Chart_principal_dataset_generador[1].data.push(datos_g.water_temp);
                       self.my_Chart_principal_dataset_generador[2].data.push(datos_g.running_frequency);

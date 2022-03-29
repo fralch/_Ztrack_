@@ -1087,7 +1087,8 @@ export default {
      async function set_labels(){ 
         self.my_Chart_principal_labels = [];
         if (self.tipo == "Reefer") {
-        self.datos_tabla_reefer.map(function(datos_r, index){
+          let datos_r =  self.datos_tabla_reefer.length != 0 ? self.datos_tabla_reefer.reverse() : []; 
+              datos_r.map(function(datos_r, index){
               let date = new Date(datos_r.created_at);
               let day = date.getDate()
               let month = date.getMonth() + 1
@@ -1112,7 +1113,8 @@ export default {
          });
         }
         if (self.tipo == "Generador") {
-          self.datos_tabla_generador.map(function(datos_g, index){
+          let datos_g =  self.datos_tabla_generador != null  ? self.datos_tabla_generador.reverse() : [];
+          datos_g.map(function(datos_g, index){
               let date = new Date(datos_g.created_at);
               let day = date.getDate()
               let month = date.getMonth() + 1
@@ -1220,7 +1222,8 @@ export default {
             self.my_Chart_principal_dataset_reefer[7].data = [];
             self.my_Chart_principal_dataset_reefer[8].data = [];            
 
-        self.datos_tabla_reefer.map(function(datos_r, index){
+            let datos_reefer = self.datos_tabla_reefer.length != 0  ? self.datos_tabla_reefer.reverse() : [];
+            datos_reefer.map(function(datos_r, index){
             self.my_Chart_principal_dataset_reefer[0].data.push(datos_r.set_point);
             self.my_Chart_principal_dataset_reefer[1].data.push(datos_r.temp_supply_1);
             self.my_Chart_principal_dataset_reefer[2].data.push(datos_r.temp_supply_2);
@@ -1244,7 +1247,8 @@ export default {
             self.my_Chart_principal_dataset_generador[7].data = [];
             self.my_Chart_principal_dataset_generador[8].data = [];
 
-          self.datos_tabla_generador.map(function(datos_g, index){            
+            let datos_genset =  self.datos_tabla_generador.length != 0  ? self.datos_tabla_generador.reverse() : [];
+            datos_genset.map(function(datos_g, index){            
             self.my_Chart_principal_dataset_generador[0].data.push(datos_g.battery_voltage);
             self.my_Chart_principal_dataset_generador[1].data.push(datos_g.water_temp);
             self.my_Chart_principal_dataset_generador[2].data.push(datos_g.running_frequency);
