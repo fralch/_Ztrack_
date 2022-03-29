@@ -11,7 +11,7 @@ class Contenedor extends Model
     protected $table = 'contenedores';
     protected $fillable = [
         'id',
-        'nombre_contendor',
+        'nombre_contenedor',
         'tipo',
         'encendido',
         'booking',

@@ -134,45 +134,75 @@
                           </table>
                   </div>  
             </div>
+            <!-- //////////// -->
+            <div class="card-body shadow p-3 mb-5 bg-white rounded border border-1">
+                    <h5 class="card-title p-3 mb-2 bg-primary text-white">CONTENEDORES</h5>
+                      <div class="card bg-light mb-3 ">
+                        <div class="card-body">
+                          <div class="row align-items-start" >
+                            <div class="col">
+                                 <label style="margin-right: 10px; ">Nombre contenedor</label>
+                                <input class="form-control mr-sm-2"  placeholder="nombre de contenedor" v-model="nuevo_contenedor">
+                            </div>
+                            <div class="col">
+                                 <label style="margin-right: 10px; ">Tipo</label>
+                                 <select class="form-control mr-sm-2" v-model="nuevo_tipo_contenedor">
+                                  <option value='0' disabled>Seleccione tipo</option>
+                                  <option value='Reefer' >Reefer</option>
+                                  <option value='Generador' >Generador</option>
+                                </select>
+                            </div>
+                            <div class="col">
+                                   <label style="margin-right: 10px; ">Booking</label>
+                                  <textarea class="form-control mr-sm-2"  v-model="nuevo_booking_contenedor"></textarea>
+                            </div>
+                            <div class="col">
+                                <label style="margin-right: 10px; ">Booking_temp</label>
+                                <input class="form-control mr-sm-2"  placeholder="Booking Temperature" v-model="nuevo_booking_temp_contenedor">  
+                            </div>
+                           
+                            <div class="col">
+                                <button type="button" style="margin-top:30px; " class="btn btn-primary" @click="guardarContenedor">
+                                  <i class="fas fa-save"></i>
+                                  Agregar contenedor
+                                </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div> 
+                      <table  id="tblContenedores">
+                            <thead >
+                              <tr >
+                                <th  width='20px' >N°</th>
+                                <th  >Contenedor</th>
+                                <th  >Tipo</th>
+                                <th >Booking</th>
+                                <th class="text-center" >Booking_temp</th>
+                                <th class="text-center">Activo</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr v-for="(contenedor, index) in tabla_contenedores_filtrados"  :key="index">
+                                <td>{{index+1}}</td>
+                                <td>{{(contenedor.nombre_contenedor).toUpperCase()}}</td>
+                                <td>{{contenedor.tipo}}</td>
+                                <td>{{contenedor.booking}}</td>
+                                <td class="text-center">{{contenedor.booking_temp}}</td>
+                                <td class="text-center">
+                                  <label class="switch">
+                                    <input type="checkbox" checked>
+                                    <span class="slider round"></span>
+                                  </label>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                  </div>  
+            <!-- //////////// -->
           </div>
-          
           </div>
         </div>
         <!-- ---------------------- -->
-      
-        <!-- Modal empresas -->
-          <div class="modal fade" id="empresasModal" tabindex="-1" role="dialog" aria-labelledby="empresasoModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">Crear Empresa</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div class="modal-body">
-                    <div class="form-inline">
-                      
-                    </div>
-                    <br>
-                    <div class="form-inline">
-                     
-                    </div>
-                    <br>
-                    <div class="form-inline">
-                      
-                    </div>
-                    <br>
-                    <div class="form-inline">
-                     
-                    </div>
-                </div>
-                <div class="modal-footer">
-                
-                </div>
-              </div>
-            </div>
-          </div>
           <!-- Modal asignar contenedor a empresa -->
           <div class="modal fade" id="asignarModal" tabindex="-1" role="dialog" aria-labelledby="asignarModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -201,7 +231,7 @@
                     <div class="form-inline">                     
                       <select class="form-control mr-sm-2" v-model="asignar_id_contenedor">
                         <option value='0' disabled>Seleccione un usuario</option>
-                        <option v-for="(contenedor, index) in contentenedores_filtros"  :key="index" :value="contenedor.id">{{contenedor.nombre_contenedor}}</option>
+                        <option v-for="(contenedor, index) in tabla_contenedores"  :key="index" :value="contenedor.id">{{contenedor.nombre_contenedor}}</option>
                       </select>
                     </div>
                 </div>
@@ -242,7 +272,8 @@ export default {
       tabla_datos_empresas: this.empresas, 
       radio_user: null,
       radio_empresa: null,
-      contentenedores_filtros:[],
+      tabla_contenedores_filtrados: this.contenedores,
+      tabla_contenedores:[],
       // -- usuarios datos ---
       nuevo_usuario: "",
       nuevo_apellidos: "",
@@ -257,6 +288,11 @@ export default {
       asignar_id_empresa:null,
       asignar_tipo: "G",
       asignar_id_contenedor: 0,
+      // --- nuevo contenedor ---
+      nuevo_contenedor:null,
+      nuevo_tipo_contenedor: '0',
+      nuevo_booking_contenedor: null,
+      nuevo_booking_temp_contenedor: null,
 
     };
   },
@@ -273,16 +309,17 @@ export default {
       this.usuarioLogeado(); 
       this.TablaUsuarios();
       this.TablaEmpresas()  
+      this.TablaContenedores()  
       this.filtrarContenedores();
   },
 
   methods: {
     filtrarContenedores(){
       if (this.asignar_tipo == "G") {
-        this.contentenedores_filtros = this.contenedores.filter(contenedor => contenedor.tipo == "Generador");   
+        this.tabla_contenedores = this.contenedores.filter(contenedor => contenedor.tipo == "Generador");   
       }
       if (this.asignar_tipo == "R") {
-        this.contentenedores_filtros = this.contenedores.filter(contenedor => contenedor.tipo == "Reefer");   
+        this.tabla_contenedores = this.contenedores.filter(contenedor => contenedor.tipo == "Reefer");   
       }
      
     },
@@ -303,6 +340,17 @@ export default {
       let self = this;
       this.$nextTick(() => {
          $('#tblUsuarios').DataTable({
+            "language": {
+              "url": "//cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json"
+            }
+          });
+       
+      });
+    },
+    TablaContenedores() {
+      let self = this;
+      this.$nextTick(() => {
+         $('#tblContenedores').DataTable({
             "language": {
               "url": "//cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json"
             }
@@ -362,6 +410,58 @@ export default {
         $("#tblUsuarios").DataTable().destroy();
         self.TablaUsuarios();
       });
+    
+    },
+    guardarContenedor(){
+      let self = this;
+      let data = {
+        nuevo_contenedor: self.nuevo_contenedor,
+        nuevo_tipo_contenedor: self.nuevo_tipo_contenedor,
+        nuevo_booking_contenedor: self.nuevo_booking_contenedor,
+        nuevo_booking_temp_contenedor: self.nuevo_booking_temp_contenedor,
+      };
+      if (self.nuevo_contenedor == "" || self.nuevo_tipo_contenedor == "" ) {
+        // self.mensaje_error("Debe llenar todos los campos");
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Debe llenar todos los campos!',
+        })
+        
+      }
+      axios.post(route('nuevo_contenedor'), data)
+      .then(function(response){
+        console.log(response.data);
+        if (response.data == 'contenedor_existe') {
+           Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: 'El contenedor ya existe!',
+            })
+        }
+        if (response.data > 0) {
+           async function rellenar_resumen(){
+            await (self.tabla_contenedores_filtrados = response.data); 
+            Swal.fire({
+                title: 'Contenedor Creado!',
+                icon: 'success',
+                confirmButtonColor: '#e58e26',
+                confirmButtonText: 'OK!'
+              })
+           }
+           rellenar_resumen();          
+        }
+       
+      }).then(()=>{
+       
+        self.nuevo_contenedor = "";
+        self.nuevo_tipo_contenedor = "";
+        self.nuevo_booking_contenedor = "";
+        self.nuevo_booking_temp_contenedor = "";
+        $("#tblContenedores").DataTable().destroy();
+        self.TablaContenedores();
+      });
+    
     
     },
     guardarEmpresa(){
@@ -438,6 +538,7 @@ export default {
             })
         }
         if (response.data > 0) {
+          
            Swal.fire({
               title: 'Asignacion realizada!',
               icon: 'success',
@@ -478,6 +579,66 @@ export default {
 }
 .btn-primary {
   background-color: #0E5976 !important;
+}
+/* estilos de switch */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #0E5976;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #0E5976;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
 }
 </style>
 

@@ -105,6 +105,21 @@ class SettingController extends Controller
         return $contenedor->id;
     }
     
-    
+    public function nuevoContenedor(Request $request)
+    {
+        // return $request; 
+        $contenedor_existe = Contenedor::where('nombre_contenedor',$request->nuevo_contenedor)->get();
+        if (count($contenedor_existe) > 0) {
+            return 'contenedor_existe'; 
+        }
+        $contenedor = Contenedor::create([
+            'nombre_contenedor' => $request->nuevo_contenedor,
+            'tipo' => $request->nuevo_tipo_contenedor,
+            'encendido' => 1,
+            'booking' => $request->nuevo_booking_contenedor,
+            'booking_temp' => $request->nuevo_booking_temp_contenedor
+        ]);
+        return Contenedor::all();
+    }
     
 }
