@@ -173,7 +173,7 @@ class PanelController extends Controller
             ->select()
             ->where('contenedor_id',$id_contenedor)
             ->latest()
-            ->take(300)
+            ->take(50)
             ->get();
         }
         if ($tipo_contenedor == 'Reefer') {
@@ -181,7 +181,7 @@ class PanelController extends Controller
                     ->select()
                     ->where('contenedor_id',$id_contenedor)
                     ->latest()
-                    ->take(300)
+                    ->take(50)
                     ->get();
             
         }
