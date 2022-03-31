@@ -92,6 +92,10 @@ class PanelController extends Controller
             'latitud'=> -12.014386,
             'longitud' =>-75.230926,
             'engine_state' => 'start',
+            'reefer_conected' => 'Zgru2245761',
+            'set_point' => rand(0,10),
+            'temp_supply_1' => rand(0,10),
+            'return_air'  => rand(0,10),
         ]);
 
         Registro_diario_reefers::create([
@@ -276,6 +280,19 @@ class PanelController extends Controller
                 'temp_supply_1' => $request->temp_supply_1,
                 'return_air' => $request->return_air,
             ]);
+            if ($request->reefer_conected != '-') {
+                $id_rc =Contenedor::select()->where([['nombre_contenedor', $request->reefer_conected]])->get()->last()['id'];
+                Registro_diario_reefers::create([
+                    'contenedor_id' => $id_rc,
+                    'set_point' => $request->set_point,
+                    'temp_supply_1' => $request->temp_supply_1,
+                    'return_air' => $request->return_air,
+                    'latitud'=>    $request->latitud,
+                    'longitud' =>   $request->longitud,
+                    
+                ]);
+                return "genset y reefer guardado guardado ;D";
+            }
             return "genset guardado ;D"; 
         }
         if ($request->tipo == 'Reefer') {
