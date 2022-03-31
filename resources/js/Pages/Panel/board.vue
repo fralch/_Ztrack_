@@ -260,6 +260,10 @@
                         <th scope="col" width='50px' class="text-center">Longitud</th>
                         <th scope="col" width='50px' class="text-center">Alarma</th>
                         <th scope="col" width='50px' class="text-center">Evento</th>
+                        <th scope="col" width='100px' class="text-center">Reefer_conected</th>
+                        <th scope="col" width='50px' class="text-center">Set_point</th>
+                        <th scope="col" width='50px' class="text-center">Temp_supply_1</th>
+                        <th scope="col" width='50px' class="text-center">Return_air</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -295,6 +299,10 @@
                         <td class="text-center">{{gen.longitud}}</td>
                         <td class="text-center">{{gen.nombre_alarma}}</td>
                         <td class="text-center">{{gen.nombre_evento}}</td>
+                        <td class="text-center">{{gen.reefer_conected}}</td>
+                        <td class="text-center">{{gen.set_point}}</td>
+                        <td class="text-center">{{gen.temp_supply_1}}</td>
+                        <td class="text-center">{{gen.return_air}}</td>
                       </tr>
                     </tbody>
                   </table>
@@ -304,8 +312,8 @@
                 <div 
                   id="generador_grid" 
                   class="col shadow-sm p-3 mb-5 bg-white rounded " 
-                  style="margin: -30px 15px 10px 15px; " 
-                  v-if="tipo == 'Generador'"
+                  style="margin: -30px 15px 10px 15px;" 
+
                   >
                   <table  class="table display nowrap" id="tblDetalleContenedores_generadores">
                     <thead>
@@ -371,7 +379,6 @@
                   id="reefers_grid" 
                   class="col shadow-sm p-3 mb-5 bg-white rounded "
                   style="margin: -30px 15px 10px 15px;"
-                  v-if="tipo == 'Reefer'"
                   >
                   
                   <table  class="table display nowrap" id="tblDetalleContenedores_reefers">
@@ -1007,8 +1014,20 @@ export default {
      this.$refs.layoutprincipal.admin = this.usuario_logeado[0].admin; 
      
     },
-    contenedores_prendidos(variable){      
-      this.tipo = variable; 
+    contenedores_prendidos(variable){   
+      let self = this;   
+      this.$nextTick(() => {
+        self.tipo = variable; 
+        if (variable == 'Reefer') {
+          document.getElementById("reefers_grid").style.display = "block";
+          document.getElementById("generador_grid").style.display = "none";
+        }
+        if (variable == 'Generador') {
+          document.getElementById("generador_grid").style.display = "block";
+          document.getElementById("reefers_grid").style.display = "none";        
+        }
+        console.log(variable);
+      });
     },
     select_contenedor(contenedor){
       let self = this;
