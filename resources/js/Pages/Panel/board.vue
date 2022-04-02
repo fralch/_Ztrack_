@@ -594,8 +594,8 @@ export default {
                 {
                   label: 'return_air',
                   data: [],
-                  borderColor: '#FDA7DF',
-                  backgroundColor: '#FDA7DF',
+                  borderColor: '#12CBC4',
+                  backgroundColor: '#12CBC4',
                   borderWidth: 4,
                 },
                
@@ -610,8 +610,8 @@ export default {
                 {
                   label: 'relative_humidity', //-------------
                   data: [],
-                  borderColor: '#12CBC4',
-                  backgroundColor: '#12CBC4',
+                  borderColor: '#FDA7DF',
+                  backgroundColor: '#FDA7DF',
                   borderWidth: 4,
                 },
                 
