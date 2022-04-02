@@ -312,8 +312,8 @@
                 <div 
                   id="generador_grid" 
                   class="col shadow-sm p-3 mb-5 bg-white rounded " 
-                  style="margin: -30px 15px 10px 15px;" 
-
+                  style="margin: -30px 15px 10px 15px; " 
+                  v-if="tipo == 'Generador'"
                   >
                   <table  class="table display nowrap" id="tblDetalleContenedores_generadores">
                     <thead>
@@ -379,6 +379,7 @@
                   id="reefers_grid" 
                   class="col shadow-sm p-3 mb-5 bg-white rounded "
                   style="margin: -30px 15px 10px 15px;"
+                  v-if="tipo == 'Reefer'"
                   >
                   
                   <table  class="table display nowrap" id="tblDetalleContenedores_reefers">
@@ -1014,20 +1015,8 @@ export default {
      this.$refs.layoutprincipal.admin = this.usuario_logeado[0].admin; 
      
     },
-    contenedores_prendidos(variable){   
-      let self = this;   
-      this.$nextTick(() => {
-        self.tipo = variable; 
-        if (variable == 'Reefer') {
-          document.getElementById("reefers_grid").style.display = "block";
-          document.getElementById("generador_grid").style.display = "none";
-        }
-        if (variable == 'Generador') {
-          document.getElementById("generador_grid").style.display = "block";
-          document.getElementById("reefers_grid").style.display = "none";        
-        }
-        console.log(variable);
-      });
+    contenedores_prendidos(variable){      
+      this.tipo = variable; 
     },
     select_contenedor(contenedor){
       let self = this;
@@ -1377,6 +1366,5 @@ export default {
   }
 }
 </style>
-
 
 
