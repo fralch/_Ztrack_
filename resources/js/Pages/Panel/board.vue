@@ -587,8 +587,8 @@ export default {
                 {
                   label: 'temp_supply_2',
                   data: [],
-                  borderColor: '#12CBC4',
-                  backgroundColor: '#12CBC4',
+                  borderColor: '#FF1E51',
+                  backgroundColor: '#FF1E51',
                   borderWidth: 3,
                 },
                 {
@@ -610,8 +610,8 @@ export default {
                 {
                   label: 'relative_humidity', //-------------
                   data: [],
-                  borderColor: '#FF1E51',
-                  backgroundColor: '#FF1E51',
+                  borderColor: '#12CBC4',
+                  backgroundColor: '#12CBC4',
                   borderWidth: 3,
                 },
                 

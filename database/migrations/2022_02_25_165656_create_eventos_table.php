@@ -23,6 +23,7 @@ class CreateEventosTable extends Migration
 
         DB::table("eventos")
         ->insert([ 
+            ["nombre_evento" => "Sin Registro", "nombre_evento_ingles" => "None"],
             ["nombre_evento" => "Voltaje bajo de la bateria", "nombre_evento_ingles" => "BAT. VOLTAGE LOW"],
             ['nombre_evento' =>'Fallo de las entradas digitales','nombre_evento_ingles' =>'DIGITAL INPUT FAILURE'],
             ['nombre_evento' =>'Voltaje de salida inferior a 180 V','nombre_evento_ingles' =>'OUTPUT VOLTAGE < 180 V'],

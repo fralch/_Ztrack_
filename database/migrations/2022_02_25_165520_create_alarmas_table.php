@@ -22,6 +22,7 @@ class CreateAlarmasTable extends Migration
         });
         DB::table("alarmas")
         ->insert([ 
+            ["nombre_alarma" => "Sin registro", "nombre_alarma_ingles" => "None"],
             ["nombre_alarma" => "Temperatura del agua alta", "nombre_alarma_ingles" => "WATER TEMPERATURE HIGH"],
             ["nombre_alarma" => "Error durante el arranque", "nombre_alarma_ingles" => "FAILED TO CRANK"],
             ["nombre_alarma" => "Error durante la puesta en marcha", "nombre_alarma_ingles" => "FAILED TO START"],
