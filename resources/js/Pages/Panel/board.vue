@@ -1082,7 +1082,8 @@ export default {
             maintainAspectRatio: false,
             scales: {
               y: { 
-                min: 0
+                min: 0,
+                max: 160,
                 }
               },
           }
