@@ -1078,14 +1078,25 @@ export default {
         datasets: self.my_Chart_principal_dataSetable,
         },
           options: {
+            animations: {
+              tension: {
+                duration: 3000,
+                easing: 'linear',
+                from: 0.2,
+                to: 0,
+                loop: true
+              }
+            },
             responsive: true,
             maintainAspectRatio: false,
             scales: {
+             
               y: { 
-                min: 0,
-                max: 160,
+                min: -40, // eje y
+                max: 40, // eje y
                 }
-              },
+              }
+              
           }
       });   
   
