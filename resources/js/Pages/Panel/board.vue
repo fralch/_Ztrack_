@@ -1092,8 +1092,8 @@ export default {
             scales: {
              
               y: { 
-                min: -40, // eje y
-                max: 40, // eje y
+                max: 15, // eje y
+                min: -15, // eje y
                 }
               }
               
