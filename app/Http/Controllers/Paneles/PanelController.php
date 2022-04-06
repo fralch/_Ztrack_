@@ -40,7 +40,7 @@ class PanelController extends Controller
 
              $contenedores_encendidos_gen = Contenedor::select()->where([['encendido', 1], ['tipo', 'Generador']])->get();    
 
-            return Inertia::render('Panel/board', [
+            return Inertia::render('Panel/izquierda', [
                 'usuario_logeado' => $usuario,
                 'empresa_logeado' => $empresaXusuario,
                 'contenedores_todos' => $contenedores_todos,
@@ -215,11 +215,7 @@ class PanelController extends Controller
     public function get_alarma_evento(Request $request)
     {
         // return $request; 
-        if ($request->tipo == 'Reefer') {
-            return 0 ; 
-        }
-        if ($request->tipo == 'Generador') {
-            $cantidad_alarma =Registro_diario_generadores::from('registro_diario_generadores as rdg')
+        $cantidad_alarma =Registro_diario_generadores::from('registro_diario_generadores as rdg')
             ->select(
                 'al.nombre_alarma',       
                 DB::raw('count(rdg.alarma_id) as cantidad_alarma'),
@@ -245,7 +241,6 @@ class PanelController extends Controller
                 'alarma' => $cantidad_alarma,
                 'evento' => $cantidad_evento,
             ];
-        }
     }
     // -------------- APIS --------------
     public function api_contendedores(Request $request)
