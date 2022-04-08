@@ -34,18 +34,18 @@ class PanelController extends Controller
         if (count($usuario) != 0) {
 
             $empresaXusuario = Empresa::where('usuario_id',$usuario[0]->id)->get();
-            $contenedores_todos = Contenedor::all(); 
+            $contenedores_todos = Contenedor::count(); 
             
-             $contenedores_encendidos_reefer =Contenedor::select()->where([['encendido', 1], ['tipo', 'Reefer']])->get();    
+             $contenedores_encendidos_reefer =Contenedor::select()->where([['encendido', 1], ['tipo', 'Reefer']])->count();    
 
-             $contenedores_encendidos_gen = Contenedor::select()->where([['encendido', 1], ['tipo', 'Generador']])->get();    
+             $contenedores_encendidos_gen = Contenedor::select()->where([['encendido', 1], ['tipo', 'Generador']])->count();    
 
-            return Inertia::render('Panel/izquierda', [
+            return Inertia::render('Panel/new_board', [
                 'usuario_logeado' => $usuario,
                 'empresa_logeado' => $empresaXusuario,
-                'contenedores_todos' => $contenedores_todos,
-                'contenedores_encendidos_reefer' => $contenedores_encendidos_reefer,
-                'contenedores_encendidos_gen' => $contenedores_encendidos_gen,
+                'contenedores_todos_length' => $contenedores_todos,
+                'contenedores_encendidos_reefer_length' => $contenedores_encendidos_reefer,
+                'contenedores_encendidos_gen_length' => $contenedores_encendidos_gen,
             ]);
         }
         

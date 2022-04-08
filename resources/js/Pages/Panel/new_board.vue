@@ -13,17 +13,17 @@
               </div>
               <div id='lado_derecho' style="">
                   <div id="total_reefers" class="col shadow-sm p-3 mb-5 bg-white rounded " style="margin: 10px 15px 0px 15px;">
-                    <div>Total Reefers: {{contenedores_todos.length}}</div>
+                    <div>Total Reefers: {{contenedores_todos_length}}</div>
                     <div class="row" style="margin: 0 10px;">
                       <button type="button" id="select_gen" class="col-3 btn btn-primary" @click="contenedores_prendidos('Generador')" >
                         <i class="bi bi-power"></i> 
-                        <b style="font-size:1.2em;">{{contenedores_encendidos_gen.length}}</b>
+                        <b style="font-size:1.2em;">{{contenedores_encendidos_gen_length}}</b>
                         &nbsp;
                         Gen Running 
                       </button>
                       <button type="button" id="select_reef" class="col-3 btn btn-success"  @click="contenedores_prendidos('Reefer')">
                         <i class="bi bi-power"></i> 
-                        <b style="font-size:1.2em;">{{contenedores_encendidos_reefer.length}}</b>
+                        <b style="font-size:1.2em;">{{contenedores_encendidos_reefer_length}}</b>
                         &nbsp;
                         Reefers Running 
                       </button>
@@ -31,7 +31,7 @@
                         <i class="bi bi-power"></i> 
                         <b style="font-size:1.2em;">0</b>
                         &nbsp;
-                        Standby
+                        Madurador
                       </button>
                       <button type="button" class="col-3 btn btn-dark" >
                         <i class="bi bi-power"></i> 
@@ -42,7 +42,8 @@
                     </div>
                   </div>      
                   <!-- ********** CANVAS MAPA **********-->
-                                  
+                    <canvasMapa ref="canvasMapa" :id_contenedor="1" :probando="'texto prueba'" >
+			              </canvasMapa>
                   <!-- ********* TABLA RESUMEN CONTENEDORES  *********-->
                                 
 
@@ -60,10 +61,12 @@
 
 <script>
 import axios from 'axios';
+import canvasMapa from "./mapa.vue";
 import layoutprincipal from "../layout.vue";
 export default {
   components: { 
-    layoutprincipal, 
+    canvasMapa, 
+    layoutprincipal,
   },
   props: {
     // tu_cuenta:Array,
@@ -86,9 +89,15 @@ export default {
   mounted() {
     this.usuarioLogeado();
     this.bienvenida();
+    this.cargarMapa(); 
   },
 
   methods: {
+    cargarMapa(){
+
+      let mapa = this.$refs.canvasMapa;
+      console.log(mapa.probando);
+    },
     autoRefresh(){
       // let self = this;
       // this.$nextTick(() => {
@@ -124,7 +133,6 @@ export default {
       /* AQUI ES DONDE SE PONE EL NOMBRE DEL USUARIO EN EL NAV  */
       this.$refs.layoutprincipal.usuario = (this.usuario_logeado[0].nombres ).toUpperCase() ;
      this.$refs.layoutprincipal.admin = this.usuario_logeado[0].admin; 
-     
     },
  
   },  

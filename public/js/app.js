@@ -3442,6 +3442,25 @@ var Chart_eventos;
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Panel/grafico_principal.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Panel/grafico_principal.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************************************************************************************************************************************************/
+/***/ (() => {
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Panel/izquierda.vue?vue&type=script&lang=js&":
 /*!*****************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Panel/izquierda.vue?vue&type=script&lang=js& ***!
@@ -3484,6 +3503,625 @@ var Chart_eventos;
   \************************************************************************************************************************************************************************************************************/
 /***/ (() => {
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Panel/new_board.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Panel/new_board.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _mapa_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./mapa.vue */ "./resources/js/Pages/Panel/mapa.vue");
+/* harmony import */ var _layout_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../layout.vue */ "./resources/js/Pages/layout.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  components: {
+    canvasMapa: _mapa_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
+    layoutprincipal: _layout_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
+  },
+  props: {
+    // tu_cuenta:Array,
+    usuario_logeado: Array,
+    empresa_logeado: Array,
+    contenedores_todos_length: Number,
+    contenedores_encendidos_reefer_length: Number,
+    contenedores_encendidos_gen_length: Number
+  },
+  data: function data() {
+    return {
+      // submited: false, 
+      contenedor_selecionado: null,
+      tipo: ""
+    };
+  },
+  watch: {},
+  mounted: function mounted() {
+    this.usuarioLogeado();
+    this.bienvenida();
+    this.cargarMapa();
+  },
+  methods: {
+    cargarMapa: function cargarMapa() {
+      var mapa = this.$refs.canvasMapa;
+      console.log(mapa.probando);
+    },
+    autoRefresh: function autoRefresh() {// let self = this;
+      // this.$nextTick(() => {
+      //    async function f() {
+      //     let promise = new Promise((resolve, reject) => {
+      //       setTimeout(() => resolve(true), 600000)
+      //     });
+      //     let result = await promise; 
+      //      if(self.tipo == 'Reefer'){
+      //       let contenedor = self.contenedores_seleccionados.filter(element => element.tipo == 'Reefer');
+      //       console.log(contenedor[0])
+      //       self.select_contenedor(contenedor[0]); 
+      //     }else if(self.tipo == 'Generador'){
+      //       let contenedor = self.contenedores_seleccionados.filter(element => element.tipo == 'Generador');
+      //       self.select_contenedor(contenedor[0]); 
+      //       console.log(contenedor[0])
+      //     }
+      //   }
+      //   f();
+      // });
+    },
+    bienvenida: function bienvenida() {
+      Swal.fire({
+        title: 'Bienvenido!',
+        icon: 'success',
+        text: (this.usuario_logeado[0].nombres + " " + this.usuario_logeado[0].apellidos).toUpperCase(),
+        confirmButtonColor: '#3085d6',
+        confirmButtonText: 'OK!'
+      });
+    },
+    usuarioLogeado: function usuarioLogeado() {
+      /* AQUI ES DONDE SE PONE EL NOMBRE DEL USUARIO EN EL NAV  */
+      this.$refs.layoutprincipal.usuario = this.usuario_logeado[0].nombres.toUpperCase();
+      this.$refs.layoutprincipal.admin = this.usuario_logeado[0].admin;
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Panel/tabla_detalle.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Panel/tabla_detalle.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************************************************************************************************************************************************/
+/***/ (() => {
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Panel/tabla_resumen.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Panel/tabla_resumen.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************************************************************************************************************************************************/
+/***/ (() => {
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -4424,6 +5062,30 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*!*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Panel/board.vue?vue&type=style&index=0&lang=css& ***!
   \*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
+// Imports
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, "\n.selected {\r\n  background-color: #A2AEC7 !important;\r\n  color: black;\n}\n#lado_derecho{\r\n    width: 75%;\n}\n#lado_izquierdo{\r\n    width: 25%;\n}\n#asset-search {\r\n  padding: 10px;\r\n  height: 320px;\r\n  overflow-y: scroll;\n}\r\n/* #tblContenedor_reefers{\r\n  width: 100%;\r\n  overflow-y: scroll;\r\n} */\n#total_reefers {\r\n  padding: 10px;\r\n  height: 100px;\n}\n#asset_maps {\r\n  padding: 10px;\r\n  height: 400px;\r\n  /* overflow-y: scroll; */\n}\n@media (max-width: 1024px) {\n#lado_derecho{\r\n    width: 80%;\n}\n#lado_izquierdo{\r\n    width: 20%;\n}\n}\r\n", ""]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Panel/new_board.vue?vue&type=style&index=0&lang=css&":
+/*!*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Panel/new_board.vue?vue&type=style&index=0&lang=css& ***!
+  \*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /***/ ((module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -27880,6 +28542,36 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 
 /***/ }),
 
+/***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Panel/new_board.vue?vue&type=style&index=0&lang=css&":
+/*!*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Panel/new_board.vue?vue&type=style&index=0&lang=css& ***!
+  \*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_new_board_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./new_board.vue?vue&type=style&index=0&lang=css& */ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Panel/new_board.vue?vue&type=style&index=0&lang=css&");
+
+            
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_new_board_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_1__["default"], options);
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_new_board_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
+
+/***/ }),
+
 /***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/setting.vue?vue&type=style&index=0&lang=css&":
 /*!*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/setting.vue?vue&type=style&index=0&lang=css& ***!
@@ -28230,6 +28922,48 @@ component.options.__file = "resources/js/Pages/Panel/board.vue"
 
 /***/ }),
 
+/***/ "./resources/js/Pages/Panel/grafico_principal.vue":
+/*!********************************************************!*\
+  !*** ./resources/js/Pages/Panel/grafico_principal.vue ***!
+  \********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _grafico_principal_vue_vue_type_template_id_485ad550___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./grafico_principal.vue?vue&type=template&id=485ad550& */ "./resources/js/Pages/Panel/grafico_principal.vue?vue&type=template&id=485ad550&");
+/* harmony import */ var _grafico_principal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./grafico_principal.vue?vue&type=script&lang=js& */ "./resources/js/Pages/Panel/grafico_principal.vue?vue&type=script&lang=js&");
+/* harmony reexport (unknown) */ var __WEBPACK_REEXPORT_OBJECT__ = {};
+/* harmony reexport (unknown) */ for(const __WEBPACK_IMPORT_KEY__ in _grafico_principal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== "default") __WEBPACK_REEXPORT_OBJECT__[__WEBPACK_IMPORT_KEY__] = () => _grafico_principal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[__WEBPACK_IMPORT_KEY__]
+/* harmony reexport (unknown) */ __webpack_require__.d(__webpack_exports__, __WEBPACK_REEXPORT_OBJECT__);
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _grafico_principal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _grafico_principal_vue_vue_type_template_id_485ad550___WEBPACK_IMPORTED_MODULE_0__.render,
+  _grafico_principal_vue_vue_type_template_id_485ad550___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/Pages/Panel/grafico_principal.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/Pages/Panel/izquierda.vue":
 /*!************************************************!*\
   !*** ./resources/js/Pages/Panel/izquierda.vue ***!
@@ -28310,6 +29044,131 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
 /* hot reload */
 if (false) { var api; }
 component.options.__file = "resources/js/Pages/Panel/mapa.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Panel/new_board.vue":
+/*!************************************************!*\
+  !*** ./resources/js/Pages/Panel/new_board.vue ***!
+  \************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _new_board_vue_vue_type_template_id_a7950eba___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./new_board.vue?vue&type=template&id=a7950eba& */ "./resources/js/Pages/Panel/new_board.vue?vue&type=template&id=a7950eba&");
+/* harmony import */ var _new_board_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./new_board.vue?vue&type=script&lang=js& */ "./resources/js/Pages/Panel/new_board.vue?vue&type=script&lang=js&");
+/* harmony import */ var _new_board_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./new_board.vue?vue&type=style&index=0&lang=css& */ "./resources/js/Pages/Panel/new_board.vue?vue&type=style&index=0&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+;
+
+
+/* normalize component */
+
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
+  _new_board_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _new_board_vue_vue_type_template_id_a7950eba___WEBPACK_IMPORTED_MODULE_0__.render,
+  _new_board_vue_vue_type_template_id_a7950eba___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/Pages/Panel/new_board.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Panel/tabla_detalle.vue":
+/*!****************************************************!*\
+  !*** ./resources/js/Pages/Panel/tabla_detalle.vue ***!
+  \****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _tabla_detalle_vue_vue_type_template_id_67df539e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./tabla_detalle.vue?vue&type=template&id=67df539e& */ "./resources/js/Pages/Panel/tabla_detalle.vue?vue&type=template&id=67df539e&");
+/* harmony import */ var _tabla_detalle_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./tabla_detalle.vue?vue&type=script&lang=js& */ "./resources/js/Pages/Panel/tabla_detalle.vue?vue&type=script&lang=js&");
+/* harmony reexport (unknown) */ var __WEBPACK_REEXPORT_OBJECT__ = {};
+/* harmony reexport (unknown) */ for(const __WEBPACK_IMPORT_KEY__ in _tabla_detalle_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== "default") __WEBPACK_REEXPORT_OBJECT__[__WEBPACK_IMPORT_KEY__] = () => _tabla_detalle_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[__WEBPACK_IMPORT_KEY__]
+/* harmony reexport (unknown) */ __webpack_require__.d(__webpack_exports__, __WEBPACK_REEXPORT_OBJECT__);
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _tabla_detalle_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _tabla_detalle_vue_vue_type_template_id_67df539e___WEBPACK_IMPORTED_MODULE_0__.render,
+  _tabla_detalle_vue_vue_type_template_id_67df539e___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/Pages/Panel/tabla_detalle.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Panel/tabla_resumen.vue":
+/*!****************************************************!*\
+  !*** ./resources/js/Pages/Panel/tabla_resumen.vue ***!
+  \****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _tabla_resumen_vue_vue_type_template_id_3f274f08___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./tabla_resumen.vue?vue&type=template&id=3f274f08& */ "./resources/js/Pages/Panel/tabla_resumen.vue?vue&type=template&id=3f274f08&");
+/* harmony import */ var _tabla_resumen_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./tabla_resumen.vue?vue&type=script&lang=js& */ "./resources/js/Pages/Panel/tabla_resumen.vue?vue&type=script&lang=js&");
+/* harmony reexport (unknown) */ var __WEBPACK_REEXPORT_OBJECT__ = {};
+/* harmony reexport (unknown) */ for(const __WEBPACK_IMPORT_KEY__ in _tabla_resumen_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== "default") __WEBPACK_REEXPORT_OBJECT__[__WEBPACK_IMPORT_KEY__] = () => _tabla_resumen_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[__WEBPACK_IMPORT_KEY__]
+/* harmony reexport (unknown) */ __webpack_require__.d(__webpack_exports__, __WEBPACK_REEXPORT_OBJECT__);
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _tabla_resumen_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _tabla_resumen_vue_vue_type_template_id_3f274f08___WEBPACK_IMPORTED_MODULE_0__.render,
+  _tabla_resumen_vue_vue_type_template_id_3f274f08___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/Pages/Panel/tabla_resumen.vue"
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
 
 /***/ }),
@@ -28449,6 +29308,26 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/Pages/Panel/grafico_principal.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************!*\
+  !*** ./resources/js/Pages/Panel/grafico_principal.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_grafico_principal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./grafico_principal.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Panel/grafico_principal.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_grafico_principal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_grafico_principal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ var __WEBPACK_REEXPORT_OBJECT__ = {};
+/* harmony reexport (unknown) */ for(const __WEBPACK_IMPORT_KEY__ in _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_grafico_principal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== "default") __WEBPACK_REEXPORT_OBJECT__[__WEBPACK_IMPORT_KEY__] = () => _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_grafico_principal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__[__WEBPACK_IMPORT_KEY__]
+/* harmony reexport (unknown) */ __webpack_require__.d(__webpack_exports__, __WEBPACK_REEXPORT_OBJECT__);
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_grafico_principal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0___default())); 
+
+/***/ }),
+
 /***/ "./resources/js/Pages/Panel/izquierda.vue?vue&type=script&lang=js&":
 /*!*************************************************************************!*\
   !*** ./resources/js/Pages/Panel/izquierda.vue?vue&type=script&lang=js& ***!
@@ -28486,6 +29365,62 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (unknown) */ for(const __WEBPACK_IMPORT_KEY__ in _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_mapa_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== "default") __WEBPACK_REEXPORT_OBJECT__[__WEBPACK_IMPORT_KEY__] = () => _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_mapa_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__[__WEBPACK_IMPORT_KEY__]
 /* harmony reexport (unknown) */ __webpack_require__.d(__webpack_exports__, __WEBPACK_REEXPORT_OBJECT__);
  /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_mapa_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0___default())); 
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Panel/new_board.vue?vue&type=script&lang=js&":
+/*!*************************************************************************!*\
+  !*** ./resources/js/Pages/Panel/new_board.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_new_board_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./new_board.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Panel/new_board.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_new_board_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Panel/tabla_detalle.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************!*\
+  !*** ./resources/js/Pages/Panel/tabla_detalle.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_tabla_detalle_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./tabla_detalle.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Panel/tabla_detalle.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_tabla_detalle_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_tabla_detalle_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ var __WEBPACK_REEXPORT_OBJECT__ = {};
+/* harmony reexport (unknown) */ for(const __WEBPACK_IMPORT_KEY__ in _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_tabla_detalle_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== "default") __WEBPACK_REEXPORT_OBJECT__[__WEBPACK_IMPORT_KEY__] = () => _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_tabla_detalle_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__[__WEBPACK_IMPORT_KEY__]
+/* harmony reexport (unknown) */ __webpack_require__.d(__webpack_exports__, __WEBPACK_REEXPORT_OBJECT__);
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_tabla_detalle_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0___default())); 
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Panel/tabla_resumen.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************!*\
+  !*** ./resources/js/Pages/Panel/tabla_resumen.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_tabla_resumen_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./tabla_resumen.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Panel/tabla_resumen.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_tabla_resumen_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_tabla_resumen_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ var __WEBPACK_REEXPORT_OBJECT__ = {};
+/* harmony reexport (unknown) */ for(const __WEBPACK_IMPORT_KEY__ in _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_tabla_resumen_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== "default") __WEBPACK_REEXPORT_OBJECT__[__WEBPACK_IMPORT_KEY__] = () => _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_tabla_resumen_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__[__WEBPACK_IMPORT_KEY__]
+/* harmony reexport (unknown) */ __webpack_require__.d(__webpack_exports__, __WEBPACK_REEXPORT_OBJECT__);
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_tabla_resumen_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0___default())); 
 
 /***/ }),
 
@@ -28550,6 +29485,19 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/Pages/Panel/new_board.vue?vue&type=style&index=0&lang=css&":
+/*!*********************************************************************************!*\
+  !*** ./resources/js/Pages/Panel/new_board.vue?vue&type=style&index=0&lang=css& ***!
+  \*********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_new_board_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/style-loader/dist/cjs.js!../../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./new_board.vue?vue&type=style&index=0&lang=css& */ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Panel/new_board.vue?vue&type=style&index=0&lang=css&");
+
+
+/***/ }),
+
 /***/ "./resources/js/Pages/setting.vue?vue&type=style&index=0&lang=css&":
 /*!*************************************************************************!*\
   !*** ./resources/js/Pages/setting.vue?vue&type=style&index=0&lang=css& ***!
@@ -28576,6 +29524,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_board_vue_vue_type_template_id_01ac02fc___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
 /* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_board_vue_vue_type_template_id_01ac02fc___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./board.vue?vue&type=template&id=01ac02fc& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Panel/board.vue?vue&type=template&id=01ac02fc&");
+
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Panel/grafico_principal.vue?vue&type=template&id=485ad550&":
+/*!***************************************************************************************!*\
+  !*** ./resources/js/Pages/Panel/grafico_principal.vue?vue&type=template&id=485ad550& ***!
+  \***************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_grafico_principal_vue_vue_type_template_id_485ad550___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_grafico_principal_vue_vue_type_template_id_485ad550___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_grafico_principal_vue_vue_type_template_id_485ad550___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./grafico_principal.vue?vue&type=template&id=485ad550& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Panel/grafico_principal.vue?vue&type=template&id=485ad550&");
 
 
 /***/ }),
@@ -28610,6 +29575,57 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_mapa_vue_vue_type_template_id_7932c3ce___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
 /* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_mapa_vue_vue_type_template_id_7932c3ce___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./mapa.vue?vue&type=template&id=7932c3ce& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Panel/mapa.vue?vue&type=template&id=7932c3ce&");
+
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Panel/new_board.vue?vue&type=template&id=a7950eba&":
+/*!*******************************************************************************!*\
+  !*** ./resources/js/Pages/Panel/new_board.vue?vue&type=template&id=a7950eba& ***!
+  \*******************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_new_board_vue_vue_type_template_id_a7950eba___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_new_board_vue_vue_type_template_id_a7950eba___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_new_board_vue_vue_type_template_id_a7950eba___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./new_board.vue?vue&type=template&id=a7950eba& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Panel/new_board.vue?vue&type=template&id=a7950eba&");
+
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Panel/tabla_detalle.vue?vue&type=template&id=67df539e&":
+/*!***********************************************************************************!*\
+  !*** ./resources/js/Pages/Panel/tabla_detalle.vue?vue&type=template&id=67df539e& ***!
+  \***********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_tabla_detalle_vue_vue_type_template_id_67df539e___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_tabla_detalle_vue_vue_type_template_id_67df539e___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_tabla_detalle_vue_vue_type_template_id_67df539e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./tabla_detalle.vue?vue&type=template&id=67df539e& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Panel/tabla_detalle.vue?vue&type=template&id=67df539e&");
+
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Panel/tabla_resumen.vue?vue&type=template&id=3f274f08&":
+/*!***********************************************************************************!*\
+  !*** ./resources/js/Pages/Panel/tabla_resumen.vue?vue&type=template&id=3f274f08& ***!
+  \***********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_tabla_resumen_vue_vue_type_template_id_3f274f08___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_tabla_resumen_vue_vue_type_template_id_3f274f08___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_tabla_resumen_vue_vue_type_template_id_3f274f08___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./tabla_resumen.vue?vue&type=template&id=3f274f08& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Panel/tabla_resumen.vue?vue&type=template&id=3f274f08&");
 
 
 /***/ }),
@@ -32420,6 +33436,46 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Panel/grafico_principal.vue?vue&type=template&id=485ad550&":
+/*!******************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Panel/grafico_principal.vue?vue&type=template&id=485ad550& ***!
+  \******************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function () {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm.tipo != ""
+    ? _c(
+        "div",
+        {
+          staticClass: "col shadow-sm p-3 mb-5 bg-white rounded ",
+          staticStyle: { margin: "-30px 15px 10px 15px" },
+          attrs: { id: "myChart_principal_id" },
+        },
+        [
+          _c("canvas", {
+            staticStyle: { height: "600px" },
+            attrs: { id: "myChart_principal" },
+          }),
+        ]
+      )
+    : _vm._e()
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Panel/izquierda.vue?vue&type=template&id=df08ed0c&":
 /*!**********************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Panel/izquierda.vue?vue&type=template&id=df08ed0c& ***!
@@ -32564,27 +33620,2122 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c(
+    "div",
+    {
+      staticClass: "col shadow-sm p-3 mb-5 bg-white rounded ",
+      staticStyle: { margin: "-30px 15px 10px 15px" },
+      attrs: { id: "asset_maps" },
+    },
+    [
+      _c("b", [
+        _c("i", { staticClass: "fas fa-map-marked-alt" }),
+        _vm._v(
+          "\n             \n            " +
+            _vm._s(_vm.probando) +
+            "\n          "
+        ),
+      ]),
+      _vm._v(" "),
+      _c("div", {
+        staticStyle: { width: "100%", height: "365px" },
+        attrs: { id: "map" },
+      }),
+    ]
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Panel/new_board.vue?vue&type=template&id=a7950eba&":
+/*!**********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Panel/new_board.vue?vue&type=template&id=a7950eba& ***!
+  \**********************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function () {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("layoutprincipal", { ref: "layoutprincipal" }, [
+    _c(
+      "div",
+      {
+        staticClass: "slot_body slot_board",
+        attrs: { slot: "component-view" },
+        slot: "component-view",
+      },
+      [
+        _c(
+          "div",
+          {
+            staticClass: "content",
+            staticStyle: { display: "block" },
+            attrs: { id: "cuerpo" },
+          },
+          [
+            _c("div", { staticClass: "content" }, [
+              _c(
+                "div",
+                { staticClass: "row", staticStyle: { margin: "0 0 0 0px" } },
+                [
+                  _c("div", {
+                    staticStyle: { margin: "10px 0 0 -5px" },
+                    attrs: { id: "lado_izquierdo" },
+                  }),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { attrs: { id: "lado_derecho" } },
+                    [
+                      _c(
+                        "div",
+                        {
+                          staticClass:
+                            "col shadow-sm p-3 mb-5 bg-white rounded ",
+                          staticStyle: { margin: "10px 15px 0px 15px" },
+                          attrs: { id: "total_reefers" },
+                        },
+                        [
+                          _c("div", [
+                            _vm._v(
+                              "Total Reefers: " +
+                                _vm._s(_vm.contenedores_todos_length)
+                            ),
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            {
+                              staticClass: "row",
+                              staticStyle: { margin: "0 10px" },
+                            },
+                            [
+                              _c(
+                                "button",
+                                {
+                                  staticClass: "col-3 btn btn-primary",
+                                  attrs: { type: "button", id: "select_gen" },
+                                  on: {
+                                    click: function ($event) {
+                                      return _vm.contenedores_prendidos(
+                                        "Generador"
+                                      )
+                                    },
+                                  },
+                                },
+                                [
+                                  _c("i", { staticClass: "bi bi-power" }),
+                                  _vm._v(" "),
+                                  _c(
+                                    "b",
+                                    { staticStyle: { "font-size": "1.2em" } },
+                                    [
+                                      _vm._v(
+                                        _vm._s(
+                                          _vm.contenedores_encendidos_gen_length
+                                        )
+                                      ),
+                                    ]
+                                  ),
+                                  _vm._v(
+                                    "\n                         \n                        Gen Running \n                      "
+                                  ),
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "button",
+                                {
+                                  staticClass: "col-3 btn btn-success",
+                                  attrs: { type: "button", id: "select_reef" },
+                                  on: {
+                                    click: function ($event) {
+                                      return _vm.contenedores_prendidos(
+                                        "Reefer"
+                                      )
+                                    },
+                                  },
+                                },
+                                [
+                                  _c("i", { staticClass: "bi bi-power" }),
+                                  _vm._v(" "),
+                                  _c(
+                                    "b",
+                                    { staticStyle: { "font-size": "1.2em" } },
+                                    [
+                                      _vm._v(
+                                        _vm._s(
+                                          _vm.contenedores_encendidos_reefer_length
+                                        )
+                                      ),
+                                    ]
+                                  ),
+                                  _vm._v(
+                                    "\n                         \n                        Reefers Running \n                      "
+                                  ),
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "button",
+                                {
+                                  staticClass: "col-3 btn btn-danger",
+                                  attrs: { type: "button" },
+                                },
+                                [
+                                  _c("i", { staticClass: "bi bi-power" }),
+                                  _vm._v(" "),
+                                  _c(
+                                    "b",
+                                    { staticStyle: { "font-size": "1.2em" } },
+                                    [_vm._v("0")]
+                                  ),
+                                  _vm._v(
+                                    "\n                         \n                        Madurador\n                      "
+                                  ),
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "button",
+                                {
+                                  staticClass: "col-3 btn btn-dark",
+                                  attrs: { type: "button" },
+                                },
+                                [
+                                  _c("i", { staticClass: "bi bi-power" }),
+                                  _vm._v(" "),
+                                  _c(
+                                    "b",
+                                    { staticStyle: { "font-size": "1.2em" } },
+                                    [_vm._v("0")]
+                                  ),
+                                  _vm._v(
+                                    "\n                         \n                        Shutdown\n                      "
+                                  ),
+                                ]
+                              ),
+                            ]
+                          ),
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c("canvasMapa", {
+                        ref: "canvasMapa",
+                        attrs: { id_contenedor: 1, probando: "texto prueba" },
+                      }),
+                    ],
+                    1
+                  ),
+                ]
+              ),
+            ]),
+          ]
+        ),
+      ]
+    ),
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Panel/tabla_detalle.vue?vue&type=template&id=67df539e&":
+/*!**************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Panel/tabla_detalle.vue?vue&type=template&id=67df539e& ***!
+  \**************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function () {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _vm.tipo == "Generador"
+      ? _c(
+          "div",
+          {
+            staticClass: "col shadow-sm p-3 mb-5 bg-white rounded ",
+            staticStyle: { margin: "-30px 15px 10px 15px" },
+            attrs: { id: "generador_grid" },
+          },
+          [
+            _c(
+              "table",
+              {
+                staticClass: "table display nowrap",
+                attrs: { id: "tblDetalleContenedores_generadores" },
+              },
+              [
+                _vm._m(0),
+                _vm._v(" "),
+                _c(
+                  "tbody",
+                  _vm._l(
+                    _vm.datos_tabla_generador,
+                    function (generador, index) {
+                      return _c(
+                        "tr",
+                        { key: index, staticClass: "tr_resumen_gen" },
+                        [
+                          _c("td", { staticClass: "text-center" }, [
+                            _vm._v(_vm._s(generador.id)),
+                          ]),
+                          _vm._v(" "),
+                          _c("td", { staticClass: "text-center" }, [
+                            _vm._v(_vm._s(generador.battery_voltage)),
+                          ]),
+                          _vm._v(" "),
+                          _c("td", { staticClass: "text-center" }, [
+                            _vm._v(_vm._s(generador.water_temp)),
+                          ]),
+                          _vm._v(" "),
+                          _c("td", { staticClass: "text-center" }, [
+                            _vm._v(_vm._s(generador.running_frequency)),
+                          ]),
+                          _vm._v(" "),
+                          _c("td", { staticClass: "text-center" }, [
+                            _vm._v(_vm._s(generador.fuel_level)),
+                          ]),
+                          _vm._v(" "),
+                          _c("td", { staticClass: "text-center" }, [
+                            _vm._v(_vm._s(generador.voltage_measure)),
+                          ]),
+                          _vm._v(" "),
+                          _c("td", { staticClass: "text-center" }, [
+                            _vm._v(_vm._s(generador.rotor_current)),
+                          ]),
+                          _vm._v(" "),
+                          _c("td", { staticClass: "text-center" }, [
+                            _vm._v(_vm._s(generador.fiel_current)),
+                          ]),
+                          _vm._v(" "),
+                          _c("td", { staticClass: "text-center" }, [
+                            _vm._v(_vm._s(generador.speed)),
+                          ]),
+                          _vm._v(" "),
+                          _c("td", { staticClass: "text-center" }, [
+                            _vm._v(_vm._s(generador.eco_power)),
+                          ]),
+                          _vm._v(" "),
+                          _c("td", { staticClass: "text-center" }, [
+                            _vm._v(_vm._s(generador.rpm)),
+                          ]),
+                          _vm._v(" "),
+                          _c("td", { staticClass: "text-center" }, [
+                            _vm._v(_vm._s(generador.unit_mode)),
+                          ]),
+                          _vm._v(" "),
+                          _c("td", { staticClass: "text-center" }, [
+                            _vm._v(_vm._s(generador.horometro)),
+                          ]),
+                          _vm._v(" "),
+                          _c("td", { staticClass: "text-center" }, [
+                            _vm._v(_vm._s(generador.modelo)),
+                          ]),
+                          _vm._v(" "),
+                          _c("td", { staticClass: "text-center" }, [
+                            _vm._v(_vm._s(generador.latitud)),
+                          ]),
+                          _vm._v(" "),
+                          _c("td", { staticClass: "text-center" }, [
+                            _vm._v(_vm._s(generador.longitud)),
+                          ]),
+                          _vm._v(" "),
+                          _c("td", { staticClass: "text-center" }, [
+                            _vm._v(_vm._s(generador.alarma_id)),
+                          ]),
+                          _vm._v(" "),
+                          _c("td", { staticClass: "text-center" }, [
+                            _vm._v(_vm._s(generador.evento_id)),
+                          ]),
+                          _vm._v(" "),
+                          _c("td", { staticClass: "text-center" }, [
+                            _vm._v(_vm._s(generador.reefer_conected)),
+                          ]),
+                          _vm._v(" "),
+                          _c("td", { staticClass: "text-center" }, [
+                            _vm._v(_vm._s(generador.set_point)),
+                          ]),
+                          _vm._v(" "),
+                          _c("td", { staticClass: "text-center" }, [
+                            _vm._v(_vm._s(generador.temp_supply_1)),
+                          ]),
+                          _vm._v(" "),
+                          _c("td", { staticClass: "text-center" }, [
+                            _vm._v(_vm._s(generador.return_air)),
+                          ]),
+                        ]
+                      )
+                    }
+                  ),
+                  0
+                ),
+              ]
+            ),
+          ]
+        )
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.tipo == "Reefer"
+      ? _c(
+          "div",
+          {
+            staticClass: "col shadow-sm p-3 mb-5 bg-white rounded ",
+            staticStyle: { margin: "-30px 15px 10px 15px" },
+            attrs: { id: "reefers_grid" },
+          },
+          [
+            _c(
+              "table",
+              {
+                staticClass: "table display nowrap",
+                attrs: { id: "tblDetalleContenedores_reefers" },
+              },
+              [
+                _vm._m(1),
+                _vm._v(" "),
+                _c(
+                  "tbody",
+                  _vm._l(_vm.datos_tabla_reefer, function (reefer, index) {
+                    return _c("tr", { key: index }, [
+                      _c("td", { staticClass: "text-center" }, [
+                        _vm._v(_vm._s(reefer.id)),
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { staticClass: "text-center" }, [
+                        _vm._v(_vm._s(reefer.set_point) + "C°"),
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { staticClass: "text-center" }, [
+                        _vm._v(_vm._s(reefer.temp_supply_1)),
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { staticClass: "text-center" }, [
+                        _vm._v(_vm._s(reefer.temp_supply_2)),
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { staticClass: "text-center" }, [
+                        _vm._v(_vm._s(reefer.return_air)),
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { staticClass: "text-center" }, [
+                        _vm._v(_vm._s(reefer.evaporation_coil)),
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { staticClass: "text-center" }, [
+                        _vm._v(_vm._s(reefer.condensation_coil)),
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { staticClass: "text-center" }, [
+                        _vm._v(_vm._s(reefer.compress_coil_1)),
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { staticClass: "text-center" }, [
+                        _vm._v(_vm._s(reefer.compress_coil_2)),
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { staticClass: "text-center" }, [
+                        _vm._v(_vm._s(reefer.ambient_air)),
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { staticClass: "text-center" }, [
+                        _vm._v(_vm._s(reefer.cargo_1_temp)),
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { staticClass: "text-center" }, [
+                        _vm._v(_vm._s(reefer.cargo_2_temp)),
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { staticClass: "text-center" }, [
+                        _vm._v(_vm._s(reefer.cargo_3_temp)),
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { staticClass: "text-center" }, [
+                        _vm._v(_vm._s(reefer.cargo_4_temp)),
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { staticClass: "text-center" }, [
+                        _vm._v(_vm._s(reefer.relative_humidity)),
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { staticClass: "text-center" }, [
+                        _vm._v(_vm._s(reefer.avl)),
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { staticClass: "text-center" }, [
+                        _vm._v(_vm._s(reefer.suction_pressure)),
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { staticClass: "text-center" }, [
+                        _vm._v(_vm._s(reefer.discharge_pressure)),
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { staticClass: "text-center" }, [
+                        _vm._v(_vm._s(reefer.line_voltage)),
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { staticClass: "text-center" }, [
+                        _vm._v(_vm._s(reefer.line_frequency)),
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { staticClass: "text-center" }, [
+                        _vm._v(_vm._s(reefer.consumption_ph_1)),
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { staticClass: "text-center" }, [
+                        _vm._v(_vm._s(reefer.consumption_ph_2)),
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { staticClass: "text-center" }, [
+                        _vm._v(_vm._s(reefer.consumption_ph_3)),
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { staticClass: "text-center" }, [
+                        _vm._v(_vm._s(reefer.co2_reading)),
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { staticClass: "text-center" }, [
+                        _vm._v(_vm._s(reefer.o2_reading)),
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { staticClass: "text-center" }, [
+                        _vm._v(_vm._s(reefer.evaporator_speed)),
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { staticClass: "text-center" }, [
+                        _vm._v(_vm._s(reefer.condenser_speed)),
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { staticClass: "text-center" }, [
+                        _vm._v(_vm._s(reefer.battery_voltage)),
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { staticClass: "text-center" }, [
+                        _vm._v(_vm._s(reefer.power_kwh)),
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { staticClass: "text-center" }, [
+                        _vm._v(_vm._s(reefer.power_trip_reading)),
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { staticClass: "text-center" }, [
+                        _vm._v(_vm._s(reefer.power_trip_duration)),
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { staticClass: "text-center" }, [
+                        _vm._v(_vm._s(reefer.suction_temp)),
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { staticClass: "text-center" }, [
+                        _vm._v(_vm._s(reefer.discharge_temp)),
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { staticClass: "text-center" }, [
+                        _vm._v(_vm._s(reefer.supply_air_temp)),
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { staticClass: "text-center" }, [
+                        _vm._v(_vm._s(reefer.return_air_temp)),
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { staticClass: "text-center" }, [
+                        _vm._v(_vm._s(reefer.dl_battery_temp)),
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { staticClass: "text-center" }, [
+                        _vm._v(_vm._s(reefer.dl_battery_charge)),
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { staticClass: "text-center" }, [
+                        _vm._v(_vm._s(reefer.power_consumption)),
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { staticClass: "text-center" }, [
+                        _vm._v(_vm._s(reefer.power_consumption_avg)),
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { staticClass: "text-center" }, [
+                        _vm._v(_vm._s(reefer.alarm_present)),
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { staticClass: "text-center" }, [
+                        _vm._v(_vm._s(reefer.capacity_load)),
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { staticClass: "text-center" }, [
+                        _vm._v(_vm._s(reefer.power_state)),
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { staticClass: "text-center" }, [
+                        _vm._v(_vm._s(reefer.controlling_mode)),
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { staticClass: "text-center" }, [
+                        _vm._v(_vm._s(reefer.humidity_control)),
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { staticClass: "text-center" }, [
+                        _vm._v(_vm._s(reefer.humidity_set_point)),
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { staticClass: "text-center" }, [
+                        _vm._v(_vm._s(reefer.fresh_air_ex_mode)),
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { staticClass: "text-center" }, [
+                        _vm._v(_vm._s(reefer.fresh_air_ex_rate)),
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { staticClass: "text-center" }, [
+                        _vm._v(_vm._s(reefer.fresh_air_ex_delay)),
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { staticClass: "text-center" }, [
+                        _vm._v(_vm._s(reefer.set_point_o2)),
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { staticClass: "text-center" }, [
+                        _vm._v(_vm._s(reefer.set_point_co2)),
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { staticClass: "text-center" }, [
+                        _vm._v(_vm._s(reefer.defrost_term_temp)),
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { staticClass: "text-center" }, [
+                        _vm._v(_vm._s(reefer.defrost_interval)),
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { staticClass: "text-center" }, [
+                        _vm._v(_vm._s(reefer.water_cooled_conde)),
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { staticClass: "text-center" }, [
+                        _vm._v(_vm._s(reefer.usda_trip)),
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { staticClass: "text-center" }, [
+                        _vm._v(_vm._s(reefer.evaporator_exp_valve)),
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { staticClass: "text-center" }, [
+                        _vm._v(_vm._s(reefer.suction_mod_valve)),
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { staticClass: "text-center" }, [
+                        _vm._v(_vm._s(reefer.hot_gas_valve)),
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { staticClass: "text-center" }, [
+                        _vm._v(_vm._s(reefer.economizer_valve)),
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { staticClass: "text-center" }, [
+                        _vm._v(_vm._s(reefer.modelo)),
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { staticClass: "text-center" }, [
+                        _vm._v(_vm._s(reefer.latitud)),
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { staticClass: "text-center" }, [
+                        _vm._v(_vm._s(reefer.longitud)),
+                      ]),
+                    ])
+                  }),
+                  0
+                ),
+              ]
+            ),
+          ]
+        )
+      : _vm._e(),
+  ])
 }
 var staticRenderFns = [
   function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass: "col shadow-sm p-3 mb-5 bg-white rounded ",
-        staticStyle: { margin: "-30px 15px 10px 15px" },
-        attrs: { id: "asset_maps" },
-      },
-      [
-        _c("div", {
-          staticStyle: { width: "100%", height: "365px" },
-          attrs: { id: "map" },
-        }),
-      ]
-    )
+    return _c("thead", [
+      _c(
+        "tr",
+        { staticClass: "bg-info", staticStyle: { color: "white !important" } },
+        [
+          _c("th", { attrs: { scope: "col" } }, [_vm._v("N°")]),
+          _vm._v(" "),
+          _c(
+            "th",
+            {
+              staticClass: "text-center",
+              attrs: { scope: "col", width: "50px" },
+            },
+            [_vm._v("Battery_voltage")]
+          ),
+          _vm._v(" "),
+          _c(
+            "th",
+            {
+              staticClass: "text-center",
+              attrs: { scope: "col", width: "50px" },
+            },
+            [_vm._v("Water_temp")]
+          ),
+          _vm._v(" "),
+          _c(
+            "th",
+            {
+              staticClass: "text-center",
+              attrs: { scope: "col", width: "50px" },
+            },
+            [_vm._v("Running_frequency")]
+          ),
+          _vm._v(" "),
+          _c(
+            "th",
+            {
+              staticClass: "text-center",
+              attrs: { scope: "col", width: "50px" },
+            },
+            [_vm._v("Fuel_level")]
+          ),
+          _vm._v(" "),
+          _c(
+            "th",
+            {
+              staticClass: "text-center",
+              attrs: { scope: "col", width: "50px" },
+            },
+            [_vm._v("Voltage_measure")]
+          ),
+          _vm._v(" "),
+          _c(
+            "th",
+            {
+              staticClass: "text-center",
+              attrs: { scope: "col", width: "50px" },
+            },
+            [_vm._v("Rotor_current")]
+          ),
+          _vm._v(" "),
+          _c(
+            "th",
+            {
+              staticClass: "text-center",
+              attrs: { scope: "col", width: "50px" },
+            },
+            [_vm._v("fiel_current")]
+          ),
+          _vm._v(" "),
+          _c(
+            "th",
+            {
+              staticClass: "text-center",
+              attrs: { scope: "col", width: "50px" },
+            },
+            [_vm._v("Speed")]
+          ),
+          _vm._v(" "),
+          _c(
+            "th",
+            {
+              staticClass: "text-center",
+              attrs: { scope: "col", width: "50px" },
+            },
+            [_vm._v("Eco_power")]
+          ),
+          _vm._v(" "),
+          _c(
+            "th",
+            {
+              staticClass: "text-center",
+              attrs: { scope: "col", width: "50px" },
+            },
+            [_vm._v("RPM")]
+          ),
+          _vm._v(" "),
+          _c(
+            "th",
+            {
+              staticClass: "text-center",
+              attrs: { scope: "col", width: "50px" },
+            },
+            [_vm._v("Unit_mode")]
+          ),
+          _vm._v(" "),
+          _c(
+            "th",
+            {
+              staticClass: "text-center",
+              attrs: { scope: "col", width: "50px" },
+            },
+            [_vm._v("Horometro")]
+          ),
+          _vm._v(" "),
+          _c(
+            "th",
+            {
+              staticClass: "text-center",
+              attrs: { scope: "col", width: "50px" },
+            },
+            [_vm._v("Modelo")]
+          ),
+          _vm._v(" "),
+          _c(
+            "th",
+            {
+              staticClass: "text-center",
+              attrs: { scope: "col", width: "50px" },
+            },
+            [_vm._v("Latitud")]
+          ),
+          _vm._v(" "),
+          _c(
+            "th",
+            {
+              staticClass: "text-center",
+              attrs: { scope: "col", width: "50px" },
+            },
+            [_vm._v("Longitud")]
+          ),
+          _vm._v(" "),
+          _c(
+            "th",
+            {
+              staticClass: "text-center",
+              attrs: { scope: "col", width: "50px" },
+            },
+            [_vm._v("Alarma")]
+          ),
+          _vm._v(" "),
+          _c(
+            "th",
+            {
+              staticClass: "text-center",
+              attrs: { scope: "col", width: "50px" },
+            },
+            [_vm._v("Evento")]
+          ),
+          _vm._v(" "),
+          _c(
+            "th",
+            {
+              staticClass: "text-center",
+              attrs: { scope: "col", width: "50px" },
+            },
+            [_vm._v("REEFER_CONECTED")]
+          ),
+          _vm._v(" "),
+          _c(
+            "th",
+            {
+              staticClass: "text-center",
+              attrs: { scope: "col", width: "50px" },
+            },
+            [_vm._v("SET_POINT")]
+          ),
+          _vm._v(" "),
+          _c(
+            "th",
+            {
+              staticClass: "text-center",
+              attrs: { scope: "col", width: "50px" },
+            },
+            [_vm._v("TEMP_SUPPLY")]
+          ),
+          _vm._v(" "),
+          _c(
+            "th",
+            {
+              staticClass: "text-center",
+              attrs: { scope: "col", width: "50px" },
+            },
+            [_vm._v("RETURN_AIR")]
+          ),
+        ]
+      ),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c(
+        "tr",
+        { staticClass: "bg-info", staticStyle: { color: "white !important" } },
+        [
+          _c("th", { attrs: { scope: "col" } }, [_vm._v("N°")]),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
+            _vm._v("Set_point"),
+          ]),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
+            _vm._v("Temp_supply_1"),
+          ]),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
+            _vm._v("Temp_supply_2"),
+          ]),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
+            _vm._v("Return_air"),
+          ]),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
+            _vm._v("Evaporation_coil"),
+          ]),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
+            _vm._v("Condensation_coil"),
+          ]),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
+            _vm._v("Compress_coil_1"),
+          ]),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
+            _vm._v("Compress_coil_2"),
+          ]),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
+            _vm._v("Ambient_air"),
+          ]),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
+            _vm._v("Cargo_1_temp"),
+          ]),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
+            _vm._v("Cargo_2_temp"),
+          ]),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
+            _vm._v("Cargo_3_temp"),
+          ]),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
+            _vm._v("Cargo_4_temp"),
+          ]),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
+            _vm._v("Relative_humidity"),
+          ]),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
+            _vm._v("AVL"),
+          ]),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
+            _vm._v("Suction_pressure"),
+          ]),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
+            _vm._v("Discharge_pressure"),
+          ]),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
+            _vm._v("Line_voltage"),
+          ]),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
+            _vm._v("Line_frequency"),
+          ]),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
+            _vm._v("Consumption_ph_1"),
+          ]),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
+            _vm._v("Consumption_ph_2"),
+          ]),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
+            _vm._v("Consumption_ph_3"),
+          ]),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
+            _vm._v("Co2_reading"),
+          ]),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
+            _vm._v("O2_reading"),
+          ]),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
+            _vm._v("Evaporator_speed"),
+          ]),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
+            _vm._v("Condenser_speed"),
+          ]),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
+            _vm._v("Battery_voltage"),
+          ]),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
+            _vm._v("Power_kwh"),
+          ]),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
+            _vm._v("Power_trip_reading"),
+          ]),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
+            _vm._v("Power_trip_duration"),
+          ]),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
+            _vm._v("Suction_temp"),
+          ]),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
+            _vm._v("Discharge_temp"),
+          ]),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
+            _vm._v("Supply_air_temp"),
+          ]),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
+            _vm._v("Return_air_temp"),
+          ]),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
+            _vm._v("Dl_battery_temp"),
+          ]),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
+            _vm._v("Dl_battery_charge"),
+          ]),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
+            _vm._v("Power_consumption"),
+          ]),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
+            _vm._v("Power_consumption_avg"),
+          ]),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
+            _vm._v("Alarm_present"),
+          ]),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
+            _vm._v("Capacity_load"),
+          ]),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
+            _vm._v("Power_state"),
+          ]),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
+            _vm._v("Controlling_mode"),
+          ]),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
+            _vm._v("Humidity_control"),
+          ]),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
+            _vm._v("Humidity_set_point"),
+          ]),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
+            _vm._v("Fresh_air_ex_mode"),
+          ]),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
+            _vm._v("Fresh_air_ex_rate"),
+          ]),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
+            _vm._v("Fresh_air_ex_delay"),
+          ]),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
+            _vm._v("Set_point_o2"),
+          ]),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
+            _vm._v("Set_point_co2"),
+          ]),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
+            _vm._v("Defrost_term_temp"),
+          ]),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
+            _vm._v("Defrost_interval"),
+          ]),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
+            _vm._v("Water_cooled_conde"),
+          ]),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
+            _vm._v("USDA_trip"),
+          ]),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
+            _vm._v("Evaporator_exp_valve"),
+          ]),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
+            _vm._v("Suction_mod_valve"),
+          ]),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
+            _vm._v("Hot_gas_valve"),
+          ]),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
+            _vm._v("Economizer_valve"),
+          ]),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
+            _vm._v("Modelo"),
+          ]),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
+            _vm._v("Latitud"),
+          ]),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
+            _vm._v("Longitud"),
+          ]),
+        ]
+      ),
+    ])
+  },
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Panel/tabla_resumen.vue?vue&type=template&id=3f274f08&":
+/*!**************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Panel/tabla_resumen.vue?vue&type=template&id=3f274f08& ***!
+  \**************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function () {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _vm.tipo == "Reefer"
+      ? _c(
+          "div",
+          {
+            staticClass: "col shadow-sm p-3 mb-5 bg-white rounded ",
+            staticStyle: { margin: "-30px 15px 10px 15px" },
+            attrs: { id: "grid_resumen_reefer" },
+          },
+          [
+            _c(
+              "table",
+              {
+                staticClass: "display nowrap",
+                staticStyle: { margin: "0 auto !important" },
+                attrs: { id: "tblContenedor_reefers" },
+              },
+              [
+                _vm._m(0),
+                _vm._v(" "),
+                _c(
+                  "tbody",
+                  _vm._l(_vm.datos_resumen_reefer, function (reef, index) {
+                    return _c(
+                      "tr",
+                      {
+                        key: index,
+                        on: {
+                          click: function ($event) {
+                            return _vm.select_contenedor(reef)
+                          },
+                        },
+                      },
+                      [
+                        _c("td", { staticClass: "text-center" }, [
+                          _vm._v(_vm._s(reef.nombre_contenedor)),
+                        ]),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "text-center" }, [
+                          _vm._v(_vm._s(reef.tipo)),
+                        ]),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "text-center" }, [
+                          _vm._v(_vm._s(reef.encendido == 1 ? "SI" : "NO")),
+                        ]),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "text-center" }, [
+                          _vm._v(_vm._s(reef.booking)),
+                        ]),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "text-center" }, [
+                          _vm._v(_vm._s(reef.booking_temp) + "C°"),
+                        ]),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "text-center" }, [
+                          _vm._v(_vm._s(reef.set_point) + "C°"),
+                        ]),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "text-center" }, [
+                          _vm._v(_vm._s(reef.temp_supply_1)),
+                        ]),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "text-center" }, [
+                          _vm._v(_vm._s(reef.temp_supply_2)),
+                        ]),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "text-center" }, [
+                          _vm._v(_vm._s(reef.return_air)),
+                        ]),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "text-center" }, [
+                          _vm._v(_vm._s(reef.evaporation_coil)),
+                        ]),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "text-center" }, [
+                          _vm._v(_vm._s(reef.condensation_coil)),
+                        ]),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "text-center" }, [
+                          _vm._v(_vm._s(reef.compress_coil_1)),
+                        ]),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "text-center" }, [
+                          _vm._v(_vm._s(reef.compress_coil_2)),
+                        ]),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "text-center" }, [
+                          _vm._v(_vm._s(reef.ambient_air)),
+                        ]),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "text-center" }, [
+                          _vm._v(_vm._s(reef.cargo_1_temp)),
+                        ]),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "text-center" }, [
+                          _vm._v(_vm._s(reef.cargo_2_temp)),
+                        ]),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "text-center" }, [
+                          _vm._v(_vm._s(reef.cargo_3_temp)),
+                        ]),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "text-center" }, [
+                          _vm._v(_vm._s(reef.cargo_4_temp)),
+                        ]),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "text-center" }, [
+                          _vm._v(_vm._s(reef.relative_humidity)),
+                        ]),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "text-center" }, [
+                          _vm._v(_vm._s(reef.avl)),
+                        ]),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "text-center" }, [
+                          _vm._v(_vm._s(reef.suction_pressure)),
+                        ]),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "text-center" }, [
+                          _vm._v(_vm._s(reef.discharge_pressure)),
+                        ]),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "text-center" }, [
+                          _vm._v(_vm._s(reef.line_voltage)),
+                        ]),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "text-center" }, [
+                          _vm._v(_vm._s(reef.line_frequency)),
+                        ]),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "text-center" }, [
+                          _vm._v(_vm._s(reef.consumption_ph_1)),
+                        ]),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "text-center" }, [
+                          _vm._v(_vm._s(reef.consumption_ph_2)),
+                        ]),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "text-center" }, [
+                          _vm._v(_vm._s(reef.consumption_ph_3)),
+                        ]),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "text-center" }, [
+                          _vm._v(_vm._s(reef.co2_reading)),
+                        ]),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "text-center" }, [
+                          _vm._v(_vm._s(reef.o2_reading)),
+                        ]),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "text-center" }, [
+                          _vm._v(_vm._s(reef.evaporator_speed)),
+                        ]),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "text-center" }, [
+                          _vm._v(_vm._s(reef.condenser_speed)),
+                        ]),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "text-center" }, [
+                          _vm._v(_vm._s(reef.battery_voltage)),
+                        ]),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "text-center" }, [
+                          _vm._v(_vm._s(reef.power_kwh)),
+                        ]),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "text-center" }, [
+                          _vm._v(_vm._s(reef.power_trip_reading)),
+                        ]),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "text-center" }, [
+                          _vm._v(_vm._s(reef.power_trip_duration)),
+                        ]),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "text-center" }, [
+                          _vm._v(_vm._s(reef.suction_temp)),
+                        ]),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "text-center" }, [
+                          _vm._v(_vm._s(reef.discharge_temp)),
+                        ]),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "text-center" }, [
+                          _vm._v(_vm._s(reef.supply_air_temp)),
+                        ]),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "text-center" }, [
+                          _vm._v(_vm._s(reef.return_air_temp)),
+                        ]),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "text-center" }, [
+                          _vm._v(_vm._s(reef.dl_battery_temp)),
+                        ]),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "text-center" }, [
+                          _vm._v(_vm._s(reef.dl_battery_charge)),
+                        ]),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "text-center" }, [
+                          _vm._v(_vm._s(reef.power_consumption)),
+                        ]),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "text-center" }, [
+                          _vm._v(_vm._s(reef.power_consumption_avg)),
+                        ]),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "text-center" }, [
+                          _vm._v(_vm._s(reef.alarm_present)),
+                        ]),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "text-center" }, [
+                          _vm._v(_vm._s(reef.capacity_load)),
+                        ]),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "text-center" }, [
+                          _vm._v(_vm._s(reef.power_state)),
+                        ]),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "text-center" }, [
+                          _vm._v(_vm._s(reef.controlling_mode)),
+                        ]),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "text-center" }, [
+                          _vm._v(_vm._s(reef.humidity_control)),
+                        ]),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "text-center" }, [
+                          _vm._v(_vm._s(reef.humidity_set_point)),
+                        ]),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "text-center" }, [
+                          _vm._v(_vm._s(reef.fresh_air_ex_mode)),
+                        ]),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "text-center" }, [
+                          _vm._v(_vm._s(reef.fresh_air_ex_rate)),
+                        ]),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "text-center" }, [
+                          _vm._v(_vm._s(reef.fresh_air_ex_delay)),
+                        ]),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "text-center" }, [
+                          _vm._v(_vm._s(reef.set_point_o2)),
+                        ]),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "text-center" }, [
+                          _vm._v(_vm._s(reef.set_point_co2)),
+                        ]),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "text-center" }, [
+                          _vm._v(_vm._s(reef.defrost_term_temp)),
+                        ]),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "text-center" }, [
+                          _vm._v(_vm._s(reef.defrost_interval)),
+                        ]),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "text-center" }, [
+                          _vm._v(_vm._s(reef.water_cooled_conde)),
+                        ]),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "text-center" }, [
+                          _vm._v(_vm._s(reef.usda_trip)),
+                        ]),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "text-center" }, [
+                          _vm._v(_vm._s(reef.evaporator_exp_valve)),
+                        ]),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "text-center" }, [
+                          _vm._v(_vm._s(reef.suction_mod_valve)),
+                        ]),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "text-center" }, [
+                          _vm._v(_vm._s(reef.hot_gas_valve)),
+                        ]),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "text-center" }, [
+                          _vm._v(_vm._s(reef.economizer_valve)),
+                        ]),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "text-center" }, [
+                          _vm._v(_vm._s(reef.modelo)),
+                        ]),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "text-center" }, [
+                          _vm._v(_vm._s(reef.latitud)),
+                        ]),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "text-center" }, [
+                          _vm._v(_vm._s(reef.longitud)),
+                        ]),
+                      ]
+                    )
+                  }),
+                  0
+                ),
+              ]
+            ),
+          ]
+        )
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.tipo == "Generador"
+      ? _c(
+          "div",
+          {
+            staticClass: "col shadow-sm p-3 mb-5 bg-white rounded ",
+            staticStyle: { margin: "-30px 15px 10px 15px" },
+            attrs: { id: "grid_resumen_generadores" },
+          },
+          [
+            _c(
+              "table",
+              {
+                staticClass: "display nowrap",
+                staticStyle: { margin: "0 auto !important" },
+                attrs: { id: "tblContenedor_generador" },
+              },
+              [
+                _vm._m(1),
+                _vm._v(" "),
+                _c(
+                  "tbody",
+                  _vm._l(_vm.datos_resumen_gen, function (gen, index) {
+                    return _c(
+                      "tr",
+                      {
+                        key: index,
+                        staticClass: "tr_resumen_reef",
+                        on: {
+                          click: function ($event) {
+                            return _vm.select_contenedor(gen)
+                          },
+                        },
+                      },
+                      [
+                        _c("td", { staticClass: "text-center" }, [
+                          _vm._v(_vm._s(gen.nombre_contenedor)),
+                        ]),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "text-center" }, [
+                          _vm._v(_vm._s(gen.tipo)),
+                        ]),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "text-center" }, [
+                          _vm._v(_vm._s(gen.encendido == 1 ? "SI" : "NO")),
+                        ]),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "text-center" }, [
+                          _vm._v(_vm._s(gen.booking)),
+                        ]),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "text-center" }, [
+                          _vm._v(_vm._s(gen.booking_temp) + "C°"),
+                        ]),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "text-center" }, [
+                          _vm._v(_vm._s(gen.battery_voltage)),
+                        ]),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "text-center" }, [
+                          _vm._v(_vm._s(gen.water_temp)),
+                        ]),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "text-center" }, [
+                          _vm._v(_vm._s(gen.running_frequency)),
+                        ]),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "text-center" }, [
+                          _vm._v(_vm._s(gen.fuel_level)),
+                        ]),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "text-center" }, [
+                          _vm._v(_vm._s(gen.voltage_measure)),
+                        ]),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "text-center" }, [
+                          _vm._v(_vm._s(gen.rotor_current)),
+                        ]),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "text-center" }, [
+                          _vm._v(_vm._s(gen.fiel_current)),
+                        ]),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "text-center" }, [
+                          _vm._v(_vm._s(gen.speed)),
+                        ]),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "text-center" }, [
+                          _vm._v(_vm._s(gen.eco_power)),
+                        ]),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "text-center" }, [
+                          _vm._v(_vm._s(gen.rpm)),
+                        ]),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "text-center" }, [
+                          _vm._v(_vm._s(gen.unit_mode)),
+                        ]),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "text-center" }, [
+                          _vm._v(_vm._s(gen.horometro)),
+                        ]),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "text-center" }, [
+                          _vm._v(_vm._s(gen.modelo)),
+                        ]),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "text-center" }, [
+                          _vm._v(_vm._s(gen.latitud)),
+                        ]),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "text-center" }, [
+                          _vm._v(_vm._s(gen.longitud)),
+                        ]),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "text-center" }, [
+                          _vm._v(_vm._s(gen.nombre_alarma)),
+                        ]),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "text-center" }, [
+                          _vm._v(_vm._s(gen.nombre_evento)),
+                        ]),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "text-center" }, [
+                          _vm._v(_vm._s(gen.reefer_conected)),
+                        ]),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "text-center" }, [
+                          _vm._v(_vm._s(gen.set_point)),
+                        ]),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "text-center" }, [
+                          _vm._v(_vm._s(gen.temp_supply_1)),
+                        ]),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "text-center" }, [
+                          _vm._v(_vm._s(gen.return_air)),
+                        ]),
+                      ]
+                    )
+                  }),
+                  0
+                ),
+              ]
+            ),
+          ]
+        )
+      : _vm._e(),
+  ])
+}
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c(
+        "tr",
+        {
+          staticClass: "bg-success",
+          staticStyle: { color: "white !important" },
+        },
+        [
+          _c(
+            "th",
+            {
+              staticClass: "text-center",
+              attrs: { scope: "col", width: "150px" },
+            },
+            [_vm._v("Reefers")]
+          ),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
+            _vm._v("Tipo"),
+          ]),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
+            _vm._v("Estado"),
+          ]),
+          _vm._v(" "),
+          _c(
+            "th",
+            {
+              staticClass: "text-center",
+              attrs: { scope: "col", width: "150px" },
+            },
+            [_vm._v("Booking")]
+          ),
+          _vm._v(" "),
+          _c(
+            "th",
+            {
+              staticClass: "text-center",
+              attrs: { scope: "col", width: "50px" },
+            },
+            [_vm._v("booking_temp")]
+          ),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
+            _vm._v("Set_point"),
+          ]),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
+            _vm._v("Temp_supply_1"),
+          ]),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
+            _vm._v("Temp_supply_2"),
+          ]),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
+            _vm._v("Return_air"),
+          ]),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
+            _vm._v("Evaporation_coil"),
+          ]),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
+            _vm._v("Condensation_coil"),
+          ]),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
+            _vm._v("Compress_coil_1"),
+          ]),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
+            _vm._v("Compress_coil_2"),
+          ]),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
+            _vm._v("Ambient_air"),
+          ]),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
+            _vm._v("Cargo_1_temp"),
+          ]),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
+            _vm._v("Cargo_2_temp"),
+          ]),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
+            _vm._v("Cargo_3_temp"),
+          ]),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
+            _vm._v("Cargo_4_temp"),
+          ]),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
+            _vm._v("Relative_humidity"),
+          ]),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
+            _vm._v("AVL"),
+          ]),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
+            _vm._v("Suction_pressure"),
+          ]),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
+            _vm._v("Discharge_pressure"),
+          ]),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
+            _vm._v("Line_voltage"),
+          ]),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
+            _vm._v("Line_frequency"),
+          ]),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
+            _vm._v("Consumption_ph_1"),
+          ]),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
+            _vm._v("Consumption_ph_2"),
+          ]),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
+            _vm._v("Consumption_ph_3"),
+          ]),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
+            _vm._v("Co2_reading"),
+          ]),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
+            _vm._v("O2_reading"),
+          ]),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
+            _vm._v("Evaporator_speed"),
+          ]),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
+            _vm._v("Condenser_speed"),
+          ]),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
+            _vm._v("Battery_voltage"),
+          ]),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
+            _vm._v("Power_kwh"),
+          ]),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
+            _vm._v("Power_trip_reading"),
+          ]),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
+            _vm._v("Power_trip_duration"),
+          ]),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
+            _vm._v("Suction_temp"),
+          ]),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
+            _vm._v("Discharge_temp"),
+          ]),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
+            _vm._v("Supply_air_temp"),
+          ]),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
+            _vm._v("Return_air_temp"),
+          ]),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
+            _vm._v("Dl_battery_temp"),
+          ]),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
+            _vm._v("Dl_battery_charge"),
+          ]),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
+            _vm._v("Power_consumption"),
+          ]),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
+            _vm._v("Power_consumption_avg"),
+          ]),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
+            _vm._v("Alarm_present"),
+          ]),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
+            _vm._v("Capacity_load"),
+          ]),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
+            _vm._v("Power_state"),
+          ]),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
+            _vm._v("Controlling_mode"),
+          ]),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
+            _vm._v("Humidity_control"),
+          ]),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
+            _vm._v("Humidity_set_point"),
+          ]),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
+            _vm._v("Fresh_air_ex_mode"),
+          ]),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
+            _vm._v("Fresh_air_ex_rate"),
+          ]),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
+            _vm._v("Fresh_air_ex_delay"),
+          ]),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
+            _vm._v("Set_point_o2"),
+          ]),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
+            _vm._v("Set_point_co2"),
+          ]),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
+            _vm._v("Defrost_term_temp"),
+          ]),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
+            _vm._v("Defrost_interval"),
+          ]),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
+            _vm._v("Water_cooled_conde"),
+          ]),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
+            _vm._v("USDA_trip"),
+          ]),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
+            _vm._v("Evaporator_exp_valve"),
+          ]),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
+            _vm._v("Suction_mod_valve"),
+          ]),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
+            _vm._v("Hot_gas_valve"),
+          ]),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
+            _vm._v("Economizer_valve"),
+          ]),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
+            _vm._v("Modelo"),
+          ]),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
+            _vm._v("Latitud"),
+          ]),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
+            _vm._v("Longitud"),
+          ]),
+        ]
+      ),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c(
+        "tr",
+        {
+          staticClass: "bg-primary",
+          staticStyle: { color: "white !important" },
+        },
+        [
+          _c(
+            "th",
+            {
+              staticClass: "text-center",
+              attrs: { scope: "col", width: "150px" },
+            },
+            [_vm._v("Generador")]
+          ),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
+            _vm._v("Tipo"),
+          ]),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
+            _vm._v("Estado"),
+          ]),
+          _vm._v(" "),
+          _c(
+            "th",
+            {
+              staticClass: "text-center",
+              attrs: { scope: "col", width: "150px" },
+            },
+            [_vm._v("Booking")]
+          ),
+          _vm._v(" "),
+          _c(
+            "th",
+            {
+              staticClass: "text-center",
+              attrs: { scope: "col", width: "50px" },
+            },
+            [_vm._v("Booking_temp")]
+          ),
+          _vm._v(" "),
+          _c(
+            "th",
+            {
+              staticClass: "text-center",
+              attrs: { scope: "col", width: "50px" },
+            },
+            [_vm._v("Battery_voltage")]
+          ),
+          _vm._v(" "),
+          _c(
+            "th",
+            {
+              staticClass: "text-center",
+              attrs: { scope: "col", width: "50px" },
+            },
+            [_vm._v("Water_temp")]
+          ),
+          _vm._v(" "),
+          _c(
+            "th",
+            {
+              staticClass: "text-center",
+              attrs: { scope: "col", width: "50px" },
+            },
+            [_vm._v("Running_frequency")]
+          ),
+          _vm._v(" "),
+          _c(
+            "th",
+            {
+              staticClass: "text-center",
+              attrs: { scope: "col", width: "50px" },
+            },
+            [_vm._v("Fuel_level")]
+          ),
+          _vm._v(" "),
+          _c(
+            "th",
+            {
+              staticClass: "text-center",
+              attrs: { scope: "col", width: "50px" },
+            },
+            [_vm._v("Voltage_measure")]
+          ),
+          _vm._v(" "),
+          _c(
+            "th",
+            {
+              staticClass: "text-center",
+              attrs: { scope: "col", width: "50px" },
+            },
+            [_vm._v("Rotor_current")]
+          ),
+          _vm._v(" "),
+          _c(
+            "th",
+            {
+              staticClass: "text-center",
+              attrs: { scope: "col", width: "50px" },
+            },
+            [_vm._v("fiel_current")]
+          ),
+          _vm._v(" "),
+          _c(
+            "th",
+            {
+              staticClass: "text-center",
+              attrs: { scope: "col", width: "50px" },
+            },
+            [_vm._v("Speed")]
+          ),
+          _vm._v(" "),
+          _c(
+            "th",
+            {
+              staticClass: "text-center",
+              attrs: { scope: "col", width: "50px" },
+            },
+            [_vm._v("Eco_power")]
+          ),
+          _vm._v(" "),
+          _c(
+            "th",
+            {
+              staticClass: "text-center",
+              attrs: { scope: "col", width: "50px" },
+            },
+            [_vm._v("RPM")]
+          ),
+          _vm._v(" "),
+          _c(
+            "th",
+            {
+              staticClass: "text-center",
+              attrs: { scope: "col", width: "50px" },
+            },
+            [_vm._v("Unit_mode")]
+          ),
+          _vm._v(" "),
+          _c(
+            "th",
+            {
+              staticClass: "text-center",
+              attrs: { scope: "col", width: "50px" },
+            },
+            [_vm._v("Horometro")]
+          ),
+          _vm._v(" "),
+          _c(
+            "th",
+            {
+              staticClass: "text-center",
+              attrs: { scope: "col", width: "50px" },
+            },
+            [_vm._v("Modelo")]
+          ),
+          _vm._v(" "),
+          _c(
+            "th",
+            {
+              staticClass: "text-center",
+              attrs: { scope: "col", width: "50px" },
+            },
+            [_vm._v("Latitud")]
+          ),
+          _vm._v(" "),
+          _c(
+            "th",
+            {
+              staticClass: "text-center",
+              attrs: { scope: "col", width: "50px" },
+            },
+            [_vm._v("Longitud")]
+          ),
+          _vm._v(" "),
+          _c(
+            "th",
+            {
+              staticClass: "text-center",
+              attrs: { scope: "col", width: "50px" },
+            },
+            [_vm._v("Alarma")]
+          ),
+          _vm._v(" "),
+          _c(
+            "th",
+            {
+              staticClass: "text-center",
+              attrs: { scope: "col", width: "50px" },
+            },
+            [_vm._v("Evento")]
+          ),
+          _vm._v(" "),
+          _c(
+            "th",
+            {
+              staticClass: "text-center",
+              attrs: { scope: "col", width: "100px" },
+            },
+            [_vm._v("Reefer_conected")]
+          ),
+          _vm._v(" "),
+          _c(
+            "th",
+            {
+              staticClass: "text-center",
+              attrs: { scope: "col", width: "50px" },
+            },
+            [_vm._v("Set_point")]
+          ),
+          _vm._v(" "),
+          _c(
+            "th",
+            {
+              staticClass: "text-center",
+              attrs: { scope: "col", width: "50px" },
+            },
+            [_vm._v("Temp_supply_1")]
+          ),
+          _vm._v(" "),
+          _c(
+            "th",
+            {
+              staticClass: "text-center",
+              attrs: { scope: "col", width: "50px" },
+            },
+            [_vm._v("Return_air")]
+          ),
+        ]
+      ),
+    ])
   },
 ]
 render._withStripped = true
@@ -46326,10 +49477,18 @@ Vue.compile = compileToFunctions;
 var map = {
 	"./Panel/board": "./resources/js/Pages/Panel/board.vue",
 	"./Panel/board.vue": "./resources/js/Pages/Panel/board.vue",
+	"./Panel/grafico_principal": "./resources/js/Pages/Panel/grafico_principal.vue",
+	"./Panel/grafico_principal.vue": "./resources/js/Pages/Panel/grafico_principal.vue",
 	"./Panel/izquierda": "./resources/js/Pages/Panel/izquierda.vue",
 	"./Panel/izquierda.vue": "./resources/js/Pages/Panel/izquierda.vue",
 	"./Panel/mapa": "./resources/js/Pages/Panel/mapa.vue",
 	"./Panel/mapa.vue": "./resources/js/Pages/Panel/mapa.vue",
+	"./Panel/new_board": "./resources/js/Pages/Panel/new_board.vue",
+	"./Panel/new_board.vue": "./resources/js/Pages/Panel/new_board.vue",
+	"./Panel/tabla_detalle": "./resources/js/Pages/Panel/tabla_detalle.vue",
+	"./Panel/tabla_detalle.vue": "./resources/js/Pages/Panel/tabla_detalle.vue",
+	"./Panel/tabla_resumen": "./resources/js/Pages/Panel/tabla_resumen.vue",
+	"./Panel/tabla_resumen.vue": "./resources/js/Pages/Panel/tabla_resumen.vue",
 	"./layout": "./resources/js/Pages/layout.vue",
 	"./layout.vue": "./resources/js/Pages/layout.vue",
 	"./login": "./resources/js/Pages/login.vue",

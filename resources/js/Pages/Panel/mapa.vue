@@ -1,5 +1,10 @@
 <template>
 	 <div id="asset_maps" class="col shadow-sm p-3 mb-5 bg-white rounded " style="margin: -30px 15px 10px 15px;">
+          <b>
+            <i class="fas fa-map-marked-alt"></i>
+            &nbsp;
+            {{probando}}
+          </b>
         <div id="map" style="width:100%; height:365px;"></div>
     </div>
 </template>
@@ -8,17 +13,21 @@ import axios from 'axios';
 export default {
 	components: {  },
 	props: { 
-         contenedor: Number
+         id_contenedor: Number,
+         probando: String
     },
 	data() {
 		return {
             mapa: null,
+            ubicacion: new google.maps.LatLng(-11.98, -77.12), 
+          
 		};
 	},
 	watch: {
-	
 	},
+   
 	methods: {
+       
 		iniciarMap() {
             let self = this;
             this.$nextTick(() => {
