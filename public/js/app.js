@@ -3446,7 +3446,22 @@ var Chart_eventos;
 /*!*************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Panel/grafico_principal.vue?vue&type=script&lang=js& ***!
   \*************************************************************************************************************************************************************************************************************************/
-/***/ (() => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 //
 //
@@ -3458,6 +3473,388 @@ var Chart_eventos;
 //
 //
 //
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  components: {},
+  props: {
+    contenedor: Number
+  },
+  data: function data() {
+    return {
+      //  ---- myChart_principal -----
+      my_Chart_principal_dataset_reefer: [{
+        label: 'set_point',
+        data: [],
+        borderColor: '#FFC312',
+        backgroundColor: '#FFC312',
+        borderWidth: 4
+      }, {
+        label: 'temp_supply_1',
+        data: [],
+        borderColor: '#C4E538',
+        backgroundColor: '#C4E538',
+        borderWidth: 4
+      }, {
+        label: 'temp_supply_2',
+        data: [],
+        borderColor: '#FF1E51',
+        backgroundColor: '#FF1E51',
+        borderWidth: 4
+      }, {
+        label: 'return_air',
+        data: [],
+        borderColor: '#12CBC4',
+        backgroundColor: '#12CBC4',
+        borderWidth: 4
+      }, {
+        label: 'ambient_air',
+        //------------
+        data: [],
+        borderColor: '#9980FA',
+        backgroundColor: '#9980FA',
+        borderWidth: 4
+      }, {
+        label: 'relative_humidity',
+        //-------------
+        data: [],
+        borderColor: '#FDA7DF',
+        backgroundColor: '#FDA7DF',
+        borderWidth: 4
+      }, {
+        label: 'co2_reading',
+        //--------------
+        data: [],
+        borderColor: '#AAE51',
+        backgroundColor: '#AA1E51',
+        borderWidth: 4
+      }, {
+        label: 'o2_reading',
+        //-----------------
+        data: [],
+        borderColor: '#BA1A51',
+        backgroundColor: '#BA1A51',
+        borderWidth: 4
+      }, {
+        label: 'evaporator_speed',
+        data: [],
+        borderColor: '#CA1A51',
+        backgroundColor: '#CA1A51',
+        borderWidth: 4
+      }],
+      my_Chart_principal_dataset_generador: [{
+        label: 'battery_voltage',
+        data: [],
+        borderColor: '#db0404',
+        backgroundColor: '#db0404',
+        borderWidth: 4
+      }, {
+        label: 'water_temp',
+        data: [],
+        borderColor: '#3498db',
+        backgroundColor: '#3498db',
+        borderWidth: 4
+      }, {
+        label: 'running_frequency',
+        data: [],
+        borderColor: '#9b59b6',
+        backgroundColor: '#9b59b6',
+        borderWidth: 4
+      }, {
+        label: 'fuel_level',
+        data: [],
+        borderColor: '#e67e22',
+        backgroundColor: '#e67e22',
+        borderWidth: 4
+      }, {
+        label: 'voltage_measure',
+        data: [],
+        borderColor: '#1abc9c',
+        backgroundColor: '#1abc9c',
+        borderWidth: 4
+      }, {
+        label: 'rotor_current',
+        data: [],
+        borderColor: '#2c3e50',
+        backgroundColor: '#2c3e50',
+        borderWidth: 4
+      }, {
+        label: 'fiel_current',
+        data: [],
+        borderColor: '#f39c12',
+        backgroundColor: '#f39c12',
+        borderWidth: 4
+      }, {
+        label: 'rpm',
+        data: [],
+        borderColor: '#f39c12',
+        backgroundColor: '#f39c12',
+        borderWidth: 4
+      }, {
+        label: 'horometro',
+        data: [],
+        borderColor: '#f39c12',
+        backgroundColor: '#f39c12',
+        borderWidth: 4
+      }],
+      my_Chart_principal_labels: [],
+      my_Chart_principal_dataSetable: []
+    };
+  },
+  watch: {},
+  methods: {
+    myChartPrincipal: function myChartPrincipal() {
+      var self = this;
+      var ctx_principal = document.getElementById('myChart_principal').getContext('2d');
+      myChart_principal = new Chart(ctx_principal, {
+        type: 'line',
+        data: {
+          labels: self.my_Chart_principal_labels,
+          datasets: self.my_Chart_principal_dataSetable
+        },
+        options: {
+          animations: {
+            tension: {
+              duration: 3000,
+              easing: 'linear',
+              from: 0.2,
+              to: 0,
+              loop: true
+            }
+          },
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            y: {
+              max: 15,
+              // eje y
+              min: -15 // eje y
+
+            }
+          }
+        }
+      });
+    },
+    setLabelsMyChartPrincipal: function setLabelsMyChartPrincipal() {
+      var self = this;
+
+      function set_labels() {
+        return _set_labels.apply(this, arguments);
+      }
+
+      function _set_labels() {
+        _set_labels = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+          var datos_r, datos_g;
+          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+            while (1) {
+              switch (_context.prev = _context.next) {
+                case 0:
+                  self.my_Chart_principal_labels = [];
+
+                  if (self.tipo == "Reefer") {
+                    datos_r = self.datos_tabla_reefer.length != 0 ? self.datos_tabla_reefer.reverse() : [];
+                    datos_r.map(function (datos_r, index) {
+                      var date = new Date(datos_r.created_at);
+                      var day = date.getDate();
+                      var month = date.getMonth() + 1;
+                      var year = date.getFullYear();
+                      var hours = date.getHours();
+                      var minutes = date.getMinutes();
+                      var seconds = date.getSeconds();
+
+                      if (minutes < 10) {
+                        minutes = "0" + minutes;
+                      }
+
+                      if (seconds < 10) {
+                        seconds = "0" + seconds;
+                      }
+
+                      if (month < 10) {
+                        self.my_Chart_principal_labels.push("".concat(day, "-0").concat(month, "-").concat(year, " ").concat(hours, ":").concat(minutes, ":").concat(seconds));
+                      } else {
+                        self.my_Chart_principal_labels.push("".concat(day, "-").concat(month, "-").concat(year, "  ").concat(hours, ":").concat(minutes, ":").concat(seconds));
+                      } //  console.log(self.my_Chart_principal_labels);
+
+                    });
+                  }
+
+                  if (self.tipo == "Generador") {
+                    datos_g = self.datos_tabla_generador != null ? self.datos_tabla_generador.reverse() : [];
+                    datos_g.map(function (datos_g, index) {
+                      var date = new Date(datos_g.created_at);
+                      var day = date.getDate();
+                      var month = date.getMonth() + 1;
+                      var year = date.getFullYear();
+                      var hours = date.getHours();
+                      var minutes = date.getMinutes();
+                      var seconds = date.getSeconds();
+
+                      if (minutes < 10) {
+                        minutes = "0" + minutes;
+                      }
+
+                      if (seconds < 10) {
+                        seconds = "0" + seconds;
+                      }
+
+                      if (month < 10) {
+                        self.my_Chart_principal_labels.push("".concat(day, "-0").concat(month, "-").concat(year, " ").concat(hours, ":").concat(minutes, ":").concat(seconds));
+                      } else {
+                        self.my_Chart_principal_labels.push("".concat(day, "-").concat(month, "-").concat(year, "  ").concat(hours, ":").concat(minutes, ":").concat(seconds));
+                      }
+                    }); // console.log(self.my_Chart_principal_labels);
+                  }
+
+                case 3:
+                case "end":
+                  return _context.stop();
+              }
+            }
+          }, _callee);
+        }));
+        return _set_labels.apply(this, arguments);
+      }
+
+      set_labels().then(function () {
+        self.setDatosGraficoPrincipal();
+      }).then(function () {
+        if (myChart_principal) {
+          myChart_principal.update();
+          myChart_principal.destroy();
+          self.myChartPrincipal();
+        } else {
+          self.myChartPrincipal();
+        }
+      }).then(function () {
+        if (self.tipo == "Generador") {
+          // console.log(self.datos_tabla_generador[0].contenedor_id);
+          axios__WEBPACK_IMPORTED_MODULE_1___default().post(route('contenedores.get_alarma_evento'), {
+            id: self.datos_tabla_generador[0].contenedor_id,
+            tipo: self.tipo
+          }).then(function (response) {
+            if (response.data != 0 && self.chart_alarma_labels.length == 0) {
+              self.chart_alarma_labels = [];
+              self.chart_alarma_dataset_data = [];
+              response.data['alarma'].forEach(function (element) {
+                self.chart_alarma_labels.push(element.nombre_alarma);
+                self.chart_alarma_dataset_data.push(element.cantidad_alarma);
+              });
+              self.chart_eventos_labels = [];
+              self.chart_eventos_dataset_data = [];
+              response.data['evento'].forEach(function (element) {
+                self.chart_eventos_labels.push(element.nombre_evento);
+                self.chart_eventos_dataset_data.push(element.cantidad_evento);
+              });
+            }
+          }).then(function () {
+            console.log('actualizando el chart circular '); // Chart_alarmas.update(); 
+
+            Chart_alarmas.destroy();
+            self.Circular_iniciarGraficosAlarms();
+          }).then(function () {
+            // Chart_eventos.update(); 
+            Chart_eventos.destroy();
+            self.Circular_iniciarGraficosEventos();
+          });
+        }
+
+        if (self.tipo == "Reefer") {
+          axios__WEBPACK_IMPORTED_MODULE_1___default().post(route('contenedores.get_alarma_evento'), {
+            id: self.datos_tabla_reefer[0].contenedor_id,
+            tipo: self.tipo
+          }).then(function (response) {});
+        }
+      }).then(function () {// self.autoRefresh();
+      });
+    },
+    setDatosGraficoPrincipal: function setDatosGraficoPrincipal() {
+      /* 😑 CUANDO QUIERAS AGREGAR O QUITAR VARIABLES PARA EL GRAFICO PRINCIPAL PRIMERO TIENES AGREGARLOS EN LOS DATA QUE ESTAN ABAJO DE LOS PROPS LUEGO ACTUALIZARLOS AQUI  */
+      var self = this;
+
+      function set_data() {
+        return _set_data.apply(this, arguments);
+      }
+
+      function _set_data() {
+        _set_data = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
+          var datos_reefer, datos_genset;
+          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+            while (1) {
+              switch (_context2.prev = _context2.next) {
+                case 0:
+                  self.my_Chart_principal_dataset = [];
+
+                  if (self.tipo == "Reefer") {
+                    self.my_Chart_principal_dataset_reefer[0].data = [];
+                    self.my_Chart_principal_dataset_reefer[1].data = [];
+                    self.my_Chart_principal_dataset_reefer[2].data = [];
+                    self.my_Chart_principal_dataset_reefer[3].data = [];
+                    self.my_Chart_principal_dataset_reefer[4].data = [];
+                    self.my_Chart_principal_dataset_reefer[5].data = [];
+                    self.my_Chart_principal_dataset_reefer[6].data = [];
+                    self.my_Chart_principal_dataset_reefer[7].data = [];
+                    self.my_Chart_principal_dataset_reefer[8].data = [];
+                    datos_reefer = self.datos_tabla_reefer.length != 0 ? self.datos_tabla_reefer.reverse() : [];
+                    datos_reefer.map(function (datos_r, index) {
+                      self.my_Chart_principal_dataset_reefer[0].data.push(datos_r.set_point);
+                      self.my_Chart_principal_dataset_reefer[1].data.push(datos_r.temp_supply_1);
+                      self.my_Chart_principal_dataset_reefer[2].data.push(datos_r.temp_supply_2);
+                      self.my_Chart_principal_dataset_reefer[3].data.push(datos_r.return_air);
+                      self.my_Chart_principal_dataset_reefer[4].data.push(datos_r.ambient_air);
+                      self.my_Chart_principal_dataset_reefer[5].data.push(datos_r.relative_humidity);
+                      self.my_Chart_principal_dataset_reefer[6].data.push(datos_r.co2_reading);
+                      self.my_Chart_principal_dataset_reefer[7].data.push(datos_r.o2_reading);
+                      self.my_Chart_principal_dataset_reefer[8].data.push(datos_r.evaporator_speed);
+                    });
+                  }
+
+                  if (self.tipo == "Generador") {
+                    self.my_Chart_principal_dataset_generador[0].data = [];
+                    self.my_Chart_principal_dataset_generador[1].data = [];
+                    self.my_Chart_principal_dataset_generador[2].data = [];
+                    self.my_Chart_principal_dataset_generador[3].data = [];
+                    self.my_Chart_principal_dataset_generador[4].data = [];
+                    self.my_Chart_principal_dataset_generador[5].data = [];
+                    self.my_Chart_principal_dataset_generador[6].data = [];
+                    self.my_Chart_principal_dataset_generador[7].data = [];
+                    self.my_Chart_principal_dataset_generador[8].data = [];
+                    datos_genset = self.datos_tabla_generador.length != 0 ? self.datos_tabla_generador.reverse() : [];
+                    datos_genset.map(function (datos_g, index) {
+                      self.my_Chart_principal_dataset_generador[0].data.push(datos_g.battery_voltage);
+                      self.my_Chart_principal_dataset_generador[1].data.push(datos_g.water_temp);
+                      self.my_Chart_principal_dataset_generador[2].data.push(datos_g.running_frequency);
+                      self.my_Chart_principal_dataset_generador[3].data.push(datos_g.fuel_level);
+                      self.my_Chart_principal_dataset_generador[4].data.push(datos_g.voltage_measure);
+                      self.my_Chart_principal_dataset_generador[5].data.push(datos_g.rotor_current);
+                      self.my_Chart_principal_dataset_generador[6].data.push(datos_g.fiel_current);
+                      self.my_Chart_principal_dataset_generador[7].data.push(datos_g.rpm);
+                      self.my_Chart_principal_dataset_generador[8].data.push(datos_g.horometro); // -----------------
+                    });
+                  } // console.log('my_Chart_principal_dataset');
+
+
+                case 3:
+                case "end":
+                  return _context2.stop();
+              }
+            }
+          }, _callee2);
+        }));
+        return _set_data.apply(this, arguments);
+      }
+
+      set_data().then(function () {
+        if (self.tipo == "Reefer") {
+          self.my_Chart_principal_dataSetable = self.my_Chart_principal_dataset_reefer;
+        }
+
+        if (self.tipo == "Generador") {
+          self.my_Chart_principal_dataSetable = self.my_Chart_principal_dataset_generador;
+        }
+      });
+    }
+  }
+});
 
 /***/ }),
 
@@ -3465,8 +3862,15 @@ var Chart_eventos;
 /*!*****************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Panel/izquierda.vue?vue&type=script&lang=js& ***!
   \*****************************************************************************************************************************************************************************************************************/
-/***/ (() => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 //
 //
 //
@@ -3494,6 +3898,126 @@ var Chart_eventos;
 //
 //
 //
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  components: {},
+  props: {
+    contenedor_id: Number
+  },
+  data: function data() {
+    return {
+      chart_alarma_labels: [],
+      chart_alarma_dataset_data: [],
+      //  -------- chart eventos -------
+      chart_eventos_labels: [],
+      chart_eventos_dataset_data: []
+    };
+  },
+  watch: {},
+  methods: {
+    Circular_iniciarGraficosAlarms: function Circular_iniciarGraficosAlarms() {
+      var self = this;
+      var ctx_alarms = document.getElementById('myChart_alarms').getContext('2d');
+      Chart_alarmas = new Chart(ctx_alarms, {
+        type: 'doughnut',
+        data: {
+          labels: self.chart_alarma_labels,
+          datasets: [{
+            data: self.chart_alarma_dataset_data,
+            backgroundColor: ['#9c88ff', '#fbc531', '#e84118', '#00a8ff', '#718093'],
+            hoverOffset: 4
+          }]
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true
+            }
+          }
+        }
+      });
+    },
+    Circular_iniciarGraficosEventos: function Circular_iniciarGraficosEventos() {
+      var self = this;
+      var ctx_cargo = document.getElementById('myChart_cargo').getContext('2d');
+      Chart_eventos = new Chart(ctx_cargo, {
+        type: 'doughnut',
+        data: {
+          labels: self.chart_eventos_labels,
+          datasets: [{
+            label: 'My First Dataset',
+            data: self.chart_eventos_dataset_data,
+            backgroundColor: ['#fc5c65', '#fd9644', '#fed330', '#26de81', '#a55eea'],
+            hoverOffset: 4
+          }]
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true
+            }
+          }
+        }
+      });
+    },
+    setLabel: function setLabel() {
+      axios__WEBPACK_IMPORTED_MODULE_0___default().post(route('contenedores.get_alarma_evento'), {
+        id: self.datos_tabla_generador[0].contenedor_id
+      }).then(function (response) {
+        if (response.data != 0 && self.chart_alarma_labels.length == 0) {
+          self.chart_alarma_labels = [];
+          self.chart_alarma_dataset_data = [];
+          response.data['alarma'].forEach(function (element) {
+            self.chart_alarma_labels.push(element.nombre_alarma);
+            self.chart_alarma_dataset_data.push(element.cantidad_alarma);
+          });
+          self.chart_eventos_labels = [];
+          self.chart_eventos_dataset_data = [];
+          response.data['evento'].forEach(function (element) {
+            self.chart_eventos_labels.push(element.nombre_evento);
+            self.chart_eventos_dataset_data.push(element.cantidad_evento);
+          });
+        }
+      }).then(function () {
+        console.log('actualizando el chart circular '); // Chart_alarmas.update(); 
+
+        Chart_alarmas.destroy();
+        self.Circular_iniciarGraficosAlarms();
+      }).then(function () {
+        // Chart_eventos.update(); 
+        Chart_eventos.destroy();
+        self.Circular_iniciarGraficosEventos();
+      });
+    }
+  }
+}); // 			<rptCanastaFotos ref="rptCanastaFotos" :agencia_id="agencia_id">
+// 			</rptCanastaFotos>
+// 		</div>
+// 	</layout>
+// </template>
+// <script>
+// import layout from "./../Components/layout_creditos";
+// import { required } from "vuelidate/lib/validators";
+// import headerClose from "./../Components/header_close";
+// import headerCloseModal from "./../Components/header_close_modal";
+// import rptCanastaFotos from "./Reports/rptCanastaFotos";
+// const noZero = (value) => value != 0;
+// export default {
+// 	props: {
+// 		agencia_id: Number,
+// 		categorias: Array,
+// 		datos_cliente: Object,
+// 		fotos_cliente: Array,
+// 	},
+// 	components: {
+// 		layout,
+// 		headerClose,
+// 		headerCloseModal,
+// 		rptCanastaFotos,
+// 	},
+// 	data() {
+// 		return {
+// 			submited: false,
 
 /***/ }),
 
@@ -3732,8 +4256,15 @@ __webpack_require__.r(__webpack_exports__);
 /*!*********************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Panel/tabla_detalle.vue?vue&type=script&lang=js& ***!
   \*********************************************************************************************************************************************************************************************************************/
-/***/ (() => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 //
 //
 //
@@ -3946,6 +4477,74 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  components: {},
+  props: {
+    contenedor: Number
+  },
+  data: function data() {
+    return {
+      datos_tabla_reefer: [],
+      datos_tabla_generador: []
+    };
+  },
+  watch: {},
+  methods: {
+    select_contenedor: function select_contenedor(contenedor) {
+      var self = this;
+      self.datos_tabla_reefer = [];
+      self.datos_tabla_generador = []; // console.log(contenedor); 
+
+      axios__WEBPACK_IMPORTED_MODULE_0___default().post(route('contenedores.get_datos'), {
+        id: contenedor.contenedor_id,
+        tipo: contenedor.tipo
+      }).then(function (response) {
+        console.log(response.data);
+
+        if (contenedor.tipo == "Reefer") {
+          self.datos_tabla_reefer = response.data;
+        }
+
+        if (contenedor.tipo == "Generador") {
+          self.datos_tabla_generador = response.data;
+        }
+      }).then(function () {
+        if (contenedor.tipo == "Reefer") {
+          var mayor_id = self.datos_tabla_reefer.map(function (e) {
+            return e.id;
+          }).sort().reverse()[0];
+          axios__WEBPACK_IMPORTED_MODULE_0___default().post(route('contenedores.get_lat_log'), {
+            id: mayor_id,
+            tipo: contenedor.tipo
+          }).then(function (response) {
+            console.log(response.data.latitud, '---', response.data.longitud);
+            self.ubicacion = new google.maps.LatLng(response.data.latitud, response.data.longitud);
+          }).then(function () {
+            self.iniciarMap();
+          });
+        }
+
+        if (contenedor.tipo == "Generador") {
+          var _mayor_id = self.datos_tabla_generador.map(function (e) {
+            return e.id;
+          }).sort().reverse()[0];
+          axios__WEBPACK_IMPORTED_MODULE_0___default().post(route('contenedores.get_lat_log'), {
+            id: _mayor_id,
+            tipo: contenedor.tipo
+          }).then(function (response) {
+            console.log(response.data.latitud, '---', response.data.longitud);
+            self.ubicacion = new google.maps.LatLng(response.data.latitud, response.data.longitud);
+          }).then(function () {
+            self.iniciarMap();
+          });
+        }
+      }).then(function () {
+        self.setLabelsMyChartPrincipal();
+      });
+    }
+  }
+});
 
 /***/ }),
 
@@ -3953,7 +4552,22 @@ __webpack_require__.r(__webpack_exports__);
 /*!*********************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Panel/tabla_resumen.vue?vue&type=script&lang=js& ***!
   \*********************************************************************************************************************************************************************************************************************/
-/***/ (() => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 //
 //
@@ -4190,6 +4804,65 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  components: {},
+  props: {
+    contenedor: Number
+  },
+  data: function data() {
+    return {
+      datos_resumen_gen: [],
+      datos_resumen_reefer: []
+    };
+  },
+  watch: {},
+  methods: {
+    resumenContenedor: function resumenContenedor() {
+      var self = this;
+      this.$nextTick(function () {
+        function rellenar_resumen() {
+          return _rellenar_resumen.apply(this, arguments);
+        }
+
+        function _rellenar_resumen() {
+          _rellenar_resumen = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+            return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+              while (1) {
+                switch (_context.prev = _context.next) {
+                  case 0:
+                    self.contenedores_encendidos_gen.map(function (contenedor) {
+                      axios__WEBPACK_IMPORTED_MODULE_1___default().post(route('contenedores.resumen'), {
+                        id_contenedor: contenedor.id,
+                        tipo_contenedor: contenedor.tipo
+                      }).then(function (response) {
+                        contenedor = Object.assign(contenedor, response.data); // aqui unimos el objeto con los ultimos datos del registro diario
+                      });
+                      self.datos_resumen_gen.push(contenedor);
+                    });
+                    self.contenedores_encendidos_reefer.map(function (cont) {
+                      axios__WEBPACK_IMPORTED_MODULE_1___default().post(route('contenedores.resumen'), {
+                        id_contenedor: cont.id,
+                        tipo_contenedor: cont.tipo
+                      }).then(function (rp) {
+                        cont = Object.assign(cont, rp.data); // aqui unimos el objeto con los ultimos datos del registro diario
+                      });
+                      self.datos_resumen_reefer.push(cont);
+                    });
+
+                  case 2:
+                  case "end":
+                    return _context.stop();
+                }
+              }
+            }, _callee);
+          }));
+          return _rellenar_resumen.apply(this, arguments);
+        }
+      });
+    }
+  }
+});
 
 /***/ }),
 
@@ -28998,9 +29671,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _grafico_principal_vue_vue_type_template_id_485ad550___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./grafico_principal.vue?vue&type=template&id=485ad550& */ "./resources/js/Pages/Panel/grafico_principal.vue?vue&type=template&id=485ad550&");
 /* harmony import */ var _grafico_principal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./grafico_principal.vue?vue&type=script&lang=js& */ "./resources/js/Pages/Panel/grafico_principal.vue?vue&type=script&lang=js&");
-/* harmony reexport (unknown) */ var __WEBPACK_REEXPORT_OBJECT__ = {};
-/* harmony reexport (unknown) */ for(const __WEBPACK_IMPORT_KEY__ in _grafico_principal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== "default") __WEBPACK_REEXPORT_OBJECT__[__WEBPACK_IMPORT_KEY__] = () => _grafico_principal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[__WEBPACK_IMPORT_KEY__]
-/* harmony reexport (unknown) */ __webpack_require__.d(__webpack_exports__, __WEBPACK_REEXPORT_OBJECT__);
 /* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -29040,9 +29710,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _izquierda_vue_vue_type_template_id_df08ed0c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./izquierda.vue?vue&type=template&id=df08ed0c& */ "./resources/js/Pages/Panel/izquierda.vue?vue&type=template&id=df08ed0c&");
 /* harmony import */ var _izquierda_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./izquierda.vue?vue&type=script&lang=js& */ "./resources/js/Pages/Panel/izquierda.vue?vue&type=script&lang=js&");
-/* harmony reexport (unknown) */ var __WEBPACK_REEXPORT_OBJECT__ = {};
-/* harmony reexport (unknown) */ for(const __WEBPACK_IMPORT_KEY__ in _izquierda_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== "default") __WEBPACK_REEXPORT_OBJECT__[__WEBPACK_IMPORT_KEY__] = () => _izquierda_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[__WEBPACK_IMPORT_KEY__]
-/* harmony reexport (unknown) */ __webpack_require__.d(__webpack_exports__, __WEBPACK_REEXPORT_OBJECT__);
 /* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -29162,9 +29829,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _tabla_detalle_vue_vue_type_template_id_67df539e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./tabla_detalle.vue?vue&type=template&id=67df539e& */ "./resources/js/Pages/Panel/tabla_detalle.vue?vue&type=template&id=67df539e&");
 /* harmony import */ var _tabla_detalle_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./tabla_detalle.vue?vue&type=script&lang=js& */ "./resources/js/Pages/Panel/tabla_detalle.vue?vue&type=script&lang=js&");
-/* harmony reexport (unknown) */ var __WEBPACK_REEXPORT_OBJECT__ = {};
-/* harmony reexport (unknown) */ for(const __WEBPACK_IMPORT_KEY__ in _tabla_detalle_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== "default") __WEBPACK_REEXPORT_OBJECT__[__WEBPACK_IMPORT_KEY__] = () => _tabla_detalle_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[__WEBPACK_IMPORT_KEY__]
-/* harmony reexport (unknown) */ __webpack_require__.d(__webpack_exports__, __WEBPACK_REEXPORT_OBJECT__);
 /* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -29204,9 +29868,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _tabla_resumen_vue_vue_type_template_id_3f274f08___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./tabla_resumen.vue?vue&type=template&id=3f274f08& */ "./resources/js/Pages/Panel/tabla_resumen.vue?vue&type=template&id=3f274f08&");
 /* harmony import */ var _tabla_resumen_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./tabla_resumen.vue?vue&type=script&lang=js& */ "./resources/js/Pages/Panel/tabla_resumen.vue?vue&type=script&lang=js&");
-/* harmony reexport (unknown) */ var __WEBPACK_REEXPORT_OBJECT__ = {};
-/* harmony reexport (unknown) */ for(const __WEBPACK_IMPORT_KEY__ in _tabla_resumen_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== "default") __WEBPACK_REEXPORT_OBJECT__[__WEBPACK_IMPORT_KEY__] = () => _tabla_resumen_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[__WEBPACK_IMPORT_KEY__]
-/* harmony reexport (unknown) */ __webpack_require__.d(__webpack_exports__, __WEBPACK_REEXPORT_OBJECT__);
 /* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -29380,11 +30041,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_grafico_principal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./grafico_principal.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Panel/grafico_principal.vue?vue&type=script&lang=js&");
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_grafico_principal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_grafico_principal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__);
-/* harmony reexport (unknown) */ var __WEBPACK_REEXPORT_OBJECT__ = {};
-/* harmony reexport (unknown) */ for(const __WEBPACK_IMPORT_KEY__ in _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_grafico_principal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== "default") __WEBPACK_REEXPORT_OBJECT__[__WEBPACK_IMPORT_KEY__] = () => _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_grafico_principal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__[__WEBPACK_IMPORT_KEY__]
-/* harmony reexport (unknown) */ __webpack_require__.d(__webpack_exports__, __WEBPACK_REEXPORT_OBJECT__);
- /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_grafico_principal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0___default())); 
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_grafico_principal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
@@ -29400,11 +30057,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_izquierda_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./izquierda.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Panel/izquierda.vue?vue&type=script&lang=js&");
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_izquierda_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_izquierda_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__);
-/* harmony reexport (unknown) */ var __WEBPACK_REEXPORT_OBJECT__ = {};
-/* harmony reexport (unknown) */ for(const __WEBPACK_IMPORT_KEY__ in _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_izquierda_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== "default") __WEBPACK_REEXPORT_OBJECT__[__WEBPACK_IMPORT_KEY__] = () => _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_izquierda_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__[__WEBPACK_IMPORT_KEY__]
-/* harmony reexport (unknown) */ __webpack_require__.d(__webpack_exports__, __WEBPACK_REEXPORT_OBJECT__);
- /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_izquierda_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0___default())); 
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_izquierda_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
@@ -29452,11 +30105,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_tabla_detalle_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./tabla_detalle.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Panel/tabla_detalle.vue?vue&type=script&lang=js&");
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_tabla_detalle_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_tabla_detalle_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__);
-/* harmony reexport (unknown) */ var __WEBPACK_REEXPORT_OBJECT__ = {};
-/* harmony reexport (unknown) */ for(const __WEBPACK_IMPORT_KEY__ in _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_tabla_detalle_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== "default") __WEBPACK_REEXPORT_OBJECT__[__WEBPACK_IMPORT_KEY__] = () => _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_tabla_detalle_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__[__WEBPACK_IMPORT_KEY__]
-/* harmony reexport (unknown) */ __webpack_require__.d(__webpack_exports__, __WEBPACK_REEXPORT_OBJECT__);
- /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_tabla_detalle_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0___default())); 
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_tabla_detalle_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
@@ -29472,11 +30121,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_tabla_resumen_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./tabla_resumen.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Panel/tabla_resumen.vue?vue&type=script&lang=js&");
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_tabla_resumen_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_tabla_resumen_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__);
-/* harmony reexport (unknown) */ var __WEBPACK_REEXPORT_OBJECT__ = {};
-/* harmony reexport (unknown) */ for(const __WEBPACK_IMPORT_KEY__ in _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_tabla_resumen_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== "default") __WEBPACK_REEXPORT_OBJECT__[__WEBPACK_IMPORT_KEY__] = () => _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_tabla_resumen_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__[__WEBPACK_IMPORT_KEY__]
-/* harmony reexport (unknown) */ __webpack_require__.d(__webpack_exports__, __WEBPACK_REEXPORT_OBJECT__);
- /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_tabla_resumen_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0___default())); 
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_tabla_resumen_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
