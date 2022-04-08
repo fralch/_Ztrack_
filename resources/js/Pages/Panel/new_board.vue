@@ -15,19 +15,19 @@
                   <div id="total_reefers" class="col shadow-sm p-3 mb-5 bg-white rounded " style="margin: 10px 15px 0px 15px;">
                     <div>Total Reefers: {{contenedores_todos_length}}</div>
                     <div class="row" style="margin: 0 10px;">
-                      <button type="button" id="select_gen" class="col-3 btn btn-primary" @click="contenedores_prendidos('Generador')" >
+                      <button type="button" id="select_gen" class="col-3 btn btn-primary" @click="tipo='genset'" >
                         <i class="bi bi-power"></i> 
                         <b style="font-size:1.2em;">{{contenedores_encendidos_gen_length}}</b>
                         &nbsp;
                         Gen Running 
                       </button>
-                      <button type="button" id="select_reef" class="col-3 btn btn-success"  @click="contenedores_prendidos('Reefer')">
+                      <button type="button" id="select_reef" class="col-3 btn btn-success"  @click="tipo='reefer'">
                         <i class="bi bi-power"></i> 
                         <b style="font-size:1.2em;">{{contenedores_encendidos_reefer_length}}</b>
                         &nbsp;
                         Reefers Running 
                       </button>
-                      <button type="button" class="col-3 btn btn-danger" >
+                      <button type="button" id="select_mad" class="col-3 btn btn-danger"  @click="tipo='mad'">
                         <i class="bi bi-power"></i> 
                         <b style="font-size:1.2em;">0</b>
                         &nbsp;
@@ -45,7 +45,8 @@
                     <canvasMapa ref="canvasMapa" :id_contenedor="1" >
 			              </canvasMapa>
                   <!-- ********* TABLA RESUMEN CONTENEDORES  *********-->
-                                
+                    <tablaResumen ref="tablaResumen" :tipo=tipo >
+			              </tablaResumen>   
 
                   <!-- *********** TABLA DETALLE CONTENEDORES *********** -->
                               
@@ -61,12 +62,14 @@
 
 <script>
 import axios from 'axios';
-import canvasMapa from "./mapa.vue";
 import layoutprincipal from "../layout.vue";
+import canvasMapa from "./componentes/mapa.vue";
+import tablaResumen from "./componentes/tabla_resumen_genset.vue";
 export default {
   components: { 
-    canvasMapa, 
     layoutprincipal,
+    canvasMapa, 
+    tablaResumen,
   },
   props: {
     // tu_cuenta:Array,
