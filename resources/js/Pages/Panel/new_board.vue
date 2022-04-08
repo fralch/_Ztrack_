@@ -42,7 +42,7 @@
                     </div>
                   </div>      
                   <!-- ********** CANVAS MAPA **********-->
-                    <canvasMapa ref="canvasMapa" :id_contenedor="1" :probando="'texto prueba'" >
+                    <canvasMapa ref="canvasMapa" :id_contenedor="1" >
 			              </canvasMapa>
                   <!-- ********* TABLA RESUMEN CONTENEDORES  *********-->
                                 
@@ -95,8 +95,6 @@ export default {
   methods: {
     cargarMapa(){
 
-      let mapa = this.$refs.canvasMapa;
-      console.log(mapa.probando);
     },
     autoRefresh(){
       // let self = this;
@@ -132,7 +130,7 @@ export default {
     usuarioLogeado(){
       /* AQUI ES DONDE SE PONE EL NOMBRE DEL USUARIO EN EL NAV  */
       this.$refs.layoutprincipal.usuario = (this.usuario_logeado[0].nombres ).toUpperCase() ;
-     this.$refs.layoutprincipal.admin = this.usuario_logeado[0].admin; 
+      this.$refs.layoutprincipal.admin = this.usuario_logeado[0].admin; 
     },
  
   },  

@@ -3501,18 +3501,84 @@ var Chart_eventos;
 /*!************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Panel/mapa.vue?vue&type=script&lang=js& ***!
   \************************************************************************************************************************************************************************************************************/
-/***/ (() => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 //
 //
 //
 //
 //
-//
-//
-//
-//
-//
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  components: {},
+  props: {
+    id_contenedor: Number
+  },
+  data: function data() {
+    return {
+      mapa: null,
+      ubicacion: new google.maps.LatLng(-11.98, -77.12)
+    };
+  },
+  watch: {},
+  mounted: function mounted() {
+    this.iniciarMap();
+  },
+  methods: {
+    iniciarMap: function iniciarMap() {
+      var self = this;
+      this.$nextTick(function () {
+        self.mapa = new google.maps.Map(document.getElementById("map"), {
+          center: self.ubicacion,
+          zoom: 15
+        });
+        var marcador = new google.maps.Marker({
+          position: self.ubicacion,
+          map: self.mapa
+        });
+        marcador.setPosition(self.ubicacion);
+      });
+    },
+    fijarUbicacion: function fijarUbicacion() {
+      if (contenedor.tipo == "Reefer") {
+        var mayor_id = self.datos_tabla_reefer.map(function (e) {
+          return e.id;
+        }).sort().reverse()[0];
+        axios__WEBPACK_IMPORTED_MODULE_0___default().post(route('contenedores.get_lat_log'), {
+          id: mayor_id,
+          tipo: contenedor.tipo
+        }).then(function (response) {
+          console.log(response.data.latitud, '---', response.data.longitud);
+          self.ubicacion = new google.maps.LatLng(response.data.latitud, response.data.longitud);
+        }).then(function () {
+          self.iniciarMap();
+        });
+      }
+
+      if (contenedor.tipo == "Generador") {
+        var _mayor_id = self.datos_tabla_generador.map(function (e) {
+          return e.id;
+        }).sort().reverse()[0];
+        axios__WEBPACK_IMPORTED_MODULE_0___default().post(route('contenedores.get_lat_log'), {
+          id: _mayor_id,
+          tipo: contenedor.tipo
+        }).then(function (response) {
+          console.log(response.data.latitud, '---', response.data.longitud);
+          self.ubicacion = new google.maps.LatLng(response.data.latitud, response.data.longitud);
+        }).then(function () {
+          self.iniciarMap();
+        });
+      }
+    }
+  }
+});
 
 /***/ }),
 
@@ -3622,10 +3688,7 @@ __webpack_require__.r(__webpack_exports__);
     this.cargarMapa();
   },
   methods: {
-    cargarMapa: function cargarMapa() {
-      var mapa = this.$refs.canvasMapa;
-      console.log(mapa.probando);
-    },
+    cargarMapa: function cargarMapa() {},
     autoRefresh: function autoRefresh() {// let self = this;
       // this.$nextTick(() => {
       //    async function f() {
@@ -29019,9 +29082,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _mapa_vue_vue_type_template_id_7932c3ce___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./mapa.vue?vue&type=template&id=7932c3ce& */ "./resources/js/Pages/Panel/mapa.vue?vue&type=template&id=7932c3ce&");
 /* harmony import */ var _mapa_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./mapa.vue?vue&type=script&lang=js& */ "./resources/js/Pages/Panel/mapa.vue?vue&type=script&lang=js&");
-/* harmony reexport (unknown) */ var __WEBPACK_REEXPORT_OBJECT__ = {};
-/* harmony reexport (unknown) */ for(const __WEBPACK_IMPORT_KEY__ in _mapa_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== "default") __WEBPACK_REEXPORT_OBJECT__[__WEBPACK_IMPORT_KEY__] = () => _mapa_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[__WEBPACK_IMPORT_KEY__]
-/* harmony reexport (unknown) */ __webpack_require__.d(__webpack_exports__, __WEBPACK_REEXPORT_OBJECT__);
 /* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -29360,11 +29420,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_mapa_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./mapa.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Panel/mapa.vue?vue&type=script&lang=js&");
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_mapa_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_mapa_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__);
-/* harmony reexport (unknown) */ var __WEBPACK_REEXPORT_OBJECT__ = {};
-/* harmony reexport (unknown) */ for(const __WEBPACK_IMPORT_KEY__ in _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_mapa_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== "default") __WEBPACK_REEXPORT_OBJECT__[__WEBPACK_IMPORT_KEY__] = () => _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_mapa_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__[__WEBPACK_IMPORT_KEY__]
-/* harmony reexport (unknown) */ __webpack_require__.d(__webpack_exports__, __WEBPACK_REEXPORT_OBJECT__);
- /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_mapa_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0___default())); 
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_mapa_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
@@ -33620,31 +33676,29 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    {
-      staticClass: "col shadow-sm p-3 mb-5 bg-white rounded ",
-      staticStyle: { margin: "-30px 15px 10px 15px" },
-      attrs: { id: "asset_maps" },
-    },
-    [
-      _c("b", [
-        _c("i", { staticClass: "fas fa-map-marked-alt" }),
-        _vm._v(
-          "\n             \n            " +
-            _vm._s(_vm.probando) +
-            "\n          "
-        ),
-      ]),
-      _vm._v(" "),
-      _c("div", {
-        staticStyle: { width: "100%", height: "365px" },
-        attrs: { id: "map" },
-      }),
-    ]
-  )
+  return _vm._m(0)
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass: "col shadow-sm p-3 mb-5 bg-white rounded ",
+        staticStyle: { margin: "-30px 15px 10px 15px" },
+        attrs: { id: "asset_maps" },
+      },
+      [
+        _c("div", {
+          staticStyle: { width: "100%", height: "365px" },
+          attrs: { id: "map" },
+        }),
+      ]
+    )
+  },
+]
 render._withStripped = true
 
 
@@ -33833,7 +33887,7 @@ var render = function () {
                       _vm._v(" "),
                       _c("canvasMapa", {
                         ref: "canvasMapa",
-                        attrs: { id_contenedor: 1, probando: "texto prueba" },
+                        attrs: { id_contenedor: 1 },
                       }),
                     ],
                     1

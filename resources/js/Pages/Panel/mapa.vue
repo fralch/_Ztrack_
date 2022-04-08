@@ -1,10 +1,5 @@
 <template>
 	 <div id="asset_maps" class="col shadow-sm p-3 mb-5 bg-white rounded " style="margin: -30px 15px 10px 15px;">
-          <b>
-            <i class="fas fa-map-marked-alt"></i>
-            &nbsp;
-            {{probando}}
-          </b>
         <div id="map" style="width:100%; height:365px;"></div>
     </div>
 </template>
@@ -14,7 +9,6 @@ export default {
 	components: {  },
 	props: { 
          id_contenedor: Number,
-         probando: String
     },
 	data() {
 		return {
@@ -25,7 +19,9 @@ export default {
 	},
 	watch: {
 	},
-   
+    mounted() {
+    this.iniciarMap(); 
+    },
 	methods: {
        
 		iniciarMap() {
@@ -71,3 +67,4 @@ export default {
 	},
 };
 
+</script>
