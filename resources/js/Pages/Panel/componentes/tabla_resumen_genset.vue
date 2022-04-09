@@ -157,7 +157,7 @@ export default {
     resumenContenedor() {
       let self = this;
       this.$nextTick(() => {
-        async function rellenar_resumen() {
+        function rellenar_resumen() {
           self.contenedores_encendidos_gen.map(function (contenedor) {
             axios
               .post(route("contenedores.resumen"), {
@@ -172,7 +172,7 @@ export default {
           
         }
          rellenar_resumen().then(()=>{
-           console.log('f')
+           console.log('fD')
           // $("#tblContenedor_generador").DataTable().destroy();
           self.TablaContenedores_gen();
         });
