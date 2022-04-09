@@ -3228,66 +3228,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         _this.resumenContenedor();
       });
     },
-    // resumenContenedor_(data) {
-    //   let self = this;
-    //     console.log('funcion')
-    //     data.map(function (contenedor) {
-    //       async function rellenar_resumen() {
-    //           axios
-    //           .post(route("contenedores.resumen"), {
-    //             id_contenedor: contenedor.id,
-    //             tipo_contenedor: "genset",
-    //           })
-    //           .then((response) => {
-    //             contenedor = Object.assign(contenedor, response.data); // aqui unimos el objeto con los ultimos datos del registro diario
-    //           }).then(()=>{
-    //             self.datos_resumen_gen.push(contenedor);
-    //           })
-    //       }
-    //        rellenar_resumen()
-    //        .then((response) => {
-    //        })
-    //         // console.log(self.datos_resumen_gen);
-    //     });
-    //   // data.map(function (contenedor) {
-    //   //   axios
-    //   //     .post(route("contenedores.resumen"), {
-    //   //       id_contenedor: contenedor.id,
-    //   //       tipo_contenedor: "genset",
-    //   //     })
-    //   //     .then((response) => {
-    //   //       contenedor = Object.assign(contenedor, response.data); // aqui unimos el objeto con los ultimos datos del registro diario
-    //   //       self.datos_resumen_gen.push(contenedor);
-    //   //     });
-    //   //   console.log(self.datos_resumen_gen);
-    //   // });
-    //   // this.$nextTick(() => {
-    //   //   // async function rellenar_resumen() {
-    //   //   //   self.contenedores_encendidos_gen.map(function (contenedor) {
-    //   //   //     axios
-    //   //   //       .post(route("contenedores.resumen"), {
-    //   //   //         id_contenedor: contenedor.id,
-    //   //   //         tipo_contenedor: 'genset',
-    //   //   //       })
-    //   //   //       .then((response) => {
-    //   //   //         contenedor = Object.assign(contenedor, response.data); // aqui unimos el objeto con los ultimos datos del registro diario
-    //   //   //       });
-    //   //   //     self.datos_resumen_gen.push(contenedor);
-    //   //   //   });
-    //   //   //   self.contenedores_encendidos_reefer.map(function (cont) {
-    //   //   //     axios
-    //   //   //       .post(route("contenedores.resumen"), {
-    //   //   //         id_contenedor: cont.id,
-    //   //   //         tipo_contenedor: cont.tipo,
-    //   //   //       })
-    //   //   //       .then((rp) => {
-    //   //   //         cont = Object.assign(cont, rp.data); // aqui unimos el objeto con los ultimos datos del registro diario
-    //   //   //       });
-    //   //   //     self.datos_resumen_reefer.push(cont);
-    //   //   //   });
-    //   //   // }
-    //   // });
-    // },
     select_contenedor: function select_contenedor(contenedor) {
       console.log(contenedor);
     },
