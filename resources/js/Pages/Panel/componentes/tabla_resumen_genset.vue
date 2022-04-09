@@ -99,10 +99,11 @@ export default {
     };
   },
   watch: {
-
+  
   },
   mounted() {
     this.actualizarTabla();
+    // this.TablaContenedores_gen();
    
   },
   methods: {
@@ -126,7 +127,9 @@ export default {
     },
     actualizarTabla(){
       let self = this;
-       axios
+      let datos_completo=[];
+      async function obtendido_datos() {
+        axios
           .post(route('contenedores.obtener_contendor'), {
             tipo: 'genset',
           })
@@ -144,15 +147,18 @@ export default {
                     // console.log(response.data);
                     contenedor = Object.assign(contenedor, response.data); // aqui unimos el objeto con los ultimos datos del registro diario
                   }).then(() => {
-                    console.log(contenedor);
-                    self.datos_resumen_gen.push(contenedor);
+                    // console.log(contenedor);
+                    datos_completo.push(contenedor);
                   });
               });
             
-          }).then(() => {
-              $("#tblContenedor_generador").DataTable().destroy();
-              self.TablaContenedores_gen(); 
-          });      
+          })  
+      }
+       obtendido_datos().then(()=>{
+         self.datos_resumen_gen = datos_completo;
+        //  self.TablaContenedores_gen();   // aqui se ejecuta la tabla
+       })
+          
     },
     resumenContenedor() {
       // let self = this;
@@ -182,6 +188,9 @@ export default {
       //     });
       //   }
       // });
+    },
+    select_contenedor(contenedor){
+      console.log(contenedor);
     },
   },
 };
