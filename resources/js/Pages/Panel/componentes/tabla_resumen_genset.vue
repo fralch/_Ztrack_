@@ -107,18 +107,17 @@ export default {
     };
   },
   watch: {
-    // datos_resumen_gen() {
-    //   $("#tblContenedor_generador").DataTable().destroy();
-    //   this.TablaContenedores_gen();
-    // },
+    tipo() {
+      $("#tblContenedor_generador").DataTable().destroy();
+      this.TablaContenedores_gen();
+    },
   },
   mounted() {
     this.actualizarTabla();
-    
-    // this.TablaContenedores_gen();
   },
   methods: {
     TablaContenedores_gen() {
+      // console.log("armando tabla");
       let self = this;
       this.$nextTick(() => {
         var table2 = $("#tblContenedor_generador").DataTable({
@@ -157,7 +156,7 @@ export default {
     resumenContenedor() {
       let self = this;
       this.$nextTick(() => {
-        function rellenar_resumen() {
+        async function rellenar_resumen() {
           self.contenedores_encendidos_gen.map(function (contenedor) {
             axios
               .post(route("contenedores.resumen"), {
@@ -172,7 +171,7 @@ export default {
           
         }
          rellenar_resumen().then(()=>{
-           console.log('fD')
+           console.log(self.datos_resumen_gen)
           // $("#tblContenedor_generador").DataTable().destroy();
           self.TablaContenedores_gen();
         });
