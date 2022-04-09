@@ -61,7 +61,7 @@ class PanelController extends Controller
         // return $request; 
         $id_contenedor = $request->id_contenedor;
         $tipo_contenedor = $request->tipo_contenedor;
-        if ($tipo_contenedor == 'Reefer') {
+        if ($tipo_contenedor == 'reefer') {
             return $ultimo_dato_contenedor = Registro_diario_reefers::where('contenedor_id', $id_contenedor)->orderBy('id', 'desc')->first();
         }
         if ($tipo_contenedor == 'genset') {

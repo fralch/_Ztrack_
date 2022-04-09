@@ -208,7 +208,7 @@ export default {
 
       axios
         .post(route("contenedores.obtener_contendor"), {
-          tipo: "genset",
+          tipo: "reefer",
         })
         .then((res) => {
           self.contenedores_encendidos_reefer = res.data;

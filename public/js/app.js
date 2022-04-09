@@ -3509,7 +3509,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
       var self = this;
       axios__WEBPACK_IMPORTED_MODULE_1___default().post(route("contenedores.obtener_contendor"), {
-        tipo: "genset"
+        tipo: "reefer"
       }).then(function (res) {
         self.contenedores_encendidos_reefer = res.data;
       }).then(function () {
@@ -3580,6 +3580,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _layout_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../layout.vue */ "./resources/js/Pages/layout.vue");
 /* harmony import */ var _componentes_mapa_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./componentes/mapa.vue */ "./resources/js/Pages/Panel/componentes/mapa.vue");
 /* harmony import */ var _componentes_tabla_resumen_genset_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./componentes/tabla_resumen_genset.vue */ "./resources/js/Pages/Panel/componentes/tabla_resumen_genset.vue");
+/* harmony import */ var _componentes_tabla_resumen_reefer_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./componentes/tabla_resumen_reefer.vue */ "./resources/js/Pages/Panel/componentes/tabla_resumen_reefer.vue");
 //
 //
 //
@@ -3642,6 +3643,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+
 
 
 
@@ -3650,7 +3654,8 @@ __webpack_require__.r(__webpack_exports__);
   components: {
     layoutprincipal: _layout_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
     canvasMapa: _componentes_mapa_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
-    tablaResumen: _componentes_tabla_resumen_genset_vue__WEBPACK_IMPORTED_MODULE_3__["default"]
+    tablaResumenGen: _componentes_tabla_resumen_genset_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
+    tablaResumenReef: _componentes_tabla_resumen_reefer_vue__WEBPACK_IMPORTED_MODULE_4__["default"]
   },
   props: {
     // tu_cuenta:Array,
@@ -32958,8 +32963,13 @@ var render = function () {
                         attrs: { id_contenedor: 1 },
                       }),
                       _vm._v(" "),
-                      _c("tablaResumen", {
-                        ref: "tablaResumen",
+                      _c("tablaResumenGen", {
+                        ref: "tablaResumenGen",
+                        attrs: { tipo: _vm.tipo },
+                      }),
+                      _vm._v(" "),
+                      _c("tablaResumenReef", {
+                        ref: "tablaResumenReef",
                         attrs: { tipo: _vm.tipo },
                       }),
                     ],

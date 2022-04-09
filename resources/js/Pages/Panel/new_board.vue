@@ -45,8 +45,10 @@
                     <canvasMapa ref="canvasMapa" :id_contenedor="1" >
 			              </canvasMapa>
                   <!-- ********* TABLA RESUMEN CONTENEDORES  *********-->
-                    <tablaResumen ref="tablaResumen" :tipo=tipo >
-			              </tablaResumen>   
+                    <tablaResumenGen ref="tablaResumenGen" :tipo=tipo >
+			              </tablaResumenGen>   
+                    <tablaResumenReef ref="tablaResumenReef" :tipo=tipo >
+			              </tablaResumenReef>   
 
                   <!-- *********** TABLA DETALLE CONTENEDORES *********** -->
                               
@@ -64,12 +66,14 @@
 import axios from 'axios';
 import layoutprincipal from "../layout.vue";
 import canvasMapa from "./componentes/mapa.vue";
-import tablaResumen from "./componentes/tabla_resumen_genset.vue";
+import tablaResumenGen from "./componentes/tabla_resumen_genset.vue";
+import tablaResumenReef from "./componentes/tabla_resumen_reefer.vue";
 export default {
   components: { 
     layoutprincipal,
     canvasMapa, 
-    tablaResumen,
+    tablaResumenGen,
+    tablaResumenReef,
   },
   props: {
     // tu_cuenta:Array,
