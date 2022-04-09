@@ -143,7 +143,6 @@ export default {
         })
         .then((res) => {
           self.contenedores_encendidos_gen = res.data;
-          // self.resumenContenedor(res.data);
         }).then(() => {
           this.resumenContenedor(); 
         });
