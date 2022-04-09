@@ -3072,16 +3072,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
-
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -3179,7 +3179,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       datos_resumen_gen: []
     };
   },
-  watch: {},
+  watch: {
+    datos_resumen_gen: function datos_resumen_gen() {
+      $("#tblContenedor_generador").DataTable().destroy();
+      this.TablaContenedores_gen();
+    }
+  },
   mounted: function mounted() {
     this.actualizarTabla(); // this.TablaContenedores_gen();
   },
@@ -3187,95 +3192,78 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     TablaContenedores_gen: function TablaContenedores_gen() {
       var self = this;
       this.$nextTick(function () {
-        var table2 = $('#tblContenedor_generador').DataTable({
-          "scrollX": "100%",
-          "scrollCollapse": true,
-          "language": {
-            "url": "//cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json"
+        var table2 = $("#tblContenedor_generador").DataTable({
+          scrollX: "100%",
+          scrollCollapse: true,
+          language: {
+            url: "//cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json"
           }
         });
         /* Esta es la funcion que selecciona una fila  yla colorea  */
 
-        $('#tblContenedor_generador tbody').on('click', 'tr', function () {
-          table2.$('tr.selected').removeClass('selected');
-          $(this).addClass('selected');
+        $("#tblContenedor_generador tbody").on("click", "tr", function () {
+          table2.$("tr.selected").removeClass("selected");
+          $(this).addClass("selected");
         });
       });
     },
     actualizarTabla: function actualizarTabla() {
       var self = this;
-      var datos_completo = [];
-
-      function obtendido_datos() {
-        return _obtendido_datos.apply(this, arguments);
-      }
-
-      function _obtendido_datos() {
-        _obtendido_datos = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
-          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
-            while (1) {
-              switch (_context.prev = _context.next) {
-                case 0:
-                  axios__WEBPACK_IMPORTED_MODULE_1___default().post(route('contenedores.obtener_contendor'), {
-                    tipo: 'genset'
-                  }).then(function (res) {
-                    // console.log(res.data);
-                    self.contenedores_encendidos_gen = res.data;
-                  }).then(function () {
-                    self.contenedores_encendidos_gen.map(function (contenedor) {
-                      axios__WEBPACK_IMPORTED_MODULE_1___default().post(route("contenedores.resumen"), {
-                        id_contenedor: contenedor.id,
-                        tipo_contenedor: 'genset'
-                      }).then(function (response) {
-                        // console.log(response.data);
-                        contenedor = Object.assign(contenedor, response.data); // aqui unimos el objeto con los ultimos datos del registro diario
-                      }).then(function () {
-                        // console.log(contenedor);
-                        datos_completo.push(contenedor);
-                      });
-                    });
-                  });
-
-                case 1:
-                case "end":
-                  return _context.stop();
-              }
-            }
-          }, _callee);
-        }));
-        return _obtendido_datos.apply(this, arguments);
-      }
-
-      obtendido_datos().then(function () {
-        self.datos_resumen_gen = datos_completo; //  self.TablaContenedores_gen();   // aqui se ejecuta la tabla
+      axios__WEBPACK_IMPORTED_MODULE_0___default().post(route("contenedores.obtener_contendor"), {
+        tipo: "genset"
+      }).then(function (res) {
+        // self.contenedores_encendidos_gen = res.data;
+        self.resumenContenedor(res.data);
       });
     },
-    resumenContenedor: function resumenContenedor() {// let self = this;
-      // this.$nextTick(() => {
-      //   async function rellenar_resumen() {
-      //     self.contenedores_encendidos_gen.map(function (contenedor) {
-      //       axios
-      //         .post(route("contenedores.resumen"), {
-      //           id_contenedor: contenedor.id,
-      //           tipo_contenedor: 'genset',
-      //         })
-      //         .then((response) => {
-      //           contenedor = Object.assign(contenedor, response.data); // aqui unimos el objeto con los ultimos datos del registro diario
-      //         });
+    resumenContenedor: function resumenContenedor(data) {
+      var self = this;
+      data.map(function (contenedor) {
+        axios__WEBPACK_IMPORTED_MODULE_0___default().post(route("contenedores.resumen"), {
+          id_contenedor: contenedor.id,
+          tipo_contenedor: "genset"
+        }).then(function (response) {
+          contenedor = Object.assign(contenedor, response.data); // aqui unimos el objeto con los ultimos datos del registro diario
+        }).then(function () {
+          self.datos_resumen_gen.push(contenedor);
+        }); // console.log(self.datos_resumen_gen);
+      }); // data.map(function (contenedor) {
+      //   axios
+      //     .post(route("contenedores.resumen"), {
+      //       id_contenedor: contenedor.id,
+      //       tipo_contenedor: "genset",
+      //     })
+      //     .then((response) => {
+      //       contenedor = Object.assign(contenedor, response.data); // aqui unimos el objeto con los ultimos datos del registro diario
       //       self.datos_resumen_gen.push(contenedor);
       //     });
-      //     self.contenedores_encendidos_reefer.map(function (cont) {
-      //       axios
-      //         .post(route("contenedores.resumen"), {
-      //           id_contenedor: cont.id,
-      //           tipo_contenedor: cont.tipo,
-      //         })
-      //         .then((rp) => {
-      //           cont = Object.assign(cont, rp.data); // aqui unimos el objeto con los ultimos datos del registro diario
-      //         });
-      //       self.datos_resumen_reefer.push(cont);
-      //     });
-      //   }
+      //   console.log(self.datos_resumen_gen);
+      // });
+      // this.$nextTick(() => {
+      //   // async function rellenar_resumen() {
+      //   //   self.contenedores_encendidos_gen.map(function (contenedor) {
+      //   //     axios
+      //   //       .post(route("contenedores.resumen"), {
+      //   //         id_contenedor: contenedor.id,
+      //   //         tipo_contenedor: 'genset',
+      //   //       })
+      //   //       .then((response) => {
+      //   //         contenedor = Object.assign(contenedor, response.data); // aqui unimos el objeto con los ultimos datos del registro diario
+      //   //       });
+      //   //     self.datos_resumen_gen.push(contenedor);
+      //   //   });
+      //   //   self.contenedores_encendidos_reefer.map(function (cont) {
+      //   //     axios
+      //   //       .post(route("contenedores.resumen"), {
+      //   //         id_contenedor: cont.id,
+      //   //         tipo_contenedor: cont.tipo,
+      //   //       })
+      //   //       .then((rp) => {
+      //   //         cont = Object.assign(cont, rp.data); // aqui unimos el objeto con los ultimos datos del registro diario
+      //   //       });
+      //   //     self.datos_resumen_reefer.push(cont);
+      //   //   });
+      //   // }
       // });
     },
     select_contenedor: function select_contenedor(contenedor) {
@@ -32121,7 +32109,7 @@ var staticRenderFns = [
               staticClass: "text-center",
               attrs: { scope: "col", width: "50px" },
             },
-            [_vm._v("Battery_voltage")]
+            [_vm._v("\n            Battery_voltage\n          ")]
           ),
           _vm._v(" "),
           _c(
@@ -32139,7 +32127,7 @@ var staticRenderFns = [
               staticClass: "text-center",
               attrs: { scope: "col", width: "50px" },
             },
-            [_vm._v("Running_frequency")]
+            [_vm._v("\n            Running_frequency\n          ")]
           ),
           _vm._v(" "),
           _c(
@@ -32157,7 +32145,7 @@ var staticRenderFns = [
               staticClass: "text-center",
               attrs: { scope: "col", width: "50px" },
             },
-            [_vm._v("Voltage_measure")]
+            [_vm._v("\n            Voltage_measure\n          ")]
           ),
           _vm._v(" "),
           _c(
@@ -32274,7 +32262,7 @@ var staticRenderFns = [
               staticClass: "text-center",
               attrs: { scope: "col", width: "100px" },
             },
-            [_vm._v("Reefer_conected")]
+            [_vm._v("\n            Reefer_conected\n          ")]
           ),
           _vm._v(" "),
           _c(

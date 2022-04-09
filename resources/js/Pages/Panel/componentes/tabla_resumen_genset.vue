@@ -18,11 +18,17 @@
             <th scope="col" class="text-center">Estado</th>
             <th scope="col" width="150px" class="text-center">Booking</th>
             <th scope="col" width="50px" class="text-center">Booking_temp</th>
-            <th scope="col" width="50px" class="text-center">Battery_voltage</th>
+            <th scope="col" width="50px" class="text-center">
+              Battery_voltage
+            </th>
             <th scope="col" width="50px" class="text-center">Water_temp</th>
-            <th scope="col" width="50px" class="text-center">Running_frequency</th>
+            <th scope="col" width="50px" class="text-center">
+              Running_frequency
+            </th>
             <th scope="col" width="50px" class="text-center">Fuel_level</th>
-            <th scope="col" width="50px" class="text-center">Voltage_measure</th>
+            <th scope="col" width="50px" class="text-center">
+              Voltage_measure
+            </th>
             <th scope="col" width="50px" class="text-center">Rotor_current</th>
             <th scope="col" width="50px" class="text-center">fiel_current</th>
             <th scope="col" width="50px" class="text-center">Speed</th>
@@ -35,7 +41,9 @@
             <th scope="col" width="50px" class="text-center">Longitud</th>
             <th scope="col" width="50px" class="text-center">Alarma</th>
             <th scope="col" width="50px" class="text-center">Evento</th>
-            <th scope="col" width="100px" class="text-center">Reefer_conected</th>
+            <th scope="col" width="100px" class="text-center">
+              Reefer_conected
+            </th>
             <th scope="col" width="50px" class="text-center">Set_point</th>
             <th scope="col" width="50px" class="text-center">Temp_supply_1</th>
             <th scope="col" width="50px" class="text-center">Return_air</th>
@@ -89,9 +97,7 @@
 import axios from "axios";
 export default {
   components: {},
-  props: {
-
-  },
+  props: {},
   data() {
     return {
       contenedores_encendidos_gen: [],
@@ -99,97 +105,110 @@ export default {
     };
   },
   watch: {
-  
+    datos_resumen_gen() {
+      $("#tblContenedor_generador").DataTable().destroy();
+      this.TablaContenedores_gen();
+    },
   },
   mounted() {
     this.actualizarTabla();
     // this.TablaContenedores_gen();
-   
   },
   methods: {
-    TablaContenedores_gen(){
+    TablaContenedores_gen() {
       let self = this;
       this.$nextTick(() => {
-        var table2 = $('#tblContenedor_generador').DataTable({
-          "scrollX": "100%",
-          "scrollCollapse": true,
-          "language": {
-              "url": "//cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json"
-            }
+        var table2 = $("#tblContenedor_generador").DataTable({
+          scrollX: "100%",
+          scrollCollapse: true,
+          language: {
+            url: "//cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json",
+          },
         });
         /* Esta es la funcion que selecciona una fila  yla colorea  */
-          $('#tblContenedor_generador tbody').on( 'click', 'tr', function () {
-              table2.$('tr.selected').removeClass('selected');
-              $(this).addClass('selected');
-          } );
-          
+        $("#tblContenedor_generador tbody").on("click", "tr", function () {
+          table2.$("tr.selected").removeClass("selected");
+          $(this).addClass("selected");
+        });
       });
     },
-    actualizarTabla(){
+    actualizarTabla() {
       let self = this;
-      let datos_completo=[];
-      async function obtendido_datos() {
-        axios
-          .post(route('contenedores.obtener_contendor'), {
-            tipo: 'genset',
-          })
-          .then((res) => {
-            // console.log(res.data);
-            self.contenedores_encendidos_gen = res.data;            
-          }).then(() => {
-              self.contenedores_encendidos_gen.map(function (contenedor) {
-                axios
-                  .post(route("contenedores.resumen"), {
-                    id_contenedor: contenedor.id,
-                    tipo_contenedor: 'genset',
-                  })
-                  .then((response) => {
-                    // console.log(response.data);
-                    contenedor = Object.assign(contenedor, response.data); // aqui unimos el objeto con los ultimos datos del registro diario
-                  }).then(() => {
-                    // console.log(contenedor);
-                    datos_completo.push(contenedor);
-                  });
-              });
-            
-          })  
-      }
-       obtendido_datos().then(()=>{
-         self.datos_resumen_gen = datos_completo;
-        //  self.TablaContenedores_gen();   // aqui se ejecuta la tabla
-       })
-          
+
+      axios
+        .post(route("contenedores.obtener_contendor"), {
+          tipo: "genset",
+        })
+        .then((res) => {
+          // self.contenedores_encendidos_gen = res.data;
+          self.resumenContenedor(res.data);
+        }); 
+       
     },
-    resumenContenedor() {
-      // let self = this;
-      // this.$nextTick(() => {
-      //   async function rellenar_resumen() {
-      //     self.contenedores_encendidos_gen.map(function (contenedor) {
-      //       axios
-      //         .post(route("contenedores.resumen"), {
-      //           id_contenedor: contenedor.id,
-      //           tipo_contenedor: 'genset',
-      //         })
-      //         .then((response) => {
-      //           contenedor = Object.assign(contenedor, response.data); // aqui unimos el objeto con los ultimos datos del registro diario
-      //         });
+    resumenContenedor(data) {
+      let self = this;
+      
+        data.map(function (contenedor) {
+            axios
+              .post(route("contenedores.resumen"), {
+                id_contenedor: contenedor.id,
+                tipo_contenedor: "genset",
+              })
+              .then((response) => {
+                contenedor = Object.assign(contenedor, response.data); // aqui unimos el objeto con los ultimos datos del registro diario
+              }).then(()=>{
+                self.datos_resumen_gen.push(contenedor);
+              })
+              
+            // console.log(self.datos_resumen_gen);
+          });
+        
+
+       
+      
+
+      // data.map(function (contenedor) {
+      //   axios
+      //     .post(route("contenedores.resumen"), {
+      //       id_contenedor: contenedor.id,
+      //       tipo_contenedor: "genset",
+      //     })
+      //     .then((response) => {
+      //       contenedor = Object.assign(contenedor, response.data); // aqui unimos el objeto con los ultimos datos del registro diario
       //       self.datos_resumen_gen.push(contenedor);
       //     });
-      //     self.contenedores_encendidos_reefer.map(function (cont) {
-      //       axios
-      //         .post(route("contenedores.resumen"), {
-      //           id_contenedor: cont.id,
-      //           tipo_contenedor: cont.tipo,
-      //         })
-      //         .then((rp) => {
-      //           cont = Object.assign(cont, rp.data); // aqui unimos el objeto con los ultimos datos del registro diario
-      //         });
-      //       self.datos_resumen_reefer.push(cont);
-      //     });
-      //   }
+      //   console.log(self.datos_resumen_gen);
+      // });
+
+      // this.$nextTick(() => {
+
+      //   // async function rellenar_resumen() {
+      //   //   self.contenedores_encendidos_gen.map(function (contenedor) {
+      //   //     axios
+      //   //       .post(route("contenedores.resumen"), {
+      //   //         id_contenedor: contenedor.id,
+      //   //         tipo_contenedor: 'genset',
+      //   //       })
+      //   //       .then((response) => {
+      //   //         contenedor = Object.assign(contenedor, response.data); // aqui unimos el objeto con los ultimos datos del registro diario
+      //   //       });
+      //   //     self.datos_resumen_gen.push(contenedor);
+      //   //   });
+      //   //   self.contenedores_encendidos_reefer.map(function (cont) {
+      //   //     axios
+      //   //       .post(route("contenedores.resumen"), {
+      //   //         id_contenedor: cont.id,
+      //   //         tipo_contenedor: cont.tipo,
+      //   //       })
+      //   //       .then((rp) => {
+      //   //         cont = Object.assign(cont, rp.data); // aqui unimos el objeto con los ultimos datos del registro diario
+      //   //       });
+      //   //     self.datos_resumen_reefer.push(cont);
+      //   //   });
+      //   // }
       // });
     },
-    select_contenedor(contenedor){
+    select_contenedor(contenedor) {
       console.log(contenedor);
     },
   },
