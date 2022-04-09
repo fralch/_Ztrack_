@@ -149,7 +149,8 @@ export default {
       let self = this;
       
         data.map(function (contenedor) {
-            axios
+          async function rellenar_resumen() {
+              axios
               .post(route("contenedores.resumen"), {
                 id_contenedor: contenedor.id,
                 tipo_contenedor: "genset",
@@ -159,9 +160,14 @@ export default {
               }).then(()=>{
                 self.datos_resumen_gen.push(contenedor);
               })
+          }
+           rellenar_resumen()
+           .then((response) => {
+
+           })
               
             // console.log(self.datos_resumen_gen);
-          });
+        });
         
 
        
