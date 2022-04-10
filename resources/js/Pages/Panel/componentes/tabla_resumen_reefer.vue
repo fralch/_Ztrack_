@@ -239,7 +239,7 @@ export default {
           
         }
          rellenar_resumen().then(()=>{
-           console.log(self.datos_resumen_reefer)
+          //  console.log(self.datos_resumen_reefer)
           // $("#tblContenedor_reefers").DataTable().destroy();
           self.TablaContenedores_reef();
         });

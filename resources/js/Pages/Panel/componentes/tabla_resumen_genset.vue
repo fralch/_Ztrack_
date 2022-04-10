@@ -95,6 +95,7 @@
 </template>
 <script>
 import axios from "axios";
+import tablaResumenGenDetalle from "./tabla_detalle_genset.vue";
 export default {
   components: {},
   props: {
@@ -150,7 +151,7 @@ export default {
     },
     
     select_contenedor(contenedor) {
-      console.log(contenedor);
+      this.$emit("select_contenedor", contenedor.id); // emite el evento a contedor padre 
     },
     resumenContenedor() {
       let self = this;
@@ -165,13 +166,14 @@ export default {
               .then((response) => {
                 contenedor = Object.assign(contenedor, response.data); // aqui unimos el objeto con los ultimos datos del registro diario
               });
-            self.datos_resumen_gen.push(contenedor);
+                self.datos_resumen_gen.push(contenedor);
           });
           
         }
          rellenar_resumen().then(()=>{
-           console.log(self.datos_resumen_gen)
+          //  console.log(self.datos_resumen_gen)
           // $("#tblContenedor_generador").DataTable().destroy();
+          
           self.TablaContenedores_gen();
         });
       });
