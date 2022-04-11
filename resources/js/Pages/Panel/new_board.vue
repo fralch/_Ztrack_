@@ -77,6 +77,11 @@
                 :tipo="tipo"
                 >
               </tablaDetalleGenset>
+              <tablaDetalleReefer ref="tablaDetalleReefer" 
+                :contenedor="contenedor_selecionado" 
+                :tipo="tipo"
+                >
+              </tablaDetalleReefer>
 
               <!-- *********** GRAFICOS PRINCIPAL *********** -->
             </div>
@@ -94,6 +99,7 @@ import canvasMapa from "./componentes/mapa.vue";
 import tablaResumenGen from "./componentes/tabla_resumen_genset.vue";
 import tablaResumenReef from "./componentes/tabla_resumen_reefer.vue";
 import tablaDetalleGenset from "./componentes/tabla_detalle_genset.vue";
+import tablaDetalleReefer from "./componentes/tabla_detalle_reefer.vue";
 export default {
   components: {
     layoutprincipal,
@@ -101,6 +107,7 @@ export default {
     tablaResumenGen,
     tablaResumenReef,
     tablaDetalleGenset,
+    tablaDetalleReefer,
   },
   props: {
     // tu_cuenta:Array,
