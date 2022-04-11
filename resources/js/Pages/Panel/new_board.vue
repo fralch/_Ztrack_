@@ -19,7 +19,7 @@
                     type="button"
                     id="select_gen"
                     class="col-3 btn btn-primary"
-                    @click="tipo = 'genset'"
+                    @click="seleccionarTipo('genset')"
                   >
                     <i class="bi bi-power"></i>
                     <b style="font-size: 1.2em">{{
@@ -31,7 +31,7 @@
                     type="button"
                     id="select_reef"
                     class="col-3 btn btn-success"
-                    @click="tipo = 'reefer'"
+                    @click="seleccionarTipo('reefer')"
                   >
                     <i class="bi bi-power"></i>
                     <b style="font-size: 1.2em">{{
@@ -60,13 +60,15 @@
               <canvasMapa ref="canvasMapa" :id_contenedor="1"> </canvasMapa>
               <!-- ********* TABLA RESUMEN CONTENEDORES  *********-->
               <tablaResumenGen ref="tablaResumenGen" 
-             
                 :tipo="tipo" 
                 @select_contenedor="obteniendo_contendor"
-              
                 >
               </tablaResumenGen>
-              <tablaResumenReef ref="tablaResumenReef" :tipo="tipo">
+              <tablaResumenReef 
+                ref="tablaResumenReef" 
+                :tipo="tipo"
+                @select_contenedor="obteniendo_contendor"
+                >
               </tablaResumenReef>
 
               <!-- *********** TABLA DETALLE CONTENEDORES *********** -->
@@ -118,6 +120,31 @@ export default {
   },
 
   methods: {
+    seleccionarTipo(tipo) {
+      let timerInterval
+      Swal.fire({
+        title: 'Obteniendo datos!',
+        html: ' <b></b> milliseconds.',
+        timer: 2000,
+        timerProgressBar: true,
+        didOpen: () => {
+          Swal.showLoading()
+          const b = Swal.getHtmlContainer().querySelector('b')
+          timerInterval = setInterval(() => {
+            b.textContent = Swal.getTimerLeft()
+          }, 100)
+        },
+        willClose: () => {
+          clearInterval(timerInterval)
+        }
+      }).then((result) => {
+        /* Read more about handling dismissals below */
+        if (result.dismiss === Swal.DismissReason.timer) {
+          this.tipo = tipo;
+        }
+      })
+     
+    },
     cargarMapa() {
       
     },

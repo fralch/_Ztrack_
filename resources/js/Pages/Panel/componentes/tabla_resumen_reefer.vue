@@ -219,7 +219,7 @@ export default {
     },
     
     select_contenedor(contenedor) {
-      console.log(contenedor);
+        this.$emit("select_contenedor", contenedor.id); // emite el evento a contedor padre 
     },
     resumenContenedor() {
       let self = this;

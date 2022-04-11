@@ -171,9 +171,6 @@ export default {
           
         }
          rellenar_resumen().then(()=>{
-          //  console.log(self.datos_resumen_gen)
-          // $("#tblContenedor_generador").DataTable().destroy();
-          
           self.TablaContenedores_gen();
         });
       });

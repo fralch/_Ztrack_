@@ -1,10 +1,10 @@
-<template>
+<template v-if="tipo == 'genset'">
   <div>
     <div
       id="generador_grid"
       class="col shadow-sm p-3 mb-5 bg-white rounded"
       style="margin: -30px 15px 10px 15px"
-      v-if="tipo == 'Generador'"
+      
     >
       <table
         class="table display nowrap"
@@ -80,36 +80,28 @@ export default {
   },
   data() {
     return {
-      datos_tabla_reefer: [],
       datos_tabla_generador: [],
     };
   },
   watch: {},
   methods: {
-    select_contenedor(contenedor) {
+    select_contenedor() {
       let self = this;
-      self.datos_tabla_reefer = [];
       self.datos_tabla_generador = [];
 
-      console.log(contenedor);
+      // console.log(this.contenedor);
 
       axios
         .post(route("contenedores.get_datos"), {
-          id: contenedor.contenedor_id,
-          tipo: contenedor.tipo,
+          id: this.contenedor,
+          tipo: "genset",
         })
         .then((response) => {
           console.log(response.data);
-          if (contenedor.tipo == "Reefer") {
-            self.datos_tabla_reefer = response.data;
-          }
-          if (contenedor.tipo == "Generador") {
-            self.datos_tabla_generador = response.data;
-          }
+          self.datos_tabla_generador = response.data;
         })
         .then(() => {
-          if (contenedor.tipo == "Reefer") {
-            let mayor_id = self.datos_tabla_reefer
+          let mayor_id = self.datos_tabla_generador
               .map(function (e) {
                 return e.id;
               })
@@ -134,38 +126,7 @@ export default {
               .then(() => {
                 self.iniciarMap();
               });
-          }
-          if (contenedor.tipo == "Generador") {
-            let mayor_id = self.datos_tabla_generador
-              .map(function (e) {
-                return e.id;
-              })
-              .sort()
-              .reverse()[0];
-            axios
-              .post(route("contenedores.get_lat_log"), {
-                id: mayor_id,
-                tipo: contenedor.tipo,
-              })
-              .then((response) => {
-                console.log(
-                  response.data.latitud,
-                  "---",
-                  response.data.longitud
-                );
-                self.ubicacion = new google.maps.LatLng(
-                  response.data.latitud,
-                  response.data.longitud
-                );
-              })
-              .then(() => {
-                self.iniciarMap();
-              });
-          }
         })
-        .then(() => {
-          self.setLabelsMyChartPrincipal();
-        });
     },
   },
 };

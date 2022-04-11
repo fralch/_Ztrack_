@@ -3155,62 +3155,34 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      datos_tabla_reefer: [],
       datos_tabla_generador: []
     };
   },
   watch: {},
   methods: {
-    select_contenedor: function select_contenedor(contenedor) {
+    select_contenedor: function select_contenedor() {
       var self = this;
-      self.datos_tabla_reefer = [];
-      self.datos_tabla_generador = [];
-      console.log(contenedor);
+      self.datos_tabla_generador = []; // console.log(this.contenedor);
+
       axios__WEBPACK_IMPORTED_MODULE_0___default().post(route("contenedores.get_datos"), {
-        id: contenedor.contenedor_id,
-        tipo: contenedor.tipo
+        id: this.contenedor,
+        tipo: "genset"
       }).then(function (response) {
         console.log(response.data);
-
-        if (contenedor.tipo == "Reefer") {
-          self.datos_tabla_reefer = response.data;
-        }
-
-        if (contenedor.tipo == "Generador") {
-          self.datos_tabla_generador = response.data;
-        }
+        self.datos_tabla_generador = response.data;
       }).then(function () {
-        if (contenedor.tipo == "Reefer") {
-          var mayor_id = self.datos_tabla_reefer.map(function (e) {
-            return e.id;
-          }).sort().reverse()[0];
-          axios__WEBPACK_IMPORTED_MODULE_0___default().post(route("contenedores.get_lat_log"), {
-            id: mayor_id,
-            tipo: contenedor.tipo
-          }).then(function (response) {
-            console.log(response.data.latitud, "---", response.data.longitud);
-            self.ubicacion = new google.maps.LatLng(response.data.latitud, response.data.longitud);
-          }).then(function () {
-            self.iniciarMap();
-          });
-        }
-
-        if (contenedor.tipo == "Generador") {
-          var _mayor_id = self.datos_tabla_generador.map(function (e) {
-            return e.id;
-          }).sort().reverse()[0];
-          axios__WEBPACK_IMPORTED_MODULE_0___default().post(route("contenedores.get_lat_log"), {
-            id: _mayor_id,
-            tipo: contenedor.tipo
-          }).then(function (response) {
-            console.log(response.data.latitud, "---", response.data.longitud);
-            self.ubicacion = new google.maps.LatLng(response.data.latitud, response.data.longitud);
-          }).then(function () {
-            self.iniciarMap();
-          });
-        }
-      }).then(function () {
-        self.setLabelsMyChartPrincipal();
+        var mayor_id = self.datos_tabla_generador.map(function (e) {
+          return e.id;
+        }).sort().reverse()[0];
+        axios__WEBPACK_IMPORTED_MODULE_0___default().post(route("contenedores.get_lat_log"), {
+          id: mayor_id,
+          tipo: contenedor.tipo
+        }).then(function (response) {
+          console.log(response.data.latitud, "---", response.data.longitud);
+          self.ubicacion = new google.maps.LatLng(response.data.latitud, response.data.longitud);
+        }).then(function () {
+          self.iniciarMap();
+        });
       });
     }
   }
@@ -3426,8 +3398,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }
 
         rellenar_resumen().then(function () {
-          //  console.log(self.datos_resumen_gen)
-          // $("#tblContenedor_generador").DataTable().destroy();
           self.TablaContenedores_gen();
         });
       });
@@ -3676,7 +3646,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       });
     },
     select_contenedor: function select_contenedor(contenedor) {
-      console.log(contenedor);
+      this.$emit("select_contenedor", contenedor.id); // emite el evento a contedor padre 
     },
     resumenContenedor: function resumenContenedor() {
       var self = this;
@@ -3822,6 +3792,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 
@@ -3855,6 +3827,32 @@ __webpack_require__.r(__webpack_exports__);
     this.bienvenida();
   },
   methods: {
+    seleccionarTipo: function seleccionarTipo(tipo) {
+      var _this = this;
+
+      var timerInterval;
+      Swal.fire({
+        title: 'Obteniendo datos!',
+        html: ' <b></b> milliseconds.',
+        timer: 2000,
+        timerProgressBar: true,
+        didOpen: function didOpen() {
+          Swal.showLoading();
+          var b = Swal.getHtmlContainer().querySelector('b');
+          timerInterval = setInterval(function () {
+            b.textContent = Swal.getTimerLeft();
+          }, 100);
+        },
+        willClose: function willClose() {
+          clearInterval(timerInterval);
+        }
+      }).then(function (result) {
+        /* Read more about handling dismissals below */
+        if (result.dismiss === Swal.DismissReason.timer) {
+          _this.tipo = tipo;
+        }
+      });
+    },
     cargarMapa: function cargarMapa() {},
     autoRefresh: function autoRefresh() {// let self = this;
       // this.$nextTick(() => {
@@ -30158,7 +30156,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _tabla_detalle_genset_vue_vue_type_template_id_9525e0b2___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./tabla_detalle_genset.vue?vue&type=template&id=9525e0b2& */ "./resources/js/Pages/Panel/componentes/tabla_detalle_genset.vue?vue&type=template&id=9525e0b2&");
+/* harmony import */ var _tabla_detalle_genset_vue_vue_type_template_id_9525e0b2_v_if_tipo_20_3D_3D_20_genset___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./tabla_detalle_genset.vue?vue&type=template&id=9525e0b2&v-if=tipo%20%3D%3D%20'genset'& */ "./resources/js/Pages/Panel/componentes/tabla_detalle_genset.vue?vue&type=template&id=9525e0b2&v-if=tipo%20%3D%3D%20'genset'&");
 /* harmony import */ var _tabla_detalle_genset_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./tabla_detalle_genset.vue?vue&type=script&lang=js& */ "./resources/js/Pages/Panel/componentes/tabla_detalle_genset.vue?vue&type=script&lang=js&");
 /* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
@@ -30170,8 +30168,8 @@ __webpack_require__.r(__webpack_exports__);
 ;
 var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
   _tabla_detalle_genset_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _tabla_detalle_genset_vue_vue_type_template_id_9525e0b2___WEBPACK_IMPORTED_MODULE_0__.render,
-  _tabla_detalle_genset_vue_vue_type_template_id_9525e0b2___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  _tabla_detalle_genset_vue_vue_type_template_id_9525e0b2_v_if_tipo_20_3D_3D_20_genset___WEBPACK_IMPORTED_MODULE_0__.render,
+  _tabla_detalle_genset_vue_vue_type_template_id_9525e0b2_v_if_tipo_20_3D_3D_20_genset___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
   false,
   null,
   null,
@@ -30764,19 +30762,19 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/Pages/Panel/componentes/tabla_detalle_genset.vue?vue&type=template&id=9525e0b2&":
-/*!******************************************************************************************************!*\
-  !*** ./resources/js/Pages/Panel/componentes/tabla_detalle_genset.vue?vue&type=template&id=9525e0b2& ***!
-  \******************************************************************************************************/
+/***/ "./resources/js/Pages/Panel/componentes/tabla_detalle_genset.vue?vue&type=template&id=9525e0b2&v-if=tipo%20%3D%3D%20'genset'&":
+/*!************************************************************************************************************************************!*\
+  !*** ./resources/js/Pages/Panel/componentes/tabla_detalle_genset.vue?vue&type=template&id=9525e0b2&v-if=tipo%20%3D%3D%20'genset'& ***!
+  \************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_tabla_detalle_genset_vue_vue_type_template_id_9525e0b2___WEBPACK_IMPORTED_MODULE_0__.render),
-/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_tabla_detalle_genset_vue_vue_type_template_id_9525e0b2___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_tabla_detalle_genset_vue_vue_type_template_id_9525e0b2_v_if_tipo_20_3D_3D_20_genset___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_tabla_detalle_genset_vue_vue_type_template_id_9525e0b2_v_if_tipo_20_3D_3D_20_genset___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_tabla_detalle_genset_vue_vue_type_template_id_9525e0b2___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./tabla_detalle_genset.vue?vue&type=template&id=9525e0b2& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Panel/componentes/tabla_detalle_genset.vue?vue&type=template&id=9525e0b2&");
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_tabla_detalle_genset_vue_vue_type_template_id_9525e0b2_v_if_tipo_20_3D_3D_20_genset___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./tabla_detalle_genset.vue?vue&type=template&id=9525e0b2&v-if=tipo%20%3D%3D%20'genset'& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Panel/componentes/tabla_detalle_genset.vue?vue&type=template&id=9525e0b2&v-if=tipo%20%3D%3D%20'genset'&");
 
 
 /***/ }),
@@ -31997,10 +31995,10 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Panel/componentes/tabla_detalle_genset.vue?vue&type=template&id=9525e0b2&":
-/*!*********************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Panel/componentes/tabla_detalle_genset.vue?vue&type=template&id=9525e0b2& ***!
-  \*********************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Panel/componentes/tabla_detalle_genset.vue?vue&type=template&id=9525e0b2&v-if=tipo%20%3D%3D%20'genset'&":
+/*!***************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Panel/componentes/tabla_detalle_genset.vue?vue&type=template&id=9525e0b2&v-if=tipo%20%3D%3D%20'genset'& ***!
+  \***************************************************************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -32014,131 +32012,122 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _vm.tipo == "Generador"
-      ? _c(
-          "div",
+    _c(
+      "div",
+      {
+        staticClass: "col shadow-sm p-3 mb-5 bg-white rounded",
+        staticStyle: { margin: "-30px 15px 10px 15px" },
+        attrs: { id: "generador_grid" },
+      },
+      [
+        _c(
+          "table",
           {
-            staticClass: "col shadow-sm p-3 mb-5 bg-white rounded",
-            staticStyle: { margin: "-30px 15px 10px 15px" },
-            attrs: { id: "generador_grid" },
+            staticClass: "table display nowrap",
+            attrs: { id: "tblDetalleContenedores_generadores" },
           },
           [
+            _vm._m(0),
+            _vm._v(" "),
             _c(
-              "table",
-              {
-                staticClass: "table display nowrap",
-                attrs: { id: "tblDetalleContenedores_generadores" },
-              },
-              [
-                _vm._m(0),
-                _vm._v(" "),
-                _c(
-                  "tbody",
-                  _vm._l(
-                    _vm.datos_tabla_generador,
-                    function (generador, index) {
-                      return _c(
-                        "tr",
-                        { key: index, staticClass: "tr_resumen_gen" },
-                        [
-                          _c("td", { staticClass: "text-center" }, [
-                            _vm._v(_vm._s(generador.id)),
-                          ]),
-                          _vm._v(" "),
-                          _c("td", { staticClass: "text-center" }, [
-                            _vm._v(_vm._s(generador.battery_voltage)),
-                          ]),
-                          _vm._v(" "),
-                          _c("td", { staticClass: "text-center" }, [
-                            _vm._v(_vm._s(generador.water_temp)),
-                          ]),
-                          _vm._v(" "),
-                          _c("td", { staticClass: "text-center" }, [
-                            _vm._v(_vm._s(generador.running_frequency)),
-                          ]),
-                          _vm._v(" "),
-                          _c("td", { staticClass: "text-center" }, [
-                            _vm._v(_vm._s(generador.fuel_level)),
-                          ]),
-                          _vm._v(" "),
-                          _c("td", { staticClass: "text-center" }, [
-                            _vm._v(_vm._s(generador.voltage_measure)),
-                          ]),
-                          _vm._v(" "),
-                          _c("td", { staticClass: "text-center" }, [
-                            _vm._v(_vm._s(generador.rotor_current)),
-                          ]),
-                          _vm._v(" "),
-                          _c("td", { staticClass: "text-center" }, [
-                            _vm._v(_vm._s(generador.fiel_current)),
-                          ]),
-                          _vm._v(" "),
-                          _c("td", { staticClass: "text-center" }, [
-                            _vm._v(_vm._s(generador.speed)),
-                          ]),
-                          _vm._v(" "),
-                          _c("td", { staticClass: "text-center" }, [
-                            _vm._v(_vm._s(generador.eco_power)),
-                          ]),
-                          _vm._v(" "),
-                          _c("td", { staticClass: "text-center" }, [
-                            _vm._v(_vm._s(generador.rpm)),
-                          ]),
-                          _vm._v(" "),
-                          _c("td", { staticClass: "text-center" }, [
-                            _vm._v(_vm._s(generador.unit_mode)),
-                          ]),
-                          _vm._v(" "),
-                          _c("td", { staticClass: "text-center" }, [
-                            _vm._v(_vm._s(generador.horometro)),
-                          ]),
-                          _vm._v(" "),
-                          _c("td", { staticClass: "text-center" }, [
-                            _vm._v(_vm._s(generador.modelo)),
-                          ]),
-                          _vm._v(" "),
-                          _c("td", { staticClass: "text-center" }, [
-                            _vm._v(_vm._s(generador.latitud)),
-                          ]),
-                          _vm._v(" "),
-                          _c("td", { staticClass: "text-center" }, [
-                            _vm._v(_vm._s(generador.longitud)),
-                          ]),
-                          _vm._v(" "),
-                          _c("td", { staticClass: "text-center" }, [
-                            _vm._v(_vm._s(generador.alarma_id)),
-                          ]),
-                          _vm._v(" "),
-                          _c("td", { staticClass: "text-center" }, [
-                            _vm._v(_vm._s(generador.evento_id)),
-                          ]),
-                          _vm._v(" "),
-                          _c("td", { staticClass: "text-center" }, [
-                            _vm._v(_vm._s(generador.reefer_conected)),
-                          ]),
-                          _vm._v(" "),
-                          _c("td", { staticClass: "text-center" }, [
-                            _vm._v(_vm._s(generador.set_point)),
-                          ]),
-                          _vm._v(" "),
-                          _c("td", { staticClass: "text-center" }, [
-                            _vm._v(_vm._s(generador.temp_supply_1)),
-                          ]),
-                          _vm._v(" "),
-                          _c("td", { staticClass: "text-center" }, [
-                            _vm._v(_vm._s(generador.return_air)),
-                          ]),
-                        ]
-                      )
-                    }
-                  ),
-                  0
-                ),
-              ]
+              "tbody",
+              _vm._l(_vm.datos_tabla_generador, function (generador, index) {
+                return _c("tr", { key: index, staticClass: "tr_resumen_gen" }, [
+                  _c("td", { staticClass: "text-center" }, [
+                    _vm._v(_vm._s(generador.id)),
+                  ]),
+                  _vm._v(" "),
+                  _c("td", { staticClass: "text-center" }, [
+                    _vm._v(_vm._s(generador.battery_voltage)),
+                  ]),
+                  _vm._v(" "),
+                  _c("td", { staticClass: "text-center" }, [
+                    _vm._v(_vm._s(generador.water_temp)),
+                  ]),
+                  _vm._v(" "),
+                  _c("td", { staticClass: "text-center" }, [
+                    _vm._v(_vm._s(generador.running_frequency)),
+                  ]),
+                  _vm._v(" "),
+                  _c("td", { staticClass: "text-center" }, [
+                    _vm._v(_vm._s(generador.fuel_level)),
+                  ]),
+                  _vm._v(" "),
+                  _c("td", { staticClass: "text-center" }, [
+                    _vm._v(_vm._s(generador.voltage_measure)),
+                  ]),
+                  _vm._v(" "),
+                  _c("td", { staticClass: "text-center" }, [
+                    _vm._v(_vm._s(generador.rotor_current)),
+                  ]),
+                  _vm._v(" "),
+                  _c("td", { staticClass: "text-center" }, [
+                    _vm._v(_vm._s(generador.fiel_current)),
+                  ]),
+                  _vm._v(" "),
+                  _c("td", { staticClass: "text-center" }, [
+                    _vm._v(_vm._s(generador.speed)),
+                  ]),
+                  _vm._v(" "),
+                  _c("td", { staticClass: "text-center" }, [
+                    _vm._v(_vm._s(generador.eco_power)),
+                  ]),
+                  _vm._v(" "),
+                  _c("td", { staticClass: "text-center" }, [
+                    _vm._v(_vm._s(generador.rpm)),
+                  ]),
+                  _vm._v(" "),
+                  _c("td", { staticClass: "text-center" }, [
+                    _vm._v(_vm._s(generador.unit_mode)),
+                  ]),
+                  _vm._v(" "),
+                  _c("td", { staticClass: "text-center" }, [
+                    _vm._v(_vm._s(generador.horometro)),
+                  ]),
+                  _vm._v(" "),
+                  _c("td", { staticClass: "text-center" }, [
+                    _vm._v(_vm._s(generador.modelo)),
+                  ]),
+                  _vm._v(" "),
+                  _c("td", { staticClass: "text-center" }, [
+                    _vm._v(_vm._s(generador.latitud)),
+                  ]),
+                  _vm._v(" "),
+                  _c("td", { staticClass: "text-center" }, [
+                    _vm._v(_vm._s(generador.longitud)),
+                  ]),
+                  _vm._v(" "),
+                  _c("td", { staticClass: "text-center" }, [
+                    _vm._v(_vm._s(generador.alarma_id)),
+                  ]),
+                  _vm._v(" "),
+                  _c("td", { staticClass: "text-center" }, [
+                    _vm._v(_vm._s(generador.evento_id)),
+                  ]),
+                  _vm._v(" "),
+                  _c("td", { staticClass: "text-center" }, [
+                    _vm._v(_vm._s(generador.reefer_conected)),
+                  ]),
+                  _vm._v(" "),
+                  _c("td", { staticClass: "text-center" }, [
+                    _vm._v(_vm._s(generador.set_point)),
+                  ]),
+                  _vm._v(" "),
+                  _c("td", { staticClass: "text-center" }, [
+                    _vm._v(_vm._s(generador.temp_supply_1)),
+                  ]),
+                  _vm._v(" "),
+                  _c("td", { staticClass: "text-center" }, [
+                    _vm._v(_vm._s(generador.return_air)),
+                  ]),
+                ])
+              }),
+              0
             ),
           ]
-        )
-      : _vm._e(),
+        ),
+      ]
+    ),
   ])
 }
 var staticRenderFns = [
@@ -33461,7 +33450,7 @@ var render = function () {
                                   attrs: { type: "button", id: "select_gen" },
                                   on: {
                                     click: function ($event) {
-                                      _vm.tipo = "genset"
+                                      return _vm.seleccionarTipo("genset")
                                     },
                                   },
                                 },
@@ -33492,7 +33481,7 @@ var render = function () {
                                   attrs: { type: "button", id: "select_reef" },
                                   on: {
                                     click: function ($event) {
-                                      _vm.tipo = "reefer"
+                                      return _vm.seleccionarTipo("reefer")
                                     },
                                   },
                                 },
@@ -33579,6 +33568,7 @@ var render = function () {
                       _c("tablaResumenReef", {
                         ref: "tablaResumenReef",
                         attrs: { tipo: _vm.tipo },
+                        on: { select_contenedor: _vm.obteniendo_contendor },
                       }),
                     ],
                     1
