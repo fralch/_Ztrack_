@@ -41,8 +41,8 @@ export default {
             });
         },
         fijarUbicacion() {
-            if (contenedor.tipo == "Reefer") {
-                let mayor_id = self.datos_tabla_reefer.map(function(e) { return e.id; }).sort().reverse()[0];
+            if (contenedor.tipo == "reefer") {
+            let mayor_id = self.datos_tabla_reefer.map(function(e) { return e.id; }).sort().reverse()[0];
             axios
                 .post(route('contenedores.get_lat_log'), {id: mayor_id,tipo: contenedor.tipo})
                 .then(response => {
@@ -52,7 +52,7 @@ export default {
                     self.iniciarMap();
                 });  
             }
-            if (contenedor.tipo == "Generador") {
+            if (contenedor.tipo == "genset") {
                 let mayor_id = self.datos_tabla_generador.map(function(e) { return e.id; }).sort().reverse()[0];
                 axios
                 .post(route('contenedores.get_lat_log'), {id: mayor_id,tipo: contenedor.tipo})

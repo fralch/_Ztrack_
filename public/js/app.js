@@ -2730,7 +2730,7 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     fijarUbicacion: function fijarUbicacion() {
-      if (contenedor.tipo == "Reefer") {
+      if (contenedor.tipo == "reefer") {
         var mayor_id = self.datos_tabla_reefer.map(function (e) {
           return e.id;
         }).sort().reverse()[0];
@@ -2745,7 +2745,7 @@ __webpack_require__.r(__webpack_exports__);
         });
       }
 
-      if (contenedor.tipo == "Generador") {
+      if (contenedor.tipo == "genset") {
         var _mayor_id = self.datos_tabla_generador.map(function (e) {
           return e.id;
         }).sort().reverse()[0];
