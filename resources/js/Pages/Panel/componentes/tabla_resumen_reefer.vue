@@ -233,8 +233,8 @@ export default {
               })
               .then((response) => {
                 contenedor = Object.assign(contenedor, response.data); // aqui unimos el objeto con los ultimos datos del registro diario
+                self.datos_resumen_reefer.push(contenedor);
               });
-            self.datos_resumen_reefer.push(contenedor);
           });
           
         }

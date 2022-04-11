@@ -1,5 +1,5 @@
-<template v-if="tipo == 'genset'">
-  <div>
+<template >
+  <div v-if="tipo == 'genset'">
     <div
       id="generador_grid"
       class="col shadow-sm p-3 mb-5 bg-white rounded"
@@ -77,55 +77,80 @@ export default {
   components: {},
   props: {
     contenedor: Number,
+    tipo: String,
   },
   data() {
     return {
       datos_tabla_generador: [],
     };
   },
-  watch: {},
+  watch: {
+    contenedor(){
+      this.select_contenedor() ;
+    },
+    datos_tabla_generador(){
+      $("#tblDetalleContenedores_generadores").DataTable().destroy();
+      this.TablaDetalleContenedores_g();
+    },
+  },
+  mounted() {
+    this.TablaDetalleContenedores_g();
+  },
   methods: {
+     TablaDetalleContenedores_g() {
+     let self = this;
+      this.$nextTick(() => {
+        var table = $('#tblDetalleContenedores_generadores').DataTable({
+           "scrollX": "100%",
+           "responsive": true,
+            "order": [ 0, "desc" ],
+            "language": {
+              "url": "//cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json"
+            }
+          });
+        
+      });
+    },
     select_contenedor() {
       let self = this;
       self.datos_tabla_generador = [];
-
-      // console.log(this.contenedor);
-
       axios
         .post(route("contenedores.get_datos"), {
           id: this.contenedor,
           tipo: "genset",
         })
         .then((response) => {
+          console.log("select_contenedor desde detalle ");
           console.log(response.data);
           self.datos_tabla_generador = response.data;
         })
         .then(() => {
-          let mayor_id = self.datos_tabla_generador
-              .map(function (e) {
-                return e.id;
-              })
-              .sort()
-              .reverse()[0];
-            axios
-              .post(route("contenedores.get_lat_log"), {
-                id: mayor_id,
-                tipo: contenedor.tipo,
-              })
-              .then((response) => {
-                console.log(
-                  response.data.latitud,
-                  "---",
-                  response.data.longitud
-                );
-                self.ubicacion = new google.maps.LatLng(
-                  response.data.latitud,
-                  response.data.longitud
-                );
-              })
-              .then(() => {
-                self.iniciarMap();
-              });
+
+          // let mayor_id = self.datos_tabla_generador
+          //     .map(function (e) {
+          //       return e.id;
+          //     })
+          //     .sort()
+          //     .reverse()[0];
+          //   axios
+          //     .post(route("contenedores.get_lat_log"), {
+          //       id: mayor_id,
+          //       tipo: contenedor.tipo,
+          //     })
+          //     .then((response) => {
+          //       console.log(
+          //         response.data.latitud,
+          //         "---",
+          //         response.data.longitud
+          //       );
+          //       self.ubicacion = new google.maps.LatLng(
+          //         response.data.latitud,
+          //         response.data.longitud
+          //       );
+          //     })
+          //     .then(() => {
+          //       self.iniciarMap();
+          //     });
         })
     },
   },

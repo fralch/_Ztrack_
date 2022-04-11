@@ -72,6 +72,11 @@
               </tablaResumenReef>
 
               <!-- *********** TABLA DETALLE CONTENEDORES *********** -->
+              <tablaDetalleGenset ref="tablaDetalleGenset" 
+                :contenedor="contenedor_selecionado" 
+                :tipo="tipo"
+                >
+              </tablaDetalleGenset>
 
               <!-- *********** GRAFICOS PRINCIPAL *********** -->
             </div>
@@ -88,12 +93,14 @@ import layoutprincipal from "../layout.vue";
 import canvasMapa from "./componentes/mapa.vue";
 import tablaResumenGen from "./componentes/tabla_resumen_genset.vue";
 import tablaResumenReef from "./componentes/tabla_resumen_reefer.vue";
+import tablaDetalleGenset from "./componentes/tabla_detalle_genset.vue";
 export default {
   components: {
     layoutprincipal,
     canvasMapa,
     tablaResumenGen,
     tablaResumenReef,
+    tablaDetalleGenset,
   },
   props: {
     // tu_cuenta:Array,

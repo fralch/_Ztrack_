@@ -3151,38 +3151,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {},
   props: {
-    contenedor: Number
+    contenedor: Number,
+    tipo: String
   },
   data: function data() {
     return {
       datos_tabla_generador: []
     };
   },
-  watch: {},
+  watch: {
+    contenedor: function contenedor() {
+      this.select_contenedor();
+    },
+    datos_tabla_generador: function datos_tabla_generador() {
+      $("#tblDetalleContenedores_generadores").DataTable().destroy();
+      this.TablaDetalleContenedores_g();
+    }
+  },
+  mounted: function mounted() {
+    this.TablaDetalleContenedores_g();
+  },
   methods: {
+    TablaDetalleContenedores_g: function TablaDetalleContenedores_g() {
+      var self = this;
+      this.$nextTick(function () {
+        var table = $('#tblDetalleContenedores_generadores').DataTable({
+          "scrollX": "100%",
+          "responsive": true,
+          "order": [0, "desc"],
+          "language": {
+            "url": "//cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json"
+          }
+        });
+      });
+    },
     select_contenedor: function select_contenedor() {
       var self = this;
-      self.datos_tabla_generador = []; // console.log(this.contenedor);
-
+      self.datos_tabla_generador = [];
       axios__WEBPACK_IMPORTED_MODULE_0___default().post(route("contenedores.get_datos"), {
         id: this.contenedor,
         tipo: "genset"
       }).then(function (response) {
+        console.log("select_contenedor desde detalle ");
         console.log(response.data);
         self.datos_tabla_generador = response.data;
-      }).then(function () {
-        var mayor_id = self.datos_tabla_generador.map(function (e) {
-          return e.id;
-        }).sort().reverse()[0];
-        axios__WEBPACK_IMPORTED_MODULE_0___default().post(route("contenedores.get_lat_log"), {
-          id: mayor_id,
-          tipo: contenedor.tipo
-        }).then(function (response) {
-          console.log(response.data.latitud, "---", response.data.longitud);
-          self.ubicacion = new google.maps.LatLng(response.data.latitud, response.data.longitud);
-        }).then(function () {
-          self.iniciarMap();
-        });
+      }).then(function () {// let mayor_id = self.datos_tabla_generador
+        //     .map(function (e) {
+        //       return e.id;
+        //     })
+        //     .sort()
+        //     .reverse()[0];
+        //   axios
+        //     .post(route("contenedores.get_lat_log"), {
+        //       id: mayor_id,
+        //       tipo: contenedor.tipo,
+        //     })
+        //     .then((response) => {
+        //       console.log(
+        //         response.data.latitud,
+        //         "---",
+        //         response.data.longitud
+        //       );
+        //       self.ubicacion = new google.maps.LatLng(
+        //         response.data.latitud,
+        //         response.data.longitud
+        //       );
+        //     })
+        //     .then(() => {
+        //       self.iniciarMap();
+        //     });
       });
     }
   }
@@ -3212,6 +3249,8 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+//
+//
 //
 //
 //
@@ -3356,7 +3395,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       axios__WEBPACK_IMPORTED_MODULE_1___default().post(route("contenedores.obtener_contendor"), {
         tipo: "genset"
       }).then(function (res) {
-        self.contenedores_encendidos_gen = res.data;
+        self.contenedores_encendidos_gen = res.data; // console.log(res.data);
       }).then(function () {
         _this.resumenContenedor();
       });
@@ -3383,8 +3422,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                         tipo_contenedor: 'genset'
                       }).then(function (response) {
                         contenedor = Object.assign(contenedor, response.data); // aqui unimos el objeto con los ultimos datos del registro diario
+
+                        self.datos_resumen_gen.push(contenedor);
                       });
-                      self.datos_resumen_gen.push(contenedor);
                     });
 
                   case 1:
@@ -3667,8 +3707,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                         tipo_contenedor: 'reefer'
                       }).then(function (response) {
                         contenedor = Object.assign(contenedor, response.data); // aqui unimos el objeto con los ultimos datos del registro diario
+
+                        self.datos_resumen_reefer.push(contenedor);
                       });
-                      self.datos_resumen_reefer.push(contenedor);
                     });
 
                   case 1:
@@ -3710,6 +3751,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _componentes_mapa_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./componentes/mapa.vue */ "./resources/js/Pages/Panel/componentes/mapa.vue");
 /* harmony import */ var _componentes_tabla_resumen_genset_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./componentes/tabla_resumen_genset.vue */ "./resources/js/Pages/Panel/componentes/tabla_resumen_genset.vue");
 /* harmony import */ var _componentes_tabla_resumen_reefer_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./componentes/tabla_resumen_reefer.vue */ "./resources/js/Pages/Panel/componentes/tabla_resumen_reefer.vue");
+/* harmony import */ var _componentes_tabla_detalle_genset_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./componentes/tabla_detalle_genset.vue */ "./resources/js/Pages/Panel/componentes/tabla_detalle_genset.vue");
 //
 //
 //
@@ -3794,6 +3836,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+
 
 
 
@@ -3804,7 +3852,8 @@ __webpack_require__.r(__webpack_exports__);
     layoutprincipal: _layout_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
     canvasMapa: _componentes_mapa_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
     tablaResumenGen: _componentes_tabla_resumen_genset_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
-    tablaResumenReef: _componentes_tabla_resumen_reefer_vue__WEBPACK_IMPORTED_MODULE_4__["default"]
+    tablaResumenReef: _componentes_tabla_resumen_reefer_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
+    tablaDetalleGenset: _componentes_tabla_detalle_genset_vue__WEBPACK_IMPORTED_MODULE_5__["default"]
   },
   props: {
     // tu_cuenta:Array,
@@ -30156,7 +30205,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _tabla_detalle_genset_vue_vue_type_template_id_9525e0b2_v_if_tipo_20_3D_3D_20_genset___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./tabla_detalle_genset.vue?vue&type=template&id=9525e0b2&v-if=tipo%20%3D%3D%20'genset'& */ "./resources/js/Pages/Panel/componentes/tabla_detalle_genset.vue?vue&type=template&id=9525e0b2&v-if=tipo%20%3D%3D%20'genset'&");
+/* harmony import */ var _tabla_detalle_genset_vue_vue_type_template_id_9525e0b2___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./tabla_detalle_genset.vue?vue&type=template&id=9525e0b2& */ "./resources/js/Pages/Panel/componentes/tabla_detalle_genset.vue?vue&type=template&id=9525e0b2&");
 /* harmony import */ var _tabla_detalle_genset_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./tabla_detalle_genset.vue?vue&type=script&lang=js& */ "./resources/js/Pages/Panel/componentes/tabla_detalle_genset.vue?vue&type=script&lang=js&");
 /* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
@@ -30168,8 +30217,8 @@ __webpack_require__.r(__webpack_exports__);
 ;
 var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
   _tabla_detalle_genset_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _tabla_detalle_genset_vue_vue_type_template_id_9525e0b2_v_if_tipo_20_3D_3D_20_genset___WEBPACK_IMPORTED_MODULE_0__.render,
-  _tabla_detalle_genset_vue_vue_type_template_id_9525e0b2_v_if_tipo_20_3D_3D_20_genset___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  _tabla_detalle_genset_vue_vue_type_template_id_9525e0b2___WEBPACK_IMPORTED_MODULE_0__.render,
+  _tabla_detalle_genset_vue_vue_type_template_id_9525e0b2___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
   false,
   null,
   null,
@@ -30762,19 +30811,19 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/Pages/Panel/componentes/tabla_detalle_genset.vue?vue&type=template&id=9525e0b2&v-if=tipo%20%3D%3D%20'genset'&":
-/*!************************************************************************************************************************************!*\
-  !*** ./resources/js/Pages/Panel/componentes/tabla_detalle_genset.vue?vue&type=template&id=9525e0b2&v-if=tipo%20%3D%3D%20'genset'& ***!
-  \************************************************************************************************************************************/
+/***/ "./resources/js/Pages/Panel/componentes/tabla_detalle_genset.vue?vue&type=template&id=9525e0b2&":
+/*!******************************************************************************************************!*\
+  !*** ./resources/js/Pages/Panel/componentes/tabla_detalle_genset.vue?vue&type=template&id=9525e0b2& ***!
+  \******************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_tabla_detalle_genset_vue_vue_type_template_id_9525e0b2_v_if_tipo_20_3D_3D_20_genset___WEBPACK_IMPORTED_MODULE_0__.render),
-/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_tabla_detalle_genset_vue_vue_type_template_id_9525e0b2_v_if_tipo_20_3D_3D_20_genset___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_tabla_detalle_genset_vue_vue_type_template_id_9525e0b2___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_tabla_detalle_genset_vue_vue_type_template_id_9525e0b2___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_tabla_detalle_genset_vue_vue_type_template_id_9525e0b2_v_if_tipo_20_3D_3D_20_genset___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./tabla_detalle_genset.vue?vue&type=template&id=9525e0b2&v-if=tipo%20%3D%3D%20'genset'& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Panel/componentes/tabla_detalle_genset.vue?vue&type=template&id=9525e0b2&v-if=tipo%20%3D%3D%20'genset'&");
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_tabla_detalle_genset_vue_vue_type_template_id_9525e0b2___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./tabla_detalle_genset.vue?vue&type=template&id=9525e0b2& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Panel/componentes/tabla_detalle_genset.vue?vue&type=template&id=9525e0b2&");
 
 
 /***/ }),
@@ -31995,10 +32044,10 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Panel/componentes/tabla_detalle_genset.vue?vue&type=template&id=9525e0b2&v-if=tipo%20%3D%3D%20'genset'&":
-/*!***************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Panel/componentes/tabla_detalle_genset.vue?vue&type=template&id=9525e0b2&v-if=tipo%20%3D%3D%20'genset'& ***!
-  \***************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Panel/componentes/tabla_detalle_genset.vue?vue&type=template&id=9525e0b2&":
+/*!*********************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Panel/componentes/tabla_detalle_genset.vue?vue&type=template&id=9525e0b2& ***!
+  \*********************************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -32011,124 +32060,133 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c(
-      "div",
-      {
-        staticClass: "col shadow-sm p-3 mb-5 bg-white rounded",
-        staticStyle: { margin: "-30px 15px 10px 15px" },
-        attrs: { id: "generador_grid" },
-      },
-      [
+  return _vm.tipo == "genset"
+    ? _c("div", [
         _c(
-          "table",
+          "div",
           {
-            staticClass: "table display nowrap",
-            attrs: { id: "tblDetalleContenedores_generadores" },
+            staticClass: "col shadow-sm p-3 mb-5 bg-white rounded",
+            staticStyle: { margin: "-30px 15px 10px 15px" },
+            attrs: { id: "generador_grid" },
           },
           [
-            _vm._m(0),
-            _vm._v(" "),
             _c(
-              "tbody",
-              _vm._l(_vm.datos_tabla_generador, function (generador, index) {
-                return _c("tr", { key: index, staticClass: "tr_resumen_gen" }, [
-                  _c("td", { staticClass: "text-center" }, [
-                    _vm._v(_vm._s(generador.id)),
-                  ]),
-                  _vm._v(" "),
-                  _c("td", { staticClass: "text-center" }, [
-                    _vm._v(_vm._s(generador.battery_voltage)),
-                  ]),
-                  _vm._v(" "),
-                  _c("td", { staticClass: "text-center" }, [
-                    _vm._v(_vm._s(generador.water_temp)),
-                  ]),
-                  _vm._v(" "),
-                  _c("td", { staticClass: "text-center" }, [
-                    _vm._v(_vm._s(generador.running_frequency)),
-                  ]),
-                  _vm._v(" "),
-                  _c("td", { staticClass: "text-center" }, [
-                    _vm._v(_vm._s(generador.fuel_level)),
-                  ]),
-                  _vm._v(" "),
-                  _c("td", { staticClass: "text-center" }, [
-                    _vm._v(_vm._s(generador.voltage_measure)),
-                  ]),
-                  _vm._v(" "),
-                  _c("td", { staticClass: "text-center" }, [
-                    _vm._v(_vm._s(generador.rotor_current)),
-                  ]),
-                  _vm._v(" "),
-                  _c("td", { staticClass: "text-center" }, [
-                    _vm._v(_vm._s(generador.fiel_current)),
-                  ]),
-                  _vm._v(" "),
-                  _c("td", { staticClass: "text-center" }, [
-                    _vm._v(_vm._s(generador.speed)),
-                  ]),
-                  _vm._v(" "),
-                  _c("td", { staticClass: "text-center" }, [
-                    _vm._v(_vm._s(generador.eco_power)),
-                  ]),
-                  _vm._v(" "),
-                  _c("td", { staticClass: "text-center" }, [
-                    _vm._v(_vm._s(generador.rpm)),
-                  ]),
-                  _vm._v(" "),
-                  _c("td", { staticClass: "text-center" }, [
-                    _vm._v(_vm._s(generador.unit_mode)),
-                  ]),
-                  _vm._v(" "),
-                  _c("td", { staticClass: "text-center" }, [
-                    _vm._v(_vm._s(generador.horometro)),
-                  ]),
-                  _vm._v(" "),
-                  _c("td", { staticClass: "text-center" }, [
-                    _vm._v(_vm._s(generador.modelo)),
-                  ]),
-                  _vm._v(" "),
-                  _c("td", { staticClass: "text-center" }, [
-                    _vm._v(_vm._s(generador.latitud)),
-                  ]),
-                  _vm._v(" "),
-                  _c("td", { staticClass: "text-center" }, [
-                    _vm._v(_vm._s(generador.longitud)),
-                  ]),
-                  _vm._v(" "),
-                  _c("td", { staticClass: "text-center" }, [
-                    _vm._v(_vm._s(generador.alarma_id)),
-                  ]),
-                  _vm._v(" "),
-                  _c("td", { staticClass: "text-center" }, [
-                    _vm._v(_vm._s(generador.evento_id)),
-                  ]),
-                  _vm._v(" "),
-                  _c("td", { staticClass: "text-center" }, [
-                    _vm._v(_vm._s(generador.reefer_conected)),
-                  ]),
-                  _vm._v(" "),
-                  _c("td", { staticClass: "text-center" }, [
-                    _vm._v(_vm._s(generador.set_point)),
-                  ]),
-                  _vm._v(" "),
-                  _c("td", { staticClass: "text-center" }, [
-                    _vm._v(_vm._s(generador.temp_supply_1)),
-                  ]),
-                  _vm._v(" "),
-                  _c("td", { staticClass: "text-center" }, [
-                    _vm._v(_vm._s(generador.return_air)),
-                  ]),
-                ])
-              }),
-              0
+              "table",
+              {
+                staticClass: "table display nowrap",
+                attrs: { id: "tblDetalleContenedores_generadores" },
+              },
+              [
+                _vm._m(0),
+                _vm._v(" "),
+                _c(
+                  "tbody",
+                  _vm._l(
+                    _vm.datos_tabla_generador,
+                    function (generador, index) {
+                      return _c(
+                        "tr",
+                        { key: index, staticClass: "tr_resumen_gen" },
+                        [
+                          _c("td", { staticClass: "text-center" }, [
+                            _vm._v(_vm._s(generador.id)),
+                          ]),
+                          _vm._v(" "),
+                          _c("td", { staticClass: "text-center" }, [
+                            _vm._v(_vm._s(generador.battery_voltage)),
+                          ]),
+                          _vm._v(" "),
+                          _c("td", { staticClass: "text-center" }, [
+                            _vm._v(_vm._s(generador.water_temp)),
+                          ]),
+                          _vm._v(" "),
+                          _c("td", { staticClass: "text-center" }, [
+                            _vm._v(_vm._s(generador.running_frequency)),
+                          ]),
+                          _vm._v(" "),
+                          _c("td", { staticClass: "text-center" }, [
+                            _vm._v(_vm._s(generador.fuel_level)),
+                          ]),
+                          _vm._v(" "),
+                          _c("td", { staticClass: "text-center" }, [
+                            _vm._v(_vm._s(generador.voltage_measure)),
+                          ]),
+                          _vm._v(" "),
+                          _c("td", { staticClass: "text-center" }, [
+                            _vm._v(_vm._s(generador.rotor_current)),
+                          ]),
+                          _vm._v(" "),
+                          _c("td", { staticClass: "text-center" }, [
+                            _vm._v(_vm._s(generador.fiel_current)),
+                          ]),
+                          _vm._v(" "),
+                          _c("td", { staticClass: "text-center" }, [
+                            _vm._v(_vm._s(generador.speed)),
+                          ]),
+                          _vm._v(" "),
+                          _c("td", { staticClass: "text-center" }, [
+                            _vm._v(_vm._s(generador.eco_power)),
+                          ]),
+                          _vm._v(" "),
+                          _c("td", { staticClass: "text-center" }, [
+                            _vm._v(_vm._s(generador.rpm)),
+                          ]),
+                          _vm._v(" "),
+                          _c("td", { staticClass: "text-center" }, [
+                            _vm._v(_vm._s(generador.unit_mode)),
+                          ]),
+                          _vm._v(" "),
+                          _c("td", { staticClass: "text-center" }, [
+                            _vm._v(_vm._s(generador.horometro)),
+                          ]),
+                          _vm._v(" "),
+                          _c("td", { staticClass: "text-center" }, [
+                            _vm._v(_vm._s(generador.modelo)),
+                          ]),
+                          _vm._v(" "),
+                          _c("td", { staticClass: "text-center" }, [
+                            _vm._v(_vm._s(generador.latitud)),
+                          ]),
+                          _vm._v(" "),
+                          _c("td", { staticClass: "text-center" }, [
+                            _vm._v(_vm._s(generador.longitud)),
+                          ]),
+                          _vm._v(" "),
+                          _c("td", { staticClass: "text-center" }, [
+                            _vm._v(_vm._s(generador.alarma_id)),
+                          ]),
+                          _vm._v(" "),
+                          _c("td", { staticClass: "text-center" }, [
+                            _vm._v(_vm._s(generador.evento_id)),
+                          ]),
+                          _vm._v(" "),
+                          _c("td", { staticClass: "text-center" }, [
+                            _vm._v(_vm._s(generador.reefer_conected)),
+                          ]),
+                          _vm._v(" "),
+                          _c("td", { staticClass: "text-center" }, [
+                            _vm._v(_vm._s(generador.set_point)),
+                          ]),
+                          _vm._v(" "),
+                          _c("td", { staticClass: "text-center" }, [
+                            _vm._v(_vm._s(generador.temp_supply_1)),
+                          ]),
+                          _vm._v(" "),
+                          _c("td", { staticClass: "text-center" }, [
+                            _vm._v(_vm._s(generador.return_air)),
+                          ]),
+                        ]
+                      )
+                    }
+                  ),
+                  0
+                ),
+              ]
             ),
           ]
         ),
-      ]
-    ),
-  ])
+      ])
+    : _vm._e()
 }
 var staticRenderFns = [
   function () {
@@ -32393,6 +32451,10 @@ var render = function () {
                       },
                       [
                         _c("td", { staticClass: "text-center" }, [
+                          _vm._v(_vm._s(gen.id)),
+                        ]),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "text-center" }, [
                           _vm._v(_vm._s(gen.nombre_contenedor)),
                         ]),
                         _vm._v(" "),
@@ -32524,9 +32586,18 @@ var staticRenderFns = [
             "th",
             {
               staticClass: "text-center",
+              attrs: { scope: "col", width: "50px" },
+            },
+            [_vm._v("N°")]
+          ),
+          _vm._v(" "),
+          _c(
+            "th",
+            {
+              staticClass: "text-center",
               attrs: { scope: "col", width: "150px" },
             },
-            [_vm._v("Generador")]
+            [_vm._v("GeneradorR")]
           ),
           _vm._v(" "),
           _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
@@ -33569,6 +33640,14 @@ var render = function () {
                         ref: "tablaResumenReef",
                         attrs: { tipo: _vm.tipo },
                         on: { select_contenedor: _vm.obteniendo_contendor },
+                      }),
+                      _vm._v(" "),
+                      _c("tablaDetalleGenset", {
+                        ref: "tablaDetalleGenset",
+                        attrs: {
+                          contenedor: _vm.contenedor_selecionado,
+                          tipo: _vm.tipo,
+                        },
                       }),
                     ],
                     1

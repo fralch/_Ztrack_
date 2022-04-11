@@ -13,7 +13,8 @@
         <thead>
           <tr class="bg-primary" style="color: white !important">
             <!-- <th scope="col" width='50px'>Ver</th> -->
-            <th scope="col" width="150px" class="text-center">Generador</th>
+            <th scope="col" width="50px" class="text-center">N°</th>
+            <th scope="col" width="150px" class="text-center">GeneradorR</th>
             <th scope="col" class="text-center">Tipo</th>
             <th scope="col" class="text-center">Estado</th>
             <th scope="col" width="150px" class="text-center">Booking</th>
@@ -61,6 +62,7 @@
                             <i class="bi bi-check-lg"></i>                    
                           </button>
                         </td> -->
+            <td class="text-center">{{ gen.id }}</td>
             <td class="text-center">{{ gen.nombre_contenedor }}</td>
             <td class="text-center">{{ gen.tipo }}</td>
             <td class="text-center">{{ gen.encendido == 1 ? "SI" : "NO" }}</td>
@@ -144,6 +146,7 @@ export default {
         })
         .then((res) => {
           self.contenedores_encendidos_gen = res.data;
+          // console.log(res.data);
         }).then(() => {
           this.resumenContenedor(); 
         });
@@ -165,8 +168,8 @@ export default {
               })
               .then((response) => {
                 contenedor = Object.assign(contenedor, response.data); // aqui unimos el objeto con los ultimos datos del registro diario
-              });
                 self.datos_resumen_gen.push(contenedor);
+              });
           });
           
         }
