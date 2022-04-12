@@ -546,17 +546,36 @@ export default {
       // });
     },
     bienvenida() {
+      let timerInterval
       Swal.fire({
-        title: "Bienvenido!",
-        icon: "success",
-        text: (
-          this.usuario_logeado[0].nombres +
-          " " +
-          this.usuario_logeado[0].apellidos
-        ).toUpperCase(),
-        confirmButtonColor: "#3085d6",
-        confirmButtonText: "OK!",
-      });
+        title: 'Loading ReeferConnect!',
+        html: 'I will close in <b></b> milliseconds.',
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: () => {
+          Swal.showLoading()
+          const b = Swal.getHtmlContainer().querySelector('b')
+          timerInterval = setInterval(() => {
+            b.textContent = Swal.getTimerLeft()
+          }, 100)
+        },
+        willClose: () => {
+          clearInterval(timerInterval)
+        }
+      }).then((result) => {
+        Swal.fire({
+          title: "Bienvenido!",
+          icon: "success",
+          text: (
+            this.usuario_logeado[0].nombres +
+            " " +
+            this.usuario_logeado[0].apellidos
+          ).toUpperCase(),
+          confirmButtonColor: "#3085d6",
+          confirmButtonText: "OK!",
+        });
+      })
+      
     },
 
     usuarioLogeado() {
@@ -593,7 +612,6 @@ export default {
               })
               .then((rp) => {
                 cont = Object.assign(cont, rp.data); // aqui unimos el objeto con los ultimos datos del registro diario
-                console.log(rp.data)                
               });
             self.datos_resumen_reefer.push(cont);
           });

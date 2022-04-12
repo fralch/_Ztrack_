@@ -3736,12 +3736,32 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       // });
     },
     bienvenida: function bienvenida() {
+      var _this = this;
+
+      var timerInterval;
       Swal.fire({
-        title: "Bienvenido!",
-        icon: "success",
-        text: (this.usuario_logeado[0].nombres + " " + this.usuario_logeado[0].apellidos).toUpperCase(),
-        confirmButtonColor: "#3085d6",
-        confirmButtonText: "OK!"
+        title: 'Loading ReeferConnect!',
+        html: 'I will close in <b></b> milliseconds.',
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: function didOpen() {
+          Swal.showLoading();
+          var b = Swal.getHtmlContainer().querySelector('b');
+          timerInterval = setInterval(function () {
+            b.textContent = Swal.getTimerLeft();
+          }, 100);
+        },
+        willClose: function willClose() {
+          clearInterval(timerInterval);
+        }
+      }).then(function (result) {
+        Swal.fire({
+          title: "Bienvenido!",
+          icon: "success",
+          text: (_this.usuario_logeado[0].nombres + " " + _this.usuario_logeado[0].apellidos).toUpperCase(),
+          confirmButtonColor: "#3085d6",
+          confirmButtonText: "OK!"
+        });
       });
     },
     usuarioLogeado: function usuarioLogeado() {
@@ -3781,8 +3801,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                         tipo_contenedor: 'reefer'
                       }).then(function (rp) {
                         cont = Object.assign(cont, rp.data); // aqui unimos el objeto con los ultimos datos del registro diario
-
-                        console.log(rp.data);
                       });
                       self.datos_resumen_reefer.push(cont);
                     });
