@@ -158,13 +158,12 @@ export default {
     },
     resumenContenedor() {
       let self = this;
-      this.$nextTick(() => {
-        async function rellenar_resumen() {
-          self.contenedores_encendidos_gen.map(function (contenedor) {
-            axios
+      async function rellenar_resumen() {
+          self.contenedores_encendidos_gen.forEach(async function (contenedor) {
+            await axios
               .post(route("contenedores.resumen"), {
                 id_contenedor: contenedor.id,
-                tipo_contenedor: 'genset',
+                tipo_contenedor: "genset",
               })
               .then((response) => {
                 contenedor = Object.assign(contenedor, response.data); // aqui unimos el objeto con los ultimos datos del registro diario
@@ -173,10 +172,7 @@ export default {
           });
           
         }
-         rellenar_resumen().then(()=>{
-          self.TablaContenedores_gen();
-        });
-      });
+         rellenar_resumen();
     },
   },
 };
