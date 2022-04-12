@@ -499,28 +499,6 @@ export default {
     },
 
     seleccionarTipo(tipo) {
-      // let timerInterval;
-      // Swal.fire({
-      //   title: "Obteniendo datos!",
-      //   html: " <b></b> milliseconds.",
-      //   timer: 2000,
-      //   timerProgressBar: true,
-      //   didOpen: () => {
-      //     Swal.showLoading();
-      //     const b = Swal.getHtmlContainer().querySelector("b");
-      //     timerInterval = setInterval(() => {
-      //       b.textContent = Swal.getTimerLeft();
-      //     }, 100);
-      //   },
-      //   willClose: () => {
-      //     clearInterval(timerInterval);
-      //   },
-      // }).then((result) => {
-      //   /* Read more about handling dismissals below */
-      //   if (result.dismiss === Swal.DismissReason.timer) {
-      //     this.tipo = tipo;
-      //   }
-      // });
       this.tipo = tipo;
     },
     cargarMapa() {},
@@ -547,22 +525,22 @@ export default {
     },
     bienvenida() {
       let self = this;
-      let timerInterval
+      let timerInterval;
       Swal.fire({
-        title: 'Loading Connect!',
-        html: 'I will close in <b></b> milliseconds.',
+        title: "Loading Connect!",
+        html: "I will close in <b></b> milliseconds.",
         timer: 3000,
         timerProgressBar: true,
         didOpen: () => {
-          Swal.showLoading()
-          const b = Swal.getHtmlContainer().querySelector('b')
+          Swal.showLoading();
+          const b = Swal.getHtmlContainer().querySelector("b");
           timerInterval = setInterval(() => {
-            b.textContent = Swal.getTimerLeft()
-          }, 100)
+            b.textContent = Swal.getTimerLeft();
+          }, 100);
         },
         willClose: () => {
-          clearInterval(timerInterval)
-        }
+          clearInterval(timerInterval);
+        },
       }).then((result) => {
         // Swal.fire({
         //   title: "Bienvenido!",
@@ -583,16 +561,14 @@ export default {
             " " +
             this.usuario_logeado[0].apellidos
           ).toUpperCase(),
-          confirmButtonColor: '#3085d6',
+          confirmButtonColor: "#3085d6",
           confirmButtonText: "OK!",
         }).then((result) => {
           if (result.isConfirmed) {
             self.tipo = "genset";
           }
-          
-        })
-      })
-      
+        });
+      });
     },
 
     usuarioLogeado() {
@@ -614,7 +590,7 @@ export default {
             axios
               .post(route("contenedores.resumen"), {
                 id_contenedor: contenedor.id,
-                tipo_contenedor:'genset',
+                tipo_contenedor: "genset",
               })
               .then((response) => {
                 contenedor = Object.assign(contenedor, response.data); // aqui unimos el objeto con los ultimos datos del registro diario
@@ -625,7 +601,7 @@ export default {
             axios
               .post(route("contenedores.resumen"), {
                 id_contenedor: cont.id,
-                tipo_contenedor: 'reefer',
+                tipo_contenedor: "reefer",
               })
               .then((rp) => {
                 cont = Object.assign(cont, rp.data); // aqui unimos el objeto con los ultimos datos del registro diario

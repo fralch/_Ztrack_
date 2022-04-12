@@ -3690,28 +3690,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       });
     },
     seleccionarTipo: function seleccionarTipo(tipo) {
-      // let timerInterval;
-      // Swal.fire({
-      //   title: "Obteniendo datos!",
-      //   html: " <b></b> milliseconds.",
-      //   timer: 2000,
-      //   timerProgressBar: true,
-      //   didOpen: () => {
-      //     Swal.showLoading();
-      //     const b = Swal.getHtmlContainer().querySelector("b");
-      //     timerInterval = setInterval(() => {
-      //       b.textContent = Swal.getTimerLeft();
-      //     }, 100);
-      //   },
-      //   willClose: () => {
-      //     clearInterval(timerInterval);
-      //   },
-      // }).then((result) => {
-      //   /* Read more about handling dismissals below */
-      //   if (result.dismiss === Swal.DismissReason.timer) {
-      //     this.tipo = tipo;
-      //   }
-      // });
       this.tipo = tipo;
     },
     cargarMapa: function cargarMapa() {},
@@ -3741,13 +3719,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var self = this;
       var timerInterval;
       Swal.fire({
-        title: 'Loading Connect!',
-        html: 'I will close in <b></b> milliseconds.',
+        title: "Loading Connect!",
+        html: "I will close in <b></b> milliseconds.",
         timer: 3000,
         timerProgressBar: true,
         didOpen: function didOpen() {
           Swal.showLoading();
-          var b = Swal.getHtmlContainer().querySelector('b');
+          var b = Swal.getHtmlContainer().querySelector("b");
           timerInterval = setInterval(function () {
             b.textContent = Swal.getTimerLeft();
           }, 100);
@@ -3771,7 +3749,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           title: "Bienvenido!",
           icon: "success",
           text: (_this.usuario_logeado[0].nombres + " " + _this.usuario_logeado[0].apellidos).toUpperCase(),
-          confirmButtonColor: '#3085d6',
+          confirmButtonColor: "#3085d6",
           confirmButtonText: "OK!"
         }).then(function (result) {
           if (result.isConfirmed) {
@@ -3805,7 +3783,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     self.contenedores_encendidos_gen.map(function (contenedor) {
                       axios__WEBPACK_IMPORTED_MODULE_1___default().post(route("contenedores.resumen"), {
                         id_contenedor: contenedor.id,
-                        tipo_contenedor: 'genset'
+                        tipo_contenedor: "genset"
                       }).then(function (response) {
                         contenedor = Object.assign(contenedor, response.data); // aqui unimos el objeto con los ultimos datos del registro diario
                       });
@@ -3814,7 +3792,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     self.contenedores_encendidos_reefer.map(function (cont) {
                       axios__WEBPACK_IMPORTED_MODULE_1___default().post(route("contenedores.resumen"), {
                         id_contenedor: cont.id,
-                        tipo_contenedor: 'reefer'
+                        tipo_contenedor: "reefer"
                       }).then(function (rp) {
                         cont = Object.assign(cont, rp.data); // aqui unimos el objeto con los ultimos datos del registro diario
                       });
