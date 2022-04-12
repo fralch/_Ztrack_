@@ -593,6 +593,7 @@ export default {
               })
               .then((rp) => {
                 cont = Object.assign(cont, rp.data); // aqui unimos el objeto con los ultimos datos del registro diario
+                console.log(rp.data)                
               });
             self.datos_resumen_reefer.push(cont);
           });

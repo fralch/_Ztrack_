@@ -49,15 +49,7 @@ class PanelController extends Controller
             ]);
         }
     }
-    public function obtenerContendor(Request $request)
-    {
-        if ($request->tipo == 'reefer') {
-            return $contenedores_encendidos_reefer = Contenedor::select()->where([['encendido', 1], ['tipo', 'Reefer']])->orderBy('id', 'asc')->get();
-        }
-        if ($request->tipo == 'genset') {
-            return $contenedores_encendidos_gen = Contenedor::select()->where([['encendido', 1], ['tipo', 'Generador']])->orderBy('id', 'asc')->get();
-        }
-    }
+
     public function resumen_contenedores(Request $request)
     {
         // return $request; 
@@ -65,72 +57,72 @@ class PanelController extends Controller
         $tipo_contenedor = $request->tipo_contenedor;
         if ($tipo_contenedor == 'reefer') {
             return $ultimo_dato_contenedor = Registro_diario_reefers::select(
-                                            'contenedor_id as id',
-                                            'set_point',
-                                            'temp_supply_1',
-                                            'temp_supply_2',
-                                            'return_air' ,
-                                            'evaporation_coil',
-                                            'condensation_coil',
-                                            'compress_coil_1' ,
-                                            'compress_coil_2' ,
-                                            'ambient_air' ,
-                                            'cargo_1_temp',
-                                            'cargo_2_temp',
-                                            'cargo_3_temp',
-                                            'cargo_4_temp',
-                                            'relative_humidity',
-                                            'avl' ,
-                                            'suction_pressure',
-                                            'discharge_pressure',
-                                            'line_voltage'  ,
-                                            'line_frequency',
-                                            'consumption_ph_1',
-                                            'consumption_ph_2',
-                                            'consumption_ph_3',
-                                            'co2_reading' ,
-                                            'o2_reading' ,
-                                            'evaporator_speed'  ,
-                                            'condenser_speed'  ,
-                                            'battery_voltage' ,
-                                            'power_kwh' ,
-                                            'power_trip_reading',
-                                            'power_trip_duration',
-                                            'suction_temp' ,
-                                            'discharge_temp' ,
-                                            'supply_air_temp' ,
-                                            'return_air_temp' ,
-                                            'dl_battery_temp' ,
-                                            'dl_battery_charge',
-                                            'power_consumption' ,
-                                            'power_consumption_avg',
-                                            'alarm_present'  ,
-                                            'capacity_load'  ,
-                                            'power_state'  ,
-                                            'controlling_mode',
-                                            'humidity_control'  ,
-                                            'humidity_set_point' ,
-                                            'fresh_air_ex_mode'  ,
-                                            'fresh_air_ex_rate'  ,
-                                            'fresh_air_ex_delay' ,
-                                            'set_point_o2'  ,
-                                            'set_point_co2'  ,
-                                            'defrost_term_temp',
-                                            'defrost_interval' ,
-                                            'water_cooled_conde' ,
-                                            'usda_trip'  ,
-                                            'evaporator_exp_valve',
-                                            'suction_mod_valve' ,
-                                            'hot_gas_valve',
-                                            'economizer_valve',
-                                            'modelo'  ,
-                                            'latitud' ,
-                                            'longitud',
+                'registro_diario_reefers.contenedor_id as id',
+                'registro_diario_reefers.set_point',
+                'registro_diario_reefers.temp_supply_1',
+                'registro_diario_reefers.temp_supply_2',
+                'registro_diario_reefers.return_air',
+                'registro_diario_reefers.evaporation_coil',
+                'registro_diario_reefers.condensation_coil',
+                'registro_diario_reefers.compress_coil_1',
+                'registro_diario_reefers.compress_coil_2',
+                'registro_diario_reefers.ambient_air',
+                'registro_diario_reefers.cargo_1_temp',
+                'registro_diario_reefers.cargo_2_temp',
+                'registro_diario_reefers.cargo_3_temp',
+                'registro_diario_reefers.cargo_4_temp',
+                'registro_diario_reefers.relative_humidity',
+                'registro_diario_reefers.avl',
+                'registro_diario_reefers.suction_pressure',
+                'registro_diario_reefers.discharge_pressure',
+                'registro_diario_reefers.line_voltage',
+                'registro_diario_reefers.line_frequency',
+                'registro_diario_reefers.consumption_ph_1',
+                'registro_diario_reefers.consumption_ph_2',
+                'registro_diario_reefers.consumption_ph_3',
+                'registro_diario_reefers.co2_reading',
+                'registro_diario_reefers.o2_reading',
+                'registro_diario_reefers.evaporator_speed',
+                'registro_diario_reefers.condenser_speed',
+                'registro_diario_reefers.battery_voltage',
+                'registro_diario_reefers.power_kwh',
+                'registro_diario_reefers.power_trip_reading',
+                'registro_diario_reefers.power_trip_duration',
+                'registro_diario_reefers.suction_temp',
+                'registro_diario_reefers.discharge_temp',
+                'registro_diario_reefers.supply_air_temp',
+                'registro_diario_reefers.return_air_temp',
+                'registro_diario_reefers.dl_battery_temp',
+                'registro_diario_reefers.dl_battery_charge',
+                'registro_diario_reefers.power_consumption',
+                'registro_diario_reefers.power_consumption_avg',
+                'registro_diario_reefers.alarm_present',
+                'registro_diario_reefers.capacity_load',
+                'registro_diario_reefers.power_state',
+                'registro_diario_reefers.controlling_mode',
+                'registro_diario_reefers.humidity_control',
+                'registro_diario_reefers.humidity_set_point',
+                'registro_diario_reefers.fresh_air_ex_mode',
+                'registro_diario_reefers.fresh_air_ex_rate',
+                'registro_diario_reefers.fresh_air_ex_delay',
+                'registro_diario_reefers.set_point_o2',
+                'registro_diario_reefers.set_point_co2',
+                'registro_diario_reefers.defrost_term_temp',
+                'registro_diario_reefers.defrost_interval',
+                'registro_diario_reefers.water_cooled_conde',
+                'registro_diario_reefers.usda_trip',
+                'registro_diario_reefers.evaporator_exp_valve',
+                'registro_diario_reefers.suction_mod_valve',
+                'registro_diario_reefers.hot_gas_valve',
+                'registro_diario_reefers.economizer_valve',
+                'registro_diario_reefers.modelo',
+                'registro_diario_reefers.latitud',
+                'registro_diario_reefers.longitud',
 
-                                            )
-                                            ->where('contenedor_id', $id_contenedor)
-                                            ->orderBy('id', 'desc')
-                                            ->first();
+            )
+                ->where('registro_diario_reefers.contenedor_id', $id_contenedor)
+                ->orderBy('registro_diario_reefers.id', 'desc')
+                ->first();
         }
         if ($tipo_contenedor == 'genset') {
             return $ultimo_dato_contenedor = Registro_diario_generadores::select(
@@ -147,10 +139,15 @@ class PanelController extends Controller
                 'registro_diario_generadores.rpm',
                 'registro_diario_generadores.unit_mode',
                 'registro_diario_generadores.horometro',
+                'registro_diario_generadores.engine_state',
+                'registro_diario_generadores.reefer_conected',
+                'registro_diario_generadores.set_point',
+                'registro_diario_generadores.temp_supply_1',
+                'registro_diario_generadores.return_air',
                 'al.nombre_alarma',
                 'e.nombre_evento'
-                
-                )
+
+            )
                 ->join('alarmas as al', 'al.id', 'registro_diario_generadores.alarma_id')
                 ->join('eventos as e', 'e.id', 'registro_diario_generadores.evento_id')
                 ->where('registro_diario_generadores.contenedor_id', $id_contenedor)
