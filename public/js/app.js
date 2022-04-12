@@ -3738,9 +3738,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     bienvenida: function bienvenida() {
       var _this = this;
 
+      var self = this;
       var timerInterval;
       Swal.fire({
-        title: 'Loading ReeferConnect!',
+        title: 'Loading Connect!',
         html: 'I will close in <b></b> milliseconds.',
         timer: 3000,
         timerProgressBar: true,
@@ -3755,12 +3756,27 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           clearInterval(timerInterval);
         }
       }).then(function (result) {
+        // Swal.fire({
+        //   title: "Bienvenido!",
+        //   icon: "success",
+        //   text: (
+        //     this.usuario_logeado[0].nombres +
+        //     " " +
+        //     this.usuario_logeado[0].apellidos
+        //   ).toUpperCase(),
+        //   confirmButtonColor: "#3085d6",
+        //   confirmButtonText: "OK!",
+        // });
         Swal.fire({
           title: "Bienvenido!",
           icon: "success",
           text: (_this.usuario_logeado[0].nombres + " " + _this.usuario_logeado[0].apellidos).toUpperCase(),
-          confirmButtonColor: "#3085d6",
+          confirmButtonColor: '#3085d6',
           confirmButtonText: "OK!"
+        }).then(function (result) {
+          if (result.isConfirmed) {
+            self.tipo = "genset";
+          }
         });
       });
     },

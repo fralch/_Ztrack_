@@ -546,9 +546,10 @@ export default {
       // });
     },
     bienvenida() {
+      let self = this;
       let timerInterval
       Swal.fire({
-        title: 'Loading ReeferConnect!',
+        title: 'Loading Connect!',
         html: 'I will close in <b></b> milliseconds.',
         timer: 3000,
         timerProgressBar: true,
@@ -563,6 +564,17 @@ export default {
           clearInterval(timerInterval)
         }
       }).then((result) => {
+        // Swal.fire({
+        //   title: "Bienvenido!",
+        //   icon: "success",
+        //   text: (
+        //     this.usuario_logeado[0].nombres +
+        //     " " +
+        //     this.usuario_logeado[0].apellidos
+        //   ).toUpperCase(),
+        //   confirmButtonColor: "#3085d6",
+        //   confirmButtonText: "OK!",
+        // });
         Swal.fire({
           title: "Bienvenido!",
           icon: "success",
@@ -571,9 +583,14 @@ export default {
             " " +
             this.usuario_logeado[0].apellidos
           ).toUpperCase(),
-          confirmButtonColor: "#3085d6",
+          confirmButtonColor: '#3085d6',
           confirmButtonText: "OK!",
-        });
+        }).then((result) => {
+          if (result.isConfirmed) {
+            self.tipo = "genset";
+          }
+          
+        })
       })
       
     },
