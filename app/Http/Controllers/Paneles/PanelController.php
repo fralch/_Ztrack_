@@ -40,12 +40,11 @@ class PanelController extends Controller
 
             $contenedores_encendidos_gen = Contenedor::select()->where([['encendido', 1], ['tipo', 'Generador']])->get();
             $genset_completo = [];
-
             foreach ($contenedores_encendidos_gen as $contendor) {
                 $datos_r= $this->datosResumen($contendor);
                 $genset_completo[]=$datos_r;
             }
-            return $genset_completo;
+            dd($genset_completo);
            
 
             return Inertia::render('Panel/new_board', [
@@ -59,7 +58,6 @@ class PanelController extends Controller
     }
     public function datosResumen($contenedor)
     {
-        //   return $contenedor->id; 
             $array_contenedor = [
                 'id' => $contenedor->id,
                 'nombre_contenedor' => $contenedor->nombre_contenedor,
@@ -67,10 +65,10 @@ class PanelController extends Controller
                 'encendido' => $contenedor->encendido,
                 'booking' => $contenedor->booking,
                 'booking_temp' => $contenedor->booking_temp,
-
             ];
+           
             $datos = Registro_diario_generadores::select(
-                'registro_diario_generadores.id',
+                // 'registro_diario_generadores.id',
                 'registro_diario_generadores.contenedor_id',
                 'registro_diario_generadores.battery_voltage',
                 'registro_diario_generadores.water_temp',
@@ -91,41 +89,19 @@ class PanelController extends Controller
                 'registro_diario_generadores.return_air',
                 'registro_diario_generadores.created_at',
                 'al.nombre_alarma',
-                'e.nombre_evento'
-
+                'e.nombre_evento',
             )
                 ->join('alarmas as al', 'al.id', 'registro_diario_generadores.alarma_id')
                 ->join('eventos as e', 'e.id', 'registro_diario_generadores.evento_id')
                 ->where('registro_diario_generadores.contenedor_id', $contenedor->id)
                 ->orderBy('registro_diario_generadores.id', 'desc')
                 ->first();
-                 dd($datos->contenedor_id); 
-            $array_datos = [
-                'contenedor_id' => $datos->contenedor_id,
-                'battery_voltage' => $datos->battery_voltage,
-                'water_temp' => $datos->water_temp,
-                'running_frequency' => $datos->running_frequency,
-                'fuel_level' => $datos->fuel_level,
-                'voltage_measure' => $datos->voltage_measure,
-                'rotor_current' => $datos->rotor_current,
-                'fiel_current' => $datos->fiel_current,
-                'speed' => $datos->speed,
-                'eco_power' => $datos->eco_power,
-                'rpm' => $datos->rpm,
-                'unit_mode' => $datos->unit_mode,
-                'horometro' => $datos->horometro,
-                'engine_state' => $datos->engine_state,
-                'reefer_conected' => $datos->reefer_conected,
-                'set_point' => $datos->set_point,
-                'temp_supply_1' => $datos->temp_supply_1,
-                'return_air' => $datos->return_air,
-                'created_at' => $datos->created_at,
-                'nombre_alarma' => $datos->nombre_alarma,
-                'nombre_evento' => $datos->nombre_evento
-            ];
-            $obj_merged = (object) array_merge($array_contenedor, $array_datos);
-            return $obj_merged;
-        
+                
+            if ($datos != null) {
+                $datos_ = $datos->toArray(); // ** debes usar toArray para convertir la coleccion que bota elocuent a un array natural
+                $obj_merged = (object) array_merge($array_contenedor, $datos_);
+                return $obj_merged;
+            }
     }
     public function resumen_contenedores(Request $request)
     {
