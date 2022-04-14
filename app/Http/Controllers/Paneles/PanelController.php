@@ -432,19 +432,19 @@ class PanelController extends Controller
         $id_registro = $request->id;
         $tipo_contenedor = $request->tipo;
 
-        if ($tipo_contenedor == 'Generador') {
+        if ($tipo_contenedor == 'genset') {
             return Registro_diario_generadores::from('registro_diario_generadores')
                 ->select()
                 ->where('id', $id_registro)
                 ->latest()
-                ->get()[0];
+                ->get()->toArray();
         }
-        if ($tipo_contenedor == 'Reefer') {
+        if ($tipo_contenedor == 'reefer') {
             return Registro_diario_reefers::from('registro_diario_reefers')
                 ->select()
                 ->where('id', $id_registro)
                 ->latest()
-                ->get()[0];
+                ->get()->toArray();
         }
     }
 

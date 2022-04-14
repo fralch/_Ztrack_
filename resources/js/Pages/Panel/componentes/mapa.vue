@@ -8,8 +8,7 @@ import axios from 'axios';
 export default {
 	components: {  },
 	props: { 
-         tipo: String,
-         array_contenedor: Object,
+         punto:Array,
     },
 	data() {
 		return {
@@ -19,8 +18,9 @@ export default {
 		};
 	},
 	watch: {
-        array_contenedor(){
-            this.fijarUbicacion(); 
+        punto(valor){
+            this.ubicacion = new google.maps.LatLng(valor[0], valor[1]);
+            this.iniciarMap(); 
         },
 	},
     mounted() {
@@ -46,8 +46,8 @@ export default {
         },
         fijarUbicacion() {
             let self = this;
-            console.log(self.tipo);
-            console.log(self.array_contenedor);
+            console.log("desde mapa",self.tipo);
+            console.log("desde mapa",self.array_contenedor);
             return 0; 
             if (self.tipo == "reefer") {
             let mayor_id = self.array_contenedor.map(function(e) { return e.id; }).sort().reverse()[0];

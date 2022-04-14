@@ -1,10 +1,9 @@
 <template >
-  <div v-if="tipo == 'genset' && datos_tabla_generador.length > 0" >
+  <div v-if="tipo == 'genset' && datos_tabla_generador.length > 0">
     <div
       id="generador_grid"
       class="col shadow-sm p-3 mb-5 bg-white rounded"
       style="margin: -30px 15px 10px 15px"
-      
     >
       <table
         class="table display nowrap"
@@ -13,11 +12,17 @@
         <thead>
           <tr class="bg-info" style="color: white !important">
             <th scope="col">N°</th>
-            <th scope="col" width="50px" class="text-center">Battery_voltage</th>
+            <th scope="col" width="50px" class="text-center">
+              Battery_voltage
+            </th>
             <th scope="col" width="50px" class="text-center">Water_temp</th>
-            <th scope="col" width="50px" class="text-center">Running_frequency</th>
+            <th scope="col" width="50px" class="text-center">
+              Running_frequency
+            </th>
             <th scope="col" width="50px" class="text-center">Fuel_level</th>
-            <th scope="col" width="50px" class="text-center">Voltage_measure</th>
+            <th scope="col" width="50px" class="text-center">
+              Voltage_measure
+            </th>
             <th scope="col" width="50px" class="text-center">Rotor_current</th>
             <th scope="col" width="50px" class="text-center">fiel_current</th>
             <th scope="col" width="50px" class="text-center">Speed</th>
@@ -30,7 +35,9 @@
             <th scope="col" width="50px" class="text-center">Longitud</th>
             <th scope="col" width="50px" class="text-center">Alarma</th>
             <th scope="col" width="50px" class="text-center">Evento</th>
-            <th scope="col" width="50px" class="text-center">REEFER_CONECTED</th>
+            <th scope="col" width="50px" class="text-center">
+              REEFER_CONECTED
+            </th>
             <th scope="col" width="50px" class="text-center">SET_POINT</th>
             <th scope="col" width="50px" class="text-center">TEMP_SUPPLY</th>
             <th scope="col" width="50px" class="text-center">RETURN_AIR</th>
@@ -82,13 +89,14 @@ export default {
   data() {
     return {
       datos_tabla_generador: [],
+      ubicacion: null,
     };
   },
   watch: {
-    contenedor(){
-      this.select_contenedor() ;
+    contenedor() {
+      this.select_contenedor();
     },
-    datos_tabla_generador(){
+    datos_tabla_generador() {
       $("#tblDetalleContenedores_generadores").DataTable().destroy();
       this.TablaDetalleContenedores_g();
     },
@@ -97,18 +105,17 @@ export default {
     this.TablaDetalleContenedores_g();
   },
   methods: {
-     TablaDetalleContenedores_g() {
-     let self = this;
+    TablaDetalleContenedores_g() {
+      let self = this;
       this.$nextTick(() => {
-        var table = $('#tblDetalleContenedores_generadores').DataTable({
-           "scrollX": "100%",
-           "responsive": true,
-            "order": [ 0, "desc" ],
-            "language": {
-              "url": "//cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json"
-            }
-          });
-        
+        var table = $("#tblDetalleContenedores_generadores").DataTable({
+          scrollX: "100%",
+          responsive: true,
+          order: [0, "desc"],
+          language: {
+            url: "//cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json",
+          },
+        });
       });
     },
     select_contenedor() {
@@ -125,33 +132,30 @@ export default {
           self.datos_tabla_generador = response.data;
         })
         .then(() => {
-
-          // let mayor_id = self.datos_tabla_generador
-          //     .map(function (e) {
-          //       return e.id;
-          //     })
-          //     .sort()
-          //     .reverse()[0];
-          //   axios
-          //     .post(route("contenedores.get_lat_log"), {
-          //       id: mayor_id,
-          //       tipo: contenedor.tipo,
-          //     })
-          //     .then((response) => {
-          //       console.log(
-          //         response.data.latitud,
-          //         "---",
-          //         response.data.longitud
-          //       );
-          //       self.ubicacion = new google.maps.LatLng(
-          //         response.data.latitud,
-          //         response.data.longitud
-          //       );
-          //     })
-          //     .then(() => {
-          //       self.iniciarMap();
-          //     });
-        })
+          let mayor_id = self.datos_tabla_generador
+            .map(function (e) {
+              return e.id;
+            })
+            .sort()
+            .reverse()[0];
+          axios
+            .post(route("contenedores.get_lat_log"), {
+              id: mayor_id,
+              tipo: "genset",
+            })
+            .then((response) => {
+            
+              if (response.data.length > 0) {
+                self.ubicacion = [response.data[0].latitud,response.data[0].longitud];
+              }else{
+                self.ubicacion = null;
+              }              
+            })
+            .then(() => {
+              self.$emit("set_ubicacion_g", self.ubicacion);
+              // self.iniciarMap();
+            });
+        });
     },
   },
 };

@@ -2702,8 +2702,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {},
   props: {
-    tipo: String,
-    array_contenedor: Object
+    punto: Array
   },
   data: function data() {
     return {
@@ -2712,8 +2711,9 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   watch: {
-    array_contenedor: function array_contenedor() {
-      this.fijarUbicacion();
+    punto: function punto(valor) {
+      this.ubicacion = new google.maps.LatLng(valor[0], valor[1]);
+      this.iniciarMap();
     }
   },
   mounted: function mounted() {
@@ -2736,8 +2736,8 @@ __webpack_require__.r(__webpack_exports__);
     },
     fijarUbicacion: function fijarUbicacion() {
       var self = this;
-      console.log(self.tipo);
-      console.log(self.array_contenedor);
+      console.log("desde mapa", self.tipo);
+      console.log("desde mapa", self.array_contenedor);
       return 0;
 
       if (self.tipo == "reefer") {
@@ -2861,6 +2861,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {},
@@ -2870,7 +2877,8 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      datos_tabla_generador: []
+      datos_tabla_generador: [],
+      ubicacion: null
     };
   },
   watch: {
@@ -2889,12 +2897,12 @@ __webpack_require__.r(__webpack_exports__);
     TablaDetalleContenedores_g: function TablaDetalleContenedores_g() {
       var self = this;
       this.$nextTick(function () {
-        var table = $('#tblDetalleContenedores_generadores').DataTable({
-          "scrollX": "100%",
-          "responsive": true,
-          "order": [0, "desc"],
-          "language": {
-            "url": "//cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json"
+        var table = $("#tblDetalleContenedores_generadores").DataTable({
+          scrollX: "100%",
+          responsive: true,
+          order: [0, "desc"],
+          language: {
+            url: "//cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json"
           }
         });
       });
@@ -2909,31 +2917,22 @@ __webpack_require__.r(__webpack_exports__);
         // console.log("select_contenedor desde detalle ");
         // console.log(response.data);
         self.datos_tabla_generador = response.data;
-      }).then(function () {// let mayor_id = self.datos_tabla_generador
-        //     .map(function (e) {
-        //       return e.id;
-        //     })
-        //     .sort()
-        //     .reverse()[0];
-        //   axios
-        //     .post(route("contenedores.get_lat_log"), {
-        //       id: mayor_id,
-        //       tipo: contenedor.tipo,
-        //     })
-        //     .then((response) => {
-        //       console.log(
-        //         response.data.latitud,
-        //         "---",
-        //         response.data.longitud
-        //       );
-        //       self.ubicacion = new google.maps.LatLng(
-        //         response.data.latitud,
-        //         response.data.longitud
-        //       );
-        //     })
-        //     .then(() => {
-        //       self.iniciarMap();
-        //     });
+      }).then(function () {
+        var mayor_id = self.datos_tabla_generador.map(function (e) {
+          return e.id;
+        }).sort().reverse()[0];
+        axios__WEBPACK_IMPORTED_MODULE_0___default().post(route("contenedores.get_lat_log"), {
+          id: mayor_id,
+          tipo: "genset"
+        }).then(function (response) {
+          if (response.data.length > 0) {
+            self.ubicacion = [response.data[0].latitud, response.data[0].longitud];
+          } else {
+            self.ubicacion = null;
+          }
+        }).then(function () {
+          self.$emit("set_ubicacion_g", self.ubicacion); // self.iniciarMap();
+        });
       });
     }
   }
@@ -3106,7 +3105,8 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      datos_tabla_reefer: []
+      datos_tabla_reefer: [],
+      ubicacion: null
     };
   },
   watch: {
@@ -3125,12 +3125,12 @@ __webpack_require__.r(__webpack_exports__);
     TablaDetalleContenedores_r: function TablaDetalleContenedores_r() {
       var self = this;
       this.$nextTick(function () {
-        var table2 = $('#tblDetalleContenedores_reefers').DataTable({
-          "scrollX": "100%",
-          "responsive": true,
-          "order": [0, "desc"],
-          "language": {
-            "url": "//cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json"
+        var table2 = $("#tblDetalleContenedores_reefers").DataTable({
+          scrollX: "100%",
+          responsive: true,
+          order: [0, "desc"],
+          language: {
+            url: "//cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json"
           }
         });
       });
@@ -3140,34 +3140,25 @@ __webpack_require__.r(__webpack_exports__);
       self.datos_tabla_reefer = [];
       axios__WEBPACK_IMPORTED_MODULE_0___default().post(route("contenedores.get_datos"), {
         id: this.contenedor,
-        tipo: 'reefer'
+        tipo: "reefer"
       }).then(function (response) {
         self.datos_tabla_reefer = response.data;
-      }).then(function () {// let mayor_id = self.datos_tabla_reefer
-        //     .map(function (e) {
-        //       return e.id;
-        //     })
-        //     .sort()
-        //     .reverse()[0];
-        //   axios
-        //     .post(route("contenedores.get_lat_log"), {
-        //       id: mayor_id,
-        //       tipo: contenedor.tipo,
-        //     })
-        //     .then((response) => {
-        //       // console.log(
-        //       //   response.data.latitud,
-        //       //   "---",
-        //       //   response.data.longitud
-        //       // );
-        //       // self.ubicacion = new google.maps.LatLng(
-        //       //   response.data.latitud,
-        //       //   response.data.longitud
-        //       // );
-        //     })
-        //     .then(() => {
-        //       // self.iniciarMap();
-        //     });
+      }).then(function () {
+        var mayor_id = self.datos_tabla_reefer.map(function (e) {
+          return e.id;
+        }).sort().reverse()[0];
+        axios__WEBPACK_IMPORTED_MODULE_0___default().post(route("contenedores.get_lat_log"), {
+          id: mayor_id,
+          tipo: "reefer"
+        }).then(function (response) {
+          if (response.data.length > 0) {
+            self.ubicacion = [response.data[0].latitud, response.data[0].longitud];
+          } else {
+            self.ubicacion = null;
+          }
+        }).then(function () {
+          self.$emit("set_ubicacion_r", self.ubicacion);
+        });
       }).then(function () {// self.setLabelsMyChartPrincipal();
       });
     }
@@ -3696,6 +3687,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 
@@ -3725,10 +3717,20 @@ __webpack_require__.r(__webpack_exports__);
       // submited: false,
       contenedor_selected: null,
       contenedor_selecionado_id: null,
-      tipo: ""
+      tipo: "",
+      get_ubicacion_g: null,
+      get_ubicacion_r: null,
+      ubicacion_final: null
     };
   },
-  watch: {},
+  watch: {
+    get_ubicacion_g: function get_ubicacion_g(valor) {
+      this.ubicacion_final = valor;
+    },
+    get_ubicacion_r: function get_ubicacion_r(valor) {
+      this.ubicacion_final = valor;
+    }
+  },
   mounted: function mounted() {
     this.usuarioLogeado();
     this.bienvenida();
@@ -3751,11 +3753,15 @@ __webpack_require__.r(__webpack_exports__);
       this.$refs.layoutprincipal.admin = this.usuario_logeado[0].admin;
     },
     obteniendo_contendor: function obteniendo_contendor(contenedor) {
-      // console.log(contenedor);
       this.contenedor_selected = contenedor;
       this.contenedor_selecionado_id = contenedor.id;
     },
-    cargarMapa: function cargarMapa() {}
+    set_ubicacion_g: function set_ubicacion_g(ubicacion) {
+      this.get_ubicacion_g = ubicacion;
+    },
+    set_ubicacion_r: function set_ubicacion_r(u) {
+      this.get_ubicacion_r = u;
+    }
   }
 });
 
@@ -31137,7 +31143,7 @@ var staticRenderFns = [
               staticClass: "text-center",
               attrs: { scope: "col", width: "50px" },
             },
-            [_vm._v("Battery_voltage")]
+            [_vm._v("\n            Battery_voltage\n          ")]
           ),
           _vm._v(" "),
           _c(
@@ -31155,7 +31161,7 @@ var staticRenderFns = [
               staticClass: "text-center",
               attrs: { scope: "col", width: "50px" },
             },
-            [_vm._v("Running_frequency")]
+            [_vm._v("\n            Running_frequency\n          ")]
           ),
           _vm._v(" "),
           _c(
@@ -31173,7 +31179,7 @@ var staticRenderFns = [
               staticClass: "text-center",
               attrs: { scope: "col", width: "50px" },
             },
-            [_vm._v("Voltage_measure")]
+            [_vm._v("\n            Voltage_measure\n          ")]
           ),
           _vm._v(" "),
           _c(
@@ -31290,7 +31296,7 @@ var staticRenderFns = [
               staticClass: "text-center",
               attrs: { scope: "col", width: "50px" },
             },
-            [_vm._v("REEFER_CONECTED")]
+            [_vm._v("\n            REEFER_CONECTED\n          ")]
           ),
           _vm._v(" "),
           _c(
@@ -33117,10 +33123,7 @@ var render = function () {
                       _vm._v(" "),
                       _c("canvasMapa", {
                         ref: "canvasMapa",
-                        attrs: {
-                          tipo: _vm.tipo,
-                          array_contenedor: _vm.contenedor_selected,
-                        },
+                        attrs: { punto: _vm.ubicacion_final },
                       }),
                       _vm._v(" "),
                       _c("tablaResumenGen", {
@@ -33141,6 +33144,7 @@ var render = function () {
                           contenedor: _vm.contenedor_selecionado_id,
                           tipo: _vm.tipo,
                         },
+                        on: { set_ubicacion_g: _vm.set_ubicacion_g },
                       }),
                       _vm._v(" "),
                       _c("tablaDetalleReefer", {
@@ -33149,6 +33153,7 @@ var render = function () {
                           contenedor: _vm.contenedor_selecionado_id,
                           tipo: _vm.tipo,
                         },
+                        on: { set_ubicacion_r: _vm.set_ubicacion_r },
                       }),
                     ],
                     1

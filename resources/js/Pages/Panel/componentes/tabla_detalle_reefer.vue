@@ -1,5 +1,5 @@
 <template>
-  <div v-if="tipo == 'reefer' && datos_tabla_reefer.length > 0" >
+  <div v-if="tipo == 'reefer' && datos_tabla_reefer.length > 0">
     <div
       id="reefers_grid"
       class="col shadow-sm p-3 mb-5 bg-white rounded"
@@ -147,18 +147,19 @@ export default {
   components: {},
   props: {
     contenedor: Number,
-    tipo:String,
+    tipo: String,
   },
   data() {
     return {
       datos_tabla_reefer: [],
+      ubicacion: null,
     };
   },
   watch: {
-    contenedor(){
-      this.select_contenedor() ;
+    contenedor() {
+      this.select_contenedor();
     },
-    datos_tabla_reefer(){
+    datos_tabla_reefer() {
       $("#tblDetalleContenedores_reefers").DataTable().destroy();
       this.TablaDetalleContenedores_r();
     },
@@ -168,18 +169,17 @@ export default {
   },
   methods: {
     TablaDetalleContenedores_r() {
-     let self = this;
+      let self = this;
       this.$nextTick(() => {
-        var table2 = $('#tblDetalleContenedores_reefers').DataTable({
-           "scrollX": "100%",
-           "responsive": true,
-            "order": [ 0, "desc" ],
-            "language": {
-              "url": "//cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json"
-            }
-          });
+        var table2 = $("#tblDetalleContenedores_reefers").DataTable({
+          scrollX: "100%",
+          responsive: true,
+          order: [0, "desc"],
+          language: {
+            url: "//cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json",
+          },
+        });
       });
-      
     },
     select_contenedor() {
       let self = this;
@@ -188,37 +188,33 @@ export default {
       axios
         .post(route("contenedores.get_datos"), {
           id: this.contenedor,
-          tipo: 'reefer',
+          tipo: "reefer",
         })
         .then((response) => {
           self.datos_tabla_reefer = response.data;
         })
         .then(() => {
-          // let mayor_id = self.datos_tabla_reefer
-          //     .map(function (e) {
-          //       return e.id;
-          //     })
-          //     .sort()
-          //     .reverse()[0];
-          //   axios
-          //     .post(route("contenedores.get_lat_log"), {
-          //       id: mayor_id,
-          //       tipo: contenedor.tipo,
-          //     })
-          //     .then((response) => {
-          //       // console.log(
-          //       //   response.data.latitud,
-          //       //   "---",
-          //       //   response.data.longitud
-          //       // );
-          //       // self.ubicacion = new google.maps.LatLng(
-          //       //   response.data.latitud,
-          //       //   response.data.longitud
-          //       // );
-          //     })
-          //     .then(() => {
-          //       // self.iniciarMap();
-          //     });
+          let mayor_id = self.datos_tabla_reefer
+            .map(function (e) {
+              return e.id;
+            })
+            .sort()
+            .reverse()[0];
+          axios
+            .post(route("contenedores.get_lat_log"), {
+              id: mayor_id,
+              tipo: "reefer",
+            })
+            .then((response) => {
+              if (response.data.length > 0) {
+                self.ubicacion = [response.data[0].latitud,response.data[0].longitud];
+              } else {
+                self.ubicacion = null;
+              }
+            })
+            .then(() => {
+              self.$emit("set_ubicacion_r", self.ubicacion);
+            });
         })
         .then(() => {
           // self.setLabelsMyChartPrincipal();

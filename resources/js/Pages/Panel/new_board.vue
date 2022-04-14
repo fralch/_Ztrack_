@@ -57,9 +57,8 @@
                 </div>
               </div>
               <!-- ********** CANVAS MAPA **********-->
-              <canvasMapa ref="canvasMapa"  
-              :tipo="tipo"
-              :array_contenedor="contenedor_selected"
+              <canvasMapa ref="canvasMapa" :punto="ubicacion_final"  
+              
               > </canvasMapa>
               <!-- ********* TABLA RESUMEN CONTENEDORES  *********-->
                   <tablaResumenGen ref="tablaResumenGen" 
@@ -78,12 +77,14 @@
                 ref="tablaDetalleGenset"
                 :contenedor="contenedor_selecionado_id"
                 :tipo="tipo"
+                @set_ubicacion_g = "set_ubicacion_g"
               >
               </tablaDetalleGenset>
               <tablaDetalleReefer
                 ref="tablaDetalleReefer"
                 :contenedor="contenedor_selecionado_id"
                 :tipo="tipo"
+                @set_ubicacion_r = "set_ubicacion_r"
               >
               </tablaDetalleReefer>
 
@@ -127,10 +128,18 @@ export default {
       contenedor_selected: null, 
       contenedor_selecionado_id: null,
       tipo: "",
+      get_ubicacion_g:null, 
+      get_ubicacion_r:null, 
+      ubicacion_final: null,
     };
   },
   watch: {
-   
+    get_ubicacion_g(valor) {
+      this.ubicacion_final = valor;
+    },
+    get_ubicacion_r(valor) {
+      this.ubicacion_final = valor;
+    }   
   },
   mounted() {
     this.usuarioLogeado();
@@ -166,11 +175,16 @@ export default {
 
   
     obteniendo_contendor(contenedor) {
-      // console.log(contenedor);
       this.contenedor_selected = contenedor;
       this.contenedor_selecionado_id = contenedor.id;  
     },
-    cargarMapa() {},
+    set_ubicacion_g(ubicacion) {
+      this.get_ubicacion_g =  ubicacion;
+    },
+    set_ubicacion_r(u) {
+      this.get_ubicacion_r =  u;
+    
+    },
   },
 };
 </script>
