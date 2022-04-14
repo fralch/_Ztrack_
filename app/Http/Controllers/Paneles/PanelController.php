@@ -35,17 +35,21 @@ class PanelController extends Controller
 
             $empresaXusuario = Empresa::where('usuario_id', $usuario[0]->id)->get();
             $contenedores_todos = Contenedor::count();
-
-            
-            $contenedores_encendidos_gen = Contenedor::select()->where([['encendido', 1], ['tipo', 'Generador']])->get();
-            $genset_completo = [];
-            foreach ($contenedores_encendidos_gen as $contendor) {
-                $datos_g= $this->getDatosResumen($contendor,'genset');
-                if ($datos_g) {
-                    $genset_completo[]=$datos_g;
-                }
-            }
-
+            $contenedores_encendidos_reefer = Contenedor::select()->where([['encendido', 1], ['tipo', 'Reefer']])->count();
+            $contenedores_encendidos_gen = Contenedor::select()->where([['encendido', 1], ['tipo', 'Generador']])->count();
+          
+            return Inertia::render('Panel/new_board', [
+                'usuario_logeado' => $usuario,
+                'empresa_logeado' => $empresaXusuario,
+                'contenedores_todos_length' => $contenedores_todos,
+                'contenedores_encendidos_reefer' => $contenedores_encendidos_reefer,
+                'contenedores_encendidos_gen' => $contenedores_encendidos_gen,
+            ]);
+        }
+    }
+    public function obtenerContendor(Request $request)
+    {
+        if ($request->tipo == 'reefer') {
             $contenedores_encendidos_reefer = Contenedor::select()->where([['encendido', 1], ['tipo', 'Reefer']])->get();
             $reefer_completo = [];
             foreach ($contenedores_encendidos_reefer as $contendor) {
@@ -54,15 +58,17 @@ class PanelController extends Controller
                     $reefer_completo[]=$datos_r;
                 }
             }
-           
-            return Inertia::render('Panel/new_board', [
-                'usuario_logeado' => $usuario,
-                'empresa_logeado' => $empresaXusuario,
-                'contenedores_todos_length' => $contenedores_todos,
-                'contenedores_encendidos_reefer' => $reefer_completo,
-                'contenedores_encendidos_gen' => $genset_completo,
-            ]);
+            return $reefer_completo;
         }
+        $contenedores_encendidos_gen = Contenedor::select()->where([['encendido', 1], ['tipo', 'Generador']])->get();
+        $genset_completo = [];
+        foreach ($contenedores_encendidos_gen as $contendor) {
+            $datos_g= $this->getDatosResumen($contendor,'genset');
+            if ($datos_g) {
+                $genset_completo[]=$datos_g;
+            }
+        }
+        return $genset_completo;
     }
     public function getDatosResumen($contenedor, $tipo)
     {

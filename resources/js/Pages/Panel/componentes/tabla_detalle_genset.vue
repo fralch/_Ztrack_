@@ -1,5 +1,5 @@
 <template >
-  <div v-if="tipo == 'genset'">
+  <div v-if="tipo == 'genset' && datos_tabla_generador.length > 0" >
     <div
       id="generador_grid"
       class="col shadow-sm p-3 mb-5 bg-white rounded"

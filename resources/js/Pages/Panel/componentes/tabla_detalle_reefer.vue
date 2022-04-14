@@ -1,5 +1,5 @@
 <template>
-  <div v-if="tipo == 'reefer'">
+  <div v-if="tipo == 'reefer' && datos_tabla_reefer.length > 0" >
     <div
       id="reefers_grid"
       class="col shadow-sm p-3 mb-5 bg-white rounded"
