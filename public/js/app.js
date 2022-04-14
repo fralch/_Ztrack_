@@ -3177,20 +3177,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _layout_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../layout.vue */ "./resources/js/Pages/layout.vue");
-/* harmony import */ var _componentes_mapa_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./componentes/mapa.vue */ "./resources/js/Pages/Panel/componentes/mapa.vue");
-/* harmony import */ var _componentes_tabla_detalle_genset_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./componentes/tabla_detalle_genset.vue */ "./resources/js/Pages/Panel/componentes/tabla_detalle_genset.vue");
-/* harmony import */ var _componentes_tabla_detalle_reefer_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./componentes/tabla_detalle_reefer.vue */ "./resources/js/Pages/Panel/componentes/tabla_detalle_reefer.vue");
-
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _layout_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../layout.vue */ "./resources/js/Pages/layout.vue");
+/* harmony import */ var _componentes_mapa_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./componentes/mapa.vue */ "./resources/js/Pages/Panel/componentes/mapa.vue");
+/* harmony import */ var _componentes_tabla_detalle_genset_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./componentes/tabla_detalle_genset.vue */ "./resources/js/Pages/Panel/componentes/tabla_detalle_genset.vue");
+/* harmony import */ var _componentes_tabla_detalle_reefer_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./componentes/tabla_detalle_reefer.vue */ "./resources/js/Pages/Panel/componentes/tabla_detalle_reefer.vue");
 //
 //
 //
@@ -3607,10 +3599,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
-    layoutprincipal: _layout_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
-    canvasMapa: _componentes_mapa_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
-    tablaDetalleGenset: _componentes_tabla_detalle_genset_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
-    tablaDetalleReefer: _componentes_tabla_detalle_reefer_vue__WEBPACK_IMPORTED_MODULE_5__["default"]
+    layoutprincipal: _layout_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
+    canvasMapa: _componentes_mapa_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
+    tablaDetalleGenset: _componentes_tabla_detalle_genset_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
+    tablaDetalleReefer: _componentes_tabla_detalle_reefer_vue__WEBPACK_IMPORTED_MODULE_4__["default"]
   },
   props: {
     // tu_cuenta:Array,
@@ -3647,8 +3639,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   mounted: function mounted() {
     this.usuarioLogeado();
-    this.bienvenida();
-    this.resumenContenedor();
+    this.bienvenida(); // this.resumenContenedor();
   },
   methods: {
     TablaContenedores: function TablaContenedores() {
@@ -3714,48 +3705,61 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       // });
     },
     bienvenida: function bienvenida() {
-      var _this = this;
-
-      var self = this;
-      var timerInterval;
+      // let self = this;
+      // let timerInterval;
+      // Swal.fire({
+      //   title: "Loading Connect!",
+      //   html: "I will close in <b></b> milliseconds.",
+      //   timer: 3000,
+      //   timerProgressBar: true,
+      //   didOpen: () => {
+      //     Swal.showLoading();
+      //     const b = Swal.getHtmlContainer().querySelector("b");
+      //     timerInterval = setInterval(() => {
+      //       b.textContent = Swal.getTimerLeft();
+      //     }, 100);
+      //   },
+      //   willClose: () => {
+      //     clearInterval(timerInterval);
+      //   },
+      // }).then((result) => {
+      //   // Swal.fire({
+      //   //   title: "Bienvenido!",
+      //   //   icon: "success",
+      //   //   text: (
+      //   //     this.usuario_logeado[0].nombres +
+      //   //     " " +
+      //   //     this.usuario_logeado[0].apellidos
+      //   //   ).toUpperCase(),
+      //   //   confirmButtonColor: "#3085d6",
+      //   //   confirmButtonText: "OK!",
+      //   // });
+      //   Swal.fire({
+      //     title: "Bienvenido!",
+      //     icon: "success",
+      //     text: (
+      //       this.usuario_logeado[0].nombres +
+      //       " " +
+      //       this.usuario_logeado[0].apellidos
+      //     ).toUpperCase(),
+      //     confirmButtonColor: "#3085d6",
+      //     confirmButtonText: "OK!",
+      //   }).then((result) => {
+      //     if (result.isConfirmed) {
+      //       self.tipo = "genset";
+      //     }
+      //   });
+      // });
       Swal.fire({
-        title: "Loading Connect!",
-        html: "I will close in <b></b> milliseconds.",
-        timer: 3000,
-        timerProgressBar: true,
-        didOpen: function didOpen() {
-          Swal.showLoading();
-          var b = Swal.getHtmlContainer().querySelector("b");
-          timerInterval = setInterval(function () {
-            b.textContent = Swal.getTimerLeft();
-          }, 100);
-        },
-        willClose: function willClose() {
-          clearInterval(timerInterval);
-        }
+        title: "Bienvenido!",
+        icon: "success",
+        text: (this.usuario_logeado[0].nombres + " " + this.usuario_logeado[0].apellidos).toUpperCase(),
+        confirmButtonColor: "#3085d6",
+        confirmButtonText: "OK!"
       }).then(function (result) {
-        // Swal.fire({
-        //   title: "Bienvenido!",
-        //   icon: "success",
-        //   text: (
-        //     this.usuario_logeado[0].nombres +
-        //     " " +
-        //     this.usuario_logeado[0].apellidos
-        //   ).toUpperCase(),
-        //   confirmButtonColor: "#3085d6",
-        //   confirmButtonText: "OK!",
-        // });
-        Swal.fire({
-          title: "Bienvenido!",
-          icon: "success",
-          text: (_this.usuario_logeado[0].nombres + " " + _this.usuario_logeado[0].apellidos).toUpperCase(),
-          confirmButtonColor: "#3085d6",
-          confirmButtonText: "OK!"
-        }).then(function (result) {
-          if (result.isConfirmed) {
-            self.tipo = "genset";
-          }
-        });
+        if (result.isConfirmed) {
+          self.tipo = "genset";
+        }
       });
     },
     usuarioLogeado: function usuarioLogeado() {
@@ -3767,50 +3771,34 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       // console.log(contenedor.id);
       this.contenedor_selecionado = contenedor.id;
     },
-    resumenContenedor: function resumenContenedor() {
-      var self = this;
-      this.$nextTick(function () {
-        function rellenar_resumen() {
-          return _rellenar_resumen.apply(this, arguments);
-        }
-
-        function _rellenar_resumen() {
-          _rellenar_resumen = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
-            return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
-              while (1) {
-                switch (_context.prev = _context.next) {
-                  case 0:
-                    self.contenedores_encendidos_gen.map(function (contenedor) {
-                      axios__WEBPACK_IMPORTED_MODULE_1___default().post(route("contenedores.resumen"), {
-                        id_contenedor: contenedor.id,
-                        tipo_contenedor: "genset"
-                      }).then(function (response) {
-                        contenedor = Object.assign(contenedor, response.data); // aqui unimos el objeto con los ultimos datos del registro diario
-                      });
-                      self.datos_resumen_gen.push(contenedor);
-                    });
-                    self.contenedores_encendidos_reefer.map(function (cont) {
-                      axios__WEBPACK_IMPORTED_MODULE_1___default().post(route("contenedores.resumen"), {
-                        id_contenedor: cont.id,
-                        tipo_contenedor: "reefer"
-                      }).then(function (rp) {
-                        cont = Object.assign(cont, rp.data); // aqui unimos el objeto con los ultimos datos del registro diario
-                      });
-                      self.datos_resumen_reefer.push(cont);
-                    });
-
-                  case 2:
-                  case "end":
-                    return _context.stop();
-                }
-              }
-            }, _callee);
-          }));
-          return _rellenar_resumen.apply(this, arguments);
-        }
-
-        rellenar_resumen().then(function () {});
-      });
+    resumenContenedor: function resumenContenedor() {// let self = this;
+      // this.$nextTick(() => {
+      //   async function rellenar_resumen() {
+      //     self.contenedores_encendidos_gen.map(function (contenedor) {
+      //       axios
+      //         .post(route("contenedores.resumen"), {
+      //           id_contenedor: contenedor.id,
+      //           tipo_contenedor: "genset",
+      //         })
+      //         .then((response) => {
+      //           contenedor = Object.assign(contenedor, response.data); // aqui unimos el objeto con los ultimos datos del registro diario
+      //         });
+      //       self.datos_resumen_gen.push(contenedor);
+      //     });
+      //     self.contenedores_encendidos_reefer.map(function (cont) {
+      //       axios
+      //         .post(route("contenedores.resumen"), {
+      //           id_contenedor: cont.id,
+      //           tipo_contenedor: "reefer",
+      //         })
+      //         .then((rp) => {
+      //           cont = Object.assign(cont, rp.data); // aqui unimos el objeto con los ultimos datos del registro diario
+      //         });
+      //       self.datos_resumen_reefer.push(cont);
+      //     });
+      //   }
+      //   rellenar_resumen().then(() => {});
+      // });
     }
   }
 });
@@ -32656,7 +32644,7 @@ var render = function () {
                                   _c(
                                     "tbody",
                                     _vm._l(
-                                      _vm.datos_resumen_reefer,
+                                      _vm.contenedores_encendidos_reefer,
                                       function (reef, index) {
                                         return _c(
                                           "tr",
@@ -33741,7 +33729,7 @@ var render = function () {
                                   _c(
                                     "tbody",
                                     _vm._l(
-                                      _vm.datos_resumen_gen,
+                                      _vm.contenedores_encendidos_gen,
                                       function (gen, index) {
                                         return _c(
                                           "tr",

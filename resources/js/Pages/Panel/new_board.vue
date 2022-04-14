@@ -164,7 +164,7 @@
                   </thead>
                   <tbody>
                     <tr
-                      v-for="(reef, index) in datos_resumen_reefer"
+                      v-for="(reef, index) in contenedores_encendidos_reefer"
                       :key="index"
                       @click="obteniendo_contendor(reef)"
                     >
@@ -342,7 +342,7 @@
                   </thead>
                   <tbody>
                     <tr
-                      v-for="(gen, index) in datos_resumen_gen"
+                      v-for="(gen, index) in contenedores_encendidos_gen"
                       :key="index"
                       class="tr_resumen_reef"
                       @click="obteniendo_contendor(gen)"
@@ -457,7 +457,7 @@ export default {
   mounted() {
     this.usuarioLogeado();
     this.bienvenida();
-    this.resumenContenedor();
+    // this.resumenContenedor();
   },
 
   methods: {
@@ -524,35 +524,51 @@ export default {
       // });
     },
     bienvenida() {
-      let self = this;
-      let timerInterval;
-      Swal.fire({
-        title: "Loading Connect!",
-        html: "I will close in <b></b> milliseconds.",
-        timer: 3000,
-        timerProgressBar: true,
-        didOpen: () => {
-          Swal.showLoading();
-          const b = Swal.getHtmlContainer().querySelector("b");
-          timerInterval = setInterval(() => {
-            b.textContent = Swal.getTimerLeft();
-          }, 100);
-        },
-        willClose: () => {
-          clearInterval(timerInterval);
-        },
-      }).then((result) => {
-        // Swal.fire({
-        //   title: "Bienvenido!",
-        //   icon: "success",
-        //   text: (
-        //     this.usuario_logeado[0].nombres +
-        //     " " +
-        //     this.usuario_logeado[0].apellidos
-        //   ).toUpperCase(),
-        //   confirmButtonColor: "#3085d6",
-        //   confirmButtonText: "OK!",
-        // });
+      // let self = this;
+      // let timerInterval;
+      // Swal.fire({
+      //   title: "Loading Connect!",
+      //   html: "I will close in <b></b> milliseconds.",
+      //   timer: 3000,
+      //   timerProgressBar: true,
+      //   didOpen: () => {
+      //     Swal.showLoading();
+      //     const b = Swal.getHtmlContainer().querySelector("b");
+      //     timerInterval = setInterval(() => {
+      //       b.textContent = Swal.getTimerLeft();
+      //     }, 100);
+      //   },
+      //   willClose: () => {
+      //     clearInterval(timerInterval);
+      //   },
+      // }).then((result) => {
+      //   // Swal.fire({
+      //   //   title: "Bienvenido!",
+      //   //   icon: "success",
+      //   //   text: (
+      //   //     this.usuario_logeado[0].nombres +
+      //   //     " " +
+      //   //     this.usuario_logeado[0].apellidos
+      //   //   ).toUpperCase(),
+      //   //   confirmButtonColor: "#3085d6",
+      //   //   confirmButtonText: "OK!",
+      //   // });
+      //   Swal.fire({
+      //     title: "Bienvenido!",
+      //     icon: "success",
+      //     text: (
+      //       this.usuario_logeado[0].nombres +
+      //       " " +
+      //       this.usuario_logeado[0].apellidos
+      //     ).toUpperCase(),
+      //     confirmButtonColor: "#3085d6",
+      //     confirmButtonText: "OK!",
+      //   }).then((result) => {
+      //     if (result.isConfirmed) {
+      //       self.tipo = "genset";
+      //     }
+      //   });
+      // });
         Swal.fire({
           title: "Bienvenido!",
           icon: "success",
@@ -568,7 +584,6 @@ export default {
             self.tipo = "genset";
           }
         });
-      });
     },
 
     usuarioLogeado() {
@@ -583,34 +598,34 @@ export default {
       this.contenedor_selecionado = contenedor.id;
     },
     resumenContenedor() {
-      let self = this;
-      this.$nextTick(() => {
-        async function rellenar_resumen() {
-          self.contenedores_encendidos_gen.map(function (contenedor) {
-            axios
-              .post(route("contenedores.resumen"), {
-                id_contenedor: contenedor.id,
-                tipo_contenedor: "genset",
-              })
-              .then((response) => {
-                contenedor = Object.assign(contenedor, response.data); // aqui unimos el objeto con los ultimos datos del registro diario
-              });
-            self.datos_resumen_gen.push(contenedor);
-          });
-          self.contenedores_encendidos_reefer.map(function (cont) {
-            axios
-              .post(route("contenedores.resumen"), {
-                id_contenedor: cont.id,
-                tipo_contenedor: "reefer",
-              })
-              .then((rp) => {
-                cont = Object.assign(cont, rp.data); // aqui unimos el objeto con los ultimos datos del registro diario
-              });
-            self.datos_resumen_reefer.push(cont);
-          });
-        }
-        rellenar_resumen().then(() => {});
-      });
+      // let self = this;
+      // this.$nextTick(() => {
+      //   async function rellenar_resumen() {
+      //     self.contenedores_encendidos_gen.map(function (contenedor) {
+      //       axios
+      //         .post(route("contenedores.resumen"), {
+      //           id_contenedor: contenedor.id,
+      //           tipo_contenedor: "genset",
+      //         })
+      //         .then((response) => {
+      //           contenedor = Object.assign(contenedor, response.data); // aqui unimos el objeto con los ultimos datos del registro diario
+      //         });
+      //       self.datos_resumen_gen.push(contenedor);
+      //     });
+      //     self.contenedores_encendidos_reefer.map(function (cont) {
+      //       axios
+      //         .post(route("contenedores.resumen"), {
+      //           id_contenedor: cont.id,
+      //           tipo_contenedor: "reefer",
+      //         })
+      //         .then((rp) => {
+      //           cont = Object.assign(cont, rp.data); // aqui unimos el objeto con los ultimos datos del registro diario
+      //         });
+      //       self.datos_resumen_reefer.push(cont);
+      //     });
+      //   }
+      //   rellenar_resumen().then(() => {});
+      // });
     },
   },
 };

@@ -36,28 +36,37 @@ class PanelController extends Controller
             $empresaXusuario = Empresa::where('usuario_id', $usuario[0]->id)->get();
             $contenedores_todos = Contenedor::count();
 
-            $contenedores_encendidos_reefer = Contenedor::select()->where([['encendido', 1], ['tipo', 'Reefer']])->get();
-
+            
             $contenedores_encendidos_gen = Contenedor::select()->where([['encendido', 1], ['tipo', 'Generador']])->get();
             $genset_completo = [];
             foreach ($contenedores_encendidos_gen as $contendor) {
-                $datos_r= $this->datosResumen($contendor);
-                $genset_completo[]=$datos_r;
+                $datos_g= $this->getDatosResumen($contendor,'genset');
+                if ($datos_g) {
+                    $genset_completo[]=$datos_g;
+                }
             }
-            dd($genset_completo);
-           
 
+            $contenedores_encendidos_reefer = Contenedor::select()->where([['encendido', 1], ['tipo', 'Reefer']])->get();
+            $reefer_completo = [];
+            foreach ($contenedores_encendidos_reefer as $contendor) {
+                $datos_r= $this->getDatosResumen($contendor,'reefer');
+                if ($datos_r) {
+                    $reefer_completo[]=$datos_r;
+                }
+            }
+           
             return Inertia::render('Panel/new_board', [
                 'usuario_logeado' => $usuario,
                 'empresa_logeado' => $empresaXusuario,
                 'contenedores_todos_length' => $contenedores_todos,
-                'contenedores_encendidos_reefer' => $contenedores_encendidos_reefer,
-                'contenedores_encendidos_gen' => $contenedores_encendidos_gen,
+                'contenedores_encendidos_reefer' => $reefer_completo,
+                'contenedores_encendidos_gen' => $genset_completo,
             ]);
         }
     }
-    public function datosResumen($contenedor)
+    public function getDatosResumen($contenedor, $tipo)
     {
+        if ($tipo == 'genset') {
             $array_contenedor = [
                 'id' => $contenedor->id,
                 'nombre_contenedor' => $contenedor->nombre_contenedor,
@@ -102,6 +111,90 @@ class PanelController extends Controller
                 $obj_merged = (object) array_merge($array_contenedor, $datos_);
                 return $obj_merged;
             }
+        }
+        if ($tipo == 'reefer') {
+            $array_contenedor = [
+                'id' => $contenedor->id,
+                'nombre_contenedor' => $contenedor->nombre_contenedor,
+                'tipo' => $contenedor->tipo,
+                'encendido' => $contenedor->encendido,
+                'booking' => $contenedor->booking,
+                'booking_temp' => $contenedor->booking_temp,
+            ];
+            $datos = Registro_diario_reefers::select(
+                'registro_diario_reefers.contenedor_id as id',
+                'registro_diario_reefers.set_point',
+                'registro_diario_reefers.temp_supply_1',
+                'registro_diario_reefers.temp_supply_2',
+                'registro_diario_reefers.return_air',
+                'registro_diario_reefers.evaporation_coil',
+                'registro_diario_reefers.condensation_coil',
+                'registro_diario_reefers.compress_coil_1',
+                'registro_diario_reefers.compress_coil_2',
+                'registro_diario_reefers.ambient_air',
+                'registro_diario_reefers.cargo_1_temp',
+                'registro_diario_reefers.cargo_2_temp',
+                'registro_diario_reefers.cargo_3_temp',
+                'registro_diario_reefers.cargo_4_temp',
+                'registro_diario_reefers.relative_humidity',
+                'registro_diario_reefers.avl',
+                'registro_diario_reefers.suction_pressure',
+                'registro_diario_reefers.discharge_pressure',
+                'registro_diario_reefers.line_voltage',
+                'registro_diario_reefers.line_frequency',
+                'registro_diario_reefers.consumption_ph_1',
+                'registro_diario_reefers.consumption_ph_2',
+                'registro_diario_reefers.consumption_ph_3',
+                'registro_diario_reefers.co2_reading',
+                'registro_diario_reefers.o2_reading',
+                'registro_diario_reefers.evaporator_speed',
+                'registro_diario_reefers.condenser_speed',
+                'registro_diario_reefers.battery_voltage',
+                'registro_diario_reefers.power_kwh',
+                'registro_diario_reefers.power_trip_reading',
+                'registro_diario_reefers.power_trip_duration',
+                'registro_diario_reefers.suction_temp',
+                'registro_diario_reefers.discharge_temp',
+                'registro_diario_reefers.supply_air_temp',
+                'registro_diario_reefers.return_air_temp',
+                'registro_diario_reefers.dl_battery_temp',
+                'registro_diario_reefers.dl_battery_charge',
+                'registro_diario_reefers.power_consumption',
+                'registro_diario_reefers.power_consumption_avg',
+                'registro_diario_reefers.alarm_present',
+                'registro_diario_reefers.capacity_load',
+                'registro_diario_reefers.power_state',
+                'registro_diario_reefers.controlling_mode',
+                'registro_diario_reefers.humidity_control',
+                'registro_diario_reefers.humidity_set_point',
+                'registro_diario_reefers.fresh_air_ex_mode',
+                'registro_diario_reefers.fresh_air_ex_rate',
+                'registro_diario_reefers.fresh_air_ex_delay',
+                'registro_diario_reefers.set_point_o2',
+                'registro_diario_reefers.set_point_co2',
+                'registro_diario_reefers.defrost_term_temp',
+                'registro_diario_reefers.defrost_interval',
+                'registro_diario_reefers.water_cooled_conde',
+                'registro_diario_reefers.usda_trip',
+                'registro_diario_reefers.evaporator_exp_valve',
+                'registro_diario_reefers.suction_mod_valve',
+                'registro_diario_reefers.hot_gas_valve',
+                'registro_diario_reefers.economizer_valve',
+                'registro_diario_reefers.modelo',
+                'registro_diario_reefers.latitud',
+                'registro_diario_reefers.longitud',
+
+            )
+                ->where('registro_diario_reefers.contenedor_id', $contenedor->id)
+                ->orderBy('registro_diario_reefers.id', 'desc')
+                ->first();
+            if ($datos != null) {
+                $datos_ = $datos->toArray(); // ** debes usar toArray para convertir la coleccion que bota elocuent a un array natural
+                $obj_merged = (object) array_merge($array_contenedor, $datos_);
+                return $obj_merged;
+            }
+        }
+            
     }
     public function resumen_contenedores(Request $request)
     {
