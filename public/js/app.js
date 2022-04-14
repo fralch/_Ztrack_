@@ -2712,8 +2712,10 @@ __webpack_require__.r(__webpack_exports__);
   },
   watch: {
     punto: function punto(valor) {
-      this.ubicacion = new google.maps.LatLng(valor[0], valor[1]);
-      this.iniciarMap();
+      if (valor) {
+        this.ubicacion = new google.maps.LatLng(valor[0], valor[1]);
+        this.iniciarMap();
+      }
     }
   },
   mounted: function mounted() {

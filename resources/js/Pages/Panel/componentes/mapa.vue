@@ -19,8 +19,11 @@ export default {
 	},
 	watch: {
         punto(valor){
-            this.ubicacion = new google.maps.LatLng(valor[0], valor[1]);
-            this.iniciarMap(); 
+            if (valor) {
+                this.ubicacion = new google.maps.LatLng(valor[0], valor[1]);
+                this.iniciarMap(); 
+            }
+           
         },
 	},
     mounted() {
