@@ -217,7 +217,7 @@ export default {
     },
     
     select_contenedor(contenedor) {
-        this.$emit("select_contenedor", contenedor.id); // emite el evento a contedor padre 
+        this.$emit("select_contenedor", contenedor); // emite el evento a contedor padre 
     },
     
   },

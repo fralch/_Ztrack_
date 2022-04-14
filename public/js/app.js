@@ -2702,15 +2702,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {},
   props: {
-    id_contenedor: Number
+    tipo: String,
+    array_contenedor: Object
   },
   data: function data() {
     return {
       mapa: null,
-      ubicacion: new google.maps.LatLng(-11.98, -77.12)
+      ubicacion: new google.maps.LatLng(-12.98, -78.12)
     };
   },
-  watch: {},
+  watch: {
+    array_contenedor: function array_contenedor() {
+      this.fijarUbicacion();
+    }
+  },
   mounted: function mounted() {
     this.iniciarMap();
   },
@@ -2730,13 +2735,18 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     fijarUbicacion: function fijarUbicacion() {
-      if (contenedor.tipo == "reefer") {
-        var mayor_id = self.datos_tabla_reefer.map(function (e) {
+      var self = this;
+      console.log(self.tipo);
+      console.log(self.array_contenedor);
+      return 0;
+
+      if (self.tipo == "reefer") {
+        var mayor_id = self.array_contenedor.map(function (e) {
           return e.id;
         }).sort().reverse()[0];
         axios__WEBPACK_IMPORTED_MODULE_0___default().post(route('contenedores.get_lat_log'), {
           id: mayor_id,
-          tipo: contenedor.tipo
+          tipo: self.tipo
         }).then(function (response) {
           console.log(response.data.latitud, '---', response.data.longitud);
           self.ubicacion = new google.maps.LatLng(response.data.latitud, response.data.longitud);
@@ -2745,13 +2755,13 @@ __webpack_require__.r(__webpack_exports__);
         });
       }
 
-      if (contenedor.tipo == "genset") {
-        var _mayor_id = self.datos_tabla_generador.map(function (e) {
+      if (self.tipo == "genset") {
+        var _mayor_id = self.array_contenedor.map(function (e) {
           return e.id;
         }).sort().reverse()[0];
         axios__WEBPACK_IMPORTED_MODULE_0___default().post(route('contenedores.get_lat_log'), {
           id: _mayor_id,
-          tipo: contenedor.tipo
+          tipo: self.tipo
         }).then(function (response) {
           console.log(response.data.latitud, '---', response.data.longitud);
           self.ubicacion = new google.maps.LatLng(response.data.latitud, response.data.longitud);
@@ -2896,8 +2906,8 @@ __webpack_require__.r(__webpack_exports__);
         id: this.contenedor,
         tipo: "genset"
       }).then(function (response) {
-        console.log("select_contenedor desde detalle ");
-        console.log(response.data);
+        // console.log("select_contenedor desde detalle ");
+        // console.log(response.data);
         self.datos_tabla_generador = response.data;
       }).then(function () {// let mayor_id = self.datos_tabla_generador
         //     .map(function (e) {
@@ -3328,7 +3338,7 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     select_contenedor: function select_contenedor(contenedor) {
-      this.$emit("select_contenedor", contenedor.id); // emite el evento a contedor padre 
+      this.$emit("select_contenedor", contenedor); // emite el evento a contedor padre 
     }
   }
 });
@@ -3562,7 +3572,7 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     select_contenedor: function select_contenedor(contenedor) {
-      this.$emit("select_contenedor", contenedor.id); // emite el evento a contedor padre 
+      this.$emit("select_contenedor", contenedor); // emite el evento a contedor padre 
     }
   }
 });
@@ -3588,8 +3598,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _componentes_tabla_resumen_reefer_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./componentes/tabla_resumen_reefer.vue */ "./resources/js/Pages/Panel/componentes/tabla_resumen_reefer.vue");
 /* harmony import */ var _componentes_tabla_detalle_genset_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./componentes/tabla_detalle_genset.vue */ "./resources/js/Pages/Panel/componentes/tabla_detalle_genset.vue");
 /* harmony import */ var _componentes_tabla_detalle_reefer_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./componentes/tabla_detalle_reefer.vue */ "./resources/js/Pages/Panel/componentes/tabla_detalle_reefer.vue");
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
+//
+//
+//
 //
 //
 //
@@ -3712,7 +3723,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   data: function data() {
     return {
       // submited: false,
-      contenedor_selecionado: null,
+      contenedor_selected: null,
+      contenedor_selecionado_id: null,
       tipo: ""
     };
   },
@@ -3721,28 +3733,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     this.usuarioLogeado();
     this.bienvenida();
   },
-  methods: _defineProperty({
-    cargarMapa: function cargarMapa() {},
-    autoRefresh: function autoRefresh() {// let self = this;
-      // this.$nextTick(() => {
-      //    async function f() {
-      //     let promise = new Promise((resolve, reject) => {
-      //       setTimeout(() => resolve(true), 600000)
-      //     });
-      //     let result = await promise;
-      //      if(self.tipo == 'Reefer'){
-      //       let contenedor = self.contenedores_seleccionados.filter(element => element.tipo == 'Reefer');
-      //       console.log(contenedor[0])
-      //       self.select_contenedor(contenedor[0]);
-      //     }else if(self.tipo == 'Generador'){
-      //       let contenedor = self.contenedores_seleccionados.filter(element => element.tipo == 'Generador');
-      //       self.select_contenedor(contenedor[0]);
-      //       console.log(contenedor[0])
-      //     }
-      //   }
-      //   f();
-      // });
-    },
+  methods: {
     bienvenida: function bienvenida() {
       Swal.fire({
         title: "Bienvenido!",
@@ -3760,13 +3751,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.$refs.layoutprincipal.admin = this.usuario_logeado[0].admin;
     },
     obteniendo_contendor: function obteniendo_contendor(contenedor) {
-      // console.log(contenedor.id);
-      this.contenedor_selecionado = contenedor.id;
-    }
-  }, "obteniendo_contendor", function obteniendo_contendor(contenedor) {
-    console.log(contenedor);
-    this.contenedor_selecionado = contenedor;
-  })
+      // console.log(contenedor);
+      this.contenedor_selected = contenedor;
+      this.contenedor_selecionado_id = contenedor.id;
+    },
+    cargarMapa: function cargarMapa() {}
+  }
 });
 
 /***/ }),
@@ -33127,7 +33117,10 @@ var render = function () {
                       _vm._v(" "),
                       _c("canvasMapa", {
                         ref: "canvasMapa",
-                        attrs: { id_contenedor: 1 },
+                        attrs: {
+                          tipo: _vm.tipo,
+                          array_contenedor: _vm.contenedor_selected,
+                        },
                       }),
                       _vm._v(" "),
                       _c("tablaResumenGen", {
@@ -33145,7 +33138,7 @@ var render = function () {
                       _c("tablaDetalleGenset", {
                         ref: "tablaDetalleGenset",
                         attrs: {
-                          contenedor: _vm.contenedor_selecionado,
+                          contenedor: _vm.contenedor_selecionado_id,
                           tipo: _vm.tipo,
                         },
                       }),
@@ -33153,7 +33146,7 @@ var render = function () {
                       _c("tablaDetalleReefer", {
                         ref: "tablaDetalleReefer",
                         attrs: {
-                          contenedor: _vm.contenedor_selecionado,
+                          contenedor: _vm.contenedor_selecionado_id,
                           tipo: _vm.tipo,
                         },
                       }),

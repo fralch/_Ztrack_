@@ -8,16 +8,20 @@ import axios from 'axios';
 export default {
 	components: {  },
 	props: { 
-         id_contenedor: Number,
+         tipo: String,
+         array_contenedor: Object,
     },
 	data() {
 		return {
             mapa: null,
-            ubicacion: new google.maps.LatLng(-11.98, -77.12), 
+            ubicacion: new google.maps.LatLng(-12.98, -78.12), 
           
 		};
 	},
 	watch: {
+        array_contenedor(){
+            this.fijarUbicacion(); 
+        },
 	},
     mounted() {
     this.iniciarMap(); 
@@ -41,10 +45,14 @@ export default {
             });
         },
         fijarUbicacion() {
-            if (contenedor.tipo == "reefer") {
-            let mayor_id = self.datos_tabla_reefer.map(function(e) { return e.id; }).sort().reverse()[0];
+            let self = this;
+            console.log(self.tipo);
+            console.log(self.array_contenedor);
+            return 0; 
+            if (self.tipo == "reefer") {
+            let mayor_id = self.array_contenedor.map(function(e) { return e.id; }).sort().reverse()[0];
             axios
-                .post(route('contenedores.get_lat_log'), {id: mayor_id,tipo: contenedor.tipo})
+                .post(route('contenedores.get_lat_log'), {id: mayor_id,tipo:self.tipo})
                 .then(response => {
                 console.log(response.data.latitud, '---',response.data.longitud);
                     self.ubicacion =  new google.maps.LatLng(response.data.latitud, response.data.longitud);
@@ -52,10 +60,10 @@ export default {
                     self.iniciarMap();
                 });  
             }
-            if (contenedor.tipo == "genset") {
-                let mayor_id = self.datos_tabla_generador.map(function(e) { return e.id; }).sort().reverse()[0];
+            if (self.tipo == "genset") {
+                let mayor_id = self.array_contenedor.map(function(e) { return e.id; }).sort().reverse()[0];
                 axios
-                .post(route('contenedores.get_lat_log'), {id: mayor_id,tipo: contenedor.tipo})
+                .post(route('contenedores.get_lat_log'), {id: mayor_id,tipo:self.tipo})
                 .then(response => {
                     console.log(response.data.latitud, '---',response.data.longitud);
                     self.ubicacion =  new google.maps.LatLng(response.data.latitud, response.data.longitud);

@@ -57,7 +57,10 @@
                 </div>
               </div>
               <!-- ********** CANVAS MAPA **********-->
-              <canvasMapa ref="canvasMapa" :id_contenedor="1"> </canvasMapa>
+              <canvasMapa ref="canvasMapa"  
+              :tipo="tipo"
+              :array_contenedor="contenedor_selected"
+              > </canvasMapa>
               <!-- ********* TABLA RESUMEN CONTENEDORES  *********-->
                   <tablaResumenGen ref="tablaResumenGen" 
                     :tipo="tipo" 
@@ -73,13 +76,13 @@
               <!-- *********** TABLA DETALLE CONTENEDORES *********** -->
               <tablaDetalleGenset
                 ref="tablaDetalleGenset"
-                :contenedor="contenedor_selecionado"
+                :contenedor="contenedor_selecionado_id"
                 :tipo="tipo"
               >
               </tablaDetalleGenset>
               <tablaDetalleReefer
                 ref="tablaDetalleReefer"
-                :contenedor="contenedor_selecionado"
+                :contenedor="contenedor_selecionado_id"
                 :tipo="tipo"
               >
               </tablaDetalleReefer>
@@ -121,7 +124,8 @@ export default {
   data() {
     return {
       // submited: false,
-      contenedor_selecionado: null,
+      contenedor_selected: null, 
+      contenedor_selecionado_id: null,
       tipo: "",
     };
   },
@@ -135,28 +139,6 @@ export default {
   },
 
   methods: {
-    cargarMapa() {},
-    autoRefresh() {
-      // let self = this;
-      // this.$nextTick(() => {
-      //    async function f() {
-      //     let promise = new Promise((resolve, reject) => {
-      //       setTimeout(() => resolve(true), 600000)
-      //     });
-      //     let result = await promise;
-      //      if(self.tipo == 'Reefer'){
-      //       let contenedor = self.contenedores_seleccionados.filter(element => element.tipo == 'Reefer');
-      //       console.log(contenedor[0])
-      //       self.select_contenedor(contenedor[0]);
-      //     }else if(self.tipo == 'Generador'){
-      //       let contenedor = self.contenedores_seleccionados.filter(element => element.tipo == 'Generador');
-      //       self.select_contenedor(contenedor[0]);
-      //       console.log(contenedor[0])
-      //     }
-      //   }
-      //   f();
-      // });
-    },
     bienvenida() {
         Swal.fire({
           title: "Bienvenido!",
@@ -182,15 +164,13 @@ export default {
       this.$refs.layoutprincipal.admin = this.usuario_logeado[0].admin;
     },
 
+  
     obteniendo_contendor(contenedor) {
-      // console.log(contenedor.id);
-      this.contenedor_selecionado = contenedor.id;
+      // console.log(contenedor);
+      this.contenedor_selected = contenedor;
+      this.contenedor_selecionado_id = contenedor.id;  
     },
-   
-    obteniendo_contendor(contenedor) {
-      console.log(contenedor);
-      this.contenedor_selecionado = contenedor;  
-    },
+    cargarMapa() {},
   },
 };
 </script>

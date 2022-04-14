@@ -120,8 +120,8 @@ export default {
           tipo: "genset",
         })
         .then((response) => {
-          console.log("select_contenedor desde detalle ");
-          console.log(response.data);
+          // console.log("select_contenedor desde detalle ");
+          // console.log(response.data);
           self.datos_tabla_generador = response.data;
         })
         .then(() => {
