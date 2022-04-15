@@ -2133,139 +2133,172 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 
+var myChart_principal;
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {},
   props: {
-    contenedor: Number
+    contenedor: Number,
+    tipo: String
   },
   data: function data() {
     return {
+      datos_tabla_reefer: null,
+      datos_tabla_generador: null,
       //  ---- myChart_principal -----
       my_Chart_principal_dataset_reefer: [{
-        label: 'set_point',
+        label: "set_point",
         data: [],
-        borderColor: '#FFC312',
-        backgroundColor: '#FFC312',
+        borderColor: "#FFC312",
+        backgroundColor: "#FFC312",
         borderWidth: 4
       }, {
-        label: 'temp_supply_1',
+        label: "temp_supply_1",
         data: [],
-        borderColor: '#C4E538',
-        backgroundColor: '#C4E538',
+        borderColor: "#C4E538",
+        backgroundColor: "#C4E538",
         borderWidth: 4
       }, {
-        label: 'temp_supply_2',
+        label: "temp_supply_2",
         data: [],
-        borderColor: '#FF1E51',
-        backgroundColor: '#FF1E51',
+        borderColor: "#FF1E51",
+        backgroundColor: "#FF1E51",
         borderWidth: 4
       }, {
-        label: 'return_air',
+        label: "return_air",
         data: [],
-        borderColor: '#12CBC4',
-        backgroundColor: '#12CBC4',
+        borderColor: "#12CBC4",
+        backgroundColor: "#12CBC4",
         borderWidth: 4
       }, {
-        label: 'ambient_air',
+        label: "ambient_air",
         //------------
         data: [],
-        borderColor: '#9980FA',
-        backgroundColor: '#9980FA',
+        borderColor: "#9980FA",
+        backgroundColor: "#9980FA",
         borderWidth: 4
       }, {
-        label: 'relative_humidity',
+        label: "relative_humidity",
         //-------------
         data: [],
-        borderColor: '#FDA7DF',
-        backgroundColor: '#FDA7DF',
+        borderColor: "#FDA7DF",
+        backgroundColor: "#FDA7DF",
         borderWidth: 4
       }, {
-        label: 'co2_reading',
+        label: "co2_reading",
         //--------------
         data: [],
-        borderColor: '#AAE51',
-        backgroundColor: '#AA1E51',
+        borderColor: "#AAE51",
+        backgroundColor: "#AA1E51",
         borderWidth: 4
       }, {
-        label: 'o2_reading',
+        label: "o2_reading",
         //-----------------
         data: [],
-        borderColor: '#BA1A51',
-        backgroundColor: '#BA1A51',
+        borderColor: "#BA1A51",
+        backgroundColor: "#BA1A51",
         borderWidth: 4
       }, {
-        label: 'evaporator_speed',
+        label: "evaporator_speed",
         data: [],
-        borderColor: '#CA1A51',
-        backgroundColor: '#CA1A51',
+        borderColor: "#CA1A51",
+        backgroundColor: "#CA1A51",
         borderWidth: 4
       }],
       my_Chart_principal_dataset_generador: [{
-        label: 'battery_voltage',
+        label: "battery_voltage",
         data: [],
-        borderColor: '#db0404',
-        backgroundColor: '#db0404',
+        borderColor: "#db0404",
+        backgroundColor: "#db0404",
         borderWidth: 4
       }, {
-        label: 'water_temp',
+        label: "water_temp",
         data: [],
-        borderColor: '#3498db',
-        backgroundColor: '#3498db',
+        borderColor: "#3498db",
+        backgroundColor: "#3498db",
         borderWidth: 4
       }, {
-        label: 'running_frequency',
+        label: "running_frequency",
         data: [],
-        borderColor: '#9b59b6',
-        backgroundColor: '#9b59b6',
+        borderColor: "#9b59b6",
+        backgroundColor: "#9b59b6",
         borderWidth: 4
       }, {
-        label: 'fuel_level',
+        label: "fuel_level",
         data: [],
-        borderColor: '#e67e22',
-        backgroundColor: '#e67e22',
+        borderColor: "#e67e22",
+        backgroundColor: "#e67e22",
         borderWidth: 4
       }, {
-        label: 'voltage_measure',
+        label: "voltage_measure",
         data: [],
-        borderColor: '#1abc9c',
-        backgroundColor: '#1abc9c',
+        borderColor: "#1abc9c",
+        backgroundColor: "#1abc9c",
         borderWidth: 4
       }, {
-        label: 'rotor_current',
+        label: "rotor_current",
         data: [],
-        borderColor: '#2c3e50',
-        backgroundColor: '#2c3e50',
+        borderColor: "#2c3e50",
+        backgroundColor: "#2c3e50",
         borderWidth: 4
       }, {
-        label: 'fiel_current',
+        label: "fiel_current",
         data: [],
-        borderColor: '#f39c12',
-        backgroundColor: '#f39c12',
+        borderColor: "#f39c12",
+        backgroundColor: "#f39c12",
         borderWidth: 4
       }, {
-        label: 'rpm',
+        label: "rpm",
         data: [],
-        borderColor: '#f39c12',
-        backgroundColor: '#f39c12',
+        borderColor: "#f39c12",
+        backgroundColor: "#f39c12",
         borderWidth: 4
       }, {
-        label: 'horometro',
+        label: "horometro",
         data: [],
-        borderColor: '#f39c12',
-        backgroundColor: '#f39c12',
+        borderColor: "#f39c12",
+        backgroundColor: "#f39c12",
         borderWidth: 4
       }],
       my_Chart_principal_labels: [],
       my_Chart_principal_dataSetable: []
     };
   },
-  watch: {},
+  watch: {
+    contenedor: function contenedor() {
+      this.getContenedor();
+    }
+  },
   methods: {
+    getContenedor: function getContenedor() {
+      var self = this;
+
+      if (this.tipo == "reefer") {
+        axios__WEBPACK_IMPORTED_MODULE_1___default().post(route("contenedores.get_datos"), {
+          id: this.contenedor,
+          tipo: "reefer"
+        }).then(function (response) {
+          self.datos_tabla_reefer = response.data;
+        }).then(function () {
+          self.setLabelsMyChartPrincipal();
+        });
+      }
+
+      if (this.tipo == "genset") {
+        axios__WEBPACK_IMPORTED_MODULE_1___default().post(route("contenedores.get_datos"), {
+          id: this.contenedor,
+          tipo: "genset"
+        }).then(function (response) {
+          self.datos_tabla_generador = response.data;
+        }).then(function () {
+          self.setLabelsMyChartPrincipal();
+        });
+      }
+    },
     myChartPrincipal: function myChartPrincipal() {
       var self = this;
-      var ctx_principal = document.getElementById('myChart_principal').getContext('2d');
+      var ctx_principal = document.getElementById("myChart_principal").getContext("2d");
       myChart_principal = new Chart(ctx_principal, {
-        type: 'line',
+        type: "line",
         data: {
           labels: self.my_Chart_principal_labels,
           datasets: self.my_Chart_principal_dataSetable
@@ -2274,7 +2307,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           animations: {
             tension: {
               duration: 3000,
-              easing: 'linear',
+              easing: "linear",
               from: 0.2,
               to: 0,
               loop: true
@@ -2309,7 +2342,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 case 0:
                   self.my_Chart_principal_labels = [];
 
-                  if (self.tipo == "Reefer") {
+                  if (self.tipo == "reefer") {
                     datos_r = self.datos_tabla_reefer.length != 0 ? self.datos_tabla_reefer.reverse() : [];
                     datos_r.map(function (datos_r, index) {
                       var date = new Date(datos_r.created_at);
@@ -2332,12 +2365,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                         self.my_Chart_principal_labels.push("".concat(day, "-0").concat(month, "-").concat(year, " ").concat(hours, ":").concat(minutes, ":").concat(seconds));
                       } else {
                         self.my_Chart_principal_labels.push("".concat(day, "-").concat(month, "-").concat(year, "  ").concat(hours, ":").concat(minutes, ":").concat(seconds));
-                      } //  console.log(self.my_Chart_principal_labels);
+                      }
 
+                      console.log(self.my_Chart_principal_labels);
                     });
                   }
 
-                  if (self.tipo == "Generador") {
+                  if (self.tipo == "genset") {
                     datos_g = self.datos_tabla_generador != null ? self.datos_tabla_generador.reverse() : [];
                     datos_g.map(function (datos_g, index) {
                       var date = new Date(datos_g.created_at);
@@ -2361,7 +2395,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                       } else {
                         self.my_Chart_principal_labels.push("".concat(day, "-").concat(month, "-").concat(year, "  ").concat(hours, ":").concat(minutes, ":").concat(seconds));
                       }
-                    }); // console.log(self.my_Chart_principal_labels);
+                    });
+                    console.log(self.my_Chart_principal_labels);
                   }
 
                 case 3:
@@ -2387,38 +2422,38 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }).then(function () {
         if (self.tipo == "Generador") {
           // console.log(self.datos_tabla_generador[0].contenedor_id);
-          axios__WEBPACK_IMPORTED_MODULE_1___default().post(route('contenedores.get_alarma_evento'), {
+          axios__WEBPACK_IMPORTED_MODULE_1___default().post(route("contenedores.get_alarma_evento"), {
             id: self.datos_tabla_generador[0].contenedor_id,
             tipo: self.tipo
           }).then(function (response) {
             if (response.data != 0 && self.chart_alarma_labels.length == 0) {
               self.chart_alarma_labels = [];
               self.chart_alarma_dataset_data = [];
-              response.data['alarma'].forEach(function (element) {
+              response.data["alarma"].forEach(function (element) {
                 self.chart_alarma_labels.push(element.nombre_alarma);
                 self.chart_alarma_dataset_data.push(element.cantidad_alarma);
               });
               self.chart_eventos_labels = [];
               self.chart_eventos_dataset_data = [];
-              response.data['evento'].forEach(function (element) {
+              response.data["evento"].forEach(function (element) {
                 self.chart_eventos_labels.push(element.nombre_evento);
                 self.chart_eventos_dataset_data.push(element.cantidad_evento);
               });
             }
           }).then(function () {
-            console.log('actualizando el chart circular '); // Chart_alarmas.update(); 
+            console.log("actualizando el chart circular "); // Chart_alarmas.update();
 
             Chart_alarmas.destroy();
             self.Circular_iniciarGraficosAlarms();
           }).then(function () {
-            // Chart_eventos.update(); 
+            // Chart_eventos.update();
             Chart_eventos.destroy();
             self.Circular_iniciarGraficosEventos();
           });
         }
 
         if (self.tipo == "Reefer") {
-          axios__WEBPACK_IMPORTED_MODULE_1___default().post(route('contenedores.get_alarma_evento'), {
+          axios__WEBPACK_IMPORTED_MODULE_1___default().post(route("contenedores.get_alarma_evento"), {
             id: self.datos_tabla_reefer[0].contenedor_id,
             tipo: self.tipo
           }).then(function (response) {});
@@ -2443,7 +2478,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 case 0:
                   self.my_Chart_principal_dataset = [];
 
-                  if (self.tipo == "Reefer") {
+                  if (self.tipo == "reefer") {
                     self.my_Chart_principal_dataset_reefer[0].data = [];
                     self.my_Chart_principal_dataset_reefer[1].data = [];
                     self.my_Chart_principal_dataset_reefer[2].data = [];
@@ -2467,7 +2502,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     });
                   }
 
-                  if (self.tipo == "Generador") {
+                  if (self.tipo == "genset") {
                     self.my_Chart_principal_dataset_generador[0].data = [];
                     self.my_Chart_principal_dataset_generador[1].data = [];
                     self.my_Chart_principal_dataset_generador[2].data = [];
@@ -2503,11 +2538,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }
 
       set_data().then(function () {
-        if (self.tipo == "Reefer") {
+        if (self.tipo == "reefer") {
           self.my_Chart_principal_dataSetable = self.my_Chart_principal_dataset_reefer;
         }
 
-        if (self.tipo == "Generador") {
+        if (self.tipo == "genset") {
           self.my_Chart_principal_dataSetable = self.my_Chart_principal_dataset_generador;
         }
       });
@@ -3591,6 +3626,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _componentes_tabla_resumen_reefer_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./componentes/tabla_resumen_reefer.vue */ "./resources/js/Pages/Panel/componentes/tabla_resumen_reefer.vue");
 /* harmony import */ var _componentes_tabla_detalle_genset_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./componentes/tabla_detalle_genset.vue */ "./resources/js/Pages/Panel/componentes/tabla_detalle_genset.vue");
 /* harmony import */ var _componentes_tabla_detalle_reefer_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./componentes/tabla_detalle_reefer.vue */ "./resources/js/Pages/Panel/componentes/tabla_detalle_reefer.vue");
+/* harmony import */ var _componentes_grafico_principal_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./componentes/grafico_principal.vue */ "./resources/js/Pages/Panel/componentes/grafico_principal.vue");
 //
 //
 //
@@ -3690,6 +3726,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+
 
 
 
@@ -3704,7 +3747,8 @@ __webpack_require__.r(__webpack_exports__);
     tablaResumenGen: _componentes_tabla_resumen_genset_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
     tablaResumenReef: _componentes_tabla_resumen_reefer_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
     tablaDetalleGenset: _componentes_tabla_detalle_genset_vue__WEBPACK_IMPORTED_MODULE_5__["default"],
-    tablaDetalleReefer: _componentes_tabla_detalle_reefer_vue__WEBPACK_IMPORTED_MODULE_6__["default"]
+    tablaDetalleReefer: _componentes_tabla_detalle_reefer_vue__WEBPACK_IMPORTED_MODULE_6__["default"],
+    graficosPrincial: _componentes_grafico_principal_vue__WEBPACK_IMPORTED_MODULE_7__["default"]
   },
   props: {
     // tu_cuenta:Array,
@@ -30790,7 +30834,7 @@ var render = function () {
     ? _c(
         "div",
         {
-          staticClass: "col shadow-sm p-3 mb-5 bg-white rounded ",
+          staticClass: "col shadow-sm p-3 mb-5 bg-white rounded",
           staticStyle: { margin: "-30px 15px 10px 15px" },
           attrs: { id: "myChart_principal_id" },
         },
@@ -33156,6 +33200,14 @@ var render = function () {
                           tipo: _vm.tipo,
                         },
                         on: { set_ubicacion_r: _vm.set_ubicacion_r },
+                      }),
+                      _vm._v(" "),
+                      _c("graficosPrincial", {
+                        ref: "tablaDetalleReefer",
+                        attrs: {
+                          contenedor: _vm.contenedor_selecionado_id,
+                          tipo: _vm.tipo,
+                        },
                       }),
                     ],
                     1

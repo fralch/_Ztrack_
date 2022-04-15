@@ -31,7 +31,7 @@
                     type="button"
                     id="select_reef"
                     class="col-3 btn btn-success"
-                    @click="tipo='reefer'"
+                    @click="tipo = 'reefer'"
                   >
                     <i class="bi bi-power"></i>
                     <b style="font-size: 1.2em">{{
@@ -57,38 +57,44 @@
                 </div>
               </div>
               <!-- ********** CANVAS MAPA **********-->
-              <canvasMapa ref="canvasMapa" :punto="ubicacion_final"  
-              
-              > </canvasMapa>
+              <canvasMapa ref="canvasMapa" :punto="ubicacion_final">
+              </canvasMapa>
               <!-- ********* TABLA RESUMEN CONTENEDORES  *********-->
-                  <tablaResumenGen ref="tablaResumenGen" 
-                    :tipo="tipo" 
-                    @select_contenedor="obteniendo_contendor"
-                    >
-                  </tablaResumenGen>
-                  <tablaResumenReef 
-                    ref="tablaResumenReef" 
-                    :tipo="tipo"
-                    @select_contenedor="obteniendo_contendor"
-                    >
-                  </tablaResumenReef>
+              <tablaResumenGen
+                ref="tablaResumenGen"
+                :tipo="tipo"
+                @select_contenedor="obteniendo_contendor"
+              >
+              </tablaResumenGen>
+              <tablaResumenReef
+                ref="tablaResumenReef"
+                :tipo="tipo"
+                @select_contenedor="obteniendo_contendor"
+              >
+              </tablaResumenReef>
               <!-- *********** TABLA DETALLE CONTENEDORES *********** -->
               <tablaDetalleGenset
                 ref="tablaDetalleGenset"
                 :contenedor="contenedor_selecionado_id"
                 :tipo="tipo"
-                @set_ubicacion_g = "set_ubicacion_g"
+                @set_ubicacion_g="set_ubicacion_g"
               >
               </tablaDetalleGenset>
               <tablaDetalleReefer
                 ref="tablaDetalleReefer"
                 :contenedor="contenedor_selecionado_id"
                 :tipo="tipo"
-                @set_ubicacion_r = "set_ubicacion_r"
+                @set_ubicacion_r="set_ubicacion_r"
               >
               </tablaDetalleReefer>
 
               <!-- *********** GRAFICOS PRINCIPAL *********** -->
+              <graficosPrincial
+                ref="tablaDetalleReefer"
+                :contenedor="contenedor_selecionado_id"
+                :tipo="tipo"
+              >
+              </graficosPrincial>
             </div>
           </div>
         </div>
@@ -105,6 +111,7 @@ import tablaResumenGen from "./componentes/tabla_resumen_genset.vue";
 import tablaResumenReef from "./componentes/tabla_resumen_reefer.vue";
 import tablaDetalleGenset from "./componentes/tabla_detalle_genset.vue";
 import tablaDetalleReefer from "./componentes/tabla_detalle_reefer.vue";
+import graficosPrincial from "./componentes/grafico_principal.vue";
 export default {
   components: {
     layoutprincipal,
@@ -113,6 +120,7 @@ export default {
     tablaResumenReef,
     tablaDetalleGenset,
     tablaDetalleReefer,
+    graficosPrincial, 
   },
   props: {
     // tu_cuenta:Array,
@@ -125,11 +133,11 @@ export default {
   data() {
     return {
       // submited: false,
-      contenedor_selected: null, 
+      contenedor_selected: null,
       contenedor_selecionado_id: null,
       tipo: "",
-      get_ubicacion_g:null, 
-      get_ubicacion_r:null, 
+      get_ubicacion_g: null,
+      get_ubicacion_r: null,
       ubicacion_final: null,
     };
   },
@@ -139,31 +147,29 @@ export default {
     },
     get_ubicacion_r(valor) {
       this.ubicacion_final = valor;
-    }   
+    },
   },
   mounted() {
     this.usuarioLogeado();
     this.bienvenida();
-    
   },
 
   methods: {
     bienvenida() {
-        Swal.fire({
-          title: "Bienvenido!",
-          icon: "success",
-          text: (
-            this.usuario_logeado[0].nombres +
-            " " +
-            this.usuario_logeado[0].apellidos
-          ).toUpperCase(),
-          confirmButtonColor: "#3085d6",
-          confirmButtonText: "OK!",
-        }).then((result) => {
-          if (result.isConfirmed) {
-            
-          }
-        });
+      Swal.fire({
+        title: "Bienvenido!",
+        icon: "success",
+        text: (
+          this.usuario_logeado[0].nombres +
+          " " +
+          this.usuario_logeado[0].apellidos
+        ).toUpperCase(),
+        confirmButtonColor: "#3085d6",
+        confirmButtonText: "OK!",
+      }).then((result) => {
+        if (result.isConfirmed) {
+        }
+      });
     },
 
     usuarioLogeado() {
@@ -173,17 +179,15 @@ export default {
       this.$refs.layoutprincipal.admin = this.usuario_logeado[0].admin;
     },
 
-  
     obteniendo_contendor(contenedor) {
       this.contenedor_selected = contenedor;
-      this.contenedor_selecionado_id = contenedor.id;  
+      this.contenedor_selecionado_id = contenedor.id;
     },
     set_ubicacion_g(ubicacion) {
-      this.get_ubicacion_g =  ubicacion;
+      this.get_ubicacion_g = ubicacion;
     },
     set_ubicacion_r(u) {
-      this.get_ubicacion_r =  u;
-    
+      this.get_ubicacion_r = u;
     },
   },
 };
