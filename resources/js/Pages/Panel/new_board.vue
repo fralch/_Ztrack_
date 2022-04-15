@@ -6,7 +6,12 @@
         <!-- ---------------------- -->
         <div class="content">
           <div class="row" style="margin: 0 0 0 0px">
-            <div id="lado_izquierdo" style="margin: 10px 0 0 -5px"></div>
+            <div id="lado_izquierdo" style="margin: 10px 0 0 -5px">
+              <ladoIzquierdo ref="ladoIzquierdo" 
+                :contenedor_id="contenedor_selecionado_id"
+                :tipo="tipo">
+              </ladoIzquierdo>
+            </div>
             <div id="lado_derecho" style="">
               <div
                 id="total_reefers"
@@ -112,6 +117,7 @@ import tablaResumenReef from "./componentes/tabla_resumen_reefer.vue";
 import tablaDetalleGenset from "./componentes/tabla_detalle_genset.vue";
 import tablaDetalleReefer from "./componentes/tabla_detalle_reefer.vue";
 import graficosPrincial from "./componentes/grafico_principal.vue";
+import ladoIzquierdo from "./componentes/izquierda.vue";
 export default {
   components: {
     layoutprincipal,
@@ -121,6 +127,7 @@ export default {
     tablaDetalleGenset,
     tablaDetalleReefer,
     graficosPrincial, 
+    ladoIzquierdo, 
   },
   props: {
     // tu_cuenta:Array,
@@ -168,8 +175,11 @@ export default {
         confirmButtonText: "OK!",
       }).then((result) => {
         if (result.isConfirmed) {
+          let clicke = document.getElementById("select_gen");
+          clicke.click();
         }
       });
+
     },
 
     usuarioLogeado() {

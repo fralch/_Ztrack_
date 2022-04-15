@@ -2266,6 +2266,14 @@ var myChart_principal;
   watch: {
     contenedor: function contenedor() {
       this.getContenedor();
+    },
+    tipo: function tipo() {
+      this.my_Chart_principal_dataSetable = [];
+
+      if (myChart_principal) {
+        myChart_principal.destroy();
+        this.myChartPrincipal();
+      }
     }
   },
   methods: {
@@ -2365,9 +2373,8 @@ var myChart_principal;
                         self.my_Chart_principal_labels.push("".concat(day, "-0").concat(month, "-").concat(year, " ").concat(hours, ":").concat(minutes, ":").concat(seconds));
                       } else {
                         self.my_Chart_principal_labels.push("".concat(day, "-").concat(month, "-").concat(year, "  ").concat(hours, ":").concat(minutes, ":").concat(seconds));
-                      }
+                      } //  console.log(self.my_Chart_principal_labels);
 
-                      console.log(self.my_Chart_principal_labels);
                     });
                   }
 
@@ -2395,8 +2402,7 @@ var myChart_principal;
                       } else {
                         self.my_Chart_principal_labels.push("".concat(day, "-").concat(month, "-").concat(year, "  ").concat(hours, ":").concat(minutes, ":").concat(seconds));
                       }
-                    });
-                    console.log(self.my_Chart_principal_labels);
+                    }); // console.log(self.my_Chart_principal_labels);
                   }
 
                 case 3:
@@ -2440,25 +2446,8 @@ var myChart_principal;
                 self.chart_eventos_dataset_data.push(element.cantidad_evento);
               });
             }
-          }).then(function () {
-            console.log("actualizando el chart circular "); // Chart_alarmas.update();
-
-            Chart_alarmas.destroy();
-            self.Circular_iniciarGraficosAlarms();
-          }).then(function () {
-            // Chart_eventos.update();
-            Chart_eventos.destroy();
-            self.Circular_iniciarGraficosEventos();
           });
         }
-
-        if (self.tipo == "Reefer") {
-          axios__WEBPACK_IMPORTED_MODULE_1___default().post(route("contenedores.get_alarma_evento"), {
-            id: self.datos_tabla_reefer[0].contenedor_id,
-            tipo: self.tipo
-          }).then(function (response) {});
-        }
-      }).then(function () {// self.autoRefresh();
       });
     },
     setDatosGraficoPrincipal: function setDatosGraficoPrincipal() {
@@ -2592,14 +2581,53 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
+var Chart_alarmas;
+var Chart_eventos;
+var Chart_set_point;
+var Chart_return_air;
+var Chart_temp_supply;
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {},
   props: {
-    contenedor_id: Number
+    contenedor_id: Number,
+    tipo: String
   },
   data: function data() {
     return {
+      //  -------- chart alarma -------
       chart_alarma_labels: [],
       chart_alarma_dataset_data: [],
       //  -------- chart eventos -------
@@ -2607,18 +2635,24 @@ __webpack_require__.r(__webpack_exports__);
       chart_eventos_dataset_data: []
     };
   },
-  watch: {},
+  watch: {
+    contenedor_id: function contenedor_id(val, oldVal) {
+      // console.log(val, oldVal);
+      this.setLabel();
+    }
+  },
+  mounted: function mounted() {},
   methods: {
     Circular_iniciarGraficosAlarms: function Circular_iniciarGraficosAlarms() {
       var self = this;
-      var ctx_alarms = document.getElementById('myChart_alarms').getContext('2d');
+      var ctx_alarms = document.getElementById("myChart_alarms").getContext("2d");
       Chart_alarmas = new Chart(ctx_alarms, {
-        type: 'doughnut',
+        type: "doughnut",
         data: {
           labels: self.chart_alarma_labels,
           datasets: [{
             data: self.chart_alarma_dataset_data,
-            backgroundColor: ['#9c88ff', '#fbc531', '#e84118', '#00a8ff', '#718093'],
+            backgroundColor: ["#9c88ff", "#fbc531", "#e84118", "#00a8ff", "#718093"],
             hoverOffset: 4
           }]
         },
@@ -2633,15 +2667,15 @@ __webpack_require__.r(__webpack_exports__);
     },
     Circular_iniciarGraficosEventos: function Circular_iniciarGraficosEventos() {
       var self = this;
-      var ctx_cargo = document.getElementById('myChart_cargo').getContext('2d');
+      var ctx_cargo = document.getElementById("myChart_cargo").getContext("2d");
       Chart_eventos = new Chart(ctx_cargo, {
-        type: 'doughnut',
+        type: "doughnut",
         data: {
           labels: self.chart_eventos_labels,
           datasets: [{
-            label: 'My First Dataset',
+            label: "My First Dataset",
             data: self.chart_eventos_dataset_data,
-            backgroundColor: ['#fc5c65', '#fd9644', '#fed330', '#26de81', '#a55eea'],
+            backgroundColor: ["#fc5c65", "#fd9644", "#fed330", "#26de81", "#a55eea"],
             hoverOffset: 4
           }]
         },
@@ -2655,33 +2689,48 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     setLabel: function setLabel() {
-      axios__WEBPACK_IMPORTED_MODULE_0___default().post(route('contenedores.get_alarma_evento'), {
-        id: self.datos_tabla_generador[0].contenedor_id
-      }).then(function (response) {
-        if (response.data != 0 && self.chart_alarma_labels.length == 0) {
-          self.chart_alarma_labels = [];
-          self.chart_alarma_dataset_data = [];
-          response.data['alarma'].forEach(function (element) {
-            self.chart_alarma_labels.push(element.nombre_alarma);
-            self.chart_alarma_dataset_data.push(element.cantidad_alarma);
-          });
-          self.chart_eventos_labels = [];
-          self.chart_eventos_dataset_data = [];
-          response.data['evento'].forEach(function (element) {
-            self.chart_eventos_labels.push(element.nombre_evento);
-            self.chart_eventos_dataset_data.push(element.cantidad_evento);
-          });
-        }
-      }).then(function () {
-        console.log('actualizando el chart circular '); // Chart_alarmas.update(); 
+      var self = this;
 
-        Chart_alarmas.destroy();
-        self.Circular_iniciarGraficosAlarms();
-      }).then(function () {
-        // Chart_eventos.update(); 
-        Chart_eventos.destroy();
-        self.Circular_iniciarGraficosEventos();
-      });
+      if (self.tipo == "genset") {
+        axios__WEBPACK_IMPORTED_MODULE_0___default().post(route("contenedores.get_alarma_evento"), {
+          id: self.contenedor_id
+        }).then(function (response) {
+          console.log("🚀 ~ file: izquierda.vue ~ line 122 ~ setLabel ~ response", response.data);
+
+          if (response.data != 0 && self.chart_alarma_labels.length == 0) {
+            self.chart_alarma_labels = [];
+            self.chart_alarma_dataset_data = [];
+            response.data["alarma"].forEach(function (element) {
+              self.chart_alarma_labels.push(element.nombre_alarma);
+              self.chart_alarma_dataset_data.push(element.cantidad_alarma);
+            });
+            self.chart_eventos_labels = [];
+            self.chart_eventos_dataset_data = [];
+            response.data["evento"].forEach(function (element) {
+              self.chart_eventos_labels.push(element.nombre_evento);
+              self.chart_eventos_dataset_data.push(element.cantidad_evento);
+            });
+          }
+        }).then(function () {
+          console.log("actualizando el chart circular "); // Chart_alarmas.update();
+
+          if (Chart_alarmas) {
+            // Chart_alarmas.data.labels = self.chart_alarma_labels;
+            // Chart_alarmas.data.datasets[0].data = self.chart_alarma_dataset_data;
+            // Chart_alarmas.update();                    //
+            Chart_alarmas.destroy();
+          }
+
+          self.Circular_iniciarGraficosAlarms();
+        }).then(function () {
+          // Chart_eventos.update();
+          if (Chart_eventos) {
+            Chart_eventos.destroy();
+          }
+
+          self.Circular_iniciarGraficosEventos();
+        });
+      }
     }
   }
 }); // 			<rptCanastaFotos ref="rptCanastaFotos" :agencia_id="agencia_id">
@@ -3627,6 +3676,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _componentes_tabla_detalle_genset_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./componentes/tabla_detalle_genset.vue */ "./resources/js/Pages/Panel/componentes/tabla_detalle_genset.vue");
 /* harmony import */ var _componentes_tabla_detalle_reefer_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./componentes/tabla_detalle_reefer.vue */ "./resources/js/Pages/Panel/componentes/tabla_detalle_reefer.vue");
 /* harmony import */ var _componentes_grafico_principal_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./componentes/grafico_principal.vue */ "./resources/js/Pages/Panel/componentes/grafico_principal.vue");
+/* harmony import */ var _componentes_izquierda_vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./componentes/izquierda.vue */ "./resources/js/Pages/Panel/componentes/izquierda.vue");
 //
 //
 //
@@ -3732,6 +3782,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+
 
 
 
@@ -3748,7 +3804,8 @@ __webpack_require__.r(__webpack_exports__);
     tablaResumenReef: _componentes_tabla_resumen_reefer_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
     tablaDetalleGenset: _componentes_tabla_detalle_genset_vue__WEBPACK_IMPORTED_MODULE_5__["default"],
     tablaDetalleReefer: _componentes_tabla_detalle_reefer_vue__WEBPACK_IMPORTED_MODULE_6__["default"],
-    graficosPrincial: _componentes_grafico_principal_vue__WEBPACK_IMPORTED_MODULE_7__["default"]
+    graficosPrincial: _componentes_grafico_principal_vue__WEBPACK_IMPORTED_MODULE_7__["default"],
+    ladoIzquierdo: _componentes_izquierda_vue__WEBPACK_IMPORTED_MODULE_8__["default"]
   },
   props: {
     // tu_cuenta:Array,
@@ -3790,7 +3847,10 @@ __webpack_require__.r(__webpack_exports__);
         confirmButtonColor: "#3085d6",
         confirmButtonText: "OK!"
       }).then(function (result) {
-        if (result.isConfirmed) {}
+        if (result.isConfirmed) {
+          var clicke = document.getElementById("select_gen");
+          clicke.click();
+        }
       });
     },
     usuarioLogeado: function usuarioLogeado() {
@@ -30870,110 +30930,111 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", [
+    _vm._m(0),
+    _vm._v(" "),
+    _vm.tipo == "genset"
+      ? _c(
+          "div",
+          {
+            staticClass: "col shadow-sm p-3 mb-5 bg-white rounded",
+            attrs: { id: "micro-alarms" },
+          },
+          [
+            _vm._v("\n    Alarmas\n    "),
+            _c("canvas", { attrs: { id: "myChart_alarms" } }),
+          ]
+        )
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.tipo == "genset"
+      ? _c(
+          "div",
+          {
+            staticClass: "col shadow-sm p-3 mb-5 bg-white rounded",
+            attrs: { id: "cargo-care" },
+          },
+          [
+            _vm._v("\n    Eventos\n    "),
+            _c("canvas", { attrs: { id: "myChart_cargo" } }),
+          ]
+        )
+      : _vm._e(),
+  ])
 }
 var staticRenderFns = [
   function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { attrs: { id: "lado_izquierdo" } }, [
-      _c(
-        "div",
-        {
-          staticClass: "col shadow-sm p-3 mb-5 bg-white rounded",
-          attrs: { id: "asset-search" },
-        },
-        [
-          _vm._v("\n            Asset search\n            "),
-          _c("input", {
-            staticClass: "form-control",
-            staticStyle: { margin: "5px" },
-            attrs: {
-              type: "text",
-              placeholder: "Saved seaches",
-              "aria-label": "Username",
-              "aria-describedby": "basic-addon1",
-            },
-          }),
-          _vm._v(" "),
+    return _c(
+      "div",
+      {
+        staticClass: "col shadow-sm p-3 mb-5 bg-white rounded",
+        attrs: { id: "asset-search" },
+      },
+      [
+        _vm._v("\n    Asset search\n    "),
+        _c("input", {
+          staticClass: "form-control",
+          staticStyle: { margin: "5px" },
+          attrs: {
+            type: "text",
+            placeholder: "Saved seaches",
+            "aria-label": "Username",
+            "aria-describedby": "basic-addon1",
+          },
+        }),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "form-floating", staticStyle: { margin: "5px" } },
+          [
+            _c("textarea", {
+              staticClass: "form-control",
+              attrs: { placeholder: "Asset ID", id: "floatingTextarea" },
+            }),
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "form-floating", staticStyle: { margin: "5px" } },
+          [
+            _c("textarea", {
+              staticClass: "form-control",
+              attrs: { placeholder: "Booking Number", id: "floatingTextarea" },
+            }),
+          ]
+        ),
+        _vm._v(" "),
+        _c("input", {
+          staticClass: "form-control",
+          staticStyle: { margin: "5px" },
+          attrs: {
+            type: "text",
+            placeholder: "Geofence Status",
+            "aria-label": "Username",
+            "aria-describedby": "basic-addon1",
+          },
+        }),
+        _vm._v(" "),
+        _c("div", { staticClass: "btn-group" }, [
           _c(
-            "div",
-            { staticClass: "form-floating", staticStyle: { margin: "5px" } },
-            [
-              _c("textarea", {
-                staticClass: "form-control",
-                attrs: { placeholder: "Asset ID", id: "floatingTextarea" },
-              }),
-            ]
+            "a",
+            {
+              staticClass: "btn btn-primary active",
+              attrs: { href: "#", "aria-current": "page" },
+            },
+            [_vm._v("Search")]
           ),
           _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "form-floating", staticStyle: { margin: "5px" } },
-            [
-              _c("textarea", {
-                staticClass: "form-control",
-                attrs: {
-                  placeholder: "Booking Number",
-                  id: "floatingTextarea",
-                },
-              }),
-            ]
-          ),
-          _vm._v(" "),
-          _c("input", {
-            staticClass: "form-control",
-            staticStyle: { margin: "5px" },
-            attrs: {
-              type: "text",
-              placeholder: "Geofence Status",
-              "aria-label": "Username",
-              "aria-describedby": "basic-addon1",
-            },
-          }),
-          _vm._v(" "),
-          _c("div", { staticClass: "btn-group" }, [
-            _c(
-              "a",
-              {
-                staticClass: "btn btn-primary active",
-                attrs: { href: "#", "aria-current": "page" },
-              },
-              [_vm._v("Search")]
-            ),
-            _vm._v(" "),
-            _c("a", { staticClass: "btn btn-primary", attrs: { href: "#" } }, [
-              _vm._v("Clear"),
-            ]),
+          _c("a", { staticClass: "btn btn-primary", attrs: { href: "#" } }, [
+            _vm._v("Clear"),
           ]),
-        ]
-      ),
-      _vm._v(" "),
-      _c(
-        "div",
-        {
-          staticClass: "col shadow-sm p-3 mb-5 bg-white rounded",
-          attrs: { id: "micro-alarms" },
-        },
-        [
-          _vm._v("\n            Alarmas \n            "),
-          _c("canvas", { attrs: { id: "myChart_alarms" } }),
-        ]
-      ),
-      _vm._v(" "),
-      _c(
-        "div",
-        {
-          staticClass: "col shadow-sm p-3 mb-5 bg-white rounded",
-          attrs: { id: "cargo-care" },
-        },
-        [
-          _vm._v("\n            Eventos\n            "),
-          _c("canvas", { attrs: { id: "myChart_cargo" } }),
-        ]
-      ),
-    ])
+        ]),
+      ]
+    )
   },
 ]
 render._withStripped = true
@@ -33026,10 +33087,23 @@ var render = function () {
                 "div",
                 { staticClass: "row", staticStyle: { margin: "0 0 0 0px" } },
                 [
-                  _c("div", {
-                    staticStyle: { margin: "10px 0 0 -5px" },
-                    attrs: { id: "lado_izquierdo" },
-                  }),
+                  _c(
+                    "div",
+                    {
+                      staticStyle: { margin: "10px 0 0 -5px" },
+                      attrs: { id: "lado_izquierdo" },
+                    },
+                    [
+                      _c("ladoIzquierdo", {
+                        ref: "ladoIzquierdo",
+                        attrs: {
+                          contenedor_id: _vm.contenedor_selecionado_id,
+                          tipo: _vm.tipo,
+                        },
+                      }),
+                    ],
+                    1
+                  ),
                   _vm._v(" "),
                   _c(
                     "div",

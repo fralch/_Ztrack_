@@ -163,6 +163,13 @@ export default {
     contenedor(){
       this.getContenedor();
     },
+    tipo(){
+      this.my_Chart_principal_dataSetable = [];
+      if (myChart_principal) {
+          myChart_principal.destroy();
+          this.myChartPrincipal();
+      }
+    },
   },
   methods: {
     getContenedor() {
@@ -261,7 +268,7 @@ export default {
                 `${day}-${month}-${year}  ${hours}:${minutes}:${seconds}`
               );
             }
-             console.log(self.my_Chart_principal_labels);
+            //  console.log(self.my_Chart_principal_labels);
           });
         }
         if (self.tipo == "genset") {
@@ -295,7 +302,7 @@ export default {
               );
             }
           });
-          console.log(self.my_Chart_principal_labels);
+          // console.log(self.my_Chart_principal_labels);
         }
       }
 
@@ -342,31 +349,11 @@ export default {
                     );
                   });
                 }
-              })
-              .then(() => {
-                console.log("actualizando el chart circular ");
-                // Chart_alarmas.update();
-                Chart_alarmas.destroy();
-                self.Circular_iniciarGraficosAlarms();
-              })
-              .then(() => {
-                // Chart_eventos.update();
-                Chart_eventos.destroy();
-                self.Circular_iniciarGraficosEventos();
-              });
+              }); 
+              
           }
-          if (self.tipo == "Reefer") {
-            axios
-              .post(route("contenedores.get_alarma_evento"), {
-                id: self.datos_tabla_reefer[0].contenedor_id,
-                tipo: self.tipo,
-              })
-              .then((response) => {});
-          }
-        })
-        .then(() => {
-          // self.autoRefresh();
-        });
+          
+        }); 
     },
     setDatosGraficoPrincipal() {
       /* 😑 CUANDO QUIERAS AGREGAR O QUITAR VARIABLES PARA EL GRAFICO PRINCIPAL PRIMERO TIENES AGREGARLOS EN LOS DATA QUE ESTAN ABAJO DE LOS PROPS LUEGO ACTUALIZARLOS AQUI  */
@@ -467,12 +454,11 @@ export default {
 
       set_data().then(() => {
         if (self.tipo == "reefer") {
-          self.my_Chart_principal_dataSetable =
-            self.my_Chart_principal_dataset_reefer;
+
+          self.my_Chart_principal_dataSetable = self.my_Chart_principal_dataset_reefer;
         }
         if (self.tipo == "genset") {
-          self.my_Chart_principal_dataSetable =
-            self.my_Chart_principal_dataset_generador;
+          self.my_Chart_principal_dataSetable = self.my_Chart_principal_dataset_generador;
         }
       });
     },
