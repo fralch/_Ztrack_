@@ -137,6 +137,13 @@ class CreateContenedoresTable extends Migration
                 'booking' => '-',
                 'booking_temp' => 0,
             ],
+            [
+                'nombre_contenedor' => 'ZMUU205303-0',
+                'tipo' => 'Madurador',
+                'encendido' => 1,
+                'booking' => '-',
+                'booking_temp' => 0,
+            ],
           
         ]);
     }

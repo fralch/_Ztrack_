@@ -10,6 +10,7 @@ use App\Models\Empresa;
 use App\Models\Eventos;
 use App\Models\Registro_diario_generadores;
 use App\Models\Registro_diario_reefers;
+use App\Models\Registro_diario_madurador;
 
 use App\Http\Controllers\Controller;
 use Inertia\Inertia;
@@ -37,6 +38,7 @@ class PanelController extends Controller
             $contenedores_todos = Contenedor::count();
             $contenedores_encendidos_reefer = Contenedor::select()->where([['encendido', 1], ['tipo', 'Reefer']])->count();
             $contenedores_encendidos_gen = Contenedor::select()->where([['encendido', 1], ['tipo', 'Generador']])->count();
+            $contenedores_encendidos_mad = Contenedor::select()->where([['encendido', 1], ['tipo', 'Madurador']])->count();
           
             return Inertia::render('Panel/new_board', [
                 'usuario_logeado' => $usuario,
@@ -44,6 +46,7 @@ class PanelController extends Controller
                 'contenedores_todos_length' => $contenedores_todos,
                 'contenedores_encendidos_reefer' => $contenedores_encendidos_reefer,
                 'contenedores_encendidos_gen' => $contenedores_encendidos_gen,
+                'contenedores_encendidos_mad' => $contenedores_encendidos_mad,
             ]);
         }
     }
@@ -60,15 +63,28 @@ class PanelController extends Controller
             }
             return $reefer_completo;
         }
-        $contenedores_encendidos_gen = Contenedor::select()->where([['encendido', 1], ['tipo', 'Generador']])->get();
-        $genset_completo = [];
-        foreach ($contenedores_encendidos_gen as $contendor) {
-            $datos_g= $this->getDatosResumen($contendor,'genset');
-            if ($datos_g) {
-                $genset_completo[]=$datos_g;
+        if ($request->tipo == 'genset') {
+            $contenedores_encendidos_gen = Contenedor::select()->where([['encendido', 1], ['tipo', 'Generador']])->get();
+            $genset_completo = [];
+            foreach ($contenedores_encendidos_gen as $contendor) {
+                $datos_g= $this->getDatosResumen($contendor,'genset');
+                if ($datos_g) {
+                    $genset_completo[]=$datos_g;
+                }
             }
+            return $genset_completo;
         }
-        return $genset_completo;
+        if ($request->tipo == 'madurador') {
+            $contenedores_encendidos_mad = Contenedor::select()->where([['encendido', 1], ['tipo', 'Madurador']])->get();
+            $genset_completo = [];
+            foreach ($contenedores_encendidos_mad as $contendor) {
+                $datos_m= $this->getDatosResumen($contendor,'madurador');
+                if ($datos_m) {
+                    $genset_completo[]=$datos_m;
+                }
+            }
+            return $genset_completo;
+        }
     }
     public function getDatosResumen($contenedor, $tipo)
     {
@@ -200,113 +216,95 @@ class PanelController extends Controller
                 return $obj_merged;
             }
         }
+        if ($tipo == 'madurador') {
+            $array_contenedor = [
+                'id' => $contenedor->id,
+                'nombre_contenedor' => $contenedor->nombre_contenedor,
+                'tipo' => $contenedor->tipo,
+                'encendido' => $contenedor->encendido,
+                'booking' => $contenedor->booking,
+                'booking_temp' => $contenedor->booking_temp,
+            ];
+            $datos = Registro_diario_madurador::select(
+                'registro_diario_mad.contenedor_id as id',
+                'registro_diario_mad.set_point',
+                'registro_diario_mad.temp_supply_1',
+                'registro_diario_mad.temp_supply_2',
+                'registro_diario_mad.return_air',
+                'registro_diario_mad.evaporation_coil',
+                'registro_diario_mad.condensation_coil',
+                'registro_diario_mad.compress_coil_1',
+                'registro_diario_mad.compress_coil_2',
+                'registro_diario_mad.ambient_air',
+                'registro_diario_mad.cargo_1_temp',
+                'registro_diario_mad.cargo_2_temp',
+                'registro_diario_mad.cargo_3_temp',
+                'registro_diario_mad.cargo_4_temp',
+                'registro_diario_mad.relative_humidity',
+                'registro_diario_mad.avl',
+                'registro_diario_mad.suction_pressure',
+                'registro_diario_mad.discharge_pressure',
+                'registro_diario_mad.line_voltage',
+                'registro_diario_mad.line_frequency',
+                'registro_diario_mad.consumption_ph_1',
+                'registro_diario_mad.consumption_ph_2',
+                'registro_diario_mad.consumption_ph_3',
+                'registro_diario_mad.co2_reading',
+                'registro_diario_mad.o2_reading',
+                'registro_diario_mad.evaporator_speed',
+                'registro_diario_mad.condenser_speed',
+                'registro_diario_mad.battery_voltage',
+                'registro_diario_mad.power_kwh',
+                'registro_diario_mad.power_trip_reading',
+                'registro_diario_mad.power_trip_duration',
+                'registro_diario_mad.suction_temp',
+                'registro_diario_mad.discharge_temp',
+                'registro_diario_mad.supply_air_temp',
+                'registro_diario_mad.return_air_temp',
+                'registro_diario_mad.dl_battery_temp',
+                'registro_diario_mad.dl_battery_charge',
+                'registro_diario_mad.power_consumption',
+                'registro_diario_mad.power_consumption_avg',
+                'registro_diario_mad.alarm_present',
+                'registro_diario_mad.capacity_load',
+                'registro_diario_mad.power_state',
+                'registro_diario_mad.controlling_mode',
+                'registro_diario_mad.humidity_control',
+                'registro_diario_mad.humidity_set_point',
+                'registro_diario_mad.fresh_air_ex_mode',
+                'registro_diario_mad.fresh_air_ex_rate',
+                'registro_diario_mad.fresh_air_ex_delay',
+                'registro_diario_mad.set_point_o2',
+                'registro_diario_mad.set_point_co2',
+                'registro_diario_mad.defrost_term_temp',
+                'registro_diario_mad.defrost_interval',
+                'registro_diario_mad.water_cooled_conde',
+                'registro_diario_mad.usda_trip',
+                'registro_diario_mad.evaporator_exp_valve',
+                'registro_diario_mad.suction_mod_valve',
+                'registro_diario_mad.hot_gas_valve',
+                'registro_diario_mad.economizer_valve',
+                'registro_diario_mad.modelo',
+                'registro_diario_mad.latitud',
+                'registro_diario_mad.longitud',
+                'registro_diario_mad.ethylene',
+                'registro_diario_mad.stateProcess',
+                'registro_diario_mad.stateInyection',
+                'registro_diario_mad.timerOfProcess',
+
+            )
+                ->where('registro_diario_madurador.contenedor_id', $contenedor->id)
+                ->orderBy('registro_diario_madurador.id', 'desc')
+                ->first();
+            if ($datos != null) {
+                $datos_ = $datos->toArray(); // ** debes usar toArray para convertir la coleccion que bota elocuent a un array natural
+                $obj_merged = (object) array_merge($array_contenedor, $datos_);
+                return $obj_merged;
+            }
+        }
             
     }
-    public function resumen_contenedores(Request $request)
-    {
-        // return $request; 
-        $id_contenedor = $request->id_contenedor;
-        $tipo_contenedor = $request->tipo_contenedor;
-        if ($tipo_contenedor == 'reefer') {
-            return $ultimo_dato_contenedor = Registro_diario_reefers::select(
-                'registro_diario_reefers.contenedor_id as id',
-                'registro_diario_reefers.set_point',
-                'registro_diario_reefers.temp_supply_1',
-                'registro_diario_reefers.temp_supply_2',
-                'registro_diario_reefers.return_air',
-                'registro_diario_reefers.evaporation_coil',
-                'registro_diario_reefers.condensation_coil',
-                'registro_diario_reefers.compress_coil_1',
-                'registro_diario_reefers.compress_coil_2',
-                'registro_diario_reefers.ambient_air',
-                'registro_diario_reefers.cargo_1_temp',
-                'registro_diario_reefers.cargo_2_temp',
-                'registro_diario_reefers.cargo_3_temp',
-                'registro_diario_reefers.cargo_4_temp',
-                'registro_diario_reefers.relative_humidity',
-                'registro_diario_reefers.avl',
-                'registro_diario_reefers.suction_pressure',
-                'registro_diario_reefers.discharge_pressure',
-                'registro_diario_reefers.line_voltage',
-                'registro_diario_reefers.line_frequency',
-                'registro_diario_reefers.consumption_ph_1',
-                'registro_diario_reefers.consumption_ph_2',
-                'registro_diario_reefers.consumption_ph_3',
-                'registro_diario_reefers.co2_reading',
-                'registro_diario_reefers.o2_reading',
-                'registro_diario_reefers.evaporator_speed',
-                'registro_diario_reefers.condenser_speed',
-                'registro_diario_reefers.battery_voltage',
-                'registro_diario_reefers.power_kwh',
-                'registro_diario_reefers.power_trip_reading',
-                'registro_diario_reefers.power_trip_duration',
-                'registro_diario_reefers.suction_temp',
-                'registro_diario_reefers.discharge_temp',
-                'registro_diario_reefers.supply_air_temp',
-                'registro_diario_reefers.return_air_temp',
-                'registro_diario_reefers.dl_battery_temp',
-                'registro_diario_reefers.dl_battery_charge',
-                'registro_diario_reefers.power_consumption',
-                'registro_diario_reefers.power_consumption_avg',
-                'registro_diario_reefers.alarm_present',
-                'registro_diario_reefers.capacity_load',
-                'registro_diario_reefers.power_state',
-                'registro_diario_reefers.controlling_mode',
-                'registro_diario_reefers.humidity_control',
-                'registro_diario_reefers.humidity_set_point',
-                'registro_diario_reefers.fresh_air_ex_mode',
-                'registro_diario_reefers.fresh_air_ex_rate',
-                'registro_diario_reefers.fresh_air_ex_delay',
-                'registro_diario_reefers.set_point_o2',
-                'registro_diario_reefers.set_point_co2',
-                'registro_diario_reefers.defrost_term_temp',
-                'registro_diario_reefers.defrost_interval',
-                'registro_diario_reefers.water_cooled_conde',
-                'registro_diario_reefers.usda_trip',
-                'registro_diario_reefers.evaporator_exp_valve',
-                'registro_diario_reefers.suction_mod_valve',
-                'registro_diario_reefers.hot_gas_valve',
-                'registro_diario_reefers.economizer_valve',
-                'registro_diario_reefers.modelo',
-                'registro_diario_reefers.latitud',
-                'registro_diario_reefers.longitud',
-
-            )
-                ->where('registro_diario_reefers.contenedor_id', $id_contenedor)
-                ->orderBy('registro_diario_reefers.id', 'desc')
-                ->first();
-        }
-        if ($tipo_contenedor == 'genset') {
-            return $ultimo_dato_contenedor = Registro_diario_generadores::select(
-                'registro_diario_generadores.contenedor_id as id',
-                'registro_diario_generadores.battery_voltage',
-                'registro_diario_generadores.water_temp',
-                'registro_diario_generadores.running_frequency',
-                'registro_diario_generadores.fuel_level',
-                'registro_diario_generadores.voltage_measure',
-                'registro_diario_generadores.rotor_current',
-                'registro_diario_generadores.fiel_current',
-                'registro_diario_generadores.speed',
-                'registro_diario_generadores.eco_power',
-                'registro_diario_generadores.rpm',
-                'registro_diario_generadores.unit_mode',
-                'registro_diario_generadores.horometro',
-                'registro_diario_generadores.engine_state',
-                'registro_diario_generadores.reefer_conected',
-                'registro_diario_generadores.set_point',
-                'registro_diario_generadores.temp_supply_1',
-                'registro_diario_generadores.return_air',
-                'al.nombre_alarma',
-                'e.nombre_evento'
-
-            )
-                ->join('alarmas as al', 'al.id', 'registro_diario_generadores.alarma_id')
-                ->join('eventos as e', 'e.id', 'registro_diario_generadores.evento_id')
-                ->where('registro_diario_generadores.contenedor_id', $id_contenedor)
-                ->orderBy('registro_diario_generadores.id', 'desc')
-                ->first();
-        }
-    }
+   
 
     public function faker_datos()
     {
@@ -400,6 +398,77 @@ class PanelController extends Controller
             'modelo'  => 'thermoking',
             'latitud' => -12.024386,
             'longitud' => -75.210926,
+
+        ]);
+
+        Registro_diario_madurador::create([
+            'contenedor_id' => 1,
+
+            'set_point' => rand((1 * 1), (10 * 10)) / 10,
+            'temp_supply_1' => rand((1 * 1), (10 * 10)) / 10,
+            'temp_supply_2' => rand((1 * 1), (10 * 10)) / 10,
+            'return_air' => rand((1 * 1), (10 * 10)) / 10,
+            'evaporation_coil' => rand((1 * 1), (10 * 10)) / 10,
+            'condensation_coil' => rand((1 * 1), (10 * 10)) / 10,
+            'compress_coil_1' => rand((1 * 1), (10 * 10)) / 10,
+            'compress_coil_2' => rand((1 * 1), (10 * 10)) / 10,
+            'ambient_air' => rand((1 * 1), (10 * 10)) / 10,
+            'cargo_1_temp' => rand((1 * 1), (10 * 10)) / 10,
+            'cargo_2_temp' => rand((1 * 1), (10 * 10)) / 10,
+            'cargo_3_temp' => rand((1 * 1), (10 * 10)) / 10,
+            'cargo_4_temp' => rand((1 * 1), (10 * 10)) / 10,
+            'relative_humidity' => rand(0, 10),
+            'avl' => rand(0, 10),
+            'suction_pressure' => rand((1 * 1), (10 * 10)) / 10,
+            'discharge_pressure' => rand((1 * 1), (10 * 10)) / 10,
+            'line_voltage'  => rand(0, 10),
+            'line_frequency' => rand(0, 10),
+            'consumption_ph_1' => rand((1 * 1), (10 * 10)) / 10,
+            'consumption_ph_2' => rand((1 * 1), (10 * 10)) / 10,
+            'consumption_ph_3' => rand((1 * 1), (10 * 10)) / 10,
+            'co2_reading' => rand((1 * 1), (10 * 10)) / 10,
+            'o2_reading' => rand((1 * 1), (10 * 10)) / 10,
+            'evaporator_speed'  => rand(0, 10),
+            'condenser_speed'  => rand(0, 10),
+            'battery_voltage' => rand((1 * 1), (10 * 10)) / 10,
+            'power_kwh' => rand((1 * 1), (10 * 10)) / 10,
+            'power_trip_reading' => rand((1 * 1), (10 * 10)) / 10,
+            'power_trip_duration'  => rand(0, 10),
+            'suction_temp' => rand((1 * 1), (10 * 10)) / 10,
+            'discharge_temp' => rand((1 * 1), (10 * 10)) / 10,
+            'supply_air_temp' => rand((1 * 1), (10 * 10)) / 10,
+            'return_air_temp' => rand((1 * 1), (10 * 10)) / 10,
+            'dl_battery_temp' => rand((1 * 1), (10 * 10)) / 10,
+            'dl_battery_charge' => rand((1 * 1), (10 * 10)) / 10,
+            'power_consumption' => rand((1 * 1), (10 * 10)) / 10,
+            'power_consumption_avg' => rand((1 * 1), (10 * 10)) / 10,
+            'alarm_present'  => rand(0, 1),
+            'capacity_load'  => rand(0, 10),
+            'power_state'  => '0xff',
+            'controlling_mode'  => 'optimized',
+            'humidity_control'  => rand(0, 1),
+            'humidity_set_point'  => rand(0, 10),
+            'fresh_air_ex_mode'  => rand(0, 10),
+            'fresh_air_ex_rate'  => rand(0, 10),
+            'fresh_air_ex_delay'  => rand(0, 10),
+            'set_point_o2'  => rand(0, 10),
+            'set_point_co2'  => rand(0, 10),
+            'defrost_term_temp' => rand((1 * 1), (10 * 10)) / 10,
+            'defrost_interval'  => rand(0, 10),
+            'water_cooled_conde'  => rand(0, 1),
+            'usda_trip'  => rand(0, 1),
+            'evaporator_exp_valve'  => rand(0, 10),
+            'suction_mod_valve'  => rand(0, 10),
+            'hot_gas_valve'  => rand(0, 10),
+            'economizer_valve'  => rand(0, 10),
+            'modelo'  => 'thermoking',
+            'latitud' => -10.024386,
+            'longitud' => -71.210926,
+
+            'ethylene' => 145.6,
+            'stateProcess' =>  "Run",
+            'stateInyection' => "Inyecting",
+            'timerOfProcess'=>12,
 
         ]);
     }

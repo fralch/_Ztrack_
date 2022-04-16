@@ -3787,6 +3787,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 
@@ -3813,7 +3815,8 @@ __webpack_require__.r(__webpack_exports__);
     empresa_logeado: Array,
     contenedores_todos_length: Number,
     contenedores_encendidos_reefer: Number,
-    contenedores_encendidos_gen: Number
+    contenedores_encendidos_gen: Number,
+    contenedores_encendidos_mad: Number
   },
   data: function data() {
     return {
@@ -33209,7 +33212,11 @@ var render = function () {
                                   _c(
                                     "b",
                                     { staticStyle: { "font-size": "1.2em" } },
-                                    [_vm._v("0")]
+                                    [
+                                      _vm._v(
+                                        _vm._s(_vm.contenedores_encendidos_mad)
+                                      ),
+                                    ]
                                   ),
                                   _vm._v(
                                     "\n                    Madurador\n                "

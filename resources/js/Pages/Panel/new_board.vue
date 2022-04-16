@@ -51,7 +51,9 @@
                     @click="tipo = 'mad'"
                   >
                     <i class="bi bi-power"></i>
-                    <b style="font-size: 1.2em">0</b>
+                    <b style="font-size: 1.2em">{{
+                      contenedores_encendidos_mad
+                    }}</b>
                     &nbsp; Madurador
                   </button>
                   <button type="button" class="col-3 btn btn-dark">
@@ -136,6 +138,7 @@ export default {
     contenedores_todos_length: Number,
     contenedores_encendidos_reefer: Number,
     contenedores_encendidos_gen: Number,
+    contenedores_encendidos_mad: Number,
   },
   data() {
     return {
