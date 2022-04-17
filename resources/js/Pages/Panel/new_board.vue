@@ -48,7 +48,7 @@
                     type="button"
                     id="select_mad"
                     class="col-3 btn btn-danger"
-                    @click="tipo = 'mad'"
+                    @click="tipo = 'madurador'"
                   >
                     <i class="bi bi-power"></i>
                     <b style="font-size: 1.2em">{{
@@ -79,6 +79,12 @@
                 @select_contenedor="obteniendo_contendor"
               >
               </tablaResumenReef>
+              <tablaResumenMadurador
+                ref="tablaResumenMadurador"
+                :tipo="tipo"
+                @select_contenedor="obteniendo_contendor"
+              >
+              </tablaResumenMadurador>
               <!-- *********** TABLA DETALLE CONTENEDORES *********** -->
               <tablaDetalleGenset
                 ref="tablaDetalleGenset"
@@ -114,10 +120,14 @@
 import axios from "axios";
 import layoutprincipal from "../layout.vue";
 import canvasMapa from "./componentes/mapa.vue";
+
 import tablaResumenGen from "./componentes/tabla_resumen_genset.vue";
 import tablaResumenReef from "./componentes/tabla_resumen_reefer.vue";
+import tablaResumenMadurador from "./componentes/tabla_resumen_madurador.vue";
+
 import tablaDetalleGenset from "./componentes/tabla_detalle_genset.vue";
 import tablaDetalleReefer from "./componentes/tabla_detalle_reefer.vue";
+
 import graficosPrincial from "./componentes/grafico_principal.vue";
 import ladoIzquierdo from "./componentes/izquierda.vue";
 export default {
@@ -126,6 +136,7 @@ export default {
     canvasMapa,
     tablaResumenGen,
     tablaResumenReef,
+    tablaResumenMadurador,
     tablaDetalleGenset,
     tablaDetalleReefer,
     graficosPrincial, 
