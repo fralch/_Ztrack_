@@ -10,6 +10,7 @@ use App\Models\Empresa;
 use App\Models\Eventos;
 use App\Models\Registro_diario_generadores;
 use App\Models\Registro_diario_reefers;
+use App\Models\Registro_diario_madurador;
 
 use App\Http\Controllers\Controller;
 use Inertia\Inertia;
@@ -18,152 +19,459 @@ use Illuminate\Support\Facades\DB;
 
 class PanelController extends Controller
 {
-  
-    
+
+
     public function board()
     {
         date_default_timezone_set("America/Lima");
-        $usuario = []; 
+        $usuario = [];
         if (session()->get('usuario') == null) {
             return redirect('/');
         }
-        $actualizado =  Usuario::where('usuario',session()->get('usuario'))->update(['ultimo_acceso'=>date('Y-m-d H:i:s')]);
+        $actualizado =  Usuario::where('usuario', session()->get('usuario'))->update(['ultimo_acceso' => date('Y-m-d H:i:s')]);
         if ($actualizado == 1) {
-            $usuario = Usuario::where('usuario',session()->get('usuario'))->get();
+            $usuario = Usuario::where('usuario', session()->get('usuario'))->get();
         }
         if (count($usuario) != 0) {
 
-            $empresaXusuario = Empresa::where('usuario_id',$usuario[0]->id)->get();
-            $contenedores_todos = Contenedor::all(); 
-            
-             $contenedores_encendidos_reefer =Contenedor::select()->where([['encendido', 1], ['tipo', 'Reefer']])->get();    
-
-             $contenedores_encendidos_gen = Contenedor::select()->where([['encendido', 1], ['tipo', 'Generador']])->get();    
-
-            return Inertia::render('Panel/board', [
+            $empresaXusuario = Empresa::where('usuario_id', $usuario[0]->id)->get();
+            $contenedores_todos = Contenedor::count();
+            $contenedores_encendidos_reefer = Contenedor::select()->where([['encendido', 1], ['tipo', 'Reefer']])->count();
+            $contenedores_encendidos_gen = Contenedor::select()->where([['encendido', 1], ['tipo', 'Generador']])->count();
+            $contenedores_encendidos_mad = Contenedor::select()->where([['encendido', 1], ['tipo', 'Madurador']])->count();
+          
+            return Inertia::render('Panel/new_board', [
                 'usuario_logeado' => $usuario,
                 'empresa_logeado' => $empresaXusuario,
-                'contenedores_todos' => $contenedores_todos,
+                'contenedores_todos_length' => $contenedores_todos,
                 'contenedores_encendidos_reefer' => $contenedores_encendidos_reefer,
                 'contenedores_encendidos_gen' => $contenedores_encendidos_gen,
+                'contenedores_encendidos_mad' => $contenedores_encendidos_mad,
             ]);
         }
-        
     }
-    public function resumen_contenedores(Request $request)
+    public function obtenerContendor(Request $request)
     {
-        // return $request; 
-        $id_contenedor = $request->id_contenedor; 
-        $tipo_contenedor = $request->tipo_contenedor; 
-        if ($tipo_contenedor == 'Reefer') {
-            return $ultimo_dato_contenedor = Registro_diario_reefers::where('contenedor_id',$id_contenedor)->orderBy('id', 'desc')->first();
+        if ($request->tipo == 'reefer') {
+            $contenedores_encendidos_reefer = Contenedor::select()->where([['encendido', 1], ['tipo', 'Reefer']])->get();
+            $reefer_completo = [];
+            foreach ($contenedores_encendidos_reefer as $contendor) {
+                $datos_r= $this->getDatosResumen($contendor,'reefer');
+                if ($datos_r) {
+                    $reefer_completo[]=$datos_r;
+                }
+            }
+            return $reefer_completo;
         }
-        if ($tipo_contenedor == 'Generador') {
-            return $ultimo_dato_contenedor = Registro_diario_generadores::select()
-                                            ->join('alarmas as al', 'al.id', 'registro_diario_generadores.alarma_id')
-                                            ->join('eventos as e', 'e.id', 'registro_diario_generadores.evento_id')
-                                            ->where('registro_diario_generadores.contenedor_id',$id_contenedor)
-                                            ->orderBy('registro_diario_generadores.id', 'desc')
-                                            ->first();
+        if ($request->tipo == 'genset') {
+            $contenedores_encendidos_gen = Contenedor::select()->where([['encendido', 1], ['tipo', 'Generador']])->get();
+            $genset_completo = [];
+            foreach ($contenedores_encendidos_gen as $contendor) {
+                $datos_g= $this->getDatosResumen($contendor,'genset');
+                if ($datos_g) {
+                    $genset_completo[]=$datos_g;
+                }
+            }
+            return $genset_completo;
         }
-        
+        if ($request->tipo == 'madurador') {
+             $contenedores_encendidos_mad = Contenedor::select()->where([['encendido', 1], ['tipo', 'Madurador']])->get();
+            $mad_completo = [];
+            foreach ($contenedores_encendidos_mad as $contendor) {
+                $datos_m= $this->getDatosResumen($contendor,'madurador');
+                if ($datos_m) {
+                    $mad_completo[]=$datos_m;
+                }
+            }
+            return $mad_completo;
+        }
     }
+    public function getDatosResumen($contenedor, $tipo)
+    {
+        if ($tipo == 'genset') {
+            $array_contenedor = [
+                'id' => $contenedor->id,
+                'nombre_contenedor' => $contenedor->nombre_contenedor,
+                'tipo' => $contenedor->tipo,
+                'encendido' => $contenedor->encendido,
+                'booking' => $contenedor->booking,
+                'booking_temp' => $contenedor->booking_temp,
+            ];
+           
+            $datos = Registro_diario_generadores::select(
+                // 'registro_diario_generadores.id',
+                'registro_diario_generadores.contenedor_id',
+                'registro_diario_generadores.battery_voltage',
+                'registro_diario_generadores.water_temp',
+                'registro_diario_generadores.running_frequency',
+                'registro_diario_generadores.fuel_level',
+                'registro_diario_generadores.voltage_measure',
+                'registro_diario_generadores.rotor_current',
+                'registro_diario_generadores.fiel_current',
+                'registro_diario_generadores.speed',
+                'registro_diario_generadores.eco_power',
+                'registro_diario_generadores.rpm',
+                'registro_diario_generadores.unit_mode',
+                'registro_diario_generadores.horometro',
+                'registro_diario_generadores.engine_state',
+                'registro_diario_generadores.reefer_conected',
+                'registro_diario_generadores.set_point',
+                'registro_diario_generadores.temp_supply_1',
+                'registro_diario_generadores.return_air',
+                'registro_diario_generadores.created_at',
+                'al.nombre_alarma',
+                'e.nombre_evento',
+            )
+                ->join('alarmas as al', 'al.id', 'registro_diario_generadores.alarma_id')
+                ->join('eventos as e', 'e.id', 'registro_diario_generadores.evento_id')
+                ->where('registro_diario_generadores.contenedor_id', $contenedor->id)
+                ->orderBy('registro_diario_generadores.id', 'desc')
+                ->first();
+                
+            if ($datos != null) {
+                $datos_ = $datos->toArray(); // ** debes usar toArray para convertir la coleccion que bota elocuent a un array natural
+                $obj_merged = (object) array_merge($array_contenedor, $datos_);
+                return $obj_merged;
+            }
+        }
+        if ($tipo == 'reefer') {
+            $array_contenedor = [
+                'id' => $contenedor->id,
+                'nombre_contenedor' => $contenedor->nombre_contenedor,
+                'tipo' => $contenedor->tipo,
+                'encendido' => $contenedor->encendido,
+                'booking' => $contenedor->booking,
+                'booking_temp' => $contenedor->booking_temp,
+            ];
+            $datos = Registro_diario_reefers::select(
+                'registro_diario_reefers.contenedor_id as id',
+                'registro_diario_reefers.set_point',
+                'registro_diario_reefers.temp_supply_1',
+                'registro_diario_reefers.temp_supply_2',
+                'registro_diario_reefers.return_air',
+                'registro_diario_reefers.evaporation_coil',
+                'registro_diario_reefers.condensation_coil',
+                'registro_diario_reefers.compress_coil_1',
+                'registro_diario_reefers.compress_coil_2',
+                'registro_diario_reefers.ambient_air',
+                'registro_diario_reefers.cargo_1_temp',
+                'registro_diario_reefers.cargo_2_temp',
+                'registro_diario_reefers.cargo_3_temp',
+                'registro_diario_reefers.cargo_4_temp',
+                'registro_diario_reefers.relative_humidity',
+                'registro_diario_reefers.avl',
+                'registro_diario_reefers.suction_pressure',
+                'registro_diario_reefers.discharge_pressure',
+                'registro_diario_reefers.line_voltage',
+                'registro_diario_reefers.line_frequency',
+                'registro_diario_reefers.consumption_ph_1',
+                'registro_diario_reefers.consumption_ph_2',
+                'registro_diario_reefers.consumption_ph_3',
+                'registro_diario_reefers.co2_reading',
+                'registro_diario_reefers.o2_reading',
+                'registro_diario_reefers.evaporator_speed',
+                'registro_diario_reefers.condenser_speed',
+                'registro_diario_reefers.battery_voltage',
+                'registro_diario_reefers.power_kwh',
+                'registro_diario_reefers.power_trip_reading',
+                'registro_diario_reefers.power_trip_duration',
+                'registro_diario_reefers.suction_temp',
+                'registro_diario_reefers.discharge_temp',
+                'registro_diario_reefers.supply_air_temp',
+                'registro_diario_reefers.return_air_temp',
+                'registro_diario_reefers.dl_battery_temp',
+                'registro_diario_reefers.dl_battery_charge',
+                'registro_diario_reefers.power_consumption',
+                'registro_diario_reefers.power_consumption_avg',
+                'registro_diario_reefers.alarm_present',
+                'registro_diario_reefers.capacity_load',
+                'registro_diario_reefers.power_state',
+                'registro_diario_reefers.controlling_mode',
+                'registro_diario_reefers.humidity_control',
+                'registro_diario_reefers.humidity_set_point',
+                'registro_diario_reefers.fresh_air_ex_mode',
+                'registro_diario_reefers.fresh_air_ex_rate',
+                'registro_diario_reefers.fresh_air_ex_delay',
+                'registro_diario_reefers.set_point_o2',
+                'registro_diario_reefers.set_point_co2',
+                'registro_diario_reefers.defrost_term_temp',
+                'registro_diario_reefers.defrost_interval',
+                'registro_diario_reefers.water_cooled_conde',
+                'registro_diario_reefers.usda_trip',
+                'registro_diario_reefers.evaporator_exp_valve',
+                'registro_diario_reefers.suction_mod_valve',
+                'registro_diario_reefers.hot_gas_valve',
+                'registro_diario_reefers.economizer_valve',
+                'registro_diario_reefers.modelo',
+                'registro_diario_reefers.latitud',
+                'registro_diario_reefers.longitud',
+
+            )
+                ->where('registro_diario_reefers.contenedor_id', $contenedor->id)
+                ->orderBy('registro_diario_reefers.id', 'desc')
+                ->first();
+            if ($datos != null) {
+                $datos_ = $datos->toArray(); // ** debes usar toArray para convertir la coleccion que bota elocuent a un array natural
+                $obj_merged = (object) array_merge($array_contenedor, $datos_);
+                return $obj_merged;
+            }
+        }
+        if ($tipo == 'madurador') {
+            $array_contenedor = [
+                'id' => $contenedor->id,
+                'nombre_contenedor' => $contenedor->nombre_contenedor,
+                'tipo' => $contenedor->tipo,
+                'encendido' => $contenedor->encendido,
+                'booking' => $contenedor->booking,
+                'booking_temp' => $contenedor->booking_temp,
+            ];
+            
+            $datos = Registro_diario_madurador::select(
+                'registro_diario_madurador.contenedor_id as id',
+                'registro_diario_madurador.set_point',
+                'registro_diario_madurador.temp_supply_1',
+                'registro_diario_madurador.temp_supply_2',
+                'registro_diario_madurador.return_air',
+                'registro_diario_madurador.evaporation_coil',
+                'registro_diario_madurador.condensation_coil',
+                'registro_diario_madurador.compress_coil_1',
+                'registro_diario_madurador.compress_coil_2',
+                'registro_diario_madurador.ambient_air',
+                'registro_diario_madurador.cargo_1_temp',
+                'registro_diario_madurador.cargo_2_temp',
+                'registro_diario_madurador.cargo_3_temp',
+                'registro_diario_madurador.cargo_4_temp',
+                'registro_diario_madurador.relative_humidity',
+                'registro_diario_madurador.avl',
+                'registro_diario_madurador.suction_pressure',
+                'registro_diario_madurador.discharge_pressure',
+                'registro_diario_madurador.line_voltage',
+                'registro_diario_madurador.line_frequency',
+                'registro_diario_madurador.consumption_ph_1',
+                'registro_diario_madurador.consumption_ph_2',
+                'registro_diario_madurador.consumption_ph_3',
+                'registro_diario_madurador.co2_reading',
+                'registro_diario_madurador.o2_reading',
+                'registro_diario_madurador.evaporator_speed',
+                'registro_diario_madurador.condenser_speed',
+                'registro_diario_madurador.battery_voltage',
+                'registro_diario_madurador.power_kwh',
+                'registro_diario_madurador.power_trip_reading',
+                'registro_diario_madurador.power_trip_duration',
+                'registro_diario_madurador.suction_temp',
+                'registro_diario_madurador.discharge_temp',
+                'registro_diario_madurador.supply_air_temp',
+                'registro_diario_madurador.return_air_temp',
+                'registro_diario_madurador.dl_battery_temp',
+                'registro_diario_madurador.dl_battery_charge',
+                'registro_diario_madurador.power_consumption',
+                'registro_diario_madurador.power_consumption_avg',
+                'registro_diario_madurador.alarm_present',
+                'registro_diario_madurador.capacity_load',
+                'registro_diario_madurador.power_state',
+                'registro_diario_madurador.controlling_mode',
+                'registro_diario_madurador.humidity_control',
+                'registro_diario_madurador.humidity_set_point',
+                'registro_diario_madurador.fresh_air_ex_mode',
+                'registro_diario_madurador.fresh_air_ex_rate',
+                'registro_diario_madurador.fresh_air_ex_delay',
+                'registro_diario_madurador.set_point_o2',
+                'registro_diario_madurador.set_point_co2',
+                'registro_diario_madurador.defrost_term_temp',
+                'registro_diario_madurador.defrost_interval',
+                'registro_diario_madurador.water_cooled_conde',
+                'registro_diario_madurador.usda_trip',
+                'registro_diario_madurador.evaporator_exp_valve',
+                'registro_diario_madurador.suction_mod_valve',
+                'registro_diario_madurador.hot_gas_valve',
+                'registro_diario_madurador.economizer_valve',
+                'registro_diario_madurador.modelo',
+                'registro_diario_madurador.latitud',
+                'registro_diario_madurador.longitud',
+                'registro_diario_madurador.ethylene',
+                'registro_diario_madurador.stateProcess',
+                'registro_diario_madurador.stateInyection',
+                'registro_diario_madurador.timerOfProcess',
+
+            )
+                ->where('registro_diario_madurador.contenedor_id', $contenedor->id)
+                ->orderBy('registro_diario_madurador.id', 'desc')
+                ->first();
+            if ($datos != null) {
+                $datos_ = $datos->toArray(); // ** debes usar toArray para convertir la coleccion que bota elocuent a un array natural
+                $obj_merged = (object) array_merge($array_contenedor, $datos_);
+                return $obj_merged;
+            }
+        }
+            
+    }
+   
 
     public function faker_datos()
     {
         # code...
-         Registro_diario_generadores::create([
-            'contenedor_id' =>rand(2,5), 
-            'battery_voltage' => rand((1*1),(10*10))/10,
-            'water_temp' => rand((1*1),(10*10))/10,
-            'running_frequency' => rand((1*1),(10*10))/10,
-            'fuel_level' => rand((1*1),(10*10))/10,
-            'voltage_measure' => rand((1*1),(10*10))/10,
-            'rotor_current' => rand((1*1),(10*10))/10,
-            'fiel_current' => rand((1*1),(10*10))/10,
-            'speed' => rand(0,1),
-            'eco_power' => rand(0,1),
-            'rpm' => rand(0,10),
+        Registro_diario_generadores::create([
+            'contenedor_id' => rand(2, 5),
+            'battery_voltage' => rand((1 * 1), (10 * 10)) / 10,
+            'water_temp' => rand((1 * 1), (10 * 10)) / 10,
+            'running_frequency' => rand((1 * 1), (10 * 10)) / 10,
+            'fuel_level' => rand((1 * 1), (10 * 10)) / 10,
+            'voltage_measure' => rand((1 * 1), (10 * 10)) / 10,
+            'rotor_current' => rand((1 * 1), (10 * 10)) / 10,
+            'fiel_current' => rand((1 * 1), (10 * 10)) / 10,
+            'speed' => rand(0, 1),
+            'eco_power' => rand(0, 1),
+            'rpm' => rand(0, 10),
             'unit_mode' => 'starting',
-            'horometro' => rand(0,10),
-            'alarma_id' =>1,
-            'evento_id' => rand(1,25),
+            'horometro' => rand(0, 10),
+            'alarma_id' => 1,
+            'evento_id' => rand(1, 25),
             'modelo' => 'sg',
-            'latitud'=> -12.014386,
-            'longitud' =>-75.230926,
+            'latitud' => -12.014386,
+            'longitud' => -75.230926,
             'engine_state' => 'start',
             'reefer_conected' => 'Zgru2245761',
-            'set_point' => rand(0,10),
-            'temp_supply_1' => rand(0,10),
-            'return_air'  => rand(0,10),
+            'set_point' => rand(0, 10),
+            'temp_supply_1' => rand(0, 10),
+            'return_air'  => rand(0, 10),
         ]);
 
         Registro_diario_reefers::create([
             'contenedor_id' => 1,
 
-            'set_point' => rand((1*1),(10*10))/10,
-            'temp_supply_1' => rand((1*1),(10*10))/10,
-            'temp_supply_2' => rand((1*1),(10*10))/10,
-            'return_air' => rand((1*1),(10*10))/10,
-            'evaporation_coil' => rand((1*1),(10*10))/10,
-            'condensation_coil' => rand((1*1),(10*10))/10,
-            'compress_coil_1' => rand((1*1),(10*10))/10,
-            'compress_coil_2' => rand((1*1),(10*10))/10,
-            'ambient_air' => rand((1*1),(10*10))/10,
-            'cargo_1_temp' => rand((1*1),(10*10))/10,
-            'cargo_2_temp' => rand((1*1),(10*10))/10,
-            'cargo_3_temp' => rand((1*1),(10*10))/10,
-            'cargo_4_temp' => rand((1*1),(10*10))/10,
-            'relative_humidity' => rand(0,10),
-            'avl' => rand(0,10),
-            'suction_pressure' => rand((1*1),(10*10))/10,
-            'discharge_pressure' => rand((1*1),(10*10))/10,
-            'line_voltage'  => rand(0,10),
-            'line_frequency' => rand(0,10),
-            'consumption_ph_1' => rand((1*1),(10*10))/10,
-            'consumption_ph_2' => rand((1*1),(10*10))/10,
-            'consumption_ph_3' => rand((1*1),(10*10))/10,
-            'co2_reading' => rand((1*1),(10*10))/10,
-            'o2_reading' => rand((1*1),(10*10))/10,
-            'evaporator_speed'  => rand(0,10),
-            'condenser_speed'  => rand(0,10),
-            'battery_voltage' => rand((1*1),(10*10))/10,
-            'power_kwh' => rand((1*1),(10*10))/10,
-            'power_trip_reading' => rand((1*1),(10*10))/10,
-            'power_trip_duration'  => rand(0,10),
-            'suction_temp' => rand((1*1),(10*10))/10,
-            'discharge_temp' => rand((1*1),(10*10))/10,
-            'supply_air_temp' => rand((1*1),(10*10))/10,
-            'return_air_temp' => rand((1*1),(10*10))/10,
-            'dl_battery_temp' => rand((1*1),(10*10))/10,
-            'dl_battery_charge' => rand((1*1),(10*10))/10,
-            'power_consumption' => rand((1*1),(10*10))/10,
-            'power_consumption_avg' => rand((1*1),(10*10))/10,
-            'alarm_present'  => rand(0,1),
-            'capacity_load'  => rand(0,10),
+            'set_point' => rand((1 * 1), (10 * 10)) / 10,
+            'temp_supply_1' => rand((1 * 1), (10 * 10)) / 10,
+            'temp_supply_2' => rand((1 * 1), (10 * 10)) / 10,
+            'return_air' => rand((1 * 1), (10 * 10)) / 10,
+            'evaporation_coil' => rand((1 * 1), (10 * 10)) / 10,
+            'condensation_coil' => rand((1 * 1), (10 * 10)) / 10,
+            'compress_coil_1' => rand((1 * 1), (10 * 10)) / 10,
+            'compress_coil_2' => rand((1 * 1), (10 * 10)) / 10,
+            'ambient_air' => rand((1 * 1), (10 * 10)) / 10,
+            'cargo_1_temp' => rand((1 * 1), (10 * 10)) / 10,
+            'cargo_2_temp' => rand((1 * 1), (10 * 10)) / 10,
+            'cargo_3_temp' => rand((1 * 1), (10 * 10)) / 10,
+            'cargo_4_temp' => rand((1 * 1), (10 * 10)) / 10,
+            'relative_humidity' => rand(0, 10),
+            'avl' => rand(0, 10),
+            'suction_pressure' => rand((1 * 1), (10 * 10)) / 10,
+            'discharge_pressure' => rand((1 * 1), (10 * 10)) / 10,
+            'line_voltage'  => rand(0, 10),
+            'line_frequency' => rand(0, 10),
+            'consumption_ph_1' => rand((1 * 1), (10 * 10)) / 10,
+            'consumption_ph_2' => rand((1 * 1), (10 * 10)) / 10,
+            'consumption_ph_3' => rand((1 * 1), (10 * 10)) / 10,
+            'co2_reading' => rand((1 * 1), (10 * 10)) / 10,
+            'o2_reading' => rand((1 * 1), (10 * 10)) / 10,
+            'evaporator_speed'  => rand(0, 10),
+            'condenser_speed'  => rand(0, 10),
+            'battery_voltage' => rand((1 * 1), (10 * 10)) / 10,
+            'power_kwh' => rand((1 * 1), (10 * 10)) / 10,
+            'power_trip_reading' => rand((1 * 1), (10 * 10)) / 10,
+            'power_trip_duration'  => rand(0, 10),
+            'suction_temp' => rand((1 * 1), (10 * 10)) / 10,
+            'discharge_temp' => rand((1 * 1), (10 * 10)) / 10,
+            'supply_air_temp' => rand((1 * 1), (10 * 10)) / 10,
+            'return_air_temp' => rand((1 * 1), (10 * 10)) / 10,
+            'dl_battery_temp' => rand((1 * 1), (10 * 10)) / 10,
+            'dl_battery_charge' => rand((1 * 1), (10 * 10)) / 10,
+            'power_consumption' => rand((1 * 1), (10 * 10)) / 10,
+            'power_consumption_avg' => rand((1 * 1), (10 * 10)) / 10,
+            'alarm_present'  => rand(0, 1),
+            'capacity_load'  => rand(0, 10),
             'power_state'  => '0xff',
             'controlling_mode'  => 'optimized',
-            'humidity_control'  => rand(0,1),
-            'humidity_set_point'  => rand(0,10),
-            'fresh_air_ex_mode'  => rand(0,10),
-            'fresh_air_ex_rate'  => rand(0,10),
-            'fresh_air_ex_delay'  => rand(0,10),
-            'set_point_o2'  => rand(0,10),
-            'set_point_co2'  => rand(0,10),
-            'defrost_term_temp' => rand((1*1),(10*10))/10,
-            'defrost_interval'  => rand(0,10),
-            'water_cooled_conde'  => rand(0,1),
-            'usda_trip'  => rand(0,1),
-            'evaporator_exp_valve'  => rand(0,10),
-            'suction_mod_valve'  => rand(0,10),
-            'hot_gas_valve'  => rand(0,10),
-            'economizer_valve'  => rand(0,10),
+            'humidity_control'  => rand(0, 1),
+            'humidity_set_point'  => rand(0, 10),
+            'fresh_air_ex_mode'  => rand(0, 10),
+            'fresh_air_ex_rate'  => rand(0, 10),
+            'fresh_air_ex_delay'  => rand(0, 10),
+            'set_point_o2'  => rand(0, 10),
+            'set_point_co2'  => rand(0, 10),
+            'defrost_term_temp' => rand((1 * 1), (10 * 10)) / 10,
+            'defrost_interval'  => rand(0, 10),
+            'water_cooled_conde'  => rand(0, 1),
+            'usda_trip'  => rand(0, 1),
+            'evaporator_exp_valve'  => rand(0, 10),
+            'suction_mod_valve'  => rand(0, 10),
+            'hot_gas_valve'  => rand(0, 10),
+            'economizer_valve'  => rand(0, 10),
             'modelo'  => 'thermoking',
-            'latitud'=> -12.024386,
-            'longitud' =>-75.210926,
-            
+            'latitud' => -12.024386,
+            'longitud' => -75.210926,
+
         ]);
-        
+
+        Registro_diario_madurador::create([
+            'contenedor_id' => 17,
+
+            'set_point' => rand((1 * 1), (10 * 10)) / 10,
+            'temp_supply_1' => rand((1 * 1), (10 * 10)) / 10,
+            'temp_supply_2' => rand((1 * 1), (10 * 10)) / 10,
+            'return_air' => rand((1 * 1), (10 * 10)) / 10,
+            'evaporation_coil' => rand((1 * 1), (10 * 10)) / 10,
+            'condensation_coil' => rand((1 * 1), (10 * 10)) / 10,
+            'compress_coil_1' => rand((1 * 1), (10 * 10)) / 10,
+            'compress_coil_2' => rand((1 * 1), (10 * 10)) / 10,
+            'ambient_air' => rand((1 * 1), (10 * 10)) / 10,
+            'cargo_1_temp' => rand((1 * 1), (10 * 10)) / 10,
+            'cargo_2_temp' => rand((1 * 1), (10 * 10)) / 10,
+            'cargo_3_temp' => rand((1 * 1), (10 * 10)) / 10,
+            'cargo_4_temp' => rand((1 * 1), (10 * 10)) / 10,
+            'relative_humidity' => rand(0, 10),
+            'avl' => rand(0, 10),
+            'suction_pressure' => rand((1 * 1), (10 * 10)) / 10,
+            'discharge_pressure' => rand((1 * 1), (10 * 10)) / 10,
+            'line_voltage'  => rand(0, 10),
+            'line_frequency' => rand(0, 10),
+            'consumption_ph_1' => rand((1 * 1), (10 * 10)) / 10,
+            'consumption_ph_2' => rand((1 * 1), (10 * 10)) / 10,
+            'consumption_ph_3' => rand((1 * 1), (10 * 10)) / 10,
+            'co2_reading' => rand((1 * 1), (10 * 10)) / 10,
+            'o2_reading' => rand((1 * 1), (10 * 10)) / 10,
+            'evaporator_speed'  => rand(0, 10),
+            'condenser_speed'  => rand(0, 10),
+            'battery_voltage' => rand((1 * 1), (10 * 10)) / 10,
+            'power_kwh' => rand((1 * 1), (10 * 10)) / 10,
+            'power_trip_reading' => rand((1 * 1), (10 * 10)) / 10,
+            'power_trip_duration'  => rand(0, 10),
+            'suction_temp' => rand((1 * 1), (10 * 10)) / 10,
+            'discharge_temp' => rand((1 * 1), (10 * 10)) / 10,
+            'supply_air_temp' => rand((1 * 1), (10 * 10)) / 10,
+            'return_air_temp' => rand((1 * 1), (10 * 10)) / 10,
+            'dl_battery_temp' => rand((1 * 1), (10 * 10)) / 10,
+            'dl_battery_charge' => rand((1 * 1), (10 * 10)) / 10,
+            'power_consumption' => rand((1 * 1), (10 * 10)) / 10,
+            'power_consumption_avg' => rand((1 * 1), (10 * 10)) / 10,
+            'alarm_present'  => rand(0, 1),
+            'capacity_load'  => rand(0, 10),
+            'power_state'  => '0xff',
+            'controlling_mode'  => 'optimized',
+            'humidity_control'  => rand(0, 1),
+            'humidity_set_point'  => rand(0, 10),
+            'fresh_air_ex_mode'  => rand(0, 10),
+            'fresh_air_ex_rate'  => rand(0, 10),
+            'fresh_air_ex_delay'  => rand(0, 10),
+            'set_point_o2'  => rand(0, 10),
+            'set_point_co2'  => rand(0, 10),
+            'defrost_term_temp' => rand((1 * 1), (10 * 10)) / 10,
+            'defrost_interval'  => rand(0, 10),
+            'water_cooled_conde'  => rand(0, 1),
+            'usda_trip'  => rand(0, 1),
+            'evaporator_exp_valve'  => rand(0, 10),
+            'suction_mod_valve'  => rand(0, 10),
+            'hot_gas_valve'  => rand(0, 10),
+            'economizer_valve'  => rand(0, 10),
+            'modelo'  => 'thermoking',
+            'latitud' => -10.024386,
+            'longitud' => -71.210926,
+
+            'ethylene' => 145.6,
+            'stateProcess' =>  "Run",
+            'stateInyection' => "Inyecting",
+            'timerOfProcess'=>12,
+
+        ]);
     }
 
     public function obtener_datos_contenedor(Request $request)
@@ -171,92 +479,100 @@ class PanelController extends Controller
         // return $request; 
         $id_contenedor = $request->id;
         $tipo_contenedor = $request->tipo;
-        
-        if ($tipo_contenedor == 'Generador') {
+
+        if ($tipo_contenedor == 'genset') {
             return Registro_diario_generadores::from('registro_diario_generadores')
-            ->select()
-            ->where('contenedor_id',$id_contenedor)
-            ->latest()
-            ->take(30)
-            ->get();
+                ->select()
+                ->where('contenedor_id', $id_contenedor)
+                ->latest()
+                ->take(30)
+                ->get();
         }
-        if ($tipo_contenedor == 'Reefer') {
+        if ($tipo_contenedor == 'reefer') {
             return Registro_diario_reefers::from('registro_diario_reefers')
-                    ->select()
-                    ->where('contenedor_id',$id_contenedor)
-                    ->latest()
-                    ->take(30)
-                    ->get();
-            
+                ->select()
+                ->where('contenedor_id', $id_contenedor)
+                ->latest()
+                ->take(30)
+                ->get();
+        }
+        if ($tipo_contenedor == 'madurador') {
+            return Registro_diario_madurador::from('registro_diario_madurador')
+                ->select()
+                ->where('contenedor_id', $id_contenedor)
+                ->latest()
+                ->take(30)
+                ->get();
         }
     }
     public function obtenerLatLong(Request $request)
     {
         $id_registro = $request->id;
         $tipo_contenedor = $request->tipo;
-        
-        if ($tipo_contenedor == 'Generador') {
+
+        if ($tipo_contenedor == 'genset') {
             return Registro_diario_generadores::from('registro_diario_generadores')
-            ->select()
-            ->where('id',$id_registro)
-            ->latest()
-            ->get()[0];
+                ->select()
+                ->where('id', $id_registro)
+                ->latest()
+                ->get()->toArray();
         }
-        if ($tipo_contenedor == 'Reefer') {
+        if ($tipo_contenedor == 'reefer') {
             return Registro_diario_reefers::from('registro_diario_reefers')
-                    ->select()
-                    ->where('id',$id_registro)
-                    ->latest()
-                    ->get()[0];
-            
+                ->select()
+                ->where('id', $id_registro)
+                ->latest()
+                ->get()->toArray();
+        }
+        if ($tipo_contenedor == 'madurador') {
+            return Registro_diario_madurador::from('registro_diario_madurador')
+                ->select()
+                ->where('id', $id_registro)
+                ->latest()
+                ->get()->toArray();
         }
     }
 
     public function get_alarma_evento(Request $request)
     {
         // return $request; 
-        if ($request->tipo == 'Reefer') {
-            return 0 ; 
-        }
-        if ($request->tipo == 'Generador') {
-            $cantidad_alarma =Registro_diario_generadores::from('registro_diario_generadores as rdg')
+        $cantidad_alarma = Registro_diario_generadores::from('registro_diario_generadores as rdg')
             ->select(
-                'al.nombre_alarma',       
+                'al.nombre_alarma',
                 DB::raw('count(rdg.alarma_id) as cantidad_alarma'),
             )
             ->join('alarmas as al', 'al.id', 'rdg.alarma_id')
-            ->where('contenedor_id',$request->id)
+            ->where('contenedor_id', $request->id)
             ->groupBy('al.nombre_alarma')
             ->take(5)
             ->get();
 
-            $cantidad_evento =Registro_diario_generadores::from('registro_diario_generadores as rdg')
+        $cantidad_evento = Registro_diario_generadores::from('registro_diario_generadores as rdg')
             ->select(
-                'e.nombre_evento',       
+                'e.nombre_evento',
                 DB::raw('count(rdg.evento_id) as cantidad_evento'),
             )
             ->join('eventos as e', 'e.id', 'rdg.evento_id')
-            ->where('contenedor_id',$request->id)
+            ->where('contenedor_id', $request->id)
             ->groupBy('e.nombre_evento')
             ->take(5)
             ->get();
-             
-            return $arreglo_alarma_evento = [
-                'alarma' => $cantidad_alarma,
-                'evento' => $cantidad_evento,
-            ];
-        }
+
+        return $arreglo_alarma_evento = [
+            'alarma' => $cantidad_alarma,
+            'evento' => $cantidad_evento,
+        ];
     }
     // -------------- APIS --------------
     public function api_contendedores(Request $request)
-    { 
+    {
         // return $request; 
         // exit();
         if ($request->tipo == 'Generador') {
-          
-            $id_r =Contenedor::select()->where([['nombre_contenedor', $request->nombre_contenedor]])->get()->last()['id'];   
+
+            $id_r = Contenedor::select()->where([['nombre_contenedor', $request->nombre_contenedor]])->get()->last()['id'];
             Registro_diario_generadores::create([
-                'contenedor_id' => $id_r, 
+                'contenedor_id' => $id_r,
                 'battery_voltage' => $request->battery_voltage,
                 'water_temp' => $request->water_temp,
                 'running_frequency' => $request->running_frequency,
@@ -269,10 +585,10 @@ class PanelController extends Controller
                 'rpm' => $request->rpm,
                 'unit_mode' => $request->unit_mode,
                 'horometro' => $request->horometro,
-                'alarma_id' =>1,
+                'alarma_id' => 1,
                 'evento_id' => 1,
                 'modelo' => $request->modelo,
-                'latitud'=>     $request->latitud,
+                'latitud' =>     $request->latitud,
                 'longitud' => $request->longitud,
                 'engine_state' => $request->engine_state,
                 'reefer_conected' => $request->reefer_conected,
@@ -281,22 +597,22 @@ class PanelController extends Controller
                 'return_air' => $request->return_air,
             ]);
             if ($request->reefer_conected != '-') {
-                $id_rc =Contenedor::select()->where([['nombre_contenedor', $request->reefer_conected]])->get()->last()['id'];
+                $id_rc = Contenedor::select()->where([['nombre_contenedor', $request->reefer_conected]])->get()->last()['id'];
                 Registro_diario_reefers::create([
                     'contenedor_id' => $id_rc,
                     'set_point' => $request->set_point,
                     'temp_supply_1' => $request->temp_supply_1,
                     'return_air' => $request->return_air,
-                    'latitud'=>    $request->latitud,
+                    'latitud' =>    $request->latitud,
                     'longitud' =>   $request->longitud,
-                    
+
                 ]);
                 return "genset y reefer guardado guardado ;D";
             }
-            return "genset guardado ;D"; 
+            return "genset guardado ;D";
         }
         if ($request->tipo == 'Reefer') {
-            $id_g =Contenedor::select()->where([['nombre_contenedor', $request->nombre_contenedor]])->get()->last()['id'];
+            $id_g = Contenedor::select()->where([['nombre_contenedor', $request->nombre_contenedor]])->get()->last()['id'];
             Registro_diario_reefers::create([
                 'contenedor_id' => $id_g,
                 'set_point' => $request->set_point,
@@ -357,14 +673,12 @@ class PanelController extends Controller
                 'hot_gas_valve'  => $request->hot_gas_valve,
                 'economizer_valve'  =>  $request->economizer_valve,
                 'modelo'  => $request->modelo,
-                'latitud'=>    $request->latitud,
+                'latitud' =>    $request->latitud,
                 'longitud' =>   $request->longitud,
-                
+
             ]);
             return "reefer guardado ;D";
         }
-
-        
     }
 }
 

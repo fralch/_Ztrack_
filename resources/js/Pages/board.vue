@@ -539,7 +539,7 @@
 
 <script>
 import axios from 'axios';
-import layoutprincipal from "../layout.vue";
+import layoutprincipal from "./layout.vue";
 var myChart_principal; 
 var Chart_alarmas; 
 var Chart_eventos; 
