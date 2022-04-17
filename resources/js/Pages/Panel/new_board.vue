@@ -100,6 +100,13 @@
                 @set_ubicacion_r="set_ubicacion_r"
               >
               </tablaDetalleReefer>
+              <tablaDetalleMadurador
+                ref="tablaDetalleMadurador"
+                :contenedor="contenedor_selecionado_id"
+                :tipo="tipo"
+                @set_ubicacion_m="set_ubicacion_m"
+              >
+              </tablaDetalleMadurador>
 
               <!-- *********** GRAFICOS PRINCIPAL *********** -->
               <graficosPrincial
@@ -127,6 +134,7 @@ import tablaResumenMadurador from "./componentes/tabla_resumen_madurador.vue";
 
 import tablaDetalleGenset from "./componentes/tabla_detalle_genset.vue";
 import tablaDetalleReefer from "./componentes/tabla_detalle_reefer.vue";
+import tablaDetalleMadurador from "./componentes/tabla_detalle_madurador.vue";
 
 import graficosPrincial from "./componentes/grafico_principal.vue";
 import ladoIzquierdo from "./componentes/izquierda.vue";
@@ -139,6 +147,7 @@ export default {
     tablaResumenMadurador,
     tablaDetalleGenset,
     tablaDetalleReefer,
+    tablaDetalleMadurador,
     graficosPrincial, 
     ladoIzquierdo, 
   },
@@ -159,6 +168,7 @@ export default {
       tipo: "",
       get_ubicacion_g: null,
       get_ubicacion_r: null,
+      get_ubicacion_m: null,
       ubicacion_final: null,
     };
   },
@@ -167,6 +177,9 @@ export default {
       this.ubicacion_final = valor;
     },
     get_ubicacion_r(valor) {
+      this.ubicacion_final = valor;
+    },
+    get_ubicacion_m(valor) {
       this.ubicacion_final = valor;
     },
   },
@@ -212,6 +225,9 @@ export default {
     },
     set_ubicacion_r(u) {
       this.get_ubicacion_r = u;
+    },
+    set_ubicacion_m(um) {
+      this.get_ubicacion_m = um;
     },
   },
 };

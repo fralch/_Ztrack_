@@ -20,6 +20,7 @@ export default {
   data() {
     return {
       datos_tabla_reefer: null,
+      datos_tabla_madurador: null,
       datos_tabla_generador: null,
       //  ---- myChart_principal -----
       my_Chart_principal_dataset_reefer: [
@@ -84,6 +85,61 @@ export default {
         },
         {
           label: "evaporator_speed",
+          data: [],
+          borderColor: "#CA1A51",
+          backgroundColor: "#CA1A51",
+          borderWidth: 4,
+        },
+      ],
+       my_Chart_principal_dataset_madurador: [
+        {
+          label: "set_point",
+          data: [],
+          borderColor: "#FFC312",
+          backgroundColor: "#FFC312",
+          borderWidth: 4,
+        },
+        {
+          label: "temp_supply_1",
+          data: [],
+          borderColor: "#C4E538",
+          backgroundColor: "#C4E538",
+          borderWidth: 4,
+        },
+        {
+          label: "temp_supply_2",
+          data: [],
+          borderColor: "#FF1E51",
+          backgroundColor: "#FF1E51",
+          borderWidth: 4,
+        },
+        {
+          label: "return_air",
+          data: [],
+          borderColor: "#12CBC4",
+          backgroundColor: "#12CBC4",
+          borderWidth: 4,
+        },
+
+        {
+          label: "ambient_air", //------------
+          data: [],
+          borderColor: "#9980FA",
+          backgroundColor: "#9980FA",
+          borderWidth: 4,
+        },
+
+        {
+          label: "ethylene", //-------------
+          data: [],
+          borderColor: "#FDA7DF",
+          backgroundColor: "#FDA7DF",
+          borderWidth: 4,
+        },
+
+        
+        {
+          label: "timerOfProcess",
           data: [],
           borderColor: "#CA1A51",
           backgroundColor: "#CA1A51",
@@ -200,6 +256,18 @@ export default {
             self.setLabelsMyChartPrincipal();
           }); 
       }
+      if (this.tipo == "madurador") {
+        axios
+          .post(route("contenedores.get_datos"), {
+            id: this.contenedor,
+            tipo: "madurador",
+          })
+          .then((response) => {
+            self.datos_tabla_madurador = response.data;            
+          }).then(() => {
+            self.setLabelsMyChartPrincipal();
+          }); 
+      }
     },
     myChartPrincipal() {
       let self = this;
@@ -238,6 +306,39 @@ export default {
       let self = this;
       async function set_labels() {
         self.my_Chart_principal_labels = [];
+        if (self.tipo == "madurador") {
+          let datos_m =
+            self.datos_tabla_madurador.length != 0
+              ? self.datos_tabla_madurador.reverse()
+              : [];
+          datos_m.map(function (datos_m, index) {
+            let date = new Date(datos_m.created_at);
+            let day = date.getDate();
+            let month = date.getMonth() + 1;
+            let year = date.getFullYear();
+            let hours = date.getHours();
+            let minutes = date.getMinutes();
+            let seconds = date.getSeconds();
+            if (minutes < 10) {
+              minutes = "0" + minutes;
+            }
+
+            if (seconds < 10) {
+              seconds = "0" + seconds;
+            }
+
+            if (month < 10) {
+              self.my_Chart_principal_labels.push(
+                `${day}-0${month}-${year} ${hours}:${minutes}:${seconds}`
+              );
+            } else {
+              self.my_Chart_principal_labels.push(
+                `${day}-${month}-${year}  ${hours}:${minutes}:${seconds}`
+              );
+            }
+            //  console.log("label madurado ",self.my_Chart_principal_labels);
+          });
+        }
         if (self.tipo == "reefer") {
           let datos_r =
             self.datos_tabla_reefer.length != 0
@@ -360,6 +461,45 @@ export default {
       let self = this;
       async function set_data() {
         self.my_Chart_principal_dataset = [];
+        if (self.tipo == "madurador") {
+          self.my_Chart_principal_dataset_madurador[0].data = [];
+          self.my_Chart_principal_dataset_madurador[1].data = [];
+          self.my_Chart_principal_dataset_madurador[2].data = [];
+          self.my_Chart_principal_dataset_madurador[3].data = [];
+          self.my_Chart_principal_dataset_madurador[4].data = [];
+          self.my_Chart_principal_dataset_madurador[5].data = [];
+          self.my_Chart_principal_dataset_madurador[6].data = [];
+          
+
+          let datos_madurador =
+            self.datos_tabla_madurador.length != 0
+              ? self.datos_tabla_madurador.reverse()
+              : [];
+          datos_madurador.map(function (datos_m, index) {
+            self.my_Chart_principal_dataset_madurador[0].data.push(
+              datos_m.set_point
+            );
+            self.my_Chart_principal_dataset_madurador[1].data.push(
+              datos_m.temp_supply_1
+            );
+            self.my_Chart_principal_dataset_madurador[2].data.push(
+              datos_m.temp_supply_2
+            );
+            self.my_Chart_principal_dataset_madurador[3].data.push(
+              datos_m.return_air
+            );
+            self.my_Chart_principal_dataset_madurador[4].data.push(
+              datos_m.ambient_air
+            );
+            self.my_Chart_principal_dataset_madurador[5].data.push(
+              datos_m.ethylene
+            );
+           
+            self.my_Chart_principal_dataset_madurador[6].data.push(
+              datos_m.timerOfProcess
+            );
+          });
+        }
         if (self.tipo == "reefer") {
           self.my_Chart_principal_dataset_reefer[0].data = [];
           self.my_Chart_principal_dataset_reefer[1].data = [];
@@ -459,6 +599,9 @@ export default {
         }
         if (self.tipo == "genset") {
           self.my_Chart_principal_dataSetable = self.my_Chart_principal_dataset_generador;
+        }
+        if (self.tipo == "madurador") {
+          self.my_Chart_principal_dataSetable = self.my_Chart_principal_dataset_madurador;
         }
       });
     },

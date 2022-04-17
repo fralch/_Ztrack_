@@ -496,6 +496,14 @@ class PanelController extends Controller
                 ->take(30)
                 ->get();
         }
+        if ($tipo_contenedor == 'madurador') {
+            return Registro_diario_madurador::from('registro_diario_madurador')
+                ->select()
+                ->where('contenedor_id', $id_contenedor)
+                ->latest()
+                ->take(30)
+                ->get();
+        }
     }
     public function obtenerLatLong(Request $request)
     {
@@ -511,6 +519,13 @@ class PanelController extends Controller
         }
         if ($tipo_contenedor == 'reefer') {
             return Registro_diario_reefers::from('registro_diario_reefers')
+                ->select()
+                ->where('id', $id_registro)
+                ->latest()
+                ->get()->toArray();
+        }
+        if ($tipo_contenedor == 'madurador') {
+            return Registro_diario_madurador::from('registro_diario_madurador')
                 ->select()
                 ->where('id', $id_registro)
                 ->latest()

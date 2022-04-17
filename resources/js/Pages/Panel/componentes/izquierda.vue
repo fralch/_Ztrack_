@@ -160,10 +160,6 @@ export default {
             id: self.contenedor_id,
           })
           .then((response) => {
-            console.log(
-              "🚀 ~ file: izquierda.vue ~ line 122 ~ setLabel ~ response",
-              response.data
-            );
 
             if (response.data != 0 && self.chart_alarma_labels.length == 0) {
               self.chart_alarma_labels = [];
