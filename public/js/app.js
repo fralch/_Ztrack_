@@ -6371,6 +6371,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -6539,8 +6540,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         nuevo_booking_contenedor: self.nuevo_booking_contenedor,
         nuevo_booking_temp_contenedor: self.nuevo_booking_temp_contenedor
       };
+      console.log("🚀 ~ file: setting.vue ~ line 425 ~ guardarContenedor ~ data", data);
 
-      if (self.nuevo_contenedor == "" || self.nuevo_tipo_contenedor == "") {
+      if (self.nuevo_contenedor == null || self.nuevo_tipo_contenedor == null) {
         // self.mensaje_error("Debe llenar todos los campos");
         Swal.fire({
           icon: 'error',
@@ -40272,6 +40274,12 @@ var render = function () {
                                     "option",
                                     { attrs: { value: "Generador" } },
                                     [_vm._v("Generador")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "option",
+                                    { attrs: { value: "Madurador" } },
+                                    [_vm._v("Madurador")]
                                   ),
                                 ]
                               ),

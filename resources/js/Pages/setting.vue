@@ -150,6 +150,7 @@
                                   <option value='0' disabled>Seleccione tipo</option>
                                   <option value='Reefer' >Reefer</option>
                                   <option value='Generador' >Generador</option>
+                                  <option value='Madurador' >Madurador</option>
                                 </select>
                             </div>
                             <div class="col">
@@ -413,6 +414,7 @@ export default {
     
     },
     guardarContenedor(){
+      
       let self = this;
       let data = {
         nuevo_contenedor: self.nuevo_contenedor,
@@ -420,7 +422,8 @@ export default {
         nuevo_booking_contenedor: self.nuevo_booking_contenedor,
         nuevo_booking_temp_contenedor: self.nuevo_booking_temp_contenedor,
       };
-      if (self.nuevo_contenedor == "" || self.nuevo_tipo_contenedor == "" ) {
+      console.log("🚀 ~ file: setting.vue ~ line 425 ~ guardarContenedor ~ data", data)
+      if (self.nuevo_contenedor == null || self.nuevo_tipo_contenedor == null) {
         // self.mensaje_error("Debe llenar todos los campos");
         Swal.fire({
           icon: 'error',
