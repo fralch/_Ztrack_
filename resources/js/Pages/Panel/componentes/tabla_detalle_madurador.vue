@@ -187,6 +187,12 @@ export default {
         var table2 = $("#tblDetalleContenedores_madurador").DataTable({
           scrollX: "100%",
           responsive: true,
+          buttons: true,
+          dom: 'Bfrtip',
+          buttons: [
+              // 'copy', 'csv', 'excel', 'pdf','print'
+               'copy', 'csv', 'excel'
+          ],
           order: [0, "desc"],
           language: {
             url: "//cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json",

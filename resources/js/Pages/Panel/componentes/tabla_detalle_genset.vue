@@ -6,7 +6,8 @@
       style="margin: -30px 15px 10px 15px"
     >
       <table
-        class="table display nowrap"
+        class="display nowrap"
+        style="width:100%"
         id="tblDetalleContenedores_generadores"
       >
         <thead>
@@ -111,12 +112,22 @@ export default {
         var table = $("#tblDetalleContenedores_generadores").DataTable({
           scrollX: "100%",
           responsive: true,
+          buttons: true,
+          dom: 'Bfrtip',
+          buttons: [
+              // 'copy', 'csv', 'excel', 'pdf','print'
+               'copy', 'csv', 'excel'
+          ],
           order: [0, "desc"],
           language: {
             url: "//cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json",
           },
         });
+
+        
       });
+      
+     
     },
     select_contenedor() {
       let self = this;
