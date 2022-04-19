@@ -5,6 +5,59 @@
       class="col shadow-sm p-3 mb-5 bg-white rounded"
       style="margin: -30px 15px 10px 15px"
     >
+    <div class="row">
+        <div class="col-3">
+          <div class="input-group input-group-sm mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-sm"
+                >Desde</span
+              >
+            </div>
+            <input
+              type="date"
+              class="form-control"
+              aria-label="Small"
+              aria-describedby="inputGroup-sizing-sm"
+              :value="
+                new Date().getFullYear() +
+                '-' +
+                ('0' + (new Date().getMonth() + 1)).slice(-2) +
+                '-' +
+                ('0' + new Date().getDate()).slice(-2)
+              "
+            />
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="input-group input-group-sm mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-sm">Hasta</span>
+            </div>
+            <input
+              type="date"
+              class="form-control"
+              aria-label="Small"
+              aria-describedby="inputGroup-sizing-sm"
+              :value="
+                new Date().getFullYear() +
+                '-' +
+                ('0' + (new Date().getMonth() + 1)).slice(-2) +
+                '-' +
+                ('0' + new Date().getDate()).slice(-2)
+              "
+            />
+          </div>
+        </div>
+        <div class="col">
+          <button
+            id="buscar_detalle"
+            type="button"
+            onclick="alert('Aun estoy trabajando en esto!')"
+          >
+            Buscar
+          </button>
+        </div>
+      </div>
       <table class="table display nowrap" id="tblDetalleContenedores_madurador">
         <thead>
           <tr class="bg-info" style="color: white !important">
