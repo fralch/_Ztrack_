@@ -273,5 +273,43 @@ export default {
   }
 }
 </style>
+<style>
+ 
+.dt-buttons button  {
+  min-width: 100px  !important;
+  height: 30px  !important;
+  color: #fff  !important;
+  padding: 2px 10px  !important;
+  font-weight: bold  !important;
+  cursor: pointer  !important;
+  transition: all 0.3s ease  !important;
+  position: relative  !important;
+  display: inline-block  !important;
+  outline: none  !important;
+  border-radius: 5px  !important;
+  z-index: 0 !important;
+  background: #fff !important;
+  overflow: hidden;
+  border: 2px solid #777c83  !important;
+  color: #777c83 !important;
+}
+.dt-buttons button :hover {
+  color: #fff;
+}
+.dt-buttons button :hover:after {
+  width: 100%;
+}
+.dt-buttons button :after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  transition: all 0.3s ease;
+  left: 0;
+  top: 0;
+  width: 0;
+  height: 100%;
+  background: #777c83;
+}
+</style>
 
 
