@@ -18,13 +18,7 @@
               class="form-control"
               aria-label="Small"
               aria-describedby="inputGroup-sizing-sm"
-              :value="
-                new Date().getFullYear() +
-                '-' +
-                ('0' + (new Date().getMonth() + 1)).slice(-2) +
-                '-' +
-                ('0' + new Date().getDate()).slice(-2)
-              "
+             v-model="desde"
             />
           </div>
         </div>
@@ -38,13 +32,7 @@
               class="form-control"
               aria-label="Small"
               aria-describedby="inputGroup-sizing-sm"
-              :value="
-                new Date().getFullYear() +
-                '-' +
-                ('0' + (new Date().getMonth() + 1)).slice(-2) +
-                '-' +
-                ('0' + new Date().getDate()).slice(-2)
-              "
+              v-model="hasta"
             />
           </div>
         </div>
@@ -52,7 +40,7 @@
           <button
             id="buscar_detalle"
             type="button"
-            onclick="alert('Aun estoy trabajando en esto!')"
+            @click="buscar_detalle"
           >
             Buscar
           </button>
@@ -145,6 +133,8 @@ export default {
     return {
       datos_tabla_generador: [],
       ubicacion: null,
+      desde: new Date().getFullYear() + '-' + ('0' + (new Date().getMonth() + 1)).slice(-2) +'-' + ('0' + new Date().getDate()).slice(-2), 
+      hasta: new Date().getFullYear() + '-' + ('0' + (new Date().getMonth() + 1)).slice(-2) +'-' + ('0' + new Date().getDate()).slice(-2), 
     };
   },
   watch: {
@@ -221,6 +211,33 @@ export default {
               // self.iniciarMap();
             });
         });
+    },
+    buscar_detalle(){
+       let self = this;
+      //  console.log('funciono genset');
+        
+        axios
+          .post(route("contenedores.get_datos.fecha"), {
+            id: this.contenedor,
+            desde: self.desde,
+            hasta: self.hasta,
+            tipo: "genset",
+          })
+          .then((response) => {
+            // console.log("select_contenedor desde detalle ");
+            // console.log(response.data.length);
+            if (response.data.length > 0) {
+              self.datos_tabla_generador = [];
+              self.datos_tabla_generador = response.data;
+            } else {
+              Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'No se encontraron datos!',
+              })
+            }
+              
+          }); 
     },
   },
 };

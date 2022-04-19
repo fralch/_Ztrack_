@@ -403,7 +403,7 @@ class PanelController extends Controller
         // ]);
 
         Registro_diario_madurador::create([
-            'contenedor_id' => 18,
+            'contenedor_id' => 17,
 
             'set_point' => rand((1 * 1), (10 * 10)) / 10,
             'temp_supply_1' => rand((1 * 1), (10 * 10)) / 10,
@@ -502,6 +502,36 @@ class PanelController extends Controller
                 ->where('contenedor_id', $id_contenedor)
                 ->latest()
                 ->take(30)
+                ->get();
+        }
+    }
+    public function obtener_datos_contenedor_fecha(Request $request)
+    {
+        // return $request; 
+        $id_contenedor = $request->id;
+        $tipo_contenedor = $request->tipo;
+        $desde = $request->desde;
+        $hasta = $request->hasta;
+
+        if ($tipo_contenedor == 'genset') {
+            return Registro_diario_generadores::from('registro_diario_generadores')
+                ->select()
+                ->where('contenedor_id', $id_contenedor)
+                ->whereBetween('registro_diario_generadores.created_at', [$desde, $hasta])
+                ->get();
+        }
+        if ($tipo_contenedor == 'reefer') {
+            return Registro_diario_reefers::from('registro_diario_reefers')
+                ->select()
+                ->where('contenedor_id', $id_contenedor)
+                ->whereBetween('registro_diario_reefers.created_at', [$desde, $hasta])
+                ->get();
+        }
+        if ($tipo_contenedor == 'madurador') {
+            return Registro_diario_madurador::from('registro_diario_madurador')
+                ->select()
+                ->where('contenedor_id', $id_contenedor)
+                ->whereBetween('registro_diario_madurador.created_at', [$desde, $hasta])
                 ->get();
         }
     }
