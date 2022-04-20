@@ -213,32 +213,37 @@ export default {
         });
     },
     buscar_detalle(){
-       let self = this;
-      //  console.log('funciono genset');
-        
-        axios
-          .post(route("contenedores.get_datos.fecha"), {
-            id: this.contenedor,
-            desde: self.desde,
-            hasta: self.hasta,
-            tipo: "genset",
-          })
-          .then((response) => {
-            // console.log("select_contenedor desde detalle ");
-            // console.log(response.data.length);
-            if (response.data.length > 0) {
-              self.datos_tabla_generador = [];
-              self.datos_tabla_generador = response.data;
-            } else {
-              Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'No se encontraron datos!',
-              })
-            }
-              
-          }); 
+      let self = this;
+      Swal.fire({
+        title: 'Espere por favor',
+        html: '<i class="fa fa-spinner fa-spin" style="font-size:15px"></i>',
+        allowOutsideClick: false,
+        showConfirmButton: false
+      });
+      axios
+        .post(route("contenedores.get_datos.fecha"), {
+          id: this.contenedor,
+          desde: self.desde,
+          hasta: self.hasta,
+          tipo: "genset",
+        })
+        .then((response) => {
+          if (response.data.length > 0) {
+            self.datos_tabla_generador = [];
+            self.datos_tabla_generador = response.data;
+          } else {
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: 'No se encontraron datos!',
+            })
+          }
+        })
+        .then(() => {
+          Swal.close();
+        });
     },
+    
   },
 };
 </script>

@@ -285,10 +285,14 @@ export default {
         });
     },
      buscar_detalle(){
-       let self = this;
-       console.log('funciono');
-       
-        axios
+      let self = this;
+      Swal.fire({
+        title: 'Espere por favor',
+        html: '<i class="fa fa-spinner fa-spin" style="font-size:15px"></i>',
+        allowOutsideClick: false,
+        showConfirmButton: false
+      });
+       axios
           .post(route("contenedores.get_datos.fecha"), {
             id: this.contenedor,
             desde: self.desde,
@@ -296,9 +300,7 @@ export default {
             tipo: "madurador",
           })
           .then((response) => {
-            // console.log("select_contenedor desde detalle ");
-            // console.log(response.data);
-            // self.datos_tabla_madurador = response.data;
+            
              if (response.data.length > 0) {
               self.datos_tabla_madurador = [];
               self.datos_tabla_madurador = response.data;
@@ -309,7 +311,10 @@ export default {
                 text: 'No se encontraron datos!',
               })
             }
-          }); 
+          })
+        .then(() => {
+          Swal.close();
+        });
     },
   },
 };
