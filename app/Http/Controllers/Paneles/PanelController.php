@@ -511,7 +511,9 @@ class PanelController extends Controller
         $id_contenedor = $request->id;
         $tipo_contenedor = $request->tipo;
         $desde = $request->desde;
-        $hasta = $request->hasta;
+        // $hasta = $request->hasta;
+        $hasta = date("Y-m-d",strtotime($request->hasta."+ 1 days")); 
+        
 
         if ($tipo_contenedor == 'genset') {
             return Registro_diario_generadores::from('registro_diario_generadores')

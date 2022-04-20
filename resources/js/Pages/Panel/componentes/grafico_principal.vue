@@ -313,7 +313,7 @@ export default {
               : [];
           datos_m.map(function (datos_m, index) {
             let date = new Date(datos_m.created_at);
-            let day = date.getDate();
+            let day = date.getDate()+ 1;
             let month = date.getMonth() + 1;
             let year = date.getFullYear();
             let hours = date.getHours();
@@ -346,7 +346,7 @@ export default {
               : [];
           datos_r.map(function (datos_r, index) {
             let date = new Date(datos_r.created_at);
-            let day = date.getDate();
+            let day = date.getDate()+ 1;
             let month = date.getMonth() + 1;
             let year = date.getFullYear();
             let hours = date.getHours();
@@ -379,7 +379,7 @@ export default {
               : [];
           datos_g.map(function (datos_g, index) {
             let date = new Date(datos_g.created_at);
-            let day = date.getDate();
+            let day = date.getDate()+ 1;
             let month = date.getMonth() + 1;
             let year = date.getFullYear();
             let hours = date.getHours();
