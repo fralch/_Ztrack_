@@ -31,8 +31,8 @@
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 	<!-- mapas leaflet js-->
 	<script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js" integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ==" crossorigin=""></script>
-	<!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBm29s27MlvC9J4LkHW5gftm8QC-Pim48I&libraries=geometry"></script> -->
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBRz43As1JnFV9J7t-6KrpH67J_qa_ecUU&libraries=geometry"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBm29s27MlvC9J4LkHW5gftm8QC-Pim48I&libraries=geometry"></script>
+	
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
     <!-- Para cargar los botones de datatables tienes que poner todos los cdns de abajo 👇 -->
     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
