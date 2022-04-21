@@ -59,11 +59,11 @@
 </template>
 <script>
 import axios from "axios";
-var Chart_alarmas;
-var Chart_eventos;
-var Chart_set_point;
-var Chart_return_air;
-var Chart_temp_supply;
+let Chart_alarmas;
+let Chart_eventos;
+let Chart_set_point;
+let Chart_return_air;
+let Chart_temp_supply;
 export default {
   components: {},
   props: {

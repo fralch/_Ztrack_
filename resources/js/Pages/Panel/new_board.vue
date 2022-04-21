@@ -64,7 +64,10 @@
                 </div>
               </div>
               <!-- ********** CANVAS MAPA **********-->
-              <canvasMapa ref="canvasMapa" :punto="ubicacion_final">
+              <canvasMapa ref="canvasMapa" 
+                :punto="ubicacion_final"
+                :contenedor="contenedor_selecionado_id"
+                >
               </canvasMapa>
               <!-- ********* TABLA RESUMEN CONTENEDORES  *********-->
               <tablaResumenGen

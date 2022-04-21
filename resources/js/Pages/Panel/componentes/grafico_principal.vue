@@ -10,7 +10,7 @@
 </template>
 <script>
 import axios from "axios";
-var myChart_principal;
+let myChart_principal;
 export default {
   components: {},
   props: {
@@ -284,7 +284,7 @@ export default {
         options: {
           animations: {
             tension: {
-              duration: 3000,
+              duration: 6000,
               easing: "linear",
               from: 0.2,
               to: 0,

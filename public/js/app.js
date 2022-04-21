@@ -2371,7 +2371,7 @@ var myChart_principal;
         options: {
           animations: {
             tension: {
-              duration: 3000,
+              duration: 6000,
               easing: "linear",
               from: 0.2,
               to: 0,
@@ -2898,7 +2898,8 @@ var map;
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {},
   props: {
-    punto: Array
+    punto: Array,
+    contenedor: Number
   },
   data: function data() {
     return {
@@ -2906,7 +2907,8 @@ var map;
       mapa: null,
       ubicacion: new google.maps.LatLng(-12.98, -78.12),
       origen: {},
-      waypoints: []
+      waypoints: [],
+      polylinePoints: []
     };
   },
   watch: {
@@ -2917,7 +2919,6 @@ var map;
       //   this.iniciando_leflet();
       // }
       if (valor) {
-        console.log("destruyendomapa");
         map.off();
         map.remove();
         this.iniciando_leflet(valor[0], valor[1]);
@@ -2929,16 +2930,46 @@ var map;
   },
   methods: {
     iniciando_leflet: function iniciando_leflet() {
-      var lt = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 51.505;
-      var ln = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : -0.09;
-      map = L.map("map", {
-        center: [lt, ln],
-        zoom: 13
+      var lt = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : -12.058691761493174;
+      var ln = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : -75.20386755466461;
+      var self = this;
+      this.$nextTick(function () {
+        axios__WEBPACK_IMPORTED_MODULE_0___default().post(route("contenedores.get_datos"), {
+          id: self.contenedor,
+          tipo: "genset"
+        }).then(function (response) {
+          self.datos_tabla_generador = response.data.reverse();
+        }).then(function (response) {
+          self.datos_tabla_generador.forEach(function (element) {
+            self.polylinePoints.push({
+              lat: element.latitud,
+              lng: element.longitud
+            });
+          });
+        }).then(function (response) {
+          if (lt == -12.058691761493174 && ln == -75.20386755466461) {
+            map = L.map("map", {
+              center: [lt, ln],
+              zoom: 13
+            });
+          } else {
+            map = L.map("map", {
+              center: [self.polylinePoints[0].lat, self.polylinePoints[0].lng],
+              zoom: 13
+            });
+          } // si no agregas su autoria el mapa sale en blanco 👇
+
+
+          L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+            attribution: "FrankCairampoma"
+          }).addTo(map); // agregamos el marcador
+
+          L.marker([self.polylinePoints[0].lat, self.polylinePoints[0].lng]).addTo(map).bindPopup("Ultima ubicacion<br> del contenedor.").openPopup(); // usamos polylinePoints para trazar la ruta
+
+          L.polyline(self.polylinePoints).addTo(map);
+          console.log(self.polylinePoints);
+        });
       });
-      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> FrankCairampoma'
-      }).addTo(map);
-      L.marker([lt, ln]).addTo(map).bindPopup("A pretty CSS3 popup.<br> Easily customizable.").openPopup();
     },
     iniciarMap: function iniciarMap() {
       var self = this;
@@ -4585,6 +4616,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _componentes_tabla_detalle_madurador_vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./componentes/tabla_detalle_madurador.vue */ "./resources/js/Pages/Panel/componentes/tabla_detalle_madurador.vue");
 /* harmony import */ var _componentes_grafico_principal_vue__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./componentes/grafico_principal.vue */ "./resources/js/Pages/Panel/componentes/grafico_principal.vue");
 /* harmony import */ var _componentes_izquierda_vue__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./componentes/izquierda.vue */ "./resources/js/Pages/Panel/componentes/izquierda.vue");
+//
+//
+//
 //
 //
 //
@@ -34553,7 +34587,10 @@ var render = function () {
                       _vm._v(" "),
                       _c("canvasMapa", {
                         ref: "canvasMapa",
-                        attrs: { punto: _vm.ubicacion_final },
+                        attrs: {
+                          punto: _vm.ubicacion_final,
+                          contenedor: _vm.contenedor_selecionado_id,
+                        },
                       }),
                       _vm._v(" "),
                       _c("tablaResumenGen", {
