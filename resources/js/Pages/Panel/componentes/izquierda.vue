@@ -177,7 +177,7 @@ export default {
             }
           })
           .then(() => {
-            console.log("actualizando el chart circular ");
+            // console.log("actualizando el chart circular ");
             // Chart_alarmas.update();
             if (Chart_alarmas) {
               // Chart_alarmas.data.labels = self.chart_alarma_labels;
