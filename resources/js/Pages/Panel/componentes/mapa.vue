@@ -9,7 +9,7 @@
 </template>
 <script>
 import axios from "axios";
-let map;
+var map;
 export default {
   components: {},
   props: {
