@@ -2894,6 +2894,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+var map;
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {},
   props: {
@@ -2910,20 +2911,35 @@ __webpack_require__.r(__webpack_exports__);
   },
   watch: {
     punto: function punto(valor) {
+      // if (valor) {
+      //   this.ubicacion = new google.maps.LatLng(valor[0], valor[1]);
+      //   this.origen = { lat: valor[0], lng: valor[1] };
+      //   this.iniciando_leflet();
+      // }
       if (valor) {
-        this.ubicacion = new google.maps.LatLng(valor[0], valor[1]);
-        this.origen = {
-          lat: valor[0],
-          lng: valor[1]
-        };
-        this.initMap();
+        console.log("destruyendomapa");
+        map.off();
+        map.remove();
+        this.iniciando_leflet(valor[0], valor[1]);
       }
     }
   },
   mounted: function mounted() {
-    this.initMap();
+    this.iniciando_leflet();
   },
   methods: {
+    iniciando_leflet: function iniciando_leflet() {
+      var lt = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 51.505;
+      var ln = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : -0.09;
+      map = L.map("map", {
+        center: [lt, ln],
+        zoom: 13
+      });
+      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> FrankCairampoma'
+      }).addTo(map);
+      L.marker([lt, ln]).addTo(map).bindPopup("A pretty CSS3 popup.<br> Easily customizable.").openPopup();
+    },
     iniciarMap: function iniciarMap() {
       var self = this;
       this.$nextTick(function () {

@@ -9,6 +9,7 @@
 </template>
 <script>
 import axios from "axios";
+var map; 
 export default {
   components: {},
   props: {
@@ -21,21 +22,47 @@ export default {
       ubicacion: new google.maps.LatLng(-12.98, -78.12),
       origen: {},
       waypoints: [],
+      
     };
   },
   watch: {
     punto(valor) {
+      // if (valor) {
+      //   this.ubicacion = new google.maps.LatLng(valor[0], valor[1]);
+      //   this.origen = { lat: valor[0], lng: valor[1] };
+      //   this.iniciando_leflet();
+      // }
       if (valor) {
-        this.ubicacion = new google.maps.LatLng(valor[0], valor[1]);
-        this.origen = { lat: valor[0], lng: valor[1] };
-        this.initMap();
+        console.log("destruyendomapa"); 
+        map.off();
+        map.remove();
+        this.iniciando_leflet(valor[0], valor[1]);
       }
+        
+      
+      
     },
   },
   mounted() {
-    this.initMap();
+    this.iniciando_leflet();
   },
   methods: {
+    iniciando_leflet(lt= 51.505 ,ln = -0.09) {
+      map = L.map("map", {
+        center: [lt, ln],
+        zoom: 13,
+      });
+
+      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        attribution:
+          '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> FrankCairampoma',
+      }).addTo(map);
+
+      L.marker([lt, ln])
+        .addTo(map)
+        .bindPopup("A pretty CSS3 popup.<br> Easily customizable.")
+        .openPopup();
+    },
     iniciarMap() {
       let self = this;
       this.$nextTick(() => {
@@ -91,10 +118,12 @@ export default {
         .then((response) => {
           self.datos_tabla_generador.forEach((element) => {
             self.waypoints.push({
-              location: new google.maps.LatLng(element.latitud, element.longitud),
+              location: new google.maps.LatLng(
+                element.latitud,
+                element.longitud
+              ),
               stopover: true,
             });
-          
           });
         })
         .then((response) => {
