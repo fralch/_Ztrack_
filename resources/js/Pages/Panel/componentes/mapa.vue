@@ -15,6 +15,7 @@ export default {
   props: {
     punto: Array,
     contenedor: Number,
+    tipo: String,
   },
   data() {
     return {
@@ -65,7 +66,7 @@ export default {
           axios
             .post(route("contenedores.get_datos"), {
               id: self.contenedor,
-              tipo: "genset",
+              tipo: self.tipo,
             })
             .then((response) => {
               self.datos_tabla_generador = response.data.reverse();

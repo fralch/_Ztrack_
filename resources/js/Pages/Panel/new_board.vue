@@ -67,6 +67,7 @@
               <canvasMapa ref="canvasMapa" 
                 :punto="ubicacion_final"
                 :contenedor="contenedor_selecionado_id"
+                :tipo="tipo"
                 >
               </canvasMapa>
               <!-- ********* TABLA RESUMEN CONTENEDORES  *********-->
