@@ -223,6 +223,7 @@ export default {
     obteniendo_contendor(contenedor) {
       this.contenedor_selected = contenedor;
       this.contenedor_selecionado_id = contenedor.id;
+      this.$refs.canvasMapa.contenedor = contenedor.id;
     },
     set_ubicacion_g(ubicacion) {
       this.get_ubicacion_g = ubicacion;

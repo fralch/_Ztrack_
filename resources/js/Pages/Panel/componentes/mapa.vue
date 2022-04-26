@@ -14,7 +14,6 @@ export default {
   components: {},
   props: {
     punto: Array,
-    contenedor: Number,
     tipo: String,
   },
   data() {
@@ -24,11 +23,11 @@ export default {
       origen: {},
       waypoints: [],
       polylinePoints: [],
+      contenedor: null, 
     };
   },
   watch: {
-    punto(valor) {
-     
+    contenedor(valor) {
       if (valor) {
         map.off();
         map.remove();
