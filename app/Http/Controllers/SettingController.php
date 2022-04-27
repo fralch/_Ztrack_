@@ -70,11 +70,13 @@ class SettingController extends Controller
             'apellidos' => $request->apellidos,
             'nombres' => $request->nombres,
             'activo' => 1,
-            'admin' => 0,
+            'admin' => $request->admin,
             'correo' => $request->correo,
-            'contraseña' => '12345',
+            'contraseña' => $request->pass,
         ]);
-        return $usuario->id;
+
+        $usuario_all = Usuario::all();
+        return $usuario_all; 
     }
     public function nuevaEmpresa(Request $request)
     {

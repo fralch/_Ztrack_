@@ -5293,6 +5293,48 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -5307,6 +5349,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   data: function data() {
     return {
+      usuario_all: this.usuario_todos,
       // submited: false, 
       tabla_datos_empresas: this.empresas,
       radio_user: null,
@@ -5318,6 +5361,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       nuevo_apellidos: "",
       nuevo_nombres: "",
       nuevo_correo: "",
+      nuevo_pass: "",
+      confirmar_pass: "",
+      check_admin: false,
       // -- empresas datos ---
       nueva_empresa: "",
       nuevo_booking: "",
@@ -5340,6 +5386,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     asignar_tipo: function asignar_tipo() {
       this.filtrarContenedores();
+    },
+    usuario_all: function usuario_all() {
+      $('#tblUsuarios').DataTable().destroy();
+      this.TablaUsuarios();
     }
   },
   mounted: function mounted() {
@@ -5412,16 +5462,29 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         nombres: self.nuevo_nombres,
         apellidos: self.nuevo_apellidos,
         correo: self.nuevo_correo,
-        usuario: self.nuevo_usuario
+        usuario: self.nuevo_usuario,
+        pass: self.nuevo_pass,
+        confirmar_pass: self.confirmar_pass,
+        admin: self.check_admin ? 1 : 0
       };
 
-      if (self.nuevo_nombres == "" || self.nuevo_apellidos == "" || self.nuevo_correo == "" || self.nuevo_usuario == "") {
+      if (self.nuevo_nombres == "" || self.nuevo_apellidos == "" || self.nuevo_correo == "" || self.nuevo_usuario == "" || self.nuevo_pass == "" || self.confirmar_pass == "") {
         // self.mensaje_error("Debe llenar todos los campos");
         Swal.fire({
           icon: 'error',
           title: 'Oops...',
           text: 'Debe llenar todos los campos!'
         });
+        return 0;
+      }
+
+      if (self.nuevo_pass != self.confirmar_pass) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Upps...',
+          text: 'Las contraseñas no coinciden!'
+        });
+        return 0;
       }
 
       axios.post(route('nuevo_usuario'), data).then(function (response) {
@@ -5442,6 +5505,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             confirmButtonColor: '#e58e26',
             confirmButtonText: 'OK!'
           });
+          self.usuario_all = response.data;
         }
       }).then(function () {
         $('#usuarioModal').modal('hide');
@@ -35057,7 +35121,7 @@ var render = function () {
                                         ],
                                         staticClass: "form-control mr-sm-2",
                                         attrs: {
-                                          type: "usuario",
+                                          type: "text",
                                           placeholder: "nombre de usuario",
                                           "aria-label": "Usuario",
                                         },
@@ -35088,7 +35152,7 @@ var render = function () {
                                         ],
                                         staticClass: "form-control mr-sm-2",
                                         attrs: {
-                                          type: "apellidos",
+                                          type: "text",
                                           placeholder: "apellidos",
                                           "aria-label": "Apellidos",
                                         },
@@ -35129,7 +35193,7 @@ var render = function () {
                                         ],
                                         staticClass: "form-control mr-sm-2",
                                         attrs: {
-                                          type: "nombres",
+                                          type: "text",
                                           placeholder: "nombres",
                                           "aria-label": "Nombres",
                                         },
@@ -35168,7 +35232,7 @@ var render = function () {
                                         ],
                                         staticClass: "form-control mr-sm-2",
                                         attrs: {
-                                          type: "correo",
+                                          type: "email",
                                           placeholder: "correo",
                                           "aria-label": "Correo",
                                         },
@@ -35183,6 +35247,138 @@ var render = function () {
                                           },
                                         },
                                       }),
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("div", { staticClass: "col" }, [
+                                      _c(
+                                        "label",
+                                        {
+                                          staticStyle: {
+                                            "margin-right": "10px",
+                                          },
+                                        },
+                                        [_vm._v("Contraseña")]
+                                      ),
+                                      _vm._v(" "),
+                                      _c("input", {
+                                        directives: [
+                                          {
+                                            name: "model",
+                                            rawName: "v-model",
+                                            value: _vm.nuevo_pass,
+                                            expression: "nuevo_pass",
+                                          },
+                                        ],
+                                        staticClass: "form-control mr-sm-2",
+                                        attrs: {
+                                          type: "password",
+                                          placeholder: "Contraseña",
+                                          "aria-label": "Correo",
+                                        },
+                                        domProps: { value: _vm.nuevo_pass },
+                                        on: {
+                                          input: function ($event) {
+                                            if ($event.target.composing) {
+                                              return
+                                            }
+                                            _vm.nuevo_pass = $event.target.value
+                                          },
+                                        },
+                                      }),
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("div", { staticClass: "col" }, [
+                                      _c(
+                                        "label",
+                                        {
+                                          staticStyle: {
+                                            "margin-right": "10px",
+                                          },
+                                        },
+                                        [_vm._v("Confirmar contraseña")]
+                                      ),
+                                      _vm._v(" "),
+                                      _c("input", {
+                                        directives: [
+                                          {
+                                            name: "model",
+                                            rawName: "v-model",
+                                            value: _vm.confirmar_pass,
+                                            expression: "confirmar_pass",
+                                          },
+                                        ],
+                                        staticClass: "form-control mr-sm-2",
+                                        attrs: {
+                                          type: "password",
+                                          placeholder: "Confirmar contraseña",
+                                          "aria-label": "Correo",
+                                        },
+                                        domProps: { value: _vm.confirmar_pass },
+                                        on: {
+                                          input: function ($event) {
+                                            if ($event.target.composing) {
+                                              return
+                                            }
+                                            _vm.confirmar_pass =
+                                              $event.target.value
+                                          },
+                                        },
+                                      }),
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("div", { staticClass: "col" }, [
+                                      _c("input", {
+                                        directives: [
+                                          {
+                                            name: "model",
+                                            rawName: "v-model",
+                                            value: _vm.check_admin,
+                                            expression: "check_admin",
+                                          },
+                                        ],
+                                        staticStyle: { "margin-top": "40px" },
+                                        attrs: {
+                                          type: "checkbox",
+                                          id: "admin",
+                                          name: "admin",
+                                        },
+                                        domProps: {
+                                          checked: Array.isArray(
+                                            _vm.check_admin
+                                          )
+                                            ? _vm._i(_vm.check_admin, null) > -1
+                                            : _vm.check_admin,
+                                        },
+                                        on: {
+                                          change: function ($event) {
+                                            var $$a = _vm.check_admin,
+                                              $$el = $event.target,
+                                              $$c = $$el.checked ? true : false
+                                            if (Array.isArray($$a)) {
+                                              var $$v = null,
+                                                $$i = _vm._i($$a, $$v)
+                                              if ($$el.checked) {
+                                                $$i < 0 &&
+                                                  (_vm.check_admin = $$a.concat(
+                                                    [$$v]
+                                                  ))
+                                              } else {
+                                                $$i > -1 &&
+                                                  (_vm.check_admin = $$a
+                                                    .slice(0, $$i)
+                                                    .concat($$a.slice($$i + 1)))
+                                              }
+                                            } else {
+                                              _vm.check_admin = $$c
+                                            }
+                                          },
+                                        },
+                                      }),
+                                      _vm._v(" "),
+                                      _c("label", { attrs: { for: "admin" } }, [
+                                        _vm._v(" Admin"),
+                                      ]),
+                                      _c("br"),
                                     ]),
                                     _vm._v(" "),
                                     _c("div", { staticClass: "col" }, [
@@ -35262,7 +35458,7 @@ var render = function () {
                             _c(
                               "tbody",
                               _vm._l(
-                                _vm.usuario_todos,
+                                _vm.usuario_all,
                                 function (usuario, index) {
                                   return _c("tr", { key: index }, [
                                     _c("td", { staticClass: "text-center" }, [

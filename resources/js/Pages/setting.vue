@@ -5,7 +5,7 @@
       slot="component-view"
     >
       <div class="content " style="display: block" id="cuerpo" >
-        <!-- ---------------------- -->
+        <!-- ----------------------- -->
         <div class="content" >
           <div class="row" style=" margin: 0 0 0 0px;">
             <div id='lado_izquierdo' class="rounded border border-5">
@@ -16,19 +16,61 @@
                           <div class="row align-items-start" >
                             <div class="col">
                                   <label>Nuevo Usuario</label>
-                                  <input class="form-control mr-sm-2" type="usuario" placeholder="nombre de usuario" aria-label="Usuario" v-model="nuevo_usuario">
+                                  <input class="form-control mr-sm-2" type="text" placeholder="nombre de usuario" aria-label="Usuario" v-model="nuevo_usuario">
                             </div>
                             <div class="col">
                                   <label >Apellidos</label>
-                                  <input class="form-control mr-sm-2" type="apellidos" placeholder="apellidos" aria-label="Apellidos" v-model="nuevo_apellidos">
+                                  <input  
+                                    class="form-control mr-sm-2" 
+                                    type="text" 
+                                    placeholder="apellidos" 
+                                    aria-label="Apellidos" 
+                                    v-model="nuevo_apellidos"
+                                  >
                             </div>
                             <div class="col">
                                 <label style="margin-right: 10px; ">Nombres</label>
-                                <input class="form-control mr-sm-2" type="nombres" placeholder="nombres" aria-label="Nombres" v-model="nuevo_nombres">
+                                <input 
+                                  class="form-control mr-sm-2" 
+                                  type="text" 
+                                  placeholder="nombres" 
+                                  aria-label="Nombres" 
+                                  v-model="nuevo_nombres"
+                                >
                             </div>
                             <div class="col">
                                 <label style="margin-right: 10px; ">Correo</label>
-                                <input class="form-control mr-sm-2" type="correo" placeholder="correo" aria-label="Correo" v-model="nuevo_correo">
+                                <input 
+                                  class="form-control mr-sm-2" 
+                                  type="email" 
+                                  placeholder="correo" 
+                                  aria-label="Correo" 
+                                  v-model="nuevo_correo"
+                                >
+                            </div>
+                            <div class="col">
+                                <label style="margin-right: 10px; ">Contraseña</label>
+                                <input 
+                                  class="form-control mr-sm-2" 
+                                  type="password" 
+                                  placeholder="Contraseña" 
+                                  aria-label="Correo" 
+                                  v-model="nuevo_pass"
+                                >
+                            </div>
+                            <div class="col">
+                                <label style="margin-right: 10px; ">Confirmar contraseña</label>
+                                <input 
+                                  class="form-control mr-sm-2" 
+                                  type="password" 
+                                  placeholder="Confirmar contraseña" 
+                                  aria-label="Correo" 
+                                  v-model="confirmar_pass">
+                            </div>
+                           
+                            <div class="col">
+                                <input type="checkbox" id="admin" name="admin" v-model="check_admin" style="margin-top: 40px;">
+                                <label for="admin"> Admin</label><br>
                             </div>
                             <div class="col">
                               <button type="button" style="margin-top:30px; " class="btn btn-primary" @click="guardarUsuario">
@@ -55,7 +97,7 @@
                           </tr>
                         </thead>
                         <tbody>
-                          <tr v-for="(usuario, index) in usuario_todos" :key="index">
+                          <tr v-for="(usuario, index) in usuario_all" :key="index">
                             <td class="text-center">{{index+1}}</td>
                             <td class="text-center"><input type="radio" :value="usuario.id" v-model="radio_user"></td>
                             <td>{{(usuario.usuario).toUpperCase()}}</td>
@@ -269,6 +311,7 @@ export default {
 
   data() {
     return {
+      usuario_all: this.usuario_todos,
       // submited: false, 
       tabla_datos_empresas: this.empresas, 
       radio_user: null,
@@ -280,6 +323,9 @@ export default {
       nuevo_apellidos: "",
       nuevo_nombres: "",
       nuevo_correo: "",
+      nuevo_pass: "",
+      confirmar_pass: "",
+      check_admin: false,
       // -- empresas datos ---
       nueva_empresa: "",
       nuevo_booking: "",
@@ -303,6 +349,10 @@ export default {
     },
     asignar_tipo(){
       this.filtrarContenedores();
+    },
+    usuario_all(){
+       $('#tblUsuarios').DataTable().destroy();
+       this.TablaUsuarios();
     },
   },
  
@@ -373,16 +423,35 @@ export default {
         apellidos: self.nuevo_apellidos,
         correo: self.nuevo_correo,
         usuario: self.nuevo_usuario,
+        pass: self.nuevo_pass,
+        confirmar_pass: self.confirmar_pass,
+        admin: self.check_admin ? 1 : 0,
       };
-      if (self.nuevo_nombres =="" || self.nuevo_apellidos =="" || self.nuevo_correo =="" || self.nuevo_usuario =="") {
+      if (
+          self.nuevo_nombres =="" 
+          || self.nuevo_apellidos =="" 
+          || self.nuevo_correo =="" 
+          || self.nuevo_usuario =="" 
+          || self.nuevo_pass ==""
+          || self.confirmar_pass ==""
+          ) {
         // self.mensaje_error("Debe llenar todos los campos");
         Swal.fire({
           icon: 'error',
           title: 'Oops...',
           text: 'Debe llenar todos los campos!',
         })
-        
+        return 0; 
       }
+      if (self.nuevo_pass != self.confirmar_pass) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Upps...',
+          text: 'Las contraseñas no coinciden!',
+        })
+        return 0; 
+      }
+      
       axios.post(route('nuevo_usuario'), data)
       .then(function(response){
         console.log(response.data);
@@ -394,12 +463,13 @@ export default {
             })
         }
         if (response.data > 0) {
-           Swal.fire({
-              title: 'Usuario Creado!',
+          Swal.fire({
+            title: 'Usuario Creado!',
               icon: 'success',
               confirmButtonColor: '#e58e26',
               confirmButtonText: 'OK!'
             })
+          self.usuario_all = response.data;
         }
        
       }).then(()=>{
