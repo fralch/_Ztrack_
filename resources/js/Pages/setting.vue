@@ -205,7 +205,8 @@
                             </div>
                            
                             <div class="col">
-                                <button type="button" style="margin-top:30px; " class="btn btn-primary" @click="guardarContenedor">
+                                <button type="button" style="margin-top:30px; " class="btn btn-primary" 
+                                @click="guardarContenedor">
                                   <i class="fas fa-save"></i>
                                   Agregar contenedor
                                 </button>
@@ -306,7 +307,7 @@ export default {
       usuario_logeado: Array,
       empresas: Array,
       contenedores: Array,
-      usuario_todos: Array, 
+      usuario_todos: Array,  
   },
 
   data() {
@@ -353,6 +354,11 @@ export default {
     usuario_all(){
        $('#tblUsuarios').DataTable().destroy();
        this.TablaUsuarios();
+       console.log(this.usuario_all);
+    },
+    tabla_contenedores_filtrados(){
+      $('#tblContenedores').DataTable().destroy();
+      this.TablaContenedores();
     },
   },
  
@@ -454,7 +460,6 @@ export default {
       
       axios.post(route('nuevo_usuario'), data)
       .then(function(response){
-        console.log(response.data);
         if (response.data == 'usuario_existe') {
            Swal.fire({
               icon: 'error',
@@ -462,24 +467,24 @@ export default {
               text: 'El usuario ya existe!',
             })
         }
-        if (response.data > 0) {
+        if (response.data.length > 0) {
+          console.log(response.data); 
+          self.usuario_all = response.data;
           Swal.fire({
             title: 'Usuario Creado!',
               icon: 'success',
               confirmButtonColor: '#e58e26',
               confirmButtonText: 'OK!'
             })
-          self.usuario_all = response.data;
         }
+        console.log(self.usuario_all);
        
       }).then(()=>{
-        $('#usuarioModal').modal('hide')
         self.nuevo_nombres = "";
         self.nuevo_apellidos = "";
         self.nuevo_correo = "";
         self.nuevo_usuario = "";
-        $("#tblUsuarios").DataTable().destroy();
-        self.TablaUsuarios();
+       
       });
     
     },
@@ -512,9 +517,9 @@ export default {
               text: 'El contenedor ya existe!',
             })
         }
-        if (response.data > 0) {
-           async function rellenar_resumen(){
-            await (self.tabla_contenedores_filtrados = response.data); 
+        if (response.data.length > 0) {
+         
+            self.tabla_contenedores_filtrados = response.data; 
             Swal.fire({
                 title: 'Contenedor Creado!',
                 icon: 'success',
@@ -522,17 +527,12 @@ export default {
                 confirmButtonText: 'OK!'
               })
            }
-           rellenar_resumen();          
-        }
-       
       }).then(()=>{
-       
         self.nuevo_contenedor = "";
         self.nuevo_tipo_contenedor = "";
         self.nuevo_booking_contenedor = "";
         self.nuevo_booking_temp_contenedor = "";
-        $("#tblContenedores").DataTable().destroy();
-        self.TablaContenedores();
+       
       });
     
     

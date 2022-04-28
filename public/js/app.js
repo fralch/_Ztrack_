@@ -5030,15 +5030,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _layout__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./layout */ "./resources/js/Pages/layout.vue");
-
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
+/* harmony import */ var _layout__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./layout */ "./resources/js/Pages/layout.vue");
+//
 //
 //
 //
@@ -5338,7 +5331,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
-    layoutprincipal: _layout__WEBPACK_IMPORTED_MODULE_1__["default"]
+    layoutprincipal: _layout__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
   props: {
     // tu_cuenta:Array,
@@ -5390,6 +5383,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     usuario_all: function usuario_all() {
       $('#tblUsuarios').DataTable().destroy();
       this.TablaUsuarios();
+      console.log(this.usuario_all);
+    },
+    tabla_contenedores_filtrados: function tabla_contenedores_filtrados() {
+      $('#tblContenedores').DataTable().destroy();
+      this.TablaContenedores();
     }
   },
   mounted: function mounted() {
@@ -5488,8 +5486,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }
 
       axios.post(route('nuevo_usuario'), data).then(function (response) {
-        console.log(response.data);
-
         if (response.data == 'usuario_existe') {
           Swal.fire({
             icon: 'error',
@@ -5498,23 +5494,23 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           });
         }
 
-        if (response.data > 0) {
+        if (response.data.length > 0) {
+          console.log(response.data);
+          self.usuario_all = response.data;
           Swal.fire({
             title: 'Usuario Creado!',
             icon: 'success',
             confirmButtonColor: '#e58e26',
             confirmButtonText: 'OK!'
           });
-          self.usuario_all = response.data;
         }
+
+        console.log(self.usuario_all);
       }).then(function () {
-        $('#usuarioModal').modal('hide');
         self.nuevo_nombres = "";
         self.nuevo_apellidos = "";
         self.nuevo_correo = "";
         self.nuevo_usuario = "";
-        $("#tblUsuarios").DataTable().destroy();
-        self.TablaUsuarios();
       });
     },
     guardarContenedor: function guardarContenedor() {
@@ -5547,46 +5543,20 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           });
         }
 
-        if (response.data > 0) {
-          var rellenar_resumen = /*#__PURE__*/function () {
-            var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
-              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
-                while (1) {
-                  switch (_context.prev = _context.next) {
-                    case 0:
-                      _context.next = 2;
-                      return self.tabla_contenedores_filtrados = response.data;
-
-                    case 2:
-                      Swal.fire({
-                        title: 'Contenedor Creado!',
-                        icon: 'success',
-                        confirmButtonColor: '#e58e26',
-                        confirmButtonText: 'OK!'
-                      });
-
-                    case 3:
-                    case "end":
-                      return _context.stop();
-                  }
-                }
-              }, _callee);
-            }));
-
-            return function rellenar_resumen() {
-              return _ref.apply(this, arguments);
-            };
-          }();
-
-          rellenar_resumen();
+        if (response.data.length > 0) {
+          self.tabla_contenedores_filtrados = response.data;
+          Swal.fire({
+            title: 'Contenedor Creado!',
+            icon: 'success',
+            confirmButtonColor: '#e58e26',
+            confirmButtonText: 'OK!'
+          });
         }
       }).then(function () {
         self.nuevo_contenedor = "";
         self.nuevo_tipo_contenedor = "";
         self.nuevo_booking_contenedor = "";
         self.nuevo_booking_temp_contenedor = "";
-        $("#tblContenedores").DataTable().destroy();
-        self.TablaContenedores();
       });
     },
     guardarEmpresa: function guardarEmpresa() {
