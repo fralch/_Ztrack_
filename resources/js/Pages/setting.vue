@@ -165,7 +165,7 @@
                                 <td>{{(empresa.nombre_empresa).toUpperCase()}}</td>
                                 <td>{{empresa.descripcion_booking}}</td>
                                 <td>{{empresa.temp_contratada}}</td>
-                                <td>{{(empresa.usuario).toUpperCase()}}</td>
+                                <td>{{empresa.usuario}}</td>
                                 <td>
                                   <button type="button" class="col-3 btn btn-primary"  data-toggle="modal" data-target="#asignarModal" @click="asignar_id_empresa=empresa.id">
                                     <i class="bi bi-check-lg"></i>
@@ -359,6 +359,10 @@ export default {
     tabla_contenedores_filtrados(){
       $('#tblContenedores').DataTable().destroy();
       this.TablaContenedores();
+    },
+    tabla_datos_empresas(){
+      $('#tblEmpresas').DataTable().destroy();
+      this.TablaEmpresas();
     },
   },
  
@@ -564,7 +568,8 @@ export default {
               text: 'La empresa ya existe!',
             })
         }
-        if (response.data > 0) {
+        if (response.data.length > 0) {
+          self.tabla_datos_empresas = response.data;
            Swal.fire({
               title: 'Empresa Creada!',
               icon: 'success',
@@ -573,13 +578,12 @@ export default {
             })
         }
       }).then(()=>{
-        $('#empresasModal').modal('hide')
+        
         self.nuevo_nombres = "";
         self.nuevo_apellidos = "";
         self.nuevo_correo = "";
         self.nuevo_usuario = "";
-        $("#tblEmpresas").DataTable().destroy();
-        self.TablaEmpresas();
+        
       });
     },
     asignar_contenedor_guardar(){

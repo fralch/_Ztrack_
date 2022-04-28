@@ -5388,6 +5388,10 @@ __webpack_require__.r(__webpack_exports__);
     tabla_contenedores_filtrados: function tabla_contenedores_filtrados() {
       $('#tblContenedores').DataTable().destroy();
       this.TablaContenedores();
+    },
+    tabla_datos_empresas: function tabla_datos_empresas() {
+      $('#tblEmpresas').DataTable().destroy();
+      this.TablaEmpresas();
     }
   },
   mounted: function mounted() {
@@ -5588,7 +5592,8 @@ __webpack_require__.r(__webpack_exports__);
           });
         }
 
-        if (response.data > 0) {
+        if (response.data.length > 0) {
+          self.tabla_datos_empresas = response.data;
           Swal.fire({
             title: 'Empresa Creada!',
             icon: 'success',
@@ -5597,13 +5602,10 @@ __webpack_require__.r(__webpack_exports__);
           });
         }
       }).then(function () {
-        $('#empresasModal').modal('hide');
         self.nuevo_nombres = "";
         self.nuevo_apellidos = "";
         self.nuevo_correo = "";
         self.nuevo_usuario = "";
-        $("#tblEmpresas").DataTable().destroy();
-        self.TablaEmpresas();
       });
     },
     asignar_contenedor_guardar: function asignar_contenedor_guardar() {
@@ -35786,11 +35788,7 @@ var render = function () {
                                     _vm._v(_vm._s(empresa.temp_contratada)),
                                   ]),
                                   _vm._v(" "),
-                                  _c("td", [
-                                    _vm._v(
-                                      _vm._s(empresa.usuario.toUpperCase())
-                                    ),
-                                  ]),
+                                  _c("td", [_vm._v(_vm._s(empresa.usuario))]),
                                   _vm._v(" "),
                                   _c("td", [
                                     _c(

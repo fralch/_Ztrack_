@@ -91,7 +91,25 @@ class SettingController extends Controller
             'temp_contratada' => $request->booking_temp,
             'usuario_id' => $request->usuario_asigando,
         ]);
-        return $empresa->id;
+        $empresas = Empresa::from('empresas as emp')
+        ->select(
+            'emp.id',
+            'emp.usuario_id',
+            'emp.nombre_empresa',
+            'emp.descripcion_booking',
+            'emp.temp_contratada',
+            'emp.created_at',
+            'us.usuario',
+            'us.apellidos',
+            'us.nombres',
+            'us.activo',
+            'us.admin',
+            'us.correo',
+
+        )
+        ->join('usuarios as us', 'us.id', 'emp.usuario_id')
+        ->get();
+        return $empresas;
     }
     public function asignarContenedor(Request $request)
     {
