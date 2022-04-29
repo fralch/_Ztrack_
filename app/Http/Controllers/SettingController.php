@@ -151,5 +151,12 @@ class SettingController extends Controller
         ]);
         return Contenedor::all();
     }
-    
+    public function cambiarEstadoContenedor(Request $request)
+    {
+        // return $request; 
+        $contenedor = Contenedor::find($request->id_contenedor);
+        $contenedor->encendido = !$contenedor->encendido;
+        $contenedor->save();
+        return Contenedor::all();
+    }
 }

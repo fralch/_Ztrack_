@@ -5328,6 +5328,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -5657,6 +5662,15 @@ __webpack_require__.r(__webpack_exports__);
         }
       }).then(function () {
         $('#asignarModal').modal('hide');
+      });
+    },
+    cambiarEstadoContenedor: function cambiarEstadoContenedor(id) {
+      var self = this;
+      var data = {
+        id_contenedor: id
+      };
+      axios.post(route('cambiar_estado_contenedor'), data).then(function (response) {
+        self.tabla_contenedores_filtrados = response.data;
       });
     }
   }
@@ -36084,7 +36098,18 @@ var render = function () {
                                 _c("td", { staticClass: "text-center" }, [
                                   _c("label", { staticClass: "switch" }, [
                                     _c("input", {
-                                      attrs: { type: "checkbox", checked: "" },
+                                      attrs: { type: "checkbox" },
+                                      domProps: {
+                                        value: contenedor.id,
+                                        checked: contenedor.encendido == 1,
+                                      },
+                                      on: {
+                                        change: function ($event) {
+                                          return _vm.cambiarEstadoContenedor(
+                                            contenedor.id
+                                          )
+                                        },
+                                      },
                                     }),
                                     _vm._v(" "),
                                     _c("span", { staticClass: "slider round" }),

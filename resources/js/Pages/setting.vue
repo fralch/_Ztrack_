@@ -234,7 +234,12 @@
                                 <td class="text-center">{{contenedor.booking_temp}}</td>
                                 <td class="text-center">
                                   <label class="switch">
-                                    <input type="checkbox" checked>
+                                    <input 
+                                      type="checkbox" 
+                                      :value="contenedor.id" 
+                                      :checked="contenedor.encendido==1"
+                                      @change="cambiarEstadoContenedor(contenedor.id)" 
+                                      >
                                     <span class="slider round"></span>
                                   </label>
                                 </td>
@@ -319,6 +324,7 @@ export default {
       radio_empresa: null,
       tabla_contenedores_filtrados: this.contenedores,
       tabla_contenedores:[],
+     
       // -- usuarios datos ---
       nuevo_usuario: "",
       nuevo_apellidos: "",
@@ -637,6 +643,17 @@ export default {
       }).then(()=>{
         $('#asignarModal').modal('hide')
       
+      });
+    },
+    cambiarEstadoContenedor(id){
+      let self = this;
+      let data = {
+        id_contenedor: id,
+      };
+     
+      axios.post(route('cambiar_estado_contenedor'), data)
+      .then(function(response){
+        self.tabla_contenedores_filtrados = response.data; 
       });
     },
       
