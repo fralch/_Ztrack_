@@ -130,7 +130,7 @@ class PanelController extends Controller
                 
             if ($datos != null) {
                 $datos_ = $datos->toArray(); // ** debes usar toArray para convertir la coleccion que bota elocuent a un array natural
-                $obj_merged = (object) array_merge($array_contenedor, $datos_);
+                $obj_merged = (object) array_merge($array_contenedor, $datos_); // uniendo los dos arrays
                 return $obj_merged;
             }
         }
