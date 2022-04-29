@@ -345,6 +345,16 @@ export default {
     };
   },
   watch: {
+    radio_empresa(value){
+      axios.post(route("filtrar_contenedoresXempresas"), {
+        id_empresa: value
+      })
+      .then(response => {
+        // console.log(response.data);
+        this.tabla_contenedores_filtrados = response.data;
+      })
+      
+    },
     radio_user(){
       this.filtrarEmpresa();
     },
@@ -375,6 +385,7 @@ export default {
   },
 
   methods: {
+    
     filtrarContenedores(){
       if (this.asignar_tipo == "G") {
         this.tabla_contenedores = this.contenedores.filter(contenedor => contenedor.tipo == "Generador");   
@@ -624,7 +635,7 @@ export default {
             })
         }
       }).then(()=>{
-        $('#asignarModalLabel').modal('hide')
+        $('#asignarModal').modal('hide')
       
       });
     },

@@ -5374,6 +5374,16 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   watch: {
+    radio_empresa: function radio_empresa(value) {
+      var _this = this;
+
+      axios.post(route("filtrar_contenedoresXempresas"), {
+        id_empresa: value
+      }).then(function (response) {
+        // console.log(response.data);
+        _this.tabla_contenedores_filtrados = response.data;
+      });
+    },
     radio_user: function radio_user() {
       this.filtrarEmpresa();
     },
@@ -5416,10 +5426,10 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     filtrarEmpresa: function filtrarEmpresa() {
-      var _this = this;
+      var _this2 = this;
 
       this.tabla_datos_empresas = this.empresas.filter(function (item) {
-        return item.usuario_id == _this.radio_user;
+        return item.usuario_id == _this2.radio_user;
       });
     },
     TablaEmpresas: function TablaEmpresas() {
@@ -5646,7 +5656,7 @@ __webpack_require__.r(__webpack_exports__);
           });
         }
       }).then(function () {
-        $('#asignarModalLabel').modal('hide');
+        $('#asignarModal').modal('hide');
       });
     }
   }

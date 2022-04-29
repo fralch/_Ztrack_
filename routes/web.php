@@ -39,5 +39,6 @@ Route::post('/usuario/nuevo', [SettingController::class, 'nuevoUsuario'])->name(
 Route::post('/empresa/nueva', [SettingController::class, 'nuevaEmpresa'])->name('nueva_empresa');
 Route::post('/contenedor/nuevo', [SettingController::class, 'nuevoContenedor'])->name('nuevo_contenedor');
 Route::post('/asignarContenedor', [SettingController::class, 'asignarContenedor'])->name('asignar_contenedor');
+Route::post('/asignarContenedor/filtar', [SettingController::class, 'filtrar_contenedoresXempresas'])->name('filtrar_contenedoresXempresas');
 
 Route::get('/faker', [PanelController::class, 'faker_datos'])->name('paneles.faker');

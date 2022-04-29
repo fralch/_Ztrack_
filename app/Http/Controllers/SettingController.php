@@ -124,6 +124,16 @@ class SettingController extends Controller
         ]);
         return $contenedor->id;
     }
+    public function filtrar_contenedoresXempresas(Request $request)
+    {
+        // return $request; 
+        $contenedores_filt= Contenedor::from('contenedores as con')
+                            ->select()
+                            ->join('empresas_contenedores as ec', 'ec.contenedor_id', 'con.id')
+                            ->where('ec.empresa_id',$request->id_empresa)
+                            ->get(); 
+        return $contenedores_filt; 
+    }
     
     public function nuevoContenedor(Request $request)
     {
