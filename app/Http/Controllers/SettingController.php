@@ -70,11 +70,13 @@ class SettingController extends Controller
             'apellidos' => $request->apellidos,
             'nombres' => $request->nombres,
             'activo' => 1,
-            'admin' => 0,
+            'admin' => $request->admin,
             'correo' => $request->correo,
-            'contraseña' => '12345',
+            'contraseña' => $request->pass,
         ]);
-        return $usuario->id;
+
+        $usuario_all = Usuario::all();
+        return $usuario_all; 
     }
     public function nuevaEmpresa(Request $request)
     {
@@ -89,7 +91,25 @@ class SettingController extends Controller
             'temp_contratada' => $request->booking_temp,
             'usuario_id' => $request->usuario_asigando,
         ]);
-        return $empresa->id;
+        $empresas = Empresa::from('empresas as emp')
+        ->select(
+            'emp.id',
+            'emp.usuario_id',
+            'emp.nombre_empresa',
+            'emp.descripcion_booking',
+            'emp.temp_contratada',
+            'emp.created_at',
+            'us.usuario',
+            'us.apellidos',
+            'us.nombres',
+            'us.activo',
+            'us.admin',
+            'us.correo',
+
+        )
+        ->join('usuarios as us', 'us.id', 'emp.usuario_id')
+        ->get();
+        return $empresas;
     }
     public function asignarContenedor(Request $request)
     {
@@ -103,6 +123,16 @@ class SettingController extends Controller
             'contenedor_id' => $request->asig_contenedor,
         ]);
         return $contenedor->id;
+    }
+    public function filtrar_contenedoresXempresas(Request $request)
+    {
+        // return $request; 
+        $contenedores_filt= Contenedor::from('contenedores as con')
+                            ->select()
+                            ->join('empresas_contenedores as ec', 'ec.contenedor_id', 'con.id')
+                            ->where('ec.empresa_id',$request->id_empresa)
+                            ->get(); 
+        return $contenedores_filt; 
     }
     
     public function nuevoContenedor(Request $request)
@@ -121,5 +151,12 @@ class SettingController extends Controller
         ]);
         return Contenedor::all();
     }
-    
+    public function cambiarEstadoContenedor(Request $request)
+    {
+        // return $request; 
+        $contenedor = Contenedor::find($request->id_contenedor);
+        $contenedor->encendido = !$contenedor->encendido;
+        $contenedor->save();
+        return Contenedor::all();
+    }
 }

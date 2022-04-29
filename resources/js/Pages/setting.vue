@@ -5,7 +5,7 @@
       slot="component-view"
     >
       <div class="content " style="display: block" id="cuerpo" >
-        <!-- ---------------------- -->
+        <!-- ----------------------- -->
         <div class="content" >
           <div class="row" style=" margin: 0 0 0 0px;">
             <div id='lado_izquierdo' class="rounded border border-5">
@@ -16,19 +16,61 @@
                           <div class="row align-items-start" >
                             <div class="col">
                                   <label>Nuevo Usuario</label>
-                                  <input class="form-control mr-sm-2" type="usuario" placeholder="nombre de usuario" aria-label="Usuario" v-model="nuevo_usuario">
+                                  <input class="form-control mr-sm-2" type="text" placeholder="nombre de usuario" aria-label="Usuario" v-model="nuevo_usuario">
                             </div>
                             <div class="col">
                                   <label >Apellidos</label>
-                                  <input class="form-control mr-sm-2" type="apellidos" placeholder="apellidos" aria-label="Apellidos" v-model="nuevo_apellidos">
+                                  <input  
+                                    class="form-control mr-sm-2" 
+                                    type="text" 
+                                    placeholder="apellidos" 
+                                    aria-label="Apellidos" 
+                                    v-model="nuevo_apellidos"
+                                  >
                             </div>
                             <div class="col">
                                 <label style="margin-right: 10px; ">Nombres</label>
-                                <input class="form-control mr-sm-2" type="nombres" placeholder="nombres" aria-label="Nombres" v-model="nuevo_nombres">
+                                <input 
+                                  class="form-control mr-sm-2" 
+                                  type="text" 
+                                  placeholder="nombres" 
+                                  aria-label="Nombres" 
+                                  v-model="nuevo_nombres"
+                                >
                             </div>
                             <div class="col">
                                 <label style="margin-right: 10px; ">Correo</label>
-                                <input class="form-control mr-sm-2" type="correo" placeholder="correo" aria-label="Correo" v-model="nuevo_correo">
+                                <input 
+                                  class="form-control mr-sm-2" 
+                                  type="email" 
+                                  placeholder="correo" 
+                                  aria-label="Correo" 
+                                  v-model="nuevo_correo"
+                                >
+                            </div>
+                            <div class="col">
+                                <label style="margin-right: 10px; ">Contraseña</label>
+                                <input 
+                                  class="form-control mr-sm-2" 
+                                  type="password" 
+                                  placeholder="Contraseña" 
+                                  aria-label="Correo" 
+                                  v-model="nuevo_pass"
+                                >
+                            </div>
+                            <div class="col">
+                                <label style="margin-right: 10px; ">Confirmar contraseña</label>
+                                <input 
+                                  class="form-control mr-sm-2" 
+                                  type="password" 
+                                  placeholder="Confirmar contraseña" 
+                                  aria-label="Correo" 
+                                  v-model="confirmar_pass">
+                            </div>
+                           
+                            <div class="col">
+                                <input type="checkbox" id="admin" name="admin" v-model="check_admin" style="margin-top: 40px;">
+                                <label for="admin"> Admin</label><br>
                             </div>
                             <div class="col">
                               <button type="button" style="margin-top:30px; " class="btn btn-primary" @click="guardarUsuario">
@@ -55,7 +97,7 @@
                           </tr>
                         </thead>
                         <tbody>
-                          <tr v-for="(usuario, index) in usuario_todos" :key="index">
+                          <tr v-for="(usuario, index) in usuario_all" :key="index">
                             <td class="text-center">{{index+1}}</td>
                             <td class="text-center"><input type="radio" :value="usuario.id" v-model="radio_user"></td>
                             <td>{{(usuario.usuario).toUpperCase()}}</td>
@@ -123,7 +165,7 @@
                                 <td>{{(empresa.nombre_empresa).toUpperCase()}}</td>
                                 <td>{{empresa.descripcion_booking}}</td>
                                 <td>{{empresa.temp_contratada}}</td>
-                                <td>{{(empresa.usuario).toUpperCase()}}</td>
+                                <td>{{empresa.usuario}}</td>
                                 <td>
                                   <button type="button" class="col-3 btn btn-primary"  data-toggle="modal" data-target="#asignarModal" @click="asignar_id_empresa=empresa.id">
                                     <i class="bi bi-check-lg"></i>
@@ -163,7 +205,8 @@
                             </div>
                            
                             <div class="col">
-                                <button type="button" style="margin-top:30px; " class="btn btn-primary" @click="guardarContenedor">
+                                <button type="button" style="margin-top:30px; " class="btn btn-primary" 
+                                @click="guardarContenedor">
                                   <i class="fas fa-save"></i>
                                   Agregar contenedor
                                 </button>
@@ -191,7 +234,12 @@
                                 <td class="text-center">{{contenedor.booking_temp}}</td>
                                 <td class="text-center">
                                   <label class="switch">
-                                    <input type="checkbox" checked>
+                                    <input 
+                                      type="checkbox" 
+                                      :value="contenedor.id" 
+                                      :checked="contenedor.encendido==1"
+                                      @change="cambiarEstadoContenedor(contenedor.id)" 
+                                      >
                                     <span class="slider round"></span>
                                   </label>
                                 </td>
@@ -264,22 +312,27 @@ export default {
       usuario_logeado: Array,
       empresas: Array,
       contenedores: Array,
-      usuario_todos: Array, 
+      usuario_todos: Array,  
   },
 
   data() {
     return {
+      usuario_all: this.usuario_todos,
       // submited: false, 
       tabla_datos_empresas: this.empresas, 
       radio_user: null,
       radio_empresa: null,
       tabla_contenedores_filtrados: this.contenedores,
       tabla_contenedores:[],
+     
       // -- usuarios datos ---
       nuevo_usuario: "",
       nuevo_apellidos: "",
       nuevo_nombres: "",
       nuevo_correo: "",
+      nuevo_pass: "",
+      confirmar_pass: "",
+      check_admin: false,
       // -- empresas datos ---
       nueva_empresa: "",
       nuevo_booking: "",
@@ -298,11 +351,34 @@ export default {
     };
   },
   watch: {
+    radio_empresa(value){
+      axios.post(route("filtrar_contenedoresXempresas"), {
+        id_empresa: value
+      })
+      .then(response => {
+        // console.log(response.data);
+        this.tabla_contenedores_filtrados = response.data;
+      })
+      
+    },
     radio_user(){
       this.filtrarEmpresa();
     },
     asignar_tipo(){
       this.filtrarContenedores();
+    },
+    usuario_all(){
+       $('#tblUsuarios').DataTable().destroy();
+       this.TablaUsuarios();
+       console.log(this.usuario_all);
+    },
+    tabla_contenedores_filtrados(){
+      $('#tblContenedores').DataTable().destroy();
+      this.TablaContenedores();
+    },
+    tabla_datos_empresas(){
+      $('#tblEmpresas').DataTable().destroy();
+      this.TablaEmpresas();
     },
   },
  
@@ -315,6 +391,7 @@ export default {
   },
 
   methods: {
+    
     filtrarContenedores(){
       if (this.asignar_tipo == "G") {
         this.tabla_contenedores = this.contenedores.filter(contenedor => contenedor.tipo == "Generador");   
@@ -373,19 +450,37 @@ export default {
         apellidos: self.nuevo_apellidos,
         correo: self.nuevo_correo,
         usuario: self.nuevo_usuario,
+        pass: self.nuevo_pass,
+        confirmar_pass: self.confirmar_pass,
+        admin: self.check_admin ? 1 : 0,
       };
-      if (self.nuevo_nombres =="" || self.nuevo_apellidos =="" || self.nuevo_correo =="" || self.nuevo_usuario =="") {
+      if (
+          self.nuevo_nombres =="" 
+          || self.nuevo_apellidos =="" 
+          || self.nuevo_correo =="" 
+          || self.nuevo_usuario =="" 
+          || self.nuevo_pass ==""
+          || self.confirmar_pass ==""
+          ) {
         // self.mensaje_error("Debe llenar todos los campos");
         Swal.fire({
           icon: 'error',
           title: 'Oops...',
           text: 'Debe llenar todos los campos!',
         })
-        
+        return 0; 
       }
+      if (self.nuevo_pass != self.confirmar_pass) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Upps...',
+          text: 'Las contraseñas no coinciden!',
+        })
+        return 0; 
+      }
+      
       axios.post(route('nuevo_usuario'), data)
       .then(function(response){
-        console.log(response.data);
         if (response.data == 'usuario_existe') {
            Swal.fire({
               icon: 'error',
@@ -393,23 +488,24 @@ export default {
               text: 'El usuario ya existe!',
             })
         }
-        if (response.data > 0) {
-           Swal.fire({
-              title: 'Usuario Creado!',
+        if (response.data.length > 0) {
+          console.log(response.data); 
+          self.usuario_all = response.data;
+          Swal.fire({
+            title: 'Usuario Creado!',
               icon: 'success',
               confirmButtonColor: '#e58e26',
               confirmButtonText: 'OK!'
             })
         }
+        console.log(self.usuario_all);
        
       }).then(()=>{
-        $('#usuarioModal').modal('hide')
         self.nuevo_nombres = "";
         self.nuevo_apellidos = "";
         self.nuevo_correo = "";
         self.nuevo_usuario = "";
-        $("#tblUsuarios").DataTable().destroy();
-        self.TablaUsuarios();
+       
       });
     
     },
@@ -442,9 +538,9 @@ export default {
               text: 'El contenedor ya existe!',
             })
         }
-        if (response.data > 0) {
-           async function rellenar_resumen(){
-            await (self.tabla_contenedores_filtrados = response.data); 
+        if (response.data.length > 0) {
+         
+            self.tabla_contenedores_filtrados = response.data; 
             Swal.fire({
                 title: 'Contenedor Creado!',
                 icon: 'success',
@@ -452,17 +548,12 @@ export default {
                 confirmButtonText: 'OK!'
               })
            }
-           rellenar_resumen();          
-        }
-       
       }).then(()=>{
-       
         self.nuevo_contenedor = "";
         self.nuevo_tipo_contenedor = "";
         self.nuevo_booking_contenedor = "";
         self.nuevo_booking_temp_contenedor = "";
-        $("#tblContenedores").DataTable().destroy();
-        self.TablaContenedores();
+       
       });
     
     
@@ -494,7 +585,8 @@ export default {
               text: 'La empresa ya existe!',
             })
         }
-        if (response.data > 0) {
+        if (response.data.length > 0) {
+          self.tabla_datos_empresas = response.data;
            Swal.fire({
               title: 'Empresa Creada!',
               icon: 'success',
@@ -503,13 +595,12 @@ export default {
             })
         }
       }).then(()=>{
-        $('#empresasModal').modal('hide')
+        
         self.nuevo_nombres = "";
         self.nuevo_apellidos = "";
         self.nuevo_correo = "";
         self.nuevo_usuario = "";
-        $("#tblEmpresas").DataTable().destroy();
-        self.TablaEmpresas();
+        
       });
     },
     asignar_contenedor_guardar(){
@@ -550,8 +641,19 @@ export default {
             })
         }
       }).then(()=>{
-        $('#asignarModalLabel').modal('hide')
+        $('#asignarModal').modal('hide')
       
+      });
+    },
+    cambiarEstadoContenedor(id){
+      let self = this;
+      let data = {
+        id_contenedor: id,
+      };
+     
+      axios.post(route('cambiar_estado_contenedor'), data)
+      .then(function(response){
+        self.tabla_contenedores_filtrados = response.data; 
       });
     },
       
