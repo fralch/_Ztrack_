@@ -713,7 +713,7 @@ class PanelController extends Controller
         }
         if ($request->tipo == 'Madurador') {
             $id_g = Contenedor::select()->where([['nombre_contenedor', $request->nombre_contenedor]])->get()->last()['id'];
-            Registro_diario_reefers::create([
+            Registro_diario_madurador::create([
                 'contenedor_id' => $id_g,
                 'set_point' => $request->set_point,
                 'temp_supply_1' => $request->temp_supply_1,
