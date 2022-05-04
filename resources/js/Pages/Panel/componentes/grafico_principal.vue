@@ -98,6 +98,7 @@ export default {
           borderColor: "#FFC312",
           backgroundColor: "#FFC312",
           borderWidth: 4,
+          yAxisID: 'y1', //---- yAxisID: 'y1' asignando en el eje derecho del grafico
         },
         {
           label: "temp_supply_1",
@@ -105,6 +106,7 @@ export default {
           borderColor: "#C4E538",
           backgroundColor: "#C4E538",
           borderWidth: 4,
+          yAxisID: 'y', //---- yAxisID: 'y' asignando en el eje izquierdo del grafico
         },
         {
           label: "temp_supply_2",
@@ -112,6 +114,7 @@ export default {
           borderColor: "#FF1E51",
           backgroundColor: "#FF1E51",
           borderWidth: 4,
+          yAxisID: 'y',
         },
         {
           label: "return_air",
@@ -119,6 +122,7 @@ export default {
           borderColor: "#12CBC4",
           backgroundColor: "#12CBC4",
           borderWidth: 4,
+          yAxisID: 'y',
         },
 
         {
@@ -127,6 +131,7 @@ export default {
           borderColor: "#9980FA",
           backgroundColor: "#9980FA",
           borderWidth: 4,
+          yAxisID: 'y',
         },
 
         {
@@ -135,6 +140,7 @@ export default {
           borderColor: "#FDA7DF",
           backgroundColor: "#FDA7DF",
           borderWidth: 4,
+          yAxisID: 'y',
         },
 
         
@@ -144,6 +150,7 @@ export default {
           borderColor: "#CA1A51",
           backgroundColor: "#CA1A51",
           borderWidth: 4,
+          yAxisID: 'y',
         },
       ],
       my_Chart_principal_dataset_generador: [
@@ -295,8 +302,20 @@ export default {
           maintainAspectRatio: false,
           scales: {
             y: {
+              type: 'linear',
+              display: true,
+              position: 'left',
               max: 15, // eje y
               min: -15, // eje y
+            },
+            y1: { // *** CREANDO EJE Y DERECHO ***
+              type: 'linear',
+              display: true,
+              position: 'right',
+              // grid line settings 
+              grid: {
+                drawOnChartArea: false, // only want the grid lines for one axis to show up
+              },
             },
           },
         },
