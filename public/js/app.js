@@ -2807,6 +2807,56 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 var Chart_alarmas;
 var Chart_eventos;
@@ -2835,7 +2885,7 @@ var Chart_temp_supply;
       tiempo_proceso: 0,
       etileno_minimo: 0,
       tiempo_inyeccion: 0,
-      estado: '' // start, stop, reset
+      estado: "" // start, stop, reset
 
     };
   },
@@ -2953,10 +3003,10 @@ var Chart_temp_supply;
                 self = _this;
                 _context.next = 3;
                 return axios__WEBPACK_IMPORTED_MODULE_1___default().post(route("madurador.points.get"), {
-                  'id_contenedor': self.contenedor_id
+                  id_contenedor: self.contenedor_id
                 }).then(function (response) {
                   // console.log("file: izquierda.vue ~ line 155 ~ .then ~ response", response.data[0])
-                  // return 0; 
+                  // return 0;
                   self.temperatura = response.data[0].temperatura;
                   self.co2 = response.data[0].co2;
                   self.humedad = response.data[0].humedad;
@@ -2974,6 +3024,24 @@ var Chart_temp_supply;
           }
         }, _callee);
       }))();
+    },
+    SetPoint: function SetPoint() {
+      var self = this;
+      var data = new FormData();
+      data.append("id_contenedor", self.contenedor_id);
+      data.append("temperatura", self.temperatura);
+      data.append("co2", self.co2);
+      data.append("humedad", self.humedad);
+      data.append("etileno", self.etileno);
+      data.append("tiempo_proceso", self.tiempo_proceso);
+      data.append("etileno_minimo", self.etileno_minimo);
+      data.append("tiempo_inyeccion", self.tiempo_inyeccion);
+      data.append("estado", self.estado);
+      axios__WEBPACK_IMPORTED_MODULE_1___default().post(route("madurador.points.set"), data).then(function (response) {
+        console.log("file: izquierda.vue ~ line 155 ~ .then ~ response", response.data);
+      }).then(function () {
+        self.GetPointsMadurador();
+      });
     }
   }
 }); // 			<rptCanastaFotos ref="rptCanastaFotos" :agencia_id="agencia_id">
@@ -30855,9 +30923,25 @@ var render = function () {
               _c("p", { staticClass: "col-3" }, [_vm._v("TEMPERATURE")]),
               _vm._v(" "),
               _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.temperatura,
+                    expression: "temperatura",
+                  },
+                ],
                 staticClass: "form-control col-4",
                 attrs: { type: "number" },
                 domProps: { value: _vm.temperatura },
+                on: {
+                  input: function ($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.temperatura = $event.target.value
+                  },
+                },
               }),
               _vm._v(" "),
               _c(
@@ -30865,8 +30949,13 @@ var render = function () {
                 {
                   staticClass: "btn btn-primary col-4",
                   attrs: { type: "submit" },
+                  on: {
+                    click: function ($event) {
+                      return _vm.SetPoint()
+                    },
+                  },
                 },
-                [_vm._v("Enviar")]
+                [_vm._v("\n        Enviar\n      ")]
               ),
             ]),
             _vm._v(" "),
@@ -30876,9 +30965,25 @@ var render = function () {
               _c("p", { staticClass: "col-3" }, [_vm._v("CO2")]),
               _vm._v(" "),
               _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.co2,
+                    expression: "co2",
+                  },
+                ],
                 staticClass: "form-control col-4",
                 attrs: { type: "number" },
                 domProps: { value: _vm.co2 },
+                on: {
+                  input: function ($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.co2 = $event.target.value
+                  },
+                },
               }),
               _vm._v(" "),
               _c(
@@ -30886,8 +30991,13 @@ var render = function () {
                 {
                   staticClass: "btn btn-primary col-4",
                   attrs: { type: "submit" },
+                  on: {
+                    click: function ($event) {
+                      return _vm.SetPoint()
+                    },
+                  },
                 },
-                [_vm._v("Enviar")]
+                [_vm._v("\n        Enviar\n      ")]
               ),
             ]),
             _vm._v(" "),
@@ -30897,9 +31007,25 @@ var render = function () {
               _c("p", { staticClass: "col-3" }, [_vm._v("HUMIDITY")]),
               _vm._v(" "),
               _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.humedad,
+                    expression: "humedad",
+                  },
+                ],
                 staticClass: "form-control col-4",
                 attrs: { type: "number" },
                 domProps: { value: _vm.humedad },
+                on: {
+                  input: function ($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.humedad = $event.target.value
+                  },
+                },
               }),
               _vm._v(" "),
               _c(
@@ -30907,8 +31033,13 @@ var render = function () {
                 {
                   staticClass: "btn btn-primary col-4",
                   attrs: { type: "submit" },
+                  on: {
+                    click: function ($event) {
+                      return _vm.SetPoint()
+                    },
+                  },
                 },
-                [_vm._v("Enviar")]
+                [_vm._v("\n        Enviar\n      ")]
               ),
             ]),
             _vm._v(" "),
@@ -30918,9 +31049,25 @@ var render = function () {
               _c("p", { staticClass: "col-3" }, [_vm._v("ETHYLENE")]),
               _vm._v(" "),
               _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.etileno,
+                    expression: "etileno",
+                  },
+                ],
                 staticClass: "form-control col-4",
                 attrs: { type: "number" },
                 domProps: { value: _vm.etileno },
+                on: {
+                  input: function ($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.etileno = $event.target.value
+                  },
+                },
               }),
               _vm._v(" "),
               _c(
@@ -30928,8 +31075,13 @@ var render = function () {
                 {
                   staticClass: "btn btn-primary col-4",
                   attrs: { type: "submit" },
+                  on: {
+                    click: function ($event) {
+                      return _vm.SetPoint()
+                    },
+                  },
                 },
-                [_vm._v("Enviar")]
+                [_vm._v("\n        Enviar\n      ")]
               ),
             ]),
             _vm._v(" "),
@@ -30939,9 +31091,25 @@ var render = function () {
               _c("p", { staticClass: "col-3" }, [_vm._v("PROCESS TIME")]),
               _vm._v(" "),
               _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.tiempo_proceso,
+                    expression: "tiempo_proceso",
+                  },
+                ],
                 staticClass: "form-control col-4",
                 attrs: { type: "number" },
                 domProps: { value: _vm.tiempo_proceso },
+                on: {
+                  input: function ($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.tiempo_proceso = $event.target.value
+                  },
+                },
               }),
               _vm._v(" "),
               _c(
@@ -30949,8 +31117,13 @@ var render = function () {
                 {
                   staticClass: "btn btn-primary col-4",
                   attrs: { type: "submit" },
+                  on: {
+                    click: function ($event) {
+                      return _vm.SetPoint()
+                    },
+                  },
                 },
-                [_vm._v("Enviar")]
+                [_vm._v("\n        Enviar\n      ")]
               ),
             ]),
             _vm._v(" "),
@@ -30960,9 +31133,25 @@ var render = function () {
               _c("p", { staticClass: "col-3" }, [_vm._v("ETHYLENE MINIMUM")]),
               _vm._v(" "),
               _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.etileno_minimo,
+                    expression: "etileno_minimo",
+                  },
+                ],
                 staticClass: "form-control col-4",
                 attrs: { type: "number" },
                 domProps: { value: _vm.etileno_minimo },
+                on: {
+                  input: function ($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.etileno_minimo = $event.target.value
+                  },
+                },
               }),
               _vm._v(" "),
               _c(
@@ -30970,8 +31159,13 @@ var render = function () {
                 {
                   staticClass: "btn btn-primary col-4",
                   attrs: { type: "submit" },
+                  on: {
+                    click: function ($event) {
+                      return _vm.SetPoint()
+                    },
+                  },
                 },
-                [_vm._v("Enviar")]
+                [_vm._v("\n        Enviar\n      ")]
               ),
             ]),
             _vm._v(" "),
@@ -30981,9 +31175,25 @@ var render = function () {
               _c("p", { staticClass: "col-3" }, [_vm._v("INJECTION TIME")]),
               _vm._v(" "),
               _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.tiempo_inyeccion,
+                    expression: "tiempo_inyeccion",
+                  },
+                ],
                 staticClass: "form-control col-4",
                 attrs: { type: "number" },
                 domProps: { value: _vm.tiempo_inyeccion },
+                on: {
+                  input: function ($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.tiempo_inyeccion = $event.target.value
+                  },
+                },
               }),
               _vm._v(" "),
               _c(
@@ -30991,8 +31201,13 @@ var render = function () {
                 {
                   staticClass: "btn btn-primary col-4",
                   attrs: { type: "submit" },
+                  on: {
+                    click: function ($event) {
+                      return _vm.SetPoint()
+                    },
+                  },
                 },
-                [_vm._v("Enviar")]
+                [_vm._v("\n        Enviar\n      ")]
               ),
             ]),
             _vm._v(" "),
@@ -31006,8 +31221,13 @@ var render = function () {
                   class: _vm.estado == "Q" ? "btn-dark" : "btn-secondary",
                   staticStyle: { margin: "1em" },
                   attrs: { type: "submit" },
+                  on: {
+                    click: function ($event) {
+                      _vm.estado = "Q"
+                    },
+                  },
                 },
-                [_vm._v("START")]
+                [_vm._v("\n        START\n      ")]
               ),
               _vm._v(" "),
               _c(
@@ -31017,8 +31237,13 @@ var render = function () {
                   class: _vm.estado == "P" ? "btn-dark" : "btn-secondary",
                   staticStyle: { margin: "1em" },
                   attrs: { type: "submit" },
+                  on: {
+                    click: function ($event) {
+                      _vm.estado = "P"
+                    },
+                  },
                 },
-                [_vm._v("STOP")]
+                [_vm._v("\n        STOP\n      ")]
               ),
               _vm._v(" "),
               _c(
@@ -31028,8 +31253,13 @@ var render = function () {
                   class: _vm.estado == "R" ? "btn-dark" : "btn-secondary",
                   staticStyle: { margin: "1em" },
                   attrs: { type: "submit" },
+                  on: {
+                    click: function ($event) {
+                      _vm.estado = "R"
+                    },
+                  },
                 },
-                [_vm._v("RESET")]
+                [_vm._v("\n        RESET\n      ")]
               ),
             ]),
             _vm._v(" "),

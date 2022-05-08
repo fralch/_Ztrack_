@@ -40,7 +40,7 @@ class PanelController extends Controller
             $contenedores_encendidos_reefer = Contenedor::select()->where([['encendido', 1], ['tipo', 'Reefer']])->count();
             $contenedores_encendidos_gen = Contenedor::select()->where([['encendido', 1], ['tipo', 'Generador']])->count();
             $contenedores_encendidos_mad = Contenedor::select()->where([['encendido', 1], ['tipo', 'Madurador']])->count();
-          
+
             return Inertia::render('Panel/new_board', [
                 'usuario_logeado' => $usuario,
                 'empresa_logeado' => $empresaXusuario,
@@ -57,9 +57,9 @@ class PanelController extends Controller
             $contenedores_encendidos_reefer = Contenedor::select()->where([['encendido', 1], ['tipo', 'Reefer']])->get();
             $reefer_completo = [];
             foreach ($contenedores_encendidos_reefer as $contendor) {
-                $datos_r= $this->getDatosResumen($contendor,'reefer');
+                $datos_r = $this->getDatosResumen($contendor, 'reefer');
                 if ($datos_r) {
-                    $reefer_completo[]=$datos_r;
+                    $reefer_completo[] = $datos_r;
                 }
             }
             return $reefer_completo;
@@ -68,20 +68,20 @@ class PanelController extends Controller
             $contenedores_encendidos_gen = Contenedor::select()->where([['encendido', 1], ['tipo', 'Generador']])->get();
             $genset_completo = [];
             foreach ($contenedores_encendidos_gen as $contendor) {
-                $datos_g= $this->getDatosResumen($contendor,'genset');
+                $datos_g = $this->getDatosResumen($contendor, 'genset');
                 if ($datos_g) {
-                    $genset_completo[]=$datos_g;
+                    $genset_completo[] = $datos_g;
                 }
             }
             return $genset_completo;
         }
         if ($request->tipo == 'madurador') {
-             $contenedores_encendidos_mad = Contenedor::select()->where([['encendido', 1], ['tipo', 'Madurador']])->get();
+            $contenedores_encendidos_mad = Contenedor::select()->where([['encendido', 1], ['tipo', 'Madurador']])->get();
             $mad_completo = [];
             foreach ($contenedores_encendidos_mad as $contendor) {
-                $datos_m= $this->getDatosResumen($contendor,'madurador');
+                $datos_m = $this->getDatosResumen($contendor, 'madurador');
                 if ($datos_m) {
-                    $mad_completo[]=$datos_m;
+                    $mad_completo[] = $datos_m;
                 }
             }
             return $mad_completo;
@@ -98,7 +98,7 @@ class PanelController extends Controller
                 'booking' => $contenedor->booking,
                 'booking_temp' => $contenedor->booking_temp,
             ];
-           
+
             $datos = Registro_diario_generadores::select(
                 // 'registro_diario_generadores.id',
                 'registro_diario_generadores.contenedor_id',
@@ -128,7 +128,7 @@ class PanelController extends Controller
                 ->where('registro_diario_generadores.contenedor_id', $contenedor->id)
                 ->orderBy('registro_diario_generadores.id', 'desc')
                 ->first();
-                
+
             if ($datos != null) {
                 $datos_ = $datos->toArray(); // ** debes usar toArray para convertir la coleccion que bota elocuent a un array natural
                 $obj_merged = (object) array_merge($array_contenedor, $datos_); // uniendo los dos arrays
@@ -226,7 +226,7 @@ class PanelController extends Controller
                 'booking' => $contenedor->booking,
                 'booking_temp' => $contenedor->booking_temp,
             ];
-            
+
             $datos = Registro_diario_madurador::select(
                 'registro_diario_madurador.contenedor_id as id',
                 'registro_diario_madurador.set_point',
@@ -304,9 +304,8 @@ class PanelController extends Controller
                 return $obj_merged;
             }
         }
-            
     }
-   
+
 
     public function faker_datos()
     {
@@ -470,7 +469,7 @@ class PanelController extends Controller
             'ethylene' => 145.6,
             'stateProcess' =>  "Run",
             'stateInyection' => "Inyecting",
-            'timerOfProcess'=>12,
+            'timerOfProcess' => 12,
 
         ]);
     }
@@ -513,8 +512,8 @@ class PanelController extends Controller
         $tipo_contenedor = $request->tipo;
         $desde = $request->desde;
         // $hasta = $request->hasta;
-        $hasta = date("Y-m-d",strtotime($request->hasta."+ 1 days")); 
-        
+        $hasta = date("Y-m-d", strtotime($request->hasta . "+ 1 days"));
+
 
         if ($tipo_contenedor == 'genset') {
             return Registro_diario_generadores::from('registro_diario_generadores')
@@ -780,7 +779,7 @@ class PanelController extends Controller
                 'ethylene' => $request->ethylene,
                 'stateProcess' =>  $request->stateProcess,
                 'stateInyection' => $request->stateInyection,
-                'timerOfProcess'=> $request->timerOfProcess,
+                'timerOfProcess' => $request->timerOfProcess,
             ]);
             return "madurador guardado ;D";
         }
@@ -791,8 +790,8 @@ class PanelController extends Controller
         $contenedores = Madurador_points::where('contenedor_id', $request->id_contenedor)->get();
         if ($contenedores->count() > 0) {
             return $contenedores;
-        }else{
-          $new_m = Madurador_points::create([
+        } else {
+            $new_m = Madurador_points::create([
                 'contenedor_id' => $request->id_contenedor,
                 'temperatura' => 1,
                 'co2' => 1,
@@ -801,13 +800,27 @@ class PanelController extends Controller
                 'tiempo_proceso' => 1,
                 'etileno_minimo' => 1,
                 'tiempo_inyeccion' => 1,
-                'estado'=> 'Q',
+                'estado' => 'Q',
             ]);
             return [$new_m];
         }
     }
+    public function set_points_madurador(Request $request)
+    {
+        // return $request; 
+        //update_madurador_points
+        $up_m=Madurador_points::where('contenedor_id', $request->id_contenedor)
+            ->update([
+                'temperatura' => $request->temperatura,
+                'co2' => $request->co2,
+                'humedad' => $request->humedad,
+                'etileno' => $request->etileno,
+                'tiempo_proceso' => $request->tiempo_proceso,
+                'etileno_minimo' => $request->etileno_minimo,
+                'tiempo_inyeccion' => $request->tiempo_inyeccion,
+                'estado' => $request->estado
+            ]);
+        // return $request->id_contenedor;
+        return $up_m; 
+    }
 }
-
-
-
-

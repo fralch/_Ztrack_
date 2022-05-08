@@ -46,3 +46,4 @@ Route::get('/faker', [PanelController::class, 'faker_datos'])->name('paneles.fak
 
 /* POINTS MADURADOR BIDIRECCIONAL */
 Route::post('/madurador/points/get', [PanelController::class, 'get_points_madurador'])->name('madurador.points.get');
+Route::post('/madurador/points/set', [PanelController::class, 'set_points_madurador'])->name('madurador.points.set');
