@@ -55,6 +55,60 @@
       Eventos
       <canvas id="myChart_cargo"></canvas>
     </div>
+    <div
+      id="cargo-care"
+      class="col shadow-sm p-3 mb-5 bg-white rounded"
+      v-if="tipo == 'madurador'"
+    >
+      <div class="row">
+        <p class="col-3">TEMPERATURE</p>
+        <input type="number" class="form-control col-4" :value="temperatura"/>
+        <button type="submit" class="btn btn-primary col-4">Enviar</button>
+      </div>
+      <br>
+      <div class="row">
+        <p class="col-3">CO2</p>
+        <input type="number" class="form-control col-4" :value="co2"/>
+        <button type="submit" class="btn btn-primary col-4">Enviar</button>
+      </div>
+      <br>
+      <div class="row">
+        <p class="col-3">HUMIDITY</p>
+        <input type="number" class="form-control col-4" :value="humedad"/>
+        <button type="submit" class="btn btn-primary col-4">Enviar</button>
+      </div>
+      <br>
+      <div class="row">
+        <p class="col-3">ETHYLENE</p>
+        <input type="number" class="form-control col-4" :value="etileno"/>
+        <button type="submit" class="btn btn-primary col-4">Enviar</button>
+      </div>
+      <br>
+      <div class="row">
+        <p class="col-3">PROCESS TIME</p>
+        <input type="number" class="form-control col-4" :value="tiempo_proceso" />
+        <button type="submit" class="btn btn-primary col-4">Enviar</button>
+      </div>
+      <br>
+      <div class="row">
+        <p class="col-3">ETHYLENE MINIMUM</p>
+        <input type="number" class="form-control col-4" :value="etileno_minimo"/>
+        <button type="submit" class="btn btn-primary col-4">Enviar</button>
+      </div>
+      <br>
+      <div class="row">
+        <p class="col-3">INJECTION TIME</p>
+        <input type="number" class="form-control col-4" :value="tiempo_inyeccion" />
+        <button type="submit" class="btn btn-primary col-4">Enviar</button>
+      </div>
+      <br>
+      <div class="row">
+        <button type="submit" class="btn btn-sm col-3" :class="estado=='Q'?'btn-dark':'btn-secondary'" style="margin:1em;">START</button>
+        <button type="submit" class="btn btn-sm col-3" :class="estado=='P'?'btn-dark':'btn-secondary'" style="margin:1em;">STOP</button>
+        <button type="submit" class="btn btn-sm col-3" :class="estado=='R'?'btn-dark':'btn-secondary'" style="margin:1em;">RESET</button>
+      </div>
+      <br>
+    </div>
   </div>
 </template>
 <script>
@@ -78,17 +132,33 @@ export default {
       //  -------- chart eventos -------
       chart_eventos_labels: [],
       chart_eventos_dataset_data: [],
+
+      // --- points madurador ---
+      temperatura: 0, 
+      co2: 0,
+      humedad: 0,
+      etileno: 0,
+      tiempo_proceso: 0,
+      etileno_minimo: 0,
+      tiempo_inyeccion: 0,
+      estado: '',  // start, stop, reset
     };
   },
   watch: {
     contenedor_id(val, oldVal) {
       // console.log(val, oldVal);
-      this.setLabel();
+      // console.log(this.tipo);
+      if (this.tipo == "genset") {
+        this.setLabel();
+      }
+      if (this.tipo == "madurador" && val != null) {
+        this.GetPointsMadurador();
+      }
     },
   },
-  mounted() {
-  },
+  mounted() {},
   methods: {
+   
     Circular_iniciarGraficosAlarms() {
       let self = this;
       var ctx_alarms = document
@@ -160,7 +230,6 @@ export default {
             id: self.contenedor_id,
           })
           .then((response) => {
-
             if (response.data != 0 && self.chart_alarma_labels.length == 0) {
               self.chart_alarma_labels = [];
               self.chart_alarma_dataset_data = [];
@@ -195,6 +264,23 @@ export default {
             self.Circular_iniciarGraficosEventos();
           });
       }
+    },
+     async GetPointsMadurador(){
+       let self = this;
+      await axios
+        .post(route("madurador.points.get"), {'id_contenedor': self.contenedor_id})
+        .then((response) => {
+          // console.log("file: izquierda.vue ~ line 155 ~ .then ~ response", response.data[0])
+          // return 0; 
+          self.temperatura = response.data[0].temperatura;
+          self.co2 = response.data[0].co2;
+          self.humedad = response.data[0].humedad;
+          self.etileno = response.data[0].etileno;
+          self.tiempo_proceso = response.data[0].tiempo_proceso;
+          self.etileno_minimo = response.data[0].etileno_minimo;
+          self.tiempo_inyeccion = response.data[0].tiempo_inyeccion;
+          self.estado = response.data[0].estado;
+        });
     },
   },
 };

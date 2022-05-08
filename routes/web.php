@@ -43,3 +43,6 @@ Route::post('/asignarContenedor', [SettingController::class, 'asignarContenedor'
 Route::post('/asignarContenedor/filtar', [SettingController::class, 'filtrar_contenedoresXempresas'])->name('filtrar_contenedoresXempresas');
 
 Route::get('/faker', [PanelController::class, 'faker_datos'])->name('paneles.faker');
+
+/* POINTS MADURADOR BIDIRECCIONAL */
+Route::post('/madurador/points/get', [PanelController::class, 'get_points_madurador'])->name('madurador.points.get');

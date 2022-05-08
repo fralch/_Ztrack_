@@ -2684,8 +2684,70 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2764,13 +2826,30 @@ var Chart_temp_supply;
       chart_alarma_dataset_data: [],
       //  -------- chart eventos -------
       chart_eventos_labels: [],
-      chart_eventos_dataset_data: []
+      chart_eventos_dataset_data: [],
+      // --- points madurador ---
+      temperatura: 0,
+      co2: 0,
+      humedad: 0,
+      etileno: 0,
+      tiempo_proceso: 0,
+      etileno_minimo: 0,
+      tiempo_inyeccion: 0,
+      estado: '' // start, stop, reset
+
     };
   },
   watch: {
     contenedor_id: function contenedor_id(val, oldVal) {
       // console.log(val, oldVal);
-      this.setLabel();
+      // console.log(this.tipo);
+      if (this.tipo == "genset") {
+        this.setLabel();
+      }
+
+      if (this.tipo == "madurador" && val != null) {
+        this.GetPointsMadurador();
+      }
     }
   },
   mounted: function mounted() {},
@@ -2824,7 +2903,7 @@ var Chart_temp_supply;
       var self = this;
 
       if (self.tipo == "genset") {
-        axios__WEBPACK_IMPORTED_MODULE_0___default().post(route("contenedores.get_alarma_evento"), {
+        axios__WEBPACK_IMPORTED_MODULE_1___default().post(route("contenedores.get_alarma_evento"), {
           id: self.contenedor_id
         }).then(function (response) {
           if (response.data != 0 && self.chart_alarma_labels.length == 0) {
@@ -2861,6 +2940,40 @@ var Chart_temp_supply;
           self.Circular_iniciarGraficosEventos();
         });
       }
+    },
+    GetPointsMadurador: function GetPointsMadurador() {
+      var _this = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+        var self;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                self = _this;
+                _context.next = 3;
+                return axios__WEBPACK_IMPORTED_MODULE_1___default().post(route("madurador.points.get"), {
+                  'id_contenedor': self.contenedor_id
+                }).then(function (response) {
+                  // console.log("file: izquierda.vue ~ line 155 ~ .then ~ response", response.data[0])
+                  // return 0; 
+                  self.temperatura = response.data[0].temperatura;
+                  self.co2 = response.data[0].co2;
+                  self.humedad = response.data[0].humedad;
+                  self.etileno = response.data[0].etileno;
+                  self.tiempo_proceso = response.data[0].tiempo_proceso;
+                  self.etileno_minimo = response.data[0].etileno_minimo;
+                  self.tiempo_inyeccion = response.data[0].tiempo_inyeccion;
+                  self.estado = response.data[0].estado;
+                });
+
+              case 3:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
     }
   }
 }); // 			<rptCanastaFotos ref="rptCanastaFotos" :agencia_id="agencia_id">
@@ -30726,6 +30839,201 @@ var render = function () {
           [
             _vm._v("\n    Eventos\n    "),
             _c("canvas", { attrs: { id: "myChart_cargo" } }),
+          ]
+        )
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.tipo == "madurador"
+      ? _c(
+          "div",
+          {
+            staticClass: "col shadow-sm p-3 mb-5 bg-white rounded",
+            attrs: { id: "cargo-care" },
+          },
+          [
+            _c("div", { staticClass: "row" }, [
+              _c("p", { staticClass: "col-3" }, [_vm._v("TEMPERATURE")]),
+              _vm._v(" "),
+              _c("input", {
+                staticClass: "form-control col-4",
+                attrs: { type: "number" },
+                domProps: { value: _vm.temperatura },
+              }),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-primary col-4",
+                  attrs: { type: "submit" },
+                },
+                [_vm._v("Enviar")]
+              ),
+            ]),
+            _vm._v(" "),
+            _c("br"),
+            _vm._v(" "),
+            _c("div", { staticClass: "row" }, [
+              _c("p", { staticClass: "col-3" }, [_vm._v("CO2")]),
+              _vm._v(" "),
+              _c("input", {
+                staticClass: "form-control col-4",
+                attrs: { type: "number" },
+                domProps: { value: _vm.co2 },
+              }),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-primary col-4",
+                  attrs: { type: "submit" },
+                },
+                [_vm._v("Enviar")]
+              ),
+            ]),
+            _vm._v(" "),
+            _c("br"),
+            _vm._v(" "),
+            _c("div", { staticClass: "row" }, [
+              _c("p", { staticClass: "col-3" }, [_vm._v("HUMIDITY")]),
+              _vm._v(" "),
+              _c("input", {
+                staticClass: "form-control col-4",
+                attrs: { type: "number" },
+                domProps: { value: _vm.humedad },
+              }),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-primary col-4",
+                  attrs: { type: "submit" },
+                },
+                [_vm._v("Enviar")]
+              ),
+            ]),
+            _vm._v(" "),
+            _c("br"),
+            _vm._v(" "),
+            _c("div", { staticClass: "row" }, [
+              _c("p", { staticClass: "col-3" }, [_vm._v("ETHYLENE")]),
+              _vm._v(" "),
+              _c("input", {
+                staticClass: "form-control col-4",
+                attrs: { type: "number" },
+                domProps: { value: _vm.etileno },
+              }),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-primary col-4",
+                  attrs: { type: "submit" },
+                },
+                [_vm._v("Enviar")]
+              ),
+            ]),
+            _vm._v(" "),
+            _c("br"),
+            _vm._v(" "),
+            _c("div", { staticClass: "row" }, [
+              _c("p", { staticClass: "col-3" }, [_vm._v("PROCESS TIME")]),
+              _vm._v(" "),
+              _c("input", {
+                staticClass: "form-control col-4",
+                attrs: { type: "number" },
+                domProps: { value: _vm.tiempo_proceso },
+              }),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-primary col-4",
+                  attrs: { type: "submit" },
+                },
+                [_vm._v("Enviar")]
+              ),
+            ]),
+            _vm._v(" "),
+            _c("br"),
+            _vm._v(" "),
+            _c("div", { staticClass: "row" }, [
+              _c("p", { staticClass: "col-3" }, [_vm._v("ETHYLENE MINIMUM")]),
+              _vm._v(" "),
+              _c("input", {
+                staticClass: "form-control col-4",
+                attrs: { type: "number" },
+                domProps: { value: _vm.etileno_minimo },
+              }),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-primary col-4",
+                  attrs: { type: "submit" },
+                },
+                [_vm._v("Enviar")]
+              ),
+            ]),
+            _vm._v(" "),
+            _c("br"),
+            _vm._v(" "),
+            _c("div", { staticClass: "row" }, [
+              _c("p", { staticClass: "col-3" }, [_vm._v("INJECTION TIME")]),
+              _vm._v(" "),
+              _c("input", {
+                staticClass: "form-control col-4",
+                attrs: { type: "number" },
+                domProps: { value: _vm.tiempo_inyeccion },
+              }),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-primary col-4",
+                  attrs: { type: "submit" },
+                },
+                [_vm._v("Enviar")]
+              ),
+            ]),
+            _vm._v(" "),
+            _c("br"),
+            _vm._v(" "),
+            _c("div", { staticClass: "row" }, [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-sm col-3",
+                  class: _vm.estado == "Q" ? "btn-dark" : "btn-secondary",
+                  staticStyle: { margin: "1em" },
+                  attrs: { type: "submit" },
+                },
+                [_vm._v("START")]
+              ),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-sm col-3",
+                  class: _vm.estado == "P" ? "btn-dark" : "btn-secondary",
+                  staticStyle: { margin: "1em" },
+                  attrs: { type: "submit" },
+                },
+                [_vm._v("STOP")]
+              ),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-sm col-3",
+                  class: _vm.estado == "R" ? "btn-dark" : "btn-secondary",
+                  staticStyle: { margin: "1em" },
+                  attrs: { type: "submit" },
+                },
+                [_vm._v("RESET")]
+              ),
+            ]),
+            _vm._v(" "),
+            _c("br"),
           ]
         )
       : _vm._e(),
