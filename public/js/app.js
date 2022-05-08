@@ -3025,23 +3025,52 @@ var Chart_temp_supply;
         }, _callee);
       }))();
     },
-    SetPoint: function SetPoint() {
+    SetPoint: function SetPoint(botones) {
       var self = this;
-      var data = new FormData();
-      data.append("id_contenedor", self.contenedor_id);
-      data.append("temperatura", self.temperatura);
-      data.append("co2", self.co2);
-      data.append("humedad", self.humedad);
-      data.append("etileno", self.etileno);
-      data.append("tiempo_proceso", self.tiempo_proceso);
-      data.append("etileno_minimo", self.etileno_minimo);
-      data.append("tiempo_inyeccion", self.tiempo_inyeccion);
-      data.append("estado", self.estado);
-      axios__WEBPACK_IMPORTED_MODULE_1___default().post(route("madurador.points.set"), data).then(function (response) {
-        console.log("file: izquierda.vue ~ line 155 ~ .then ~ response", response.data);
-      }).then(function () {
-        self.GetPointsMadurador();
-      });
+
+      if (botones) {
+        var data = new FormData();
+        data.append("id_contenedor", self.contenedor_id);
+        data.append("temperatura", self.temperatura);
+        data.append("co2", self.co2);
+        data.append("humedad", self.humedad);
+        data.append("etileno", self.etileno);
+        data.append("tiempo_proceso", self.tiempo_proceso);
+        data.append("etileno_minimo", self.etileno_minimo);
+        data.append("tiempo_inyeccion", self.tiempo_inyeccion);
+        data.append("estado", botones);
+        axios__WEBPACK_IMPORTED_MODULE_1___default().post(route("madurador.points.set"), data).then(function (response) {
+          console.log("file: izquierda.vue ~ line 155 ~ .then ~ response", response.data);
+        }).then(function () {
+          self.GetPointsMadurador();
+        });
+      } else {
+        var _data = new FormData();
+
+        _data.append("id_contenedor", self.contenedor_id);
+
+        _data.append("temperatura", self.temperatura);
+
+        _data.append("co2", self.co2);
+
+        _data.append("humedad", self.humedad);
+
+        _data.append("etileno", self.etileno);
+
+        _data.append("tiempo_proceso", self.tiempo_proceso);
+
+        _data.append("etileno_minimo", self.etileno_minimo);
+
+        _data.append("tiempo_inyeccion", self.tiempo_inyeccion);
+
+        _data.append("estado", self.estado);
+
+        axios__WEBPACK_IMPORTED_MODULE_1___default().post(route("madurador.points.set"), _data).then(function (response) {
+          console.log("file: izquierda.vue ~ line 155 ~ .then ~ response", response.data);
+        }).then(function () {
+          self.GetPointsMadurador();
+        });
+      }
     }
   }
 }); // 			<rptCanastaFotos ref="rptCanastaFotos" :agencia_id="agencia_id">
@@ -31223,7 +31252,7 @@ var render = function () {
                   attrs: { type: "submit" },
                   on: {
                     click: function ($event) {
-                      _vm.estado = "Q"
+                      return _vm.SetPoint("Q")
                     },
                   },
                 },
@@ -31239,7 +31268,7 @@ var render = function () {
                   attrs: { type: "submit" },
                   on: {
                     click: function ($event) {
-                      _vm.estado = "P"
+                      return _vm.SetPoint("P")
                     },
                   },
                 },
@@ -31255,7 +31284,7 @@ var render = function () {
                   attrs: { type: "submit" },
                   on: {
                     click: function ($event) {
-                      _vm.estado = "R"
+                      return _vm.SetPoint("R")
                     },
                   },
                 },

@@ -134,7 +134,7 @@
           class="btn btn-sm col-3"
           :class="estado == 'Q' ? 'btn-dark' : 'btn-secondary'"
           style="margin: 1em"
-          @click="estado = 'Q'"
+          @click="SetPoint('Q')"
         >
           START
         </button>
@@ -143,7 +143,7 @@
           class="btn btn-sm col-3"
           :class="estado == 'P' ? 'btn-dark' : 'btn-secondary'"
           style="margin: 1em"
-          @click="estado = 'P'"
+          @click="SetPoint('P')"
         >
           STOP
         </button>
@@ -152,7 +152,7 @@
           class="btn btn-sm col-3"
           :class="estado == 'R' ? 'btn-dark' : 'btn-secondary'"
           style="margin: 1em"
-          @click="estado = 'R'"
+          @click="SetPoint('R')"
         >
           RESET
         </button>
@@ -333,20 +333,21 @@ export default {
           self.estado = response.data[0].estado;
         });
     },
-    SetPoint() {
+    SetPoint(botones) {
       let self = this;
-      let data = new FormData();
-      data.append("id_contenedor", self.contenedor_id);
-      data.append("temperatura", self.temperatura);
-      data.append("co2", self.co2);
-      data.append("humedad", self.humedad);
-      data.append("etileno", self.etileno);
-      data.append("tiempo_proceso", self.tiempo_proceso);
-      data.append("etileno_minimo", self.etileno_minimo);
-      data.append("tiempo_inyeccion", self.tiempo_inyeccion);
-      data.append("estado", self.estado);
+      if (botones) {
+        let data = new FormData();
+        data.append("id_contenedor", self.contenedor_id);
+        data.append("temperatura", self.temperatura);
+        data.append("co2", self.co2);
+        data.append("humedad", self.humedad);
+        data.append("etileno", self.etileno);
+        data.append("tiempo_proceso", self.tiempo_proceso);
+        data.append("etileno_minimo", self.etileno_minimo);
+        data.append("tiempo_inyeccion", self.tiempo_inyeccion);
+        data.append("estado", botones);
 
-      axios
+        axios
         .post(route("madurador.points.set"), data)
         .then((response) => {
           console.log(
@@ -357,6 +358,32 @@ export default {
         .then(() => {
           self.GetPointsMadurador();
         });
+      }else{
+        let data = new FormData();
+        data.append("id_contenedor", self.contenedor_id);
+        data.append("temperatura", self.temperatura);
+        data.append("co2", self.co2);
+        data.append("humedad", self.humedad);
+        data.append("etileno", self.etileno);
+        data.append("tiempo_proceso", self.tiempo_proceso);
+        data.append("etileno_minimo", self.etileno_minimo);
+        data.append("tiempo_inyeccion", self.tiempo_inyeccion);
+        data.append("estado", self.estado);
+
+        axios
+        .post(route("madurador.points.set"), data)
+        .then((response) => {
+          console.log(
+            "file: izquierda.vue ~ line 155 ~ .then ~ response",
+            response.data
+          );
+        })
+        .then(() => {
+          self.GetPointsMadurador();
+        });
+      }
+
+      
     },
   },
 };
