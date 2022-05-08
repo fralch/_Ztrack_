@@ -595,6 +595,45 @@ class PanelController extends Controller
             'evento' => $cantidad_evento,
         ];
     }
+    public function get_points_madurador(Request $request)
+    {
+        // return $request; 
+        $contenedores = Madurador_points::where('contenedor_id', $request->id_contenedor)->get();
+        if ($contenedores->count() > 0) {
+            return $contenedores;
+        } else {
+            $new_m = Madurador_points::create([
+                'contenedor_id' => $request->id_contenedor,
+                'temperatura' => 1,
+                'co2' => 1,
+                'humedad' => 1,
+                'etileno' => 1,
+                'tiempo_proceso' => 1,
+                'etileno_minimo' => 1,
+                'tiempo_inyeccion' => 1,
+                'estado' => 'Q',
+            ]);
+            return [$new_m];
+        }
+    }
+    public function set_points_madurador(Request $request)
+    {
+        // return $request; 
+        //update_madurador_points
+        $up_m = Madurador_points::where('contenedor_id', $request->id_contenedor)
+            ->update([
+                'temperatura' => $request->temperatura,
+                'co2' => $request->co2,
+                'humedad' => $request->humedad,
+                'etileno' => $request->etileno,
+                'tiempo_proceso' => $request->tiempo_proceso,
+                'etileno_minimo' => $request->etileno_minimo,
+                'tiempo_inyeccion' => $request->tiempo_inyeccion,
+                'estado' => $request->estado
+            ]);
+        // return $request->id_contenedor;
+        return $up_m;
+    }
     // -------------- APIS --------------
     public function api_contendedores(Request $request)
     {
@@ -784,43 +823,25 @@ class PanelController extends Controller
             return "madurador guardado ;D";
         }
     }
-    public function get_points_madurador(Request $request)
+    public function api_get_madurador_points(Request $request)
     {
         // return $request; 
-        $contenedores = Madurador_points::where('contenedor_id', $request->id_contenedor)->get();
-        if ($contenedores->count() > 0) {
-            return $contenedores;
-        } else {
-            $new_m = Madurador_points::create([
-                'contenedor_id' => $request->id_contenedor,
-                'temperatura' => 1,
-                'co2' => 1,
-                'humedad' => 1,
-                'etileno' => 1,
-                'tiempo_proceso' => 1,
-                'etileno_minimo' => 1,
-                'tiempo_inyeccion' => 1,
-                'estado' => 'Q',
-            ]);
-            return [$new_m];
-        }
-    }
-    public function set_points_madurador(Request $request)
-    {
-        // return $request; 
-        //update_madurador_points
-        $up_m=Madurador_points::where('contenedor_id', $request->id_contenedor)
-            ->update([
-                'temperatura' => $request->temperatura,
-                'co2' => $request->co2,
-                'humedad' => $request->humedad,
-                'etileno' => $request->etileno,
-                'tiempo_proceso' => $request->tiempo_proceso,
-                'etileno_minimo' => $request->etileno_minimo,
-                'tiempo_inyeccion' => $request->tiempo_inyeccion,
-                'estado' => $request->estado
-            ]);
-        // return $request->id_contenedor;
-        return $up_m; 
+        $id_m = Contenedor::select('id')->where([['nombre_contenedor', $request->nombre_contenedor]])->get()->last()['id'];
+        $madurador_point = Madurador_points::where('contenedor_id', $id_m)
+            ->get();
+        $madurador_point = $madurador_point->toArray();
+        $cadena_respuesta = 'K,' . '2,' .
+            $madurador_point[0]['temperatura'] . ',' .
+            $madurador_point[0]['co2'] . ',' .
+            $madurador_point[0]['humedad'] . ','.
+            $madurador_point[0]['etileno'] . ','.
+            $madurador_point[0]['tiempo_proceso'] . ','.
+            $madurador_point[0]['etileno_minimo'] . ','.
+            $madurador_point[0]['tiempo_inyeccion'] . ','.
+            '$'.$madurador_point[0]['estado']; 
+
+
+
+        return $cadena_respuesta;
     }
 }
