@@ -61,103 +61,78 @@
       v-if="tipo == 'madurador'"
     >
       <div class="row">
-        <p class="col-3">TEMPERATURE</p>
-        <input type="number" class="form-control col-4" v-model="temperatura" />
-        <button type="submit" class="btn btn-primary col-4" @click="SetPoint()">
-          Enviar
-        </button>
+        <p class="col-5">TEMPERATURE</p>
+        <input type="number" class="form-control col-6" v-model="temperatura" />
       </div>
       <br />
       <div class="row">
-        <p class="col-3">CO2</p>
-        <input type="number" class="form-control col-4" v-model="co2" />
-        <button type="submit" class="btn btn-primary col-4" @click="SetPoint()">
-          Enviar
-        </button>
+        <p class="col-5">CO2</p>
+        <input type="number" class="form-control col-6" v-model="co2" />
+        
       </div>
       <br />
       <div class="row">
-        <p class="col-3">HUMIDITY</p>
-        <input type="number" class="form-control col-4" v-model="humedad" />
-        <button type="submit" class="btn btn-primary col-4" @click="SetPoint()">
-          Enviar
-        </button>
+        <p class="col-5">HUMIDITY</p>
+        <input type="number" class="form-control col-6" v-model="humedad" />
+        
       </div>
       <br />
       <div class="row">
-        <p class="col-3">ETHYLENE</p>
-        <input type="number" class="form-control col-4" v-model="etileno" />
-        <button type="submit" class="btn btn-primary col-4" @click="SetPoint()">
-          Enviar
-        </button>
+        <p class="col-5">ETHYLENE</p>
+        <input type="number" class="form-control col-6" v-model="etileno" />
+        
       </div>
       <br />
       <div class="row">
-        <p class="col-3">PROCESS TIME</p>
+        <p class="col-5">PROCESS TIME</p>
         <input
           type="number"
-          class="form-control col-4"
+          class="form-control col-6"
           v-model="tiempo_proceso"
         />
-        <button type="submit" class="btn btn-primary col-4" @click="SetPoint()">
-          Enviar
-        </button>
+       
       </div>
       <br />
       <div class="row">
-        <p class="col-3">ETHYLENE MINIMUM</p>
+        <p class="col-5">ETHYLENE MINIMUM</p>
         <input
           type="number"
-          class="form-control col-4"
+          class="form-control col-6"
           v-model="etileno_minimo"
         />
-        <button type="submit" class="btn btn-primary col-4" @click="SetPoint()">
-          Enviar
-        </button>
+       
       </div>
       <br />
       <div class="row">
-        <p class="col-3">INJECTION TIME</p>
+        <p class="col-5">INJECTION TIME</p>
         <input
           type="number"
-          class="form-control col-4"
+          class="form-control col-6"
           v-model="tiempo_inyeccion"
         />
-        <button type="submit" class="btn btn-primary col-4" @click="SetPoint()">
-          Enviar
-        </button>
+       
       </div>
       <br />
       <div class="row">
-        <button
-          type="submit"
-          class="btn btn-sm col-3"
-          :class="estado == 'Q' ? 'btn-dark' : 'btn-secondary'"
-          style="margin: 1em"
-          @click="SetPoint('Q')"
-        >
-          START
-        </button>
-        <button
-          type="submit"
-          class="btn btn-sm col-3"
-          :class="estado == 'P' ? 'btn-dark' : 'btn-secondary'"
-          style="margin: 1em"
-          @click="SetPoint('P')"
-        >
-          STOP
-        </button>
-        <button
-          type="submit"
-          class="btn btn-sm col-3"
-          :class="estado == 'R' ? 'btn-dark' : 'btn-secondary'"
-          style="margin: 1em"
-          @click="SetPoint('R')"
-        >
-          RESET
-        </button>
+        <div class="col-4">
+          <input type="radio" id="inicio" value="Q" v-model="estado">
+          <label for="uno">START</label>
+        </div>
+        <br>
+        <div class="col-4">
+          <input type="radio" id="pausa" value="P" v-model="estado">
+          <label for="uno">STOP</label>
+        </div>
+        <br>
+        <div class="col-4">
+          <input type="radio" id="reinicio" value="R" v-model="estado">
+          <label for="uno">RESET</label>
+        </div>
       </div>
       <br />
+      <button type="submit" class="btn btn-secondary col-12" @click="SetPoint()">
+        GUARDAR DATOS
+      </button>
     </div>
   </div>
 </template>
@@ -336,7 +311,7 @@ export default {
           Swal.close();
         }); 
     },
-    SetPoint(botones) {
+    SetPoint() {
       let self = this;
       Swal.fire({
           title: 'Espere por favor',
@@ -344,32 +319,8 @@ export default {
           allowOutsideClick: false,
           showConfirmButton: false
         });
-      if (botones) {
-        
-        let data = new FormData();
-        data.append("id_contenedor", self.contenedor_id);
-        data.append("temperatura", self.temperatura);
-        data.append("co2", self.co2);
-        data.append("humedad", self.humedad);
-        data.append("etileno", self.etileno);
-        data.append("tiempo_proceso", self.tiempo_proceso);
-        data.append("etileno_minimo", self.etileno_minimo);
-        data.append("tiempo_inyeccion", self.tiempo_inyeccion);
-        data.append("estado", botones);
-
-       axios
-        .post(route("madurador.points.set"), data)
-        .then((response) => {
-          console.log(
-            "file: izquierda.vue ~ line 155 ~ .then ~ response",
-            response.data
-          );
-        })
-        .then(() => {
-          self.GetPointsMadurador();
-        }); 
-      }else{
-        let data = new FormData();
+      let data = new FormData();
+      
         data.append("id_contenedor", self.contenedor_id);
         data.append("temperatura", self.temperatura);
         data.append("co2", self.co2);
@@ -391,8 +342,6 @@ export default {
         .then(() => {
           self.GetPointsMadurador();
         }); 
-        
-      }
 
       
     },

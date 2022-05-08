@@ -204,6 +204,7 @@ export default {
         ).toUpperCase(),
         confirmButtonColor: "#3085d6",
         confirmButtonText: "OK!",
+        allowOutsideClick: false,
       }).then((result) => {
         if (result.isConfirmed) {
           let clicke = document.getElementById("select_gen");
