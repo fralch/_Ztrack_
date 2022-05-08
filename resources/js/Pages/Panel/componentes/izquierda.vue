@@ -316,6 +316,7 @@ export default {
     },
     async GetPointsMadurador() {
       let self = this;
+       
       await axios
         .post(route("madurador.points.get"), {
           id_contenedor: self.contenedor_id,
@@ -331,11 +332,18 @@ export default {
           self.etileno_minimo = response.data[0].etileno_minimo;
           self.tiempo_inyeccion = response.data[0].tiempo_inyeccion;
           self.estado = response.data[0].estado;
-        });
+        }); 
     },
-    SetPoint(botones) {
+    async SetPoint(botones) {
       let self = this;
+      Swal.fire({
+          title: 'Espere por favor',
+          html: '<i class="fa fa-spinner fa-spin" style="font-size:15px"></i>',
+          allowOutsideClick: false,
+          showConfirmButton: false
+        });
       if (botones) {
+        
         let data = new FormData();
         data.append("id_contenedor", self.contenedor_id);
         data.append("temperatura", self.temperatura);
@@ -347,7 +355,7 @@ export default {
         data.append("tiempo_inyeccion", self.tiempo_inyeccion);
         data.append("estado", botones);
 
-        axios
+      await axios
         .post(route("madurador.points.set"), data)
         .then((response) => {
           console.log(
@@ -357,6 +365,9 @@ export default {
         })
         .then(() => {
           self.GetPointsMadurador();
+        })
+        .then(() => {
+          Swal.close();
         });
       }else{
         let data = new FormData();
@@ -370,7 +381,7 @@ export default {
         data.append("tiempo_inyeccion", self.tiempo_inyeccion);
         data.append("estado", self.estado);
 
-        axios
+      await axios
         .post(route("madurador.points.set"), data)
         .then((response) => {
           console.log(
@@ -380,6 +391,9 @@ export default {
         })
         .then(() => {
           self.GetPointsMadurador();
+        })
+        .then(() => {
+          Swal.close();
         });
       }
 
