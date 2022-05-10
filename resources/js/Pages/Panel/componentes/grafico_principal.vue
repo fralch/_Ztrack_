@@ -305,8 +305,8 @@ export default {
               type: 'linear',
               display: true,
               position: 'left',
-              max: 15, // eje y
-              min: -15, // eje y
+              max: 200, // eje y
+              min: -40, // eje y
             },
             y1: { // *** CREANDO EJE Y DERECHO ***
               type: 'linear',
