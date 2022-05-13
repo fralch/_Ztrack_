@@ -105,7 +105,8 @@ export default {
       }).then((result) => {
         if (result.isConfirmed) {
           axios.post(route('cerrar.sesion')).then(response => {
-            this.$inertia.get(route('/'));
+            // this.$inertia.get(route('/'));
+            location.reload();
           });
         }
       })

@@ -153,6 +153,7 @@ export default {
           tipo: "genset",
         })
         .then((res) => {
+          // console.log("file: tabla_resumen_genset.vue ~ line 156 ~ .then ~ res", res.data)        
           self.contenedores_encendidos_gen = res.data;
         });
        

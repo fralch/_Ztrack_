@@ -25,6 +25,7 @@
                     id="select_gen"
                     class="col-3 btn btn-primary"
                     @click="tipo = 'genset'"
+                    :disabled="contenedores_encendidos_gen == 0"
                   >
                     <i class="bi bi-power"></i>
                     <b style="font-size: 1.2em">{{
@@ -37,6 +38,7 @@
                     id="select_reef"
                     class="col-3 btn btn-success"
                     @click="tipo = 'reefer'"
+                    :disabled="contenedores_encendidos_reefer == 0"
                   >
                     <i class="bi bi-power"></i>
                     <b style="font-size: 1.2em">{{
@@ -49,6 +51,7 @@
                     id="select_mad"
                     class="col-3 btn btn-danger"
                     @click="tipo = 'madurador'"
+                    :disabled="contenedores_encendidos_mad == 0"
                   >
                     <i class="bi bi-power"></i>
                     <b style="font-size: 1.2em">{{
