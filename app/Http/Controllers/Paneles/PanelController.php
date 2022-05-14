@@ -43,7 +43,7 @@ class PanelController extends Controller
                 $contenedores_encendidos_mad = Contenedor::select()->where([['encendido', 1], ['tipo', 'Madurador']])->count();
             } else {
                 $empresaXusuario = Empresa::where('usuario_id', $usuario[0]->id)->get();
-                $contenedores_todos = Contenedor::join('empresas_contenedores as ec', 'ec.contenedor_id', 'contenedores.id')->where('ec.empresa_id', $empresaXusuario[0]->id)->count();
+                $contenedores_todos = Contenedor::where('empresa_id', $empresaXusuario[0]->id)->count();
 
                 $contenedores_encendidos_reefer = Contenedor::where([['empresa_id', $empresaXusuario[0]->id], ['encendido', 1], ['tipo', 'Reefer']])->count();
                 $contenedores_encendidos_gen = Contenedor::where([['empresa_id', $empresaXusuario[0]->id], ['encendido', 1], ['tipo', 'Generador']])->count();
