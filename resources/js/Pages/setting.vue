@@ -827,6 +827,8 @@ export default {
             });
           }
           if (response.data > 0) {
+          console.log("file: setting.vue ~ line 830 ~ response.data", response.data)
+            
             Swal.fire({
               title: "Asignacion realizada!",
               icon: "success",

@@ -114,23 +114,21 @@ class SettingController extends Controller
     public function asignarContenedor(Request $request)
     {
         // return $request; 
-        $contenedor_existe = Empresa_contenedore::where('empresa_id',$request->asig_empresa)->where('contenedor_id',$request->asig_contenedor)->get();
+        $contenedor_existe = Contenedor::where('empresa_id',$request->asig_empresa)->where('id',$request->asig_contenedor)->get();
         if (count($contenedor_existe) > 0) {
             return 'asignacion_existe'; 
         }
-        $contenedor = Empresa_contenedore::create([
-            'empresa_id' => $request->asig_empresa,
-            'contenedor_id' => $request->asig_contenedor,
-        ]);
-        return $contenedor->id;
+        
+        $contenedor = Contenedor::where('id',$request->asig_contenedor)
+                        ->update(['empresa_id'=>$request->asig_empresa]);
+        return $contenedor;
     }
     public function filtrar_contenedoresXempresas(Request $request)
     {
         // return $request; 
         $contenedores_filt= Contenedor::from('contenedores as con')
                             ->select()
-                            ->join('empresas_contenedores as ec', 'ec.contenedor_id', 'con.id')
-                            ->where('ec.empresa_id',$request->id_empresa)
+                            ->where('empresa_id',$request->id_empresa)
                             ->get(); 
         return $contenedores_filt; 
     }
