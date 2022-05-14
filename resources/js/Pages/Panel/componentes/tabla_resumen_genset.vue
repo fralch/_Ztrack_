@@ -102,6 +102,7 @@ export default {
   components: {},
   props: {
      tipo: String,
+     empresa:Array,
   },
   data() {
     return {
@@ -153,9 +154,13 @@ export default {
           tipo: "genset",
         })
         .then((res) => {
-          // console.log("file: tabla_resumen_genset.vue ~ line 156 ~ .then ~ res", res.data)        
-          self.contenedores_encendidos_gen = res.data;
-        });
+          if (self.empresa.length > 0 ) {
+            self.contenedores_encendidos_gen = res.data.filter(contenedor => contenedor.empresa_id == self.empresa[0].id)
+          }else{
+            self.contenedores_encendidos_gen = res.data;
+          }
+        }); 
+      
        
     },
     

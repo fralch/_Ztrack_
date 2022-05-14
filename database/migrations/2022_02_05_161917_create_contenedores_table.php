@@ -22,6 +22,7 @@ class CreateContenedoresTable extends Migration
             $table->string('booking');
             $table->float('booking_temp');
             $table->timestamps();
+            $table->unsignedBigInteger('empresa_id');
         });
         DB::table("contenedores")
         ->insert([ 
@@ -31,6 +32,7 @@ class CreateContenedoresTable extends Migration
                 'encendido' => 1,
                 'booking' => '-',
                 'booking_temp' => 0,
+                'empresa_id' => 0,
             ],
             [
                 'nombre_contenedor' => 'ZGUU204907-2',
@@ -38,6 +40,7 @@ class CreateContenedoresTable extends Migration
                 'encendido' => 1,
                 'booking' => '-',
                 'booking_temp' => 0,
+                'empresa_id' => 0,
             ],
             [
                 'nombre_contenedor' => 'ZGUU204851-7',
@@ -45,6 +48,7 @@ class CreateContenedoresTable extends Migration
                 'encendido' => 1,
                 'booking' => '-',
                 'booking_temp' => 0,
+                'empresa_id' => 0,
             ],
             [
                 'nombre_contenedor' => 'ZGUU204905-1',
@@ -52,6 +56,7 @@ class CreateContenedoresTable extends Migration
                 'encendido' => 1,
                 'booking' => '-',
                 'booking_temp' => 0,
+                'empresa_id' => 0,
             ],
             [
                 'nombre_contenedor' => 'ZGUU204854-3',
@@ -59,6 +64,7 @@ class CreateContenedoresTable extends Migration
                 'encendido' => 1,
                 'booking' => '-',
                 'booking_temp' => 0,
+                'empresa_id' => 0,
             ],
             [
                 'nombre_contenedor' => 'ZGUU204904-6',
@@ -66,6 +72,7 @@ class CreateContenedoresTable extends Migration
                 'encendido' => 1,
                 'booking' => '-',
                 'booking_temp' => 0,
+                'empresa_id' => 0,
             ],
             [
                 'nombre_contenedor' => 'ZGUU204896-5',
@@ -73,6 +80,7 @@ class CreateContenedoresTable extends Migration
                 'encendido' => 1,
                 'booking' => '-',
                 'booking_temp' => 0,
+                'empresa_id' => 0,
             ],
             [
                 'nombre_contenedor' => 'ZGUU204906-7',
@@ -80,6 +88,7 @@ class CreateContenedoresTable extends Migration
                 'encendido' => 1,
                 'booking' => '-',
                 'booking_temp' => 0,
+                'empresa_id' => 0,
             ],
             [
                 'nombre_contenedor' => 'ZGUU205299-1',
@@ -87,6 +96,7 @@ class CreateContenedoresTable extends Migration
                 'encendido' => 1,
                 'booking' => '-',
                 'booking_temp' => 0,
+                'empresa_id' => 0,
             ],
             [
                 'nombre_contenedor' => 'ZGUU205301-0',
@@ -94,6 +104,7 @@ class CreateContenedoresTable extends Migration
                 'encendido' => 1,
                 'booking' => '-',
                 'booking_temp' => 0,
+                'empresa_id' => 0,
             ],
             [
                 'nombre_contenedor' => 'ZGUU204822-4',
@@ -101,6 +112,7 @@ class CreateContenedoresTable extends Migration
                 'encendido' => 1,
                 'booking' => '-',
                 'booking_temp' => 0,
+                'empresa_id' => 0,
             ],
             [
                 'nombre_contenedor' => 'ZGUU205304-6',
@@ -108,6 +120,7 @@ class CreateContenedoresTable extends Migration
                 'encendido' => 1,
                 'booking' => '-',
                 'booking_temp' => 0,
+                'empresa_id' => 0,
             ],
             [
                 'nombre_contenedor' => 'ZGUU204821-9',
@@ -115,6 +128,7 @@ class CreateContenedoresTable extends Migration
                 'encendido' => 1,
                 'booking' => '-',
                 'booking_temp' => 0,
+                'empresa_id' => 0,
             ],
             [
                 'nombre_contenedor' => 'ZGUU205347-3',
@@ -122,6 +136,7 @@ class CreateContenedoresTable extends Migration
                 'encendido' => 1,
                 'booking' => '-',
                 'booking_temp' => 0,
+                'empresa_id' => 0,
             ],
             [
                 'nombre_contenedor' => 'ZGUU205348-9',
@@ -129,6 +144,7 @@ class CreateContenedoresTable extends Migration
                 'encendido' => 1,
                 'booking' => '-',
                 'booking_temp' => 0,
+                'empresa_id' => 0,
             ],
             [
                 'nombre_contenedor' => 'ZGUU205303-0',
@@ -136,6 +152,7 @@ class CreateContenedoresTable extends Migration
                 'encendido' => 1,
                 'booking' => '-',
                 'booking_temp' => 0,
+                'empresa_id' => 0,
             ],
             [
                 'nombre_contenedor' => 'ZMUU205303-0',
@@ -143,6 +160,7 @@ class CreateContenedoresTable extends Migration
                 'encendido' => 1,
                 'booking' => '-',
                 'booking_temp' => 0,
+                'empresa_id' => 0,
             ],
           
         ]);

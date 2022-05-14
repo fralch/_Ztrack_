@@ -45,9 +45,9 @@ class PanelController extends Controller
                 $empresaXusuario = Empresa::where('usuario_id', $usuario[0]->id)->get();
                 $contenedores_todos = Contenedor::join('empresas_contenedores as ec', 'ec.contenedor_id', 'contenedores.id')->where('ec.empresa_id', $empresaXusuario[0]->id)->count();
 
-                $contenedores_encendidos_reefer = Contenedor::join('empresas_contenedores as ec', 'ec.contenedor_id', 'contenedores.id')->where([['ec.empresa_id', $empresaXusuario[0]->id], ['encendido', 1], ['tipo', 'Reefer']])->count();
-                $contenedores_encendidos_gen = Contenedor::join('empresas_contenedores as ec', 'ec.contenedor_id', 'contenedores.id')->where([['ec.empresa_id', $empresaXusuario[0]->id], ['encendido', 1], ['tipo', 'Generador']])->count();
-                $contenedores_encendidos_mad = Contenedor::join('empresas_contenedores as ec', 'ec.contenedor_id', 'contenedores.id')->where([['ec.empresa_id', $empresaXusuario[0]->id], ['encendido', 1], ['tipo', 'Madurador']])->count();
+                $contenedores_encendidos_reefer = Contenedor::where([['empresa_id', $empresaXusuario[0]->id], ['encendido', 1], ['tipo', 'Reefer']])->count();
+                $contenedores_encendidos_gen = Contenedor::where([['empresa_id', $empresaXusuario[0]->id], ['encendido', 1], ['tipo', 'Generador']])->count();
+                $contenedores_encendidos_mad = Contenedor::where([['empresa_id', $empresaXusuario[0]->id], ['encendido', 1], ['tipo', 'Madurador']])->count();
             }
 
 
@@ -63,80 +63,40 @@ class PanelController extends Controller
     }
     public function obtenerContendor(Request $request)
     {
-        
-
-        $admin = Usuario::where('usuario', session()->get('usuario'))->where('admin', 1)->get();
-        if (count($admin) != 0) {
-            if ($request->tipo == 'reefer') {
-                $contenedores_encendidos_reefer = Contenedor::select()->where([['encendido', 1], ['tipo', 'Reefer']])->get();
-                $reefer_completo = [];
-                foreach ($contenedores_encendidos_reefer as $contendor) {
-                    $datos_r = $this->getDatosResumen($contendor, 'reefer');
-                    if ($datos_r) {
-                        $reefer_completo[] = $datos_r;
-                    }
+        if ($request->tipo == 'reefer') {
+            $contenedores_encendidos_reefer = Contenedor::select()->where([['encendido', 1], ['tipo', 'Reefer']])->get();
+            $reefer_completo = [];
+            foreach ($contenedores_encendidos_reefer as $contendor) {
+                $datos_r = $this->getDatosResumen($contendor, 'reefer');
+                if ($datos_r) {
+                    $reefer_completo[] = $datos_r;
                 }
-                return $reefer_completo;
             }
-            if ($request->tipo == 'genset') {
-                $contenedores_encendidos_gen = Contenedor::select()->where([['encendido', 1], ['tipo', 'Generador']])->get();
-                $genset_completo = [];
-                foreach ($contenedores_encendidos_gen as $contendor) {
-                    $datos_g = $this->getDatosResumen($contendor, 'genset');
-                    if ($datos_g) {
-                        $genset_completo[] = $datos_g;
-                    }
+            return $reefer_completo;
+        }
+        if ($request->tipo == 'genset') {
+            $contenedores_encendidos_gen = Contenedor::select()
+                                            ->where([['encendido', 1], ['tipo', 'Generador']])
+                                            ->get();
+            $genset_completo = [];
+            foreach ($contenedores_encendidos_gen as $contendor) {
+                $datos_g = $this->getDatosResumen($contendor, 'genset');
+                if ($datos_g) {
+                    $genset_completo[] = $datos_g;
                 }
-                return $genset_completo;
             }
-            if ($request->tipo == 'madurador') {
-                $contenedores_encendidos_mad = Contenedor::select()->where([['encendido', 1], ['tipo', 'Madurador']])->get();
-                $mad_completo = [];
-                foreach ($contenedores_encendidos_mad as $contendor) {
-                    $datos_m = $this->getDatosResumen($contendor, 'madurador');
-                    if ($datos_m) {
-                        $mad_completo[] = $datos_m;
-                    }
+            return $genset_completo;
+        }
+        if ($request->tipo == 'madurador') {
+            $contenedores_encendidos_mad = Contenedor::select()->where([['encendido', 1], ['tipo', 'Madurador']])->get();
+            $mad_completo = [];
+            foreach ($contenedores_encendidos_mad as $contendor) {
+                $datos_m = $this->getDatosResumen($contendor, 'madurador');
+                if ($datos_m) {
+                    $mad_completo[] = $datos_m;
                 }
-                return $mad_completo;
             }
-        }else{
-            $usuario = Usuario::where('usuario', session()->get('usuario'))->get()->last();
-            $empresaXusuario = Empresa::select('empresas.id')->join('usuarios as u', 'empresas.usuario_id', 'u.id')->where('u.id', $usuario->id)->get();
-            if ($request->tipo == 'reefer') {
-                $contenedores_encendidos_reefer = Contenedor::join('empresas_contenedores as ec', 'ec.contenedor_id', 'contenedores.id')->where([['ec.empresa_id', $empresaXusuario[0]->id], ['encendido', 1], ['tipo', 'Reefer']])->get();
-                $reefer_completo = [];
-                foreach ($contenedores_encendidos_reefer as $contendor) {
-                    $datos_r = $this->getDatosResumen($contendor, 'reefer');
-                    if ($datos_r) {
-                        $reefer_completo[] = $datos_r;
-                    }
-                }
-                return $reefer_completo;
-            }
-            if ($request->tipo == 'genset') {
-                $contenedores_encendidos_gen = Contenedor::join('empresas_contenedores as ec', 'ec.contenedor_id', 'contenedores.id')->where([['ec.empresa_id', $empresaXusuario[0]->id], ['encendido', 1], ['tipo', 'Generador']])->get();
-                $genset_completo = [];
-                foreach ($contenedores_encendidos_gen as $contendor) {
-                    $datos_g = $this->getDatosResumen($contendor, 'genset');
-                    if ($datos_g) {
-                        $genset_completo[] = $datos_g;
-                    }
-                }
-                return $genset_completo;
-            }
-            if ($request->tipo == 'madurador') {
-                $contenedores_encendidos_mad = Contenedor::join('empresas_contenedores as ec', 'ec.contenedor_id', 'contenedores.id')->where([['ec.empresa_id', $empresaXusuario[0]->id], ['encendido', 1], ['tipo', 'Madurador']])->get();
-                $mad_completo = [];
-                foreach ($contenedores_encendidos_mad as $contendor) {
-                    $datos_m = $this->getDatosResumen($contendor, 'madurador');
-                    if ($datos_m) {
-                        $mad_completo[] = $datos_m;
-                    }
-                }
-                return $mad_completo;
-
-            }
+            return $mad_completo;
         }
         
     }
@@ -150,6 +110,7 @@ class PanelController extends Controller
                 'encendido' => $contenedor->encendido,
                 'booking' => $contenedor->booking,
                 'booking_temp' => $contenedor->booking_temp,
+                'empresa_id' => $contenedor->empresa_id,
             ];
 
             $datos = Registro_diario_generadores::select(
@@ -196,6 +157,7 @@ class PanelController extends Controller
                 'encendido' => $contenedor->encendido,
                 'booking' => $contenedor->booking,
                 'booking_temp' => $contenedor->booking_temp,
+                'empresa_id' => $contenedor->empresa_id,
             ];
             $datos = Registro_diario_reefers::select(
                 'registro_diario_reefers.contenedor_id as id',
@@ -278,6 +240,7 @@ class PanelController extends Controller
                 'encendido' => $contenedor->encendido,
                 'booking' => $contenedor->booking,
                 'booking_temp' => $contenedor->booking_temp,
+                'empresa_id' => $contenedor->empresa_id,
             ];
 
             $datos = Registro_diario_madurador::select(

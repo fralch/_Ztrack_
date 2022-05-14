@@ -77,18 +77,21 @@
               <tablaResumenGen
                 ref="tablaResumenGen"
                 :tipo="tipo"
+                :empresa = "empresa_logeado"
                 @select_contenedor="obteniendo_contendor"
               >
               </tablaResumenGen>
               <tablaResumenReef
                 ref="tablaResumenReef"
                 :tipo="tipo"
+                :empresa = "empresa_logeado"
                 @select_contenedor="obteniendo_contendor"
               >
               </tablaResumenReef>
               <tablaResumenMadurador
                 ref="tablaResumenMadurador"
                 :tipo="tipo"
+                :empresa = "empresa_logeado"
                 @select_contenedor="obteniendo_contendor"
               >
               </tablaResumenMadurador>
@@ -196,6 +199,7 @@ export default {
   },
 
   methods: {
+    
     bienvenida() {
       Swal.fire({
         title: "Bienvenido!",

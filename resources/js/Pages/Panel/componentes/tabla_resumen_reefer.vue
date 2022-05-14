@@ -168,6 +168,7 @@ export default {
   components: {},
   props: {
     tipo: String,
+     empresa:Array,
   },
   data() {
     return {
@@ -218,7 +219,11 @@ export default {
           tipo: "reefer",
         })
         .then((res) => {
-          self.contenedores_encendidos_reefer = res.data;
+          if (self.empresa.length > 0 ) {
+            self.contenedores_encendidos_reefer = res.data.filter(contenedor => contenedor.empresa_id == self.empresa[0].id)
+          }else{
+            self.contenedores_encendidos_reefer = res.data;
+          }
         }); 
        
     },
