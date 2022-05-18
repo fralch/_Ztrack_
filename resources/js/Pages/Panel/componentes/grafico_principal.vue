@@ -30,65 +30,34 @@ export default {
           borderColor: "#FFC312",
           backgroundColor: "#FFC312",
           borderWidth: 4,
+          yAxisID: 'y', //---- yAxisID: 'y1' asignando en el eje derecho del grafico
         },
+        
         {
-          label: "temp_supply_1",
-          data: [],
-          borderColor: "#C4E538",
-          backgroundColor: "#C4E538",
-          borderWidth: 4,
-        },
-        {
-          label: "temp_supply_2",
-          data: [],
-          borderColor: "#FF1E51",
-          backgroundColor: "#FF1E51",
-          borderWidth: 4,
-        },
-        {
-          label: "return_air",
+          label: "co2",
           data: [],
           borderColor: "#12CBC4",
           backgroundColor: "#12CBC4",
           borderWidth: 4,
+          yAxisID: 'y',
         },
 
         {
-          label: "ambient_air", //------------
+          label: "humidity", //------------
           data: [],
           borderColor: "#9980FA",
           backgroundColor: "#9980FA",
           borderWidth: 4,
+          yAxisID: 'y1',
         },
-
+        
         {
-          label: "relative_humidity", //-------------
-          data: [],
-          borderColor: "#FDA7DF",
-          backgroundColor: "#FDA7DF",
-          borderWidth: 4,
-        },
-
-        {
-          label: "co2_reading", //--------------
-          data: [],
-          borderColor: "#AAE51",
-          backgroundColor: "#AA1E51",
-          borderWidth: 4,
-        },
-        {
-          label: "o2_reading", //-----------------
-          data: [],
-          borderColor: "#BA1A51",
-          backgroundColor: "#BA1A51",
-          borderWidth: 4,
-        },
-        {
-          label: "evaporator_speed",
+          label: "AVL",
           data: [],
           borderColor: "#CA1A51",
           backgroundColor: "#CA1A51",
           borderWidth: 4,
+          yAxisID: 'y1',
         },
       ],
        my_Chart_principal_dataset_madurador: [
@@ -98,26 +67,11 @@ export default {
           borderColor: "#FFC312",
           backgroundColor: "#FFC312",
           borderWidth: 4,
-          yAxisID: 'y1', //---- yAxisID: 'y1' asignando en el eje derecho del grafico
+          yAxisID: 'y', //---- yAxisID: 'y1' asignando en el eje derecho del grafico
         },
+        
         {
-          label: "temp_supply_1",
-          data: [],
-          borderColor: "#C4E538",
-          backgroundColor: "#C4E538",
-          borderWidth: 4,
-          yAxisID: 'y', //---- yAxisID: 'y' asignando en el eje izquierdo del grafico
-        },
-        {
-          label: "temp_supply_2",
-          data: [],
-          borderColor: "#FF1E51",
-          backgroundColor: "#FF1E51",
-          borderWidth: 4,
-          yAxisID: 'y',
-        },
-        {
-          label: "return_air",
+          label: "co2",
           data: [],
           borderColor: "#12CBC4",
           backgroundColor: "#12CBC4",
@@ -126,12 +80,12 @@ export default {
         },
 
         {
-          label: "ambient_air", //------------
+          label: "humidity", //------------
           data: [],
           borderColor: "#9980FA",
           backgroundColor: "#9980FA",
           borderWidth: 4,
-          yAxisID: 'y',
+          yAxisID: 'y1',
         },
 
         {
@@ -140,33 +94,35 @@ export default {
           borderColor: "#FDA7DF",
           backgroundColor: "#FDA7DF",
           borderWidth: 4,
-          yAxisID: 'y',
+          yAxisID: 'y1',
         },
 
         
         {
-          label: "timerOfProcess",
+          label: "AVL",
           data: [],
           borderColor: "#CA1A51",
           backgroundColor: "#CA1A51",
           borderWidth: 4,
-          yAxisID: 'y',
+          yAxisID: 'y1',
         },
       ],
       my_Chart_principal_dataset_generador: [
+        {
+          label: "set_point",
+          data: [],
+          borderColor: "#3498db",
+          backgroundColor: "#3498db",
+          borderWidth: 4,
+           yAxisID: 'y',
+        },
         {
           label: "battery_voltage",
           data: [],
           borderColor: "#db0404",
           backgroundColor: "#db0404",
           borderWidth: 4,
-        },
-        {
-          label: "water_temp",
-          data: [],
-          borderColor: "#3498db",
-          backgroundColor: "#3498db",
-          borderWidth: 4,
+           yAxisID: 'y',
         },
         {
           label: "running_frequency",
@@ -174,6 +130,7 @@ export default {
           borderColor: "#9b59b6",
           backgroundColor: "#9b59b6",
           borderWidth: 4,
+           yAxisID: 'y',
         },
         {
           label: "fuel_level",
@@ -181,6 +138,7 @@ export default {
           borderColor: "#e67e22",
           backgroundColor: "#e67e22",
           borderWidth: 4,
+           yAxisID: 'y1',
         },
         {
           label: "voltage_measure",
@@ -188,35 +146,18 @@ export default {
           borderColor: "#1abc9c",
           backgroundColor: "#1abc9c",
           borderWidth: 4,
+           yAxisID: 'y1',
         },
-        {
-          label: "rotor_current",
-          data: [],
-          borderColor: "#2c3e50",
-          backgroundColor: "#2c3e50",
-          borderWidth: 4,
-        },
-        {
-          label: "fiel_current",
-          data: [],
-          borderColor: "#f39c12",
-          backgroundColor: "#f39c12",
-          borderWidth: 4,
-        },
+        
         {
           label: "rpm",
           data: [],
           borderColor: "#f39c12",
           backgroundColor: "#f39c12",
           borderWidth: 4,
+           yAxisID: 'y1',
         },
-        {
-          label: "horometro",
-          data: [],
-          borderColor: "#f39c12",
-          backgroundColor: "#f39c12",
-          borderWidth: 4,
-        },
+       
       ],
       my_Chart_principal_labels: [],
       my_Chart_principal_dataSetable: [],
@@ -305,13 +246,15 @@ export default {
               type: 'linear',
               display: true,
               position: 'left',
-              max: 200, // eje y
-              min: -40, // eje y
+              max: 40, // eje y
+              min: 0, // eje y
             },
             y1: { // *** CREANDO EJE Y DERECHO ***
               type: 'linear',
               display: true,
               position: 'right',
+              max: 350, // eje y
+              min: 0, // eje y
               // grid line settings 
               grid: {
                 drawOnChartArea: false, // only want the grid lines for one axis to show up
@@ -486,8 +429,7 @@ export default {
           self.my_Chart_principal_dataset_madurador[2].data = [];
           self.my_Chart_principal_dataset_madurador[3].data = [];
           self.my_Chart_principal_dataset_madurador[4].data = [];
-          self.my_Chart_principal_dataset_madurador[5].data = [];
-          self.my_Chart_principal_dataset_madurador[6].data = [];
+
           
 
           let datos_madurador =
@@ -499,23 +441,16 @@ export default {
               datos_m.set_point
             );
             self.my_Chart_principal_dataset_madurador[1].data.push(
-              datos_m.temp_supply_1
+              datos_m.co2_reading
             );
             self.my_Chart_principal_dataset_madurador[2].data.push(
-              datos_m.temp_supply_2
+              datos_m.relative_humidity
             );
             self.my_Chart_principal_dataset_madurador[3].data.push(
-              datos_m.return_air
-            );
-            self.my_Chart_principal_dataset_madurador[4].data.push(
-              datos_m.ambient_air
-            );
-            self.my_Chart_principal_dataset_madurador[5].data.push(
               datos_m.ethylene
             );
-           
-            self.my_Chart_principal_dataset_madurador[6].data.push(
-              datos_m.timerOfProcess
+            self.my_Chart_principal_dataset_madurador[4].data.push(
+              datos_m.avl
             );
           });
         }
@@ -524,11 +459,6 @@ export default {
           self.my_Chart_principal_dataset_reefer[1].data = [];
           self.my_Chart_principal_dataset_reefer[2].data = [];
           self.my_Chart_principal_dataset_reefer[3].data = [];
-          self.my_Chart_principal_dataset_reefer[4].data = [];
-          self.my_Chart_principal_dataset_reefer[5].data = [];
-          self.my_Chart_principal_dataset_reefer[6].data = [];
-          self.my_Chart_principal_dataset_reefer[7].data = [];
-          self.my_Chart_principal_dataset_reefer[8].data = [];
 
           let datos_reefer =
             self.datos_tabla_reefer.length != 0
@@ -539,29 +469,15 @@ export default {
               datos_r.set_point
             );
             self.my_Chart_principal_dataset_reefer[1].data.push(
-              datos_r.temp_supply_1
-            );
-            self.my_Chart_principal_dataset_reefer[2].data.push(
-              datos_r.temp_supply_2
-            );
-            self.my_Chart_principal_dataset_reefer[3].data.push(
-              datos_r.return_air
-            );
-            self.my_Chart_principal_dataset_reefer[4].data.push(
-              datos_r.ambient_air
-            );
-            self.my_Chart_principal_dataset_reefer[5].data.push(
-              datos_r.relative_humidity
-            );
-            self.my_Chart_principal_dataset_reefer[6].data.push(
               datos_r.co2_reading
             );
-            self.my_Chart_principal_dataset_reefer[7].data.push(
-              datos_r.o2_reading
+            self.my_Chart_principal_dataset_reefer[2].data.push(
+              datos_r.relative_humidity
             );
-            self.my_Chart_principal_dataset_reefer[8].data.push(
-              datos_r.evaporator_speed
+            self.my_Chart_principal_dataset_reefer[3].data.push(
+              datos_r.avl
             );
+            
           });
         }
         if (self.tipo == "genset") {
@@ -571,9 +487,7 @@ export default {
           self.my_Chart_principal_dataset_generador[3].data = [];
           self.my_Chart_principal_dataset_generador[4].data = [];
           self.my_Chart_principal_dataset_generador[5].data = [];
-          self.my_Chart_principal_dataset_generador[6].data = [];
-          self.my_Chart_principal_dataset_generador[7].data = [];
-          self.my_Chart_principal_dataset_generador[8].data = [];
+
 
           let datos_genset =
             self.datos_tabla_generador.length != 0
@@ -581,10 +495,10 @@ export default {
               : [];
           datos_genset.map(function (datos_g, index) {
             self.my_Chart_principal_dataset_generador[0].data.push(
-              datos_g.battery_voltage
+              datos_g.set_point
             );
             self.my_Chart_principal_dataset_generador[1].data.push(
-              datos_g.water_temp
+              datos_g.battery_voltage
             );
             self.my_Chart_principal_dataset_generador[2].data.push(
               datos_g.running_frequency
@@ -596,15 +510,9 @@ export default {
               datos_g.voltage_measure
             );
             self.my_Chart_principal_dataset_generador[5].data.push(
-              datos_g.rotor_current
+              datos_g.rpm
             );
-            self.my_Chart_principal_dataset_generador[6].data.push(
-              datos_g.fiel_current
-            );
-            self.my_Chart_principal_dataset_generador[7].data.push(datos_g.rpm);
-            self.my_Chart_principal_dataset_generador[8].data.push(
-              datos_g.horometro
-            );
+           
             // -----------------
           });
         }
