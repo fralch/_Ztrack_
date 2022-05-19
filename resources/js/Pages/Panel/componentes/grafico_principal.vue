@@ -245,6 +245,10 @@ export default {
             y: {
               type: 'linear',
               display: true,
+              title: {
+                display: true,
+                text: 'Centigrados C°'
+              },
               position: 'left',
               max: 40, // eje y
               min: 0, // eje y
@@ -252,6 +256,10 @@ export default {
             y1: { // *** CREANDO EJE Y DERECHO ***
               type: 'linear',
               display: true,
+              title: {
+                display: true,
+                text: 'Value'
+              },
               position: 'right',
               max: 350, // eje y
               min: 0, // eje y
