@@ -247,7 +247,7 @@ export default {
               display: true,
               title: {
                 display: true,
-                text: 'Valores del 0 al 350  - Ethylene, AVL, Humidity'
+                // text: 'Valores del 0 al 350  - Ethylene, AVL, Humidity'
               },
               position: 'left',
               max: 350, // eje y
@@ -258,7 +258,7 @@ export default {
               display: true,
               title: {
                 display: true,
-                text: 'Valores del 0 al 40 - Setpoint°, Co2'
+                // text: 'Valores del 0 al 40 - Setpoint°, Co2'
               },
               position: 'right',
               max: 50, // eje y
