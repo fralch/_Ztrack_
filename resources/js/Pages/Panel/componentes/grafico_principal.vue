@@ -439,7 +439,7 @@ export default {
           self.my_Chart_principal_dataset_madurador[4].data = [];
 
           
-
+ 
           let datos_madurador =
             self.datos_tabla_madurador.length != 0
               ? self.datos_tabla_madurador.reverse()
