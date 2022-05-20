@@ -30,7 +30,7 @@ export default {
           borderColor: "#FFC312",
           backgroundColor: "#FFC312",
           borderWidth: 4,
-          yAxisID: 'y', //---- yAxisID: 'y1' asignando en el eje derecho del grafico
+          yAxisID: 'y1', //---- yAxisID: 'y1' asignando en el eje derecho del grafico
         },
         
         {
@@ -39,7 +39,7 @@ export default {
           borderColor: "#12CBC4",
           backgroundColor: "#12CBC4",
           borderWidth: 4,
-          yAxisID: 'y',
+          yAxisID: 'y1',
         },
 
         {
@@ -48,7 +48,7 @@ export default {
           borderColor: "#9980FA",
           backgroundColor: "#9980FA",
           borderWidth: 4,
-          yAxisID: 'y1',
+          yAxisID: 'y',
         },
         
         {
@@ -57,7 +57,7 @@ export default {
           borderColor: "#CA1A51",
           backgroundColor: "#CA1A51",
           borderWidth: 4,
-          yAxisID: 'y1',
+          yAxisID: 'y',
         },
       ],
        my_Chart_principal_dataset_madurador: [
@@ -67,7 +67,7 @@ export default {
           borderColor: "#FFC312",
           backgroundColor: "#FFC312",
           borderWidth: 4,
-          yAxisID: 'y', //---- yAxisID: 'y1' asignando en el eje derecho del grafico
+          yAxisID: 'y1', //---- yAxisID: 'y1' asignando en el eje derecho del grafico
         },
         
         {
@@ -76,7 +76,7 @@ export default {
           borderColor: "#12CBC4",
           backgroundColor: "#12CBC4",
           borderWidth: 4,
-          yAxisID: 'y',
+          yAxisID: 'y1',
         },
 
         {
@@ -85,7 +85,7 @@ export default {
           borderColor: "#9980FA",
           backgroundColor: "#9980FA",
           borderWidth: 4,
-          yAxisID: 'y1',
+          yAxisID: 'y',
         },
 
         {
@@ -94,7 +94,7 @@ export default {
           borderColor: "#FDA7DF",
           backgroundColor: "#FDA7DF",
           borderWidth: 4,
-          yAxisID: 'y1',
+          yAxisID: 'y',
         },
 
         
@@ -104,7 +104,7 @@ export default {
           borderColor: "#CA1A51",
           backgroundColor: "#CA1A51",
           borderWidth: 4,
-          yAxisID: 'y1',
+          yAxisID: 'y',
         },
       ],
       my_Chart_principal_dataset_generador: [
@@ -114,7 +114,7 @@ export default {
           borderColor: "#3498db",
           backgroundColor: "#3498db",
           borderWidth: 4,
-           yAxisID: 'y',
+           yAxisID: 'y1',
         },
         {
           label: "battery_voltage",
@@ -122,7 +122,7 @@ export default {
           borderColor: "#db0404",
           backgroundColor: "#db0404",
           borderWidth: 4,
-           yAxisID: 'y',
+           yAxisID: 'y1',
         },
         {
           label: "running_frequency",
@@ -130,7 +130,7 @@ export default {
           borderColor: "#9b59b6",
           backgroundColor: "#9b59b6",
           borderWidth: 4,
-           yAxisID: 'y',
+           yAxisID: 'y1',
         },
         {
           label: "fuel_level",
@@ -138,7 +138,7 @@ export default {
           borderColor: "#e67e22",
           backgroundColor: "#e67e22",
           borderWidth: 4,
-           yAxisID: 'y1',
+           yAxisID: 'y',
         },
         {
           label: "voltage_measure",
@@ -146,7 +146,7 @@ export default {
           borderColor: "#1abc9c",
           backgroundColor: "#1abc9c",
           borderWidth: 4,
-           yAxisID: 'y1',
+           yAxisID: 'y',
         },
         
         {
@@ -155,7 +155,7 @@ export default {
           borderColor: "#f39c12",
           backgroundColor: "#f39c12",
           borderWidth: 4,
-           yAxisID: 'y1',
+           yAxisID: 'y',
         },
        
       ],
@@ -247,10 +247,10 @@ export default {
               display: true,
               title: {
                 display: true,
-                text: 'Valores del 0 al 40 - Setpoint°, Co2'
+                text: 'Valores del 0 al 350  - Ethylene, AVL, Humidity'
               },
               position: 'left',
-              max: 40, // eje y
+              max: 350, // eje y
               min: 0, // eje y
             },
             y1: { // *** CREANDO EJE Y DERECHO ***
@@ -258,10 +258,10 @@ export default {
               display: true,
               title: {
                 display: true,
-                text: 'Valores del 0 al 350  - Ethylene, AVL, Humidity'
+                text: 'Valores del 0 al 40 - Setpoint°, Co2'
               },
               position: 'right',
-              max: 350, // eje y
+              max: 50, // eje y
               min: 0, // eje y
               // grid line settings 
               grid: {

@@ -49,7 +49,7 @@
       <table class="table display nowrap" id="tblDetalleContenedores_reefers">
         <thead>
           <tr class="bg-info" style="color: white !important">
-            <th scope="col">N°</th>
+            <th scope="col">FECHA</th>
             <th scope="col" class="text-center">Set_point</th>
             <th scope="col" class="text-center">Temp_supply_1</th>
             <th scope="col" class="text-center">Temp_supply_2</th>
@@ -115,7 +115,7 @@
         <tbody>
           <tr v-for="(reefer, index) in datos_tabla_reefer" :key="index">
             <!-- <td>{{index+1}}</td> -->
-            <td class="text-center">{{ reefer.id }}</td>
+            <td class="text-center">{{ formatoFecha(reefer.created_at) }}</td>
             <td class="text-center">{{ reefer.set_point }}C°</td>
             <td class="text-center">{{ reefer.temp_supply_1 }}</td>
             <td class="text-center">{{ reefer.temp_supply_2 }}</td>
@@ -300,6 +300,28 @@ export default {
             .then(() => {
               Swal.close();
             });
+    },
+    formatoFecha(fecha){
+       let date = new Date(fecha);
+            let day = date.getDate()+ 0;
+            let month = date.getMonth() + 1;
+            let year = date.getFullYear();
+            let hours = date.getHours();
+            let minutes = date.getMinutes();
+            let seconds = date.getSeconds();
+            if (minutes < 10) {
+              minutes = "0" + minutes;
+            }
+
+            if (seconds < 10) {
+              seconds = "0" + seconds;
+            }
+
+            if (month < 10) {
+              return `${day}-0${month}-${year} ${hours}:${minutes}:${seconds}`; 
+            } else {
+              return `${day}-${month}-${year}  ${hours}:${minutes}:${seconds}`; 
+            }
     },
   },
 };

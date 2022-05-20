@@ -54,7 +54,7 @@
       >
         <thead>
           <tr class="bg-info" style="color: white !important">
-            <th scope="col">N°</th>
+            <th scope="col">FECHA</th>
             <th scope="col" width="50px" class="text-center">
               Battery_voltage
             </th>
@@ -93,7 +93,7 @@
             class="tr_resumen_gen"
           >
             <!-- <td>{{index+1}}</td> -->
-            <td class="text-center">{{ generador.id }}</td>
+            <td class="text-center">{{ formatoFecha(generador.created_at) }}</td>
             <td class="text-center">{{ generador.battery_voltage }}</td>
             <td class="text-center">{{ generador.water_temp }}</td>
             <td class="text-center">{{ generador.running_frequency }}</td>
@@ -242,6 +242,28 @@ export default {
         .then(() => {
           Swal.close();
         });
+    },
+    formatoFecha(fecha){
+       let date = new Date(fecha);
+            let day = date.getDate()+ 0;
+            let month = date.getMonth() + 1;
+            let year = date.getFullYear();
+            let hours = date.getHours();
+            let minutes = date.getMinutes();
+            let seconds = date.getSeconds();
+            if (minutes < 10) {
+              minutes = "0" + minutes;
+            }
+
+            if (seconds < 10) {
+              seconds = "0" + seconds;
+            }
+
+            if (month < 10) {
+              return `${day}-0${month}-${year} ${hours}:${minutes}:${seconds}`; 
+            } else {
+              return `${day}-${month}-${year}  ${hours}:${minutes}:${seconds}`; 
+            }
     },
     
   },

@@ -49,7 +49,7 @@
       <table class="table display nowrap" id="tblDetalleContenedores_madurador">
         <thead>
           <tr class="bg-info" style="color: white !important">
-            <th scope="col">N°</th>
+            <th scope="col">Fecha</th>
 
             <th scope="col" class="text-center">Ethylene</th>
             <th scope="col" class="text-center">StateProcess</th>
@@ -122,7 +122,7 @@
         <tbody>
           <tr v-for="(madurador, index) in datos_tabla_madurador" :key="index">
             <!-- <td>{{index+1}}</td> -->
-            <td class="text-center">{{ madurador.id }}</td>
+            <td class="text-center">{{ formatoFecha(madurador.created_at) }}</td>
 
             <td class="text-center">{{ madurador.ethylene }}</td>
             <td class="text-center">{{ madurador.stateProcess }}</td>
@@ -315,6 +315,28 @@ export default {
         .then(() => {
           Swal.close();
         });
+    },
+    formatoFecha(fecha){
+       let date = new Date(fecha);
+            let day = date.getDate()+ 0;
+            let month = date.getMonth() + 1;
+            let year = date.getFullYear();
+            let hours = date.getHours();
+            let minutes = date.getMinutes();
+            let seconds = date.getSeconds();
+            if (minutes < 10) {
+              minutes = "0" + minutes;
+            }
+
+            if (seconds < 10) {
+              seconds = "0" + seconds;
+            }
+
+            if (month < 10) {
+              return `${day}-0${month}-${year} ${hours}:${minutes}:${seconds}`; 
+            } else {
+              return `${day}-${month}-${year}  ${hours}:${minutes}:${seconds}`; 
+            }
     },
   },
 };
