@@ -62,7 +62,7 @@ export default {
       ],
        my_Chart_principal_dataset_madurador: [
         {
-          label: "set_point",
+          label: "set_point C°",
           data: [],
           borderColor: "#FFC312",
           backgroundColor: "#FFC312",
@@ -71,7 +71,7 @@ export default {
         },
         
         {
-          label: "co2",
+          label: "co2 - %",
           data: [],
           borderColor: "#12CBC4",
           backgroundColor: "#12CBC4",
@@ -80,7 +80,7 @@ export default {
         },
 
         {
-          label: "humidity", //------------
+          label: "humidity - %", //------------
           data: [],
           borderColor: "#9980FA",
           backgroundColor: "#9980FA",
@@ -89,7 +89,7 @@ export default {
         },
 
         {
-          label: "ethylene", //-------------
+          label: "ethylene - ppm", //-------------
           data: [],
           borderColor: "#FDA7DF",
           backgroundColor: "#FDA7DF",
@@ -99,7 +99,7 @@ export default {
 
         
         {
-          label: "AVL",
+          label: "AVL - mch",
           data: [],
           borderColor: "#CA1A51",
           backgroundColor: "#CA1A51",
@@ -247,7 +247,7 @@ export default {
               display: true,
               title: {
                 display: true,
-                text: 'Centigrados C°'
+                text: 'Valores del 0 al 40 - Setpoint°, Co2'
               },
               position: 'left',
               max: 40, // eje y
@@ -258,7 +258,7 @@ export default {
               display: true,
               title: {
                 display: true,
-                text: 'Value'
+                text: 'Valores del 0 al 350  - Ethylene, AVL, Humidity'
               },
               position: 'right',
               max: 350, // eje y
@@ -283,7 +283,7 @@ export default {
               : [];
           datos_m.map(function (datos_m, index) {
             let date = new Date(datos_m.created_at);
-            let day = date.getDate()+ 1;
+            let day = date.getDate()+ 0;
             let month = date.getMonth() + 1;
             let year = date.getFullYear();
             let hours = date.getHours();
