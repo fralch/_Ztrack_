@@ -9,7 +9,8 @@
             <div id="lado_izquierdo" style="margin: 10px 0 0 -5px">
               <ladoIzquierdo ref="ladoIzquierdo" 
                 :contenedor_id="contenedor_selecionado_id"
-                :tipo="tipo">
+                :tipo="tipo"
+                :admin_madurador="usuario_admin_mad">
               </ladoIzquierdo>
             </div>
             <div id="lado_derecho" style="">
@@ -180,6 +181,7 @@ export default {
       get_ubicacion_r: null,
       get_ubicacion_m: null,
       ubicacion_final: null,
+      usuario_admin_mad: this.usuario_logeado[0].admin_madurador == 1 ? true : false,
     };
   },
   watch: {

@@ -62,25 +62,42 @@
     >
       <div class="row">
         <p class="col-5">TEMPERATURE</p>
-        <input type="number" class="form-control col-6" v-model="temperatura" />
+        <input 
+          type="number" 
+          class="form-control col-6" 
+          v-model="temperatura" 
+          :disabled="admin_madurador!=true" 
+        />
       </div>
       <br />
       <div class="row">
         <p class="col-5">CO2</p>
-        <input type="number" class="form-control col-6" v-model="co2" />
-        
+        <input 
+          type="number" 
+          class="form-control col-6" 
+          v-model="co2" 
+          :disabled="admin_madurador!=true" 
+        />
       </div>
       <br />
       <div class="row">
         <p class="col-5">HUMIDITY</p>
-        <input type="number" class="form-control col-6" v-model="humedad" />
-        
+        <input 
+          type="number" 
+          class="form-control col-6" 
+          v-model="humedad" 
+          :disabled="admin_madurador!=true" 
+        />
       </div>
       <br />
       <div class="row">
         <p class="col-5">ETHYLENE</p>
-        <input type="number" class="form-control col-6" v-model="etileno" />
-        
+        <input 
+          type="number" 
+          class="form-control col-6" 
+          v-model="etileno" 
+          :disabled="admin_madurador!=true" 
+        />
       </div>
       <br />
       <div class="row">
@@ -89,8 +106,8 @@
           type="number"
           class="form-control col-6"
           v-model="tiempo_proceso"
+          :disabled="admin_madurador!=true" 
         />
-       
       </div>
       <br />
       <div class="row">
@@ -99,8 +116,8 @@
           type="number"
           class="form-control col-6"
           v-model="etileno_minimo"
+          :disabled="admin_madurador!=true" 
         />
-       
       </div>
       <br />
       <div class="row">
@@ -109,28 +126,33 @@
           type="number"
           class="form-control col-6"
           v-model="tiempo_inyeccion"
+          :disabled="admin_madurador!=true" 
         />
-       
       </div>
       <br />
       <div class="row">
         <div class="col-4">
-          <input type="radio" id="inicio" value="Q" v-model="estado">
+          <input type="radio" id="inicio" value="Q" v-model="estado" :disabled="admin_madurador!=true"  />
           <label for="uno">START</label>
         </div>
-        <br>
+        <br />
         <div class="col-4">
-          <input type="radio" id="pausa" value="P" v-model="estado">
+          <input type="radio" id="pausa" value="P" v-model="estado" :disabled="admin_madurador!=true" />
           <label for="uno">STOP</label>
         </div>
-        <br>
+        <br />
         <div class="col-4">
-          <input type="radio" id="reinicio" value="R" v-model="estado">
+          <input type="radio" id="reinicio" value="R" v-model="estado" :disabled="admin_madurador!=true" />
           <label for="uno">RESET</label>
         </div>
       </div>
       <br />
-      <button type="submit" class="btn btn-secondary col-12" @click="SetPoint()">
+      <button
+        type="submit"
+        class="btn btn-secondary col-12"
+        @click="SetPoint()"
+        :disabled="admin_madurador!=true" 
+      >
         GUARDAR DATOS
       </button>
     </div>
@@ -148,6 +170,7 @@ export default {
   props: {
     contenedor_id: Number,
     tipo: String,
+    admin_madurador: Boolean,
   },
   data() {
     return {
@@ -291,7 +314,7 @@ export default {
     },
     async GetPointsMadurador() {
       let self = this;
-       
+
       await axios
         .post(route("madurador.points.get"), {
           id_contenedor: self.contenedor_id,
@@ -307,31 +330,32 @@ export default {
           self.etileno_minimo = response.data[0].etileno_minimo;
           self.tiempo_inyeccion = response.data[0].tiempo_inyeccion;
           self.estado = response.data[0].estado;
-        }).then(() => {
+        })
+        .then(() => {
           Swal.close();
-        }); 
+        });
     },
     SetPoint() {
       let self = this;
       Swal.fire({
-          title: 'Espere por favor',
-          html: '<i class="fa fa-spinner fa-spin" style="font-size:15px"></i>',
-          allowOutsideClick: false,
-          showConfirmButton: false
-        });
+        title: "Espere por favor",
+        html: '<i class="fa fa-spinner fa-spin" style="font-size:15px"></i>',
+        allowOutsideClick: false,
+        showConfirmButton: false,
+      });
       let data = new FormData();
-      
-        data.append("id_contenedor", self.contenedor_id);
-        data.append("temperatura", self.temperatura);
-        data.append("co2", self.co2);
-        data.append("humedad", self.humedad);
-        data.append("etileno", self.etileno);
-        data.append("tiempo_proceso", self.tiempo_proceso);
-        data.append("etileno_minimo", self.etileno_minimo);
-        data.append("tiempo_inyeccion", self.tiempo_inyeccion);
-        data.append("estado", self.estado);
 
-       axios
+      data.append("id_contenedor", self.contenedor_id);
+      data.append("temperatura", self.temperatura);
+      data.append("co2", self.co2);
+      data.append("humedad", self.humedad);
+      data.append("etileno", self.etileno);
+      data.append("tiempo_proceso", self.tiempo_proceso);
+      data.append("etileno_minimo", self.etileno_minimo);
+      data.append("tiempo_inyeccion", self.tiempo_inyeccion);
+      data.append("estado", self.estado);
+
+      axios
         .post(route("madurador.points.set"), data)
         .then((response) => {
           console.log(
@@ -341,9 +365,7 @@ export default {
         })
         .then(() => {
           self.GetPointsMadurador();
-        }); 
-
-      
+        });
     },
   },
 };
