@@ -124,7 +124,6 @@
                   <thead>
                     <tr>
                       <th scope="col" width="50px">N°</th>
-                      <th scope="col" width="50px">Ver</th>
                       <th scope="col" width="150px">Usuario</th>
                       <th scope="col">Apellidos</th>
                       <th scope="col">Nombres</th>
@@ -138,13 +137,7 @@
                   <tbody>
                     <tr v-for="(usuario, index) in usuario_all" :key="index">
                       <td class="text-center">{{ index + 1 }}</td>
-                      <td class="text-center">
-                        <input
-                          type="radio"
-                          :value="usuario.id"
-                          v-model="radio_user"
-                        />
-                      </td>
+                    
                       <td>{{ usuario.usuario.toUpperCase() }}</td>
                       <td>{{ usuario.apellidos }}</td>
                       <td>{{ usuario.nombres }}</td>
@@ -630,6 +623,7 @@ export default {
   },
   watch: {
     radio_empresa(value) {
+      console.log(value);
       axios
         .post(route("filtrar_contenedoresXempresas"), {
           id_empresa: value,
@@ -986,7 +980,18 @@ export default {
       axios
         .post(route("asignar_usuario_empresa"), data)
         .then(function (response) {
-          console.log(response.data);
+          // console.log(response.data);
+          if (response.data.length > 0) {
+            Swal.fire({
+              title: "Asignacion realizada!",
+              icon: "success",
+              confirmButtonColor: "#e58e26",
+              confirmButtonText: "OK!",
+            });
+          }
+        })
+        .then(() => {
+          $("#asignarUsuarioModal").modal("hide");
         });
     },
   },

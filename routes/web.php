@@ -43,6 +43,7 @@ Route::post('/asignarContenedor', [SettingController::class, 'asignarContenedor'
 Route::post('/asignarContenedor', [SettingController::class, 'asignarContenedor'])->name('asignar_contenedor');
 Route::post('/empresa/obtener_usuario', [SettingController::class, 'obtener_usuario_empresa'])->name('obtener_usuario_empresa');
 Route::post('/empresa/asignar_usuario', [SettingController::class, 'asignar_usuario_empresa'])->name('asignar_usuario_empresa');
+Route::post('/empresa/filtrar_contenedor', [SettingController::class, 'filtrar_contenedoresXempresas'])->name('filtrar_contenedoresXempresas');
 
 Route::get('/faker', [PanelController::class, 'faker_datos'])->name('paneles.faker');
 

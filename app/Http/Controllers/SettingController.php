@@ -33,23 +33,7 @@ class SettingController extends Controller
         if (count($usuario) != 0) {
             $usuario_todos= Usuario::all();
            $contenedores =  Contenedor::all(); 
-            // $empresas = Empresa::from('empresas as emp')
-            //                 ->select(
-            //                     'emp.id',
-            //                     'emp.nombre_empresa',
-            //                     'emp.descripcion_booking',
-            //                     'emp.temp_contratada',
-            //                     'emp.created_at',
-            //                     'us.usuario',
-            //                     'us.apellidos',
-            //                     'us.nombres',
-            //                     'us.activo',
-            //                     'us.admin',
-            //                     'us.correo',
-            //                 )
-            //                 ->leftjoin('usuario_empresa', 'usuario_empresa.empresa_id', 'emp.id')
-            //                 ->leftjoin('usuarios as us', 'us.id', 'usuario_empresa.usuario_id')
-            //                 ->get();
+          
             $empresas = Empresa::from('empresas as emp')
                             ->select(
                                 'emp.id',
@@ -59,6 +43,7 @@ class SettingController extends Controller
                                 'emp.created_at',
                             )
                             ->get();
+                            
             return Inertia::render('setting', [
                 'usuario_logeado' => $usuario,
                 'empresas' => $empresas,

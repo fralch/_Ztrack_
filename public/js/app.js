@@ -5845,13 +5845,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -5906,6 +5899,7 @@ __webpack_require__.r(__webpack_exports__);
     radio_empresa: function radio_empresa(value) {
       var _this = this;
 
+      console.log(value);
       axios.post(route("filtrar_contenedoresXempresas"), {
         id_empresa: value
       }).then(function (response) {
@@ -6234,7 +6228,17 @@ __webpack_require__.r(__webpack_exports__);
         }
       });
       axios.post(route("asignar_usuario_empresa"), data).then(function (response) {
-        console.log(response.data);
+        // console.log(response.data);
+        if (response.data.length > 0) {
+          Swal.fire({
+            title: "Asignacion realizada!",
+            icon: "success",
+            confirmButtonColor: "#e58e26",
+            confirmButtonText: "OK!"
+          });
+        }
+      }).then(function () {
+        $("#asignarUsuarioModal").modal("hide");
       });
     }
   }
@@ -36390,12 +36394,6 @@ var render = function () {
                                 _vm._v(" "),
                                 _c(
                                   "th",
-                                  { attrs: { scope: "col", width: "50px" } },
-                                  [_vm._v("Ver")]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "th",
                                   { attrs: { scope: "col", width: "150px" } },
                                   [_vm._v("Usuario")]
                                 ),
@@ -36440,32 +36438,6 @@ var render = function () {
                                   return _c("tr", { key: index }, [
                                     _c("td", { staticClass: "text-center" }, [
                                       _vm._v(_vm._s(index + 1)),
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("td", { staticClass: "text-center" }, [
-                                      _c("input", {
-                                        directives: [
-                                          {
-                                            name: "model",
-                                            rawName: "v-model",
-                                            value: _vm.radio_user,
-                                            expression: "radio_user",
-                                          },
-                                        ],
-                                        attrs: { type: "radio" },
-                                        domProps: {
-                                          value: usuario.id,
-                                          checked: _vm._q(
-                                            _vm.radio_user,
-                                            usuario.id
-                                          ),
-                                        },
-                                        on: {
-                                          change: function ($event) {
-                                            _vm.radio_user = usuario.id
-                                          },
-                                        },
-                                      }),
                                     ]),
                                     _vm._v(" "),
                                     _c("td", [

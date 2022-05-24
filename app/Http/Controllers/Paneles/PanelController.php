@@ -12,6 +12,7 @@ use App\Models\Registro_diario_generadores;
 use App\Models\Registro_diario_reefers;
 use App\Models\Registro_diario_madurador;
 use App\Models\Madurador_points;
+use App\Models\Usuario_Empresa;
 
 use App\Http\Controllers\Controller;
 use Inertia\Inertia;
@@ -26,6 +27,7 @@ class PanelController extends Controller
     {
         date_default_timezone_set("America/Lima");
         $usuario = [];
+        
         if (session()->get('usuario') == null) {
             return redirect('/');
         }
@@ -33,16 +35,17 @@ class PanelController extends Controller
         if ($actualizado == 1) {
             $usuario = Usuario::where('usuario', session()->get('usuario'))->get();
         }
+        // return $usuario[0]->id; 
         if (count($usuario) != 0) {
             $admin = Usuario::where('usuario', session()->get('usuario'))->where('admin', 1)->get();
             if (count($admin) != 0) {
-                $empresaXusuario = Empresa::where('usuario_id', $usuario[0]->id)->get();
+                $empresaXusuario = Empresa::join('usuario_empresa as ue', 'ue.empresa_id', 'empresas.id')->where('ue.usuario_id', $usuario[0]->id)->get();
                 $contenedores_todos = Contenedor::count();
                 $contenedores_encendidos_reefer = Contenedor::select()->where([['encendido', 1], ['tipo', 'Reefer']])->count();
                 $contenedores_encendidos_gen = Contenedor::select()->where([['encendido', 1], ['tipo', 'Generador']])->count();
                 $contenedores_encendidos_mad = Contenedor::select()->where([['encendido', 1], ['tipo', 'Madurador']])->count();
             } else {
-                $empresaXusuario = Empresa::where('usuario_id', $usuario[0]->id)->get();
+                $empresaXusuario = Empresa::join('usuario_empresa as ue', 'ue.empresa_id', 'empresas.id')->where('ue.usuario_id', $usuario[0]->id)->get();
                 $contenedores_todos = Contenedor::where('empresa_id', $empresaXusuario[0]->id)->count();
 
                 $contenedores_encendidos_reefer = Contenedor::where([['empresa_id', $empresaXusuario[0]->id], ['encendido', 1], ['tipo', 'Reefer']])->count();
