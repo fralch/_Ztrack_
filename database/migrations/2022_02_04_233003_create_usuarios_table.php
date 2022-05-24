@@ -21,6 +21,7 @@ class CreateUsuariosTable extends Migration
             $table->string('nombres');
             $table->integer('activo');
             $table->boolean('admin');
+            $table->boolean('admin_madurador');
             $table->string('correo');
             $table->string('contraseña');
             $table->dateTime('ultimo_acceso')->nullable();
@@ -33,6 +34,7 @@ class CreateUsuariosTable extends Migration
             'nombres' => 'admin',
             'activo' => 1,
             'admin' => 1,
+            'admin_madurador' => 1,
             'correo' => 'ingfralch@gmail.com',
             'contraseña' => '123456',
             'ultimo_acceso' => null,],
@@ -41,6 +43,7 @@ class CreateUsuariosTable extends Migration
             'nombres' => 'VE Logistic ',
             'activo' => 1,
             'admin' => 0,
+            'admin_madurador' => 0,
             'correo' => 've_logistic@gmail.com',
             'contraseña' => '123456',
             'ultimo_acceso' => null,],
@@ -49,6 +52,7 @@ class CreateUsuariosTable extends Migration
             'nombres' => 'Dp World',
             'activo' => 1,
             'admin' => 0,
+            'admin_madurador' => 0,
             'correo' => 'dp_world@gmail.com',
             'contraseña' => '123456',
             'ultimo_acceso' => null,],
