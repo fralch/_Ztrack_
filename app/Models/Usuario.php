@@ -16,6 +16,7 @@ class Usuario extends Model
         'nombres',
         'activo',
         'admin',
+        'admin_madurador',
         'correo',
         'contraseña',
     ];

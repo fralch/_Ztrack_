@@ -94,9 +94,17 @@
                           id="admin"
                           name="admin"
                           v-model="check_admin"
-                          style="margin-top: 40px"
+                          style="margin-top: 15px"
                         />
                         <label for="admin"> Admin</label><br />
+                        <input
+                          type="checkbox"
+                          id="admin_mad"
+                          name="admin_mad"
+                          v-model="check_admin_mad"
+                          style="margin-top: 0px"
+                        />
+                        <label for="admin"> Admin_mad</label><br />
                       </div>
                       <div class="col">
                         <button
@@ -122,6 +130,7 @@
                       <th scope="col">Nombres</th>
                       <th scope="col" width="50px">Activo</th>
                       <th scope="col">Administrador</th>
+                      <th scope="col">Admin_Mad</th>
                       <th scope="col">Correo</th>
                       <th scope="col">Ultimo_acceso</th>
                     </tr>
@@ -144,6 +153,9 @@
                       </td>
                       <td class="text-center">
                         {{ usuario.admin == 1 ? "SI" : "NO" }}
+                      </td>
+                      <td class="text-center">
+                        {{ usuario.admin_madurador == 1 ? "SI" : "NO" }}
                       </td>
                       <td>{{ usuario.correo }}</td>
                       <td>{{ usuario.ultimo_acceso }}</td>
@@ -515,6 +527,7 @@ export default {
       nuevo_pass: "",
       confirmar_pass: "",
       check_admin: false,
+      check_admin_mad: false,
       // -- empresas datos ---
       nueva_empresa: "",
       nuevo_booking: "",
@@ -641,6 +654,7 @@ export default {
         pass: self.nuevo_pass,
         confirmar_pass: self.confirmar_pass,
         admin: self.check_admin ? 1 : 0,
+        admin_mad: self.check_admin_mad ? 1 : 0,
       };
       if (
         self.nuevo_nombres == "" ||

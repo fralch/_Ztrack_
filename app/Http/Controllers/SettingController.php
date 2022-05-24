@@ -71,6 +71,7 @@ class SettingController extends Controller
             'nombres' => $request->nombres,
             'activo' => 1,
             'admin' => $request->admin,
+            'admin_madurador' => $request->admin_mad,
             'correo' => $request->correo,
             'contraseña' => $request->pass,
         ]);
