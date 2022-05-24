@@ -10,6 +10,7 @@ use App\Models\Empresa;
 use App\Models\Eventos;
 use App\Models\Registro_diario_generadores;
 use App\Models\Registro_diario_reefers;
+use App\Models\Usuario_Empresa;
 
 use App\Http\Controllers\Controller;
 use Inertia\Inertia;
@@ -32,23 +33,31 @@ class SettingController extends Controller
         if (count($usuario) != 0) {
             $usuario_todos= Usuario::all();
            $contenedores =  Contenedor::all(); 
+            // $empresas = Empresa::from('empresas as emp')
+            //                 ->select(
+            //                     'emp.id',
+            //                     'emp.nombre_empresa',
+            //                     'emp.descripcion_booking',
+            //                     'emp.temp_contratada',
+            //                     'emp.created_at',
+            //                     'us.usuario',
+            //                     'us.apellidos',
+            //                     'us.nombres',
+            //                     'us.activo',
+            //                     'us.admin',
+            //                     'us.correo',
+            //                 )
+            //                 ->leftjoin('usuario_empresa', 'usuario_empresa.empresa_id', 'emp.id')
+            //                 ->leftjoin('usuarios as us', 'us.id', 'usuario_empresa.usuario_id')
+            //                 ->get();
             $empresas = Empresa::from('empresas as emp')
                             ->select(
                                 'emp.id',
-                                'emp.usuario_id',
                                 'emp.nombre_empresa',
                                 'emp.descripcion_booking',
                                 'emp.temp_contratada',
                                 'emp.created_at',
-                                'us.usuario',
-                                'us.apellidos',
-                                'us.nombres',
-                                'us.activo',
-                                'us.admin',
-                                'us.correo',
-
                             )
-                            ->join('usuarios as us', 'us.id', 'emp.usuario_id')
                             ->get();
             return Inertia::render('setting', [
                 'usuario_logeado' => $usuario,
@@ -157,5 +166,27 @@ class SettingController extends Controller
         $contenedor->encendido = !$contenedor->encendido;
         $contenedor->save();
         return Contenedor::all();
+    }
+    public function obtener_usuario_empresa(Request $request)
+    {
+        // return $request; 
+        $usuario_empresa = Usuario::from('usuarios as us')
+                            ->select(
+                                'us.usuario',
+                                'us.id',
+                            )
+                            ->join('usuario_empresa', 'usuario_empresa.usuario_id', 'us.id')
+                            ->where('usuario_empresa.empresa_id',$request->id_empresa)
+                            ->get();
+        return $usuario_empresa;
+    }
+    public function asignar_usuario_empresa(Request $request)
+    {
+        // return $request; 
+        $usuario_empresa = Usuario_empresa::create([
+            'usuario_id' => $request->id_usuario,
+            'empresa_id' => $request->id_empresa,
+        ]);
+        return Usuario_empresa::all();
     }
 }

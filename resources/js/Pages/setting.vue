@@ -205,7 +205,7 @@
                           v-model="nuevo_booking_temp"
                         />
                       </div>
-                      <div class="col">
+                      <!-- <div class="col">
                         <label style="margin-right: 10px"
                           >Usuario Asignado</label
                         >
@@ -224,7 +224,7 @@
                             {{ usuario.nombres }}
                           </option>
                         </select>
-                      </div>
+                      </div> -->
                       <div class="col">
                         <button
                           type="button"
@@ -247,8 +247,8 @@
                       <th>Empresa</th>
                       <th>Booking</th>
                       <th>Booking_temp</th>
-                      <th>Usuario_asigando</th>
                       <th>Asignar_contenedor</th>
+                      <th>Asignar_usuario</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -256,7 +256,7 @@
                       v-for="(empresa, index) in tabla_datos_empresas"
                       :key="index"
                     >
-                      <td>{{ index + 1 }}</td>
+                      <td>{{ empresa.id }}</td>
                       <td class="text-center">
                         <input
                           type="radio"
@@ -267,7 +267,6 @@
                       <td>{{ empresa.nombre_empresa.toUpperCase() }}</td>
                       <td>{{ empresa.descripcion_booking }}</td>
                       <td>{{ empresa.temp_contratada }}</td>
-                      <td>{{ empresa.usuario }}</td>
                       <td>
                         <button
                           type="button"
@@ -275,6 +274,17 @@
                           data-toggle="modal"
                           data-target="#asignarModal"
                           @click="asignar_id_empresa = empresa.id"
+                        >
+                          <i class="bi bi-check-lg"></i>
+                        </button>
+                      </td>
+                      <td>
+                        <button
+                          type="button"
+                          class="col-3 btn btn-primary"
+                          data-toggle="modal"
+                          data-target="#asignarUsuarioModal"
+                          @click="obtenerUsuarioEmpresa(empresa.id) "
                         >
                           <i class="bi bi-check-lg"></i>
                         </button>
@@ -459,7 +469,7 @@
                   class="form-control mr-sm-2"
                   v-model="asignar_id_contenedor"
                 >
-                  <option value="0" disabled>Seleccione un usuario</option>
+                  <option value="0" disabled>Seleccione un contenedor</option>
                   <option
                     v-for="(contenedor, index) in tabla_contenedores"
                     :key="index"
@@ -475,6 +485,76 @@
                 type="button"
                 class="btn btn-dark"
                 @click="asignar_contenedor_guardar"
+              >
+                <i class="fas fa-save"></i>
+                Guardar
+              </button>
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-dismiss="modal"
+              >
+                Cerrar
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Modal asignar usuario-empresa -->
+      <div
+        class="modal fade"
+        id="asignarUsuarioModal"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="asignarUsuarioModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">
+                Asignar Usuario
+              </h5>
+              <button
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="form">
+                <p class="font-weight-bold">Usuarios ya asignados: </p>
+                <ul>
+                  <li v-for="(u, i) in usuarios_empresa" :key="i">
+                    <p class="font-weight-light"> {{u.usuario}} </p>
+                  </li>
+                </ul>
+              </div>
+              <br>
+              <div class="form-inline">
+                <select
+                  class="form-control mr-sm-2"
+                  v-model="asignar_id_usuario"
+                >
+                  <option value="0" disabled>Seleccione un usuario</option>
+                  <option
+                    v-for="(usuario, index) in usuario_all"
+                    :key="index"
+                    :value="usuario.id"
+                  >
+                    {{ usuario.usuario }}
+                  </option>
+                </select>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-dark"
+                @click="usuarioEmpresaAsignar"
               >
                 <i class="fas fa-save"></i>
                 Guardar
@@ -537,6 +617,10 @@ export default {
       asignar_id_empresa: null,
       asignar_tipo: "G",
       asignar_id_contenedor: 0,
+      //*Asignar usuarios - empresas*/
+      empresa_seleccionada: 0,
+      asignar_id_usuario: 0,
+      usuarios_empresa: [],
       // --- nuevo contenedor ---
       nuevo_contenedor: null,
       nuevo_tipo_contenedor: "0",
@@ -574,6 +658,7 @@ export default {
       $("#tblEmpresas").DataTable().destroy();
       this.TablaEmpresas();
     },
+   
   },
 
   mounted() {
@@ -764,13 +849,12 @@ export default {
         nombre_empresa: self.nueva_empresa,
         booking: self.nuevo_booking,
         booking_temp: self.nuevo_booking_temp,
-        usuario_asigando: self.nuevo_usuario_asignado,
+        usuario_asigando: self.nuevo_|usuario_asignado,
       };
       if (
         self.nueva_empresa == "" ||
         self.nuevo_booking == "" ||
-        self.nuevo_booking_temp == "" ||
-        self.nuevo_usuario_asignado == 0
+        self.nuevo_booking_temp == "" 
       ) {
         // self.mensaje_error("Debe llenar todos los campos");
         Swal.fire({
@@ -865,6 +949,44 @@ export default {
         .post(route("cambiar_estado_contenedor"), data)
         .then(function (response) {
           self.tabla_contenedores_filtrados = response.data;
+        });
+    },
+     obtenerUsuarioEmpresa(id){
+      let self = this;
+      self.empresa_seleccionada = id;
+      self.usuarios_empresa = [];
+      let data = {
+        id_empresa: id,
+      };
+      axios
+        .post(route("obtener_usuario_empresa"), data)
+        .then(function (response) {
+         
+          if (response.data.length > 0) {
+            self.usuarios_empresa = response.data;
+          }
+        });
+    },
+    usuarioEmpresaAsignar(){
+      let self = this;
+      let data = {
+        id_empresa: self.empresa_seleccionada,
+        id_usuario: self.asignar_id_usuario,
+      };
+      self.usuarios_empresa.forEach((usuario) => {
+        if(usuario.id == self.asignar_id_usuario){
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "El usuario ya esta asignado a la empresa!",
+          });
+        }
+      });
+
+      axios
+        .post(route("asignar_usuario_empresa"), data)
+        .then(function (response) {
+          console.log(response.data);
         });
     },
   },
