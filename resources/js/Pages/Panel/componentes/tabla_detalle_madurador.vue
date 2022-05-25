@@ -49,6 +49,7 @@
       <table class="table display nowrap" id="tblDetalleContenedores_madurador">
         <thead>
           <tr class="bg-info" style="color: white !important">
+            <th scope="col">ID</th>
             <th scope="col">Fecha</th>
 
             <th scope="col" class="text-center">Ethylene</th>
@@ -122,6 +123,7 @@
         <tbody>
           <tr v-for="(madurador, index) in datos_tabla_madurador" :key="index">
             <!-- <td>{{index+1}}</td> -->
+            <td class="text-center">{{ madurador.id }}</td>
             <td class="text-center">{{ formatoFecha(madurador.created_at) }}</td>
 
             <td class="text-center">{{ madurador.ethylene }}</td>

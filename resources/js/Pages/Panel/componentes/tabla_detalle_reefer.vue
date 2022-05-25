@@ -49,6 +49,7 @@
       <table class="table display nowrap" id="tblDetalleContenedores_reefers">
         <thead>
           <tr class="bg-info" style="color: white !important">
+            <th scope="col">ID</th>
             <th scope="col">FECHA</th>
             <th scope="col" class="text-center">Set_point</th>
             <th scope="col" class="text-center">Temp_supply_1</th>
@@ -115,6 +116,7 @@
         <tbody>
           <tr v-for="(reefer, index) in datos_tabla_reefer" :key="index">
             <!-- <td>{{index+1}}</td> -->
+            <td class="text-center">{{ reefer.id }}C°</td>
             <td class="text-center">{{ formatoFecha(reefer.created_at) }}</td>
             <td class="text-center">{{ reefer.set_point }}C°</td>
             <td class="text-center">{{ reefer.temp_supply_1 }}</td>

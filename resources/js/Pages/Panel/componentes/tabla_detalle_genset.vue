@@ -54,6 +54,7 @@
       >
         <thead>
           <tr class="bg-info" style="color: white !important">
+            <th scope="col">ID</th>
             <th scope="col">FECHA</th>
             <th scope="col" width="50px" class="text-center">
               Battery_voltage
@@ -93,6 +94,7 @@
             class="tr_resumen_gen"
           >
             <!-- <td>{{index+1}}</td> -->
+            <td class="text-center">{{ generador.id }}</td>
             <td class="text-center">{{ formatoFecha(generador.created_at) }}</td>
             <td class="text-center">{{ generador.battery_voltage }}</td>
             <td class="text-center">{{ generador.water_temp }}</td>
@@ -164,7 +166,7 @@ export default {
             "csv",
             "excel",
           ],
-          order: [0, "desc"],
+           order: [0, "desc"],
           language: {
             url: "//cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json",
           },
