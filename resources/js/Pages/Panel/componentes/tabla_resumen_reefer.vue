@@ -220,7 +220,7 @@ export default {
         })
         .then((res) => {
           if (self.empresa.length > 0 ) {
-            self.contenedores_encendidos_reefer = res.data.filter(contenedor => contenedor.empresa_id == self.empresa[0].id)
+            self.contenedores_encendidos_reefer = res.data.filter(contenedor => contenedor.empresa_id == self.empresa[0].empresa_id)
           }else{
             self.contenedores_encendidos_reefer = res.data;
           }

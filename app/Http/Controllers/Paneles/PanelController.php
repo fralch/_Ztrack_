@@ -46,11 +46,11 @@ class PanelController extends Controller
                 $contenedores_encendidos_mad = Contenedor::select()->where([['encendido', 1], ['tipo', 'Madurador']])->count();
             } else {
                 $empresaXusuario = Empresa::join('usuario_empresa as ue', 'ue.empresa_id', 'empresas.id')->where('ue.usuario_id', $usuario[0]->id)->get();
-                $contenedores_todos = Contenedor::where('empresa_id', $empresaXusuario[0]->id)->count();
+                $contenedores_todos = Contenedor::where('empresa_id', $empresaXusuario[0]->empresa_id)->count();
 
-                $contenedores_encendidos_reefer = Contenedor::where([['empresa_id', $empresaXusuario[0]->id], ['encendido', 1], ['tipo', 'Reefer']])->count();
-                $contenedores_encendidos_gen = Contenedor::where([['empresa_id', $empresaXusuario[0]->id], ['encendido', 1], ['tipo', 'Generador']])->count();
-                $contenedores_encendidos_mad = Contenedor::where([['empresa_id', $empresaXusuario[0]->id], ['encendido', 1], ['tipo', 'Madurador']])->count();
+                $contenedores_encendidos_reefer = Contenedor::where([['empresa_id', $empresaXusuario[0]->empresa_id], ['encendido', 1], ['tipo', 'Reefer']])->count();
+                $contenedores_encendidos_gen = Contenedor::where([['empresa_id', $empresaXusuario[0]->empresa_id], ['encendido', 1], ['tipo', 'Generador']])->count();
+                $contenedores_encendidos_mad = Contenedor::where([['empresa_id', $empresaXusuario[0]->empresa_id], ['encendido', 1], ['tipo', 'Madurador']])->count();
             }
 
 
