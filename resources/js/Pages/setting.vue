@@ -974,6 +974,7 @@ export default {
             title: "Oops...",
             text: "El usuario ya esta asignado a la empresa!",
           });
+          return 0; 
         }
       });
 
