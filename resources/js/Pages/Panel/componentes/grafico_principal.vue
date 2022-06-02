@@ -316,7 +316,7 @@ export default {
               : [];
           datos_r.map(function (datos_r, index) {
             let date = new Date(datos_r.created_at);
-            let day = date.getDate()+ 1;
+            let day = date.getDate();
             let month = date.getMonth() + 1;
             let year = date.getFullYear();
             let hours = date.getHours();
@@ -349,7 +349,7 @@ export default {
               : [];
           datos_g.map(function (datos_g, index) {
             let date = new Date(datos_g.created_at);
-            let day = date.getDate()+ 1;
+            let day = date.getDate();
             let month = date.getMonth() + 1;
             let year = date.getFullYear();
             let hours = date.getHours();
@@ -442,7 +442,7 @@ export default {
  
           let datos_madurador =
             self.datos_tabla_madurador.length != 0
-              ? self.datos_tabla_madurador.reverse()
+              ? self.datos_tabla_madurador
               : [];
           datos_madurador.map(function (datos_m, index) {
             self.my_Chart_principal_dataset_madurador[0].data.push(
@@ -470,7 +470,7 @@ export default {
 
           let datos_reefer =
             self.datos_tabla_reefer.length != 0
-              ? self.datos_tabla_reefer.reverse()
+              ? self.datos_tabla_reefer
               : [];
           datos_reefer.map(function (datos_r, index) {
             self.my_Chart_principal_dataset_reefer[0].data.push(
@@ -499,7 +499,7 @@ export default {
 
           let datos_genset =
             self.datos_tabla_generador.length != 0
-              ? self.datos_tabla_generador.reverse()
+              ? self.datos_tabla_generador
               : [];
           datos_genset.map(function (datos_g, index) {
             self.my_Chart_principal_dataset_generador[0].data.push(
