@@ -1,11 +1,56 @@
 <template>
+  
   <div
     id="myChart_principal_id"
     class="col shadow-sm p-3 mb-5 bg-white rounded"
     style="margin: -30px 15px 10px 15px"
     v-if="tipo != ''"
   >
-    <canvas id="myChart_principal" style="height: 600px"></canvas>
+     <div class="row"   v-if="datos_tabla_reefer != null || datos_tabla_madurador != null || datos_tabla_generador != null ">
+        <div class="col-3">
+          <div class="input-group input-group-sm mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-sm"
+                >Desde</span
+              >
+            </div>
+            <input
+              type="date"
+              class="form-control"
+              aria-label="Small"
+              aria-describedby="inputGroup-sizing-sm"
+             v-model="desde"
+            />
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="input-group input-group-sm mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-sm">Hasta</span>
+            </div>
+            <input
+              type="date"
+              class="form-control"
+              aria-label="Small"
+              aria-describedby="inputGroup-sizing-sm"
+              v-model="hasta"
+            />
+          </div>
+        </div>
+        <div class="col">
+          <button
+            class="btn btn-secondary btn-sm"
+            type="button"
+            @click="getContenedorFechas()"
+          >
+            Buscar
+          </button>
+        </div>
+      </div>
+    <div>
+      <canvas id="myChart_principal" style="height: 600px"></canvas>
+    </div>
+    
   </div>
 </template>
 <script>
@@ -161,6 +206,8 @@ export default {
       ],
       my_Chart_principal_labels: [],
       my_Chart_principal_dataSetable: [],
+      desde: new Date().getFullYear() + '-' + ('0' + (new Date().getMonth() + 1)).slice(-2) +'-' + ('0' + new Date().getDate()).slice(-2), 
+      hasta: new Date().getFullYear() + '-' + ('0' + (new Date().getMonth() + 1)).slice(-2) +'-' + ('0' + new Date().getDate()).slice(-2), 
     };
   },
   watch: {
@@ -539,6 +586,53 @@ export default {
           self.my_Chart_principal_dataSetable = self.my_Chart_principal_dataset_madurador;
         }
       });
+    },
+    getContenedorFechas() {
+      let self = this;
+      
+      if (this.tipo == "reefer") {
+        axios
+          .post(route("contenedores.get_datos_graficos"), {
+            id: this.contenedor,
+            tipo: "reefer",
+            desde: self.desde,
+            hasta: self.hasta,
+          })
+          .then((response) => {
+            self.datos_tabla_reefer = response.data.reverse();
+          }).then(() => {
+            self.setLabelsMyChartPrincipal();
+          }); 
+          
+      }
+      if (this.tipo == "genset") {
+        axios
+          .post(route("contenedores.get_datos_graficos"), {
+            id: this.contenedor,
+            tipo: "genset",
+            desde: self.desde,
+            hasta: self.hasta,
+          })
+          .then((response) => {
+            self.datos_tabla_generador = response.data.reverse();            
+          }).then(() => {
+            self.setLabelsMyChartPrincipal();
+          }); 
+      }
+      if (this.tipo == "madurador") {
+        axios
+          .post(route("contenedores.get_datos_graficos"), {
+            id: this.contenedor,
+            tipo: "madurador",
+            desde: self.desde,
+            hasta: self.hasta,
+          })
+          .then((response) => {
+            self.datos_tabla_madurador = response.data.reverse();            
+          }).then(() => {
+            self.setLabelsMyChartPrincipal();
+          }); 
+      }
     },
   },
 };
