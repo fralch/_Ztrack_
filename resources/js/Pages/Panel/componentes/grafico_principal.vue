@@ -70,7 +70,7 @@ export default {
       //  ---- myChart_principal -----
       my_Chart_principal_dataset_reefer: [
         {
-          label: "set_point",
+          label: "set_point C°",
           data: [],
           borderColor: "#FFC312",
           backgroundColor: "#FFC312",
@@ -79,7 +79,7 @@ export default {
         },
         
         {
-          label: "co2",
+          label: "co2 - %",
           data: [],
           borderColor: "#12CBC4",
           backgroundColor: "#12CBC4",
@@ -88,7 +88,7 @@ export default {
         },
 
         {
-          label: "humidity", //------------
+          label: "humidity - %", //------------
           data: [],
           borderColor: "#9980FA",
           backgroundColor: "#9980FA",
@@ -97,7 +97,7 @@ export default {
         },
         
         {
-          label: "AVL",
+          label: "AVL - mch",
           data: [],
           borderColor: "#CA1A51",
           backgroundColor: "#CA1A51",
@@ -297,8 +297,8 @@ export default {
                 // text: 'Valores del 0 al 350  - Ethylene, AVL, Humidity'
               },
               position: 'left',
-              max: 350, // eje y
-              min: 0, // eje y
+              // max: 350, // eje y
+              // min: 0, // eje y
             },
             y1: { // *** CREANDO EJE Y DERECHO ***
               type: 'linear',
@@ -308,8 +308,8 @@ export default {
                 // text: 'Valores del 0 al 40 - Setpoint°, Co2'
               },
               position: 'right',
-              max: 50, // eje y
-              min: 0, // eje y
+              // max: 50, // eje y
+              // min: 0, // eje y
               // grid line settings 
               grid: {
                 drawOnChartArea: false, // only want the grid lines for one axis to show up
