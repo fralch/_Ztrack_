@@ -84,7 +84,6 @@ class SettingController extends Controller
             'nombre_empresa' => $request->nombre_empresa,
             'descripcion_booking' => $request->booking,
             'temp_contratada' => $request->booking_temp,
-            'usuario_id' => $request->usuario_asigando,
         ]);
         $empresas = Empresa::from('empresas as emp')
         ->select(

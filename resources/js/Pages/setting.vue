@@ -843,7 +843,6 @@ export default {
         nombre_empresa: self.nueva_empresa,
         booking: self.nuevo_booking,
         booking_temp: self.nuevo_booking_temp,
-        usuario_asigando: self.nuevo_|usuario_asignado,
       };
       if (
         self.nueva_empresa == "" ||

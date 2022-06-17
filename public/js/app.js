@@ -6199,8 +6199,7 @@ __webpack_require__.r(__webpack_exports__);
       var data = {
         nombre_empresa: self.nueva_empresa,
         booking: self.nuevo_booking,
-        booking_temp: self.nuevo_booking_temp,
-        usuario_asigando: self.nuevo_ | usuario_asignado
+        booking_temp: self.nuevo_booking_temp
       };
 
       if (self.nueva_empresa == "" || self.nuevo_booking == "" || self.nuevo_booking_temp == "") {
