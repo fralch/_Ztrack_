@@ -202,6 +202,22 @@ export default {
           borderWidth: 4,
            yAxisID: 'y',
         },
+        {
+          label: "temp_supply",
+          data: [],
+          borderColor: "#33FFD7",
+          backgroundColor: "#33FFD7",
+          borderWidth: 4,
+           yAxisID: 'y',
+        },
+        {
+          label: "return_air_temp",
+          data: [],
+          borderColor: "#FF33EC",
+          backgroundColor: "#FF33EC",
+          borderWidth: 4,
+           yAxisID: 'y',
+        },
        
       ],
       my_Chart_principal_labels: [],
@@ -542,6 +558,8 @@ export default {
           self.my_Chart_principal_dataset_generador[3].data = [];
           self.my_Chart_principal_dataset_generador[4].data = [];
           self.my_Chart_principal_dataset_generador[5].data = [];
+          self.my_Chart_principal_dataset_generador[6].data = [];
+          self.my_Chart_principal_dataset_generador[7].data = [];
 
 
           let datos_genset =
@@ -566,6 +584,12 @@ export default {
             );
             self.my_Chart_principal_dataset_generador[5].data.push(
               datos_g.rpm
+            );
+            self.my_Chart_principal_dataset_generador[6].data.push(
+              datos_g.temp_supply_1
+            );
+            self.my_Chart_principal_dataset_generador[7].data.push(
+              datos_g.return_air
             );
            
             // -----------------
