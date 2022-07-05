@@ -329,35 +329,36 @@ class PanelController extends Controller
     public function faker_datos()
     {
         # code...
-        // return Registro_diario_generadores::on('mysql2')->all(); 
-        return Registro_diario_generadores::all(); 
+        // return Registro_diario_generadores::on('mysql2')->from('registro_diario_generadores')->get(); 
+
+        // return Registro_diario_generadores::all(); 
 
 
-        // Registro_diario_generadores::on('mysql2')->table('registro_diario_generadores')->create([
-        //     'contenedor_id' => rand(2, 5),
-        //     'battery_voltage' => rand((1 * 1), (10 * 10)) / 10,
-        //     'water_temp' => rand((1 * 1), (10 * 10)) / 10,
-        //     'running_frequency' => rand((1 * 1), (10 * 10)) / 10,
-        //     'fuel_level' => rand((1 * 1), (10 * 10)) / 10,
-        //     'voltage_measure' => rand((1 * 1), (10 * 10)) / 10,
-        //     'rotor_current' => rand((1 * 1), (10 * 10)) / 10,
-        //     'fiel_current' => rand((1 * 1), (10 * 10)) / 10,
-        //     'speed' => rand(0, 1),
-        //     'eco_power' => rand(0, 1),
-        //     'rpm' => rand(0, 10),
-        //     'unit_mode' => 'starting',
-        //     'horometro' => rand(0, 10),
-        //     'alarma_id' => 1,
-        //     'evento_id' => rand(1, 25),
-        //     'modelo' => 'sg',
-        //     'latitud' => -12.014386,
-        //     'longitud' => -75.230926,
-        //     'engine_state' => 'start',
-        //     'reefer_conected' => 'Zgru2245761',
-        //     'set_point' => rand(0, 10),
-        //     'temp_supply_1' => rand(0, 10),
-        //     'return_air'  => rand(0, 10),
-        // ]);
+        return Registro_diario_generadores::on('mysql2')->from('registro_diario_generadores')->create([
+            'contenedor_id' => rand(2, 5),
+            'battery_voltage' => rand((1 * 1), (10 * 10)) / 10,
+            'water_temp' => rand((1 * 1), (10 * 10)) / 10,
+            'running_frequency' => rand((1 * 1), (10 * 10)) / 10,
+            'fuel_level' => rand((1 * 1), (10 * 10)) / 10,
+            'voltage_measure' => rand((1 * 1), (10 * 10)) / 10,
+            'rotor_current' => rand((1 * 1), (10 * 10)) / 10,
+            'fiel_current' => rand((1 * 1), (10 * 10)) / 10,
+            'speed' => rand(0, 1),
+            'eco_power' => rand(0, 1),
+            'rpm' => rand(0, 10),
+            'unit_mode' => 'starting',
+            'horometro' => rand(0, 10),
+            'alarma_id' => 1,
+            'evento_id' => rand(1, 25),
+            'modelo' => 'sg',
+            'latitud' => -12.014386,
+            'longitud' => -75.230926,
+            'engine_state' => 'start',
+            'reefer_conected' => 'Zgru2245761',
+            'set_point' => rand(0, 10),
+            'temp_supply_1' => rand(0, 10),
+            'return_air'  => rand(0, 10),
+        ]);
 
         // Registro_diario_reefers::create([
         //     'contenedor_id' => 1,
