@@ -17,6 +17,8 @@ return [
 
     'default' => env('DB_CONNECTION', 'mysql'),
 
+    'msql2' => env('DB_CONNECTION', 'mysql2'),
+
     /*
     |--------------------------------------------------------------------------
     | Database Connections
@@ -62,7 +64,25 @@ return [
                 PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
             ]) : [],
         ],
-
+        'mysql2' => [
+            'driver' => 'mysql',
+            'url' => env('DATABASE_URL'),
+            'host' => env('MASTER_HOST_1', 'localhost'),
+            'port' => env('MASTER_PORT_1', '3306'),
+            'database' => env('MASTER_DATABASE_1', 'otra_base_de_datos'),
+            'username' => env('MASTER_USERNAME_1', 'root'),
+            'password' => env('MASTER_PASSWORD_1', ''),
+            'unix_socket' => env('MASTER_SOCKET_1', ''),
+            'charset' => 'utf8mb4',
+            'collation' => 'utf8mb4_unicode_ci',
+            'prefix' => '',
+            'prefix_indexes' => true,
+            'strict' => false,
+            'engine' => null,
+            'options' => extension_loaded('pdo_mysql') ? array_filter([
+                PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
+            ]) : [],
+        ],
         'pgsql' => [
             'driver' => 'pgsql',
             'url' => env('DATABASE_URL'),
