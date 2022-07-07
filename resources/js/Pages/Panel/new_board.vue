@@ -120,6 +120,15 @@
               </tablaDetalleMadurador>
 
               <!-- *********** GRAFICOS PRINCIPAL *********** -->
+              <!-- <div>
+                <button
+                  class="btn btn-secondary btn-sm"
+                  type="button"
+                  @click="imprimir()"
+                >
+                  Imprimir
+                </button>
+              </div> -->
               <graficosPrincial
                 ref="tablaDetalleReefer"
                 :contenedor="contenedor_selecionado_id"
@@ -200,7 +209,7 @@ export default {
     this.bienvenida();
   },
 
-  methods: {
+  methods: {    
     
     bienvenida() {
       Swal.fire({

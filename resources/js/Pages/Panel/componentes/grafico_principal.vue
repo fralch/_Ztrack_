@@ -46,6 +46,16 @@
             Buscar
           </button>
         </div>
+        <div class="col">
+          <button
+            class="btn btn-secondary btn-sm float-right"
+            type="button"
+            @click="imprimir()"
+          >
+            Imprimir
+          </button>
+        </div>
+        
       </div>
     <div>
       <canvas id="myChart_principal" style="height: 600px"></canvas>
@@ -255,6 +265,9 @@ export default {
     },
   },
   methods: {
+    imprimir(){
+      $("#myChart_principal").print();   
+    },
     getContenedor() {
       let self = this;
       

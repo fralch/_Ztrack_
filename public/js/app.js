@@ -2177,6 +2177,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 var myChart_principal;
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -2352,6 +2362,9 @@ var myChart_principal;
     }
   },
   methods: {
+    imprimir: function imprimir() {
+      $("#myChart_principal").print();
+    },
     getContenedor: function getContenedor() {
       var self = this;
 
@@ -4893,6 +4906,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _componentes_tabla_detalle_madurador_vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./componentes/tabla_detalle_madurador.vue */ "./resources/js/Pages/Panel/componentes/tabla_detalle_madurador.vue");
 /* harmony import */ var _componentes_grafico_principal_vue__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./componentes/grafico_principal.vue */ "./resources/js/Pages/Panel/componentes/grafico_principal.vue");
 /* harmony import */ var _componentes_izquierda_vue__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./componentes/izquierda.vue */ "./resources/js/Pages/Panel/componentes/izquierda.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -31429,6 +31451,22 @@ var render = function () {
                       },
                     },
                     [_vm._v("\n          Buscar\n        ")]
+                  ),
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-secondary btn-sm float-right",
+                      attrs: { type: "button" },
+                      on: {
+                        click: function ($event) {
+                          return _vm.imprimir()
+                        },
+                      },
+                    },
+                    [_vm._v("\n          Imprimir\n        ")]
                   ),
                 ]),
               ])
