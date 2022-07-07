@@ -104,6 +104,22 @@ export default {
           borderWidth: 4,
           yAxisID: 'y',
         },
+         {
+          label: "temp_supply",
+          data: [],
+          borderColor: "#33FFD7",
+          backgroundColor: "#33FFD7",
+          borderWidth: 4,
+           yAxisID: 'y',
+        },
+        {
+          label: "return_air_temp",
+          data: [],
+          borderColor: "#FF33EC",
+          backgroundColor: "#FF33EC",
+          borderWidth: 4,
+           yAxisID: 'y',
+        },
       ],
        my_Chart_principal_dataset_madurador: [
         {
@@ -530,6 +546,8 @@ export default {
           self.my_Chart_principal_dataset_reefer[1].data = [];
           self.my_Chart_principal_dataset_reefer[2].data = [];
           self.my_Chart_principal_dataset_reefer[3].data = [];
+          self.my_Chart_principal_dataset_reefer[4].data = [];
+          self.my_Chart_principal_dataset_reefer[5].data = [];
 
           let datos_reefer =
             self.datos_tabla_reefer.length != 0
@@ -547,6 +565,12 @@ export default {
             );
             self.my_Chart_principal_dataset_reefer[3].data.push(
               datos_r.avl
+            );
+            self.my_Chart_principal_dataset_reefer[4].data.push(
+              datos_r.temp_supply_1
+            );
+            self.my_Chart_principal_dataset_reefer[5].data.push(
+              datos_r.return_air
             );
             
           });
