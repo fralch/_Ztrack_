@@ -15,6 +15,7 @@ export default {
   props: {
     punto: Array,
     tipo: String,
+    makers: Array,
   },
   data() {
     return {
@@ -35,6 +36,36 @@ export default {
         // this.iniciando_leflet(valor[0], valor[1]);
         this.iniciando_leflet();
       }
+      
+    },
+    makers(valor) {
+       if (valor) {
+        console.log(valor); 
+        map.off();
+        map.remove();
+        const mapa = () => {
+          map = L.map("map", {
+            center: [-12.058691761493174,  -75.20386755466461],
+            zoom: 9,
+          });
+          L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+            attribution: "FrankCairampoma",
+          }).addTo(map);
+          // hacer foreach de los makers
+          valor.forEach((marker) => {
+            L.marker([marker.latitud, marker.longitud]).addTo(map).bindPopup(marker.nombre_contenedor).openPopup();
+          });
+     
+
+
+          // L.marker([-12.058691761493174,  -75.20386755466461])
+          //           .addTo(map)
+          //           .bindPopup("Uwefwef")
+          //           .openPopup();
+        };
+        mapa(); 
+       }
+       
     },
   },
   mounted() {
@@ -43,7 +74,7 @@ export default {
   methods: {
     iniciando_leflet(lt = -12.058691761493174, ln = -75.20386755466461) {
       let self = this;
-
+     
       if (!self.contenedor) {
 
         map = L.map("map", {
@@ -60,8 +91,9 @@ export default {
         //           .openPopup();
 
       } else {
-
+ 
         this.$nextTick(() => {
+          
           axios
             .post(route("contenedores.get_datos"), {
               id: self.contenedor,

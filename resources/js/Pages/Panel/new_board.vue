@@ -26,11 +26,11 @@
                     id="select_gen"
                     class="col-3 btn btn-primary"
                     @click="tipo = 'genset'"
-                    :disabled="contenedores_encendidos_gen == 0"
+                    :disabled="contenedores_encendidos_gen.length == 0"
                   >
                     <i class="bi bi-power"></i>
                     <b style="font-size: 1.2em">{{
-                      contenedores_encendidos_gen
+                      contenedores_encendidos_gen.length
                     }}</b>
                     &nbsp; Gen Running
                   </button>
@@ -39,11 +39,11 @@
                     id="select_reef"
                     class="col-3 btn btn-success"
                     @click="tipo = 'reefer'"
-                    :disabled="contenedores_encendidos_reefer == 0"
+                    :disabled="contenedores_encendidos_reefer.length == 0"
                   >
                     <i class="bi bi-power"></i>
                     <b style="font-size: 1.2em">{{
-                      contenedores_encendidos_reefer
+                      contenedores_encendidos_reefer.length
                     }}</b>
                     &nbsp; Reefers Running
                   </button>
@@ -52,11 +52,11 @@
                     id="select_mad"
                     class="col-3 btn btn-danger"
                     @click="tipo = 'madurador'"
-                    :disabled="contenedores_encendidos_mad == 0"
+                    :disabled="contenedores_encendidos_mad.length == 0"
                   >
                     <i class="bi bi-power"></i>
                     <b style="font-size: 1.2em">{{
-                      contenedores_encendidos_mad
+                      contenedores_encendidos_mad.length
                     }}</b>
                     &nbsp; Madurador
                   </button>
@@ -72,6 +72,7 @@
                 :punto="ubicacion_final"
                 :contenedor="contenedor_selecionado_id"
                 :tipo="tipo"
+                :makers="makers"
                 >
               </canvasMapa>
               <!-- ********* TABLA RESUMEN CONTENEDORES  *********-->
@@ -176,12 +177,13 @@ export default {
     usuario_logeado: Array,
     empresa_logeado: Array,
     contenedores_todos_length: Number,
-    contenedores_encendidos_reefer: Number,
-    contenedores_encendidos_gen: Number,
-    contenedores_encendidos_mad: Number,
+    contenedores_encendidos_reefer: Array,
+    contenedores_encendidos_gen: Array,
+    contenedores_encendidos_mad: Array,
   },
   data() {
     return {
+      makers: [],
       // submited: false,
       contenedor_selected: null,
       contenedor_selecionado_id: null,
@@ -203,6 +205,15 @@ export default {
     get_ubicacion_m(valor) {
       this.ubicacion_final = valor;
     },
+    tipo(valor){
+      if (valor=="genset") {
+        this.makers=this.$refs.tablaResumenGen.contenedores_encendidos_gen
+      }else if(valor=="reefer"){
+        this.makers=this.$refs.tablaResumenReef.contenedores_encendidos_reefer
+      }else if(valor=="madurador"){
+        this.makers=this.$refs.tablaResumenMadurador.contenedores_encendidos_mad
+      }
+    }
   },
   mounted() {
     this.usuarioLogeado();
@@ -212,6 +223,7 @@ export default {
   methods: {    
     
     bienvenida() {
+      let self = this;
       Swal.fire({
         title: "Bienvenido!",
         icon: "success",
@@ -228,6 +240,9 @@ export default {
           let clicke = document.getElementById("select_gen");
           clicke.click();
         }
+      }).then(() => {
+        // self.makers=self.$refs.tablaResumenGen.contenedores_encendidos_gen
+        // console.log(self.makers); 
       });
 
     },
