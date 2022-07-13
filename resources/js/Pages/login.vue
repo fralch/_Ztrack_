@@ -49,7 +49,7 @@
           </form>
 
           <!-- <div class="login100-more" style="background-image: url('http://www.zgroup.com.pe/uploads/shares/productos/Cadena%20de%20Frio/ZGROUP%20Store/20%20pies/20%20pies%201.jpg');"></div> -->
-          <div class="login100-more" style="background-image: url('https://www.zgroup.com.pe/uploads/shares/nosotros/Banner%20vertical.jpg');"></div>
+          <div class="login100-more" style="background-image: url('https://www.zgroup.com.pe/uploads/shares/servicios/Header/contenedores_en_ruma_min.jpg');"></div>
         </div>
       </div>
     </div>

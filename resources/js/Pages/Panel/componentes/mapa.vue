@@ -46,14 +46,15 @@ export default {
         const mapa = () => {
           map = L.map("map", {
             center: [-12.058691761493174,  -75.20386755466461],
-            zoom: 9,
+            zoom: valor.length > 0 ? 8 : 0,
           });
           L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
             attribution: "FrankCairampoma",
           }).addTo(map);
           // hacer foreach de los makers
           valor.forEach((marker) => {
-            L.marker([marker.latitud, marker.longitud]).addTo(map).bindPopup(marker.nombre_contenedor).openPopup();
+            L.marker([marker.latitud, marker.longitud]).addTo(map).bindPopup(marker.nombre_contenedor, {closeOnClick: false, autoClose: false}).openPopup();
+            console.log(marker.nombre_contenedor);
           });
      
 

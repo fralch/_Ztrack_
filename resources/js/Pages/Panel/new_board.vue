@@ -211,7 +211,7 @@ export default {
       }else if(valor=="reefer"){
         this.makers=this.$refs.tablaResumenReef.contenedores_encendidos_reefer
       }else if(valor=="madurador"){
-        this.makers=this.$refs.tablaResumenMadurador.contenedores_encendidos_mad
+        this.makers=this.$refs.tablaResumenMadurador.contenedores_encendidos_madurador
       }
     }
   },
