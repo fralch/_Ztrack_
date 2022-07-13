@@ -311,6 +311,8 @@ export default {
     },
     myChartPrincipal() {
       let self = this;
+      let label_y1 = this.tipo != "genset" ? " C°" :  "";
+      let label_y = this.tipo == "reefer" ? " RH%" :  this.tipo == "madurador" ? " PPM - RH% - m3H" : "";
      
       const ctx_principal = document
         .getElementById("myChart_principal")
@@ -335,17 +337,25 @@ export default {
           maintainAspectRatio: false,
           scales: {
             y: {
+               
               type: 'linear',
               display: true,
-              title: {
+              title: { // label del eje y vertical (el que va a la izquierda)
                 display: true,
-                // text: 'Valores del 0 al 350  - Ethylene, AVL, Humidity'
+                text: label_y
               },
               position: 'left',
               // max: 350, // eje y
               // min: 0, // eje y
             },
             y1: { // *** CREANDO EJE Y DERECHO ***
+          
+            ticks: {
+                    // Include a dollar sign in the ticks
+                    callback: function(value, index, ticks) {
+                        return  value+ label_y1;
+                    }
+                },
               type: 'linear',
               display: true,
               title: {
