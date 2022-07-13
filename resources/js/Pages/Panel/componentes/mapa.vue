@@ -53,6 +53,11 @@ export default {
         L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
           attribution: "FrankCairampoma",
         }).addTo(map);
+        //AGREGAR MARKER AL INICIO DEL MAPA
+        // L.marker([-12.058691761493174,  -75.20386755466461])
+        //           .addTo(map)
+        //           .bindPopup("Uwefwef")
+        //           .openPopup();
 
       } else {
 
