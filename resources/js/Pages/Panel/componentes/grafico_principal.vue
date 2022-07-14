@@ -120,7 +120,7 @@ export default {
           borderColor: "#33FFD7",
           backgroundColor: "#33FFD7",
           borderWidth: 4,
-           yAxisID: 'y',
+           yAxisID: 'y1',
         },
         {
           label: "return_air_temp",
@@ -128,7 +128,7 @@ export default {
           borderColor: "#FF33EC",
           backgroundColor: "#FF33EC",
           borderWidth: 4,
-           yAxisID: 'y',
+           yAxisID: 'y1',
         },
       ],
        my_Chart_principal_dataset_madurador: [
