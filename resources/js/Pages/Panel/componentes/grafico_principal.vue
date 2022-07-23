@@ -91,8 +91,8 @@ export default {
         {
           label: "co2 - %",
           data: [],
-          borderColor: "#12CBC4",
-          backgroundColor: "#12CBC4",
+          borderColor: "#2F79EE",
+          backgroundColor: "#2F79EE",
           borderWidth: 4,
           yAxisID: 'y1',
         },
@@ -117,16 +117,16 @@ export default {
          {
           label: "temp_supply",
           data: [],
-          borderColor: "#33FFD7",
-          backgroundColor: "#33FFD7",
+          borderColor: "#00BF0A",
+          backgroundColor: "#00BF0A",
           borderWidth: 4,
            yAxisID: 'y1',
         },
         {
           label: "return_air_temp",
           data: [],
-          borderColor: "#FF33EC",
-          backgroundColor: "#FF33EC",
+          borderColor: "#FF69B4",
+          backgroundColor: "#FF69B4",
           borderWidth: 4,
            yAxisID: 'y1',
         },
@@ -144,8 +144,8 @@ export default {
         {
           label: "co2 - %",
           data: [],
-          borderColor: "#12CBC4",
-          backgroundColor: "#12CBC4",
+          borderColor: "#2F79EE",
+          backgroundColor: "#2F79EE",
           borderWidth: 4,
           yAxisID: 'y1',
         },
@@ -231,16 +231,16 @@ export default {
         {
           label: "temp_supply",
           data: [],
-          borderColor: "#33FFD7",
-          backgroundColor: "#33FFD7",
+          borderColor: "#00BF0A",
+          backgroundColor: "#00BF0A",
           borderWidth: 4,
            yAxisID: 'y',
         },
         {
           label: "return_air_temp",
           data: [],
-          borderColor: "#FF33EC",
-          backgroundColor: "#FF33EC",
+          borderColor: "#FF69B4",
+          backgroundColor: "#FF69B4",
           borderWidth: 4,
            yAxisID: 'y',
         },
@@ -344,7 +344,7 @@ export default {
                 display: true,
                 text: label_y
               },
-              position: 'left',
+              position: 'right',
               // max: 350, // eje y
               // min: 0, // eje y
             },
@@ -362,7 +362,7 @@ export default {
                 display: true,
                 // text: 'Valores del 0 al 40 - Setpoint°, Co2'
               },
-              position: 'right',
+              position: 'left',
               // max: 50, // eje y
               // min: 0, // eje y
               // grid line settings 
