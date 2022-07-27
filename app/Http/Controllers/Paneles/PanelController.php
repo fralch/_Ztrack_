@@ -526,6 +526,51 @@ class PanelController extends Controller
                 ->get();
         }
     }
+    public function datos_contenedor_mapa(Request $request)
+    {
+        // return $request; 
+        $id_contenedor = $request->id;
+        $tipo_contenedor = $request->tipo;
+
+        if ($tipo_contenedor == 'genset') {
+            return Registro_diario_generadores::from('registro_diario_generadores')
+                ->select(
+                    'contenedores.nombre_contenedor', 
+                    'contenedores.created_at',
+                    'registro_diario_generadores.set_point',
+                    'registro_diario_generadores.battery_voltage',
+                    'registro_diario_generadores.running_frequency',
+                    'registro_diario_generadores.fuel_level',
+                    'registro_diario_generadores.voltage_measure',
+                    'registro_diario_generadores.rpm',
+                    'registro_diario_generadores.temp_supply_1',
+                    'registro_diario_generadores.return_air',
+                    )
+                ->join('contenedores', 'contenedores.id', 'registro_diario_generadores.contenedor_id')
+                ->where('contenedor_id', $id_contenedor)
+                ->latest()
+                ->take(1)
+                ->get();
+        }
+        if ($tipo_contenedor == 'reefer') {
+            return Registro_diario_reefers::from('registro_diario_reefers')
+                ->select('contenedores.nombre_contenedor')
+                ->join( 'contenedores', 'contenedores.id', 'registro_diario_reefers.contenedor_id')
+                ->where('contenedor_id', $id_contenedor)
+                ->latest()
+                ->take(1)
+                ->get();
+        }
+        if ($tipo_contenedor == 'madurador') {
+            return Registro_diario_madurador::from('registro_diario_madurador')
+                ->select('contenedores.nombre_contenedor')
+                ->join( 'contenedores', 'contenedores.id', 'registro_diario_madurador.contenedor_id')
+                ->where('contenedor_id', $id_contenedor)
+                ->latest()
+                ->take(1)
+                ->get();
+        }
+    }
     public function obtener_datos_contenedor_graficos(Request $request)
     {
         // return $request; 

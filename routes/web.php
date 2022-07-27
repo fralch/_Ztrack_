@@ -33,6 +33,7 @@ Route::post('/obtener_datos_contenedor/fecha', [PanelController::class, 'obtener
 Route::post('/resumen_contenedores', [PanelController::class, 'resumen_contenedores' ])->name('contenedores.resumen');
 Route::post('/get_alarma_evento', [PanelController::class, 'get_alarma_evento' ])->name('contenedores.get_alarma_evento');
 Route::post('/get_lat_log', [PanelController::class, 'obtenerLatLong' ])->name('contenedores.get_lat_log');
+Route::post('/datos_contenedor_mapa', [PanelController::class, 'datos_contenedor_mapa' ])->name('contenedores.datos_contenedor_mapa');
 
 //--------------------- SETTING ------------------------
 Route::get('/setting', [SettingController::class, 'verSetting'])->name('setting');

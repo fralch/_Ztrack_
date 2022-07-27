@@ -54,7 +54,7 @@ export default {
           // hacer foreach de los makers
           valor.forEach((marker) => {
             L.marker([marker.latitud, marker.longitud]).addTo(map).bindPopup(marker.nombre_contenedor, {closeOnClick: false, autoClose: false}).openPopup();
-            console.log(marker.nombre_contenedor);
+            // console.log(marker.nombre_contenedor);
           });
      
 
@@ -136,9 +136,18 @@ export default {
 
                 // usamos polylinePoints para trazar la ruta
                 L.polyline(self.polylinePoints).addTo(map);
-                // console.log(self.polylinePoints);
               //FIN DE LA CONFIGURACION DEL MAPA
-            });
+
+              axios
+              .post(route("contenedores.datos_contenedor_mapa"), {
+                id: self.contenedor,
+                tipo: self.tipo,
+              })
+              .then((response) => {
+                console.log("detalleMapa",response); 
+              })
+
+            }); 
         });
       }
     },
