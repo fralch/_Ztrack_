@@ -536,7 +536,7 @@ class PanelController extends Controller
             return Registro_diario_generadores::from('registro_diario_generadores')
                 ->select(
                     'contenedores.nombre_contenedor', 
-                    'contenedores.created_at',
+                    'registro_diario_generadores.created_at',
                     'registro_diario_generadores.set_point',
                     'registro_diario_generadores.battery_voltage',
                     'registro_diario_generadores.running_frequency',
@@ -554,7 +554,16 @@ class PanelController extends Controller
         }
         if ($tipo_contenedor == 'reefer') {
             return Registro_diario_reefers::from('registro_diario_reefers')
-                ->select('contenedores.nombre_contenedor')
+                ->select(
+                    'contenedores.nombre_contenedor', 
+                    'registro_diario_reefers.created_at',
+                    'registro_diario_reefers.set_point',
+                    'registro_diario_reefers.co2_reading',
+                    'registro_diario_reefers.relative_humidity',
+                    'registro_diario_reefers.avl',
+                    'registro_diario_reefers.temp_supply_1',
+                    'registro_diario_reefers.return_air_temp',
+                )
                 ->join( 'contenedores', 'contenedores.id', 'registro_diario_reefers.contenedor_id')
                 ->where('contenedor_id', $id_contenedor)
                 ->latest()
@@ -563,7 +572,15 @@ class PanelController extends Controller
         }
         if ($tipo_contenedor == 'madurador') {
             return Registro_diario_madurador::from('registro_diario_madurador')
-                ->select('contenedores.nombre_contenedor')
+                ->select(
+                    'contenedores.nombre_contenedor', 
+                    'registro_diario_madurador.created_at',
+                    'registro_diario_madurador.set_point',
+                    'registro_diario_madurador.co2_reading',
+                    'registro_diario_madurador.relative_humidity',
+                    'registro_diario_madurador.ethylene',
+                    'registro_diario_madurador.avl',
+                )
                 ->join( 'contenedores', 'contenedores.id', 'registro_diario_madurador.contenedor_id')
                 ->where('contenedor_id', $id_contenedor)
                 ->latest()

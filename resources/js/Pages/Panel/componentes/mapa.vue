@@ -128,14 +128,7 @@ export default {
                     attribution: "FrankCairampoma",
                   }
                 ).addTo(map);
-                // agregamos el marcador
-                L.marker([self.polylinePoints[0].lat, self.polylinePoints[0].lng])
-                  .addTo(map)
-                  .bindPopup("Ultima ubicacion<br> del contenedor.")
-                  .openPopup();
-
-                // usamos polylinePoints para trazar la ruta
-                L.polyline(self.polylinePoints).addTo(map);
+               
               //FIN DE LA CONFIGURACION DEL MAPA
 
               axios
@@ -144,7 +137,45 @@ export default {
                 tipo: self.tipo,
               })
               .then((response) => {
-                console.log("detalleMapa",response); 
+                console.log("detalleMapa",response.data[0]); 
+                let txtMarcador ="";
+                if (self.tipo == 'genset') {
+                  txtMarcador = "<b>Generador: " + response.data[0].nombre_contenedor + "</b> <br> " + 
+                                "SetPoint: " + response.data[0].set_point + " <br> " +
+                                "BatteryVoltage: " + response.data[0].battery_voltage + " <br> " +
+                                "RunningFrequency: " + response.data[0].running_frequency + " <br> " +
+                                "FuelLevel: " + response.data[0].fuel_level + " <br> " +
+                                "VoltageMeasure: " + response.data[0].voltage_measure + " <br> " +
+                                "Rpm: " + response.data[0].rpm + " <br> " +
+                                "TempSupply: " + response.data[0].temp_supply_1 + " <br> " +
+                                "ReturnAir: " + response.data[0].return_air + " <br> " 
+                };
+                if (self.tipo == "reefer") {
+                   txtMarcador =  "<b>Refeer: " + response.data[0].nombre_contenedor + "</b> <br> " +
+                                  "SetPoint: " + response.data[0].set_point + " <br> " +
+                                  "Co2: " + response.data[0].co2_reading + " <br> " +
+                                  "RelativeHumidity: " + response.data[0].relative_humidity + " <br> " +
+                                  "Avl: " + response.data[0].avl + " <br> " +
+                                  "TempSupply: " + response.data[0].temp_supply_1 + " <br> " +
+                                  "ReturnAir: " + response.data[0].return_air_temp + " <br> " 
+                }; 
+                if (self.tipo == "madurador") {
+                   txtMarcador =  "<b>Madurador: " + response.data[0].nombre_contenedor + "</b> <br> " +
+                                  "SetPoint: " + response.data[0].set_point + " <br> " +
+                                  "Co2: " + response.data[0].co2_reading + " <br> " +
+                                  "RelativeHumidity: " + response.data[0].relative_humidity + " <br> " +
+                                  "Ethylene: " + response.data[0].ethylene + " <br> " +
+                                  "Avl: " + response.data[0].avl + " <br> " 
+                }; 
+
+                 // agregamos el marcador
+                L.marker([self.polylinePoints[0].lat, self.polylinePoints[0].lng])
+                  .addTo(map)
+                  .bindPopup(txtMarcador)
+                  .openPopup();
+
+                // usamos polylinePoints para trazar la ruta
+                L.polyline(self.polylinePoints).addTo(map);
               })
 
             }); 
