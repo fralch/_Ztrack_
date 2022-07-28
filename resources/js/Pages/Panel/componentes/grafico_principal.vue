@@ -1,66 +1,105 @@
 <template>
-  
   <div
     id="myChart_principal_id"
     class="col shadow-sm p-3 mb-5 bg-white rounded"
     style="margin: -30px 15px 10px 15px"
     v-if="tipo != ''"
   >
-     <div class="row"   v-if="datos_tabla_reefer != null || datos_tabla_madurador != null || datos_tabla_generador != null ">
-        <div class="col-3">
-          <div class="input-group input-group-sm mb-3">
-            <div class="input-group-prepend">
-              <span class="input-group-text" id="inputGroup-sizing-sm"
-                >Desde</span
-              >
-            </div>
-            <input
-              type="date"
-              class="form-control"
-              aria-label="Small"
-              aria-describedby="inputGroup-sizing-sm"
-             v-model="desde"
-            />
+    <div id="datos_contendor_" style="display: none">
+      <br />
+      <br />
+      <h4>
+        <span class="text-primary">
+          Datos del Contenedor
+          {{
+            datos_contenedor_array.length > 0
+              ? " "
+              : datos_contenedor_array[0].nombre_contenedor
+          }}</span
+        >
+      </h4>
+      <h6>
+        <span class="text-secondary">
+          Nombre del Contenedor:
+          {{ datos_contenedor_array[0].nombre_contenedor }}</span
+        >
+      </h6>
+      <h6>
+        <span class="text-secondary">
+          Booking: {{ datos_contenedor_array[0].booking }}</span
+        >
+      </h6>
+      <h6>
+        <span class="text-secondary">
+          Tipo: {{ datos_contenedor_array[0].tipo }}</span
+        >
+      </h6>
+      <br>
+    </div>
+    <div
+      class="row"
+      v-if="
+        datos_tabla_reefer != null ||
+        datos_tabla_madurador != null ||
+        datos_tabla_generador != null
+      "
+    >
+      <div class="col-3">
+        <div class="input-group input-group-sm mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroup-sizing-sm"
+              >Desde</span
+            >
           </div>
+          <input
+            type="date"
+            class="form-control"
+            aria-label="Small"
+            aria-describedby="inputGroup-sizing-sm"
+            v-model="desde"
+          />
         </div>
-        <div class="col-3">
-          <div class="input-group input-group-sm mb-3">
-            <div class="input-group-prepend">
-              <span class="input-group-text" id="inputGroup-sizing-sm">Hasta</span>
-            </div>
-            <input
-              type="date"
-              class="form-control"
-              aria-label="Small"
-              aria-describedby="inputGroup-sizing-sm"
-              v-model="hasta"
-            />
-          </div>
-        </div>
-        <div class="col">
-          <button
-            class="btn btn-secondary btn-sm"
-            type="button"
-            @click="getContenedorFechas()"
-          >
-            Buscar
-          </button>
-        </div>
-        <div class="col">
-          <button
-            class="btn btn-secondary btn-sm float-right"
-            type="button"
-            @click="imprimir()"
-          >
-            Imprimir
-          </button>
-        </div>
-        
       </div>
-    <div>
+      <div class="col-3">
+        <div class="input-group input-group-sm mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroup-sizing-sm"
+              >Hasta</span
+            >
+          </div>
+          <input
+            type="date"
+            class="form-control"
+            aria-label="Small"
+            aria-describedby="inputGroup-sizing-sm"
+            v-model="hasta"
+          />
+        </div>
+      </div>
+      <div class="col">
+        <button
+          class="btn btn-secondary btn-sm"
+          type="button"
+          @click="getContenedorFechas()"
+        >
+          Buscar
+        </button>
+      </div>
+      <div class="col">
+        <button
+          id="btn_imprimir"
+          class="btn btn-secondary btn-sm float-right"
+          type="button"
+          @click="imprimir()"
+          style="display: none"
+        >
+          Imprimir
+        </button>
+      </div>
+    </div>
+    <div id="impresion_grafico">
       <canvas id="myChart_principal" style="height: 600px"></canvas>
     </div>
-    
   </div>
 </template>
 <script>
@@ -74,6 +113,19 @@ export default {
   },
   data() {
     return {
+      datos_contenedor_array: [
+        {
+          booking: " ",
+          booking_temp: 0,
+          created_at: "",
+          empresa_id: 0,
+          encendido: 0,
+          id: 0,
+          nombre_contenedor: " -- ",
+          tipo: "",
+          updated_at: "",
+        },
+      ],
       datos_tabla_reefer: null,
       datos_tabla_madurador: null,
       datos_tabla_generador: null,
@@ -85,16 +137,16 @@ export default {
           borderColor: "#FFC312",
           backgroundColor: "#FFC312",
           borderWidth: 4,
-          yAxisID: 'y1', //---- yAxisID: 'y1' asignando en el eje derecho del grafico
+          yAxisID: "y1", //---- yAxisID: 'y1' asignando en el eje derecho del grafico
         },
-        
+
         {
           label: "co2 - %",
           data: [],
           borderColor: "#2F79EE",
           backgroundColor: "#2F79EE",
           borderWidth: 4,
-          yAxisID: 'y1',
+          yAxisID: "y1",
         },
 
         {
@@ -103,24 +155,24 @@ export default {
           borderColor: "#9980FA",
           backgroundColor: "#9980FA",
           borderWidth: 4,
-          yAxisID: 'y',
+          yAxisID: "y",
         },
-        
+
         {
           label: "AVL - mch",
           data: [],
           borderColor: "#CA1A51",
           backgroundColor: "#CA1A51",
           borderWidth: 4,
-          yAxisID: 'y',
+          yAxisID: "y",
         },
-         {
+        {
           label: "temp_supply",
           data: [],
           borderColor: "#00BF0A",
           backgroundColor: "#00BF0A",
           borderWidth: 4,
-           yAxisID: 'y1',
+          yAxisID: "y1",
         },
         {
           label: "return_air_temp",
@@ -128,26 +180,26 @@ export default {
           borderColor: "#FF69B4",
           backgroundColor: "#FF69B4",
           borderWidth: 4,
-           yAxisID: 'y1',
+          yAxisID: "y1",
         },
       ],
-       my_Chart_principal_dataset_madurador: [
+      my_Chart_principal_dataset_madurador: [
         {
           label: "set_point C°",
           data: [],
           borderColor: "#FFC312",
           backgroundColor: "#FFC312",
           borderWidth: 4,
-          yAxisID: 'y1', //---- yAxisID: 'y1' asignando en el eje derecho del grafico
+          yAxisID: "y1", //---- yAxisID: 'y1' asignando en el eje derecho del grafico
         },
-        
+
         {
           label: "co2 - %",
           data: [],
           borderColor: "#2F79EE",
           backgroundColor: "#2F79EE",
           borderWidth: 4,
-          yAxisID: 'y1',
+          yAxisID: "y1",
         },
 
         {
@@ -156,7 +208,7 @@ export default {
           borderColor: "#9980FA",
           backgroundColor: "#9980FA",
           borderWidth: 4,
-          yAxisID: 'y',
+          yAxisID: "y",
         },
 
         {
@@ -165,17 +217,16 @@ export default {
           borderColor: "#FDA7DF",
           backgroundColor: "#FDA7DF",
           borderWidth: 4,
-          yAxisID: 'y',
+          yAxisID: "y",
         },
 
-        
         {
           label: "AVL - mch",
           data: [],
           borderColor: "#CA1A51",
           backgroundColor: "#CA1A51",
           borderWidth: 4,
-          yAxisID: 'y',
+          yAxisID: "y",
         },
       ],
       my_Chart_principal_dataset_generador: [
@@ -185,7 +236,7 @@ export default {
           borderColor: "#3498db",
           backgroundColor: "#3498db",
           borderWidth: 4,
-           yAxisID: 'y1',
+          yAxisID: "y1",
         },
         {
           label: "battery_voltage",
@@ -193,7 +244,7 @@ export default {
           borderColor: "#db0404",
           backgroundColor: "#db0404",
           borderWidth: 4,
-           yAxisID: 'y1',
+          yAxisID: "y1",
         },
         {
           label: "running_frequency",
@@ -201,7 +252,7 @@ export default {
           borderColor: "#9b59b6",
           backgroundColor: "#9b59b6",
           borderWidth: 4,
-           yAxisID: 'y1',
+          yAxisID: "y1",
         },
         {
           label: "fuel_level",
@@ -209,7 +260,7 @@ export default {
           borderColor: "#e67e22",
           backgroundColor: "#e67e22",
           borderWidth: 4,
-           yAxisID: 'y',
+          yAxisID: "y",
         },
         {
           label: "voltage_measure",
@@ -217,16 +268,16 @@ export default {
           borderColor: "#1abc9c",
           backgroundColor: "#1abc9c",
           borderWidth: 4,
-           yAxisID: 'y',
+          yAxisID: "y",
         },
-        
+
         {
           label: "rpm",
           data: [],
           borderColor: "#f39c12",
           backgroundColor: "#f39c12",
           borderWidth: 4,
-           yAxisID: 'y',
+          yAxisID: "y",
         },
         {
           label: "temp_supply",
@@ -234,7 +285,7 @@ export default {
           borderColor: "#00BF0A",
           backgroundColor: "#00BF0A",
           borderWidth: 4,
-           yAxisID: 'y',
+          yAxisID: "y",
         },
         {
           label: "return_air_temp",
@@ -242,35 +293,50 @@ export default {
           borderColor: "#FF69B4",
           backgroundColor: "#FF69B4",
           borderWidth: 4,
-           yAxisID: 'y',
+          yAxisID: "y",
         },
-       
       ],
       my_Chart_principal_labels: [],
       my_Chart_principal_dataSetable: [],
-      desde: new Date().getFullYear() + '-' + ('0' + (new Date().getMonth() + 1)).slice(-2) +'-' + ('0' + new Date().getDate()).slice(-2), 
-      hasta: new Date().getFullYear() + '-' + ('0' + (new Date().getMonth() + 1)).slice(-2) +'-' + ('0' + new Date().getDate()).slice(-2), 
+      desde:
+        new Date().getFullYear() +
+        "-" +
+        ("0" + (new Date().getMonth() + 1)).slice(-2) +
+        "-" +
+        ("0" + new Date().getDate()).slice(-2),
+      hasta:
+        new Date().getFullYear() +
+        "-" +
+        ("0" + (new Date().getMonth() + 1)).slice(-2) +
+        "-" +
+        ("0" + new Date().getDate()).slice(-2),
     };
   },
   watch: {
-    contenedor(){
+    contenedor() {
       this.getContenedor();
     },
-    tipo(){
+    tipo() {
       this.my_Chart_principal_dataSetable = [];
       if (myChart_principal) {
-          myChart_principal.destroy();
-          this.myChartPrincipal();
+        myChart_principal.destroy();
+        this.myChartPrincipal();
       }
     },
   },
   methods: {
-    imprimir(){
-      $("#myChart_principal").print();   
+    imprimir() {
+      let self = this;
+      console.log("datos desde graficos", self.datos_contenedor_array);
+      $("#datos_contendor_").css("display", "block");
+      $("button").css("display", "none");
+      $("#myChart_principal_id").print();
+      $("#datos_contendor_").css("display", "none");
+      $("button").css("display", "block");
     },
     getContenedor() {
       let self = this;
-      
+
       if (this.tipo == "reefer") {
         axios
           .post(route("contenedores.get_datos"), {
@@ -279,10 +345,10 @@ export default {
           })
           .then((response) => {
             self.datos_tabla_reefer = response.data;
-          }).then(() => {
+          })
+          .then(() => {
             self.setLabelsMyChartPrincipal();
-          }); 
-          
+          });
       }
       if (this.tipo == "genset") {
         axios
@@ -291,10 +357,11 @@ export default {
             tipo: "genset",
           })
           .then((response) => {
-            self.datos_tabla_generador = response.data;            
-          }).then(() => {
+            self.datos_tabla_generador = response.data;
+          })
+          .then(() => {
             self.setLabelsMyChartPrincipal();
-          }); 
+          });
       }
       if (this.tipo == "madurador") {
         axios
@@ -303,17 +370,34 @@ export default {
             tipo: "madurador",
           })
           .then((response) => {
-            self.datos_tabla_madurador = response.data;            
-          }).then(() => {
+            self.datos_tabla_madurador = response.data;
+          })
+          .then(() => {
             self.setLabelsMyChartPrincipal();
-          }); 
+          });
       }
+      axios
+        .post(route("contenedores.datos_contenedor"), {
+          id: this.contenedor,
+        })
+        .then((response) => {
+          self.datos_contenedor_array = [];
+          self.datos_contenedor_array = response.data;
+          if (self.datos_contenedor_array.length > 0) {
+            $("#btn_imprimir").css("display", "block");
+          }
+        });
     },
     myChartPrincipal() {
       let self = this;
-      let label_y1 = this.tipo != "genset" ? " C°" :  "";
-      let label_y = this.tipo == "reefer" ? " RH%" :  this.tipo == "madurador" ? " PPM - RH% - m3H" : "";
-     
+      let label_y1 = this.tipo != "genset" ? " C°" : "";
+      let label_y =
+        this.tipo == "reefer"
+          ? " RH%"
+          : this.tipo == "madurador"
+          ? " PPM - RH% - m3H"
+          : "";
+
       const ctx_principal = document
         .getElementById("myChart_principal")
         .getContext("2d");
@@ -337,35 +421,36 @@ export default {
           maintainAspectRatio: false,
           scales: {
             y: {
-               
-              type: 'linear',
+              type: "linear",
               display: true,
-              title: { // label del eje y vertical (el que va a la izquierda)
+              title: {
+                // label del eje y vertical (el que va a la izquierda)
                 display: true,
-                text: label_y
+                text: label_y,
               },
-              position: 'right',
+              position: "right",
               // max: 350, // eje y
               // min: 0, // eje y
             },
-            y1: { // *** CREANDO EJE Y DERECHO ***
-          
-            ticks: {
-                    // Include a dollar sign in the ticks
-                    callback: function(value, index, ticks) {
-                        return  value+ label_y1;
-                    }
+            y1: {
+              // *** CREANDO EJE Y DERECHO ***
+
+              ticks: {
+                // Include a dollar sign in the ticks
+                callback: function (value, index, ticks) {
+                  return value + label_y1;
                 },
-              type: 'linear',
+              },
+              type: "linear",
               display: true,
               title: {
                 display: true,
                 // text: 'Valores del 0 al 40 - Setpoint°, Co2'
               },
-              position: 'left',
+              position: "left",
               // max: 50, // eje y
               // min: 0, // eje y
-              // grid line settings 
+              // grid line settings
               grid: {
                 drawOnChartArea: false, // only want the grid lines for one axis to show up
               },
@@ -385,7 +470,7 @@ export default {
               : [];
           datos_m.map(function (datos_m, index) {
             let date = new Date(datos_m.created_at);
-            let day = date.getDate()+ 0;
+            let day = date.getDate() + 0;
             let month = date.getMonth() + 1;
             let year = date.getFullYear();
             let hours = date.getHours();
@@ -522,11 +607,9 @@ export default {
                     );
                   });
                 }
-              }); 
-              
+              });
           }
-          
-        }); 
+        });
     },
     setDatosGraficoPrincipal() {
       /* 😑 CUANDO QUIERAS AGREGAR O QUITAR VARIABLES PARA EL GRAFICO PRINCIPAL PRIMERO TIENES AGREGARLOS EN LOS DATA QUE ESTAN ABAJO DE LOS PROPS LUEGO ACTUALIZARLOS AQUI  */
@@ -540,8 +623,6 @@ export default {
           self.my_Chart_principal_dataset_madurador[3].data = [];
           self.my_Chart_principal_dataset_madurador[4].data = [];
 
-          
- 
           let datos_madurador =
             self.datos_tabla_madurador.length != 0
               ? self.datos_tabla_madurador
@@ -559,9 +640,7 @@ export default {
             self.my_Chart_principal_dataset_madurador[3].data.push(
               datos_m.ethylene
             );
-            self.my_Chart_principal_dataset_madurador[4].data.push(
-              datos_m.avl
-            );
+            self.my_Chart_principal_dataset_madurador[4].data.push(datos_m.avl);
           });
         }
         if (self.tipo == "reefer") {
@@ -573,9 +652,7 @@ export default {
           self.my_Chart_principal_dataset_reefer[5].data = [];
 
           let datos_reefer =
-            self.datos_tabla_reefer.length != 0
-              ? self.datos_tabla_reefer
-              : [];
+            self.datos_tabla_reefer.length != 0 ? self.datos_tabla_reefer : [];
           datos_reefer.map(function (datos_r, index) {
             self.my_Chart_principal_dataset_reefer[0].data.push(
               datos_r.set_point
@@ -586,16 +663,13 @@ export default {
             self.my_Chart_principal_dataset_reefer[2].data.push(
               datos_r.relative_humidity
             );
-            self.my_Chart_principal_dataset_reefer[3].data.push(
-              datos_r.avl
-            );
+            self.my_Chart_principal_dataset_reefer[3].data.push(datos_r.avl);
             self.my_Chart_principal_dataset_reefer[4].data.push(
               datos_r.temp_supply_1
             );
             self.my_Chart_principal_dataset_reefer[5].data.push(
               datos_r.return_air
             );
-            
           });
         }
         if (self.tipo == "genset") {
@@ -607,7 +681,6 @@ export default {
           self.my_Chart_principal_dataset_generador[5].data = [];
           self.my_Chart_principal_dataset_generador[6].data = [];
           self.my_Chart_principal_dataset_generador[7].data = [];
-
 
           let datos_genset =
             self.datos_tabla_generador.length != 0
@@ -629,16 +702,14 @@ export default {
             self.my_Chart_principal_dataset_generador[4].data.push(
               datos_g.voltage_measure
             );
-            self.my_Chart_principal_dataset_generador[5].data.push(
-              datos_g.rpm
-            );
+            self.my_Chart_principal_dataset_generador[5].data.push(datos_g.rpm);
             self.my_Chart_principal_dataset_generador[6].data.push(
               datos_g.temp_supply_1
             );
             self.my_Chart_principal_dataset_generador[7].data.push(
               datos_g.return_air
             );
-           
+
             // -----------------
           });
         }
@@ -647,20 +718,22 @@ export default {
 
       set_data().then(() => {
         if (self.tipo == "reefer") {
-
-          self.my_Chart_principal_dataSetable = self.my_Chart_principal_dataset_reefer;
+          self.my_Chart_principal_dataSetable =
+            self.my_Chart_principal_dataset_reefer;
         }
         if (self.tipo == "genset") {
-          self.my_Chart_principal_dataSetable = self.my_Chart_principal_dataset_generador;
+          self.my_Chart_principal_dataSetable =
+            self.my_Chart_principal_dataset_generador;
         }
         if (self.tipo == "madurador") {
-          self.my_Chart_principal_dataSetable = self.my_Chart_principal_dataset_madurador;
+          self.my_Chart_principal_dataSetable =
+            self.my_Chart_principal_dataset_madurador;
         }
       });
     },
     getContenedorFechas() {
       let self = this;
-      
+
       if (this.tipo == "reefer") {
         axios
           .post(route("contenedores.get_datos_graficos"), {
@@ -671,10 +744,10 @@ export default {
           })
           .then((response) => {
             self.datos_tabla_reefer = response.data.reverse();
-          }).then(() => {
+          })
+          .then(() => {
             self.setLabelsMyChartPrincipal();
-          }); 
-          
+          });
       }
       if (this.tipo == "genset") {
         axios
@@ -685,10 +758,11 @@ export default {
             hasta: self.hasta,
           })
           .then((response) => {
-            self.datos_tabla_generador = response.data.reverse();            
-          }).then(() => {
+            self.datos_tabla_generador = response.data.reverse();
+          })
+          .then(() => {
             self.setLabelsMyChartPrincipal();
-          }); 
+          });
       }
       if (this.tipo == "madurador") {
         axios
@@ -699,10 +773,11 @@ export default {
             hasta: self.hasta,
           })
           .then((response) => {
-            self.datos_tabla_madurador = response.data.reverse();            
-          }).then(() => {
+            self.datos_tabla_madurador = response.data.reverse();
+          })
+          .then(() => {
             self.setLabelsMyChartPrincipal();
-          }); 
+          });
       }
     },
   },
