@@ -647,6 +647,17 @@ class PanelController extends Controller
         }
         
     }
+    public function datos_contenedor(Request $request)
+    {
+        // return $request; 
+        $id_contenedor = $request->id;
+
+        return Contenedor::from('contenedores')
+        ->select()
+        ->where('id', $id_contenedor)
+        ->get();
+        
+    }
     public function obtener_datos_contenedor_fecha(Request $request)
     {
         // return $request; 
