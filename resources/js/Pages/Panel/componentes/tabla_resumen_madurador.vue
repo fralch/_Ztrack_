@@ -186,6 +186,7 @@ export default {
     return {
       contenedores_encendidos_madurador: [],
       datos_resumen_madurador: [],
+      tabla: null, 
     };
   },
   watch: {
@@ -202,7 +203,8 @@ export default {
       // console.log("armando tabla");
       let self = this;
       this.$nextTick(() => {
-        var table = $("#tblContenedor_madurador").DataTable({
+        self.tabla = $("#tblContenedor_madurador").DataTable({
+          
           scrollX: "100%",
           responsive: true,
           buttons: true,
@@ -215,12 +217,19 @@ export default {
           language: {
             url: "//cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json",
           },
+          
         });
         /* Esta es la funcion que selecciona una fila  yla colorea  */
         $("#tblContenedor_madurador tbody").on("click", "tr", function () {
-          table.$("tr.selected").removeClass("selected");
+          self.tabla.$("tr.selected").removeClass("selected");
           $(this).addClass("selected");
         });
+
+        let column = self.tabla.column(1);
+        column.visible(false);
+
+        // column.visible(!column.visible());
+        // console.log("columnas ",column); 
       });
     },
     actualizarTabla() {
