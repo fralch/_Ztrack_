@@ -5,11 +5,13 @@
       class="col shadow-sm p-3 mb-5 bg-white rounded"
       style="margin: -30px 15px 10px 15px"
     >
+   
       <table
         class="display nowrap"
         id="tblContenedor_madurador"
         style="margin: 0 auto !important"
       >
+      
         <thead>
           <tr class="bg-danger" style="color: white !important">
             <!-- <th scope="col" width='50px' class="text-center">Ver</th> -->
@@ -171,6 +173,9 @@
           </tr>
         </tbody>
       </table>
+      <div class="escoger_columnas">
+        Escoger columnas: <span  @click="ocultar(1)">Ethylene</span>
+      </div>
     </div>   
   </div>
 </template>
@@ -254,7 +259,11 @@ export default {
     },
 
     ocultar(val){
-      this.tabla.column(val).visible(false);
+      // this.tabla.column(val).visible(false);
+       var column = this.tabla.column(val);
+ 
+        // Toggle the visibility
+        column.visible(!column.visible());
     },
     
   },

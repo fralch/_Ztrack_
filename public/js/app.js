@@ -4706,6 +4706,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {},
@@ -4772,7 +4777,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.$emit("select_contenedor", contenedor); // emite el evento a contedor padre 
     },
     ocultar: function ocultar(val) {
-      this.tabla.column(val).visible(false);
+      // this.tabla.column(val).visible(false);
+      var column = this.tabla.column(val); // Toggle the visibility
+
+      column.visible(!column.visible());
     }
   }
 });
@@ -6710,7 +6718,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.dt-buttons button  {\r\n  min-width: 100px  !important;\r\n  height: 30px  !important;\r\n  color: #fff  !important;\r\n  padding: 2px 10px  !important;\r\n  font-weight: bold  !important;\r\n  cursor: pointer  !important;\r\n  transition: all 0.3s ease  !important;\r\n  position: relative  !important;\r\n  display: inline-block  !important;\r\n  outline: none  !important;\r\n  border-radius: 5px  !important;\r\n  z-index: 0 !important;\r\n  background: #fff !important;\r\n  overflow: hidden;\r\n  border: 2px solid #777c83  !important;\r\n  color: #777c83 !important;\n}\n.dt-buttons button :hover {\r\n  color: #fff;\n}\n.dt-buttons button :hover:after {\r\n  width: 100%;\n}\n.dt-buttons button :after {\r\n  content: \"\";\r\n  position: absolute;\r\n  z-index: -1;\r\n  transition: all 0.3s ease;\r\n  left: 0;\r\n  top: 0;\r\n  width: 0;\r\n  height: 100%;\r\n  background: #777c83;\n}\r\n\r\n/* -------------------------- */\n#buscar_detalle {\r\n  min-width: 190px;\r\n  height: 30px;\r\n  color: #fff;\r\n  padding: 2px 10px;\r\n  font-weight: bold;\r\n  cursor: pointer;\r\n  transition: all 0.3s ease;\r\n  position: relative;\r\n  display: inline-block;\r\n  outline: none;\r\n  border-radius: 5px;\r\n  border: none;\r\n  box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5), 7px 7px 20px 0px rgba(0,0,0,.1), 4px 4px 5px 0px rgba(0,0,0,.1);\r\n  background: #17A2B8;\r\n z-index: 1;\n}\n#buscar_detalle:hover:after {\r\n  width: 100%;\r\n  left: 0;\n}\n#buscar_detalle:after {\r\n  border-radius: 5px;\r\n  position: absolute;\r\n  content: \"\";\r\n  width: 0;\r\n  height: 100%;\r\n  top: 0;\r\n  z-index: -1;\r\n  box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5), 7px 7px 20px 0px rgba(0,0,0,.1), 4px 4px 5px 0px rgba(0,0,0,.1);\r\n  transition: all 0.3s ease;\r\n  background-color: #096574;\r\n  right: 0;\n}\n.css-button-shadow-border-sliding--blue:active {\r\n  top: 2px;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.dt-buttons button  {\r\n  min-width: 100px  !important;\r\n  height: 30px  !important;\r\n  color: #fff  !important;\r\n  padding: 2px 10px  !important;\r\n  font-weight: bold  !important;\r\n  cursor: pointer  !important;\r\n  transition: all 0.3s ease  !important;\r\n  position: relative  !important;\r\n  display: inline-block  !important;\r\n  outline: none  !important;\r\n  border-radius: 5px  !important;\r\n  z-index: 0 !important;\r\n  background: #fff !important;\r\n  overflow: hidden;\r\n  border: 2px solid #777c83  !important;\r\n  color: #777c83 !important;\n}\n.dt-buttons button :hover {\r\n  color: #fff;\n}\n.dt-buttons button :hover:after {\r\n  width: 100%;\n}\n.dt-buttons button :after {\r\n  content: \"\";\r\n  position: absolute;\r\n  z-index: -1;\r\n  transition: all 0.3s ease;\r\n  left: 0;\r\n  top: 0;\r\n  width: 0;\r\n  height: 100%;\r\n  background: #777c83;\n}\r\n\r\n/* -------------------------- */\n#buscar_detalle {\r\n  min-width: 190px;\r\n  height: 30px;\r\n  color: #fff;\r\n  padding: 2px 10px;\r\n  font-weight: bold;\r\n  cursor: pointer;\r\n  transition: all 0.3s ease;\r\n  position: relative;\r\n  display: inline-block;\r\n  outline: none;\r\n  border-radius: 5px;\r\n  border: none;\r\n  box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5), 7px 7px 20px 0px rgba(0,0,0,.1), 4px 4px 5px 0px rgba(0,0,0,.1);\r\n  background: #17A2B8;\r\n z-index: 1;\n}\n#buscar_detalle:hover:after {\r\n  width: 100%;\r\n  left: 0;\n}\n#buscar_detalle:after {\r\n  border-radius: 5px;\r\n  position: absolute;\r\n  content: \"\";\r\n  width: 0;\r\n  height: 100%;\r\n  top: 0;\r\n  z-index: -1;\r\n  box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5), 7px 7px 20px 0px rgba(0,0,0,.1), 4px 4px 5px 0px rgba(0,0,0,.1);\r\n  transition: all 0.3s ease;\r\n  background-color: #096574;\r\n  right: 0;\n}\n.css-button-shadow-border-sliding--blue:active {\r\n  top: 2px;\n}\n.escoger_columnas span{\r\n  cursor: pointer;\n}\n.escoger_columnas span:hover {\r\n  text-decoration: underline;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -35903,6 +35911,21 @@ var render = function () {
                 ),
               ]
             ),
+            _vm._v(" "),
+            _c("div", { staticClass: "escoger_columnas" }, [
+              _vm._v("\n      Escoger columnas: "),
+              _c(
+                "span",
+                {
+                  on: {
+                    click: function ($event) {
+                      return _vm.ocultar(1)
+                    },
+                  },
+                },
+                [_vm._v("Ethylene")]
+              ),
+            ]),
           ]
         ),
       ])
