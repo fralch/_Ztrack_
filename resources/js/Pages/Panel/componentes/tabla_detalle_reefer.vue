@@ -51,66 +51,66 @@
           <tr class="bg-info" style="color: white !important">
             <th scope="col">ID</th>
             <th scope="col">FECHA</th>
-            <th scope="col" class="text-center">Set_point</th>
-            <th scope="col" class="text-center">Temp_supply_1</th>
-            <th scope="col" class="text-center">Temp_supply_2</th>
-            <th scope="col" class="text-center">Return_air</th>
-            <th scope="col" class="text-center">Evaporation_coil</th>
-            <th scope="col" class="text-center">Condensation_coil</th>
-            <th scope="col" class="text-center">Compress_coil_1</th>
-            <th scope="col" class="text-center">Compress_coil_2</th>
-            <th scope="col" class="text-center">Ambient_air</th>
-            <th scope="col" class="text-center">Cargo_1_temp</th>
-            <th scope="col" class="text-center">Cargo_2_temp</th>
-            <th scope="col" class="text-center">Cargo_3_temp</th>
-            <th scope="col" class="text-center">Cargo_4_temp</th>
-            <th scope="col" class="text-center">Relative_humidity</th>
-            <th scope="col" class="text-center">AVL</th>
-            <th scope="col" class="text-center">Suction_pressure</th>
-            <th scope="col" class="text-center">Discharge_pressure</th>
-            <th scope="col" class="text-center">Line_voltage</th>
-            <th scope="col" class="text-center">Line_frequency</th>
-            <th scope="col" class="text-center">Consumption_ph_1</th>
-            <th scope="col" class="text-center">Consumption_ph_2</th>
-            <th scope="col" class="text-center">Consumption_ph_3</th>
-            <th scope="col" class="text-center">Co2_reading</th>
-            <th scope="col" class="text-center">O2_reading</th>
-            <th scope="col" class="text-center">Evaporator_speed</th>
-            <th scope="col" class="text-center">Condenser_speed</th>
-            <th scope="col" class="text-center">Battery_voltage</th>
-            <th scope="col" class="text-center">Power_kwh</th>
-            <th scope="col" class="text-center">Power_trip_reading</th>
-            <th scope="col" class="text-center">Power_trip_duration</th>
-            <th scope="col" class="text-center">Suction_temp</th>
-            <th scope="col" class="text-center">Discharge_temp</th>
-            <th scope="col" class="text-center">Supply_air_temp</th>
-            <th scope="col" class="text-center">Return_air_temp</th>
-            <th scope="col" class="text-center">Dl_battery_temp</th>
-            <th scope="col" class="text-center">Dl_battery_charge</th>
-            <th scope="col" class="text-center">Power_consumption</th>
-            <th scope="col" class="text-center">Power_consumption_avg</th>
-            <th scope="col" class="text-center">Alarm_present</th>
-            <th scope="col" class="text-center">Capacity_load</th>
-            <th scope="col" class="text-center">Power_state</th>
-            <th scope="col" class="text-center">Controlling_mode</th>
-            <th scope="col" class="text-center">Humidity_control</th>
-            <th scope="col" class="text-center">Humidity_set_point</th>
-            <th scope="col" class="text-center">Fresh_air_ex_mode</th>
-            <th scope="col" class="text-center">Fresh_air_ex_rate</th>
-            <th scope="col" class="text-center">Fresh_air_ex_delay</th>
-            <th scope="col" class="text-center">Set_point_o2</th>
-            <th scope="col" class="text-center">Set_point_co2</th>
-            <th scope="col" class="text-center">Defrost_term_temp</th>
-            <th scope="col" class="text-center">Defrost_interval</th>
-            <th scope="col" class="text-center">Water_cooled_conde</th>
-            <th scope="col" class="text-center">USDA_trip</th>
-            <th scope="col" class="text-center">Evaporator_exp_valve</th>
-            <th scope="col" class="text-center">Suction_mod_valve</th>
-            <th scope="col" class="text-center">Hot_gas_valve</th>
-            <th scope="col" class="text-center">Economizer_valve</th>
-            <th scope="col" class="text-center">Modelo</th>
-            <th scope="col" class="text-center">Latitud</th>
-            <th scope="col" class="text-center">Longitud</th>
+            <th scope="col" class="text-center" @click="ocultar(2)">Set_point</th>
+            <th scope="col" class="text-center" @click="ocultar(3)">Temp_supply_1</th>
+            <th scope="col" class="text-center" @click="ocultar(4)">Temp_supply_2</th>
+            <th scope="col" class="text-center" @click="ocultar(5)">Return_air</th>
+            <th scope="col" class="text-center" @click="ocultar(6)">Evaporation_coil</th>
+            <th scope="col" class="text-center" @click="ocultar(7)">Condensation_coil</th>
+            <th scope="col" class="text-center" @click="ocultar(8)">Compress_coil_1</th>
+            <th scope="col" class="text-center" @click="ocultar(9)">Compress_coil_2</th>
+            <th scope="col" class="text-center" @click="ocultar(10)">Ambient_air</th>
+            <th scope="col" class="text-center" @click="ocultar(11)">Cargo_1_temp</th>
+            <th scope="col" class="text-center" @click="ocultar(12)">Cargo_2_temp</th>
+            <th scope="col" class="text-center" @click="ocultar(13)">Cargo_3_temp</th>
+            <th scope="col" class="text-center" @click="ocultar(14)">Cargo_4_temp</th>
+            <th scope="col" class="text-center" @click="ocultar(15)">Relative_humidity</th>
+            <th scope="col" class="text-center" @click="ocultar(16)">AVL</th>
+            <th scope="col" class="text-center" @click="ocultar(17)">Suction_pressure</th>
+            <th scope="col" class="text-center" @click="ocultar(18)">Discharge_pressure</th>
+            <th scope="col" class="text-center" @click="ocultar(19)">Line_voltage</th>
+            <th scope="col" class="text-center" @click="ocultar(20)">Line_frequency</th>
+            <th scope="col" class="text-center" @click="ocultar(21)">Consumption_ph_1</th>
+            <th scope="col" class="text-center" @click="ocultar(22)">Consumption_ph_2</th>
+            <th scope="col" class="text-center" @click="ocultar(23)">Consumption_ph_3</th>
+            <th scope="col" class="text-center" @click="ocultar(24)">Co2_reading</th>
+            <th scope="col" class="text-center" @click="ocultar(25)">O2_reading</th>
+            <th scope="col" class="text-center" @click="ocultar(26)">Evaporator_speed</th>
+            <th scope="col" class="text-center" @click="ocultar(27)">Condenser_speed</th>
+            <th scope="col" class="text-center" @click="ocultar(28)">Battery_voltage</th>
+            <th scope="col" class="text-center" @click="ocultar(29)">Power_kwh</th>
+            <th scope="col" class="text-center" @click="ocultar(30)">Power_trip_reading</th>
+            <th scope="col" class="text-center" @click="ocultar(31)">Power_trip_duration</th>
+            <th scope="col" class="text-center" @click="ocultar(32)">Suction_temp</th>
+            <th scope="col" class="text-center" @click="ocultar(33)">Discharge_temp</th>
+            <th scope="col" class="text-center" @click="ocultar(34)">Supply_air_temp</th>
+            <th scope="col" class="text-center" @click="ocultar(35)">Return_air_temp</th>
+            <th scope="col" class="text-center" @click="ocultar(36)">Dl_battery_temp</th>
+            <th scope="col" class="text-center" @click="ocultar(37)">Dl_battery_charge</th>
+            <th scope="col" class="text-center" @click="ocultar(38)">Power_consumption</th>
+            <th scope="col" class="text-center" @click="ocultar(39)">Power_consumption_avg</th>
+            <th scope="col" class="text-center" @click="ocultar(40)">Alarm_present</th>
+            <th scope="col" class="text-center" @click="ocultar(41)">Capacity_load</th>
+            <th scope="col" class="text-center" @click="ocultar(42)">Power_state</th>
+            <th scope="col" class="text-center" @click="ocultar(43)">Controlling_mode</th>
+            <th scope="col" class="text-center" @click="ocultar(44)">Humidity_control</th>
+            <th scope="col" class="text-center" @click="ocultar(45)">Humidity_set_point</th>
+            <th scope="col" class="text-center" @click="ocultar(46)">Fresh_air_ex_mode</th>
+            <th scope="col" class="text-center" @click="ocultar(47)">Fresh_air_ex_rate</th>
+            <th scope="col" class="text-center" @click="ocultar(48)">Fresh_air_ex_delay</th>
+            <th scope="col" class="text-center" @click="ocultar(49)">Set_point_o2</th>
+            <th scope="col" class="text-center" @click="ocultar(50)">Set_point_co2</th>
+            <th scope="col" class="text-center" @click="ocultar(51)">Defrost_term_temp</th>
+            <th scope="col" class="text-center" @click="ocultar(52)">Defrost_interval</th>
+            <th scope="col" class="text-center" @click="ocultar(53)">Water_cooled_conde</th>
+            <th scope="col" class="text-center" @click="ocultar(54)">USDA_trip</th>
+            <th scope="col" class="text-center" @click="ocultar(55)">Evaporator_exp_valve</th>
+            <th scope="col" class="text-center" @click="ocultar(56)">Suction_mod_valve</th>
+            <th scope="col" class="text-center" @click="ocultar(57)">Hot_gas_valve</th>
+            <th scope="col" class="text-center" @click="ocultar(58)">Economizer_valve</th>
+            <th scope="col" class="text-center" @click="ocultar(59)">Modelo</th>
+            <th scope="col" class="text-center" @click="ocultar(60)">Latitud</th>
+            <th scope="col" class="text-center" @click="ocultar(61)">Longitud</th>
           </tr>
         </thead>
         <tbody>
@@ -194,6 +194,7 @@ export default {
   },
   data() {
     return {
+      tabla: null, 
       datos_tabla_reefer: [],
       ubicacion: null,
        desde: new Date().getFullYear() + '-' + ('0' + (new Date().getMonth() + 1)).slice(-2) +'-' + ('0' + new Date().getDate()).slice(-2), 
@@ -216,7 +217,7 @@ export default {
     TablaDetalleContenedores_r() {
       let self = this;
       this.$nextTick(() => {
-        var table2 = $("#tblDetalleContenedores_reefers").DataTable({
+        self.tabla = $("#tblDetalleContenedores_reefers").DataTable({
            scrollX: "100%",
           responsive: true,
           buttons: true,
@@ -324,6 +325,10 @@ export default {
             } else {
               return `${day}-${month}-${year}  ${hours}:${minutes}:${seconds}`; 
             }
+    },
+     ocultar(val){
+       var column = this.tabla.column(val);
+        column.visible(!column.visible());
     },
   },
 };

@@ -18,14 +18,16 @@
               class="form-control"
               aria-label="Small"
               aria-describedby="inputGroup-sizing-sm"
-             v-model="desde"
+              v-model="desde"
             />
           </div>
         </div>
         <div class="col-3">
           <div class="input-group input-group-sm mb-3">
             <div class="input-group-prepend">
-              <span class="input-group-text" id="inputGroup-sizing-sm">Hasta</span>
+              <span class="input-group-text" id="inputGroup-sizing-sm"
+                >Hasta</span
+              >
             </div>
             <input
               type="date"
@@ -37,11 +39,7 @@
           </div>
         </div>
         <div class="col">
-          <button
-            id="buscar_detalle"
-            type="button"
-            @click="buscar_detalle"
-          >
+          <button id="buscar_detalle" type="button" @click="buscar_detalle">
             Buscar
           </button>
         </div>
@@ -56,35 +54,35 @@
           <tr class="bg-info" style="color: white !important">
             <th scope="col">ID</th>
             <th scope="col">FECHA</th>
-            <th scope="col" width="50px" class="text-center">
+            <th scope="col" width="50px" class="text-center" @click="ocultar(2)">
               Battery_voltage
             </th>
-            <th scope="col" width="50px" class="text-center">Water_temp</th>
-            <th scope="col" width="50px" class="text-center">
+            <th scope="col" width="50px" class="text-center" @click="ocultar(3)">Water_temp</th>
+            <th scope="col" width="50px" class="text-center" @click="ocultar(4)">
               Running_frequency
             </th>
-            <th scope="col" width="50px" class="text-center">Fuel_level</th>
-            <th scope="col" width="50px" class="text-center">
+            <th scope="col" width="50px" class="text-center" @click="ocultar(5)">Fuel_level</th>
+            <th scope="col" width="50px" class="text-center" @click="ocultar(6)">
               Voltage_measure
             </th>
-            <th scope="col" width="50px" class="text-center">Rotor_current</th>
-            <th scope="col" width="50px" class="text-center">fiel_current</th>
-            <th scope="col" width="50px" class="text-center">Speed</th>
-            <th scope="col" width="50px" class="text-center">Eco_power</th>
-            <th scope="col" width="50px" class="text-center">RPM</th>
-            <th scope="col" width="50px" class="text-center">Unit_mode</th>
-            <th scope="col" width="50px" class="text-center">Horometro</th>
-            <th scope="col" width="50px" class="text-center">Modelo</th>
-            <th scope="col" width="50px" class="text-center">Latitud</th>
-            <th scope="col" width="50px" class="text-center">Longitud</th>
-            <th scope="col" width="50px" class="text-center">Alarma</th>
-            <th scope="col" width="50px" class="text-center">Evento</th>
-            <th scope="col" width="50px" class="text-center">
+            <th scope="col" width="50px" class="text-center" @click="ocultar(7)">Rotor_current</th>
+            <th scope="col" width="50px" class="text-center" @click="ocultar(8)">fiel_current</th>
+            <th scope="col" width="50px" class="text-center" @click="ocultar(9)">Speed</th>
+            <th scope="col" width="50px" class="text-center" @click="ocultar(10)">Eco_power</th>
+            <th scope="col" width="50px" class="text-center" @click="ocultar(11)">RPM</th>
+            <th scope="col" width="50px" class="text-center" @click="ocultar(12)">Unit_mode</th>
+            <th scope="col" width="50px" class="text-center" @click="ocultar(13)">Horometro</th>
+            <th scope="col" width="50px" class="text-center" @click="ocultar(14)">Modelo</th>
+            <th scope="col" width="50px" class="text-center" @click="ocultar(15)">Latitud</th>
+            <th scope="col" width="50px" class="text-center" @click="ocultar(16)">Longitud</th>
+            <th scope="col" width="50px" class="text-center" @click="ocultar(17)">Alarma</th>
+            <th scope="col" width="50px" class="text-center" @click="ocultar(18)">Evento</th>
+            <th scope="col" width="50px" class="text-center" @click="ocultar(19)">
               REEFER_CONECTED
             </th>
-            <th scope="col" width="50px" class="text-center">SET_POINT</th>
-            <th scope="col" width="50px" class="text-center">TEMP_SUPPLY</th>
-            <th scope="col" width="50px" class="text-center">RETURN_AIR</th>
+            <th scope="col" width="50px" class="text-center" @click="ocultar(20)">SET_POINT</th>
+            <th scope="col" width="50px" class="text-center" @click="ocultar(21)">TEMP_SUPPLY</th>
+            <th scope="col" width="50px" class="text-center" @click="ocultar(22)">RETURN_AIR</th>
           </tr>
         </thead>
         <tbody>
@@ -95,7 +93,9 @@
           >
             <!-- <td>{{index+1}}</td> -->
             <td class="text-center">{{ generador.id }}</td>
-            <td class="text-center">{{ formatoFecha(generador.created_at) }}</td>
+            <td class="text-center">
+              {{ formatoFecha(generador.created_at) }}
+            </td>
             <td class="text-center">{{ generador.battery_voltage }}</td>
             <td class="text-center">{{ generador.water_temp }}</td>
             <td class="text-center">{{ generador.running_frequency }}</td>
@@ -133,10 +133,21 @@ export default {
   },
   data() {
     return {
+      tabla: null, 
       datos_tabla_generador: [],
       ubicacion: null,
-      desde: new Date().getFullYear() + '-' + ('0' + (new Date().getMonth() + 1)).slice(-2) +'-' + ('0' + new Date().getDate()).slice(-2), 
-      hasta: new Date().getFullYear() + '-' + ('0' + (new Date().getMonth() + 1)).slice(-2) +'-' + ('0' + new Date().getDate()).slice(-2), 
+      desde:
+        new Date().getFullYear() +
+        "-" +
+        ("0" + (new Date().getMonth() + 1)).slice(-2) +
+        "-" +
+        ("0" + new Date().getDate()).slice(-2),
+      hasta:
+        new Date().getFullYear() +
+        "-" +
+        ("0" + (new Date().getMonth() + 1)).slice(-2) +
+        "-" +
+        ("0" + new Date().getDate()).slice(-2),
     };
   },
   watch: {
@@ -155,7 +166,7 @@ export default {
     TablaDetalleContenedores_g() {
       let self = this;
       this.$nextTick(() => {
-        var table = $("#tblDetalleContenedores_generadores").DataTable({
+        self.tabla = $("#tblDetalleContenedores_generadores").DataTable({
           scrollX: "100%",
           responsive: true,
           buttons: true,
@@ -166,7 +177,7 @@ export default {
             "csv",
             "excel",
           ],
-           order: [0, "desc"],
+          order: [0, "desc"],
           language: {
             url: "//cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json",
           },
@@ -214,13 +225,13 @@ export default {
             });
         });
     },
-    buscar_detalle(){
+    buscar_detalle() {
       let self = this;
       Swal.fire({
-        title: 'Espere por favor',
+        title: "Espere por favor",
         html: '<i class="fa fa-spinner fa-spin" style="font-size:15px"></i>',
         allowOutsideClick: false,
-        showConfirmButton: false
+        showConfirmButton: false,
       });
       axios
         .post(route("contenedores.get_datos.fecha"), {
@@ -235,39 +246,42 @@ export default {
             self.datos_tabla_generador = response.data;
           } else {
             Swal.fire({
-              icon: 'error',
-              title: 'Oops...',
-              text: 'No se encontraron datos!',
-            })
+              icon: "error",
+              title: "Oops...",
+              text: "No se encontraron datos!",
+            });
           }
         })
         .then(() => {
           Swal.close();
         });
     },
-    formatoFecha(fecha){
-       let date = new Date(fecha);
-            let day = date.getDate()+ 0;
-            let month = date.getMonth() + 1;
-            let year = date.getFullYear();
-            let hours = date.getHours();
-            let minutes = date.getMinutes();
-            let seconds = date.getSeconds();
-            if (minutes < 10) {
-              minutes = "0" + minutes;
-            }
+    formatoFecha(fecha) {
+      let date = new Date(fecha);
+      let day = date.getDate() + 0;
+      let month = date.getMonth() + 1;
+      let year = date.getFullYear();
+      let hours = date.getHours();
+      let minutes = date.getMinutes();
+      let seconds = date.getSeconds();
+      if (minutes < 10) {
+        minutes = "0" + minutes;
+      }
 
-            if (seconds < 10) {
-              seconds = "0" + seconds;
-            }
+      if (seconds < 10) {
+        seconds = "0" + seconds;
+      }
 
-            if (month < 10) {
-              return `${day}-0${month}-${year} ${hours}:${minutes}:${seconds}`; 
-            } else {
-              return `${day}-${month}-${year}  ${hours}:${minutes}:${seconds}`; 
-            }
+      if (month < 10) {
+        return `${day}-0${month}-${year} ${hours}:${minutes}:${seconds}`;
+      } else {
+        return `${day}-${month}-${year}  ${hours}:${minutes}:${seconds}`;
+      }
     },
-    
+     ocultar(val){
+       var column = this.tabla.column(val);
+        column.visible(!column.visible());
+    },
   },
 };
 </script>
