@@ -174,7 +174,75 @@
         </tbody>
       </table>
       <div class="escoger_columnas">
-        Escoger columnas: <span  @click="ocultar(1)">Ethylene</span>
+        Escoger columnas: 
+        <span  @click="ocultar(1)">Ethylene</span> -  
+        <span  @click="ocultar(2)">StateProcess</span> -
+        <span  @click="ocultar(3)">StateInyection</span> -
+        <span  @click="ocultar(4)">TimerOfProcess</span> -
+        <span  @click="ocultar(5)">Tipo</span> -
+        <span  @click="ocultar(6)">Estado</span> -
+        <span  @click="ocultar(7)">Booking</span> -
+        <span  @click="ocultar(8)">Booking_temp</span> -
+        <span  @click="ocultar(9)">Set_point</span> -
+        <span  @click="ocultar(10)">Temp_supply_1</span> -
+        <span  @click="ocultar(11)">Temp_supply_2</span> -
+        <span  @click="ocultar(12)">Return_air</span> -
+        <span  @click="ocultar(13)">Evaporation_coil</span> -
+        <span  @click="ocultar(14)">Condensation_coil</span> -
+        <span  @click="ocultar(15)">Compress_coil_1</span> -
+        <span  @click="ocultar(16)">Compress_coil_2</span> -
+        <span  @click="ocultar(17)">Ambient_air</span> -
+        <span  @click="ocultar(18)">Cargo_1_temp</span> -
+        <span  @click="ocultar(19)">Cargo_2_temp</span> -
+        <span  @click="ocultar(20)">Cargo_3_temp</span> -
+        <span  @click="ocultar(21)">Cargo_4_temp</span> -
+        <span  @click="ocultar(22)">Relative_humidity</span> -
+        <span  @click="ocultar(23)">AVL</span> -
+        <span  @click="ocultar(24)">Suction_pressure</span> -
+        <span  @click="ocultar(25)">Discharge_pressure</span> -
+        <span  @click="ocultar(26)">Line_voltage</span> -
+        <span  @click="ocultar(27)">Line_frequency</span> -
+        <span  @click="ocultar(28)">Consumption_ph_1</span> -
+        <span  @click="ocultar(29)">Consumption_ph_2</span> -
+        <span  @click="ocultar(30)">Consumption_ph_3</span> -
+        <span  @click="ocultar(31)">Co2_reading</span> -
+        <span  @click="ocultar(32)">O2_reading</span> -
+        <span  @click="ocultar(33)">Evaporator_speed</span> -
+        <span  @click="ocultar(34)">Condenser_speed</span> -
+        <span  @click="ocultar(35)">Battery_voltage</span> -
+        <span  @click="ocultar(36)">Power_kwh</span> -
+        <span  @click="ocultar(37)">Power_trip_reading</span> -
+        <span  @click="ocultar(38)">Power_trip_duration</span> -
+        <span  @click="ocultar(39)">Suction_temp</span> -
+        <span  @click="ocultar(40)">Discharge_temp</span> -
+        <span  @click="ocultar(41)">Supply_air_temp</span> -
+        <span  @click="ocultar(42)">Return_air_temp</span> -
+        <span  @click="ocultar(43)">Dl_battery_temp</span> -
+        <span  @click="ocultar(44)">Dl_battery_charge</span> -
+        <span  @click="ocultar(45)">Power_consumption</span> -
+        <span  @click="ocultar(46)">Power_consumption_avg</span> -
+        <span  @click="ocultar(47)">Alarm_present</span> -
+        <span  @click="ocultar(48)">Capacity_load</span> -
+        <span  @click="ocultar(49)">Power_state</span> -
+        <span  @click="ocultar(50)">Controlling_mode</span> -
+        <span  @click="ocultar(51)">Humidity_control</span> -
+        <span  @click="ocultar(52)">Humidity_set_point</span> -
+        <span  @click="ocultar(53)">Fresh_air_ex_mode</span> -
+        <span  @click="ocultar(54)">Fresh_air_ex_rate</span> -
+        <span  @click="ocultar(55)">Fresh_air_ex_delay</span> -
+        <span  @click="ocultar(56)">Set_point_o2</span> -
+        <span  @click="ocultar(57)">Set_point_co2</span> -
+        <span  @click="ocultar(58)">Defrost_term_temp</span> -
+        <span  @click="ocultar(59)">Defrost_interval</span> -
+        <span  @click="ocultar(60)">Water_cooled_conde</span> -
+        <span  @click="ocultar(61)">USDA_trip</span> -
+        <span  @click="ocultar(62)">Evaporator_exp_valve</span> -
+        <span  @click="ocultar(63)">Suction_mod_valve</span> -
+        <span  @click="ocultar(64)">Hot_gas_valve</span> -
+        <span  @click="ocultar(65)">Economizer_valve</span> -
+        <span  @click="ocultar(66)">Modelo</span> -
+        <span  @click="ocultar(67)">Latitud</span> -
+        <span  @click="ocultar(68)">Longitud</span> -
       </div>
     </div>   
   </div>

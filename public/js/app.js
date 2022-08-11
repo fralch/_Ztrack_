@@ -4711,6 +4711,74 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {},
@@ -35913,7 +35981,7 @@ var render = function () {
             ),
             _vm._v(" "),
             _c("div", { staticClass: "escoger_columnas" }, [
-              _vm._v("\n      Escoger columnas: "),
+              _vm._v("\n      Escoger columnas: \n      "),
               _c(
                 "span",
                 {
@@ -35925,6 +35993,811 @@ var render = function () {
                 },
                 [_vm._v("Ethylene")]
               ),
+              _vm._v(" -  \n      "),
+              _c(
+                "span",
+                {
+                  on: {
+                    click: function ($event) {
+                      return _vm.ocultar(2)
+                    },
+                  },
+                },
+                [_vm._v("StateProcess")]
+              ),
+              _vm._v(" -\n      "),
+              _c(
+                "span",
+                {
+                  on: {
+                    click: function ($event) {
+                      return _vm.ocultar(3)
+                    },
+                  },
+                },
+                [_vm._v("StateInyection")]
+              ),
+              _vm._v(" -\n      "),
+              _c(
+                "span",
+                {
+                  on: {
+                    click: function ($event) {
+                      return _vm.ocultar(4)
+                    },
+                  },
+                },
+                [_vm._v("TimerOfProcess")]
+              ),
+              _vm._v(" -\n      "),
+              _c(
+                "span",
+                {
+                  on: {
+                    click: function ($event) {
+                      return _vm.ocultar(5)
+                    },
+                  },
+                },
+                [_vm._v("Tipo")]
+              ),
+              _vm._v(" -\n      "),
+              _c(
+                "span",
+                {
+                  on: {
+                    click: function ($event) {
+                      return _vm.ocultar(6)
+                    },
+                  },
+                },
+                [_vm._v("Estado")]
+              ),
+              _vm._v(" -\n      "),
+              _c(
+                "span",
+                {
+                  on: {
+                    click: function ($event) {
+                      return _vm.ocultar(7)
+                    },
+                  },
+                },
+                [_vm._v("Booking")]
+              ),
+              _vm._v(" -\n      "),
+              _c(
+                "span",
+                {
+                  on: {
+                    click: function ($event) {
+                      return _vm.ocultar(8)
+                    },
+                  },
+                },
+                [_vm._v("Booking_temp")]
+              ),
+              _vm._v(" -\n      "),
+              _c(
+                "span",
+                {
+                  on: {
+                    click: function ($event) {
+                      return _vm.ocultar(9)
+                    },
+                  },
+                },
+                [_vm._v("Set_point")]
+              ),
+              _vm._v(" -\n      "),
+              _c(
+                "span",
+                {
+                  on: {
+                    click: function ($event) {
+                      return _vm.ocultar(10)
+                    },
+                  },
+                },
+                [_vm._v("Temp_supply_1")]
+              ),
+              _vm._v(" -\n      "),
+              _c(
+                "span",
+                {
+                  on: {
+                    click: function ($event) {
+                      return _vm.ocultar(11)
+                    },
+                  },
+                },
+                [_vm._v("Temp_supply_2")]
+              ),
+              _vm._v(" -\n      "),
+              _c(
+                "span",
+                {
+                  on: {
+                    click: function ($event) {
+                      return _vm.ocultar(12)
+                    },
+                  },
+                },
+                [_vm._v("Return_air")]
+              ),
+              _vm._v(" -\n      "),
+              _c(
+                "span",
+                {
+                  on: {
+                    click: function ($event) {
+                      return _vm.ocultar(13)
+                    },
+                  },
+                },
+                [_vm._v("Evaporation_coil")]
+              ),
+              _vm._v(" -\n      "),
+              _c(
+                "span",
+                {
+                  on: {
+                    click: function ($event) {
+                      return _vm.ocultar(14)
+                    },
+                  },
+                },
+                [_vm._v("Condensation_coil")]
+              ),
+              _vm._v(" -\n      "),
+              _c(
+                "span",
+                {
+                  on: {
+                    click: function ($event) {
+                      return _vm.ocultar(15)
+                    },
+                  },
+                },
+                [_vm._v("Compress_coil_1")]
+              ),
+              _vm._v(" -\n      "),
+              _c(
+                "span",
+                {
+                  on: {
+                    click: function ($event) {
+                      return _vm.ocultar(16)
+                    },
+                  },
+                },
+                [_vm._v("Compress_coil_2")]
+              ),
+              _vm._v(" -\n      "),
+              _c(
+                "span",
+                {
+                  on: {
+                    click: function ($event) {
+                      return _vm.ocultar(17)
+                    },
+                  },
+                },
+                [_vm._v("Ambient_air")]
+              ),
+              _vm._v(" -\n      "),
+              _c(
+                "span",
+                {
+                  on: {
+                    click: function ($event) {
+                      return _vm.ocultar(18)
+                    },
+                  },
+                },
+                [_vm._v("Cargo_1_temp")]
+              ),
+              _vm._v(" -\n      "),
+              _c(
+                "span",
+                {
+                  on: {
+                    click: function ($event) {
+                      return _vm.ocultar(19)
+                    },
+                  },
+                },
+                [_vm._v("Cargo_2_temp")]
+              ),
+              _vm._v(" -\n      "),
+              _c(
+                "span",
+                {
+                  on: {
+                    click: function ($event) {
+                      return _vm.ocultar(20)
+                    },
+                  },
+                },
+                [_vm._v("Cargo_3_temp")]
+              ),
+              _vm._v(" -\n      "),
+              _c(
+                "span",
+                {
+                  on: {
+                    click: function ($event) {
+                      return _vm.ocultar(21)
+                    },
+                  },
+                },
+                [_vm._v("Cargo_4_temp")]
+              ),
+              _vm._v(" -\n      "),
+              _c(
+                "span",
+                {
+                  on: {
+                    click: function ($event) {
+                      return _vm.ocultar(22)
+                    },
+                  },
+                },
+                [_vm._v("Relative_humidity")]
+              ),
+              _vm._v(" -\n      "),
+              _c(
+                "span",
+                {
+                  on: {
+                    click: function ($event) {
+                      return _vm.ocultar(23)
+                    },
+                  },
+                },
+                [_vm._v("AVL")]
+              ),
+              _vm._v(" -\n      "),
+              _c(
+                "span",
+                {
+                  on: {
+                    click: function ($event) {
+                      return _vm.ocultar(24)
+                    },
+                  },
+                },
+                [_vm._v("Suction_pressure")]
+              ),
+              _vm._v(" -\n      "),
+              _c(
+                "span",
+                {
+                  on: {
+                    click: function ($event) {
+                      return _vm.ocultar(25)
+                    },
+                  },
+                },
+                [_vm._v("Discharge_pressure")]
+              ),
+              _vm._v(" -\n      "),
+              _c(
+                "span",
+                {
+                  on: {
+                    click: function ($event) {
+                      return _vm.ocultar(26)
+                    },
+                  },
+                },
+                [_vm._v("Line_voltage")]
+              ),
+              _vm._v(" -\n      "),
+              _c(
+                "span",
+                {
+                  on: {
+                    click: function ($event) {
+                      return _vm.ocultar(27)
+                    },
+                  },
+                },
+                [_vm._v("Line_frequency")]
+              ),
+              _vm._v(" -\n      "),
+              _c(
+                "span",
+                {
+                  on: {
+                    click: function ($event) {
+                      return _vm.ocultar(28)
+                    },
+                  },
+                },
+                [_vm._v("Consumption_ph_1")]
+              ),
+              _vm._v(" -\n      "),
+              _c(
+                "span",
+                {
+                  on: {
+                    click: function ($event) {
+                      return _vm.ocultar(29)
+                    },
+                  },
+                },
+                [_vm._v("Consumption_ph_2")]
+              ),
+              _vm._v(" -\n      "),
+              _c(
+                "span",
+                {
+                  on: {
+                    click: function ($event) {
+                      return _vm.ocultar(30)
+                    },
+                  },
+                },
+                [_vm._v("Consumption_ph_3")]
+              ),
+              _vm._v(" -\n      "),
+              _c(
+                "span",
+                {
+                  on: {
+                    click: function ($event) {
+                      return _vm.ocultar(31)
+                    },
+                  },
+                },
+                [_vm._v("Co2_reading")]
+              ),
+              _vm._v(" -\n      "),
+              _c(
+                "span",
+                {
+                  on: {
+                    click: function ($event) {
+                      return _vm.ocultar(32)
+                    },
+                  },
+                },
+                [_vm._v("O2_reading")]
+              ),
+              _vm._v(" -\n      "),
+              _c(
+                "span",
+                {
+                  on: {
+                    click: function ($event) {
+                      return _vm.ocultar(33)
+                    },
+                  },
+                },
+                [_vm._v("Evaporator_speed")]
+              ),
+              _vm._v(" -\n      "),
+              _c(
+                "span",
+                {
+                  on: {
+                    click: function ($event) {
+                      return _vm.ocultar(34)
+                    },
+                  },
+                },
+                [_vm._v("Condenser_speed")]
+              ),
+              _vm._v(" -\n      "),
+              _c(
+                "span",
+                {
+                  on: {
+                    click: function ($event) {
+                      return _vm.ocultar(35)
+                    },
+                  },
+                },
+                [_vm._v("Battery_voltage")]
+              ),
+              _vm._v(" -\n      "),
+              _c(
+                "span",
+                {
+                  on: {
+                    click: function ($event) {
+                      return _vm.ocultar(36)
+                    },
+                  },
+                },
+                [_vm._v("Power_kwh")]
+              ),
+              _vm._v(" -\n      "),
+              _c(
+                "span",
+                {
+                  on: {
+                    click: function ($event) {
+                      return _vm.ocultar(37)
+                    },
+                  },
+                },
+                [_vm._v("Power_trip_reading")]
+              ),
+              _vm._v(" -\n      "),
+              _c(
+                "span",
+                {
+                  on: {
+                    click: function ($event) {
+                      return _vm.ocultar(38)
+                    },
+                  },
+                },
+                [_vm._v("Power_trip_duration")]
+              ),
+              _vm._v(" -\n      "),
+              _c(
+                "span",
+                {
+                  on: {
+                    click: function ($event) {
+                      return _vm.ocultar(39)
+                    },
+                  },
+                },
+                [_vm._v("Suction_temp")]
+              ),
+              _vm._v(" -\n      "),
+              _c(
+                "span",
+                {
+                  on: {
+                    click: function ($event) {
+                      return _vm.ocultar(40)
+                    },
+                  },
+                },
+                [_vm._v("Discharge_temp")]
+              ),
+              _vm._v(" -\n      "),
+              _c(
+                "span",
+                {
+                  on: {
+                    click: function ($event) {
+                      return _vm.ocultar(41)
+                    },
+                  },
+                },
+                [_vm._v("Supply_air_temp")]
+              ),
+              _vm._v(" -\n      "),
+              _c(
+                "span",
+                {
+                  on: {
+                    click: function ($event) {
+                      return _vm.ocultar(42)
+                    },
+                  },
+                },
+                [_vm._v("Return_air_temp")]
+              ),
+              _vm._v(" -\n      "),
+              _c(
+                "span",
+                {
+                  on: {
+                    click: function ($event) {
+                      return _vm.ocultar(43)
+                    },
+                  },
+                },
+                [_vm._v("Dl_battery_temp")]
+              ),
+              _vm._v(" -\n      "),
+              _c(
+                "span",
+                {
+                  on: {
+                    click: function ($event) {
+                      return _vm.ocultar(44)
+                    },
+                  },
+                },
+                [_vm._v("Dl_battery_charge")]
+              ),
+              _vm._v(" -\n      "),
+              _c(
+                "span",
+                {
+                  on: {
+                    click: function ($event) {
+                      return _vm.ocultar(45)
+                    },
+                  },
+                },
+                [_vm._v("Power_consumption")]
+              ),
+              _vm._v(" -\n      "),
+              _c(
+                "span",
+                {
+                  on: {
+                    click: function ($event) {
+                      return _vm.ocultar(46)
+                    },
+                  },
+                },
+                [_vm._v("Power_consumption_avg")]
+              ),
+              _vm._v(" -\n      "),
+              _c(
+                "span",
+                {
+                  on: {
+                    click: function ($event) {
+                      return _vm.ocultar(47)
+                    },
+                  },
+                },
+                [_vm._v("Alarm_present")]
+              ),
+              _vm._v(" -\n      "),
+              _c(
+                "span",
+                {
+                  on: {
+                    click: function ($event) {
+                      return _vm.ocultar(48)
+                    },
+                  },
+                },
+                [_vm._v("Capacity_load")]
+              ),
+              _vm._v(" -\n      "),
+              _c(
+                "span",
+                {
+                  on: {
+                    click: function ($event) {
+                      return _vm.ocultar(49)
+                    },
+                  },
+                },
+                [_vm._v("Power_state")]
+              ),
+              _vm._v(" -\n      "),
+              _c(
+                "span",
+                {
+                  on: {
+                    click: function ($event) {
+                      return _vm.ocultar(50)
+                    },
+                  },
+                },
+                [_vm._v("Controlling_mode")]
+              ),
+              _vm._v(" -\n      "),
+              _c(
+                "span",
+                {
+                  on: {
+                    click: function ($event) {
+                      return _vm.ocultar(51)
+                    },
+                  },
+                },
+                [_vm._v("Humidity_control")]
+              ),
+              _vm._v(" -\n      "),
+              _c(
+                "span",
+                {
+                  on: {
+                    click: function ($event) {
+                      return _vm.ocultar(52)
+                    },
+                  },
+                },
+                [_vm._v("Humidity_set_point")]
+              ),
+              _vm._v(" -\n      "),
+              _c(
+                "span",
+                {
+                  on: {
+                    click: function ($event) {
+                      return _vm.ocultar(53)
+                    },
+                  },
+                },
+                [_vm._v("Fresh_air_ex_mode")]
+              ),
+              _vm._v(" -\n      "),
+              _c(
+                "span",
+                {
+                  on: {
+                    click: function ($event) {
+                      return _vm.ocultar(54)
+                    },
+                  },
+                },
+                [_vm._v("Fresh_air_ex_rate")]
+              ),
+              _vm._v(" -\n      "),
+              _c(
+                "span",
+                {
+                  on: {
+                    click: function ($event) {
+                      return _vm.ocultar(55)
+                    },
+                  },
+                },
+                [_vm._v("Fresh_air_ex_delay")]
+              ),
+              _vm._v(" -\n      "),
+              _c(
+                "span",
+                {
+                  on: {
+                    click: function ($event) {
+                      return _vm.ocultar(56)
+                    },
+                  },
+                },
+                [_vm._v("Set_point_o2")]
+              ),
+              _vm._v(" -\n      "),
+              _c(
+                "span",
+                {
+                  on: {
+                    click: function ($event) {
+                      return _vm.ocultar(57)
+                    },
+                  },
+                },
+                [_vm._v("Set_point_co2")]
+              ),
+              _vm._v(" -\n      "),
+              _c(
+                "span",
+                {
+                  on: {
+                    click: function ($event) {
+                      return _vm.ocultar(58)
+                    },
+                  },
+                },
+                [_vm._v("Defrost_term_temp")]
+              ),
+              _vm._v(" -\n      "),
+              _c(
+                "span",
+                {
+                  on: {
+                    click: function ($event) {
+                      return _vm.ocultar(59)
+                    },
+                  },
+                },
+                [_vm._v("Defrost_interval")]
+              ),
+              _vm._v(" -\n      "),
+              _c(
+                "span",
+                {
+                  on: {
+                    click: function ($event) {
+                      return _vm.ocultar(60)
+                    },
+                  },
+                },
+                [_vm._v("Water_cooled_conde")]
+              ),
+              _vm._v(" -\n      "),
+              _c(
+                "span",
+                {
+                  on: {
+                    click: function ($event) {
+                      return _vm.ocultar(61)
+                    },
+                  },
+                },
+                [_vm._v("USDA_trip")]
+              ),
+              _vm._v(" -\n      "),
+              _c(
+                "span",
+                {
+                  on: {
+                    click: function ($event) {
+                      return _vm.ocultar(62)
+                    },
+                  },
+                },
+                [_vm._v("Evaporator_exp_valve")]
+              ),
+              _vm._v(" -\n      "),
+              _c(
+                "span",
+                {
+                  on: {
+                    click: function ($event) {
+                      return _vm.ocultar(63)
+                    },
+                  },
+                },
+                [_vm._v("Suction_mod_valve")]
+              ),
+              _vm._v(" -\n      "),
+              _c(
+                "span",
+                {
+                  on: {
+                    click: function ($event) {
+                      return _vm.ocultar(64)
+                    },
+                  },
+                },
+                [_vm._v("Hot_gas_valve")]
+              ),
+              _vm._v(" -\n      "),
+              _c(
+                "span",
+                {
+                  on: {
+                    click: function ($event) {
+                      return _vm.ocultar(65)
+                    },
+                  },
+                },
+                [_vm._v("Economizer_valve")]
+              ),
+              _vm._v(" -\n      "),
+              _c(
+                "span",
+                {
+                  on: {
+                    click: function ($event) {
+                      return _vm.ocultar(66)
+                    },
+                  },
+                },
+                [_vm._v("Modelo")]
+              ),
+              _vm._v(" -\n      "),
+              _c(
+                "span",
+                {
+                  on: {
+                    click: function ($event) {
+                      return _vm.ocultar(67)
+                    },
+                  },
+                },
+                [_vm._v("Latitud")]
+              ),
+              _vm._v(" -\n      "),
+              _c(
+                "span",
+                {
+                  on: {
+                    click: function ($event) {
+                      return _vm.ocultar(68)
+                    },
+                  },
+                },
+                [_vm._v("Longitud")]
+              ),
+              _vm._v(" -\n    "),
             ]),
           ]
         ),
