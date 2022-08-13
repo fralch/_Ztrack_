@@ -120,6 +120,9 @@
           </tr>
         </tbody>
       </table>
+      <div class="escoger_columnas">
+        Cargar todas columnas: <span  @click="resetTabla()">Resetear tabla</span> 
+      </div>
     </div>
   </div>
 </template>
@@ -281,6 +284,10 @@ export default {
      ocultar(val){
        var column = this.tabla.column(val);
         column.visible(!column.visible());
+    },
+    resetTabla(){
+       $("#tblDetalleContenedores_generadores").DataTable().destroy();
+      this.TablaDetalleContenedores_g();
     },
   },
 };
