@@ -388,6 +388,12 @@ export default {
 .css-button-shadow-border-sliding--blue:active {
   top: 2px;
 }
+.escoger_columnas span{
+  cursor: pointer;
+}
+.escoger_columnas span:hover {
+  text-decoration: underline;
+}
 </style>
 
 

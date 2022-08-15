@@ -14,40 +14,40 @@
           <tr class="bg-primary" style="color: white !important">
             <!-- <th scope="col" width='50px'>Ver</th> -->
             <th scope="col" width="50px" class="text-center">N°</th>
-            <th scope="col" width="150px" class="text-center">GeneradorR</th>
-            <th scope="col" class="text-center">Tipo</th>
-            <th scope="col" class="text-center">Estado</th>
-            <th scope="col" width="150px" class="text-center">Booking</th>
-            <th scope="col" width="50px" class="text-center">Booking_temp</th>
-            <th scope="col" width="50px" class="text-center">
+            <th scope="col" width="150px" class="text-center">Generador</th>
+            <th scope="col" class="text-center" @click="ocultar(2)">Tipo</th>
+            <th scope="col" class="text-center" @click="ocultar(3)">Estado</th>
+            <th scope="col" width="150px" class="text-center" @click="ocultar(4)">Booking</th>
+            <th scope="col" width="50px" class="text-center" @click="ocultar(5)">Booking_temp</th>
+            <th scope="col" width="50px" class="text-center" @click="ocultar(6)">
               Battery_voltage
             </th>
-            <th scope="col" width="50px" class="text-center">Water_temp</th>
-            <th scope="col" width="50px" class="text-center">
+            <th scope="col" width="50px" class="text-center" @click="ocultar(7)">Water_temp</th>
+            <th scope="col" width="50px" class="text-center" @click="ocultar(8)">
               Running_frequency
             </th>
-            <th scope="col" width="50px" class="text-center">Fuel_level</th>
-            <th scope="col" width="50px" class="text-center">
+            <th scope="col" width="50px" class="text-center" @click="ocultar(9)">Fuel_level</th>
+            <th scope="col" width="50px" class="text-center" @click="ocultar(10)">
               Voltage_measure
             </th>
-            <th scope="col" width="50px" class="text-center">Rotor_current</th>
-            <th scope="col" width="50px" class="text-center">fiel_current</th>
-            <th scope="col" width="50px" class="text-center">Speed</th>
-            <th scope="col" width="50px" class="text-center">Eco_power</th>
-            <th scope="col" width="50px" class="text-center">RPM</th>
-            <th scope="col" width="50px" class="text-center">Unit_mode</th>
-            <th scope="col" width="50px" class="text-center">Horometro</th>
-            <th scope="col" width="50px" class="text-center">Modelo</th>
-            <th scope="col" width="50px" class="text-center">Latitud</th>
-            <th scope="col" width="50px" class="text-center">Longitud</th>
-            <th scope="col" width="50px" class="text-center">Alarma</th>
-            <th scope="col" width="50px" class="text-center">Evento</th>
-            <th scope="col" width="100px" class="text-center">
+            <th scope="col" width="50px" class="text-center" @click="ocultar(11)">Rotor_current</th>
+            <th scope="col" width="50px" class="text-center" @click="ocultar(12)">fiel_current</th>
+            <th scope="col" width="50px" class="text-center" @click="ocultar(13)">Speed</th>
+            <th scope="col" width="50px" class="text-center" @click="ocultar(14)">Eco_power</th>
+            <th scope="col" width="50px" class="text-center" @click="ocultar(15)">RPM</th>
+            <th scope="col" width="50px" class="text-center" @click="ocultar(16)">Unit_mode</th>
+            <th scope="col" width="50px" class="text-center" @click="ocultar(17)">Horometro</th>
+            <th scope="col" width="50px" class="text-center" @click="ocultar(18)">Modelo</th>
+            <th scope="col" width="50px" class="text-center" @click="ocultar(19)">Latitud</th>
+            <th scope="col" width="50px" class="text-center" @click="ocultar(20)">Longitud</th>
+            <th scope="col" width="50px" class="text-center" @click="ocultar(21)">Alarma</th>
+            <th scope="col" width="50px" class="text-center" @click="ocultar(22)">Evento</th>
+            <th scope="col" width="100px" class="text-center" @click="ocultar(23)">
               Reefer_conected
             </th>
-            <th scope="col" width="50px" class="text-center">Set_point</th>
-            <th scope="col" width="50px" class="text-center">Temp_supply_1</th>
-            <th scope="col" width="50px" class="text-center">Return_air</th>
+            <th scope="col" width="50px" class="text-center" @click="ocultar(24)">Set_point</th>
+            <th scope="col" width="50px" class="text-center" @click="ocultar(25)">Temp_supply_1</th>
+            <th scope="col" width="50px" class="text-center" @click="ocultar(26)">Return_air</th>
           </tr>
         </thead>
         <tbody>
@@ -92,6 +92,9 @@
           </tr>
         </tbody>
       </table>
+      <div class="escoger_columnas">
+        Cargar todas columnas: <span  @click="resetTabla()">Resetear tabla</span> 
+      </div>
     </div>
   </div>
 </template>
@@ -106,6 +109,7 @@ export default {
   },
   data() {
     return {
+      tabla: null, 
       contenedores_encendidos_gen: [],
       datos_resumen_gen: [],
     };
@@ -125,7 +129,7 @@ export default {
       // console.log("armando tabla");
       let self = this;
       this.$nextTick(() => {
-        var table2 = $("#tblContenedor_generador").DataTable({
+        self.tabla = $("#tblContenedor_generador").DataTable({
           scrollX: "100%",
           responsive: true,
           buttons: true,
@@ -166,6 +170,14 @@ export default {
     
     select_contenedor(contenedor) {
       this.$emit("select_contenedor", contenedor); // emite el evento a contedor padre 
+    },
+    ocultar(val){
+       var column = this.tabla.column(val);
+        column.visible(!column.visible());
+    },
+    resetTabla(){
+       $("#tblContenedor_generador").DataTable().destroy();
+      this.TablaContenedores_gen();
     },
     
   },

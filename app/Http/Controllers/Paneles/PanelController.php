@@ -997,4 +997,8 @@ class PanelController extends Controller
 
         return $cadena_respuesta;
     }
+    public function ComprobarConexion(Request $request)
+    {
+        return "conexion exitosa";
+    }
 }
