@@ -999,6 +999,6 @@ class PanelController extends Controller
     }
     public function ComprobarConexion(Request $request)
     {
-        return "conexion exitosa";
+        return "ok";
     }
 }

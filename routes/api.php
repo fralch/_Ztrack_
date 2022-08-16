@@ -21,4 +21,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::post('/contenedores', [PanelController::class, 'api_contendedores'])->name('api.contenedores');
 Route::post('/madurador_point/get', [PanelController::class, 'api_get_madurador_points'])->name('api.madurador_point.get');
-Route::post('/probando/conexion', [PanelController::class, 'ComprobarConexion'])->name('probar.conexion');
+Route::get('/probando/conexion', [PanelController::class, 'ComprobarConexion'])->name('probar.conexion');
