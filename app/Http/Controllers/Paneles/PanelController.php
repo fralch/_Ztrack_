@@ -793,7 +793,20 @@ class PanelController extends Controller
         // return $request; 
         // exit();
         if ($request->tipo == 'Generador') {
+            $simb_Lat = substr($request->latitud, 0, 1);
+            $simb_Long = substr($request->longitud, 0, 1);
+            if ($simb_Lat == 'S' || $simb_Lat == 'W') {
+                $latitud = floatval(substr($request->latitud, 1)) * -1;
+            } else {
+                $latitud =  floatval(substr($request->latitud, 1));
+            }
+            if ($simb_Long == 'S' || $simb_Long == 'W') {
+                $longitud = floatval(substr($request->longitud, 1)) * -1;
+            } else {
+                $longitud =  floatval(substr($request->longitud, 1));
+            }
 
+            
             $id_r = Contenedor::select()->where([['nombre_contenedor', $request->nombre_contenedor]])->get()->last()['id'];
             Registro_diario_generadores::create([
                 'contenedor_id' => $id_r,
@@ -812,8 +825,8 @@ class PanelController extends Controller
                 'alarma_id' => 1,
                 'evento_id' => 1,
                 'modelo' => $request->modelo,
-                'latitud' =>     $request->latitud,
-                'longitud' => $request->longitud,
+                'latitud' =>     $latitud ,
+                'longitud' => $longitud,
                 'engine_state' => $request->engine_state,
                 'reefer_conected' => $request->reefer_conected,
                 'set_point' => $request->set_point,
