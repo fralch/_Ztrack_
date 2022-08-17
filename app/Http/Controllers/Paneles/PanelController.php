@@ -796,17 +796,21 @@ class PanelController extends Controller
             $simb_Lat = substr($request->latitud, 0, 1);
             $simb_Long = substr($request->longitud, 0, 1);
             if ($simb_Lat == 'S' || $simb_Lat == 'W') {
-                $latitud = floatval(substr($request->latitud, 1)) * -1;
+                $latitud = (floatval(substr($request->latitud, 1)) * -1)/100;
             } else {
-                $latitud =  floatval(substr($request->latitud, 1));
+                $latitud =  (floatval(substr($request->latitud, 1)))/100;
             }
             if ($simb_Long == 'S' || $simb_Long == 'W') {
-                $longitud = floatval(substr($request->longitud, 1)) * -1;
+                $longitud = (floatval(substr($request->longitud, 1)) * -1)/100;
             } else {
-                $longitud =  floatval(substr($request->longitud, 1));
+                $longitud =  (floatval(substr($request->longitud, 1)))/100;
             }
 
             
+            return [
+                'latitud' => $latitud,
+                'longitud' => $longitud            
+            ];
             $id_r = Contenedor::select()->where([['nombre_contenedor', $request->nombre_contenedor]])->get()->last()['id'];
             Registro_diario_generadores::create([
                 'contenedor_id' => $id_r,
