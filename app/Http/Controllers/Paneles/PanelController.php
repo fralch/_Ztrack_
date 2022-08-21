@@ -807,10 +807,10 @@ class PanelController extends Controller
             }
 
             
-            return [
-                'latitud' => $latitud,
-                'longitud' => $longitud            
-            ];
+            // return [
+            //     'latitud' => $latitud,
+            //     'longitud' => $longitud            
+            // ];
             $id_r = Contenedor::select()->where([['nombre_contenedor', $request->nombre_contenedor]])->get()->last()['id'];
             Registro_diario_generadores::create([
                 'contenedor_id' => $id_r,
