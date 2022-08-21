@@ -217,7 +217,7 @@ export default {
                       response.data[0].avl +
                       " <br> ";
                   }
-
+                  // iterando lat y lng para ve ruta de contenedor
                   self.polylinePoints.map((element) => {
                     L.marker([element.lat, element.lng]).addTo(map);
                   });
