@@ -210,7 +210,7 @@ export default {
         });
         /* Esta es la funcion que selecciona una fila  yla colorea  */
         $("#tblContenedor_reefers tbody").on("click", "tr", function () {
-          table.$("tr.selected").removeClass("selected");
+          self.tabla.$("tr.selected").removeClass("selected");
           $(this).addClass("selected");
         });
       });

@@ -145,7 +145,7 @@ export default {
         });
         /* Esta es la funcion que selecciona una fila  yla colorea  */
         $("#tblContenedor_generador tbody").on("click", "tr", function () {
-          table2.$("tr.selected").removeClass("selected");
+          self.tabla.$("tr.selected").removeClass("selected");
           $(this).addClass("selected");
         });
       });

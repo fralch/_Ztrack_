@@ -111,6 +111,7 @@ export default {
                   lat: element.latitud,
                   lng: element.longitud,
                 });
+          
               });
             })
             .then((response) => {
@@ -217,6 +218,9 @@ export default {
                       " <br> ";
                   }
 
+                  self.polylinePoints.map((element) => {
+                    L.marker([element.lat, element.lng]).addTo(map);
+                  });
                   // agregamos el marcador
                   L.marker([
                     self.polylinePoints[0].lat,
