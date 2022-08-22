@@ -42,7 +42,7 @@ export default {
     },
     makers(valor) {
       if (valor) {
-        console.log(valor);
+        console.log("este es el",valor);
         map.off();
         map.remove();
         const mapa = () => {
@@ -55,13 +55,18 @@ export default {
           }).addTo(map);
           // hacer foreach de los makers
           valor.forEach((marker) => {
-            L.marker([marker.latitud, marker.longitud])
+            if (marker.latitud && marker.longitud) {
+              L.marker([marker.latitud, marker.longitud])
               .addTo(map)
               .bindPopup(marker.nombre_contenedor, {
                 closeOnClick: false,
                 autoClose: false,
               })
               .openPopup();
+            }
+              
+            
+            
             // console.log(marker.nombre_contenedor);
           });
 
