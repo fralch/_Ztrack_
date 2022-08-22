@@ -112,10 +112,13 @@ export default {
             })
             .then((response) => {
               self.datos_tabla_generador.forEach((element) => {
-                self.polylinePoints.push({
-                  lat: element.latitud,
-                  lng: element.longitud,
-                });
+                if (element.latitud && element.longitud) {
+                 self.polylinePoints.push({
+                    lat: element.latitud,
+                    lng: element.longitud,
+                  });              
+                }
+                
           
               });
             })
