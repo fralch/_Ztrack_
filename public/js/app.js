@@ -3356,46 +3356,57 @@ var map;
               }
             });
           }).then(function (response) {
-            //DESDE AQUI COMIENZA LA CONFIGURACION DEL MAPA
-            map = L.map("map", {
-              center: [self.polylinePoints[0].lat, self.polylinePoints[0].lng],
-              zoom: 13
-            }); //  ***MUY IMPORTANTE *** si no agregas su autoria el mapa sale en blanco 👇
+            if (self.polylinePoints.length > 0) {
+              //DESDE AQUI COMIENZA LA CONFIGURACION DEL MAPA
+              map = L.map("map", {
+                center: [self.polylinePoints[0].lat, self.polylinePoints[0].lng],
+                zoom: 13
+              }); //  ***MUY IMPORTANTE *** si no agregas su autoria el mapa sale en blanco 👇
 
-            L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-              attribution: "FrankCairampoma"
-            }).addTo(map); //FIN DE LA CONFIGURACION DEL MAPA
+              L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+                attribution: "FrankCairampoma"
+              }).addTo(map); //FIN DE LA CONFIGURACION DEL MAPA
 
-            axios__WEBPACK_IMPORTED_MODULE_0___default().post(route("contenedores.datos_contenedor_mapa"), {
-              id: self.contenedor,
-              tipo: self.tipo
-            }).then(function (response) {
-              console.log("detalleMapa", response.data[0]);
-              var txtMarcador = "";
+              axios__WEBPACK_IMPORTED_MODULE_0___default().post(route("contenedores.datos_contenedor_mapa"), {
+                id: self.contenedor,
+                tipo: self.tipo
+              }).then(function (response) {
+                console.log("detalleMapa", response.data[0]);
+                var txtMarcador = "";
 
-              if (self.tipo == "genset") {
-                txtMarcador = "<b>Generador: " + response.data[0].nombre_contenedor + "</b> <br> " + "SetPoint: " + response.data[0].set_point + " <br> " + "BatteryVoltage: " + response.data[0].battery_voltage + " <br> " + "RunningFrequency: " + response.data[0].running_frequency + " <br> " + "FuelLevel: " + response.data[0].fuel_level + " <br> " + "VoltageMeasure: " + response.data[0].voltage_measure + " <br> " + "Rpm: " + response.data[0].rpm + " <br> " + "TempSupply: " + response.data[0].temp_supply_1 + " <br> " + "ReturnAir: " + response.data[0].return_air + " <br> ";
-              }
+                if (self.tipo == "genset") {
+                  txtMarcador = "<b>Generador: " + response.data[0].nombre_contenedor + "</b> <br> " + "SetPoint: " + response.data[0].set_point + " <br> " + "BatteryVoltage: " + response.data[0].battery_voltage + " <br> " + "RunningFrequency: " + response.data[0].running_frequency + " <br> " + "FuelLevel: " + response.data[0].fuel_level + " <br> " + "VoltageMeasure: " + response.data[0].voltage_measure + " <br> " + "Rpm: " + response.data[0].rpm + " <br> " + "TempSupply: " + response.data[0].temp_supply_1 + " <br> " + "ReturnAir: " + response.data[0].return_air + " <br> ";
+                }
 
-              if (self.tipo == "reefer") {
-                txtMarcador = "<b>Refeer: " + response.data[0].nombre_contenedor + "</b> <br> " + "SetPoint: " + response.data[0].set_point + " <br> " + "Co2: " + response.data[0].co2_reading + " <br> " + "RelativeHumidity: " + response.data[0].relative_humidity + " <br> " + "Avl: " + response.data[0].avl + " <br> " + "TempSupply: " + response.data[0].temp_supply_1 + " <br> " + "ReturnAir: " + response.data[0].return_air_temp + " <br> ";
-              }
+                if (self.tipo == "reefer") {
+                  txtMarcador = "<b>Refeer: " + response.data[0].nombre_contenedor + "</b> <br> " + "SetPoint: " + response.data[0].set_point + " <br> " + "Co2: " + response.data[0].co2_reading + " <br> " + "RelativeHumidity: " + response.data[0].relative_humidity + " <br> " + "Avl: " + response.data[0].avl + " <br> " + "TempSupply: " + response.data[0].temp_supply_1 + " <br> " + "ReturnAir: " + response.data[0].return_air_temp + " <br> ";
+                }
 
-              if (self.tipo == "madurador") {
-                txtMarcador = "<b>Madurador: " + response.data[0].nombre_contenedor + "</b> <br> " + "SetPoint: " + response.data[0].set_point + " <br> " + "Co2: " + response.data[0].co2_reading + " <br> " + "RelativeHumidity: " + response.data[0].relative_humidity + " <br> " + "Ethylene: " + response.data[0].ethylene + " <br> " + "Avl: " + response.data[0].avl + " <br> ";
-              } // iterando lat y lng para ve ruta de contenedor
+                if (self.tipo == "madurador") {
+                  txtMarcador = "<b>Madurador: " + response.data[0].nombre_contenedor + "</b> <br> " + "SetPoint: " + response.data[0].set_point + " <br> " + "Co2: " + response.data[0].co2_reading + " <br> " + "RelativeHumidity: " + response.data[0].relative_humidity + " <br> " + "Ethylene: " + response.data[0].ethylene + " <br> " + "Avl: " + response.data[0].avl + " <br> ";
+                } // iterando lat y lng para ve ruta de contenedor
 
 
-              self.polylinePoints.map(function (element) {
-                L.marker([element.lat, element.lng]).addTo(map);
-              }); // agregamos el marcador
+                self.polylinePoints.map(function (element) {
+                  L.marker([element.lat, element.lng]).addTo(map);
+                }); // agregamos el marcador
 
-              L.marker([self.polylinePoints[0].lat, self.polylinePoints[0].lng]).addTo(map).bindPopup(txtMarcador).openPopup(); // usamos polylinePoints para trazar la ruta
+                L.marker([self.polylinePoints[0].lat, self.polylinePoints[0].lng]).addTo(map).bindPopup(txtMarcador).openPopup(); // usamos polylinePoints para trazar la ruta
 
-              L.polyline(self.polylinePoints).addTo(map);
-            }).then(function (response) {
+                L.polyline(self.polylinePoints).addTo(map);
+              }).then(function (response) {
+                $(".loading").css("display", "none"); // ocultar el loading
+              });
+            } else {
+              map = L.map("map", {
+                center: [lt, ln],
+                zoom: 13
+              });
+              L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+                attribution: "FrankCairampoma"
+              }).addTo(map);
               $(".loading").css("display", "none"); // ocultar el loading
-            });
+            }
           });
         });
       }
@@ -6719,7 +6730,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\r\n/* CSS DEL LOADING */\n.loading[data-v-cd606186] {\r\n  position: fixed;\r\n  z-index: 999;\r\n  height: 2em;\r\n  width: 2em;\r\n  overflow: show;\r\n  margin: auto;\r\n  top: 0;\r\n  left: 0;\r\n  bottom: 0;\r\n  right: 0;\n}\r\n\r\n/* Transparent Overlay */\n.loading[data-v-cd606186]:before {\r\n  content: \"\";\r\n  display: block;\r\n  position: fixed;\r\n  top: 0;\r\n  left: 0;\r\n  width: 100%;\r\n  height: 100%;\r\n  background: radial-gradient(rgba(20, 20, 20, 0.8), rgba(0, 0, 0, 0.8));\r\n\r\n  background: -webkit-radial-gradient(\r\n    rgba(20, 20, 20, 0.8),\r\n    rgba(0, 0, 0, 0.8)\r\n  );\n}\r\n\r\n/* :not(:required) hides these rules from IE9 and below */\n.loading[data-v-cd606186]:not(:required) {\r\n  /* hide \"loading...\" text */\r\n  font: 0/0 a;\r\n  color: transparent;\r\n  text-shadow: none;\r\n  background-color: transparent;\r\n  border: 0;\n}\n.loading[data-v-cd606186]:not(:required):after {\r\n  content: \"\";\r\n  display: block;\r\n  font-size: 10px;\r\n  width: 1em;\r\n  height: 1em;\r\n  margin-top: -0.5em;\r\n  -webkit-animation: spinner-data-v-cd606186 150ms infinite linear;\r\n  animation: spinner-data-v-cd606186 150ms infinite linear;\r\n  border-radius: 0.5em;\r\n  box-shadow: rgba(255, 255, 255, 0.75) 1.5em 0 0 0,\r\n    rgba(255, 255, 255, 0.75) 1.1em 1.1em 0 0,\r\n    rgba(255, 255, 255, 0.75) 0 1.5em 0 0,\r\n    rgba(255, 255, 255, 0.75) -1.1em 1.1em 0 0,\r\n    rgba(255, 255, 255, 0.75) -1.5em 0 0 0,\r\n    rgba(255, 255, 255, 0.75) -1.1em -1.1em 0 0,\r\n    rgba(255, 255, 255, 0.75) 0 -1.5em 0 0,\r\n    rgba(255, 255, 255, 0.75) 1.1em -1.1em 0 0;\n}\r\n\r\n/* Animation */\n@-webkit-keyframes spinner-data-v-cd606186 {\n0% {\r\n    transform: rotate(0deg);\n}\n100% {\r\n    transform: rotate(360deg);\n}\n}\n@keyframes spinner-data-v-cd606186 {\n0% {\r\n    transform: rotate(0deg);\n}\n100% {\r\n    transform: rotate(360deg);\n}\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\r\n/* CSS DEL LOADING */\n.loading[data-v-cd606186] {\r\n  position: fixed;\r\n  z-index: 999;\r\n  height: 2em;\r\n  width: 2em;\r\n  overflow: show;\r\n  margin: auto;\r\n  top: 0;\r\n  left: 0;\r\n  bottom: 0;\r\n  right: 0;\n}\r\n\r\n/* Transparent Overlay */\n.loading[data-v-cd606186]:before {\r\n  content: \"\";\r\n  display: block;\r\n  position: fixed;\r\n  top: 0;\r\n  left: 0;\r\n  width: 100%;\r\n  height: 100%;\r\n  background: radial-gradient(rgba(20, 20, 20, 0.8), rgba(0, 0, 0, 0.8));\r\n\r\n  background: -webkit-radial-gradient(\r\n    rgba(20, 20, 20, 0.8),\r\n    rgba(0, 0, 0, 0.8)\r\n  );\n}\r\n\r\n/* :not(:required) hides these rules from IE9 and below */\n.loading[data-v-cd606186]:not(:required) {\r\n  /* hide \"loading...\" text */\r\n  font: 0/0 a;\r\n  color: transparent;\r\n  text-shadow: none;\r\n  background-color: transparent;\r\n  border: 0;\n}\n.loading[data-v-cd606186]:not(:required):after {\r\n  content: \"\";\r\n  display: block;\r\n  font-size: 10px;\r\n  width: 1em;\r\n  height: 1em;\r\n  margin-top: -0.5em;\r\n  -webkit-animation: spinner-data-v-cd606186 150ms infinite linear;\r\n  animation: spinner-data-v-cd606186 150ms infinite linear;\r\n  border-radius: 0.5em;\r\n  box-shadow: rgba(255, 255, 255, 0.75) 1.5em 0 0 0,\r\n    rgba(255, 255, 255, 0.75) 1.1em 1.1em 0 0,\r\n    rgba(255, 255, 255, 0.75) 0 1.5em 0 0,\r\n    rgba(255, 255, 255, 0.75) -1.1em 1.1em 0 0,\r\n    rgba(255, 255, 255, 0.75) -1.5em 0 0 0,\r\n    rgba(255, 255, 255, 0.75) -1.1em -1.1em 0 0,\r\n    rgba(255, 255, 255, 0.75) 0 -1.5em 0 0,\r\n    rgba(255, 255, 255, 0.75) 1.1em -1.1em 0 0;\n}\r\n\r\n/* Animation */\n@-webkit-keyframes spinner-data-v-cd606186 {\n0% {\r\n    transform: rotate(0deg);\n}\n100% {\r\n    transform: rotate(360deg);\n}\n}\n@keyframes spinner-data-v-cd606186 {\n0% {\r\n    transform: rotate(0deg);\n}\n100% {\r\n    transform: rotate(360deg);\n}\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
