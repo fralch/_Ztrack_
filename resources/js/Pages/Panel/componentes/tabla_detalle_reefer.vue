@@ -116,7 +116,7 @@
         <tbody>
           <tr v-for="(reefer, index) in datos_tabla_reefer" :key="index">
             <!-- <td>{{index+1}}</td> -->
-            <td class="text-center">{{ reefer.id }}C°</td>
+            <td class="text-center">{{ reefer.id }}</td>
             <td class="text-center">{{ formatoFecha(reefer.created_at) }}</td>
             <td class="text-center">{{ reefer.set_point }}C°</td>
             <td class="text-center">{{ reefer.temp_supply_1 }}</td>
@@ -211,6 +211,9 @@ export default {
     datos_tabla_reefer() {
       $("#tblDetalleContenedores_reefers").DataTable().destroy();
       this.TablaDetalleContenedores_r();
+    },
+    tipo() {
+      this.datos_tabla_reefer = [];
     },
   },
   mounted() {

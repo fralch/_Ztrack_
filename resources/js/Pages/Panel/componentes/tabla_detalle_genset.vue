@@ -162,7 +162,7 @@ export default {
       this.TablaDetalleContenedores_g();
     },
     tipo() {
-      $("#tblDetalleContenedores_generadores").DataTable().destroy();
+      this.datos_tabla_generador = [];
     },
   },
   mounted() {

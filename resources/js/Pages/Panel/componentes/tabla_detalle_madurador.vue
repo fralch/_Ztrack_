@@ -225,6 +225,9 @@ export default {
       $("#tblDetalleContenedores_madurador").DataTable().destroy();
       this.TablaDetalleContenedores_r();
     },
+    tipo() {
+      this.datos_tabla_madurador = [];
+    },
   },
   mounted() {
     this.TablaDetalleContenedores_r();
