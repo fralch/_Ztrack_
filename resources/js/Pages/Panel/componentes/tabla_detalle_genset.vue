@@ -161,6 +161,9 @@ export default {
       $("#tblDetalleContenedores_generadores").DataTable().destroy();
       this.TablaDetalleContenedores_g();
     },
+    tipo() {
+      $("#tblDetalleContenedores_generadores").DataTable().destroy();
+    },
   },
   mounted() {
     this.TablaDetalleContenedores_g();
