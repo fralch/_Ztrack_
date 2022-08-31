@@ -40,6 +40,7 @@ Route::post('/datos_contenedor', [PanelController::class, 'datos_contenedor' ])-
 //--------------------- SETTING ------------------------
 Route::get('/setting', [SettingController::class, 'verSetting'])->name('setting');
 Route::post('/usuario/nuevo', [SettingController::class, 'nuevoUsuario'])->name('nuevo_usuario');
+Route::post('/usuario/borrar', [SettingController::class, 'borrarUsuario'])->name('borrar_usuario');
 Route::post('/empresa/nueva', [SettingController::class, 'nuevaEmpresa'])->name('nueva_empresa');
 Route::post('/contenedor/nuevo', [SettingController::class, 'nuevoContenedor'])->name('nuevo_contenedor');
 Route::post('/contenedor/actualizar', [SettingController::class, 'cambiarEstadoContenedor'])->name('cambiar_estado_contenedor');

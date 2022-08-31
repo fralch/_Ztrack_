@@ -2,7 +2,11 @@
   <layoutprincipal ref="layoutprincipal">
     <!-- *** cargando layoutprincipal  **** -->
     <div class="slot_body slot_empresas" slot="component-view">
-      <div class="content" style="display: block;  width: 100% !important;" id="cuerpo">
+      <div
+        class="content"
+        style="display: block; width: 100% !important"
+        id="cuerpo"
+      >
         <!-- ----------------------- -->
         <div class="content">
           <div class="row" style="margin: 0 0 0 0px">
@@ -120,10 +124,17 @@
                     </div>
                   </div>
                 </div>
-                <table id="tblUsuarios" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%">
+                <table
+                  id="tblUsuarios"
+                  class="
+                    table table-striped table-bordered
+                    dt-responsive
+                    nowrap
+                  "
+                  style="width: 100%"
+                >
                   <thead>
                     <tr>
-                      
                       <th scope="col" width="50px">N°</th>
                       <th scope="col" width="150px">Usuario</th>
                       <th scope="col">Apellidos</th>
@@ -133,12 +144,14 @@
                       <th scope="col">Admin_Mad</th>
                       <th scope="col">Correo</th>
                       <th scope="col">Ultimo_acceso</th>
+                      <th scope="col">Editar</th>
+                      <th scope="col">Borrar</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr v-for="(usuario, index) in usuario_all" :key="index">
-                      <td class="text-center">{{ index + 1 }}</td>
-                    
+                      <td class="text-center">{{usuario.id }}</td>
+
                       <td>{{ usuario.usuario.toUpperCase() }}</td>
                       <td>{{ usuario.apellidos }}</td>
                       <td>{{ usuario.nombres }}</td>
@@ -153,6 +166,25 @@
                       </td>
                       <td>{{ usuario.correo }}</td>
                       <td>{{ usuario.ultimo_acceso }}</td>
+                      <td class="text-center">
+                        <button
+                          type="button"
+                          class="btn btn-primary"
+                          data-toggle="modal"
+                          data-target="#asignarUsuarioModal"
+                        >
+                          <i class="bi bi-pencil-fill"></i>
+                        </button>
+                      </td>
+                      <td class="text-center">
+                        <button
+                          type="button"
+                          class="btn btn-primary"
+                          @click="borrarUsuario(usuario.id)"
+                        >
+                          <i class="bi bi-trash-fill"></i>
+                        </button>
+                      </td>
                     </tr>
                   </tbody>
                 </table>
@@ -199,7 +231,7 @@
                           v-model="nuevo_booking_temp"
                         />
                       </div>
-                      
+
                       <div class="col">
                         <button
                           type="button"
@@ -214,7 +246,15 @@
                     </div>
                   </div>
                 </div>
-                <table id="tblEmpresas"  class="table table-striped table-bordered dt-responsive nowrap" style="width:100%">
+                <table
+                  id="tblEmpresas"
+                  class="
+                    table table-striped table-bordered
+                    dt-responsive
+                    nowrap
+                  "
+                  style="width: 100%"
+                >
                   <thead>
                     <tr>
                       <th width="20px">N°</th>
@@ -222,8 +262,8 @@
                       <th>Empresa</th>
                       <th>Booking</th>
                       <th>Booking_temp</th>
-                      <th>Asignar_contenedor</th>
-                      <th>Asignar_usuario</th>
+                      <th class="text-center">Asignar_contenedor</th>
+                      <th class="text-center">Asignar_usuario</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -242,10 +282,10 @@
                       <td>{{ empresa.nombre_empresa.toUpperCase() }}</td>
                       <td>{{ empresa.descripcion_booking }}</td>
                       <td>{{ empresa.temp_contratada }}</td>
-                      <td>
+                      <td class="text-center">
                         <button
                           type="button"
-                          class="col-3 btn btn-primary"
+                          class="btn btn-primary"
                           data-toggle="modal"
                           data-target="#asignarModal"
                           @click="asignar_id_empresa = empresa.id"
@@ -253,13 +293,13 @@
                           <i class="bi bi-check-lg"></i>
                         </button>
                       </td>
-                      <td>
+                      <td class="text-center">
                         <button
                           type="button"
-                          class="col-3 btn btn-primary"
+                          class="btn btn-primary"
                           data-toggle="modal"
                           data-target="#asignarUsuarioModal"
-                          @click="obtenerUsuarioEmpresa(empresa.id) "
+                          @click="obtenerUsuarioEmpresa(empresa.id)"
                         >
                           <i class="bi bi-check-lg"></i>
                         </button>
@@ -331,7 +371,11 @@
                   </div>
                 </div>
               </div>
-              <table id="tblContenedores" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%">
+              <table
+                id="tblContenedores"
+                class="table table-striped table-bordered dt-responsive nowrap"
+                style="width: 100%"
+              >
                 <thead>
                   <tr>
                     <th width="20px">N°</th>
@@ -501,14 +545,14 @@
             </div>
             <div class="modal-body">
               <div class="form">
-                <p class="font-weight-bold">Usuarios ya asignados: </p>
+                <p class="font-weight-bold">Usuarios ya asignados:</p>
                 <ul>
                   <li v-for="(u, i) in usuarios_empresa" :key="i">
-                    <p class="font-weight-light"> {{u.usuario}} </p>
+                    <p class="font-weight-light">{{ u.usuario }}</p>
                   </li>
                 </ul>
               </div>
-              <br>
+              <br />
               <div class="form-inline">
                 <select
                   class="form-control mr-sm-2"
@@ -634,7 +678,6 @@ export default {
       $("#tblEmpresas").DataTable().destroy();
       this.TablaEmpresas();
     },
-   
   },
 
   mounted() {
@@ -684,7 +727,7 @@ export default {
       let self = this;
       this.$nextTick(() => {
         $("#tblUsuarios").DataTable({
-           scrollX: "100%",
+          scrollX: "100%",
           responsive: true,
           language: {
             url: "//cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json",
@@ -835,7 +878,7 @@ export default {
       if (
         self.nueva_empresa == "" ||
         self.nuevo_booking == "" ||
-        self.nuevo_booking_temp == "" 
+        self.nuevo_booking_temp == ""
       ) {
         // self.mensaje_error("Debe llenar todos los campos");
         Swal.fire({
@@ -906,8 +949,11 @@ export default {
             });
           }
           if (response.data > 0) {
-          console.log("file: setting.vue ~ line 830 ~ response.data", response.data)
-            
+            console.log(
+              "file: setting.vue ~ line 830 ~ response.data",
+              response.data
+            );
+
             Swal.fire({
               title: "Asignacion realizada!",
               icon: "success",
@@ -932,7 +978,7 @@ export default {
           self.tabla_contenedores_filtrados = response.data;
         });
     },
-     obtenerUsuarioEmpresa(id){
+    obtenerUsuarioEmpresa(id) {
       let self = this;
       self.empresa_seleccionada = id;
       self.usuarios_empresa = [];
@@ -942,26 +988,25 @@ export default {
       axios
         .post(route("obtener_usuario_empresa"), data)
         .then(function (response) {
-         
           if (response.data.length > 0) {
             self.usuarios_empresa = response.data;
           }
         });
     },
-    usuarioEmpresaAsignar(){
+    usuarioEmpresaAsignar() {
       let self = this;
       let data = {
         id_empresa: self.empresa_seleccionada,
         id_usuario: self.asignar_id_usuario,
       };
       self.usuarios_empresa.forEach((usuario) => {
-        if(usuario.id == self.asignar_id_usuario){
+        if (usuario.id == self.asignar_id_usuario) {
           Swal.fire({
             icon: "error",
             title: "Oops...",
             text: "El usuario ya esta asignado a la empresa!",
           });
-          return 0; 
+          return 0;
         }
       });
 
@@ -982,6 +1027,55 @@ export default {
           $("#asignarUsuarioModal").modal("hide");
         });
     },
+    borrarUsuario(id) {
+      let self = this;
+
+      Swal.fire(
+        {
+          title: "¿Estas seguro de eliminar el usuario?",
+          text: "Una vez eliminado no podras recuperarlo!",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#0e5976",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Si, eliminar!",
+          cancelButtonText: "No, cancelar!",
+        }
+      ).then((result) => {
+        if (result.value) {
+          let data = {
+            id_usuario: id,
+          };
+          axios
+            .post(route("borrar_usuario"), data)
+            .then(function (response) {
+              self.usuario_all = response.data;
+            });
+          Swal.fire(
+            "Eliminado!",
+            "El usuario ha sido eliminado.",
+            "success"
+          );
+        } else if (result.dismiss === Swal.DismissReason.cancel) {
+          Swal.fire(
+            "Cancelado",
+            "El usuario no ha sido eliminado.",
+            "error"
+          );
+        }
+      });
+      
+
+      // let data = {
+      //   id_usuario: id,
+      // };
+
+      // self.usuario_all.forEach((usuario) => {
+      //   if (usuario.id == id) {
+      //     self.usuario_all.splice(usuario, 1);
+      //   }
+      // });
+    },
   },
 };
 </script>
@@ -993,7 +1087,6 @@ export default {
 #lado_izquierdo {
   width: 100% !important;
 }
-
 
 .bg-primary {
   background-color: #0e5976 !important;

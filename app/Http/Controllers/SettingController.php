@@ -73,6 +73,13 @@ class SettingController extends Controller
         $usuario_all = Usuario::all();
         return $usuario_all; 
     }
+    public function borrarUsuario(Request $request)
+    {
+        $usuario = Usuario::where('id',$request->id_usuario)->delete();
+        $usuario_all = Usuario::all();
+        return $usuario_all; 
+    }
+
     public function nuevaEmpresa(Request $request)
     {
         // return $request; 
