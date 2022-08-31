@@ -2,7 +2,7 @@
   <layoutprincipal ref="layoutprincipal">
     <!-- *** cargando layoutprincipal  **** -->
     <div class="slot_body slot_empresas" slot="component-view">
-      <div class="content" style="display: block" id="cuerpo">
+      <div class="content" style="display: block;  width: 100% !important;" id="cuerpo">
         <!-- ----------------------- -->
         <div class="content">
           <div class="row" style="margin: 0 0 0 0px">
@@ -120,9 +120,10 @@
                     </div>
                   </div>
                 </div>
-                <table id="tblUsuarios">
+                <table id="tblUsuarios" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%">
                   <thead>
                     <tr>
+                      
                       <th scope="col" width="50px">N°</th>
                       <th scope="col" width="150px">Usuario</th>
                       <th scope="col">Apellidos</th>
@@ -198,26 +199,7 @@
                           v-model="nuevo_booking_temp"
                         />
                       </div>
-                      <!-- <div class="col">
-                        <label style="margin-right: 10px"
-                          >Usuario Asignado</label
-                        >
-                        <select
-                          class="form-control mr-sm-2"
-                          v-model="nuevo_usuario_asignado"
-                        >
-                          <option value="0" disabled>
-                            Seleccione un usuario
-                          </option>
-                          <option
-                            v-for="(usuario, index) in usuario_todos"
-                            :key="index"
-                            :value="usuario.id"
-                          >
-                            {{ usuario.nombres }}
-                          </option>
-                        </select>
-                      </div> -->
+                      
                       <div class="col">
                         <button
                           type="button"
@@ -232,7 +214,7 @@
                     </div>
                   </div>
                 </div>
-                <table id="tblEmpresas">
+                <table id="tblEmpresas"  class="table table-striped table-bordered dt-responsive nowrap" style="width:100%">
                   <thead>
                     <tr>
                       <th width="20px">N°</th>
@@ -349,7 +331,7 @@
                   </div>
                 </div>
               </div>
-              <table id="tblContenedores">
+              <table id="tblContenedores" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%">
                 <thead>
                   <tr>
                     <th width="20px">N°</th>
@@ -690,6 +672,8 @@ export default {
       let self = this;
       this.$nextTick(() => {
         $("#tblEmpresas").DataTable({
+          scrollX: "100%",
+          responsive: true,
           language: {
             url: "//cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json",
           },
@@ -700,6 +684,8 @@ export default {
       let self = this;
       this.$nextTick(() => {
         $("#tblUsuarios").DataTable({
+           scrollX: "100%",
+          responsive: true,
           language: {
             url: "//cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json",
           },
@@ -710,6 +696,8 @@ export default {
       let self = this;
       this.$nextTick(() => {
         $("#tblContenedores").DataTable({
+          scrollX: "100%",
+          responsive: true,
           language: {
             url: "//cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json",
           },
@@ -1000,20 +988,13 @@ export default {
 
 <style lang="css">
 #lado_derecho {
-  width: 100%;
+  width: 100% !important;
 }
 #lado_izquierdo {
-  width: 100%;
+  width: 100% !important;
 }
 
-@media (max-width: 1024px) {
-  #lado_derecho {
-    width: 100%;
-  }
-  #lado_izquierdo {
-    width: 100%;
-  }
-}
+
 .bg-primary {
   background-color: #0e5976 !important;
 }
