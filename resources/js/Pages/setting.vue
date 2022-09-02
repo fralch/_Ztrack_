@@ -11,7 +11,7 @@
         <div class="content">
           <div class="row" style="margin: 0 0 0 0px">
             <div id="lado_izquierdo" class="rounded border border-5">
-              <div class="card-body shadow p-3 mb-5 bg-white">
+              <div class="card-body shadow p-3 mb-5 bg-white rounded border border-1">
                 <h5 class="card-title p-3 mb-2 bg-primary text-white">
                   USUARIOS
                 </h5>
@@ -193,13 +193,7 @@
             <div id="lado_derecho">
               <div
                 class="
-                  card-body
-                  shadow
-                  p-3
-                  mb-5
-                  bg-white
-                  rounded
-                  border border-1
+                 card-body shadow p-3 mb-5 bg-white rounded border border-1
                 "
               >
                 <h5 class="card-title p-3 mb-2 bg-primary text-white">
