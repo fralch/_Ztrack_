@@ -193,9 +193,7 @@
             </div>
             <div id="lado_derecho">
               <div
-                class="
-                 card-body shadow p-3 mb-5 bg-white rounded border border-1
-                "
+                class="card-body shadow p-3 mb-5 bg-white rounded border border-1"
               >
                 <h5 class="card-title p-3 mb-2 bg-primary text-white">
                   EMPRESAS
@@ -801,7 +799,6 @@ export default {
     usuario_all() {
       $("#tblUsuarios").DataTable().destroy();
       this.TablaUsuarios();
-      console.log(this.usuario_all);
     },
     tabla_contenedores_filtrados() {
       $("#tblContenedores").DataTable().destroy();
