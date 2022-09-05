@@ -80,6 +80,17 @@ class SettingController extends Controller
         return $usuario_all; 
     }
 
+    public function editarUsuario(Request $request)
+    {
+        $usuario = Usuario::where('id',$request->id)->update([
+            'activo' => $request->activo,
+            'admin' => $request->admin,
+            'admin_madurador' => $request->admin_madurador,
+        ]);
+        $usuario_all = Usuario::all();
+        return $usuario_all; 
+    }
+    
     public function nuevaEmpresa(Request $request)
     {
         // return $request; 

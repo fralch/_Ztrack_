@@ -171,7 +171,8 @@
                           type="button"
                           class="btn btn-primary"
                           data-toggle="modal"
-                          data-target="#asignarUsuarioModal"
+                          data-target="#editarUsuarioModal"
+                          @click="editarUsuario(usuario)"
                         >
                           <i class="bi bi-pencil-fill"></i>
                         </button>
@@ -583,6 +584,132 @@
           </div>
         </div>
       </div>
+      <!--  edutar usuarios  -->
+      <div
+        class="modal fade"
+        id="editarUsuarioModal"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="editarUsuarioModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">
+                {{"Editar a " + " " + (editar_usuario.apellidos).toUpperCase()  }}
+              </h5>
+              <button
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+             <div >
+                <span class="font-weight-bold">Usuario activo:</span>
+                <div class="form-check form-check-inline">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="inlineRadioOptions"
+                    id="inlineRadio1"
+                    value="1"
+                    v-model="editar_usuario.activo"
+                  />
+                  <label class="form-check-label" for="inlineRadio1">Si</label>
+                  
+                </div>
+                <div class="form-check form-check-inline">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="inlineRadioOptions"
+                    id="inlineRadio2"
+                    value="0"
+                    v-model="editar_usuario.activo"
+                  />
+                  <label class="form-check-label" for="inlineRadio2">No</label>
+                </div>
+              </div>
+
+              <div >
+                <span class="font-weight-bold">Admin total:</span>
+                <div class="form-check form-check-inline">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="inlineRadioOptionsAdmin"
+                    id="inlineRadio1"
+                    value="1"
+                    v-model="editar_usuario.admin"
+                  />
+                  <label class="form-check-label" for="inlineRadio1">Si</label>
+                  
+                </div>
+                <div class="form-check form-check-inline">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="inlineRadioOptionsAdmin"
+                    id="inlineRadio2"
+                    value="0"
+                    v-model="editar_usuario.admin"
+                  />
+                  <label class="form-check-label" for="inlineRadio2">No</label>
+                </div>
+             </div>
+              <div >
+                <span class="font-weight-bold">Admin madurador:</span>
+                <div class="form-check form-check-inline">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="inlineRadioOptionsAdminMadurador"
+                    id="inlineRadio1"
+                    value="1"
+                    v-model="editar_usuario.admin_madurador"
+                  />
+                  <label class="form-check-label" for="inlineRadio1">Si</label>
+                  
+                </div>
+                <div class="form-check form-check-inline">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="inlineRadioOptionsAdminMadurador"
+                    id="inlineRadio2"
+                    value="0"
+                    v-model="editar_usuario.admin_madurador"
+                  />
+                  <label class="form-check-label" for="inlineRadio2">No</label>
+                </div>
+             </div>
+              
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-dark"
+                @click="guardarEditarUsuario"
+              >
+                <i class="fas fa-save"></i>
+                Guardar
+              </button>
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-dismiss="modal"
+              >
+                Cerrar
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </layoutprincipal>
 </template>
@@ -639,6 +766,18 @@ export default {
       nuevo_tipo_contenedor: "0",
       nuevo_booking_contenedor: null,
       nuevo_booking_temp_contenedor: null,
+
+      // editar usuario
+      editar_usuario: {
+        id: 0,
+        usuario: "",
+        apellidos: "",
+        nombres: "",
+        correo: "",
+        activo: 0,
+        admin: 0,
+        admin_mad: 0,
+      },
     };
   },
   watch: {
@@ -1058,17 +1197,26 @@ export default {
           );
         }
       });
-      
-
-      // let data = {
-      //   id_usuario: id,
-      // };
-
-      // self.usuario_all.forEach((usuario) => {
-      //   if (usuario.id == id) {
-      //     self.usuario_all.splice(usuario, 1);
-      //   }
-      // });
+    },
+    editarUsuario(usuario){
+      let self = this;
+      self.editar_usuario = usuario;
+    },
+    guardarEditarUsuario(){
+      let self = this;
+      let data = self.editar_usuario
+      axios
+        .post(route("editar_usuario"), data)
+        .then(function (response) {
+          console.log(response.data); 
+          self.usuario_all = response.data;
+        });
+      Swal.fire(
+        "Editado!",
+        "El usuario ha sido editado.",
+        "success"
+      );
+      $("#editarUsuarioModal").modal("hide");
     },
   },
 };
