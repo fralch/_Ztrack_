@@ -394,6 +394,15 @@ export default {
 .escoger_columnas span:hover {
   text-decoration: underline;
 }
+@media screen and (max-width: 400px) {
+  #lado_izquierdo {
+   display: none;
+  }  
+  #lado_derecho {
+    width: 100%;
+    background-color: aquamarine !important ;
+  }
+}
 </style>
 
 
