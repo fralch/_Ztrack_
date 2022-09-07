@@ -5296,6 +5296,46 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -7011,7 +7051,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.dt-buttons button  {\r\n  min-width: 100px  !important;\r\n  height: 30px  !important;\r\n  color: #fff  !important;\r\n  padding: 2px 10px  !important;\r\n  font-weight: bold  !important;\r\n  cursor: pointer  !important;\r\n  transition: all 0.3s ease  !important;\r\n  position: relative  !important;\r\n  display: inline-block  !important;\r\n  outline: none  !important;\r\n  border-radius: 5px  !important;\r\n  z-index: 0 !important;\r\n  background: #fff !important;\r\n  overflow: hidden;\r\n  border: 2px solid #777c83  !important;\r\n  color: #777c83 !important;\n}\n.dt-buttons button :hover {\r\n  color: #fff;\n}\n.dt-buttons button :hover:after {\r\n  width: 100%;\n}\n.dt-buttons button :after {\r\n  content: \"\";\r\n  position: absolute;\r\n  z-index: -1;\r\n  transition: all 0.3s ease;\r\n  left: 0;\r\n  top: 0;\r\n  width: 0;\r\n  height: 100%;\r\n  background: #777c83;\n}\r\n\r\n/* -------------------------- */\n#buscar_detalle {\r\n  min-width: 190px;\r\n  height: 30px;\r\n  color: #fff;\r\n  padding: 2px 10px;\r\n  font-weight: bold;\r\n  cursor: pointer;\r\n  transition: all 0.3s ease;\r\n  position: relative;\r\n  display: inline-block;\r\n  outline: none;\r\n  border-radius: 5px;\r\n  border: none;\r\n  box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5), 7px 7px 20px 0px rgba(0,0,0,.1), 4px 4px 5px 0px rgba(0,0,0,.1);\r\n  background: #17A2B8;\r\n z-index: 1;\n}\n#buscar_detalle:hover:after {\r\n  width: 100%;\r\n  left: 0;\n}\n#buscar_detalle:after {\r\n  border-radius: 5px;\r\n  position: absolute;\r\n  content: \"\";\r\n  width: 0;\r\n  height: 100%;\r\n  top: 0;\r\n  z-index: -1;\r\n  box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5), 7px 7px 20px 0px rgba(0,0,0,.1), 4px 4px 5px 0px rgba(0,0,0,.1);\r\n  transition: all 0.3s ease;\r\n  background-color: #096574;\r\n  right: 0;\n}\n.css-button-shadow-border-sliding--blue:active {\r\n  top: 2px;\n}\n.escoger_columnas span{\r\n  cursor: pointer;\n}\n.escoger_columnas span:hover {\r\n  text-decoration: underline;\n}\n@media screen and (max-width: 400px) {\n#lado_izquierdo {\r\n   display: none;\n}\n#lado_derecho {\r\n    width: 100%;\r\n    background-color: aquamarine !important ;\n}\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.dt-buttons button  {\r\n  min-width: 100px  !important;\r\n  height: 30px  !important;\r\n  color: #fff  !important;\r\n  padding: 2px 10px  !important;\r\n  font-weight: bold  !important;\r\n  cursor: pointer  !important;\r\n  transition: all 0.3s ease  !important;\r\n  position: relative  !important;\r\n  display: inline-block  !important;\r\n  outline: none  !important;\r\n  border-radius: 5px  !important;\r\n  z-index: 0 !important;\r\n  background: #fff !important;\r\n  overflow: hidden;\r\n  border: 2px solid #777c83  !important;\r\n  color: #777c83 !important;\n}\n.dt-buttons button :hover {\r\n  color: #fff;\n}\n.dt-buttons button :hover:after {\r\n  width: 100%;\n}\n.dt-buttons button :after {\r\n  content: \"\";\r\n  position: absolute;\r\n  z-index: -1;\r\n  transition: all 0.3s ease;\r\n  left: 0;\r\n  top: 0;\r\n  width: 0;\r\n  height: 100%;\r\n  background: #777c83;\n}\r\n\r\n/* -------------------------- */\n#buscar_detalle {\r\n  min-width: 190px;\r\n  height: 30px;\r\n  color: #fff;\r\n  padding: 2px 10px;\r\n  font-weight: bold;\r\n  cursor: pointer;\r\n  transition: all 0.3s ease;\r\n  position: relative;\r\n  display: inline-block;\r\n  outline: none;\r\n  border-radius: 5px;\r\n  border: none;\r\n  box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5), 7px 7px 20px 0px rgba(0,0,0,.1), 4px 4px 5px 0px rgba(0,0,0,.1);\r\n  background: #17A2B8;\r\n z-index: 1;\n}\n#buscar_detalle:hover:after {\r\n  width: 100%;\r\n  left: 0;\n}\n#buscar_detalle:after {\r\n  border-radius: 5px;\r\n  position: absolute;\r\n  content: \"\";\r\n  width: 0;\r\n  height: 100%;\r\n  top: 0;\r\n  z-index: -1;\r\n  box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5), 7px 7px 20px 0px rgba(0,0,0,.1), 4px 4px 5px 0px rgba(0,0,0,.1);\r\n  transition: all 0.3s ease;\r\n  background-color: #096574;\r\n  right: 0;\n}\n.css-button-shadow-border-sliding--blue:active {\r\n  top: 2px;\n}\n.escoger_columnas span{\r\n  cursor: pointer;\n}\n.escoger_columnas span:hover {\r\n  text-decoration: underline;\n}\n@media screen and (max-width: 400px) {\n#lado_izquierdo {\r\n   display: none;\n}\n#lado_derecho {\r\n     width: 100% !important;\r\n     margin: 0;\r\n    padding: 0;\n}\n#total_reefers {\r\n    width: 100% !important;\r\n    background-color: aquamarine !important ;\r\n    margin: 0;\r\n    padding: 0;\n}\n#botones_principal {\r\n    display: none !important;\n}\n#botones_principal_mobil{\r\n    background-color: red !important ;\r\n    width: 100% !important;\r\n    display: block !important;\r\n    margin: 0;\r\n    padding: 0;\n}\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -32097,7 +32137,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { attrs: { id: "impresion_grafico" } }, [
       _c("canvas", {
-        staticStyle: { height: "600px" },
+        staticStyle: { height: "600px", width: "100% !important" },
         attrs: { id: "myChart_principal" },
       }),
     ])
@@ -39098,7 +39138,11 @@ var render = function () {
                             "div",
                             {
                               staticClass: "row",
-                              staticStyle: { margin: "0 10px" },
+                              staticStyle: {
+                                margin: "0 10px",
+                                display: "none",
+                              },
+                              attrs: { id: "botones_principal_mobil" },
                             },
                             [
                               _c(
@@ -39119,11 +39163,139 @@ var render = function () {
                                   },
                                 },
                                 [
-                                  _c("i", { staticClass: "bi bi-power" }),
-                                  _vm._v(" "),
                                   _c(
                                     "b",
                                     { staticStyle: { "font-size": "1.2em" } },
+                                    [
+                                      _vm._v(
+                                        _vm._s(
+                                          _vm.contenedores_encendidos_gen.length
+                                        )
+                                      ),
+                                    ]
+                                  ),
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "button",
+                                {
+                                  staticClass: "col-3 btn btn-success",
+                                  attrs: {
+                                    type: "button",
+                                    id: "select_reef",
+                                    disabled:
+                                      _vm.contenedores_encendidos_reefer
+                                        .length == 0,
+                                  },
+                                  on: {
+                                    click: function ($event) {
+                                      _vm.tipo = "reefer"
+                                    },
+                                  },
+                                },
+                                [
+                                  _c(
+                                    "b",
+                                    { staticStyle: { "font-size": "1.2em" } },
+                                    [
+                                      _vm._v(
+                                        _vm._s(
+                                          _vm.contenedores_encendidos_reefer
+                                            .length
+                                        )
+                                      ),
+                                    ]
+                                  ),
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "button",
+                                {
+                                  staticClass: "col-3 btn btn-danger",
+                                  attrs: {
+                                    type: "button",
+                                    id: "select_mad",
+                                    disabled:
+                                      _vm.contenedores_encendidos_mad.length ==
+                                      0,
+                                  },
+                                  on: {
+                                    click: function ($event) {
+                                      _vm.tipo = "madurador"
+                                    },
+                                  },
+                                },
+                                [
+                                  _c(
+                                    "b",
+                                    { staticStyle: { "font-size": "1.2em" } },
+                                    [
+                                      _vm._v(
+                                        _vm._s(
+                                          _vm.contenedores_encendidos_mad.length
+                                        )
+                                      ),
+                                    ]
+                                  ),
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "button",
+                                {
+                                  staticClass: "col-3 btn btn-dark",
+                                  attrs: { type: "button" },
+                                },
+                                [
+                                  _c(
+                                    "b",
+                                    { staticStyle: { "font-size": "1.2em" } },
+                                    [_vm._v("0")]
+                                  ),
+                                ]
+                              ),
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            {
+                              staticClass: "row",
+                              staticStyle: { margin: "0 10px" },
+                              attrs: { id: "botones_principal" },
+                            },
+                            [
+                              _c(
+                                "button",
+                                {
+                                  staticClass: "col-3 btn btn-primary",
+                                  attrs: {
+                                    type: "button",
+                                    id: "select_gen",
+                                    disabled:
+                                      _vm.contenedores_encendidos_gen.length ==
+                                      0,
+                                  },
+                                  on: {
+                                    click: function ($event) {
+                                      _vm.tipo = "genset"
+                                    },
+                                  },
+                                },
+                                [
+                                  _c("i", {
+                                    staticClass: "bi bi-power",
+                                    attrs: { id: "mobil" },
+                                  }),
+                                  _vm._v(" "),
+                                  _c(
+                                    "b",
+                                    {
+                                      staticStyle: { "font-size": "1.2em" },
+                                      attrs: { id: "mobil" },
+                                    },
                                     [
                                       _vm._v(
                                         _vm._s(
@@ -39156,11 +39328,17 @@ var render = function () {
                                   },
                                 },
                                 [
-                                  _c("i", { staticClass: "bi bi-power" }),
+                                  _c("i", {
+                                    staticClass: "bi bi-power",
+                                    attrs: { id: "mobil" },
+                                  }),
                                   _vm._v(" "),
                                   _c(
                                     "b",
-                                    { staticStyle: { "font-size": "1.2em" } },
+                                    {
+                                      staticStyle: { "font-size": "1.2em" },
+                                      attrs: { id: "mobil" },
+                                    },
                                     [
                                       _vm._v(
                                         _vm._s(
@@ -39194,11 +39372,17 @@ var render = function () {
                                   },
                                 },
                                 [
-                                  _c("i", { staticClass: "bi bi-power" }),
+                                  _c("i", {
+                                    staticClass: "bi bi-power",
+                                    attrs: { id: "mobil" },
+                                  }),
                                   _vm._v(" "),
                                   _c(
                                     "b",
-                                    { staticStyle: { "font-size": "1.2em" } },
+                                    {
+                                      staticStyle: { "font-size": "1.2em" },
+                                      attrs: { id: "mobil" },
+                                    },
                                     [
                                       _vm._v(
                                         _vm._s(
@@ -39220,11 +39404,17 @@ var render = function () {
                                   attrs: { type: "button" },
                                 },
                                 [
-                                  _c("i", { staticClass: "bi bi-power" }),
+                                  _c("i", {
+                                    staticClass: "bi bi-power",
+                                    attrs: { id: "mobil" },
+                                  }),
                                   _vm._v(" "),
                                   _c(
                                     "b",
-                                    { staticStyle: { "font-size": "1.2em" } },
+                                    {
+                                      staticStyle: { "font-size": "1.2em" },
+                                      attrs: { id: "mobil" },
+                                    },
                                     [_vm._v("0")]
                                   ),
                                   _vm._v(

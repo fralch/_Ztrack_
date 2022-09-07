@@ -20,7 +20,7 @@
                 style="margin: 10px 15px 0px 15px"
               >
                 <div>Total Reefers: {{ contenedores_todos_length }}</div>
-                <div class="row" style="margin: 0 10px">
+                <div id="botones_principal_mobil" class="row" style="margin: 0 10px; display: none;">
                   <button
                     type="button"
                     id="select_gen"
@@ -28,8 +28,48 @@
                     @click="tipo = 'genset'"
                     :disabled="contenedores_encendidos_gen.length == 0"
                   >
-                    <i class="bi bi-power"></i>
+                  
                     <b style="font-size: 1.2em">{{
+                      contenedores_encendidos_gen.length
+                    }}</b>
+                  </button>
+                  <button
+                    type="button"
+                    id="select_reef"
+                    class="col-3 btn btn-success"
+                    @click="tipo = 'reefer'"
+                    :disabled="contenedores_encendidos_reefer.length == 0"
+                  >
+                    <b  style="font-size: 1.2em">{{
+                      contenedores_encendidos_reefer.length
+                    }}</b>
+                  
+                  </button>
+                  <button
+                    type="button"
+                    id="select_mad"
+                    class="col-3 btn btn-danger"
+                    @click="tipo = 'madurador'"
+                    :disabled="contenedores_encendidos_mad.length == 0"
+                  >
+                    <b  style="font-size: 1.2em">{{
+                      contenedores_encendidos_mad.length
+                    }}</b>
+                  </button>
+                  <button type="button" class="col-3 btn btn-dark">
+                    <b   style="font-size: 1.2em">0</b>
+                  </button>
+                </div>
+                <div id="botones_principal" class="row" style="margin: 0 10px">
+                  <button
+                    type="button"
+                    id="select_gen"
+                    class="col-3 btn btn-primary"
+                    @click="tipo = 'genset'"
+                    :disabled="contenedores_encendidos_gen.length == 0"
+                  >
+                    <i id="mobil" class="bi bi-power"></i>
+                    <b id="mobil" style="font-size: 1.2em">{{
                       contenedores_encendidos_gen.length
                     }}</b>
                     &nbsp; Gen Running
@@ -41,8 +81,8 @@
                     @click="tipo = 'reefer'"
                     :disabled="contenedores_encendidos_reefer.length == 0"
                   >
-                    <i class="bi bi-power"></i>
-                    <b style="font-size: 1.2em">{{
+                    <i id="mobil" class="bi bi-power"></i>
+                    <b id="mobil" style="font-size: 1.2em">{{
                       contenedores_encendidos_reefer.length
                     }}</b>
                     &nbsp; Reefers Running
@@ -54,15 +94,15 @@
                     @click="tipo = 'madurador'"
                     :disabled="contenedores_encendidos_mad.length == 0"
                   >
-                    <i class="bi bi-power"></i>
-                    <b style="font-size: 1.2em">{{
+                    <i id="mobil" class="bi bi-power"></i>
+                    <b id="mobil" style="font-size: 1.2em">{{
                       contenedores_encendidos_mad.length
                     }}</b>
                     &nbsp; Madurador
                   </button>
                   <button type="button" class="col-3 btn btn-dark">
-                    <i class="bi bi-power"></i>
-                    <b style="font-size: 1.2em">0</b>
+                    <i id="mobil" class="bi bi-power"></i>
+                    <b id="mobil"  style="font-size: 1.2em">0</b>
                     &nbsp; Shutdown
                   </button>
                 </div>
@@ -399,9 +439,27 @@ export default {
    display: none;
   }  
   #lado_derecho {
-    width: 100%;
+     width: 100% !important;
+     margin: 0;
+    padding: 0;
+  }  
+  #total_reefers {
+    width: 100% !important;
     background-color: aquamarine !important ;
+    margin: 0;
+    padding: 0;
   }
+  #botones_principal {
+    display: none !important;
+  }
+  #botones_principal_mobil{
+    background-color: red !important ;
+    width: 100% !important;
+    display: block !important;
+    margin: 0;
+    padding: 0;
+  }
+  
 }
 </style>
 

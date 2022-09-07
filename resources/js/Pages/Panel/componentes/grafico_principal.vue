@@ -98,7 +98,7 @@
       </div>
     </div>
     <div id="impresion_grafico">
-      <canvas id="myChart_principal" style="height: 600px"></canvas>
+      <canvas id="myChart_principal" style="height: 600px ; width: 100% !important;"></canvas>
     </div>
   </div>
 </template>
