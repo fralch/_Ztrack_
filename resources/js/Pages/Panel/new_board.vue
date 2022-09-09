@@ -20,7 +20,7 @@
                 style="margin: 10px 15px 0px 15px"
               >
                 <div>Total Reefers: {{ contenedores_todos_length }}</div>
-                <div id="botones_principal_mobil" class="row" style="margin: 0 10px; display: none;">
+                <div id="botones_principal_mobil" class="row" style=" display: none;">
                   <button
                     type="button"
                     id="select_gen"
@@ -28,8 +28,7 @@
                     @click="tipo = 'genset'"
                     :disabled="contenedores_encendidos_gen.length == 0"
                   >
-                  
-                    <b style="font-size: 1.2em">{{
+                    <b >{{
                       contenedores_encendidos_gen.length
                     }}</b>
                   </button>
@@ -40,7 +39,7 @@
                     @click="tipo = 'reefer'"
                     :disabled="contenedores_encendidos_reefer.length == 0"
                   >
-                    <b  style="font-size: 1.2em">{{
+                    <b >{{
                       contenedores_encendidos_reefer.length
                     }}</b>
                   
@@ -52,12 +51,12 @@
                     @click="tipo = 'madurador'"
                     :disabled="contenedores_encendidos_mad.length == 0"
                   >
-                    <b  style="font-size: 1.2em">{{
+                    <b >{{
                       contenedores_encendidos_mad.length
                     }}</b>
                   </button>
-                  <button type="button" class="col-3 btn btn-dark">
-                    <b   style="font-size: 1.2em">0</b>
+                  <button type="button" class="col-2 btn btn-dark">
+                    <b  >0</b>
                   </button>
                 </div>
                 <div id="botones_principal" class="row" style="margin: 0 10px">
@@ -434,30 +433,34 @@ export default {
 .escoger_columnas span:hover {
   text-decoration: underline;
 }
+ 
 @media screen and (max-width: 400px) {
+  .container-fluid{
+        padding: 0;
+        margin: 0;
+      }
+
   #lado_izquierdo {
    display: none;
   }  
   #lado_derecho {
-     width: 100% !important;
-     margin: 0;
-    padding: 0;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
   }  
   #total_reefers {
     width: 100% !important;
-    background-color: aquamarine !important ;
-    margin: 0;
-    padding: 0;
+    margin: 0  !important;
   }
   #botones_principal {
     display: none !important;
+     margin: 0 !important;
   }
   #botones_principal_mobil{
-    background-color: red !important ;
     width: 100% !important;
     display: block !important;
-    margin: 0;
-    padding: 0;
+     margin: 0 !important;
+  
   }
   
 }

@@ -49,11 +49,11 @@
   </body>
   	<script></script>
    	<style lang="css">
-      /* * {
+      * {
         border-width: 1px;
         border-style: solid;
         border-color: red;
-      } */
+      }
        /* body { background-color: #7CBEF8; }
       html {
         scrollbar-face-color: #fafbfd;
@@ -72,5 +72,9 @@
       ::-webkit-scrollbar-thumb { height: 50px; background-color: #bfbfbf; border-radius: 3px;}
       ::-webkit-scrollbar-corner { background-color: #fafbfd;}
       ::-webkit-resizer { background-color: #bfbfbf;} */
+      /* .container-fluid{
+        padding: 0;
+        margin: 0;
+      } */
 	</style>
 </html>

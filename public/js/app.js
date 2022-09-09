@@ -5335,7 +5335,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 
 
@@ -6979,7 +6978,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\r\n/* CSS DEL LOADING */\n.loading[data-v-cd606186] {\r\n  position: fixed;\r\n  z-index: 999;\r\n  height: 2em;\r\n  width: 2em;\r\n  overflow: show;\r\n  margin: auto;\r\n  top: 0;\r\n  left: 0;\r\n  bottom: 0;\r\n  right: 0;\n}\r\n\r\n/* Transparent Overlay */\n.loading[data-v-cd606186]:before {\r\n  content: \"\";\r\n  display: block;\r\n  position: fixed;\r\n  top: 0;\r\n  left: 0;\r\n  width: 100%;\r\n  height: 100%;\r\n  background: radial-gradient(rgba(20, 20, 20, 0.8), rgba(0, 0, 0, 0.8));\r\n\r\n  background: -webkit-radial-gradient(\r\n    rgba(20, 20, 20, 0.8),\r\n    rgba(0, 0, 0, 0.8)\r\n  );\n}\r\n\r\n/* :not(:required) hides these rules from IE9 and below */\n.loading[data-v-cd606186]:not(:required) {\r\n  /* hide \"loading...\" text */\r\n  font: 0/0 a;\r\n  color: transparent;\r\n  text-shadow: none;\r\n  background-color: transparent;\r\n  border: 0;\n}\n.loading[data-v-cd606186]:not(:required):after {\r\n  content: \"\";\r\n  display: block;\r\n  font-size: 10px;\r\n  width: 1em;\r\n  height: 1em;\r\n  margin-top: -0.5em;\r\n  -webkit-animation: spinner-data-v-cd606186 150ms infinite linear;\r\n  animation: spinner-data-v-cd606186 150ms infinite linear;\r\n  border-radius: 0.5em;\r\n  box-shadow: rgba(255, 255, 255, 0.75) 1.5em 0 0 0,\r\n    rgba(255, 255, 255, 0.75) 1.1em 1.1em 0 0,\r\n    rgba(255, 255, 255, 0.75) 0 1.5em 0 0,\r\n    rgba(255, 255, 255, 0.75) -1.1em 1.1em 0 0,\r\n    rgba(255, 255, 255, 0.75) -1.5em 0 0 0,\r\n    rgba(255, 255, 255, 0.75) -1.1em -1.1em 0 0,\r\n    rgba(255, 255, 255, 0.75) 0 -1.5em 0 0,\r\n    rgba(255, 255, 255, 0.75) 1.1em -1.1em 0 0;\n}\r\n\r\n/* Animation */\n@-webkit-keyframes spinner-data-v-cd606186 {\n0% {\r\n    transform: rotate(0deg);\n}\n100% {\r\n    transform: rotate(360deg);\n}\n}\n@keyframes spinner-data-v-cd606186 {\n0% {\r\n    transform: rotate(0deg);\n}\n100% {\r\n    transform: rotate(360deg);\n}\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\r\n/* CSS DEL LOADING */\n.loading[data-v-cd606186] {\r\n  position: fixed;\r\n  z-index: 999;\r\n  height: 2em;\r\n  width: 2em;\r\n  overflow: show;\r\n  margin: auto;\r\n  top: 0;\r\n  left: 0;\r\n  bottom: 0;\r\n  right: 0;\n}\r\n\r\n/* Transparent Overlay */\n.loading[data-v-cd606186]:before {\r\n  content: \"\";\r\n  display: block;\r\n  position: fixed;\r\n  top: 0;\r\n  left: 0;\r\n  width: 100%;\r\n  height: 100%;\r\n  background: radial-gradient(rgba(20, 20, 20, 0.8), rgba(0, 0, 0, 0.8));\r\n\r\n  background: -webkit-radial-gradient(\r\n    rgba(20, 20, 20, 0.8),\r\n    rgba(0, 0, 0, 0.8)\r\n  );\n}\r\n\r\n/* :not(:required) hides these rules from IE9 and below */\n.loading[data-v-cd606186]:not(:required) {\r\n  /* hide \"loading...\" text */\r\n  font: 0/0 a;\r\n  color: transparent;\r\n  text-shadow: none;\r\n  background-color: transparent;\r\n  border: 0;\n}\n.loading[data-v-cd606186]:not(:required):after {\r\n  content: \"\";\r\n  display: block;\r\n  font-size: 10px;\r\n  width: 1em;\r\n  height: 1em;\r\n  margin-top: -0.5em;\r\n  -webkit-animation: spinner-data-v-cd606186 150ms infinite linear;\r\n  animation: spinner-data-v-cd606186 150ms infinite linear;\r\n  border-radius: 0.5em;\r\n  box-shadow: rgba(255, 255, 255, 0.75) 1.5em 0 0 0,\r\n    rgba(255, 255, 255, 0.75) 1.1em 1.1em 0 0,\r\n    rgba(255, 255, 255, 0.75) 0 1.5em 0 0,\r\n    rgba(255, 255, 255, 0.75) -1.1em 1.1em 0 0,\r\n    rgba(255, 255, 255, 0.75) -1.5em 0 0 0,\r\n    rgba(255, 255, 255, 0.75) -1.1em -1.1em 0 0,\r\n    rgba(255, 255, 255, 0.75) 0 -1.5em 0 0,\r\n    rgba(255, 255, 255, 0.75) 1.1em -1.1em 0 0;\n}\r\n\r\n/* Animation */\n@-webkit-keyframes spinner-data-v-cd606186 {\n0% {\r\n    transform: rotate(0deg);\n}\n100% {\r\n    transform: rotate(360deg);\n}\n}\n@keyframes spinner-data-v-cd606186 {\n0% {\r\n    transform: rotate(0deg);\n}\n100% {\r\n    transform: rotate(360deg);\n}\n}\n@media screen and (max-width: 400px) {\n#asset_maps[data-v-cd606186] {\r\n    width: 100%;\r\n    margin: 0 !important;\r\n    margin-left: 10px !important;\r\n    padding: 0 !important;\n}\n#map[data-v-cd606186]{\r\n    width: 100%;\r\n    height: 100%;\r\n     margin: 0 !important;\r\n    padding: 0 !important;\n}\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -7051,7 +7050,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.dt-buttons button  {\r\n  min-width: 100px  !important;\r\n  height: 30px  !important;\r\n  color: #fff  !important;\r\n  padding: 2px 10px  !important;\r\n  font-weight: bold  !important;\r\n  cursor: pointer  !important;\r\n  transition: all 0.3s ease  !important;\r\n  position: relative  !important;\r\n  display: inline-block  !important;\r\n  outline: none  !important;\r\n  border-radius: 5px  !important;\r\n  z-index: 0 !important;\r\n  background: #fff !important;\r\n  overflow: hidden;\r\n  border: 2px solid #777c83  !important;\r\n  color: #777c83 !important;\n}\n.dt-buttons button :hover {\r\n  color: #fff;\n}\n.dt-buttons button :hover:after {\r\n  width: 100%;\n}\n.dt-buttons button :after {\r\n  content: \"\";\r\n  position: absolute;\r\n  z-index: -1;\r\n  transition: all 0.3s ease;\r\n  left: 0;\r\n  top: 0;\r\n  width: 0;\r\n  height: 100%;\r\n  background: #777c83;\n}\r\n\r\n/* -------------------------- */\n#buscar_detalle {\r\n  min-width: 190px;\r\n  height: 30px;\r\n  color: #fff;\r\n  padding: 2px 10px;\r\n  font-weight: bold;\r\n  cursor: pointer;\r\n  transition: all 0.3s ease;\r\n  position: relative;\r\n  display: inline-block;\r\n  outline: none;\r\n  border-radius: 5px;\r\n  border: none;\r\n  box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5), 7px 7px 20px 0px rgba(0,0,0,.1), 4px 4px 5px 0px rgba(0,0,0,.1);\r\n  background: #17A2B8;\r\n z-index: 1;\n}\n#buscar_detalle:hover:after {\r\n  width: 100%;\r\n  left: 0;\n}\n#buscar_detalle:after {\r\n  border-radius: 5px;\r\n  position: absolute;\r\n  content: \"\";\r\n  width: 0;\r\n  height: 100%;\r\n  top: 0;\r\n  z-index: -1;\r\n  box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5), 7px 7px 20px 0px rgba(0,0,0,.1), 4px 4px 5px 0px rgba(0,0,0,.1);\r\n  transition: all 0.3s ease;\r\n  background-color: #096574;\r\n  right: 0;\n}\n.css-button-shadow-border-sliding--blue:active {\r\n  top: 2px;\n}\n.escoger_columnas span{\r\n  cursor: pointer;\n}\n.escoger_columnas span:hover {\r\n  text-decoration: underline;\n}\n@media screen and (max-width: 400px) {\n#lado_izquierdo {\r\n   display: none;\n}\n#lado_derecho {\r\n     width: 100% !important;\r\n     margin: 0;\r\n    padding: 0;\n}\n#total_reefers {\r\n    width: 100% !important;\r\n    background-color: aquamarine !important ;\r\n    margin: 0;\r\n    padding: 0;\n}\n#botones_principal {\r\n    display: none !important;\n}\n#botones_principal_mobil{\r\n    background-color: red !important ;\r\n    width: 100% !important;\r\n    display: block !important;\r\n    margin: 0;\r\n    padding: 0;\n}\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.dt-buttons button  {\r\n  min-width: 100px  !important;\r\n  height: 30px  !important;\r\n  color: #fff  !important;\r\n  padding: 2px 10px  !important;\r\n  font-weight: bold  !important;\r\n  cursor: pointer  !important;\r\n  transition: all 0.3s ease  !important;\r\n  position: relative  !important;\r\n  display: inline-block  !important;\r\n  outline: none  !important;\r\n  border-radius: 5px  !important;\r\n  z-index: 0 !important;\r\n  background: #fff !important;\r\n  overflow: hidden;\r\n  border: 2px solid #777c83  !important;\r\n  color: #777c83 !important;\n}\n.dt-buttons button :hover {\r\n  color: #fff;\n}\n.dt-buttons button :hover:after {\r\n  width: 100%;\n}\n.dt-buttons button :after {\r\n  content: \"\";\r\n  position: absolute;\r\n  z-index: -1;\r\n  transition: all 0.3s ease;\r\n  left: 0;\r\n  top: 0;\r\n  width: 0;\r\n  height: 100%;\r\n  background: #777c83;\n}\r\n\r\n/* -------------------------- */\n#buscar_detalle {\r\n  min-width: 190px;\r\n  height: 30px;\r\n  color: #fff;\r\n  padding: 2px 10px;\r\n  font-weight: bold;\r\n  cursor: pointer;\r\n  transition: all 0.3s ease;\r\n  position: relative;\r\n  display: inline-block;\r\n  outline: none;\r\n  border-radius: 5px;\r\n  border: none;\r\n  box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5), 7px 7px 20px 0px rgba(0,0,0,.1), 4px 4px 5px 0px rgba(0,0,0,.1);\r\n  background: #17A2B8;\r\n z-index: 1;\n}\n#buscar_detalle:hover:after {\r\n  width: 100%;\r\n  left: 0;\n}\n#buscar_detalle:after {\r\n  border-radius: 5px;\r\n  position: absolute;\r\n  content: \"\";\r\n  width: 0;\r\n  height: 100%;\r\n  top: 0;\r\n  z-index: -1;\r\n  box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5), 7px 7px 20px 0px rgba(0,0,0,.1), 4px 4px 5px 0px rgba(0,0,0,.1);\r\n  transition: all 0.3s ease;\r\n  background-color: #096574;\r\n  right: 0;\n}\n.css-button-shadow-border-sliding--blue:active {\r\n  top: 2px;\n}\n.escoger_columnas span{\r\n  cursor: pointer;\n}\n.escoger_columnas span:hover {\r\n  text-decoration: underline;\n}\n@media screen and (max-width: 400px) {\n.container-fluid{\r\n        padding: 0;\r\n        margin: 0;\n}\n#lado_izquierdo {\r\n   display: none;\n}\n#lado_derecho {\r\n    width: 100% !important;\r\n    margin: 0 !important;\r\n    padding: 0 !important;\n}\n#total_reefers {\r\n    width: 100% !important;\r\n    margin: 0  !important;\n}\n#botones_principal {\r\n    display: none !important;\r\n     margin: 0 !important;\n}\n#botones_principal_mobil{\r\n    width: 100% !important;\r\n    display: block !important;\r\n     margin: 0 !important;\n}\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -39138,10 +39137,7 @@ var render = function () {
                             "div",
                             {
                               staticClass: "row",
-                              staticStyle: {
-                                margin: "0 10px",
-                                display: "none",
-                              },
+                              staticStyle: { display: "none" },
                               attrs: { id: "botones_principal_mobil" },
                             },
                             [
@@ -39163,17 +39159,13 @@ var render = function () {
                                   },
                                 },
                                 [
-                                  _c(
-                                    "b",
-                                    { staticStyle: { "font-size": "1.2em" } },
-                                    [
-                                      _vm._v(
-                                        _vm._s(
-                                          _vm.contenedores_encendidos_gen.length
-                                        )
-                                      ),
-                                    ]
-                                  ),
+                                  _c("b", [
+                                    _vm._v(
+                                      _vm._s(
+                                        _vm.contenedores_encendidos_gen.length
+                                      )
+                                    ),
+                                  ]),
                                 ]
                               ),
                               _vm._v(" "),
@@ -39195,18 +39187,14 @@ var render = function () {
                                   },
                                 },
                                 [
-                                  _c(
-                                    "b",
-                                    { staticStyle: { "font-size": "1.2em" } },
-                                    [
-                                      _vm._v(
-                                        _vm._s(
-                                          _vm.contenedores_encendidos_reefer
-                                            .length
-                                        )
-                                      ),
-                                    ]
-                                  ),
+                                  _c("b", [
+                                    _vm._v(
+                                      _vm._s(
+                                        _vm.contenedores_encendidos_reefer
+                                          .length
+                                      )
+                                    ),
+                                  ]),
                                 ]
                               ),
                               _vm._v(" "),
@@ -39228,33 +39216,23 @@ var render = function () {
                                   },
                                 },
                                 [
-                                  _c(
-                                    "b",
-                                    { staticStyle: { "font-size": "1.2em" } },
-                                    [
-                                      _vm._v(
-                                        _vm._s(
-                                          _vm.contenedores_encendidos_mad.length
-                                        )
-                                      ),
-                                    ]
-                                  ),
+                                  _c("b", [
+                                    _vm._v(
+                                      _vm._s(
+                                        _vm.contenedores_encendidos_mad.length
+                                      )
+                                    ),
+                                  ]),
                                 ]
                               ),
                               _vm._v(" "),
                               _c(
                                 "button",
                                 {
-                                  staticClass: "col-3 btn btn-dark",
+                                  staticClass: "col-2 btn btn-dark",
                                   attrs: { type: "button" },
                                 },
-                                [
-                                  _c(
-                                    "b",
-                                    { staticStyle: { "font-size": "1.2em" } },
-                                    [_vm._v("0")]
-                                  ),
-                                ]
+                                [_c("b", [_vm._v("0")])]
                               ),
                             ]
                           ),
