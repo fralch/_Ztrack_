@@ -1,7 +1,6 @@
 <template>
   <div style="height: 100% !important">
     <div class="container-fluid">
-      <div class="row">
         <nav class="col-12 navbar navbar-expand-lg navbar-light bg-light" style="height:40px !important; background-color: #0E5976 !important; box-shadow: 0px 0px 13px 2px rgba(0,0,0,0.15) !important;">
           <img :src="'/images/logos/copos-de-nieve.png'" alt="Logo" width="20px" /> 
           <!-- <img src="http://162.248.55.24/resources/images/zgroup_logo.png" alt="Logo" width="30px" />  -->
@@ -57,7 +56,6 @@
           </div>
         </nav>
       
-      </div>
       <div class="slot-content">
         <slot name="component-view"></slot>
       </div>
@@ -116,4 +114,21 @@ export default {
   
 };
 </script>
+<style scoped>
+  .slot-content {
+    height: calc(100% - 40px);
+  }
+  .container-fluid{
+        width: 100% !important;
+        margin: 0px !important;
+        padding: 0px !important;
+  }
+  @media screen and (max-width: 450px) {
+    nav{
+     width: 100% !important;
+     height: 60px !important;
+    }
+  }
+
+</style>
 

@@ -296,4 +296,11 @@ export default {
 };
 </script>
 <style>
+@media screen and (max-width: 450px) {
+  #generador_grid {
+     margin: 0 !important;
+     padding: 0 !important;
+  }
+ 
+}
 </style>

@@ -16,15 +16,15 @@
             <div id="lado_derecho" style="">
               <div
                 id="total_reefers"
-                class="col shadow-sm p-3 mb-5 bg-white rounded"
+               
                 style="margin: 10px 15px 0px 15px"
               >
                 <div>Total Reefers: {{ contenedores_todos_length }}</div>
-                <div id="botones_principal_mobil" class="row" style=" display: none;">
+                <div id="botones_principal_mobil" style=" display: none;">
                   <button
                     type="button"
                     id="select_gen"
-                    class="col-3 btn btn-primary"
+                    class="btn btn-primary"
                     @click="tipo = 'genset'"
                     :disabled="contenedores_encendidos_gen.length == 0"
                   >
@@ -35,7 +35,7 @@
                   <button
                     type="button"
                     id="select_reef"
-                    class="col-3 btn btn-success"
+                    class="btn btn-success"
                     @click="tipo = 'reefer'"
                     :disabled="contenedores_encendidos_reefer.length == 0"
                   >
@@ -47,7 +47,7 @@
                   <button
                     type="button"
                     id="select_mad"
-                    class="col-3 btn btn-danger"
+                    class="btn btn-danger"
                     @click="tipo = 'madurador'"
                     :disabled="contenedores_encendidos_mad.length == 0"
                   >
@@ -55,7 +55,7 @@
                       contenedores_encendidos_mad.length
                     }}</b>
                   </button>
-                  <button type="button" class="col-2 btn btn-dark">
+                  <button type="button" class="btn btn-dark">
                     <b  >0</b>
                   </button>
                 </div>
@@ -434,7 +434,7 @@ export default {
   text-decoration: underline;
 }
  
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 450px) {
   .container-fluid{
         padding: 0;
         margin: 0;
@@ -444,13 +444,14 @@ export default {
    display: none;
   }  
   #lado_derecho {
+   
     width: 100% !important;
     margin: 0 !important;
     padding: 0 !important;
   }  
   #total_reefers {
     width: 100% !important;
-    margin: 0  !important;
+    margin: 10px  0 !important;
   }
   #botones_principal {
     display: none !important;
@@ -461,6 +462,10 @@ export default {
     display: block !important;
      margin: 0 !important;
   
+  }
+  #botones_principal_mobil button{
+    width: 24% !important;  
+    margin: 0 !important;
   }
   
 }
