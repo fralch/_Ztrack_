@@ -34,9 +34,10 @@
           Tipo: {{ datos_contenedor_array[0].tipo }}</span
         >
       </h6>
-      <br>
+      <br />
     </div>
     <div
+      id="buscador_contenedor"
       class="row"
       v-if="
         datos_tabla_reefer != null ||
@@ -97,8 +98,12 @@
         </button>
       </div>
     </div>
+    <hr size="8px" color="gray">
     <div id="impresion_grafico">
-      <canvas id="myChart_principal" style="height: 600px"></canvas>
+      <canvas
+        id="myChart_principal"
+        style="height: 600px; width: 100% !important"
+      ></canvas>
     </div>
   </div>
 </template>
@@ -783,3 +788,14 @@ export default {
   },
 };
 </script>
+<style>
+@media screen and (max-width: 450px) {
+  #myChart_principal_id {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  #buscador_contenedor {
+    display: none !important;
+  }
+}
+</style>

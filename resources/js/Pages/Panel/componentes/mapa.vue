@@ -407,4 +407,19 @@ export default {
     transform: rotate(360deg);
   }
 }
+@media screen and (max-width: 400px) {
+  #asset_maps {
+    background-color: blueviolet;
+    width: 95% !important;
+    margin: 0 !important;
+    margin-left: 10px !important;
+    padding: 0 !important;
+  }
+  #map{
+    width: 100% !important;
+     margin: 0 !important;
+    padding: 0 !important;
+  }
+  
+}
 </style>

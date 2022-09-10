@@ -72,5 +72,10 @@
       ::-webkit-scrollbar-thumb { height: 50px; background-color: #bfbfbf; border-radius: 3px;}
       ::-webkit-scrollbar-corner { background-color: #fafbfd;}
       ::-webkit-resizer { background-color: #bfbfbf;} */
+      /* .container-fluid{
+        padding: 0;
+        margin: 0;
+      } */
+      
 	</style>
 </html>

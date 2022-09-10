@@ -5,7 +5,7 @@
       class="col shadow-sm p-3 mb-5 bg-white rounded"
       style="margin: -30px 15px 10px 15px"
     >
-    <div class="row">
+    <div id="buscador" class="row">
         <div class="col-3">
           <div class="input-group input-group-sm mb-3">
             <div class="input-group-prepend">
@@ -358,3 +358,14 @@ export default {
   },
 };
 </script>
+<style>
+@media screen and (max-width: 450px) {
+  #madurador_grid {
+     margin: 0 !important;
+     padding: 0 !important;
+  }
+  #buscador{
+    display: none !important;
+  }
+}
+</style>

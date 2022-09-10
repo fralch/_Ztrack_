@@ -187,4 +187,13 @@ export default {
   /* .dt-button {
     background-color: #3f1485 !important;
   } */
+  @media screen and (max-width: 450px) {
+ 
+  #grid_resumen_generadores {
+    width: 100% !important;
+     margin: 0 !important;
+     padding: 0 !important;
+  }
+ 
+}
 </style>
