@@ -246,3 +246,15 @@ export default {
   },
 };
 </script>
+<style>
+
+  @media screen and (max-width: 450px) {
+ 
+  #grid_resumen_reefer {
+    width: 100% !important;
+     margin: 0 !important;
+     padding: 0 !important;
+  }
+ 
+}
+</style>
