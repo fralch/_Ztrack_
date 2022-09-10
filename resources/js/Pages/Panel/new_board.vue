@@ -17,7 +17,7 @@
               <div
                 id="total_reefers"
                
-                style="margin: 10px 15px 0px 15px"
+                style="margin: 10px 15px 10px 15px"
               >
                 <div>Total Reefers: {{ contenedores_todos_length }}</div>
                 <div id="botones_principal_mobil" style=" display: none;">
