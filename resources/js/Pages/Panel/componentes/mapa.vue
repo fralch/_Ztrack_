@@ -103,7 +103,7 @@ export default {
       } else {
         this.$nextTick(() => {
           axios
-            .post(route("contenedores.get_datos"), {
+            .post(route("contenedores.get_datos_mapa"), {
               id: self.contenedor,
               tipo: self.tipo,
             })

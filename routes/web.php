@@ -28,6 +28,7 @@ Route::post('/cerrar_sesion', [LoginController::class, 'cerrarSesion' ])->name('
 Route::get('/board', [PanelController::class, 'board'])->name('paneles.board');
 Route::post('/obtener_contendor', [PanelController::class, 'obtenerContendor' ])->name('contenedores.obtener_contendor');
 Route::post('/obtener_datos_contenedor', [PanelController::class, 'obtener_datos_contenedor' ])->name('contenedores.get_datos');
+Route::post('/obtener_datos_contenedor_mapa', [PanelController::class, 'obtener_datos_contenedor_mapa' ])->name('contenedores.get_datos_mapa');
 Route::post('/obtener_datos_contenedor_graficos', [PanelController::class, 'obtener_datos_contenedor_graficos' ])->name('contenedores.get_datos_graficos');
 Route::post('/obtener_datos_contenedor/fecha', [PanelController::class, 'obtener_datos_contenedor_fecha' ])->name('contenedores.get_datos.fecha');
 Route::post('/resumen_contenedores', [PanelController::class, 'resumen_contenedores' ])->name('contenedores.resumen');

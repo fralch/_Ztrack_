@@ -526,6 +526,36 @@ class PanelController extends Controller
                 ->get();
         }
     }
+    public function obtener_datos_contenedor_mapa(Request $request)
+    {
+        // return $request; 
+        $id_contenedor = $request->id;
+        $tipo_contenedor = $request->tipo;
+
+        if ($tipo_contenedor == 'genset') {
+            return Registro_diario_generadores::from('registro_diario_generadores')
+                ->select()
+                ->where('contenedor_id', $id_contenedor)
+                ->latest()
+                ->get();
+        }
+        if ($tipo_contenedor == 'reefer') {
+            return Registro_diario_reefers::from('registro_diario_reefers')
+                ->select()
+                ->where('contenedor_id', $id_contenedor)
+                ->latest()
+                ->take(30)
+                ->get();
+        }
+        if ($tipo_contenedor == 'madurador') {
+            return Registro_diario_madurador::from('registro_diario_madurador')
+                ->select()
+                ->where('contenedor_id', $id_contenedor)
+                ->latest()
+                ->take(30)
+                ->get();
+        }
+    }
     public function datos_contenedor_mapa(Request $request)
     {
         // return $request; 

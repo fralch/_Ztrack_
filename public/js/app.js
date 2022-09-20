@@ -3346,7 +3346,7 @@ var map;
         $(".loading").css("display", "none"); // ocultar el loading
       } else {
         this.$nextTick(function () {
-          axios__WEBPACK_IMPORTED_MODULE_0___default().post(route("contenedores.get_datos"), {
+          axios__WEBPACK_IMPORTED_MODULE_0___default().post(route("contenedores.get_datos_mapa"), {
             id: self.contenedor,
             tipo: self.tipo
           }).then(function (response) {
