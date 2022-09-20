@@ -10,6 +10,7 @@
         class="display nowrap"
         id="tblContenedor_madurador"
         style="margin: 0 auto !important"
+        @contextmenu="click_derecho"
       >
       
         <thead>
@@ -202,8 +203,29 @@ export default {
   },
   mounted() {
     this.actualizarTabla();
+    
+    
   },
   methods: {
+    click_derecho(e){
+      e.preventDefault();
+      alert('right click!')
+
+
+      // if (val =="madurador") {
+        
+      //   // document.getElementById("tblContenedor_madurador").addEventListener("contextmenu", function(e){
+      //   //   e.preventDefault();
+      //   //   alert("click derecho");
+      //   // }, false);
+      //   // // document.getElementById("tblContenedor_madurador").oncontextmenu = function() {
+      //   // //     e.preventDefault();
+      //   // //   alert('right click!')
+      //   // // }
+      // }
+        
+      
+    },
     TablaContenedores_madurador() {
       // console.log("armando tabla");
       let self = this;
