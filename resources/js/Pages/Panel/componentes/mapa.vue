@@ -245,7 +245,7 @@ export default {
                       .openPopup();
 
                     // usamos polylinePoints para trazar la ruta
-                    L.polyline(self.polylinePoints).addTo(map);
+                      // // // L.polyline(self.polylinePoints).addTo(map);
                   })
                   .then((response) => {
                     $(".loading").css("display", "none"); // ocultar el loading
