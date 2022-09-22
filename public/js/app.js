@@ -4607,10 +4607,213 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -4804,7 +5007,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     return {
       contenedores_encendidos_madurador: [],
       datos_resumen_madurador: [],
-      tabla: null
+      tabla: null,
+      viewMenu: false,
+      top: "0px",
+      left: "0px"
     };
   },
   watch: {
@@ -4817,18 +5023,90 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     this.actualizarTabla();
   },
   methods: {
-    click_derecho: function click_derecho(e) {
-      e.preventDefault();
-      alert('right click!'); // if (val =="madurador") {
-      //   // document.getElementById("tblContenedor_madurador").addEventListener("contextmenu", function(e){
-      //   //   e.preventDefault();
-      //   //   alert("click derecho");
-      //   // }, false);
-      //   // // document.getElementById("tblContenedor_madurador").oncontextmenu = function() {
-      //   // //     e.preventDefault();
-      //   // //   alert('right click!')
-      //   // // }
-      // }
+    click_derecho: function click_derecho(e, madurador) {
+      var _this = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+        var self;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                self = _this;
+                e.preventDefault();
+                $("#clickDerechoModal").modal("show"); // // //     var winWidth = $(document).width();
+                // // //     var winHeight = $(document).height();
+                // // //     //Get pointer position:
+                // // //     var posX = e.x;
+                // // //     var posY = e.y;
+                // // //     //Get contextmenu size:
+                // // //     // var menuWidth = $("#right-click-menu").width();
+                // // //     // var menuHeight = $("#right-click-menu").height();
+                // // //     var menuWidth = 248;
+                // // //     var menuHeight = 100;
+                // // //     //Security margin:
+                // // //     var secMargin = 100;
+                // // //     //Prevent page overflow:
+                // // //     // // if(posX + menuWidth + secMargin >= winWidth
+                // // //     // // && posY + menuHeight + secMargin >= winHeight){
+                // // //     // //   //Case 1: right-bottom overflow:
+                // // //     // //   self.left = posX - menuWidth - secMargin + "px";
+                // // //     // //   self.top = posY - menuHeight - secMargin + "px";
+                // // //     // //   console.log("Case 1 derecha");
+                // // //     // // }
+                // // //     // // else if(posX + menuWidth + secMargin >= winWidth){
+                // // //     // //   //Case 2: right overflow:
+                // // //     // //   self.left = posX - menuWidth - secMargin + "px";
+                // // //     // //   self.top = posY + secMargin + "px";
+                // // //     // //   console.log("Case 2 derecha");
+                // // //     // // }
+                // // //     // // else if(posY + menuHeight + secMargin >= winHeight){
+                // // //     // //   //Case 3: bottom overflow:
+                // // //     // //   self.left = posX + secMargin + "px";
+                // // //     // //   self.top = posY - menuHeight - secMargin + "px";
+                // // //     // //   console.log("Case 3 abajo");
+                // // //     // // }
+                // // //     // // else {
+                // // //     // //   //Case 4: default values:
+                // // //     // //   self.left = posX + secMargin + "px";
+                // // //     // //   self.top = posY + secMargin + "px";
+                // // //     // //   console.log("Case 4 abajo");
+                // // //     // // };
+                // // //     if (menuWidth != undefined && menuHeight != undefined) {
+                // // //       self.left = posX - menuWidth - secMargin + "px";
+                // // //       self.top = posY - menuHeight - secMargin + "px";
+                // // //     }else{
+                // // //      self.left = posX - 248 - secMargin + "px";
+                // // //       self.top = posY - 70 - secMargin + "px";
+                // // //     }
+                // // //     console.log(winWidth, winHeight, posX, posY, menuWidth, menuHeight);
+                // // //     // $(".contextmenu").css({
+                // // //     //   "left": posLeft,
+                // // //     //   "top": posTop
+                // // //     // }).show();
+                // // //     //Prevent browser default contextmenu.
+                // // //   // $(document).click(function(){
+                // // //   //   $(".contextmenu").hide();
+                // // //   // });
+                // // // // alert('right click!');
+                // // // // // console.log("madurador", madurador);
+                // // // // self.top = (e.y -500 )+"px";
+                // // // // // self.left = (e.y - 100) +"px";
+                // // // console.log("click derecsddho",self.top, self.left);
+                // // // self.viewMenu = true;
+                // // // // console.log("click derecsddho",e.y, e.x);
+
+              case 3:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
+    },
+    cerrarMenu: function cerrarMenu() {
+      console.log("cerrar menu");
+      this.viewMenu = false;
     },
     TablaContenedores_madurador: function TablaContenedores_madurador() {
       // console.log("armando tabla");
@@ -4840,9 +5118,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           scrollX: "100%",
           responsive: true,
           buttons: true,
-          dom: 'Bfrtip'
+          dom: "Bfrtip"
         }, _defineProperty(_$$DataTable, "buttons", [// 'copy', 'csv', 'excel', 'pdf','print'
-        'copy', 'csv', 'excel']), _defineProperty(_$$DataTable, "order", [0, "desc"]), _defineProperty(_$$DataTable, "language", {
+        "copy", "csv", "excel"]), _defineProperty(_$$DataTable, "order", [0, "desc"]), _defineProperty(_$$DataTable, "language", {
           url: "//cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json"
         }), _$$DataTable));
         /* Esta es la funcion que selecciona una fila  yla colorea  */
@@ -4851,12 +5129,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           self.tabla.$("tr.selected").removeClass("selected");
           $(this).addClass("selected");
         }); // column.visible(!column.visible());
-        // console.log("columnas ",column); 
+        // console.log("columnas ",column);
       });
     },
     actualizarTabla: function actualizarTabla() {
       var self = this;
-      axios__WEBPACK_IMPORTED_MODULE_0___default().post(route("contenedores.obtener_contendor"), {
+      axios__WEBPACK_IMPORTED_MODULE_1___default().post(route("contenedores.obtener_contendor"), {
         tipo: "madurador"
       }).then(function (res) {
         if (self.empresa.length > 0) {
@@ -4869,7 +5147,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       });
     },
     select_contenedor: function select_contenedor(contenedor) {
-      this.$emit("select_contenedor", contenedor); // emite el evento a contedor padre 
+      this.$emit("select_contenedor", contenedor); // emite el evento a contedor padre
     },
     ocultar: function ocultar(val) {
       // this.tabla.column(val).visible(false);
@@ -7141,7 +7419,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n@media screen and (max-width: 450px) {\n#grid_resumen_madurador {\n    width: 100% !important;\n     margin: 0 !important;\n     padding: 0 !important;\n}\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n:root{\r\n    font-family: Arial, Helvetica, sans-serif;\r\n    font-size: 15px;\r\n    margin: 0;\r\n    padding: 0;\r\n    box-sizing: border-box;\n}\n.menu{\r\n    width: 300px;\r\n    height: auto;\r\n    background: #d15536;\r\n    border-radius: 8px;\r\n    overflow: hidden;\n}\n.menu .btn{\r\n    display:block;\r\n    padding: 1rem;\r\n    border-bottom: solid 1px #ffffff;\r\n    border-top: solid 1px #804444;\r\n    position: relative;\n}\n.menu .submenu {\r\n    background: #1b1b2f;\r\n    overflow: hidden;\r\n    max-height: 0;\r\n    transition: max-height .8s ease-out;\n}\n.menu .submenu a{\r\n    display:block;\r\n    padding: 1rem;\r\n    position: relative;\n}\n.menu .submenu a::before{\r\n    content:'';\r\n    display:block;\r\n    position: absolute;\r\n    top:0;\r\n    left:0;\r\n    height: 100%;\r\n    width: 5px;\r\n    background: #e43f5a;\r\n    opacity: 0;\r\n    transition: all .5s;\n}\n.menu .submenu a:hover{\r\n    padding-left: calc(1rem + 5px);\n}\n.menu .submenu a:hover::before{\r\n    opacity: 1;\n}\n.item:target .submenu{\r\n    max-height: 20rem;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -37020,7 +37298,6 @@ var render = function () {
                 staticClass: "display nowrap",
                 staticStyle: { margin: "0 auto !important" },
                 attrs: { id: "tblContenedor_madurador" },
-                on: { contextmenu: _vm.click_derecho },
               },
               [
                 _c("thead", [
@@ -37051,7 +37328,7 @@ var render = function () {
                             },
                           },
                         },
-                        [_vm._v("Ethylene")]
+                        [_vm._v("\n            Ethylene\n          ")]
                       ),
                       _vm._v(" "),
                       _c(
@@ -37065,7 +37342,7 @@ var render = function () {
                             },
                           },
                         },
-                        [_vm._v("StateProcess")]
+                        [_vm._v("\n            StateProcess\n          ")]
                       ),
                       _vm._v(" "),
                       _c(
@@ -37079,7 +37356,7 @@ var render = function () {
                             },
                           },
                         },
-                        [_vm._v("StateInyection")]
+                        [_vm._v("\n            StateInyection\n          ")]
                       ),
                       _vm._v(" "),
                       _c(
@@ -37093,7 +37370,7 @@ var render = function () {
                             },
                           },
                         },
-                        [_vm._v("TimerOfProcess")]
+                        [_vm._v("\n            TimerOfProcess\n          ")]
                       ),
                       _vm._v(" "),
                       _c(
@@ -37135,7 +37412,7 @@ var render = function () {
                             },
                           },
                         },
-                        [_vm._v("Booking")]
+                        [_vm._v("\n            Booking\n          ")]
                       ),
                       _vm._v(" "),
                       _c(
@@ -37149,7 +37426,7 @@ var render = function () {
                             },
                           },
                         },
-                        [_vm._v("booking_temp")]
+                        [_vm._v("\n            booking_temp\n          ")]
                       ),
                       _vm._v(" "),
                       _c(
@@ -37163,7 +37440,7 @@ var render = function () {
                             },
                           },
                         },
-                        [_vm._v("Set_point")]
+                        [_vm._v("\n            Set_point\n          ")]
                       ),
                       _vm._v(" "),
                       _c(
@@ -37177,7 +37454,7 @@ var render = function () {
                             },
                           },
                         },
-                        [_vm._v("Temp_supply_1")]
+                        [_vm._v("\n            Temp_supply_1\n          ")]
                       ),
                       _vm._v(" "),
                       _c(
@@ -37191,7 +37468,7 @@ var render = function () {
                             },
                           },
                         },
-                        [_vm._v("Temp_supply_2")]
+                        [_vm._v("\n            Temp_supply_2\n          ")]
                       ),
                       _vm._v(" "),
                       _c(
@@ -37205,7 +37482,7 @@ var render = function () {
                             },
                           },
                         },
-                        [_vm._v("Return_air")]
+                        [_vm._v("\n            Return_air\n          ")]
                       ),
                       _vm._v(" "),
                       _c(
@@ -37219,7 +37496,7 @@ var render = function () {
                             },
                           },
                         },
-                        [_vm._v("Evaporation_coil")]
+                        [_vm._v("\n            Evaporation_coil\n          ")]
                       ),
                       _vm._v(" "),
                       _c(
@@ -37233,7 +37510,7 @@ var render = function () {
                             },
                           },
                         },
-                        [_vm._v("Condensation_coil")]
+                        [_vm._v("\n            Condensation_coil\n          ")]
                       ),
                       _vm._v(" "),
                       _c(
@@ -37247,7 +37524,7 @@ var render = function () {
                             },
                           },
                         },
-                        [_vm._v("Compress_coil_1")]
+                        [_vm._v("\n            Compress_coil_1\n          ")]
                       ),
                       _vm._v(" "),
                       _c(
@@ -37261,7 +37538,7 @@ var render = function () {
                             },
                           },
                         },
-                        [_vm._v("Compress_coil_2")]
+                        [_vm._v("\n            Compress_coil_2\n          ")]
                       ),
                       _vm._v(" "),
                       _c(
@@ -37275,7 +37552,7 @@ var render = function () {
                             },
                           },
                         },
-                        [_vm._v("Ambient_air")]
+                        [_vm._v("\n            Ambient_air\n          ")]
                       ),
                       _vm._v(" "),
                       _c(
@@ -37289,7 +37566,7 @@ var render = function () {
                             },
                           },
                         },
-                        [_vm._v("Cargo_1_temp")]
+                        [_vm._v("\n            Cargo_1_temp\n          ")]
                       ),
                       _vm._v(" "),
                       _c(
@@ -37303,7 +37580,7 @@ var render = function () {
                             },
                           },
                         },
-                        [_vm._v("Cargo_2_temp")]
+                        [_vm._v("\n            Cargo_2_temp\n          ")]
                       ),
                       _vm._v(" "),
                       _c(
@@ -37317,7 +37594,7 @@ var render = function () {
                             },
                           },
                         },
-                        [_vm._v("Cargo_3_temp")]
+                        [_vm._v("\n            Cargo_3_temp\n          ")]
                       ),
                       _vm._v(" "),
                       _c(
@@ -37331,7 +37608,7 @@ var render = function () {
                             },
                           },
                         },
-                        [_vm._v("Cargo_4_temp")]
+                        [_vm._v("\n            Cargo_4_temp\n          ")]
                       ),
                       _vm._v(" "),
                       _c(
@@ -37345,7 +37622,7 @@ var render = function () {
                             },
                           },
                         },
-                        [_vm._v("Relative_humidity")]
+                        [_vm._v("\n            Relative_humidity\n          ")]
                       ),
                       _vm._v(" "),
                       _c(
@@ -37373,7 +37650,7 @@ var render = function () {
                             },
                           },
                         },
-                        [_vm._v("Suction_pressure")]
+                        [_vm._v("\n            Suction_pressure\n          ")]
                       ),
                       _vm._v(" "),
                       _c(
@@ -37387,7 +37664,7 @@ var render = function () {
                             },
                           },
                         },
-                        [_vm._v("Discharge_pressure")]
+                        [_vm._v("\n            Discharge_pressure\n          ")]
                       ),
                       _vm._v(" "),
                       _c(
@@ -37401,7 +37678,7 @@ var render = function () {
                             },
                           },
                         },
-                        [_vm._v("Line_voltage")]
+                        [_vm._v("\n            Line_voltage\n          ")]
                       ),
                       _vm._v(" "),
                       _c(
@@ -37415,7 +37692,7 @@ var render = function () {
                             },
                           },
                         },
-                        [_vm._v("Line_frequency")]
+                        [_vm._v("\n            Line_frequency\n          ")]
                       ),
                       _vm._v(" "),
                       _c(
@@ -37429,7 +37706,7 @@ var render = function () {
                             },
                           },
                         },
-                        [_vm._v("Consumption_ph_1")]
+                        [_vm._v("\n            Consumption_ph_1\n          ")]
                       ),
                       _vm._v(" "),
                       _c(
@@ -37443,7 +37720,7 @@ var render = function () {
                             },
                           },
                         },
-                        [_vm._v("Consumption_ph_2")]
+                        [_vm._v("\n            Consumption_ph_2\n          ")]
                       ),
                       _vm._v(" "),
                       _c(
@@ -37457,7 +37734,7 @@ var render = function () {
                             },
                           },
                         },
-                        [_vm._v("Consumption_ph_3")]
+                        [_vm._v("\n            Consumption_ph_3\n          ")]
                       ),
                       _vm._v(" "),
                       _c(
@@ -37471,7 +37748,7 @@ var render = function () {
                             },
                           },
                         },
-                        [_vm._v("Co2_reading")]
+                        [_vm._v("\n            Co2_reading\n          ")]
                       ),
                       _vm._v(" "),
                       _c(
@@ -37485,7 +37762,7 @@ var render = function () {
                             },
                           },
                         },
-                        [_vm._v("O2_reading")]
+                        [_vm._v("\n            O2_reading\n          ")]
                       ),
                       _vm._v(" "),
                       _c(
@@ -37499,7 +37776,7 @@ var render = function () {
                             },
                           },
                         },
-                        [_vm._v("Evaporator_speed")]
+                        [_vm._v("\n            Evaporator_speed\n          ")]
                       ),
                       _vm._v(" "),
                       _c(
@@ -37513,7 +37790,7 @@ var render = function () {
                             },
                           },
                         },
-                        [_vm._v("Condenser_speed")]
+                        [_vm._v("\n            Condenser_speed\n          ")]
                       ),
                       _vm._v(" "),
                       _c(
@@ -37527,7 +37804,7 @@ var render = function () {
                             },
                           },
                         },
-                        [_vm._v("Battery_voltage")]
+                        [_vm._v("\n            Battery_voltage\n          ")]
                       ),
                       _vm._v(" "),
                       _c(
@@ -37541,7 +37818,7 @@ var render = function () {
                             },
                           },
                         },
-                        [_vm._v("Power_kwh")]
+                        [_vm._v("\n            Power_kwh\n          ")]
                       ),
                       _vm._v(" "),
                       _c(
@@ -37555,7 +37832,7 @@ var render = function () {
                             },
                           },
                         },
-                        [_vm._v("Power_trip_reading")]
+                        [_vm._v("\n            Power_trip_reading\n          ")]
                       ),
                       _vm._v(" "),
                       _c(
@@ -37569,7 +37846,11 @@ var render = function () {
                             },
                           },
                         },
-                        [_vm._v("Power_trip_duration")]
+                        [
+                          _vm._v(
+                            "\n            Power_trip_duration\n          "
+                          ),
+                        ]
                       ),
                       _vm._v(" "),
                       _c(
@@ -37583,7 +37864,7 @@ var render = function () {
                             },
                           },
                         },
-                        [_vm._v("Suction_temp")]
+                        [_vm._v("\n            Suction_temp\n          ")]
                       ),
                       _vm._v(" "),
                       _c(
@@ -37597,7 +37878,7 @@ var render = function () {
                             },
                           },
                         },
-                        [_vm._v("Discharge_temp")]
+                        [_vm._v("\n            Discharge_temp\n          ")]
                       ),
                       _vm._v(" "),
                       _c(
@@ -37611,7 +37892,7 @@ var render = function () {
                             },
                           },
                         },
-                        [_vm._v("Supply_air_temp")]
+                        [_vm._v("\n            Supply_air_temp\n          ")]
                       ),
                       _vm._v(" "),
                       _c(
@@ -37625,7 +37906,7 @@ var render = function () {
                             },
                           },
                         },
-                        [_vm._v("Return_air_temp")]
+                        [_vm._v("\n            Return_air_temp\n          ")]
                       ),
                       _vm._v(" "),
                       _c(
@@ -37639,7 +37920,7 @@ var render = function () {
                             },
                           },
                         },
-                        [_vm._v("Dl_battery_temp")]
+                        [_vm._v("\n            Dl_battery_temp\n          ")]
                       ),
                       _vm._v(" "),
                       _c(
@@ -37653,7 +37934,7 @@ var render = function () {
                             },
                           },
                         },
-                        [_vm._v("Dl_battery_charge")]
+                        [_vm._v("\n            Dl_battery_charge\n          ")]
                       ),
                       _vm._v(" "),
                       _c(
@@ -37667,7 +37948,7 @@ var render = function () {
                             },
                           },
                         },
-                        [_vm._v("Power_consumption")]
+                        [_vm._v("\n            Power_consumption\n          ")]
                       ),
                       _vm._v(" "),
                       _c(
@@ -37681,7 +37962,11 @@ var render = function () {
                             },
                           },
                         },
-                        [_vm._v("Power_consumption_avg")]
+                        [
+                          _vm._v(
+                            "\n            Power_consumption_avg\n          "
+                          ),
+                        ]
                       ),
                       _vm._v(" "),
                       _c(
@@ -37695,7 +37980,7 @@ var render = function () {
                             },
                           },
                         },
-                        [_vm._v("Alarm_present")]
+                        [_vm._v("\n            Alarm_present\n          ")]
                       ),
                       _vm._v(" "),
                       _c(
@@ -37709,7 +37994,7 @@ var render = function () {
                             },
                           },
                         },
-                        [_vm._v("Capacity_load")]
+                        [_vm._v("\n            Capacity_load\n          ")]
                       ),
                       _vm._v(" "),
                       _c(
@@ -37723,7 +38008,7 @@ var render = function () {
                             },
                           },
                         },
-                        [_vm._v("Power_state")]
+                        [_vm._v("\n            Power_state\n          ")]
                       ),
                       _vm._v(" "),
                       _c(
@@ -37737,7 +38022,7 @@ var render = function () {
                             },
                           },
                         },
-                        [_vm._v("Controlling_mode")]
+                        [_vm._v("\n            Controlling_mode\n          ")]
                       ),
                       _vm._v(" "),
                       _c(
@@ -37751,7 +38036,7 @@ var render = function () {
                             },
                           },
                         },
-                        [_vm._v("Humidity_control")]
+                        [_vm._v("\n            Humidity_control\n          ")]
                       ),
                       _vm._v(" "),
                       _c(
@@ -37765,7 +38050,7 @@ var render = function () {
                             },
                           },
                         },
-                        [_vm._v("Humidity_set_point")]
+                        [_vm._v("\n            Humidity_set_point\n          ")]
                       ),
                       _vm._v(" "),
                       _c(
@@ -37779,7 +38064,7 @@ var render = function () {
                             },
                           },
                         },
-                        [_vm._v("Fresh_air_ex_mode")]
+                        [_vm._v("\n            Fresh_air_ex_mode\n          ")]
                       ),
                       _vm._v(" "),
                       _c(
@@ -37793,7 +38078,7 @@ var render = function () {
                             },
                           },
                         },
-                        [_vm._v("Fresh_air_ex_rate")]
+                        [_vm._v("\n            Fresh_air_ex_rate\n          ")]
                       ),
                       _vm._v(" "),
                       _c(
@@ -37807,7 +38092,7 @@ var render = function () {
                             },
                           },
                         },
-                        [_vm._v("Fresh_air_ex_delay")]
+                        [_vm._v("\n            Fresh_air_ex_delay\n          ")]
                       ),
                       _vm._v(" "),
                       _c(
@@ -37821,7 +38106,7 @@ var render = function () {
                             },
                           },
                         },
-                        [_vm._v("Set_point_o2")]
+                        [_vm._v("\n            Set_point_o2\n          ")]
                       ),
                       _vm._v(" "),
                       _c(
@@ -37835,7 +38120,7 @@ var render = function () {
                             },
                           },
                         },
-                        [_vm._v("Set_point_co2")]
+                        [_vm._v("\n            Set_point_co2\n          ")]
                       ),
                       _vm._v(" "),
                       _c(
@@ -37849,7 +38134,7 @@ var render = function () {
                             },
                           },
                         },
-                        [_vm._v("Defrost_term_temp")]
+                        [_vm._v("\n            Defrost_term_temp\n          ")]
                       ),
                       _vm._v(" "),
                       _c(
@@ -37863,7 +38148,7 @@ var render = function () {
                             },
                           },
                         },
-                        [_vm._v("Defrost_interval")]
+                        [_vm._v("\n            Defrost_interval\n          ")]
                       ),
                       _vm._v(" "),
                       _c(
@@ -37877,7 +38162,7 @@ var render = function () {
                             },
                           },
                         },
-                        [_vm._v("Water_cooled_conde")]
+                        [_vm._v("\n            Water_cooled_conde\n          ")]
                       ),
                       _vm._v(" "),
                       _c(
@@ -37891,7 +38176,7 @@ var render = function () {
                             },
                           },
                         },
-                        [_vm._v("USDA_trip")]
+                        [_vm._v("\n            USDA_trip\n          ")]
                       ),
                       _vm._v(" "),
                       _c(
@@ -37905,7 +38190,11 @@ var render = function () {
                             },
                           },
                         },
-                        [_vm._v("Evaporator_exp_valve")]
+                        [
+                          _vm._v(
+                            "\n            Evaporator_exp_valve\n          "
+                          ),
+                        ]
                       ),
                       _vm._v(" "),
                       _c(
@@ -37919,7 +38208,7 @@ var render = function () {
                             },
                           },
                         },
-                        [_vm._v("Suction_mod_valve")]
+                        [_vm._v("\n            Suction_mod_valve\n          ")]
                       ),
                       _vm._v(" "),
                       _c(
@@ -37933,7 +38222,7 @@ var render = function () {
                             },
                           },
                         },
-                        [_vm._v("Hot_gas_valve")]
+                        [_vm._v("\n            Hot_gas_valve\n          ")]
                       ),
                       _vm._v(" "),
                       _c(
@@ -37947,7 +38236,7 @@ var render = function () {
                             },
                           },
                         },
-                        [_vm._v("Economizer_valve")]
+                        [_vm._v("\n            Economizer_valve\n          ")]
                       ),
                       _vm._v(" "),
                       _c(
@@ -37975,7 +38264,7 @@ var render = function () {
                             },
                           },
                         },
-                        [_vm._v("Latitud")]
+                        [_vm._v("\n            Latitud\n          ")]
                       ),
                       _vm._v(" "),
                       _c(
@@ -37989,7 +38278,7 @@ var render = function () {
                             },
                           },
                         },
-                        [_vm._v("Longitud")]
+                        [_vm._v("\n            Longitud\n          ")]
                       ),
                     ]
                   ),
@@ -38011,9 +38300,24 @@ var render = function () {
                           },
                         },
                         [
-                          _c("td", { staticClass: "text-center" }, [
-                            _vm._v(_vm._s(madurador.nombre_contenedor)),
-                          ]),
+                          _c(
+                            "td",
+                            {
+                              staticClass: "text-center",
+                              on: {
+                                contextmenu: function ($event) {
+                                  return _vm.click_derecho($event, madurador)
+                                },
+                              },
+                            },
+                            [
+                              _vm._v(
+                                "\n            " +
+                                  _vm._s(madurador.nombre_contenedor) +
+                                  "\n          "
+                              ),
+                            ]
+                          ),
                           _vm._v(" "),
                           _c("td", { staticClass: "text-center" }, [
                             _vm._v(_vm._s(madurador.ethylene)),
@@ -38037,7 +38341,9 @@ var render = function () {
                           _vm._v(" "),
                           _c("td", { staticClass: "text-center" }, [
                             _vm._v(
-                              _vm._s(madurador.encendido == 1 ? "SI" : "NO")
+                              "\n            " +
+                                _vm._s(madurador.encendido == 1 ? "SI" : "NO") +
+                                "\n          "
                             ),
                           ]),
                           _vm._v(" "),
@@ -38311,12 +38617,124 @@ var render = function () {
                 [_vm._v("Resetear tabla")]
               ),
             ]),
+            _vm._v(" "),
+            _vm.viewMenu
+              ? _c(
+                  "ul",
+                  {
+                    staticClass: "contextmenu",
+                    style: { top: _vm.top, left: _vm.left },
+                    attrs: { id: "right-click-menu", tabindex: "-1" },
+                  },
+                  [
+                    _c("li", [_vm._v("First list item")]),
+                    _vm._v(" "),
+                    _c("li", [_vm._v("Second list item")]),
+                  ]
+                )
+              : _vm._e(),
+            _vm._v(" "),
+            _vm._m(0),
           ]
         ),
       ])
     : _vm._e()
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass: "modal fade",
+        attrs: {
+          id: "clickDerechoModal",
+          tabindex: "-1",
+          role: "dialog",
+          "aria-labelledby": "clickDerechoModalLabel",
+          "aria-hidden": "true",
+        },
+      },
+      [
+        _c(
+          "div",
+          {
+            staticClass: "modal-dialog modal-dialog-centered",
+            attrs: { role: "document" },
+          },
+          [
+            _c(
+              "div",
+              {
+                staticClass: "modal-content",
+                staticStyle: { width: "0", color: "white" },
+              },
+              [
+                _c("div", { staticClass: "menu" }, [
+                  _c("li", { staticClass: "item", attrs: { id: "mn1" } }, [
+                    _c(
+                      "a",
+                      {
+                        staticClass: "btn",
+                        staticStyle: { color: "white" },
+                        attrs: { href: "#mn1" },
+                      },
+                      [_vm._v("Kullanclar")]
+                    ),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "submenu" }, [
+                      _c("a", { attrs: { href: "#" } }, [_vm._v("KuListesi")]),
+                      _vm._v(" "),
+                      _c("a", { attrs: { href: "#" } }, [_vm._v("Kull Ekle")]),
+                      _vm._v(" "),
+                      _c("a", { attrs: { href: "#" } }, [_vm._v("Kulla Sil")]),
+                    ]),
+                  ]),
+                  _vm._v(" "),
+                  _c("li", { staticClass: "item", attrs: { id: "mn2" } }, [
+                    _c("a", { staticClass: "btn", attrs: { href: "#mn2" } }, [
+                      _vm._v("Dosyalar"),
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "submenu" }, [
+                      _c("a", { attrs: { href: "#" } }, [
+                        _vm._v("Dosya Listesi"),
+                      ]),
+                      _vm._v(" "),
+                      _c("a", { attrs: { href: "#" } }, [_vm._v("Dosya Ekle")]),
+                      _vm._v(" "),
+                      _c("a", { attrs: { href: "#" } }, [_vm._v("Dosya Sil")]),
+                    ]),
+                  ]),
+                  _vm._v(" "),
+                  _c("li", { staticClass: "item", attrs: { id: "mn3" } }, [
+                    _c("a", { staticClass: "btn", attrs: { href: "#mn3" } }, [
+                      _vm._v("Ayarlar"),
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "submenu" }, [
+                      _c("a", { attrs: { href: "#" } }, [
+                        _vm._v("Kulla Ayarla"),
+                      ]),
+                      _vm._v(" "),
+                      _c("a", { attrs: { href: "#" } }, [
+                        _vm._v("Dosya Ayarlar"),
+                      ]),
+                      _vm._v(" "),
+                      _c("a", { attrs: { href: "#" } }, [_vm._v("Şifre")]),
+                    ]),
+                  ]),
+                ]),
+              ]
+            ),
+          ]
+        ),
+      ]
+    )
+  },
+]
 render._withStripped = true
 
 
