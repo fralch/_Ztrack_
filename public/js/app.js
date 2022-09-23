@@ -4607,17 +4607,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 //
 //
@@ -5041,85 +5033,49 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   methods: {
     click_derecho: function click_derecho(e, madurador) {
-      var _this = this;
+      var self = this;
+      e.preventDefault(); // $("#clickDerechoModal").modal("show");
+      // console.log(madurador); 
 
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
-        var self;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                self = _this;
-                e.preventDefault();
-                $("#clickDerechoModal").modal("show"); // // //     var winWidth = $(document).width();
-                // // //     var winHeight = $(document).height();
-                // // //     //Get pointer position:
-                // // //     var posX = e.x;
-                // // //     var posY = e.y;
-                // // //     //Get contextmenu size:
-                // // //     // var menuWidth = $("#right-click-menu").width();
-                // // //     // var menuHeight = $("#right-click-menu").height();
-                // // //     var menuWidth = 248;
-                // // //     var menuHeight = 100;
-                // // //     //Security margin:
-                // // //     var secMargin = 100;
-                // // //     //Prevent page overflow:
-                // // //     // // if(posX + menuWidth + secMargin >= winWidth
-                // // //     // // && posY + menuHeight + secMargin >= winHeight){
-                // // //     // //   //Case 1: right-bottom overflow:
-                // // //     // //   self.left = posX - menuWidth - secMargin + "px";
-                // // //     // //   self.top = posY - menuHeight - secMargin + "px";
-                // // //     // //   console.log("Case 1 derecha");
-                // // //     // // }
-                // // //     // // else if(posX + menuWidth + secMargin >= winWidth){
-                // // //     // //   //Case 2: right overflow:
-                // // //     // //   self.left = posX - menuWidth - secMargin + "px";
-                // // //     // //   self.top = posY + secMargin + "px";
-                // // //     // //   console.log("Case 2 derecha");
-                // // //     // // }
-                // // //     // // else if(posY + menuHeight + secMargin >= winHeight){
-                // // //     // //   //Case 3: bottom overflow:
-                // // //     // //   self.left = posX + secMargin + "px";
-                // // //     // //   self.top = posY - menuHeight - secMargin + "px";
-                // // //     // //   console.log("Case 3 abajo");
-                // // //     // // }
-                // // //     // // else {
-                // // //     // //   //Case 4: default values:
-                // // //     // //   self.left = posX + secMargin + "px";
-                // // //     // //   self.top = posY + secMargin + "px";
-                // // //     // //   console.log("Case 4 abajo");
-                // // //     // // };
-                // // //     if (menuWidth != undefined && menuHeight != undefined) {
-                // // //       self.left = posX - menuWidth - secMargin + "px";
-                // // //       self.top = posY - menuHeight - secMargin + "px";
-                // // //     }else{
-                // // //      self.left = posX - 248 - secMargin + "px";
-                // // //       self.top = posY - 70 - secMargin + "px";
-                // // //     }
-                // // //     console.log(winWidth, winHeight, posX, posY, menuWidth, menuHeight);
-                // // //     // $(".contextmenu").css({
-                // // //     //   "left": posLeft,
-                // // //     //   "top": posTop
-                // // //     // }).show();
-                // // //     //Prevent browser default contextmenu.
-                // // //   // $(document).click(function(){
-                // // //   //   $(".contextmenu").hide();
-                // // //   // });
-                // // // // alert('right click!');
-                // // // // // console.log("madurador", madurador);
-                // // // // self.top = (e.y -500 )+"px";
-                // // // // // self.left = (e.y - 100) +"px";
-                // // // console.log("click derecsddho",self.top, self.left);
-                // // // self.viewMenu = true;
-                // // // // console.log("click derecsddho",e.y, e.x);
-
-              case 3:
-              case "end":
-                return _context.stop();
+      $.contextMenu({
+        selector: '.context-menu-one',
+        callback: function callback(key, options) {
+          var m = "clicked: " + key;
+          window.console && console.log(m) || alert(m);
+        },
+        items: {
+          "edit": {
+            name: "Edit",
+            icon: "edit"
+          },
+          "cut": {
+            name: "Cut",
+            icon: "cut"
+          },
+          copy: {
+            name: "Copy",
+            icon: "copy"
+          },
+          "paste": {
+            name: "Paste",
+            icon: "paste"
+          },
+          "delete": {
+            name: "Delete",
+            icon: "delete"
+          },
+          "sep1": "---------",
+          "quit": {
+            name: "Quit",
+            icon: function icon() {
+              return 'context-menu-icon context-menu-icon-quit';
             }
           }
-        }, _callee);
-      }))();
+        }
+      });
+      $('.context-menu-one').on('click', function (e) {
+        console.log('clicked', this);
+      });
     },
     cerrarMenu: function cerrarMenu() {
       console.log("cerrar menu");
@@ -5151,7 +5107,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     actualizarTabla: function actualizarTabla() {
       var self = this;
-      axios__WEBPACK_IMPORTED_MODULE_1___default().post(route("contenedores.obtener_contendor"), {
+      axios__WEBPACK_IMPORTED_MODULE_0___default().post(route("contenedores.obtener_contendor"), {
         tipo: "madurador"
       }).then(function (res) {
         if (self.empresa.length > 0) {
@@ -7436,7 +7392,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n:root {\r\n  font-family: Arial, Helvetica, sans-serif;\r\n  font-size: 15px;\r\n  margin: 0;\r\n  padding: 0;\r\n  box-sizing: border-box;\n}\n#menu, #menu ul /* Liste */     \r\n{\r\n        padding : 0; /* pas de marge intérieure */\r\n        margin : 0; /* ni extérieure */\r\n        list-style : none; /* on supprime le style par défaut de la liste */\r\n        line-height : 21px; /* on définit une hauteur pour chaque élément */\r\n        text-align : center; /* on centre le texte qui se trouve dans la liste */\n}\n#menu /* Ensemble du menu */\r\n{\r\n        font-weight : bold; /* on met le texte en gras */\r\n        font-family : Arial; /* on utilise Arial, c'est plus beau ^^ */\r\n        font-size : 12px; /* hauteur du texte : 12 pixels */\n}\n#menu a /* Contenu des listes */\r\n{\r\n        display : block; /* on change le type d'élément, les liens deviennent des balises de type block */\r\n        padding : 0; /* aucune marge intérieure */\r\n        background : rgb(180, 16, 16); /* couleur de fond */        \r\n        color : #fff; /* couleur du texte */\r\n        text-decoration : none; /* on supprime le style par défaut des liens (la plupart du temps = souligné) */\r\n        width : 144px; /* largeur */\n}\n#menu li /* Elements des listes */      \r\n{ \r\n        /* pour IE qui ne reconnaît pas \"transparent\" */\r\n        border-right : 1px solid #fff; /* on met une bordure blanche à droite de chaque élément */\r\n        position: relative;\n}\n#menu li.un\r\n{\r\n  width: 144px;\n}\n#menu li ul /* Sous-listes */\r\n{ \r\n        position: absolute; /* Position absolue */\r\n        width: 144px; /* Largeur des sous-listes */\r\n        display: none; /* On cache */\n}\n#menu li ul li /* Éléments de sous-listes */\r\n{\r\n        /* pour IE qui ne reconnaît pas \"transparent\" (comme précédemment) */\r\n        border-top : 1px solid #fff; /* on met une bordure blanche en haut de chaque élément d'une sous liste */\n}\r\n\r\n/* IE ne reconnaissant pas le sélecteur \">\" */\n#menu li ul li                \r\n{\r\n        border-top : 1px solid transparent; /* on met une bordure transparente en haut de chaque élément */\n}\n#menu li ul ul \r\n{\r\n        margin    : -22px 0 0 144px ; /* On décale les sous-sous-listes pour qu'elles ne soient pas au dessus des sous-listes */ \r\n        /* pour IE qui ne reconnaît pas \"transparent\" (comme précédemment) */\r\n        border-left     : 1px solid #fff ; /* Petite bordure à gauche pour ne pas coller ... */\n}\r\n\r\n/* IE ne reconnaissant pas le sélecteur \">\" ... je me répète ;-) */\n#menu li ul ul                \r\n{\r\n        border-left     : 1px solid transparent ; /* on met une bordure transparente sur la gauche de chaque élément */\n}\n#menu a:hover /* Lorsque la souris passe sur un des liens */    \r\n{\r\n        color: rgb(109, 14, 14); /* On passe le texte en noir... */\r\n        background: silver; /* ... et au contraire, le fond en blanc */\n}\n#menu li:hover ul ul, #menu li.sfhover ul ul /* Sous-sous-listes lorsque la souris passe sur un élément de liste */\r\n{\r\n        display: block; /* On expédie les sous-sous-listes hors du champ de vision */\n}\n#menu li:hover ul, #menu li li:hover ul, #menu li.sfhover ul, #menu li li.sfhover ul  /* Sous-listes lorsque la souris passe sur un élément de liste ET sous-sous-lites lorsque la souris passe sur un élément de sous-liste */\r\n{\r\n        display: block; /* Repositionnement normal */\r\n        min-height: 0; /* Corrige un bug sous IE */\r\n        left : 144px; /* décale vers la droite */\r\n        top:0;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n:root {\r\n  font-family: Arial, Helvetica, sans-serif;\r\n  font-size: 15px;\r\n  margin: 0;\r\n  padding: 0;\r\n  box-sizing: border-box;\n}\n#menu, #menu ul /* Liste */     \r\n{\r\n        padding : 0; /* pas de marge intérieure */\r\n        margin : 0; /* ni extérieure */\r\n        list-style : none; /* on supprime le style par défaut de la liste */\r\n        line-height : 21px; /* on définit une hauteur pour chaque élément */\r\n        text-align : center; /* on centre le texte qui se trouve dans la liste */\n}\n#menu /* Ensemble du menu */\r\n{\r\n        font-family : Arial; /* on utilise Arial, c'est plus beau ^^ */\r\n        font-size : 12px; /* hauteur du texte : 12 pixels */\n}\n#menu a /* Contenu des listes */\r\n{\r\n        display : block; /* on change le type d'élément, les liens deviennent des balises de type block */\r\n        padding : 0; /* aucune marge intérieure */\r\n        background : rgb(255, 255, 255); /* couleur de fond */        \r\n        color : rgb(90, 90, 90); /* couleur du texte */\r\n        text-decoration : none; /* on supprime le style par défaut des liens (la plupart du temps = souligné) */\r\n        width : 144px; /* largeur */\n}\n#menu li /* Elements des listes */      \r\n{ \r\n        /* pour IE qui ne reconnaît pas \"transparent\" */\r\n        border-right : 1px solid #fff; /* on met une bordure blanche à droite de chaque élément */\r\n        position: relative;\n}\n#menu li.un\r\n{\r\n  width: 144px;\n}\n#menu li ul /* Sous-listes */\r\n{ \r\n        position: absolute; /* Position absolue */\r\n        width: 144px; /* Largeur des sous-listes */\r\n        display: none; /* On cache */\n}\n#menu li ul li /* Éléments de sous-listes */\r\n{\r\n        /* pour IE qui ne reconnaît pas \"transparent\" (comme précédemment) */\r\n        border-top : 1px solid #fff; /* on met une bordure blanche en haut de chaque élément d'une sous liste */\n}\r\n\r\n/* IE ne reconnaissant pas le sélecteur \">\" */\n#menu li ul li                \r\n{\r\n        border-top : 1px solid transparent; /* on met une bordure transparente en haut de chaque élément */\n}\n#menu li ul ul \r\n{\r\n        margin    : -22px 0 0 144px ; /* On décale les sous-sous-listes pour qu'elles ne soient pas au dessus des sous-listes */ \r\n        /* pour IE qui ne reconnaît pas \"transparent\" (comme précédemment) */\r\n        border-left     : 1px solid #fff ; /* Petite bordure à gauche pour ne pas coller ... */\n}\r\n\r\n/* IE ne reconnaissant pas le sélecteur \">\" ... je me répète ;-) */\n#menu li ul ul                \r\n{\r\n        border-left     : 1px solid transparent ; /* on met une bordure transparente sur la gauche de chaque élément */\n}\n#menu a:hover /* Lorsque la souris passe sur un des liens */    \r\n{\r\n        color: rgb(43, 43, 43); /* On passe le texte en noir... */\r\n        background: rgb(216, 216, 216); /* ... et au contraire, le fond en blanc */\n}\n#menu li:hover ul ul, #menu li.sfhover ul ul /* Sous-sous-listes lorsque la souris passe sur un élément de liste */\r\n{\r\n        display: block; /* On expédie les sous-sous-listes hors du champ de vision */\n}\n#menu li:hover ul, #menu li li:hover ul, #menu li.sfhover ul, #menu li li.sfhover ul  /* Sous-listes lorsque la souris passe sur un élément de liste ET sous-sous-lites lorsque la souris passe sur un élément de sous-liste */\r\n{\r\n        display: block; /* Repositionnement normal */\r\n        min-height: 0; /* Corrige un bug sous IE */\r\n        left : 144px; /* décale vers la droite */\r\n        top:0;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -38320,7 +38276,7 @@ var render = function () {
                           _c(
                             "td",
                             {
-                              staticClass: "text-center",
+                              staticClass: "context-menu-one text-center",
                               on: {
                                 contextmenu: function ($event) {
                                   return _vm.click_derecho($event, madurador)
@@ -38634,22 +38590,6 @@ var render = function () {
                 [_vm._v("Resetear tabla")]
               ),
             ]),
-            _vm._v(" "),
-            _vm.viewMenu
-              ? _c(
-                  "ul",
-                  {
-                    staticClass: "contextmenu",
-                    style: { top: _vm.top, left: _vm.left },
-                    attrs: { id: "right-click-menu", tabindex: "-1" },
-                  },
-                  [
-                    _c("li", [_vm._v("First list item")]),
-                    _vm._v(" "),
-                    _c("li", [_vm._v("Second list item")]),
-                  ]
-                )
-              : _vm._e(),
             _vm._v(" "),
             _vm._m(0),
           ]

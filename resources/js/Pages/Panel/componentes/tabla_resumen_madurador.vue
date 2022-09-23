@@ -238,7 +238,7 @@
             </button>
           </td> -->
             <td
-              class="text-center"
+              class="context-menu-one text-center"
               @contextmenu="click_derecho($event, madurador)"
             >
               {{ madurador.nombre_contenedor }}
@@ -321,7 +321,7 @@
       <div class="escoger_columnas">
         Cargar todas columnas: <span @click="resetTabla()">Resetear tabla</span>
       </div>
-      <ul
+      <!-- <ul
         id="right-click-menu"
         class="contextmenu"
         tabindex="-1"
@@ -330,7 +330,7 @@
       >
         <li>First list item</li>
         <li>Second list item</li>
-      </ul>
+      </ul> -->
       <!--  edutar usuarios  -->
       <div
         class="modal fade"
@@ -421,75 +421,34 @@ export default {
     this.actualizarTabla();
   },
   methods: {
-    async click_derecho(e, madurador) {
+    click_derecho(e, madurador) {
       let self = this;
       e.preventDefault();
-      $("#clickDerechoModal").modal("show");
+      // $("#clickDerechoModal").modal("show");
+      // console.log(madurador); 
+      $.contextMenu({
+            selector: '.context-menu-one', 
+            callback: function(key, options) {
+                var m = "clicked: " + key;
+                window.console && console.log(m) || alert(m); 
+            },
+            items: {
+                "edit": {name: "Edit", icon: "edit"},
+                "cut": {name: "Cut", icon: "cut"},
+               copy: {name: "Copy", icon: "copy"},
+                "paste": {name: "Paste", icon: "paste"},
+                "delete": {name: "Delete", icon: "delete"},
+                "sep1": "---------",
+                "quit": {name: "Quit", icon: function(){
+                    return 'context-menu-icon context-menu-icon-quit';
+                }}
+            }
+        });
 
-      // // //     var winWidth = $(document).width();
-      // // //     var winHeight = $(document).height();
-      // // //     //Get pointer position:
-      // // //     var posX = e.x;
-      // // //     var posY = e.y;
-      // // //     //Get contextmenu size:
-      // // //     // var menuWidth = $("#right-click-menu").width();
-      // // //     // var menuHeight = $("#right-click-menu").height();
-      // // //     var menuWidth = 248;
-      // // //     var menuHeight = 100;
-
-      // // //     //Security margin:
-      // // //     var secMargin = 100;
-      // // //     //Prevent page overflow:
-      // // //     // // if(posX + menuWidth + secMargin >= winWidth
-      // // //     // // && posY + menuHeight + secMargin >= winHeight){
-      // // //     // //   //Case 1: right-bottom overflow:
-      // // //     // //   self.left = posX - menuWidth - secMargin + "px";
-      // // //     // //   self.top = posY - menuHeight - secMargin + "px";
-      // // //     // //   console.log("Case 1 derecha");
-      // // //     // // }
-      // // //     // // else if(posX + menuWidth + secMargin >= winWidth){
-      // // //     // //   //Case 2: right overflow:
-      // // //     // //   self.left = posX - menuWidth - secMargin + "px";
-      // // //     // //   self.top = posY + secMargin + "px";
-      // // //     // //   console.log("Case 2 derecha");
-      // // //     // // }
-      // // //     // // else if(posY + menuHeight + secMargin >= winHeight){
-      // // //     // //   //Case 3: bottom overflow:
-      // // //     // //   self.left = posX + secMargin + "px";
-      // // //     // //   self.top = posY - menuHeight - secMargin + "px";
-      // // //     // //   console.log("Case 3 abajo");
-      // // //     // // }
-      // // //     // // else {
-      // // //     // //   //Case 4: default values:
-      // // //     // //   self.left = posX + secMargin + "px";
-      // // //     // //   self.top = posY + secMargin + "px";
-      // // //     // //   console.log("Case 4 abajo");
-      // // //     // // };
-      // // //     if (menuWidth != undefined && menuHeight != undefined) {
-      // // //       self.left = posX - menuWidth - secMargin + "px";
-      // // //       self.top = posY - menuHeight - secMargin + "px";
-      // // //     }else{
-      // // //      self.left = posX - 248 - secMargin + "px";
-      // // //       self.top = posY - 70 - secMargin + "px";
-      // // //     }
-      // // //     console.log(winWidth, winHeight, posX, posY, menuWidth, menuHeight);
-      // // //     // $(".contextmenu").css({
-      // // //     //   "left": posLeft,
-      // // //     //   "top": posTop
-      // // //     // }).show();
-      // // //     //Prevent browser default contextmenu.
-
-      // // //   // $(document).click(function(){
-      // // //   //   $(".contextmenu").hide();
-      // // //   // });
-
-      // // // // alert('right click!');
-      // // // // // console.log("madurador", madurador);
-      // // // // self.top = (e.y -500 )+"px";
-      // // // // // self.left = (e.y - 100) +"px";
-      // // // console.log("click derecsddho",self.top, self.left);
-      // // // self.viewMenu = true;
-      // // // // console.log("click derecsddho",e.y, e.x);
+        $('.context-menu-one').on('click', function(e){
+            console.log('clicked', this);
+             
+        })    
     },
     cerrarMenu() {
       console.log("cerrar menu");
@@ -520,6 +479,7 @@ export default {
           self.tabla.$("tr.selected").removeClass("selected");
           $(this).addClass("selected");
         });
+       
 
         // column.visible(!column.visible());
         // console.log("columnas ",column);
@@ -581,7 +541,6 @@ export default {
 
 #menu /* Ensemble du menu */
 {
-        font-weight : bold; /* on met le texte en gras */
         font-family : Arial; /* on utilise Arial, c'est plus beau ^^ */
         font-size : 12px; /* hauteur du texte : 12 pixels */
 }
@@ -590,8 +549,8 @@ export default {
 {
         display : block; /* on change le type d'élément, les liens deviennent des balises de type block */
         padding : 0; /* aucune marge intérieure */
-        background : rgb(180, 16, 16); /* couleur de fond */        
-        color : #fff; /* couleur du texte */
+        background : rgb(255, 255, 255); /* couleur de fond */        
+        color : rgb(90, 90, 90); /* couleur du texte */
         text-decoration : none; /* on supprime le style par défaut des liens (la plupart du temps = souligné) */
         width : 144px; /* largeur */
 }
@@ -643,8 +602,8 @@ export default {
 
 #menu a:hover /* Lorsque la souris passe sur un des liens */    
 {
-        color: rgb(109, 14, 14); /* On passe le texte en noir... */
-        background: silver; /* ... et au contraire, le fond en blanc */
+        color: rgb(43, 43, 43); /* On passe le texte en noir... */
+        background: rgb(216, 216, 216); /* ... et au contraire, le fond en blanc */
 }
 
 #menu li:hover ul ul, #menu li.sfhover ul ul /* Sous-sous-listes lorsque la souris passe sur un élément de liste */
