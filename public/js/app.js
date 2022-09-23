@@ -5064,6 +5064,20 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             name: "Delete",
             icon: "delete"
           },
+          "normalSub": {
+            name: "Normal Sub",
+            items: {
+              "normalsub1": {
+                name: "normal Sub 1"
+              },
+              "normalsub2": {
+                name: "normal Sub 2"
+              },
+              "normalsub3": {
+                name: "normal Sub 3"
+              }
+            }
+          },
           "sep1": "---------",
           "quit": {
             name: "Quit",
