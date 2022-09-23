@@ -341,34 +341,51 @@
         aria-hidden="true"
       >
         <div class="modal-dialog modal-dialog-centered" role="document">
-          <div class="modal-content" style="width:0; color: white;  ">
-                  <div class="menu">
-                    <li class="item" id="mn1">
-                        <a style="color: white;" class="btn" href="#mn1">Kullanclar</a>
-                        <div class="submenu">
-                            <a href="#">KuListesi</a>
-                            <a href="#">Kull Ekle</a>
-                            <a href="#">Kulla Sil</a>
-                        </div>
-                    </li>
-                    <li class="item" id="mn2">
-                        <a class="btn" href="#mn2">Dosyalar</a>
-                        <div class="submenu">
-                            <a href="#">Dosya Listesi</a>
-                            <a href="#">Dosya Ekle</a>
-                            <a href="#">Dosya Sil</a>
-                        </div>
-                    </li>
-                    <li class="item" id="mn3">
-                        <a class="btn" href="#mn3">Ayarlar</a>
-                        <div class="submenu">
-                            <a href="#">Kulla Ayarla</a>
-                            <a href="#">Dosya Ayarlar</a>
-                            <a href="#">Şifre</a>
-                        </div>
-                    </li>
-                </div>
-            
+          <div class="modal-content" style="width: 0; color: white">
+            <ul id="menu">
+              <li class="un">
+                <a href="#">accueil</a>
+              </li>
+
+              <li class="un">
+                <a href="#">membres</a>
+                <ul>
+                  <li><a href="#">connexion</a></li>
+                  <li><a href="#">inscription</a></li>
+                </ul>
+              </li>
+
+              <li class="un">
+                <a href="#">images</a>
+                <ul>
+                  <li>
+                    <a href="#">photos</a>
+                  </li>
+                  <li>
+                    <a href="#">vidéos</a>
+                  </li>
+                </ul>
+              </li>
+
+              <li class="un">
+                <a href="#">téléchargements</a>
+                <ul>
+                  <li><a href="#">vidéos</a></li>
+                  <li><a href="#">musiques</a></li>
+                </ul>
+              </li>
+
+              <li class="un">
+                <a href="#">plus</a>
+                <ul>
+                  <li><a href="#">forum</a></li>
+                  <li><a href="#">liens</a></li>
+                  <li><a href="#">nous contacter</a></li>
+                  <li><a href="#">team</a></li>
+                  <li><a href="#">recherche</a></li>
+                </ul>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
@@ -546,68 +563,100 @@ export default {
 };
 </script>
 <style>
-:root{
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 15px;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+:root {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 15px;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+#menu, #menu ul /* Liste */     
+{
+        padding : 0; /* pas de marge intérieure */
+        margin : 0; /* ni extérieure */
+        list-style : none; /* on supprime le style par défaut de la liste */
+        line-height : 21px; /* on définit une hauteur pour chaque élément */
+        text-align : center; /* on centre le texte qui se trouve dans la liste */
+}
+
+#menu /* Ensemble du menu */
+{
+        font-weight : bold; /* on met le texte en gras */
+        font-family : Arial; /* on utilise Arial, c'est plus beau ^^ */
+        font-size : 12px; /* hauteur du texte : 12 pixels */
+}
+
+#menu a /* Contenu des listes */
+{
+        display : block; /* on change le type d'élément, les liens deviennent des balises de type block */
+        padding : 0; /* aucune marge intérieure */
+        background : rgb(180, 16, 16); /* couleur de fond */        
+        color : #fff; /* couleur du texte */
+        text-decoration : none; /* on supprime le style par défaut des liens (la plupart du temps = souligné) */
+        width : 144px; /* largeur */
+}
+
+#menu li /* Elements des listes */      
+{ 
+        /* pour IE qui ne reconnaît pas "transparent" */
+        border-right : 1px solid #fff; /* on met une bordure blanche à droite de chaque élément */
+        position: relative;
+}
+
+#menu li.un
+{
+  width: 144px;
+}
+
+#menu li ul /* Sous-listes */
+{ 
+        position: absolute; /* Position absolue */
+        width: 144px; /* Largeur des sous-listes */
+        display: none; /* On cache */
 }
 
 
-
-
-.menu{
-    width: 300px;
-    height: auto;
-    background: #d15536;
-    border-radius: 8px;
-    overflow: hidden;
+#menu li ul li /* Éléments de sous-listes */
+{
+        /* pour IE qui ne reconnaît pas "transparent" (comme précédemment) */
+        border-top : 1px solid #fff; /* on met une bordure blanche en haut de chaque élément d'une sous liste */
 }
 
-.menu .btn{
-    display:block;
-    padding: 1rem;
-    border-bottom: solid 1px #ffffff;
-    border-top: solid 1px #804444;
-    position: relative;
+/* IE ne reconnaissant pas le sélecteur ">" */
+#menu li ul li                
+{
+        border-top : 1px solid transparent; /* on met une bordure transparente en haut de chaque élément */
 }
 
-.menu .submenu {
-    background: #1b1b2f;
-    overflow: hidden;
-    max-height: 0;
-    transition: max-height .8s ease-out;
+#menu li ul ul 
+{
+        margin    : -22px 0 0 144px ; /* On décale les sous-sous-listes pour qu'elles ne soient pas au dessus des sous-listes */ 
+        /* pour IE qui ne reconnaît pas "transparent" (comme précédemment) */
+        border-left     : 1px solid #fff ; /* Petite bordure à gauche pour ne pas coller ... */      
 }
 
-.menu .submenu a{
-    display:block;
-    padding: 1rem;
-    position: relative;
+/* IE ne reconnaissant pas le sélecteur ">" ... je me répète ;-) */
+#menu li ul ul                
+{
+        border-left     : 1px solid transparent ; /* on met une bordure transparente sur la gauche de chaque élément */
 }
 
-.menu .submenu a::before{
-    content:'';
-    display:block;
-    position: absolute;
-    top:0;
-    left:0;
-    height: 100%;
-    width: 5px;
-    background: #e43f5a;
-    opacity: 0;
-    transition: all .5s;
+#menu a:hover /* Lorsque la souris passe sur un des liens */    
+{
+        color: rgb(109, 14, 14); /* On passe le texte en noir... */
+        background: silver; /* ... et au contraire, le fond en blanc */
 }
 
-.menu .submenu a:hover{
-    padding-left: calc(1rem + 5px);
+#menu li:hover ul ul, #menu li.sfhover ul ul /* Sous-sous-listes lorsque la souris passe sur un élément de liste */
+{
+        display: block; /* On expédie les sous-sous-listes hors du champ de vision */
 }
 
-.menu .submenu a:hover::before{
-    opacity: 1;
-}
-
-.item:target .submenu{
-    max-height: 20rem;
+#menu li:hover ul, #menu li li:hover ul, #menu li.sfhover ul, #menu li li.sfhover ul  /* Sous-listes lorsque la souris passe sur un élément de liste ET sous-sous-lites lorsque la souris passe sur un élément de sous-liste */
+{
+        display: block; /* Repositionnement normal */
+        min-height: 0; /* Corrige un bug sous IE */
+        left : 144px; /* décale vers la droite */
+        top:0;
 }
 </style>
