@@ -4994,6 +4994,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       e.preventDefault(); // $("#clickDerechoModal").modal("show");
 
       console.log(madurador.nombre_contenedor);
+      $.contextMenu('destroy', '.context-menu-one');
       $.contextMenu({
         selector: '.context-menu-one',
         callback: function callback(key, options) {
