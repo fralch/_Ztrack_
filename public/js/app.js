@@ -4962,49 +4962,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {},
@@ -5035,34 +4992,29 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     click_derecho: function click_derecho(e, madurador) {
       var self = this;
       e.preventDefault(); // $("#clickDerechoModal").modal("show");
-      // console.log(madurador); 
 
+      console.log(madurador.nombre_contenedor);
       $.contextMenu({
         selector: '.context-menu-one',
         callback: function callback(key, options) {
-          var m = "clicked: " + key;
-          window.console && console.log(m) || alert(m);
+          // var m = "clicked: " + key;
+          // window.console && console.log(m) || alert(m); 
+          console.log(key);
+
+          if (key == "copy") {
+            navigator.clipboard.writeText(madurador.nombre_contenedor);
+            console.log(madurador.nombre_contenedor);
+          }
+
+          $.contextMenu('destroy', '.context-menu-one');
         },
         items: {
-          "edit": {
-            name: "Edit",
-            icon: "edit"
-          },
-          "cut": {
-            name: "Cut",
-            icon: "cut"
+          "nombre": {
+            "name": madurador.nombre_contenedor
           },
           copy: {
             name: "Copy",
             icon: "copy"
-          },
-          "paste": {
-            name: "Paste",
-            icon: "paste"
-          },
-          "delete": {
-            name: "Delete",
-            icon: "delete"
           },
           "normalSub": {
             name: "Normal Sub",
@@ -5087,9 +5039,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           }
         }
       });
-      $('.context-menu-one').on('click', function (e) {
-        console.log('clicked', this);
-      });
+      madurador = null; // $('.context-menu-one').on('click', function(e){
+      //     console.log('clicked', this);
+      // })    
     },
     cerrarMenu: function cerrarMenu() {
       console.log("cerrar menu");
@@ -38636,98 +38588,10 @@ var staticRenderFns = [
             attrs: { role: "document" },
           },
           [
-            _c(
-              "div",
-              {
-                staticClass: "modal-content",
-                staticStyle: { width: "0", color: "white" },
-              },
-              [
-                _c("ul", { attrs: { id: "menu" } }, [
-                  _c("li", { staticClass: "un" }, [
-                    _c("a", { attrs: { href: "#" } }, [_vm._v("accueil")]),
-                  ]),
-                  _vm._v(" "),
-                  _c("li", { staticClass: "un" }, [
-                    _c("a", { attrs: { href: "#" } }, [_vm._v("membres")]),
-                    _vm._v(" "),
-                    _c("ul", [
-                      _c("li", [
-                        _c("a", { attrs: { href: "#" } }, [
-                          _vm._v("connexion"),
-                        ]),
-                      ]),
-                      _vm._v(" "),
-                      _c("li", [
-                        _c("a", { attrs: { href: "#" } }, [
-                          _vm._v("inscription"),
-                        ]),
-                      ]),
-                    ]),
-                  ]),
-                  _vm._v(" "),
-                  _c("li", { staticClass: "un" }, [
-                    _c("a", { attrs: { href: "#" } }, [_vm._v("images")]),
-                    _vm._v(" "),
-                    _c("ul", [
-                      _c("li", [
-                        _c("a", { attrs: { href: "#" } }, [_vm._v("photos")]),
-                      ]),
-                      _vm._v(" "),
-                      _c("li", [
-                        _c("a", { attrs: { href: "#" } }, [_vm._v("vidéos")]),
-                      ]),
-                    ]),
-                  ]),
-                  _vm._v(" "),
-                  _c("li", { staticClass: "un" }, [
-                    _c("a", { attrs: { href: "#" } }, [
-                      _vm._v("téléchargements"),
-                    ]),
-                    _vm._v(" "),
-                    _c("ul", [
-                      _c("li", [
-                        _c("a", { attrs: { href: "#" } }, [_vm._v("vidéos")]),
-                      ]),
-                      _vm._v(" "),
-                      _c("li", [
-                        _c("a", { attrs: { href: "#" } }, [_vm._v("musiques")]),
-                      ]),
-                    ]),
-                  ]),
-                  _vm._v(" "),
-                  _c("li", { staticClass: "un" }, [
-                    _c("a", { attrs: { href: "#" } }, [_vm._v("plus")]),
-                    _vm._v(" "),
-                    _c("ul", [
-                      _c("li", [
-                        _c("a", { attrs: { href: "#" } }, [_vm._v("forum")]),
-                      ]),
-                      _vm._v(" "),
-                      _c("li", [
-                        _c("a", { attrs: { href: "#" } }, [_vm._v("liens")]),
-                      ]),
-                      _vm._v(" "),
-                      _c("li", [
-                        _c("a", { attrs: { href: "#" } }, [
-                          _vm._v("nous contacter"),
-                        ]),
-                      ]),
-                      _vm._v(" "),
-                      _c("li", [
-                        _c("a", { attrs: { href: "#" } }, [_vm._v("team")]),
-                      ]),
-                      _vm._v(" "),
-                      _c("li", [
-                        _c("a", { attrs: { href: "#" } }, [
-                          _vm._v("recherche"),
-                        ]),
-                      ]),
-                    ]),
-                  ]),
-                ]),
-              ]
-            ),
+            _c("div", {
+              staticClass: "modal-content",
+              staticStyle: { width: "0", color: "white" },
+            }),
           ]
         ),
       ]

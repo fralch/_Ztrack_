@@ -342,50 +342,7 @@
       >
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content" style="width: 0; color: white">
-            <ul id="menu">
-              <li class="un">
-                <a href="#">accueil</a>
-              </li>
-
-              <li class="un">
-                <a href="#">membres</a>
-                <ul>
-                  <li><a href="#">connexion</a></li>
-                  <li><a href="#">inscription</a></li>
-                </ul>
-              </li>
-
-              <li class="un">
-                <a href="#">images</a>
-                <ul>
-                  <li>
-                    <a href="#">photos</a>
-                  </li>
-                  <li>
-                    <a href="#">vidéos</a>
-                  </li>
-                </ul>
-              </li>
-
-              <li class="un">
-                <a href="#">téléchargements</a>
-                <ul>
-                  <li><a href="#">vidéos</a></li>
-                  <li><a href="#">musiques</a></li>
-                </ul>
-              </li>
-
-              <li class="un">
-                <a href="#">plus</a>
-                <ul>
-                  <li><a href="#">forum</a></li>
-                  <li><a href="#">liens</a></li>
-                  <li><a href="#">nous contacter</a></li>
-                  <li><a href="#">team</a></li>
-                  <li><a href="#">recherche</a></li>
-                </ul>
-              </li>
-            </ul>
+           
           </div>
         </div>
       </div>
@@ -425,19 +382,23 @@ export default {
       let self = this;
       e.preventDefault();
       // $("#clickDerechoModal").modal("show");
-      // console.log(madurador); 
+      console.log(madurador.nombre_contenedor); 
       $.contextMenu({
             selector: '.context-menu-one', 
             callback: function(key, options) {
-                var m = "clicked: " + key;
-                window.console && console.log(m) || alert(m); 
+                // var m = "clicked: " + key;
+                // window.console && console.log(m) || alert(m); 
+                console.log(key); 
+                if (key =="copy") {
+                  navigator.clipboard.writeText(madurador.nombre_contenedor)
+                  console.log(madurador.nombre_contenedor); 
+                }
+                $.contextMenu('destroy', '.context-menu-one');
             },
             items: {
-                "edit": {name: "Edit", icon: "edit"},
-                "cut": {name: "Cut", icon: "cut"},
+              "nombre": {"name": madurador.nombre_contenedor},
                copy: {name: "Copy", icon: "copy"},
-                "paste": {name: "Paste", icon: "paste"},
-                "delete": {name: "Delete", icon: "delete"},
+                
                 "normalSub": {
                             name: "Normal Sub",
                             items: {
@@ -453,10 +414,12 @@ export default {
             }
         });
 
-        $('.context-menu-one').on('click', function(e){
-            console.log('clicked', this);
+        madurador= null;
+        
+        // $('.context-menu-one').on('click', function(e){
+        //     console.log('clicked', this);
              
-        })    
+        // })    
     },
     cerrarMenu() {
       console.log("cerrar menu");
