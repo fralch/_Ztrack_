@@ -4998,16 +4998,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       $.contextMenu({
         selector: '.context-menu-one',
         callback: function callback(key, options) {
-          // var m = "clicked: " + key;
-          // window.console && console.log(m) || alert(m); 
-          console.log(key);
-
           if (key == "copy") {
             navigator.clipboard.writeText(madurador.nombre_contenedor);
             console.log(madurador.nombre_contenedor);
           }
-
-          $.contextMenu('destroy', '.context-menu-one');
         },
         items: {
           "nombre": {
@@ -5017,17 +5011,29 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             name: "Copy",
             icon: "copy"
           },
-          "normalSub": {
-            name: "Normal Sub",
+          "Setpoints": {
+            name: "Change Setpoints",
             items: {
-              "normalsub1": {
-                name: "normal Sub 1"
+              "Temperature": {
+                name: "Temperature"
               },
-              "normalsub2": {
-                name: "normal Sub 2"
+              "Co2": {
+                name: "Co2"
               },
-              "normalsub3": {
-                name: "normal Sub 3"
+              "Humidity": {
+                name: "Humidity"
+              },
+              "Ethylene": {
+                name: "Ethylene"
+              },
+              "Process_time": {
+                name: "Process time"
+              },
+              "Ethylene_minimum": {
+                name: "Ethylene minimum"
+              },
+              "Injection_time": {
+                name: "Injection time"
               }
             }
           },
@@ -5039,8 +5045,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             }
           }
         }
-      });
-      madurador = null; // $('.context-menu-one').on('click', function(e){
+      }); // $('.context-menu-one').on('click', function(e){
       //     console.log('clicked', this);
       // })    
     },

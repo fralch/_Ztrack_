@@ -386,26 +386,26 @@ export default {
       $.contextMenu('destroy', '.context-menu-one');
       $.contextMenu({
             selector: '.context-menu-one', 
-            callback: function(key, options) {
-                // var m = "clicked: " + key;
-                // window.console && console.log(m) || alert(m); 
-                console.log(key); 
+            callback: function(key, options) {              
                 if (key =="copy") {
                   navigator.clipboard.writeText(madurador.nombre_contenedor)
                   console.log(madurador.nombre_contenedor); 
                 }
-                $.contextMenu('destroy', '.context-menu-one');
             },
             items: {
               "nombre": {"name": madurador.nombre_contenedor},
                copy: {name: "Copy", icon: "copy"},
                 
-                "normalSub": {
-                            name: "Normal Sub",
+                "Setpoints": {
+                            name: "Change Setpoints",
                             items: {
-                                "normalsub1": { name: "normal Sub 1"},
-                                "normalsub2": { name: "normal Sub 2"},
-                                "normalsub3": { name: "normal Sub 3" },
+                                "Temperature": { name: "Temperature"},
+                                "Co2": { name: "Co2"},
+                                "Humidity": { name: "Humidity" },
+                                "Ethylene": { name: "Ethylene" },
+                                "Process_time": { name: "Process time" },
+                                "Ethylene_minimum": { name: "Ethylene minimum" },
+                                "Injection_time": { name: "Injection time" },
                             }
                         },
                 "sep1": "---------",
@@ -414,7 +414,6 @@ export default {
                 }}
             }
         });
-        madurador= null;
         
         // $('.context-menu-one').on('click', function(e){
         //     console.log('clicked', this);
