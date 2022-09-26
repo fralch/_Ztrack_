@@ -4962,6 +4962,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {},
@@ -4974,9 +4982,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       contenedores_encendidos_madurador: [],
       datos_resumen_madurador: [],
       tabla: null,
-      viewMenu: false,
-      top: "0px",
-      left: "0px"
+      valor_range: 0,
+      titulo_range: "Titulo"
     };
   },
   watch: {
@@ -5002,6 +5009,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             navigator.clipboard.writeText(madurador.nombre_contenedor);
             console.log(madurador.nombre_contenedor);
           }
+
+          console.log(key);
+          self.titulo_range = key + " / " + madurador.nombre_contenedor;
+          $("#clickDerechoModal").modal("show");
         },
         items: {
           "nombre": {
@@ -32947,10 +32958,7 @@ var render = function () {
                   },
                 ],
                 staticClass: "form-control col-6",
-                attrs: {
-                  type: "number",
-                  disabled: _vm.admin_madurador != true,
-                },
+                attrs: { type: "number", disabled: true },
                 domProps: { value: _vm.temperatura },
                 on: {
                   input: function ($event) {
@@ -32978,10 +32986,7 @@ var render = function () {
                   },
                 ],
                 staticClass: "form-control col-6",
-                attrs: {
-                  type: "number",
-                  disabled: _vm.admin_madurador != true,
-                },
+                attrs: { type: "number", disabled: true },
                 domProps: { value: _vm.co2 },
                 on: {
                   input: function ($event) {
@@ -33009,10 +33014,7 @@ var render = function () {
                   },
                 ],
                 staticClass: "form-control col-6",
-                attrs: {
-                  type: "number",
-                  disabled: _vm.admin_madurador != true,
-                },
+                attrs: { type: "number", disabled: true },
                 domProps: { value: _vm.humedad },
                 on: {
                   input: function ($event) {
@@ -33040,10 +33042,7 @@ var render = function () {
                   },
                 ],
                 staticClass: "form-control col-6",
-                attrs: {
-                  type: "number",
-                  disabled: _vm.admin_madurador != true,
-                },
+                attrs: { type: "number", disabled: true },
                 domProps: { value: _vm.etileno },
                 on: {
                   input: function ($event) {
@@ -33071,10 +33070,7 @@ var render = function () {
                   },
                 ],
                 staticClass: "form-control col-6",
-                attrs: {
-                  type: "number",
-                  disabled: _vm.admin_madurador != true,
-                },
+                attrs: { type: "number", disabled: true },
                 domProps: { value: _vm.tiempo_proceso },
                 on: {
                   input: function ($event) {
@@ -33102,10 +33098,7 @@ var render = function () {
                   },
                 ],
                 staticClass: "form-control col-6",
-                attrs: {
-                  type: "number",
-                  disabled: _vm.admin_madurador != true,
-                },
+                attrs: { type: "number", disabled: true },
                 domProps: { value: _vm.etileno_minimo },
                 on: {
                   input: function ($event) {
@@ -33133,10 +33126,7 @@ var render = function () {
                   },
                 ],
                 staticClass: "form-control col-6",
-                attrs: {
-                  type: "number",
-                  disabled: _vm.admin_madurador != true,
-                },
+                attrs: { type: "number", disabled: true },
                 domProps: { value: _vm.tiempo_inyeccion },
                 on: {
                   input: function ($event) {
@@ -33150,112 +33140,6 @@ var render = function () {
             ]),
             _vm._v(" "),
             _c("br"),
-            _vm._v(" "),
-            _c("div", { staticClass: "row" }, [
-              _c("div", { staticClass: "col-4" }, [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.estado,
-                      expression: "estado",
-                    },
-                  ],
-                  attrs: {
-                    type: "radio",
-                    id: "inicio",
-                    value: "Q",
-                    disabled: _vm.admin_madurador != true,
-                  },
-                  domProps: { checked: _vm._q(_vm.estado, "Q") },
-                  on: {
-                    change: function ($event) {
-                      _vm.estado = "Q"
-                    },
-                  },
-                }),
-                _vm._v(" "),
-                _c("label", { attrs: { for: "uno" } }, [_vm._v("START")]),
-              ]),
-              _vm._v(" "),
-              _c("br"),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-4" }, [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.estado,
-                      expression: "estado",
-                    },
-                  ],
-                  attrs: {
-                    type: "radio",
-                    id: "pausa",
-                    value: "P",
-                    disabled: _vm.admin_madurador != true,
-                  },
-                  domProps: { checked: _vm._q(_vm.estado, "P") },
-                  on: {
-                    change: function ($event) {
-                      _vm.estado = "P"
-                    },
-                  },
-                }),
-                _vm._v(" "),
-                _c("label", { attrs: { for: "uno" } }, [_vm._v("STOP")]),
-              ]),
-              _vm._v(" "),
-              _c("br"),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-4" }, [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.estado,
-                      expression: "estado",
-                    },
-                  ],
-                  attrs: {
-                    type: "radio",
-                    id: "reinicio",
-                    value: "R",
-                    disabled: _vm.admin_madurador != true,
-                  },
-                  domProps: { checked: _vm._q(_vm.estado, "R") },
-                  on: {
-                    change: function ($event) {
-                      _vm.estado = "R"
-                    },
-                  },
-                }),
-                _vm._v(" "),
-                _c("label", { attrs: { for: "uno" } }, [_vm._v("RESET")]),
-              ]),
-            ]),
-            _vm._v(" "),
-            _c("br"),
-            _vm._v(" "),
-            _c(
-              "button",
-              {
-                staticClass: "btn btn-secondary col-12",
-                attrs: {
-                  type: "submit",
-                  disabled: _vm.admin_madurador != true,
-                },
-                on: {
-                  click: function ($event) {
-                    return _vm.SetPoint()
-                  },
-                },
-              },
-              [_vm._v("\n      GUARDAR DATOS\n    ")]
-            ),
           ]
         )
       : _vm._e(),
@@ -38563,7 +38447,110 @@ var render = function () {
               ),
             ]),
             _vm._v(" "),
-            _vm._m(0),
+            _c(
+              "div",
+              {
+                staticClass: "modal fade",
+                attrs: {
+                  id: "clickDerechoModal",
+                  tabindex: "-1",
+                  role: "dialog",
+                  "aria-labelledby": "exampleModalLabel",
+                  "aria-hidden": "true",
+                },
+              },
+              [
+                _c(
+                  "div",
+                  {
+                    staticClass: "modal-dialog modal-dialog-centered",
+                    attrs: { role: "document" },
+                  },
+                  [
+                    _c("div", { staticClass: "modal-content" }, [
+                      _c("div", { staticClass: "modal-header" }, [
+                        _c(
+                          "h5",
+                          {
+                            staticClass: "modal-title",
+                            attrs: { id: "exampleModalLabel" },
+                          },
+                          [_vm._v(_vm._s(_vm.titulo_range))]
+                        ),
+                        _vm._v(" "),
+                        _vm._m(0),
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "modal-body" }, [
+                        _c(
+                          "div",
+                          {
+                            staticClass: "row",
+                            staticStyle: { margin: "0 10px" },
+                          },
+                          [
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.valor_range,
+                                  expression: "valor_range",
+                                },
+                              ],
+                              staticClass: "form-control col",
+                              staticStyle: { margin: "0 5px" },
+                              attrs: {
+                                type: "number",
+                                "aria-label": "Small",
+                                "aria-describedby": "inputGroup-sizing-sm",
+                              },
+                              domProps: { value: _vm.valor_range },
+                              on: {
+                                input: function ($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.valor_range = $event.target.value
+                                },
+                              },
+                            }),
+                            _vm._v(" "),
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.valor_range,
+                                  expression: "valor_range",
+                                },
+                              ],
+                              staticClass: "form-control col",
+                              staticStyle: { margin: "0 5px" },
+                              attrs: {
+                                type: "range",
+                                name: "points",
+                                min: "1",
+                                max: "100",
+                                step: "0.1",
+                              },
+                              domProps: { value: _vm.valor_range },
+                              on: {
+                                __r: function ($event) {
+                                  _vm.valor_range = $event.target.value
+                                },
+                              },
+                            }),
+                          ]
+                        ),
+                      ]),
+                      _vm._v(" "),
+                      _vm._m(1),
+                    ]),
+                  ]
+                ),
+              ]
+            ),
           ]
         ),
       ])
@@ -38575,33 +38562,38 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c(
-      "div",
+      "button",
       {
-        staticClass: "modal fade",
+        staticClass: "close",
         attrs: {
-          id: "clickDerechoModal",
-          tabindex: "-1",
-          role: "dialog",
-          "aria-labelledby": "clickDerechoModalLabel",
-          "aria-hidden": "true",
+          type: "button",
+          "data-dismiss": "modal",
+          "aria-label": "Close",
         },
       },
-      [
-        _c(
-          "div",
-          {
-            staticClass: "modal-dialog modal-dialog-centered",
-            attrs: { role: "document" },
-          },
-          [
-            _c("div", {
-              staticClass: "modal-content",
-              staticStyle: { width: "0", color: "white" },
-            }),
-          ]
-        ),
-      ]
+      [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
     )
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-footer" }, [
+      _c(
+        "button",
+        { staticClass: "btn btn-primary", attrs: { type: "button" } },
+        [_vm._v("Guardar Cambios")]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-secondary",
+          attrs: { type: "button", "data-dismiss": "modal" },
+        },
+        [_vm._v("Cerrar")]
+      ),
+    ])
   },
 ]
 render._withStripped = true

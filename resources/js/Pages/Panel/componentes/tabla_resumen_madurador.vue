@@ -332,17 +332,25 @@
         <li>Second list item</li>
       </ul> -->
       <!--  edutar usuarios  -->
-      <div
-        class="modal fade"
-        id="clickDerechoModal"
-        tabindex="-1"
-        role="dialog"
-        aria-labelledby="clickDerechoModalLabel"
-        aria-hidden="true"
-      >
+      <div class="modal fade" id="clickDerechoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
-          <div class="modal-content" style="width: 0; color: white">
-           
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">{{titulo_range}}</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+               <div class="row" style="margin:0 10px">
+                  <input type="number" style="margin:0 5px" class="form-control col" aria-label="Small" aria-describedby="inputGroup-sizing-sm" v-model="valor_range">
+                  <input type="range" style="margin:0 5px"  class="form-control col"  name="points" min="1" max="100" step="0.1" v-model="valor_range" />               
+               </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary">Guardar Cambios</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
           </div>
         </div>
       </div>
@@ -363,16 +371,17 @@ export default {
       datos_resumen_madurador: [],
       tabla: null,
 
-      viewMenu: false,
-      top: "0px",
-      left: "0px",
+      valor_range: 0,
+      titulo_range: "Titulo",
+
+
     };
   },
   watch: {
     tipo(val) {
       $("#tblContenedor_madurador").DataTable().destroy();
       this.TablaContenedores_madurador();
-    },
+    }
   },
   mounted() {
     this.actualizarTabla();
@@ -391,6 +400,9 @@ export default {
                   navigator.clipboard.writeText(madurador.nombre_contenedor)
                   console.log(madurador.nombre_contenedor); 
                 }
+                console.log(key);
+                self.titulo_range = key + " / " + madurador.nombre_contenedor;
+                $("#clickDerechoModal").modal("show");
             },
             items: {
               "nombre": {"name": madurador.nombre_contenedor},

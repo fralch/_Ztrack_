@@ -66,7 +66,7 @@
           type="number" 
           class="form-control col-6" 
           v-model="temperatura" 
-          :disabled="admin_madurador!=true" 
+          :disabled="true" 
         />
       </div>
       <br />
@@ -76,7 +76,7 @@
           type="number" 
           class="form-control col-6" 
           v-model="co2" 
-          :disabled="admin_madurador!=true" 
+          :disabled="true" 
         />
       </div>
       <br />
@@ -86,7 +86,7 @@
           type="number" 
           class="form-control col-6" 
           v-model="humedad" 
-          :disabled="admin_madurador!=true" 
+          :disabled="true" 
         />
       </div>
       <br />
@@ -96,7 +96,7 @@
           type="number" 
           class="form-control col-6" 
           v-model="etileno" 
-          :disabled="admin_madurador!=true" 
+          :disabled="true" 
         />
       </div>
       <br />
@@ -106,7 +106,7 @@
           type="number"
           class="form-control col-6"
           v-model="tiempo_proceso"
-          :disabled="admin_madurador!=true" 
+          :disabled="true" 
         />
       </div>
       <br />
@@ -116,7 +116,7 @@
           type="number"
           class="form-control col-6"
           v-model="etileno_minimo"
-          :disabled="admin_madurador!=true" 
+          :disabled="true" 
         />
       </div>
       <br />
@@ -126,11 +126,11 @@
           type="number"
           class="form-control col-6"
           v-model="tiempo_inyeccion"
-          :disabled="admin_madurador!=true" 
+          :disabled="true" 
         />
       </div>
       <br />
-      <div class="row">
+      <!-- <div class="row">
         <div class="col-4">
           <input type="radio" id="inicio" value="Q" v-model="estado" :disabled="admin_madurador!=true"  />
           <label for="uno">START</label>
@@ -154,7 +154,7 @@
         :disabled="admin_madurador!=true" 
       >
         GUARDAR DATOS
-      </button>
+      </button> -->
     </div>
   </div>
 </template>
