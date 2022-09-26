@@ -348,7 +348,7 @@
                </div>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-primary">Guardar Cambios</button>
+              <button type="button" class="btn btn-primary" @click="actualizar_points">Guardar Cambios</button>
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
             </div>
           </div>
@@ -373,6 +373,8 @@ export default {
 
       valor_range: 0,
       titulo_range: "Titulo",
+      tipo_range: "",
+      id_madurador: 0, 
 
 
     };
@@ -390,6 +392,10 @@ export default {
     click_derecho(e, madurador) {
       let self = this;
       e.preventDefault();
+      $("#tblContenedor_madurador tbody").on("contextmenu", "tr", function () {
+          self.tabla.$("tr.selected").removeClass("selected");
+          $(this).addClass("selected");
+        });
       // $("#clickDerechoModal").modal("show");
       console.log(madurador.nombre_contenedor); 
       $.contextMenu('destroy', '.context-menu-one');
@@ -400,8 +406,11 @@ export default {
                   navigator.clipboard.writeText(madurador.nombre_contenedor)
                   console.log(madurador.nombre_contenedor); 
                 }
-                console.log(key);
+                // console.log(key);
+                  console.log(madurador); 
                 self.titulo_range = key + " / " + madurador.nombre_contenedor;
+                self.tipo_range = key;
+                self.id_madurador = madurador.id;
                 $("#clickDerechoModal").modal("show");
             },
             items: {
@@ -432,9 +441,20 @@ export default {
              
         // })    
     },
-    cerrarMenu() {
-      console.log("cerrar menu");
-      this.viewMenu = false;
+    
+    actualizar_points() {
+      let self = this;
+      axios
+        .post(route("madurador.points.set"), {tipo: self.tipo_range, valor : self.valor_range, id_contenedor: self.id_madurador})
+        .then((response) => {
+          Swal.fire(
+            "Editado!",
+            "El dato ha sido editado.",
+            "success"
+          );
+          $("#clickDerechoModal").modal("hide");
+        })
+        
     },
     TablaContenedores_madurador() {
       // console.log("armando tabla");
@@ -461,6 +481,7 @@ export default {
           self.tabla.$("tr.selected").removeClass("selected");
           $(this).addClass("selected");
         });
+
        
 
         // column.visible(!column.visible());

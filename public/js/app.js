@@ -4983,7 +4983,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       datos_resumen_madurador: [],
       tabla: null,
       valor_range: 0,
-      titulo_range: "Titulo"
+      titulo_range: "Titulo",
+      tipo_range: "",
+      id_madurador: 0
     };
   },
   watch: {
@@ -4998,7 +5000,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   methods: {
     click_derecho: function click_derecho(e, madurador) {
       var self = this;
-      e.preventDefault(); // $("#clickDerechoModal").modal("show");
+      e.preventDefault();
+      $("#tblContenedor_madurador tbody").on("contextmenu", "tr", function () {
+        self.tabla.$("tr.selected").removeClass("selected");
+        $(this).addClass("selected");
+      }); // $("#clickDerechoModal").modal("show");
 
       console.log(madurador.nombre_contenedor);
       $.contextMenu('destroy', '.context-menu-one');
@@ -5008,10 +5014,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           if (key == "copy") {
             navigator.clipboard.writeText(madurador.nombre_contenedor);
             console.log(madurador.nombre_contenedor);
-          }
+          } // console.log(key);
 
-          console.log(key);
+
+          console.log(madurador);
           self.titulo_range = key + " / " + madurador.nombre_contenedor;
+          self.tipo_range = key;
+          self.id_madurador = madurador.id;
           $("#clickDerechoModal").modal("show");
         },
         items: {
@@ -5060,9 +5069,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       //     console.log('clicked', this);
       // })    
     },
-    cerrarMenu: function cerrarMenu() {
-      console.log("cerrar menu");
-      this.viewMenu = false;
+    actualizar_points: function actualizar_points() {
+      var self = this;
+      axios__WEBPACK_IMPORTED_MODULE_0___default().post(route("madurador.points.set"), {
+        tipo: self.tipo_range,
+        valor: self.valor_range,
+        id_contenedor: self.id_madurador
+      }).then(function (response) {
+        Swal.fire("Editado!", "El dato ha sido editado.", "success");
+        $("#clickDerechoModal").modal("hide");
+      });
     },
     TablaContenedores_madurador: function TablaContenedores_madurador() {
       // console.log("armando tabla");
@@ -38545,7 +38561,26 @@ var render = function () {
                         ),
                       ]),
                       _vm._v(" "),
-                      _vm._m(1),
+                      _c("div", { staticClass: "modal-footer" }, [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-primary",
+                            attrs: { type: "button" },
+                            on: { click: _vm.actualizar_points },
+                          },
+                          [_vm._v("Guardar Cambios")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-secondary",
+                            attrs: { type: "button", "data-dismiss": "modal" },
+                          },
+                          [_vm._v("Cerrar")]
+                        ),
+                      ]),
                     ]),
                   ]
                 ),
@@ -38573,27 +38608,6 @@ var staticRenderFns = [
       },
       [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
     )
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-footer" }, [
-      _c(
-        "button",
-        { staticClass: "btn btn-primary", attrs: { type: "button" } },
-        [_vm._v("Guardar Cambios")]
-      ),
-      _vm._v(" "),
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-secondary",
-          attrs: { type: "button", "data-dismiss": "modal" },
-        },
-        [_vm._v("Cerrar")]
-      ),
-    ])
   },
 ]
 render._withStripped = true
