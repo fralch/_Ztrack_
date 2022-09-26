@@ -394,10 +394,9 @@ export default {
       e.preventDefault();
       $("#tblContenedor_madurador tbody").on("contextmenu", "tr", function () {
           self.tabla.$("tr.selected").removeClass("selected");
-          $(this).addClass("selected");
+          $(this).click(); 
         });
       // $("#clickDerechoModal").modal("show");
-      console.log(madurador.nombre_contenedor); 
       $.contextMenu('destroy', '.context-menu-one');
       $.contextMenu({
             selector: '.context-menu-one', 
@@ -411,7 +410,9 @@ export default {
                 self.titulo_range = key + " / " + madurador.nombre_contenedor;
                 self.tipo_range = key;
                 self.id_madurador = madurador.id;
-                $("#clickDerechoModal").modal("show");
+                if (key != "nombre" && key != "quit") {
+                  $("#clickDerechoModal").modal("show");
+                }
             },
             items: {
               "nombre": {"name": madurador.nombre_contenedor},
