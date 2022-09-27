@@ -134,6 +134,7 @@
                 :tipo="tipo"
                 :empresa = "empresa_logeado"
                 @select_contenedor="obteniendo_contendor"
+                @retornar_points="obteniendo_points"
               >
               </tablaResumenMadurador>
               <!-- *********** TABLA DETALLE CONTENEDORES *********** -->
@@ -232,6 +233,8 @@ export default {
       get_ubicacion_m: null,
       ubicacion_final: null,
       usuario_admin_mad: this.usuario_logeado[0].admin_madurador == 1 ? true : false,
+
+      puntos: null, 
     };
   },
   watch: {
@@ -252,6 +255,9 @@ export default {
       }else if(valor=="madurador"){
         this.makers=this.$refs.tablaResumenMadurador.contenedores_encendidos_madurador
       }
+    },
+    puntos(valor){
+      this.$refs.ladoIzquierdo.points = valor; 
     }
   },
   mounted() {
@@ -306,6 +312,9 @@ export default {
     },
     set_ubicacion_m(um) {
       this.get_ubicacion_m = um;
+    },
+    obteniendo_points(puntos) {
+      this.puntos = puntos;
     },
   },
 };

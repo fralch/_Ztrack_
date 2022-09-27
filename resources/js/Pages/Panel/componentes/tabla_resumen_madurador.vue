@@ -376,6 +376,8 @@ export default {
       tipo_range: "",
       id_madurador: 0, 
 
+      points: null, 
+      estado: "",
 
     };
   },
@@ -404,6 +406,17 @@ export default {
                 if (key =="copy") {
                   navigator.clipboard.writeText(madurador.nombre_contenedor)
                   console.log(madurador.nombre_contenedor); 
+                  return 0;
+                }
+                if (key =="estado") {
+                   axios
+                  .post(route("madurador.points.get_m"), {tipo: key,  id_contenedor: madurador.id})
+                  .then((response) => {
+                    self.estado = response.data[0].estado;
+                    console.log( self.estado);
+                  });
+                  return 0;
+
                 }
                 self.titulo_range = key + " / " + madurador.nombre_contenedor;
                 self.tipo_range = key;
@@ -437,6 +450,7 @@ export default {
                                 "Injection_time": { name: "Injection time" },
                             }
                         },
+                estado: {name: "Estado", icon: "edit"},
                 "sep1": "---------",
                 "quit": {name: "Quit", icon: function(){
                     return 'context-menu-icon context-menu-icon-quit';
@@ -455,7 +469,9 @@ export default {
       axios
         .post(route("madurador.points.set"), {tipo: self.tipo_range, valor : self.valor_range, id_contenedor: self.id_madurador})
         .then((response) => {
-          console.log(response.data);
+          // console.log(response.data);
+          // self.points = response.data;
+          self.retornar_points(response.data[0]);
           Swal.fire(
             "Editado!",
             "El dato ha sido editado.",
@@ -518,6 +534,10 @@ export default {
 
     select_contenedor(contenedor) {
       this.$emit("select_contenedor", contenedor); // emite el evento a contedor padre
+    },
+    retornar_points(puntos){
+      // console.log(puntos);
+      this.$emit("retornar_points", puntos); // emite el evento a contedor padre
     },
 
     ocultar(val) {

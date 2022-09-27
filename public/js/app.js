@@ -3035,8 +3035,10 @@ var Chart_temp_supply;
       tiempo_proceso: 0,
       etileno_minimo: 0,
       tiempo_inyeccion: 0,
-      estado: "" // start, stop, reset
-
+      estado: "",
+      // start, stop, reset
+      // --- points  ---
+      points: {}
     };
   },
   watch: {
@@ -3050,6 +3052,17 @@ var Chart_temp_supply;
       if (this.tipo == "madurador" && val != null) {
         this.GetPointsMadurador();
       }
+    },
+    points: function points(val, oldVal) {
+      // console.log('valores de point', val, oldVal);
+      this.temperatura = val.temperatura;
+      this.co2 = val.co2;
+      this.humedad = val.humedad;
+      this.etileno = val.etileno;
+      this.tiempo_proceso = val.tiempo_proceso;
+      this.etileno_minimo = val.etileno_minimo;
+      this.tiempo_inyeccion = val.tiempo_inyeccion;
+      console.log(val);
     }
   },
   mounted: function mounted() {},
@@ -4985,7 +4998,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       valor_range: 0,
       titulo_range: "Titulo",
       tipo_range: "",
-      id_madurador: 0
+      id_madurador: 0,
+      points: null,
+      estado: ""
     };
   },
   watch: {
@@ -5013,6 +5028,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           if (key == "copy") {
             navigator.clipboard.writeText(madurador.nombre_contenedor);
             console.log(madurador.nombre_contenedor);
+            return 0;
+          }
+
+          if (key == "estado") {
+            axios__WEBPACK_IMPORTED_MODULE_0___default().post(route("madurador.points.get_m"), {
+              tipo: key,
+              id_contenedor: madurador.id
+            }).then(function (response) {
+              self.estado = response.data[0].estado;
+              console.log(self.estado);
+            });
+            return 0;
           }
 
           self.titulo_range = key + " / " + madurador.nombre_contenedor;
@@ -5064,6 +5091,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
               }
             }
           },
+          estado: {
+            name: "Estado",
+            icon: "edit"
+          },
           "sep1": "---------",
           "quit": {
             name: "Quit",
@@ -5083,7 +5114,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         valor: self.valor_range,
         id_contenedor: self.id_madurador
       }).then(function (response) {
-        console.log(response.data);
+        // console.log(response.data);
+        // self.points = response.data;
+        self.retornar_points(response.data[0]);
         Swal.fire("Editado!", "El dato ha sido editado.", "success");
         $("#clickDerechoModal").modal("hide");
       });
@@ -5128,6 +5161,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     select_contenedor: function select_contenedor(contenedor) {
       this.$emit("select_contenedor", contenedor); // emite el evento a contedor padre
+    },
+    retornar_points: function retornar_points(puntos) {
+      // console.log(puntos);
+      this.$emit("retornar_points", puntos); // emite el evento a contedor padre
     },
     ocultar: function ocultar(val) {
       // this.tabla.column(val).visible(false);
@@ -5611,6 +5648,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 
@@ -5655,7 +5693,8 @@ __webpack_require__.r(__webpack_exports__);
       get_ubicacion_r: null,
       get_ubicacion_m: null,
       ubicacion_final: null,
-      usuario_admin_mad: this.usuario_logeado[0].admin_madurador == 1 ? true : false
+      usuario_admin_mad: this.usuario_logeado[0].admin_madurador == 1 ? true : false,
+      puntos: null
     };
   },
   watch: {
@@ -5676,6 +5715,9 @@ __webpack_require__.r(__webpack_exports__);
       } else if (valor == "madurador") {
         this.makers = this.$refs.tablaResumenMadurador.contenedores_encendidos_madurador;
       }
+    },
+    puntos: function puntos(valor) {
+      this.$refs.ladoIzquierdo.points = valor;
     }
   },
   mounted: function mounted() {
@@ -5719,6 +5761,9 @@ __webpack_require__.r(__webpack_exports__);
     },
     set_ubicacion_m: function set_ubicacion_m(um) {
       this.get_ubicacion_m = um;
+    },
+    obteniendo_points: function obteniendo_points(puntos) {
+      this.puntos = puntos;
     }
   }
 });
@@ -33164,6 +33209,95 @@ var render = function () {
             ]),
             _vm._v(" "),
             _c("br"),
+            _vm._v(" "),
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-4" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.estado,
+                      expression: "estado",
+                    },
+                  ],
+                  attrs: {
+                    type: "radio",
+                    id: "inicio",
+                    value: "Q",
+                    disabled: true,
+                  },
+                  domProps: { checked: _vm._q(_vm.estado, "Q") },
+                  on: {
+                    change: function ($event) {
+                      _vm.estado = "Q"
+                    },
+                  },
+                }),
+                _vm._v(" "),
+                _c("label", { attrs: { for: "uno" } }, [_vm._v("START")]),
+              ]),
+              _vm._v(" "),
+              _c("br"),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-4" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.estado,
+                      expression: "estado",
+                    },
+                  ],
+                  attrs: {
+                    type: "radio",
+                    id: "pausa",
+                    value: "P",
+                    disabled: true,
+                  },
+                  domProps: { checked: _vm._q(_vm.estado, "P") },
+                  on: {
+                    change: function ($event) {
+                      _vm.estado = "P"
+                    },
+                  },
+                }),
+                _vm._v(" "),
+                _c("label", { attrs: { for: "uno" } }, [_vm._v("STOP")]),
+              ]),
+              _vm._v(" "),
+              _c("br"),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-4" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.estado,
+                      expression: "estado",
+                    },
+                  ],
+                  attrs: {
+                    type: "radio",
+                    id: "reinicio",
+                    value: "R",
+                    disabled: true,
+                  },
+                  domProps: { checked: _vm._q(_vm.estado, "R") },
+                  on: {
+                    change: function ($event) {
+                      _vm.estado = "R"
+                    },
+                  },
+                }),
+                _vm._v(" "),
+                _c("label", { attrs: { for: "uno" } }, [_vm._v("RESET")]),
+              ]),
+            ]),
+            _vm._v(" "),
+            _c("br"),
           ]
         )
       : _vm._e(),
@@ -40255,7 +40389,10 @@ var render = function () {
                       _c("tablaResumenMadurador", {
                         ref: "tablaResumenMadurador",
                         attrs: { tipo: _vm.tipo, empresa: _vm.empresa_logeado },
-                        on: { select_contenedor: _vm.obteniendo_contendor },
+                        on: {
+                          select_contenedor: _vm.obteniendo_contendor,
+                          retornar_points: _vm.obteniendo_points,
+                        },
                       }),
                       _vm._v(" "),
                       _c("tablaDetalleGenset", {

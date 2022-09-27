@@ -130,24 +130,24 @@
         />
       </div>
       <br />
-      <!-- <div class="row">
+      <div class="row">
         <div class="col-4">
-          <input type="radio" id="inicio" value="Q" v-model="estado" :disabled="admin_madurador!=true"  />
+          <input type="radio" id="inicio" value="Q" v-model="estado" :disabled="true"  />
           <label for="uno">START</label>
         </div>
         <br />
         <div class="col-4">
-          <input type="radio" id="pausa" value="P" v-model="estado" :disabled="admin_madurador!=true" />
+          <input type="radio" id="pausa" value="P" v-model="estado" :disabled="true" />
           <label for="uno">STOP</label>
         </div>
         <br />
         <div class="col-4">
-          <input type="radio" id="reinicio" value="R" v-model="estado" :disabled="admin_madurador!=true" />
+          <input type="radio" id="reinicio" value="R" v-model="estado" :disabled="true" />
           <label for="uno">RESET</label>
         </div>
       </div>
       <br />
-      <button
+      <!-- <button
         type="submit"
         class="btn btn-secondary col-12"
         @click="SetPoint()"
@@ -190,6 +190,10 @@ export default {
       etileno_minimo: 0,
       tiempo_inyeccion: 0,
       estado: "", // start, stop, reset
+
+      // --- points  ---
+      points : {},
+
     };
   },
   watch: {
@@ -202,6 +206,18 @@ export default {
       if (this.tipo == "madurador" && val != null) {
         this.GetPointsMadurador();
       }
+    },
+    points(val, oldVal) {
+      // console.log('valores de point', val, oldVal);
+        this.temperatura = val.temperatura;
+        this.co2 = val.co2;
+        this.humedad = val.humedad;
+        this.etileno = val.etileno;
+        this.tiempo_proceso = val.tiempo_proceso;
+        this.etileno_minimo = val.etileno_minimo;
+        this.tiempo_inyeccion = val.tiempo_inyeccion;
+      console.log(val); 
+      
     },
   },
   mounted() {},

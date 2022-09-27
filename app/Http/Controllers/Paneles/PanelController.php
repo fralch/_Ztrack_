@@ -802,7 +802,7 @@ class PanelController extends Controller
     }
     public function get_points_m(Request $request)
     {
-    //    return $request->tipo;
+    //    return $request;
         if ($request->tipo == 'Temperature') {
             return $data_m = Madurador_points::select('temperatura as point')->where('contenedor_id', $request->id_contenedor)->get(); 
         }
@@ -823,6 +823,12 @@ class PanelController extends Controller
         }
         if ($request->tipo == 'Injection_time') {
             return $data_m = Madurador_points::select('tiempo_inyeccion as point')->where('contenedor_id', $request->id_contenedor)->get(); 
+        }
+        if ($request->tipo == 'Injection_time') {
+            return $data_m = Madurador_points::select('tiempo_inyeccion as point')->where('contenedor_id', $request->id_contenedor)->get(); 
+        }
+        if ($request->tipo == 'estado') {
+            return Madurador_points::select('estado')->where('contenedor_id', $request->id_contenedor)->get();
         }
         
     }
