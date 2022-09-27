@@ -800,6 +800,32 @@ class PanelController extends Controller
             return [$new_m];
         }
     }
+    public function get_points_m(Request $request)
+    {
+    //    return $request->tipo;
+        if ($request->tipo == 'Temperature') {
+            return $data_m = Madurador_points::select('temperatura as point')->where('contenedor_id', $request->id_contenedor)->get(); 
+        }
+        if ($request->tipo == 'Co2') {
+            return  $data_m = Madurador_points::select('co2 as point')->where('contenedor_id', $request->id_contenedor)->get(); 
+        }
+        if ($request->tipo == 'Humidity') {
+            return  $data_m = Madurador_points::select('humedad as point')->where('contenedor_id', $request->id_contenedor)->get(); 
+        }
+        if ($request->tipo == 'Ethylene') {
+            return  $data_m = Madurador_points::select('etileno as point')->where('contenedor_id', $request->id_contenedor)->get(); 
+        }
+        if ($request->tipo == 'Process_time') {
+            return $data_m = Madurador_points::select('tiempo_proceso as point')->where('contenedor_id', $request->id_contenedor)->get(); 
+        }
+        if ($request->tipo == 'Ethylene_minimum') {
+            return $data_m = Madurador_points::select('etileno_minimo as point')->where('contenedor_id', $request->id_contenedor)->get(); 
+        }
+        if ($request->tipo == 'Injection_time') {
+            return $data_m = Madurador_points::select('tiempo_inyeccion as point')->where('contenedor_id', $request->id_contenedor)->get(); 
+        }
+        
+    }
     public function set_points_madurador(Request $request)
     {
         // return $request->tipo; 

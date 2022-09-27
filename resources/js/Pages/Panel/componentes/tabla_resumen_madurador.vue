@@ -405,14 +405,21 @@ export default {
                   navigator.clipboard.writeText(madurador.nombre_contenedor)
                   console.log(madurador.nombre_contenedor); 
                 }
-                // console.log(key);
-                  console.log(madurador); 
                 self.titulo_range = key + " / " + madurador.nombre_contenedor;
                 self.tipo_range = key;
                 self.id_madurador = madurador.id;
-                if (key != "nombre" && key != "quit") {
-                  $("#clickDerechoModal").modal("show");
-                }
+                axios
+                  .post(route("madurador.points.get_m"), {tipo: self.tipo_range,  id_contenedor: self.id_madurador})
+                  .then((response) => {
+                    // console.log( response.data[0].point);
+                    self.valor_range = parseFloat(response.data[0].point);
+                  }).then(()=>{
+                    if (key != "nombre" && key != "quit") {
+                      $("#clickDerechoModal").modal("show");
+                    }
+                  });
+
+                
             },
             items: {
               "nombre": {"name": madurador.nombre_contenedor},

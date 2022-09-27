@@ -5013,17 +5013,22 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           if (key == "copy") {
             navigator.clipboard.writeText(madurador.nombre_contenedor);
             console.log(madurador.nombre_contenedor);
-          } // console.log(key);
+          }
 
-
-          console.log(madurador);
           self.titulo_range = key + " / " + madurador.nombre_contenedor;
           self.tipo_range = key;
           self.id_madurador = madurador.id;
-
-          if (key != "nombre" && key != "quit") {
-            $("#clickDerechoModal").modal("show");
-          }
+          axios__WEBPACK_IMPORTED_MODULE_0___default().post(route("madurador.points.get_m"), {
+            tipo: self.tipo_range,
+            id_contenedor: self.id_madurador
+          }).then(function (response) {
+            // console.log( response.data[0].point);
+            self.valor_range = parseFloat(response.data[0].point);
+          }).then(function () {
+            if (key != "nombre" && key != "quit") {
+              $("#clickDerechoModal").modal("show");
+            }
+          });
         },
         items: {
           "nombre": {
