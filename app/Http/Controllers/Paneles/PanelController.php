@@ -885,7 +885,11 @@ class PanelController extends Controller
                 'tiempo_inyeccion' => $request->valor
             ]);
         }
-        return $up_m;
+        if ($up_m) { 
+            return Madurador_points::where('contenedor_id', $request->id_contenedor)->get();
+        } else {
+            return 'error';
+        }
     }
     // -------------- APIS --------------
     public function api_contendedores(Request $request)

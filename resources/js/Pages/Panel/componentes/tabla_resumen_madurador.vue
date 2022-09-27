@@ -455,6 +455,7 @@ export default {
       axios
         .post(route("madurador.points.set"), {tipo: self.tipo_range, valor : self.valor_range, id_contenedor: self.id_madurador})
         .then((response) => {
+          console.log(response.data);
           Swal.fire(
             "Editado!",
             "El dato ha sido editado.",

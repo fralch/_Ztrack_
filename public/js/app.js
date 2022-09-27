@@ -5083,6 +5083,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         valor: self.valor_range,
         id_contenedor: self.id_madurador
       }).then(function (response) {
+        console.log(response.data);
         Swal.fire("Editado!", "El dato ha sido editado.", "success");
         $("#clickDerechoModal").modal("hide");
       });
