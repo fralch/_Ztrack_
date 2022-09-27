@@ -354,6 +354,43 @@
           </div>
         </div>
       </div>
+
+
+
+      <div class="modal fade" id="estadoDerechoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Estado del Madurador</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="row">
+                <div class="col-4">
+                  <input type="radio" id="inicio" value="Q" v-model="estado"   />
+                  <label for="uno">START</label>
+                </div>
+                <br />
+                <div class="col-4">
+                  <input type="radio" id="pausa" value="P" v-model="estado"  />
+                  <label for="uno">STOP</label>
+                </div>
+                <br />
+                <div class="col-4">
+                  <input type="radio" id="reinicio" value="R" v-model="estado"  />
+                  <label for="uno">RESET</label>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" @click="actualizar_points">Guardar</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -414,7 +451,10 @@ export default {
                   .then((response) => {
                     self.estado = response.data[0].estado;
                     console.log( self.estado);
+                  }).then(()=>{
+                    $("#estadoDerechoModal").modal("show");
                   });
+
                   return 0;
 
                 }
