@@ -193,6 +193,7 @@ export default {
 
       // --- points  ---
       points : {},
+      estado_madurador: "",
 
     };
   },
@@ -218,6 +219,11 @@ export default {
         this.tiempo_inyeccion = val.tiempo_inyeccion;
       console.log(val); 
       
+    },
+    estado_madurador(val, oldVal) {
+      console.log('desde izquierda',val.estado);
+      this.estado = val.estado;
+     
     },
   },
   mounted() {},

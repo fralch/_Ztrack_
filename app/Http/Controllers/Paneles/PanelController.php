@@ -897,6 +897,19 @@ class PanelController extends Controller
             return 'error';
         }
     }
+    public function set_estado_madurador(Request $request)
+    {
+       
+        $up_m = Madurador_points::where('contenedor_id', $request->id_contenedor)
+            ->update([
+                'estado' => $request->estado
+            ]);
+        if ($up_m) { 
+            return Madurador_points::select('estado')->where('contenedor_id', $request->id_contenedor)->get();
+        } else {
+            return 'error';
+        }
+    }
     // -------------- APIS --------------
     public function api_contendedores(Request $request)
     {

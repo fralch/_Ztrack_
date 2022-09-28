@@ -385,7 +385,7 @@
               </div>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-primary" @click="actualizar_points">Guardar</button>
+              <button type="button" class="btn btn-primary" @click="actualizar_estado">Guardar</button>
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
             </div>
           </div>
@@ -446,6 +446,7 @@ export default {
                   return 0;
                 }
                 if (key =="estado") {
+                  self.id_madurador = madurador.id;
                    axios
                   .post(route("madurador.points.get_m"), {tipo: key,  id_contenedor: madurador.id})
                   .then((response) => {
@@ -519,7 +520,23 @@ export default {
           );
           $("#clickDerechoModal").modal("hide");
         })
-        
+    },
+    actualizar_estado(){
+      // Q->start  P -> stop  R->reset
+      let self = this;
+      // console.log(self.estado, self.id_madurador);
+       axios
+        .post(route("madurador.estado.set"), {estado: self.estado,  id_contenedor: self.id_madurador})
+        .then((response) => {
+          console.log(response.data);
+          self.retornar_estado(response.data[0]);
+          Swal.fire(
+            "Editado!",
+            "El dato ha sido editado.",
+            "success"
+          );
+          $("#estadoDerechoModal").modal("hide");
+        })
     },
     TablaContenedores_madurador() {
       // console.log("armando tabla");
@@ -578,6 +595,10 @@ export default {
     retornar_points(puntos){
       // console.log(puntos);
       this.$emit("retornar_points", puntos); // emite el evento a contedor padre
+    },
+    retornar_estado(estado){
+      console.log('desde resumen', estado);
+      this.$emit("retornar_estado", estado); // emite el evento a contedor padre
     },
 
     ocultar(val) {

@@ -3038,7 +3038,8 @@ var Chart_temp_supply;
       estado: "",
       // start, stop, reset
       // --- points  ---
-      points: {}
+      points: {},
+      estado_madurador: ""
     };
   },
   watch: {
@@ -3063,6 +3064,10 @@ var Chart_temp_supply;
       this.etileno_minimo = val.etileno_minimo;
       this.tiempo_inyeccion = val.tiempo_inyeccion;
       console.log(val);
+    },
+    estado_madurador: function estado_madurador(val, oldVal) {
+      console.log('desde izquierda', val.estado);
+      this.estado = val.estado;
     }
   },
   mounted: function mounted() {},
@@ -5069,6 +5074,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           }
 
           if (key == "estado") {
+            self.id_madurador = madurador.id;
             axios__WEBPACK_IMPORTED_MODULE_0___default().post(route("madurador.points.get_m"), {
               tipo: key,
               id_contenedor: madurador.id
@@ -5160,6 +5166,20 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         $("#clickDerechoModal").modal("hide");
       });
     },
+    actualizar_estado: function actualizar_estado() {
+      // Q->start  P -> stop  R->reset
+      var self = this; // console.log(self.estado, self.id_madurador);
+
+      axios__WEBPACK_IMPORTED_MODULE_0___default().post(route("madurador.estado.set"), {
+        estado: self.estado,
+        id_contenedor: self.id_madurador
+      }).then(function (response) {
+        console.log(response.data);
+        self.retornar_estado(response.data[0]);
+        Swal.fire("Editado!", "El dato ha sido editado.", "success");
+        $("#estadoDerechoModal").modal("hide");
+      });
+    },
     TablaContenedores_madurador: function TablaContenedores_madurador() {
       // console.log("armando tabla");
       var self = this;
@@ -5204,6 +5224,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     retornar_points: function retornar_points(puntos) {
       // console.log(puntos);
       this.$emit("retornar_points", puntos); // emite el evento a contedor padre
+    },
+    retornar_estado: function retornar_estado(estado) {
+      console.log('desde resumen', estado);
+      this.$emit("retornar_estado", estado); // emite el evento a contedor padre
     },
     ocultar: function ocultar(val) {
       // this.tabla.column(val).visible(false);
@@ -5688,6 +5712,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 
@@ -5733,7 +5758,8 @@ __webpack_require__.r(__webpack_exports__);
       get_ubicacion_m: null,
       ubicacion_final: null,
       usuario_admin_mad: this.usuario_logeado[0].admin_madurador == 1 ? true : false,
-      puntos: null
+      puntos: null,
+      estado_mad: null
     };
   },
   watch: {
@@ -5757,6 +5783,9 @@ __webpack_require__.r(__webpack_exports__);
     },
     puntos: function puntos(valor) {
       this.$refs.ladoIzquierdo.points = valor;
+    },
+    estado_mad: function estado_mad(valor) {
+      this.$refs.ladoIzquierdo.estado_madurador = valor;
     }
   },
   mounted: function mounted() {
@@ -5803,6 +5832,9 @@ __webpack_require__.r(__webpack_exports__);
     },
     obteniendo_points: function obteniendo_points(puntos) {
       this.puntos = puntos;
+    },
+    obteniendo_estado: function obteniendo_estado(estado_mad) {
+      this.estado_mad = estado_mad;
     }
   }
 });
@@ -38885,7 +38917,7 @@ var render = function () {
                           {
                             staticClass: "btn btn-primary",
                             attrs: { type: "button" },
-                            on: { click: _vm.actualizar_points },
+                            on: { click: _vm.actualizar_estado },
                           },
                           [_vm._v("Guardar")]
                         ),
@@ -40593,6 +40625,7 @@ var render = function () {
                         on: {
                           select_contenedor: _vm.obteniendo_contendor,
                           retornar_points: _vm.obteniendo_points,
+                          retornar_estado: _vm.obteniendo_estado,
                         },
                       }),
                       _vm._v(" "),
