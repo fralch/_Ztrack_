@@ -66,7 +66,7 @@
           type="number" 
           class="form-control col-6" 
           v-model="temperatura" 
-          :disabled="admin_madurador!=true" 
+          :disabled="true" 
         />
       </div>
       <br />
@@ -76,7 +76,7 @@
           type="number" 
           class="form-control col-6" 
           v-model="co2" 
-          :disabled="admin_madurador!=true" 
+          :disabled="true" 
         />
       </div>
       <br />
@@ -86,7 +86,7 @@
           type="number" 
           class="form-control col-6" 
           v-model="humedad" 
-          :disabled="admin_madurador!=true" 
+          :disabled="true" 
         />
       </div>
       <br />
@@ -96,7 +96,7 @@
           type="number" 
           class="form-control col-6" 
           v-model="etileno" 
-          :disabled="admin_madurador!=true" 
+          :disabled="true" 
         />
       </div>
       <br />
@@ -106,7 +106,7 @@
           type="number"
           class="form-control col-6"
           v-model="tiempo_proceso"
-          :disabled="admin_madurador!=true" 
+          :disabled="true" 
         />
       </div>
       <br />
@@ -116,7 +116,7 @@
           type="number"
           class="form-control col-6"
           v-model="etileno_minimo"
-          :disabled="admin_madurador!=true" 
+          :disabled="true" 
         />
       </div>
       <br />
@@ -126,35 +126,35 @@
           type="number"
           class="form-control col-6"
           v-model="tiempo_inyeccion"
-          :disabled="admin_madurador!=true" 
+          :disabled="true" 
         />
       </div>
       <br />
       <div class="row">
         <div class="col-4">
-          <input type="radio" id="inicio" value="Q" v-model="estado" :disabled="admin_madurador!=true"  />
+          <input type="radio" id="inicio" value="Q" v-model="estado" :disabled="true"  />
           <label for="uno">START</label>
         </div>
         <br />
         <div class="col-4">
-          <input type="radio" id="pausa" value="P" v-model="estado" :disabled="admin_madurador!=true" />
+          <input type="radio" id="pausa" value="P" v-model="estado" :disabled="true" />
           <label for="uno">STOP</label>
         </div>
         <br />
         <div class="col-4">
-          <input type="radio" id="reinicio" value="R" v-model="estado" :disabled="admin_madurador!=true" />
+          <input type="radio" id="reinicio" value="R" v-model="estado" :disabled="true" />
           <label for="uno">RESET</label>
         </div>
       </div>
       <br />
-      <button
+      <!-- <button
         type="submit"
         class="btn btn-secondary col-12"
         @click="SetPoint()"
         :disabled="admin_madurador!=true" 
       >
         GUARDAR DATOS
-      </button>
+      </button> -->
     </div>
   </div>
 </template>
@@ -190,6 +190,11 @@ export default {
       etileno_minimo: 0,
       tiempo_inyeccion: 0,
       estado: "", // start, stop, reset
+
+      // --- points  ---
+      points : {},
+      estado_madurador: "",
+
     };
   },
   watch: {
@@ -202,6 +207,23 @@ export default {
       if (this.tipo == "madurador" && val != null) {
         this.GetPointsMadurador();
       }
+    },
+    points(val, oldVal) {
+      // console.log('valores de point', val, oldVal);
+        this.temperatura = val.temperatura;
+        this.co2 = val.co2;
+        this.humedad = val.humedad;
+        this.etileno = val.etileno;
+        this.tiempo_proceso = val.tiempo_proceso;
+        this.etileno_minimo = val.etileno_minimo;
+        this.tiempo_inyeccion = val.tiempo_inyeccion;
+      console.log(val); 
+      
+    },
+    estado_madurador(val, oldVal) {
+      console.log('desde izquierda',val.estado);
+      this.estado = val.estado;
+     
     },
   },
   mounted() {},
