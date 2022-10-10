@@ -423,6 +423,20 @@ export default {
             },
           },
           responsive: true,
+          "plugins": {
+              "legend": {
+                "display": true,
+                "position": "right",
+                "align": "center",
+                "labels": {
+                  "usePointStyle": true,
+                  "boxWidth": 10,
+                  "boxHeight": 10,
+                  "pointStyle": "rect",
+                
+                }
+              }
+          },
           maintainAspectRatio: false,
           scales: {
             y: {
