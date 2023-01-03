@@ -373,10 +373,12 @@
                   <tr>
                     <th width="20px">N°</th>
                     <th>Contenedor</th>
+                    <th>Alias</th>
                     <th>Tipo</th>
                     <th>Booking</th>
                     <th class="text-center">Booking_temp</th>
                     <th class="text-center">Activo</th>
+                    <th class="text-center">Editar</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -385,6 +387,7 @@
                     :key="index"
                   >
                     <td>{{ index + 1 }}</td>
+                    <td>{{ contenedor.nombre_contenedor.toUpperCase() }}</td>
                     <td>{{ contenedor.nombre_contenedor.toUpperCase() }}</td>
                     <td>{{ contenedor.tipo }}</td>
                     <td>{{ contenedor.booking }}</td>
@@ -400,6 +403,17 @@
                         <span class="slider round"></span>
                       </label>
                     </td>
+                     <td class="text-center">
+                        <button
+                          type="button"
+                          class="btn btn-primary"
+                          data-toggle="modal"
+                          data-target="#editarContenedorModal"
+                          @click="obtenerContenedor(contenedor)"
+                        >
+                          <i class="bi bi-pencil-fill"></i>
+                        </button>
+                      </td>
                   </tr>
                 </tbody>
               </table>
@@ -582,7 +596,7 @@
           </div>
         </div>
       </div>
-      <!--  edutar usuarios  -->
+      <!--  editar usuarios  -->
       <div
         class="modal fade"
         id="editarUsuarioModal"
@@ -708,6 +722,75 @@
           </div>
         </div>
       </div>
+      <!--  editar contenedores  -->
+      <div
+        class="modal fade"
+        id="editarContenedorModal"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="editarContenedorModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">
+                {{"Editar a " + " " + (editar_contenedor.nombre_contenedor).toUpperCase()  }}
+              </h5>
+              <button
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="form-group
+              ">
+                <label for="nombre_contenedor">Nombre del contenedor</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="nombre_contenedor"
+                    disabled
+                    v-model="editar_contenedor.nombre_contenedor"
+                  />
+                  <br>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="alias"
+                    v-model="editar_contenedor.alias"
+                  />
+                 
+
+              </div>
+
+              
+              
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-dark"
+                @click="guardarEditarUsuario"
+              >
+                <i class="fas fa-save"></i>
+                Guardar
+              </button>
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-dismiss="modal"
+              >
+                Cerrar
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </layoutprincipal>
 </template>
@@ -775,6 +858,15 @@ export default {
         activo: 0,
         admin: 0,
         admin_mad: 0,
+      },
+      // editar contenedor 
+      editar_contenedor: {
+        id: 0,
+        nombre_contenedor: "",
+        alias: "",
+        tipo: "",
+        booking: "",
+        booking_temp: "",
       },
     };
   },
@@ -1214,6 +1306,17 @@ export default {
         "success"
       );
       $("#editarUsuarioModal").modal("hide");
+    },
+    obtenerContenedor(contenedor){
+      console.log(contenedor);
+      this.editar_contenedor = {
+        id: contenedor.id,
+        nombre_contenedor:  contenedor.nombre_contenedor ,
+        alias: contenedor.alias? contenedor.alias : '',
+        tipo: contenedor.tipo,
+        booking: contenedor.booking,
+        booking_temp: contenedor.booking_temp,
+      };
     },
   },
 };
