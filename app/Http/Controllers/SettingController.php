@@ -191,4 +191,27 @@ class SettingController extends Controller
         ]);
         return Usuario_empresa::all();
     }
+    public function editar_contenedor(Request $request)
+    {
+        // return $request;
+
+        $contenedor = Contenedor::where('id',$request->id)->update([
+            'tipo' => $request->tipo,
+            'booking' => $request->booking,
+            'booking_temp' => $request->booking_temp,
+            'alias' => $request->alias ? $request->alias : null,
+        ]);
+        
+        if($contenedor){
+            return Contenedor::all();
+        }else{
+            return 'error';
+        }
+
+
+
+
+        // ALTER TABLE zgroup.contenedores ADD alias varchar(100) NULL;
+
+    }
 }
