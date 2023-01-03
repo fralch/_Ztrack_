@@ -388,7 +388,7 @@
                   >
                     <td>{{ index + 1 }}</td>
                     <td>{{ contenedor.nombre_contenedor.toUpperCase() }}</td>
-                    <td>{{ contenedor.nombre_contenedor.toUpperCase() }}</td>
+                    <td>{{ contenedor.alias ? contenedor.alias : "Sin alias" }}</td>
                     <td>{{ contenedor.tipo }}</td>
                     <td>{{ contenedor.booking }}</td>
                     <td class="text-center">{{ contenedor.booking_temp }}</td>
@@ -798,7 +798,7 @@
               <button
                 type="button"
                 class="btn btn-dark"
-                @click="guardarEditarUsuario"
+                @click="guardarEditarContenedor"
               >
                 <i class="fas fa-save"></i>
                 Guardar
@@ -1340,6 +1340,22 @@ export default {
         booking: contenedor.booking,
         booking_temp: contenedor.booking_temp,
       };
+    },
+    guardarEditarContenedor(){
+      let self = this;
+      let data = self.editar_contenedor
+      axios
+        .post(route("editar_contenedor"), data)
+        .then(function (response) {
+          console.log(response.data); 
+          self.tabla_contenedores_filtrados = response.data;
+        });
+      Swal.fire(
+        "Editado!",
+        "El contenedor ha sido editado.",
+        "success"
+      );
+      $("#editarContenedorModal").modal("hide");
     },
   },
 };

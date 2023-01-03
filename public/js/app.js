@@ -7249,6 +7249,16 @@ __webpack_require__.r(__webpack_exports__);
         booking: contenedor.booking,
         booking_temp: contenedor.booking_temp
       };
+    },
+    guardarEditarContenedor: function guardarEditarContenedor() {
+      var self = this;
+      var data = self.editar_contenedor;
+      axios.post(route("editar_contenedor"), data).then(function (response) {
+        console.log(response.data);
+        self.tabla_contenedores_filtrados = response.data;
+      });
+      Swal.fire("Editado!", "El contenedor ha sido editado.", "success");
+      $("#editarContenedorModal").modal("hide");
     }
   }
 });
@@ -40685,7 +40695,9 @@ var render = function () {
                                   _c("td", [
                                     _vm._v(
                                       _vm._s(
-                                        contenedor.nombre_contenedor.toUpperCase()
+                                        contenedor.alias
+                                          ? contenedor.alias
+                                          : "Sin alias"
                                       )
                                     ),
                                   ]),
@@ -41783,7 +41795,7 @@ var render = function () {
                       {
                         staticClass: "btn btn-dark",
                         attrs: { type: "button" },
-                        on: { click: _vm.guardarEditarUsuario },
+                        on: { click: _vm.guardarEditarContenedor },
                       },
                       [
                         _c("i", { staticClass: "fas fa-save" }),
