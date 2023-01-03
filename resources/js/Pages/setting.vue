@@ -764,6 +764,29 @@
                     id="alias"
                     v-model="editar_contenedor.alias"
                   />
+                  <br>
+                  <select
+                    class="form-control"
+                    v-model="editar_contenedor.tipo"
+                  >
+                    <option value="Reefer">Reefer</option>
+                    <option value="Generador">Generador</option>
+                  </select>
+                  <br>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="booking"
+                    v-model="editar_contenedor.booking"
+                  />
+                  <br>
+                  <input
+                    type="number"
+                    step="0.01"
+                    class="form-control"
+                    id="booking_temp"
+                    v-model="editar_contenedor.booking_temp"
+                  />
                  
 
               </div>
@@ -1312,7 +1335,7 @@ export default {
       this.editar_contenedor = {
         id: contenedor.id,
         nombre_contenedor:  contenedor.nombre_contenedor ,
-        alias: contenedor.alias? contenedor.alias : '',
+        alias: contenedor.alias? contenedor.alias : 'Sin alias',
         tipo: contenedor.tipo,
         booking: contenedor.booking,
         booking_temp: contenedor.booking_temp,

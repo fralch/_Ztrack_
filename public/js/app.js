@@ -6756,6 +6756,29 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -7221,7 +7244,7 @@ __webpack_require__.r(__webpack_exports__);
       this.editar_contenedor = {
         id: contenedor.id,
         nombre_contenedor: contenedor.nombre_contenedor,
-        alias: contenedor.alias ? contenedor.alias : '',
+        alias: contenedor.alias ? contenedor.alias : 'Sin alias',
         tipo: contenedor.tipo,
         booking: contenedor.booking,
         booking_temp: contenedor.booking_temp
@@ -41641,6 +41664,111 @@ var render = function () {
                             _vm.$set(
                               _vm.editar_contenedor,
                               "alias",
+                              $event.target.value
+                            )
+                          },
+                        },
+                      }),
+                      _vm._v(" "),
+                      _c("br"),
+                      _vm._v(" "),
+                      _c(
+                        "select",
+                        {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.editar_contenedor.tipo,
+                              expression: "editar_contenedor.tipo",
+                            },
+                          ],
+                          staticClass: "form-control",
+                          on: {
+                            change: function ($event) {
+                              var $$selectedVal = Array.prototype.filter
+                                .call($event.target.options, function (o) {
+                                  return o.selected
+                                })
+                                .map(function (o) {
+                                  var val = "_value" in o ? o._value : o.value
+                                  return val
+                                })
+                              _vm.$set(
+                                _vm.editar_contenedor,
+                                "tipo",
+                                $event.target.multiple
+                                  ? $$selectedVal
+                                  : $$selectedVal[0]
+                              )
+                            },
+                          },
+                        },
+                        [
+                          _c("option", { attrs: { value: "Reefer" } }, [
+                            _vm._v("Reefer"),
+                          ]),
+                          _vm._v(" "),
+                          _c("option", { attrs: { value: "Generador" } }, [
+                            _vm._v("Generador"),
+                          ]),
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c("br"),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.editar_contenedor.booking,
+                            expression: "editar_contenedor.booking",
+                          },
+                        ],
+                        staticClass: "form-control",
+                        attrs: { type: "text", id: "booking" },
+                        domProps: { value: _vm.editar_contenedor.booking },
+                        on: {
+                          input: function ($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.editar_contenedor,
+                              "booking",
+                              $event.target.value
+                            )
+                          },
+                        },
+                      }),
+                      _vm._v(" "),
+                      _c("br"),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.editar_contenedor.booking_temp,
+                            expression: "editar_contenedor.booking_temp",
+                          },
+                        ],
+                        staticClass: "form-control",
+                        attrs: {
+                          type: "number",
+                          step: "0.01",
+                          id: "booking_temp",
+                        },
+                        domProps: { value: _vm.editar_contenedor.booking_temp },
+                        on: {
+                          input: function ($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.editar_contenedor,
+                              "booking_temp",
                               $event.target.value
                             )
                           },
