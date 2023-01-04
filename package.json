@@ -22,6 +22,7 @@
         "@inertiajs/inertia-vue": "^0.8.0",
         "@inertiajs/progress": "^0.2.7",
         "bootstrap": "^5.1.3",
+        "caniuse-lite": "^1.0.30001441",
         "vue": "^2.6.14"
     }
 }

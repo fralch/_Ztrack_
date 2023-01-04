@@ -14,6 +14,7 @@
           <tr class="bg-success" style="color: white !important">
             <!-- <th scope="col" width='50px' class="text-center">Ver</th> -->
             <th scope="col" width="150px" class="text-center">Reefers</th>
+            <th scope="col" width="150px" class="text-center">Alias</th>
             <th scope="col" class="text-center" @click="ocultar(1)">Tipo</th>
             <th scope="col" class="text-center" @click="ocultar(2)">Estado</th>
             <th scope="col" width="150px" class="text-center" @click="ocultar(3)">Booking</th>
@@ -50,6 +51,7 @@
             </button>
           </td> -->
             <td class="text-center">{{ reef.nombre_contenedor }}</td>
+            <td class="text-center">{{ reef.alias ? reef.alias : "Sin alias" }}</td>
             <td class="text-center">{{ reef.tipo }}</td>
             <td class="text-center">{{ reef.encendido == 1 ? "SI" : "NO" }}</td>
             <td class="text-center">{{ reef.booking }}</td>

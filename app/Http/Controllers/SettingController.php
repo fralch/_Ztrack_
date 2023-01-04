@@ -157,7 +157,8 @@ class SettingController extends Controller
             'tipo' => $request->nuevo_tipo_contenedor,
             'encendido' => 1,
             'booking' => $request->nuevo_booking_contenedor,
-            'booking_temp' => $request->nuevo_booking_temp_contenedor
+            'booking_temp' => $request->nuevo_booking_temp_contenedor, 
+            'alias'=> $request->nuevo_contenedor_alias,
         ]);
         return Contenedor::all();
     }
@@ -190,5 +191,28 @@ class SettingController extends Controller
             'empresa_id' => $request->id_empresa,
         ]);
         return Usuario_empresa::all();
+    }
+    public function editar_contenedor(Request $request)
+    {
+        // return $request;
+
+        $contenedor = Contenedor::where('id',$request->id)->update([
+            'tipo' => $request->tipo,
+            'booking' => $request->booking,
+            'booking_temp' => $request->booking_temp,
+            'alias' => $request->alias ? $request->alias : null,
+        ]);
+        
+        if($contenedor){
+            return Contenedor::all();
+        }else{
+            return 'error';
+        }
+
+
+
+
+        // ALTER TABLE zgroup.contenedores ADD alias varchar(100) NULL;
+
     }
 }

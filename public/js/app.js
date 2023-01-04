@@ -5270,6 +5270,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {},
@@ -6673,6 +6675,124 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -6718,6 +6838,7 @@ __webpack_require__.r(__webpack_exports__);
       usuarios_empresa: [],
       // --- nuevo contenedor ---
       nuevo_contenedor: null,
+      nuevo_alias_contenedor: "",
       nuevo_tipo_contenedor: "0",
       nuevo_booking_contenedor: null,
       nuevo_booking_temp_contenedor: null,
@@ -6731,6 +6852,15 @@ __webpack_require__.r(__webpack_exports__);
         activo: 0,
         admin: 0,
         admin_mad: 0
+      },
+      // editar contenedor 
+      editar_contenedor: {
+        id: 0,
+        nombre_contenedor: "",
+        alias: "",
+        tipo: "",
+        booking: "",
+        booking_temp: ""
       }
     };
   },
@@ -6905,6 +7035,7 @@ __webpack_require__.r(__webpack_exports__);
       var self = this;
       var data = {
         nuevo_contenedor: self.nuevo_contenedor,
+        nuevo_contenedor_alias: self.nuevo_alias_contenedor,
         nuevo_tipo_contenedor: self.nuevo_tipo_contenedor,
         nuevo_booking_contenedor: self.nuevo_booking_contenedor,
         nuevo_booking_temp_contenedor: self.nuevo_booking_temp_contenedor
@@ -6942,6 +7073,7 @@ __webpack_require__.r(__webpack_exports__);
         }
       }).then(function () {
         self.nuevo_contenedor = "";
+        self.nuevo_alias_contenedor = "";
         self.nuevo_tipo_contenedor = "";
         self.nuevo_booking_contenedor = "";
         self.nuevo_booking_temp_contenedor = "";
@@ -7123,6 +7255,27 @@ __webpack_require__.r(__webpack_exports__);
       });
       Swal.fire("Editado!", "El usuario ha sido editado.", "success");
       $("#editarUsuarioModal").modal("hide");
+    },
+    obtenerContenedor: function obtenerContenedor(contenedor) {
+      console.log(contenedor);
+      this.editar_contenedor = {
+        id: contenedor.id,
+        nombre_contenedor: contenedor.nombre_contenedor,
+        alias: contenedor.alias ? contenedor.alias : 'Sin alias',
+        tipo: contenedor.tipo,
+        booking: contenedor.booking,
+        booking_temp: contenedor.booking_temp
+      };
+    },
+    guardarEditarContenedor: function guardarEditarContenedor() {
+      var self = this;
+      var data = self.editar_contenedor;
+      axios.post(route("editar_contenedor"), data).then(function (response) {
+        console.log(response.data);
+        self.tabla_contenedores_filtrados = response.data;
+      });
+      Swal.fire("Editado!", "El contenedor ha sido editado.", "success");
+      $("#editarContenedorModal").modal("hide");
     }
   }
 });
@@ -7239,7 +7392,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\r\n/* CSS DEL LOADING */\n.loading[data-v-cd606186] {\r\n  position: fixed;\r\n  z-index: 999;\r\n  height: 2em;\r\n  width: 2em;\r\n  overflow: show;\r\n  margin: auto;\r\n  top: 0;\r\n  left: 0;\r\n  bottom: 0;\r\n  right: 0;\n}\r\n\r\n/* Transparent Overlay */\n.loading[data-v-cd606186]:before {\r\n  content: \"\";\r\n  display: block;\r\n  position: fixed;\r\n  top: 0;\r\n  left: 0;\r\n  width: 100%;\r\n  height: 100%;\r\n  background: radial-gradient(rgba(20, 20, 20, 0.8), rgba(0, 0, 0, 0.8));\r\n\r\n  background: -webkit-radial-gradient(\r\n    rgba(20, 20, 20, 0.8),\r\n    rgba(0, 0, 0, 0.8)\r\n  );\n}\r\n\r\n/* :not(:required) hides these rules from IE9 and below */\n.loading[data-v-cd606186]:not(:required) {\r\n  /* hide \"loading...\" text */\r\n  font: 0/0 a;\r\n  color: transparent;\r\n  text-shadow: none;\r\n  background-color: transparent;\r\n  border: 0;\n}\n.loading[data-v-cd606186]:not(:required):after {\r\n  content: \"\";\r\n  display: block;\r\n  font-size: 10px;\r\n  width: 1em;\r\n  height: 1em;\r\n  margin-top: -0.5em;\r\n  -webkit-animation: spinner-data-v-cd606186 150ms infinite linear;\r\n  animation: spinner-data-v-cd606186 150ms infinite linear;\r\n  border-radius: 0.5em;\r\n  box-shadow: rgba(255, 255, 255, 0.75) 1.5em 0 0 0,\r\n    rgba(255, 255, 255, 0.75) 1.1em 1.1em 0 0,\r\n    rgba(255, 255, 255, 0.75) 0 1.5em 0 0,\r\n    rgba(255, 255, 255, 0.75) -1.1em 1.1em 0 0,\r\n    rgba(255, 255, 255, 0.75) -1.5em 0 0 0,\r\n    rgba(255, 255, 255, 0.75) -1.1em -1.1em 0 0,\r\n    rgba(255, 255, 255, 0.75) 0 -1.5em 0 0,\r\n    rgba(255, 255, 255, 0.75) 1.1em -1.1em 0 0;\n}\r\n\r\n/* Animation */\n@-webkit-keyframes spinner-data-v-cd606186 {\n0% {\r\n    transform: rotate(0deg);\n}\n100% {\r\n    transform: rotate(360deg);\n}\n}\n@keyframes spinner-data-v-cd606186 {\n0% {\r\n    transform: rotate(0deg);\n}\n100% {\r\n    transform: rotate(360deg);\n}\n}\n@media screen and (max-width: 400px) {\n#asset_maps[data-v-cd606186] {\r\n    background-color: blueviolet;\r\n    width: 95% !important;\r\n    margin: 0 !important;\r\n    margin-left: 10px !important;\r\n    padding: 0 !important;\n}\n#map[data-v-cd606186]{\r\n    width: 100% !important;\r\n     margin: 0 !important;\r\n    padding: 0 !important;\n}\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\r\n/* CSS DEL LOADING */\n.loading[data-v-cd606186] {\r\n  position: fixed;\r\n  z-index: 999;\r\n  height: 2em;\r\n  width: 2em;\r\n  overflow: show;\r\n  margin: auto;\r\n  top: 0;\r\n  left: 0;\r\n  bottom: 0;\r\n  right: 0;\n}\r\n\r\n/* Transparent Overlay */\n.loading[data-v-cd606186]:before {\r\n  content: \"\";\r\n  display: block;\r\n  position: fixed;\r\n  top: 0;\r\n  left: 0;\r\n  width: 100%;\r\n  height: 100%;\r\n  background: radial-gradient(rgba(20, 20, 20, 0.8), rgba(0, 0, 0, 0.8));\r\n\r\n  background: -webkit-radial-gradient(\r\n    rgba(20, 20, 20, 0.8),\r\n    rgba(0, 0, 0, 0.8)\r\n  );\n}\r\n\r\n/* :not(:required) hides these rules from IE9 and below */\n.loading[data-v-cd606186]:not(:required) {\r\n  /* hide \"loading...\" text */\r\n  font: 0/0 a;\r\n  color: transparent;\r\n  text-shadow: none;\r\n  background-color: transparent;\r\n  border: 0;\n}\n.loading[data-v-cd606186]:not(:required):after {\r\n  content: \"\";\r\n  display: block;\r\n  font-size: 10px;\r\n  width: 1em;\r\n  height: 1em;\r\n  margin-top: -0.5em;\r\n  animation: spinner-data-v-cd606186 150ms infinite linear;\r\n  border-radius: 0.5em;\r\n  box-shadow: rgba(255, 255, 255, 0.75) 1.5em 0 0 0,\r\n    rgba(255, 255, 255, 0.75) 1.1em 1.1em 0 0,\r\n    rgba(255, 255, 255, 0.75) 0 1.5em 0 0,\r\n    rgba(255, 255, 255, 0.75) -1.1em 1.1em 0 0,\r\n    rgba(255, 255, 255, 0.75) -1.5em 0 0 0,\r\n    rgba(255, 255, 255, 0.75) -1.1em -1.1em 0 0,\r\n    rgba(255, 255, 255, 0.75) 0 -1.5em 0 0,\r\n    rgba(255, 255, 255, 0.75) 1.1em -1.1em 0 0;\n}\r\n\r\n/* Animation */\n@keyframes spinner-data-v-cd606186 {\n0% {\r\n    transform: rotate(0deg);\n}\n100% {\r\n    transform: rotate(360deg);\n}\n}\n@media screen and (max-width: 400px) {\n#asset_maps[data-v-cd606186] {\r\n    background-color: blueviolet;\r\n    width: 95% !important;\r\n    margin: 0 !important;\r\n    margin-left: 10px !important;\r\n    padding: 0 !important;\n}\n#map[data-v-cd606186]{\r\n    width: 100% !important;\r\n     margin: 0 !important;\r\n    padding: 0 !important;\n}\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -38116,6 +38269,15 @@ var render = function () {
                         "th",
                         {
                           staticClass: "text-center",
+                          attrs: { scope: "col", width: "150px" },
+                        },
+                        [_vm._v("Alias")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "th",
+                        {
+                          staticClass: "text-center",
                           attrs: { scope: "col" },
                           on: {
                             click: function ($event) {
@@ -38427,6 +38589,12 @@ var render = function () {
                         [
                           _c("td", { staticClass: "text-center" }, [
                             _vm._v(_vm._s(reef.nombre_contenedor)),
+                          ]),
+                          _vm._v(" "),
+                          _c("td", { staticClass: "text-center" }, [
+                            _vm._v(
+                              _vm._s(reef.alias ? reef.alias : "Sin alias")
+                            ),
                           ]),
                           _vm._v(" "),
                           _c("td", { staticClass: "text-center" }, [
@@ -40355,6 +40523,37 @@ var render = function () {
                               _c(
                                 "label",
                                 { staticStyle: { "margin-right": "10px" } },
+                                [_vm._v("Alias contenedor")]
+                              ),
+                              _vm._v(" "),
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.nuevo_alias_contenedor,
+                                    expression: "nuevo_alias_contenedor",
+                                  },
+                                ],
+                                staticClass: "form-control mr-sm-2",
+                                attrs: { placeholder: "alias de contenedor" },
+                                domProps: { value: _vm.nuevo_alias_contenedor },
+                                on: {
+                                  input: function ($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.nuevo_alias_contenedor =
+                                      $event.target.value
+                                  },
+                                },
+                              }),
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "col" }, [
+                              _c(
+                                "label",
+                                { staticStyle: { "margin-right": "10px" } },
                                 [_vm._v("Tipo")]
                               ),
                               _vm._v(" "),
@@ -40466,7 +40665,11 @@ var render = function () {
                                   },
                                 ],
                                 staticClass: "form-control mr-sm-2",
-                                attrs: { placeholder: "Booking Temperature" },
+                                attrs: {
+                                  placeholder: "Booking Temperature",
+                                  type: "number",
+                                  step: "0.01",
+                                },
                                 domProps: {
                                   value: _vm.nuevo_booking_temp_contenedor,
                                 },
@@ -40520,6 +40723,8 @@ var render = function () {
                               _vm._v(" "),
                               _c("th", [_vm._v("Contenedor")]),
                               _vm._v(" "),
+                              _c("th", [_vm._v("Alias")]),
+                              _vm._v(" "),
                               _c("th", [_vm._v("Tipo")]),
                               _vm._v(" "),
                               _c("th", [_vm._v("Booking")]),
@@ -40530,6 +40735,10 @@ var render = function () {
                               _vm._v(" "),
                               _c("th", { staticClass: "text-center" }, [
                                 _vm._v("Activo"),
+                              ]),
+                              _vm._v(" "),
+                              _c("th", { staticClass: "text-center" }, [
+                                _vm._v("Editar"),
                               ]),
                             ]),
                           ]),
@@ -40546,6 +40755,16 @@ var render = function () {
                                     _vm._v(
                                       _vm._s(
                                         contenedor.nombre_contenedor.toUpperCase()
+                                      )
+                                    ),
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("td", [
+                                    _vm._v(
+                                      _vm._s(
+                                        contenedor.alias
+                                          ? contenedor.alias
+                                          : "Sin alias"
                                       )
                                     ),
                                   ]),
@@ -40581,6 +40800,33 @@ var render = function () {
                                         staticClass: "slider round",
                                       }),
                                     ]),
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("td", { staticClass: "text-center" }, [
+                                    _c(
+                                      "button",
+                                      {
+                                        staticClass: "btn btn-primary",
+                                        attrs: {
+                                          type: "button",
+                                          "data-toggle": "modal",
+                                          "data-target":
+                                            "#editarContenedorModal",
+                                        },
+                                        on: {
+                                          click: function ($event) {
+                                            return _vm.obtenerContenedor(
+                                              contenedor
+                                            )
+                                          },
+                                        },
+                                      },
+                                      [
+                                        _c("i", {
+                                          staticClass: "bi bi-pencil-fill",
+                                        }),
+                                      ]
+                                    ),
                                   ]),
                                 ])
                               }
@@ -41359,6 +41605,264 @@ var render = function () {
                         staticClass: "btn btn-dark",
                         attrs: { type: "button" },
                         on: { click: _vm.guardarEditarUsuario },
+                      },
+                      [
+                        _c("i", { staticClass: "fas fa-save" }),
+                        _vm._v("\n              Guardar\n            "),
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-secondary",
+                        attrs: { type: "button", "data-dismiss": "modal" },
+                      },
+                      [_vm._v("\n              Cerrar\n            ")]
+                    ),
+                  ]),
+                ]),
+              ]
+            ),
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "modal fade",
+            attrs: {
+              id: "editarContenedorModal",
+              tabindex: "-1",
+              role: "dialog",
+              "aria-labelledby": "editarContenedorModalLabel",
+              "aria-hidden": "true",
+            },
+          },
+          [
+            _c(
+              "div",
+              { staticClass: "modal-dialog", attrs: { role: "document" } },
+              [
+                _c("div", { staticClass: "modal-content" }, [
+                  _c("div", { staticClass: "modal-header" }, [
+                    _c(
+                      "h5",
+                      {
+                        staticClass: "modal-title",
+                        attrs: { id: "exampleModalLabel" },
+                      },
+                      [
+                        _vm._v(
+                          "\n              " +
+                            _vm._s(
+                              "Editar a " +
+                                " " +
+                                _vm.editar_contenedor.nombre_contenedor.toUpperCase()
+                            ) +
+                            "\n            "
+                        ),
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        staticClass: "close",
+                        attrs: {
+                          type: "button",
+                          "data-dismiss": "modal",
+                          "aria-label": "Close",
+                        },
+                      },
+                      [
+                        _c("span", { attrs: { "aria-hidden": "true" } }, [
+                          _vm._v("×"),
+                        ]),
+                      ]
+                    ),
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "modal-body" }, [
+                    _c("div", { staticClass: "form-group\n            " }, [
+                      _c("label", { attrs: { for: "nombre_contenedor" } }, [
+                        _vm._v("Nombre del contenedor"),
+                      ]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.editar_contenedor.nombre_contenedor,
+                            expression: "editar_contenedor.nombre_contenedor",
+                          },
+                        ],
+                        staticClass: "form-control",
+                        attrs: {
+                          type: "text",
+                          id: "nombre_contenedor",
+                          disabled: "",
+                        },
+                        domProps: {
+                          value: _vm.editar_contenedor.nombre_contenedor,
+                        },
+                        on: {
+                          input: function ($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.editar_contenedor,
+                              "nombre_contenedor",
+                              $event.target.value
+                            )
+                          },
+                        },
+                      }),
+                      _vm._v(" "),
+                      _c("br"),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.editar_contenedor.alias,
+                            expression: "editar_contenedor.alias",
+                          },
+                        ],
+                        staticClass: "form-control",
+                        attrs: { type: "text", id: "alias" },
+                        domProps: { value: _vm.editar_contenedor.alias },
+                        on: {
+                          input: function ($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.editar_contenedor,
+                              "alias",
+                              $event.target.value
+                            )
+                          },
+                        },
+                      }),
+                      _vm._v(" "),
+                      _c("br"),
+                      _vm._v(" "),
+                      _c(
+                        "select",
+                        {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.editar_contenedor.tipo,
+                              expression: "editar_contenedor.tipo",
+                            },
+                          ],
+                          staticClass: "form-control",
+                          on: {
+                            change: function ($event) {
+                              var $$selectedVal = Array.prototype.filter
+                                .call($event.target.options, function (o) {
+                                  return o.selected
+                                })
+                                .map(function (o) {
+                                  var val = "_value" in o ? o._value : o.value
+                                  return val
+                                })
+                              _vm.$set(
+                                _vm.editar_contenedor,
+                                "tipo",
+                                $event.target.multiple
+                                  ? $$selectedVal
+                                  : $$selectedVal[0]
+                              )
+                            },
+                          },
+                        },
+                        [
+                          _c("option", { attrs: { value: "Reefer" } }, [
+                            _vm._v("Reefer"),
+                          ]),
+                          _vm._v(" "),
+                          _c("option", { attrs: { value: "Generador" } }, [
+                            _vm._v("Generador"),
+                          ]),
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c("br"),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.editar_contenedor.booking,
+                            expression: "editar_contenedor.booking",
+                          },
+                        ],
+                        staticClass: "form-control",
+                        attrs: { type: "text", id: "booking" },
+                        domProps: { value: _vm.editar_contenedor.booking },
+                        on: {
+                          input: function ($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.editar_contenedor,
+                              "booking",
+                              $event.target.value
+                            )
+                          },
+                        },
+                      }),
+                      _vm._v(" "),
+                      _c("br"),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.editar_contenedor.booking_temp,
+                            expression: "editar_contenedor.booking_temp",
+                          },
+                        ],
+                        staticClass: "form-control",
+                        attrs: {
+                          type: "number",
+                          step: "0.01",
+                          id: "booking_temp",
+                        },
+                        domProps: { value: _vm.editar_contenedor.booking_temp },
+                        on: {
+                          input: function ($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.editar_contenedor,
+                              "booking_temp",
+                              $event.target.value
+                            )
+                          },
+                        },
+                      }),
+                    ]),
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "modal-footer" }, [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-dark",
+                        attrs: { type: "button" },
+                        on: { click: _vm.guardarEditarContenedor },
                       },
                       [
                         _c("i", { staticClass: "fas fa-save" }),
