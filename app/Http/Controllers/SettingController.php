@@ -157,7 +157,8 @@ class SettingController extends Controller
             'tipo' => $request->nuevo_tipo_contenedor,
             'encendido' => 1,
             'booking' => $request->nuevo_booking_contenedor,
-            'booking_temp' => $request->nuevo_booking_temp_contenedor
+            'booking_temp' => $request->nuevo_booking_temp_contenedor, 
+            'alias'=> $request->nuevo_contenedor_alias,
         ]);
         return Contenedor::all();
     }

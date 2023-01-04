@@ -323,6 +323,16 @@
                       />
                     </div>
                     <div class="col">
+                      <label style="margin-right: 10px"
+                        >Alias contenedor</label
+                      >
+                      <input
+                        class="form-control mr-sm-2"
+                        placeholder="alias de contenedor"
+                        v-model="nuevo_alias_contenedor"
+                      />
+                    </div>
+                    <div class="col">
                       <label style="margin-right: 10px">Tipo</label>
                       <select
                         class="form-control mr-sm-2"
@@ -346,6 +356,8 @@
                       <input
                         class="form-control mr-sm-2"
                         placeholder="Booking Temperature"
+                        type="number"
+                        step="0.01"
                         v-model="nuevo_booking_temp_contenedor"
                       />
                     </div>
@@ -867,6 +879,7 @@ export default {
       usuarios_empresa: [],
       // --- nuevo contenedor ---
       nuevo_contenedor: null,
+      nuevo_alias_contenedor: "",
       nuevo_tipo_contenedor: "0",
       nuevo_booking_contenedor: null,
       nuevo_booking_temp_contenedor: null,
@@ -1069,6 +1082,7 @@ export default {
       let self = this;
       let data = {
         nuevo_contenedor: self.nuevo_contenedor,
+        nuevo_contenedor_alias: self.nuevo_alias_contenedor,
         nuevo_tipo_contenedor: self.nuevo_tipo_contenedor,
         nuevo_booking_contenedor: self.nuevo_booking_contenedor,
         nuevo_booking_temp_contenedor: self.nuevo_booking_temp_contenedor,
@@ -1108,6 +1122,7 @@ export default {
         })
         .then(() => {
           self.nuevo_contenedor = "";
+          self.nuevo_alias_contenedor = "";
           self.nuevo_tipo_contenedor = "";
           self.nuevo_booking_contenedor = "";
           self.nuevo_booking_temp_contenedor = "";

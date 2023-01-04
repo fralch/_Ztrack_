@@ -6779,6 +6779,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -6824,6 +6836,7 @@ __webpack_require__.r(__webpack_exports__);
       usuarios_empresa: [],
       // --- nuevo contenedor ---
       nuevo_contenedor: null,
+      nuevo_alias_contenedor: "",
       nuevo_tipo_contenedor: "0",
       nuevo_booking_contenedor: null,
       nuevo_booking_temp_contenedor: null,
@@ -7020,6 +7033,7 @@ __webpack_require__.r(__webpack_exports__);
       var self = this;
       var data = {
         nuevo_contenedor: self.nuevo_contenedor,
+        nuevo_contenedor_alias: self.nuevo_alias_contenedor,
         nuevo_tipo_contenedor: self.nuevo_tipo_contenedor,
         nuevo_booking_contenedor: self.nuevo_booking_contenedor,
         nuevo_booking_temp_contenedor: self.nuevo_booking_temp_contenedor
@@ -7057,6 +7071,7 @@ __webpack_require__.r(__webpack_exports__);
         }
       }).then(function () {
         self.nuevo_contenedor = "";
+        self.nuevo_alias_contenedor = "";
         self.nuevo_tipo_contenedor = "";
         self.nuevo_booking_contenedor = "";
         self.nuevo_booking_temp_contenedor = "";
@@ -40491,6 +40506,37 @@ var render = function () {
                               _c(
                                 "label",
                                 { staticStyle: { "margin-right": "10px" } },
+                                [_vm._v("Alias contenedor")]
+                              ),
+                              _vm._v(" "),
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.nuevo_alias_contenedor,
+                                    expression: "nuevo_alias_contenedor",
+                                  },
+                                ],
+                                staticClass: "form-control mr-sm-2",
+                                attrs: { placeholder: "alias de contenedor" },
+                                domProps: { value: _vm.nuevo_alias_contenedor },
+                                on: {
+                                  input: function ($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.nuevo_alias_contenedor =
+                                      $event.target.value
+                                  },
+                                },
+                              }),
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "col" }, [
+                              _c(
+                                "label",
+                                { staticStyle: { "margin-right": "10px" } },
                                 [_vm._v("Tipo")]
                               ),
                               _vm._v(" "),
@@ -40602,7 +40648,11 @@ var render = function () {
                                   },
                                 ],
                                 staticClass: "form-control mr-sm-2",
-                                attrs: { placeholder: "Booking Temperature" },
+                                attrs: {
+                                  placeholder: "Booking Temperature",
+                                  type: "number",
+                                  step: "0.01",
+                                },
                                 domProps: {
                                   value: _vm.nuevo_booking_temp_contenedor,
                                 },
