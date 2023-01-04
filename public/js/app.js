@@ -5270,6 +5270,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {},
@@ -38267,6 +38269,15 @@ var render = function () {
                         "th",
                         {
                           staticClass: "text-center",
+                          attrs: { scope: "col", width: "150px" },
+                        },
+                        [_vm._v("Alias")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "th",
+                        {
+                          staticClass: "text-center",
                           attrs: { scope: "col" },
                           on: {
                             click: function ($event) {
@@ -38578,6 +38589,12 @@ var render = function () {
                         [
                           _c("td", { staticClass: "text-center" }, [
                             _vm._v(_vm._s(reef.nombre_contenedor)),
+                          ]),
+                          _vm._v(" "),
+                          _c("td", { staticClass: "text-center" }, [
+                            _vm._v(
+                              _vm._s(reef.alias ? reef.alias : "Sin alias")
+                            ),
                           ]),
                           _vm._v(" "),
                           _c("td", { staticClass: "text-center" }, [

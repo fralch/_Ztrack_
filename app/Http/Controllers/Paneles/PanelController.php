@@ -157,6 +157,7 @@ class PanelController extends Controller
         if ($tipo == 'reefer') {
             $array_contenedor = [
                 'id' => $contenedor->id,
+                'alias' => $contenedor->alias,
                 'nombre_contenedor' => $contenedor->nombre_contenedor,
                 'tipo' => $contenedor->tipo,
                 'encendido' => $contenedor->encendido,
